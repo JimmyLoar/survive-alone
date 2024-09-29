@@ -22,6 +22,13 @@ ModLoader="*res://addons/mod_loader/mod_loader.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg")

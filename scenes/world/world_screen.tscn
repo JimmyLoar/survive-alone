@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpcktvxjqbxag"]
+
+[ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://scenes/world/character.tscn" id="1_7v8xb"]
+[ext_resource type="Script" path="res://scenes/world/world_screen.gd" id="1_ljijd"]
+
+[node name="WorldScreen" type="Node2D"]
+script = ExtResource("1_ljijd")
+_draw_chunks = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="Character" parent="." instance=ExtResource("1_7v8xb")]
