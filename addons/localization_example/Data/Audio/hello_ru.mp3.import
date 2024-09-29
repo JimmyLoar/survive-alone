@@ -3,12 +3,11 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://lppmywp11046"
-path="res://.godot/imported/hello_ru.mp3-2649de00ce3063ff422763dc44e69904.mp3str"
+valid=false
 
 [deps]
 
 source_file="res://addons/localization_example/Data/Audio/hello_ru.mp3"
-dest_files=["res://.godot/imported/hello_ru.mp3-2649de00ce3063ff422763dc44e69904.mp3str"]
 
 [params]
 

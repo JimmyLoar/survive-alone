@@ -3,12 +3,11 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://do3gtrskq01lg"
-path="res://.godot/imported/Pangolin-Regular.ttf-c492032aabc6092f306b4d2a40f4f6b0.fontdata"
+valid=false
 
 [deps]
 
 source_file="res://addons/localization_example/font/Pangolin-Regular.ttf"
-dest_files=["res://.godot/imported/Pangolin-Regular.ttf-c492032aabc6092f306b4d2a40f4f6b0.fontdata"]
 
 [params]
 

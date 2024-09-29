@@ -3,12 +3,11 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://c1ssptyqgyqfu"
-path="res://.godot/imported/hello_de.ogg-1f20f3a7475de6bcef04d2cb6b3be34c.oggvorbisstr"
+valid=false
 
 [deps]
 
 source_file="res://addons/localization_example/Data/Audio/hello_de.ogg"
-dest_files=["res://.godot/imported/hello_de.ogg-1f20f3a7475de6bcef04d2cb6b3be34c.oggvorbisstr"]
 
 [params]
 
