@@ -14,6 +14,9 @@ config/name="n-u-t"
 run/main_scene="res://bootstrap/bootstrap.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+game/size/world=Vector2i(32, 32)
+game/size/chunk=16
+game/size/tile=16
 
 [autoload]
 

@@ -6,3 +6,5 @@ extends Node2D
 
 func _ready() -> void:
 	controller.target = self
+
+## TODO Добавить отслеживание, в каком чанке находится игрок
