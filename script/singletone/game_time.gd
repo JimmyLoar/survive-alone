@@ -1,5 +1,8 @@
 extends Node
 
+signal new_day
+signal time_update(delta)
+
 var _time: int = 0 
 var _time_max: int = 14400
 var _day: int = 0 
@@ -43,10 +46,12 @@ func _physics_process(delta: float) -> void:
 		set_physics_process(false)
 		return 
 	
-	var time_addational = ceil(delta * _multiper)
+	var time_addational = ceili(_multiper)
 	_reaming_add_time -= time_addational
 	_time += time_addational
+	emit_signal("time_update", time_addational)
 	if _time >= _time_max:
 		var _days_complited = floori(_time / _time_max)
 		_day += _days_complited
 		_time -= _days_complited * _time_max
+		new_day.emit()
