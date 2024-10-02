@@ -25,6 +25,7 @@ ModLoader="*res://addons/mod_loader/mod_loader.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 FpsDisplay="*res://script/!debug/fps_display.gd"
+GameTime="*res://script/singletone/game_time.gd"
 
 [display]
 
