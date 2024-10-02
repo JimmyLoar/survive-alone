@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="n-u-t"
+config/name="Surviving Alone"
 run/main_scene="res://bootstrap/bootstrap.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
