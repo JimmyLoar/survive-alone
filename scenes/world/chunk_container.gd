@@ -13,33 +13,26 @@ var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk",
 #count pixels in tile
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)  
 
+const ChunkHeighbor = [
+	Vector2i.RIGHT,
+	Vector2i(1, 1),
+	Vector2i.DOWN,
+	Vector2i(-1, 1),
+	Vector2i.LEFT,
+	Vector2i(-1, -1),
+	Vector2i.UP,
+	Vector2i(1, -1),
+]
 
-func _ready() -> void:
-	load_region(Vector2.ONE * 2, 3)
 
-
-func load_region(center_position: Vector2i, radius := 3):
-	_logger.info("Start update chunks...")
-	#if not _validate_region(radius): 
-		#_logger.error("Error update chunks!")
-		#return
+#TODO переделать на подгрузку чанков 3*3
+func update_region(center_position: Vector2i):
+	_logger.info("Start update chunks, center is %s" % [center_position])
 	
-	var size_side: int = radius * 2 - 1
-	for x in pow(size_side, 2):
-		var _offset = Vector2i(
-				fmod(x, size_side) - ceili(size_side / 2), 
-				floori(x / size_side) - ceili(size_side / 2)
-			)
-		_add_chunks(center_position + _offset)
+	for dir in ChunkHeighbor.size():
+		var chunk_position = center_position + ChunkHeighbor[dir]
 	
 	_logger.info("DONE update chunks!")
-	
-
-func _validate_region(radius: int) -> bool:
-	if fmod(radius, 2) != 0:
-		_logger.debug("Need used not even number!")
-		return false
-	return true
 
 
 func _add_chunks(chunk_position: Vector2i):
@@ -58,6 +51,9 @@ func _remove_chunk(chunk_position: Vector2i):
 		return
 	
 	_content.erase(chunk_position)
+
+
+
 
 
 func get_loaded_chunk(_position_in_world: Vector2i):

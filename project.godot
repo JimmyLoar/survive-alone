@@ -15,7 +15,7 @@ run/main_scene="res://bootstrap/bootstrap.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 game/size/world=Vector2i(32, 32)
-game/size/chunk=16
+game/size/chunk=48
 game/size/tile=16
 
 [autoload]
@@ -24,6 +24,7 @@ ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
+FpsDisplay="*res://script/!debug/fps_display.gd"
 
 [display]
 
@@ -31,6 +32,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
