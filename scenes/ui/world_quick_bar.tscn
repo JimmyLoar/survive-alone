@@ -1,0 +1,159 @@
+[gd_scene load_steps=2 format=3 uid="uid://bov1qert3n6ln"]
+
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_fmwyq"]
+
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(120, 0)
+anchors_preset = -1
+anchor_top = -0.00555556
+anchor_right = 0.09375
+anchor_bottom = 1.00556
+offset_top = 4.0
+offset_right = -52.0
+offset_bottom = -3.99994
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Clock" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Clock"]
+layout_mode = 2
+texture = ExtResource("1_fmwyq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HungerBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HungerBar"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("1_fmwyq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HungerBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 23.0
+
+[node name="ThirstBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ThirstBar"]
+modulate = Color(0, 0, 1, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("1_fmwyq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/ThirstBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 46.0
+
+[node name="EnergyBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/EnergyBar"]
+modulate = Color(1, 1, 0, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("1_fmwyq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/EnergyBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 83.0
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Button"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Button"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Button"
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Button"
+
+[node name="Button5" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Button"
+
+[node name="Button6" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Button"
+
+[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Control3"]
+custom_minimum_size = Vector2(86, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "v.dev"
+horizontal_alignment = 2
+text_overrun_behavior = 1

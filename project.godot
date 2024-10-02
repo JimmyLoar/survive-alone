@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Surviving Alone"
+config/name="SurviveAlone"
 run/main_scene="res://bootstrap/bootstrap.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
@@ -46,3 +46,4 @@ locale/translations=PackedStringArray("res://localization/localizations.de.trans
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
