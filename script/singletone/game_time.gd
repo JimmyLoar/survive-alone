@@ -1,7 +1,8 @@
 extends Node
 
 signal new_day
-signal time_update(delta)
+signal time_update(delta: int)
+signal time_skipped(skipped_time: int)
 
 var _time: int = 0 
 var _time_max: int = 14400
@@ -41,7 +42,11 @@ func clear_action_time():
 	_multiper = 1.0
 
 
-func _physics_process(delta: float) -> void:
+func timeskip(time_in_minut: int) -> void:
+	pass
+
+
+func _physics_process(_delta: float) -> void:
 	if _reaming_add_time <= 0: 
 		set_physics_process(false)
 		return 

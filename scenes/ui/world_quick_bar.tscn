@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bov1qert3n6ln"]
+[gd_scene load_steps=4 format=3 uid="uid://bov1qert3n6ln"]
 
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_fmwyq"]
+[ext_resource type="PackedScene" uid="uid://c8ildsba35mng" path="res://scenes/ui/property_bar.tscn" id="2_d653t"]
+[ext_resource type="Script" path="res://script/nodes/version_display.gd" id="3_nncfh"]
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(120, 0)
@@ -38,24 +40,8 @@ texture = ExtResource("1_fmwyq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HungerBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 28)
+[node name="HungerBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_d653t")]
 layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HungerBar"]
-modulate = Color(1, 0, 0, 1)
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = ExtResource("1_fmwyq")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HungerBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 23.0
 
 [node name="ThirstBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
@@ -142,6 +128,7 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Control3"]
+visible = false
 custom_minimum_size = Vector2(86, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -157,3 +144,13 @@ grow_vertical = 2
 text = "v.dev"
 horizontal_alignment = 2
 text_overrun_behavior = 1
+
+[node name="VersionDisplay" type="Label" parent="MarginContainer/VBoxContainer/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 2
+script = ExtResource("3_nncfh")

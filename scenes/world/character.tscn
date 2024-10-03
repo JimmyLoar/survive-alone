@@ -62,7 +62,8 @@ signal changed_chunk
 var direction := Vector2.ZERO
 var distance := 0.0
 
-var target_position := Vector2.ZERO
+var game_time: Node = Engine.get_singleton(\"GameTime\")
+
 var target : Node2D = null:
 	set(value):
 		target = value
@@ -83,9 +84,10 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_released():
-		target_position = get_global_mouse_position()
+		var target_position = get_global_mouse_position() as Vector2
 		direction = target.global_position.direction_to(target_position)
 		distance = target.global_position.distance_to(target_position)
+		game_time.add_action_time(9999)
 
 
 func is_moving():
@@ -93,6 +95,7 @@ func is_moving():
 
 
 func _stop():
+	game_time.clear_action_time()
 	direction = Vector2.ZERO
 	distance = 0.0
 
@@ -116,6 +119,7 @@ script = ExtResource("1_p76ae")
 texture = SubResource("Texture2D_lcb6a")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(-60, 0)
 script = SubResource("GDScript_g3eh0")
 
 [node name="Controller" type="Node2D" parent="."]
