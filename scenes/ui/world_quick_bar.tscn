@@ -1,8 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bov1qert3n6ln"]
+[gd_scene load_steps=5 format=3 uid="uid://bov1qert3n6ln"]
 
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_fmwyq"]
 [ext_resource type="PackedScene" uid="uid://c8ildsba35mng" path="res://scenes/ui/property_bar.tscn" id="2_d653t"]
 [ext_resource type="Script" path="res://script/nodes/version_display.gd" id="3_nncfh"]
+
+[sub_resource type="GDScript" id="GDScript_fbrsl"]
+script/source = "extends RichTextLabel
+
+
+func _ready() -> void:
+	GameTime.time_update.connect(update_time)
+	update_time()
+
+func update_time(_value = 0):
+	text = \"[center]%s\" % \"{hour}:{minut}\\n{year}/{month}/{day}\".format(GameTime.get_date())
+"
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(120, 0)
@@ -35,10 +47,20 @@ custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Clock"]
+modulate = Color(0.329158, 0.329158, 0.329158, 1)
 layout_mode = 2
 texture = ExtResource("1_fmwyq")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Clock"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+script = SubResource("GDScript_fbrsl")
 
 [node name="HungerBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_d653t")]
 layout_mode = 2

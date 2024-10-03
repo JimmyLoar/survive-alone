@@ -4,8 +4,17 @@ signal new_day
 signal time_update(delta: int)
 signal time_skipped(skipped_time: int)
 
+const TIME_MULTYPER = 10
+const MINUT_IN_DAY = 1440 * TIME_MULTYPER
+const _DATA =  {
+		"year": 2001,
+		"month": 7, 
+		"day": 4,
+		"hour": 11,
+		"minut": 23,
+	}
+
 var _time: int = 0 
-var _time_max: int = 14400
 var _day: int = 0 
 
 var _reaming_add_time: int = 0
@@ -14,26 +23,29 @@ var _multiper: float = 0
 
 func _init() -> void:
 	set_physics_process(false)
+	_time = (_DATA.hour * 60 + _DATA.minut) * TIME_MULTYPER
+	_day = _DATA.month * 30 + _DATA.day
 
 
-func get_time_value() -> int:
-	return _time
-
-
-func get_time_text() -> Dictionary:
+func get_date() -> Dictionary:
 	return {
-		"hour": str(ceili(_time / 600)).lpad(2, "0"),
-		"minut": str(fmod(_time / 10, 60)).lpad(2, "0"),
+		"year": str(get_year()).lpad(2, "4"),
+		"month": str(get_month()).lpad(2, "0"),
+		"day": str(get_day()).lpad(2, "0"),
+		"hour": str(get_hour()).lpad(2, "0"),
+		"minut": str(get_minut()).lpad(2, "0"),
 	}
 
-
-func get_day_count() -> int:
-	return _day
+func get_minut() -> int: return fmod(_time / TIME_MULTYPER, 60)
+func get_hour()  -> int: return floori(_time / TIME_MULTYPER / 60.0)
+func get_day()   -> int: return fmod(_day, 30.0) 
+func get_month() -> int: return ceil(fmod(_day, 360.0) / 30)
+func get_year()  -> int: return _DATA.year + floori(_day / 360.0)
 
 
 func add_action_time(action_time: int = 0, multiper: float = 1.0):
-	_reaming_add_time = action_time
-	_multiper = multiper
+	_multiper = clampi(multiper, 0, 1000)
+	_reaming_add_time += action_time * _multiper
 	set_physics_process(true)
 
 
@@ -55,8 +67,7 @@ func _physics_process(_delta: float) -> void:
 	_reaming_add_time -= time_addational
 	_time += time_addational
 	emit_signal("time_update", time_addational)
-	if _time >= _time_max:
-		var _days_complited = floori(_time / _time_max)
-		_day += _days_complited
-		_time -= _days_complited * _time_max
+	if _time >= MINUT_IN_DAY:
+		_day += floori(_time / MINUT_IN_DAY)
+		_time -= snapped(_time, MINUT_IN_DAY)
 		new_day.emit()
