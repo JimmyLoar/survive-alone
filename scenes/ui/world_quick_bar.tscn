@@ -64,44 +64,15 @@ script = SubResource("GDScript_fbrsl")
 
 [node name="HungerBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_d653t")]
 layout_mode = 2
+property_name = "hunger"
 
-[node name="ThirstBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 28)
+[node name="ThirstBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_d653t")]
 layout_mode = 2
-theme_override_constants/separation = 2
+property_name = "thirst"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ThirstBar"]
-modulate = Color(0, 0, 1, 1)
-custom_minimum_size = Vector2(24, 24)
+[node name="FatigueBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_d653t")]
 layout_mode = 2
-texture = ExtResource("1_fmwyq")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/ThirstBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 46.0
-
-[node name="EnergyBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 28)
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/EnergyBar"]
-modulate = Color(1, 1, 0, 1)
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = ExtResource("1_fmwyq")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/EnergyBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 83.0
+property_name = "fatigue"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -19,7 +19,7 @@ var _day: int = 0
 
 var _reaming_add_time: int = 0
 var _multiper: int = 1
-var _infinite: bool = true:
+var _infinite: bool = false:
 	set(value):
 		_infinite = value
 		set_physics_process(value)
@@ -93,3 +93,5 @@ func _time_step(delta: int):
 		_day += floori(_time / MINUT_IN_DAY)
 		_time -= snapped(_time, MINUT_IN_DAY)
 		new_day.emit()
+	
+	PlayerProperty.update(delta)
