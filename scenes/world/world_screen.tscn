@@ -10,7 +10,7 @@ script/source = "@tool
 extends Node2D
 
 @export var _draw_chunks := false
-
+@export var color := Color.GREEN
 #count chanks in world
 var world_size: Vector2i = ProjectSettings.get_setting(\"application/game/size/world\", Vector2i.ONE * 16)
 
@@ -32,14 +32,14 @@ func _draw() -> void:
 		draw_line(
 			Vector2(x * _pixel_chunk_size, 0), 
 			Vector2(x * _pixel_chunk_size, _pixel_world_size.y), 
-			Color.GREEN, 4
+			color, 4
 		)
 	
 	for y in world_size.y:
 		draw_line(
 			Vector2(0, y * _pixel_chunk_size), 
 			Vector2(_pixel_world_size.x, y * _pixel_chunk_size), 
-			Color.GREEN, 4
+			color, 4
 		)
 	
 	for x in world_size.x:
@@ -47,7 +47,8 @@ func _draw() -> void:
 			draw_string(
 				ThemeDB.fallback_font, 
 				Vector2(x, y) * _pixel_chunk_size - Vector2(-16, -32),
-				\"X:%s  Y:%s\" % [x, y]
+				\"X:%s  Y:%s\" % [x, y], HORIZONTAL_ALIGNMENT_CENTER,
+				-1, 24, color
 			)
 "
 
@@ -62,9 +63,10 @@ script = ExtResource("2_lswou")
 [node name="ChunkGridDrawer" type="Node2D" parent="."]
 script = SubResource("GDScript_iq6x5")
 _draw_chunks = true
+color = Color(1, 0.243137, 0, 1)
 
 [node name="Character" parent="." instance=ExtResource("1_7v8xb")]
-position = Vector2(2716, 1839)
+position = Vector2(10570, 30906)
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 15
