@@ -13,6 +13,7 @@ config_version=5
 config/name="SurviveAlone"
 run/main_scene="res://bootstrap/bootstrap.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
+run/max_fps=60
 config/icon="res://icon.svg"
 game/size/world=Vector2i(70, 35)
 game/size/chunk=50
@@ -41,7 +42,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg")
 
 [internationalization]
 
