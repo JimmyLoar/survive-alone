@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://2amjqfdtmf0u"]
+
+[ext_resource type="Script" path="res://scenes/ui/content_menu.gd" id="1_mk0du"]
+
+[node name="ContentMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mk0du")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MainContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.4
+
+[node name="ReferenceRect" type="ReferenceRect" parent="MarginContainer/HBoxContainer/MainContainer"]
+layout_mode = 2
+border_width = 2.0
+editor_only = false
+
+[node name="SubContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ReferenceRect" type="ReferenceRect" parent="MarginContainer/HBoxContainer/SubContainer"]
+layout_mode = 2
+border_color = Color(1, 0.392157, 0, 1)
+border_width = 2.0
+editor_only = false

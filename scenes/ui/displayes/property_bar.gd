@@ -1,7 +1,7 @@
 class_name PropertyBar
 extends HBoxContainer
 
-@export var property_name := ""
+@export_placeholder("Name") var property_name := "none"
 
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var progress_bar: ProgressBar = $ProgressBar

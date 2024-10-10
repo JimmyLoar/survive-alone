@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://scenes/world/character.tscn" id="1_7v8xb"]
 [ext_resource type="Script" path="res://scenes/world/world_screen.gd" id="1_ljijd"]
 [ext_resource type="Script" path="res://scenes/world/chunk_container.gd" id="2_lswou"]
-[ext_resource type="PackedScene" uid="uid://bov1qert3n6ln" path="res://scenes/ui/world_quick_bar.tscn" id="2_q62ju"]
+[ext_resource type="PackedScene" uid="uid://wnaomv3egpfu" path="res://scenes/ui/world_ui.tscn" id="4_abk0o"]
 
 [sub_resource type="GDScript" id="GDScript_iq6x5"]
 script/source = "@tool
@@ -71,24 +71,7 @@ _draw_chunks = true
 color = Color(1, 0.243137, 0, 1)
 
 [node name="Character" parent="." instance=ExtResource("1_7v8xb")]
+unique_name_in_owner = true
 position = Vector2(15891, 27459)
 
-[node name="UI" type="CanvasLayer" parent="."]
-layer = 15
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/separation = 0
-
-[node name="PanelContainer" parent="UI/HBoxContainer" instance=ExtResource("2_q62ju")]
-layout_mode = 2
-
-[node name="TabContainer" type="TabContainer" parent="UI/HBoxContainer"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="UI" parent="." instance=ExtResource("4_abk0o")]
