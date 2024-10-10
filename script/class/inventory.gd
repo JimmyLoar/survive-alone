@@ -1,7 +1,7 @@
 class_name Inventory
 extends RefCounted
 
-signal changed
+signal changed(inv: Inventory)
 
 const SLOT = {
 			"used": [],
@@ -12,21 +12,26 @@ const SLOT = {
 var _items := Dictionary()
 
 
-func add_new_item():
-	pass
+func _init(items_list: Array[ItemData] = []) -> void:
+	for item in items_list:
+		add_item(item, item.durability)
 
 
-func add_item(item: Item):
+func get_size() -> int:
+	return _items.keys().size()
+
+
+func add_item(item: ItemData, durability := -1):
 	var slot: Dictionary = {}
 	var key: String = item.name.to_lower()
 	if not _items.has(key):
 		slot = SLOT.duplicate()
-		slot.item = Item.get_new_item(item)
+		slot.item = item
 	
 	else:
 		slot = _items[key]
 	
-	if item.is_used():
+	if durability != item.durability or durability != -1:
 		slot.used = [item]
 	
 	else: 
@@ -36,7 +41,7 @@ func add_item(item: Item):
 	changed.emit(self)
 
 
-func add_any_items(items: Array[Item]):
+func add_any_items(items: Array[ItemData]):
 	for _item in items:
 		add_item(_item)
 
@@ -45,7 +50,7 @@ func remove_item(key: StringName, index: int = 0):
 	pass
 
 
-func get_item(key: StringName) -> Item:
+func get_item(key: StringName) -> ItemData:
 	if _items.has(key):
 		var slot: Dictionary = _items[key]
 		if not slot.used.is_empty():
@@ -54,8 +59,12 @@ func get_item(key: StringName) -> Item:
 	return null
 
 
+func get_items() -> Dictionary:
+	return _items
+
+
 func get_item_count(key: StringName):
 	if _items.has(key):
 		var slot: Dictionary = _items[key]
-		return slot.used.size() + slot.new_amount - 1
+		return slot.used.size() + slot.new_amount
 	return -1

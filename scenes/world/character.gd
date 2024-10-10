@@ -3,7 +3,16 @@ extends Node2D
 
 signal changed_chunk(new_chunk: Vector2i)
 
-var inventory := Inventory.new()
+var inventory := Inventory.new([
+	preload("res://database/items/food/water_clear.tres"),
+	preload("res://database/items/food/water_clear.tres"),
+	preload("res://database/items/food/water_clear.tres"),
+	preload("res://database/items/food/water_clear.tres"),
+	preload("res://database/items/food/water_clear.tres"),
+	preload("res://database/items/food/fry_meat.tres"),
+	preload("res://database/items/food/fry_meat.tres"),
+	preload("res://database/items/food/fry_meat.tres"),
+])
 
 #region CunckProperty
 #count tiles in chunk 

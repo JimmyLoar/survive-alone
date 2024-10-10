@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://ibrfm6mql4j7"]
+
+[ext_resource type="Script" path="res://script/class/item_data.gd" id="1_m268k"]
+[ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_e7mdy"]
+
+[resource]
+script = ExtResource("1_m268k")
+name = "Fry Meat"
+discription = "Сешь, что бы востановить немного голода."
+texture = ExtResource("2_e7mdy")
+rare = 1
+durability = -1

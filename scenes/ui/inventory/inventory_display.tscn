@@ -12,7 +12,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_gmv8m")
-page_size = Vector2i(1, 1)
+page_size = Vector2i(9, 7)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
