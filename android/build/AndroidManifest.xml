@@ -27,7 +27,7 @@
         <profileable
             android:shell="true"
             android:enabled="true"
-            tools:targetApi="29" />
+            tools:targetApi="34" />
 
         <!-- Records the version of the Godot editor used for building -->
         <meta-data
