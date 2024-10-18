@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bisrblmh8icbw"]
+[gd_scene load_steps=3 format=3 uid="uid://kfafo26645mw"]
 
 [ext_resource type="PackedScene" uid="uid://c8ildsba35mng" path="res://scenes/ui/displayes/property_bar.tscn" id="1_c83ua"]
+
+[sub_resource type="GDScript" id="GDScript_ntuuk"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	GameTime.time_update.connect(update)
+	update(0)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func update(_delta):
+	self.text = \"{hour}:{minut} {day}/{month}/{year}\".format(GameTime.get_date())
+"
 
 [node name="StatusPanel" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 36)
@@ -44,3 +59,4 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "00:00 00.00.0000"
+script = SubResource("GDScript_ntuuk")

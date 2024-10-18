@@ -1,17 +1,19 @@
 class_name InventoryDisplay
 extends MarginContainer
 
+signal slot_pressed(item_name: String)
+
 @export var page_size := Vector2i(3, 3)
 
 var slot_scene: PackedScene = preload("res://scenes/ui/inventory/slot_display.tscn")
 
 var currect_page := 0:
 	set(value):
-		currect_page = value
-		update_page(value)
+		currect_page = clamp(value, 0, max_page)
+		update_page(currect_page)
 		currect_page_label.text = str(currect_page + 1)
 
-var max_page := 0
+var max_page := 1
 
 @onready var slot_container: GridContainer = $VBoxContainer/SlotGridContainer
 @onready var currect_page_label: Label = $VBoxContainer/PageHBoxContainer/CurrectPageLabel
@@ -23,17 +25,17 @@ var max_page := 0
 func _ready() -> void:
 	slot_container.columns = page_size.x
 	_init_page(slot_count)
-	update()
+	update(get_tree().root.get_node("WorldScreen/Character").inventory)
 
 
 func connect_inventory(inv: Inventory):
 	inv.changed.connect(update)
 
 
-func update():
+func update(inventory: Inventory):
 	if not visible: return
-	max_page = ceili(inventory.get_size() / slot_count) - 1
-	currect_page = clamp(currect_page, 0, max_page)
+	max_page = ceili(inventory.get_size() / slot_count)
+	currect_page = currect_page
 	return
 
 

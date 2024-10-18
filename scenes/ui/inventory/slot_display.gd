@@ -21,6 +21,12 @@ func update(item: ItemData = _displayed_item, count: int = 1):
 			amount_label.hide()
 			empty = true
 		
+		var x when x >= 1 and not item:
+			item_texture.texture = null
+			rare_frame.modulate = Color(0, 0, 0, 0)
+			amount_label.hide()
+			empty = true
+		
 		1:
 			item_texture.texture = item.texture
 			rare_frame.modulate = item.get_color()

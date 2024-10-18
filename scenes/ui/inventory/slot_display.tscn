@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bubcdtv7x4qvn"]
 
 [ext_resource type="Script" path="res://scenes/ui/inventory/slot_display.gd" id="1_npl47"]
-[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://database/items/food/water_clear.tres" id="2_kglrj"]
+[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://database/food/water_clear.tres" id="2_kglrj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqcag"]
 bg_color = Color(0.803922, 0.803922, 0.803922, 0)
@@ -36,8 +36,8 @@ expand_margin_bottom = 4.0
 custom_minimum_size = Vector2(40, 40)
 offset_right = 40.0
 offset_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 script = ExtResource("1_npl47")
 _displayed_item = ExtResource("2_kglrj")
 

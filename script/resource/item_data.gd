@@ -8,6 +8,21 @@ extends Resource
 @export_range(-1, 65536) var durability := -1
 
 
+#"health', "hunger", "thirst", "fatigue", "radiation", "psych",
+@export_category("Action")
+@export_group("Action #1", "action1")
+@export var action1_name: String = "Action"
+@export_enum(
+		"health",
+		"hunger",
+		"thirst",
+		"fatigue",
+		"radiation",
+		"psych",
+	) var action1_property_names: Array[String] = []
+@export var action1_property_value: Array[int] = []
+
+
 enum Rare{
 	GARBAGE, # Мусор или бесполезный хлам
 	NORMAL,  # Обычные предметы - ресурсы
@@ -29,6 +44,10 @@ const RARE_COLOR = {
 	Rare.MYTH:   Color.RED,
 	Rare.RARITY: Color.DEEP_PINK,
 }
+
+
+func is_used_property():
+	return not action1_property_names.is_empty()
 
 
 func get_color():

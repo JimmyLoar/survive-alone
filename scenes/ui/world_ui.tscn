@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://wnaomv3egpfu"]
+[gd_scene load_steps=8 format=3 uid="uid://hecsxhrmcrr6"]
 
 [ext_resource type="PackedScene" uid="uid://bov1qert3n6ln" path="res://scenes/ui/world_quick_bar.tscn" id="1_lauuj"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_oylj0"]
-[ext_resource type="PackedScene" uid="uid://2amjqfdtmf0u" path="res://scenes/ui/content_menu.tscn" id="3_swxnr"]
-[ext_resource type="PackedScene" uid="uid://bisrblmh8icbw" path="res://scenes/ui/status_panel.tscn" id="3_yepll"]
+[ext_resource type="PackedScene" uid="uid://bnskahscdftbe" path="res://scenes/ui/content_menu.tscn" id="3_swxnr"]
+[ext_resource type="PackedScene" uid="uid://kfafo26645mw" path="res://scenes/ui/status_panel.tscn" id="3_yepll"]
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://scenes/ui/inventory/inventory_display.tscn" id="4_21xkp"]
+[ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://scenes/ui/inventory/item_information.tscn" id="6_50pfk"]
 
 [sub_resource type="GDScript" id="GDScript_kbdun"]
 script/source = "extends CanvasLayer
@@ -99,6 +100,7 @@ metadata/_tab_index = 5
 visible = false
 layout_mode = 2
 main_scene = ExtResource("4_21xkp")
+sub_scene = ExtResource("6_50pfk")
 metadata/_tab_index = 6
 
 [node name="ContentMenu7" parent="VBoxContainer/HBoxContainer/TabContainer" instance=ExtResource("3_swxnr")]

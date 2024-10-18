@@ -5,11 +5,11 @@ extends HBoxContainer
 
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var data: Dictionary = PlayerProperty.get_property(property_name)
+@onready var data: GameProperty = PlayerProperty.get_property(property_name)
 
 func _ready() -> void:
 	texture_rect.texture = data.texture
-	progress_bar.max_value = data.default_max_value
+	progress_bar.max_value = data.default_max_value / PlayerProperty.MULTIPER
 	progress_bar.value = PlayerProperty.get_value(property_name)
 	self.modulate = data.modulate
 
