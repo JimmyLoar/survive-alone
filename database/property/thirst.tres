@@ -12,5 +12,5 @@ texture = ExtResource("2_h3g6g")
 default_value = 68000
 default_max_value = 100000
 default_min_value = 0
-default_delta_value = -54
+default_delta_value = -44
 modulate = Color(0.529412, 0.807843, 0.921569, 1)

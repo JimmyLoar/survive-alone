@@ -9,7 +9,7 @@ const TIME_MULTYPER = 10
 const MINUT_IN_DAY = 1440 * TIME_MULTYPER
 const _DATA =  {
 		"year": 2001,
-		"month": 7, 
+		"month": 6, 
 		"day": 4,
 		"hour": 11,
 		"minut": 23,
