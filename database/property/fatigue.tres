@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="GameProperty" load_steps=3 format=3 uid="uid://b00p46pjqmbhn"]
+
+[ext_resource type="Script" path="res://script/resource/game_property.gd" id="2_wmjt0"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_espjw"]
+
+[resource]
+script = ExtResource("2_wmjt0")
+name_key = "fatigue"
+visible_name = "PROPERTY_NAME_FATIGUE"
+discription = "PROPERTY_DISCRIPTION_FATIGUE"
+texture = ExtResource("3_espjw")
+default_value = 100000
+default_max_value = 100000
+default_min_value = 0
+default_delta_value = -5
+modulate = Color(1, 1, 0, 1)
