@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/inventory/item_interaction.gd" id="1_1n33t"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_mbiye"]
 [ext_resource type="PackedScene" uid="uid://dqafjxxiadcpx" path="res://scenes/ui/displayes/property_display.tscn" id="2_kudu4"]
-[ext_resource type="PackedScene" uid="uid://bubcdtv7x4qvn" path="res://scenes/ui/inventory/slot_display.tscn" id="3_n80k8"]
+[ext_resource type="Script" path="res://script/nodes/inventory display/slot_display.gd" id="3_xvlyk"]
 
 [node name="ItemInteraction" type="PanelContainer"]
 script = ExtResource("1_1n33t")
@@ -42,8 +42,9 @@ layout_mode = 2
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ItemsContainer"]
 layout_mode = 2
 
-[node name="SlotDisplay" parent="MarginContainer/VBoxContainer/ItemsContainer/GridContainer" instance=ExtResource("3_n80k8")]
+[node name="InventorySlotDisplay" type="Button" parent="MarginContainer/VBoxContainer/ItemsContainer/GridContainer"]
 layout_mode = 2
+script = ExtResource("3_xvlyk")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ItemsContainer"]
 custom_minimum_size = Vector2(24, 24)
@@ -56,8 +57,9 @@ stretch_mode = 5
 [node name="GridContainer2" type="GridContainer" parent="MarginContainer/VBoxContainer/ItemsContainer"]
 layout_mode = 2
 
-[node name="SlotDisplay2" parent="MarginContainer/VBoxContainer/ItemsContainer/GridContainer2" instance=ExtResource("3_n80k8")]
+[node name="InventorySlotDisplay2" type="Button" parent="MarginContainer/VBoxContainer/ItemsContainer/GridContainer2"]
 layout_mode = 2
+script = ExtResource("3_xvlyk")
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

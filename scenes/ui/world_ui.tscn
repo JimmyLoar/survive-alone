@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://hecsxhrmcrr6"]
+[gd_scene load_steps=8 format=3 uid="uid://bknvlejua5guo"]
 
 [ext_resource type="PackedScene" uid="uid://bov1qert3n6ln" path="res://scenes/ui/world_quick_bar.tscn" id="1_lauuj"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_oylj0"]
-[ext_resource type="PackedScene" uid="uid://bnskahscdftbe" path="res://scenes/ui/content_menu.tscn" id="3_swxnr"]
-[ext_resource type="PackedScene" uid="uid://kfafo26645mw" path="res://scenes/ui/status_panel.tscn" id="3_yepll"]
+[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://scenes/ui/content_menu.tscn" id="3_swxnr"]
+[ext_resource type="PackedScene" path="res://scenes/ui/status_panel.tscn" id="3_yepll"]
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://scenes/ui/inventory/inventory_display.tscn" id="4_21xkp"]
 [ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://scenes/ui/inventory/item_information.tscn" id="6_50pfk"]
 

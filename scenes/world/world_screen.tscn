@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://scenes/world/character.tscn" id="1_7v8xb"]
 [ext_resource type="Script" path="res://scenes/world/world_screen.gd" id="1_ljijd"]
 [ext_resource type="Script" path="res://scenes/world/chunk_container.gd" id="2_lswou"]
-[ext_resource type="PackedScene" uid="uid://hecsxhrmcrr6" path="res://scenes/ui/world_ui.tscn" id="4_abk0o"]
+[ext_resource type="PackedScene" path="res://scenes/ui/world_ui.tscn" id="4_abk0o"]
 
 [sub_resource type="GDScript" id="GDScript_iq6x5"]
 script/source = "@tool
