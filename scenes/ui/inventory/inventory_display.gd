@@ -4,8 +4,8 @@ extends MarginContainer
 signal slot_pressed(item_name: String)
 
 @export var page_size := Vector2i(3, 3)
+@export var used_pages := true
 
-var slot_scene: PackedScene = preload("res://scenes/ui/inventory/slot_display.tscn")
 
 var currect_page := 0:
 	set(value):
@@ -15,17 +15,26 @@ var currect_page := 0:
 
 var max_page := 1
 
-@onready var slot_container: GridContainer = $VBoxContainer/SlotGridContainer
+@onready var slot_container: ItemsGrid = $VBoxContainer/SlotGridContainer
 @onready var currect_page_label: Label = $VBoxContainer/PageHBoxContainer/CurrectPageLabel
 
-@onready var inventory: Inventory = get_tree().root.get_node("WorldScreen/Character").inventory
+@onready var inventory: Inventory = Inventory.new([
+	preload("res://database/food/water_clear.tres"),
+	preload("res://database/food/water_clear.tres"),
+	preload("res://database/food/water_clear.tres"),
+	preload("res://database/food/water_clear.tres"),
+	preload("res://database/food/water_clear.tres"),
+	preload("res://database/food/fry_meat.tres"),
+	preload("res://database/food/fry_meat.tres"),
+	preload("res://database/food/fry_meat.tres"),
+])#get_tree().root.get_node("WorldScreen/Character").inventory
 @onready var slot_count := page_size.x * page_size.y
 
 
 func _ready() -> void:
-	slot_container.columns = page_size.x
-	_init_page(slot_count)
-	update(get_tree().root.get_node("WorldScreen/Character").inventory)
+	slot_container.init_slots(page_size)
+	slot_container.update_slots(inventory.get_slots_list())
+	$VBoxContainer/PageHBoxContainer.visible = used_pages
 
 
 func connect_inventory(inv: Inventory):
@@ -50,19 +59,19 @@ func update_page(page_number: int):
 			count = inventory.get_item_count(items_list[i])
 		
 		var slot: InventorySlotDisplay = slot_container.get_child(i)
-		slot.update(item_data, count)
+		#slot.update(item_data, count)
 
 
 func _init_page(count: int):
 	for i in count:
 		var slot: InventorySlotDisplay = _get_new_slot()
 		slot_container.add_child(slot)
-		slot.update(null, 0)
+		#slot.update(null, 0)
 	return
 
 
 func _get_new_slot():
-	return slot_scene.instantiate()
+	return InventorySlotDisplay.new()
 
 
 func _on_next_page_button_pressed() -> void:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://27va2jwjyxqm"]
+[gd_scene load_steps=4 format=3 uid="uid://27va2jwjyxqm"]
 
 [ext_resource type="Script" path="res://scenes/ui/inventory/inventory_display.gd" id="1_gmv8m"]
+[ext_resource type="Script" path="res://script/nodes/inventory display/items_grid.gd" id="2_j4w10"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_vcg8h"]
 
 [node name="InventoryDisplay" type="MarginContainer"]
@@ -12,16 +13,23 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_gmv8m")
-page_size = Vector2i(9, 7)
+page_size = Vector2i(6, 4)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+alignment = 1
 
 [node name="SlotGridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
+script = ExtResource("2_j4w10")
 
 [node name="PageHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)

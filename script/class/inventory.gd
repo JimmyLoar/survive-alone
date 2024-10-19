@@ -6,10 +6,10 @@ signal changed(inv: Inventory)
 const SLOT = {
 			"used": [],
 			"item": null,
-			"new_amount": 0,
+			"amount": 0,
 		}
 
-var _items := Dictionary()
+var _slots := Dictionary()
 
 
 func _init(items_list: Array[ItemData] = []) -> void:
@@ -18,26 +18,26 @@ func _init(items_list: Array[ItemData] = []) -> void:
 
 
 func get_size() -> int:
-	return _items.keys().size()
+	return _slots.keys().size()
 
 
 func add_item(item: ItemData, durability := -1):
 	var slot: Dictionary = {}
 	var key: String = item.name.to_lower()
-	if not _items.has(key):
+	if not _slots.has(key):
 		slot = SLOT.duplicate()
 		slot.item = item
 	
 	else:
-		slot = _items[key]
+		slot = _slots[key]
 	
 	if durability != item.durability or durability != -1:
 		slot.used = [item]
 	
 	else: 
-		slot.new_amount += 1
+		slot.amount += 1
 	 
-	_items[key] = slot
+	_slots[key] = slot
 	changed.emit(self)
 
 
@@ -51,20 +51,24 @@ func remove_item(key: StringName, index: int = 0):
 
 
 func get_item(key: StringName) -> ItemData:
-	if _items.has(key):
-		var slot: Dictionary = _items[key]
+	if _slots.has(key):
+		var slot: Dictionary = _slots[key]
 		if not slot.used.is_empty():
 			return slot.used.front()
 		return slot.item
 	return null
 
 
-func get_items() -> Dictionary:
-	return _items
+func get_slots() -> Dictionary:
+	return _slots
+
+
+func get_slots_list() -> Array:
+	return _slots.values()
 
 
 func get_item_count(key: StringName):
-	if _items.has(key):
-		var slot: Dictionary = _items[key]
-		return slot.used.size() + slot.new_amount
+	if _slots.has(key):
+		var slot: Dictionary = _slots[key]
+		return slot.used.size() + slot.amount
 	return -1
