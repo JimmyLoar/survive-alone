@@ -36,6 +36,8 @@ PlayerProperty="*res://script/singletone/player_property.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
@@ -43,6 +45,10 @@ window/vsync/vsync_mode=0
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg")
+
+[gui]
+
+theme/custom="res://assets/themes/main.tres"
 
 [internationalization]
 
