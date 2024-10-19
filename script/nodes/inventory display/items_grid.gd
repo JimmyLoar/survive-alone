@@ -27,7 +27,8 @@ func update_slots(slots_list: Array):
 
 
 func _on_slot_pressed(slot_index: int):
-	print_debug("WOW! You press slot!")
+	#print_debug("WOW! You press slot!")
+	pass
 
 
 func _on_slot_focused():

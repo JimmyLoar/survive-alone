@@ -13,3 +13,4 @@ export_presets.cfg
 data_*/
 /android/build/build/outputs
 /android/build/build/tmp
+/android
