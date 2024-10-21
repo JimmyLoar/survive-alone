@@ -4,7 +4,6 @@ extends MarginContainer
 signal slot_pressed(item_name: String)
 
 @export var page_size := Vector2i(3, 3)
-@export var used_pages := true
 
 
 var currect_page := 0:
@@ -15,7 +14,7 @@ var currect_page := 0:
 
 var max_page := 1
 
-@onready var slot_container: ItemsGrid = $VBoxContainer/SlotGridContainer
+@onready var slot_controller: SlotCotroller = $VBoxContainer/SlotController
 @onready var currect_page_label: Label = $VBoxContainer/PageHBoxContainer/CurrectPageLabel
 
 @onready var inventory: Inventory = Inventory.new([
@@ -32,9 +31,8 @@ var max_page := 1
 
 
 func _ready() -> void:
-	slot_container.init_slots(page_size)
-	slot_container.update_slots(inventory.get_slots_list())
-	$VBoxContainer/PageHBoxContainer.visible = used_pages
+	slot_controller.init_slots(page_size)
+	slot_controller.update_slots(inventory.get_slots_list())
 
 
 func connect_inventory(inv: Inventory):
@@ -58,14 +56,14 @@ func update_page(page_number: int):
 			item_data = inventory.get_item(items_list[i])
 			count = inventory.get_item_count(items_list[i])
 		
-		var slot: InventorySlotDisplay = slot_container.get_child(i)
+		var slot: InventorySlotDisplay = slot_controller.get_child(i)
 		#slot.update(item_data, count)
 
 
 func _init_page(count: int):
 	for i in count:
 		var slot: InventorySlotDisplay = _get_new_slot()
-		slot_container.add_child(slot)
+		slot_controller.add_child(slot)
 		#slot.update(null, 0)
 	return
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ui/inventory/inventory_display.gd" id="1_gmv8m"]
 [ext_resource type="Script" path="res://script/nodes/inventory display/items_grid.gd" id="2_j4w10"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_vcg8h"]
+[ext_resource type="PackedScene" uid="uid://cka4psk0x8fb2" path="res://scenes/ui/inventory/page_controller.tscn" id="3_iui5k"]
 
 [node name="InventoryDisplay" type="MarginContainer"]
 anchors_preset = 15
@@ -24,39 +24,12 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 alignment = 1
 
-[node name="SlotGridContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="SlotController" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 script = ExtResource("2_j4w10")
 
-[node name="PageHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+[node name="PageController" parent="VBoxContainer" instance=ExtResource("3_iui5k")]
 layout_mode = 2
-alignment = 1
-
-[node name="BackPageButton" type="TextureButton" parent="VBoxContainer/PageHBoxContainer"]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-texture_normal = ExtResource("3_vcg8h")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="CurrectPageLabel" type="Label" parent="VBoxContainer/PageHBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "20
-"
-horizontal_alignment = 1
-
-[node name="NextPageButton" type="TextureButton" parent="VBoxContainer/PageHBoxContainer"]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-texture_normal = ExtResource("3_vcg8h")
-ignore_texture_size = true
-stretch_mode = 5
-
-[connection signal="pressed" from="VBoxContainer/PageHBoxContainer/BackPageButton" to="." method="_on_back_page_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/PageHBoxContainer/NextPageButton" to="." method="_on_next_page_button_pressed"]
