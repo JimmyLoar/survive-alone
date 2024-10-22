@@ -2,6 +2,9 @@ class_name Inventory
 extends RefCounted
 
 signal changed(inv: Inventory)
+signal change_size(new_size: int)
+
+##TODO перерисать инвентарь на монер списка
 
 const SLOT = {
 			"used": [],
@@ -39,6 +42,7 @@ func add_item(item: ItemData, durability := -1):
 	 
 	_slots[key] = slot
 	changed.emit(self)
+	change_size.emit(get_size())
 
 
 func add_any_items(items: Array[ItemData]):
@@ -47,7 +51,7 @@ func add_any_items(items: Array[ItemData]):
 
 
 func remove_item(key: StringName, index: int = 0):
-	pass
+	change_size.emit(get_size())
 
 
 func get_item(key: StringName) -> ItemData:

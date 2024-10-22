@@ -21,8 +21,10 @@ signal slot_pressed(item_name: String)
 
 
 func _ready() -> void:
+	inventory.change_size.connect(page_controller.set_inventory_size)
 	slot_controller.init_slots(page_size)
 	slot_controller.update_slots(inventory.get_slots_list())
+	
 
 
 func connect_inventory(inv: Inventory):

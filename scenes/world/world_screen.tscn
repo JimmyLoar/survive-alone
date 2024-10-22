@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpcktvxjqbxag"]
+[gd_scene load_steps=7 format=3 uid="uid://cpcktvxjqbxag"]
 
 [ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://scenes/world/character.tscn" id="1_7v8xb"]
 [ext_resource type="Script" path="res://scenes/world/world_screen.gd" id="1_ljijd"]
 [ext_resource type="Script" path="res://scenes/world/chunk_container.gd" id="2_lswou"]
-[ext_resource type="PackedScene" path="res://scenes/ui/world_ui.tscn" id="4_abk0o"]
+[ext_resource type="Texture2D" uid="uid://cd2skbxlqpvj4" path="res://assets/sprite/full_map.jpg" id="2_u2y5o"]
+[ext_resource type="PackedScene" uid="uid://bknvlejua5guo" path="res://scenes/ui/world_ui.tscn" id="4_abk0o"]
 
 [sub_resource type="GDScript" id="GDScript_iq6x5"]
 script/source = "@tool
@@ -58,6 +59,7 @@ script = ExtResource("1_ljijd")
 [node name="FullMap" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(10, 10)
+texture = ExtResource("2_u2y5o")
 centered = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -72,6 +74,13 @@ color = Color(1, 0.243137, 0, 1)
 
 [node name="Character" parent="." instance=ExtResource("1_7v8xb")]
 unique_name_in_owner = true
-position = Vector2(15891, 27459)
+position = Vector2(15883, 27464)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Character"]
+offset_left = -750.0
+offset_top = -750.0
+offset_right = 750.0
+offset_bottom = 750.0
+border_width = 300.0
 
 [node name="UI" parent="." instance=ExtResource("4_abk0o")]

@@ -17,12 +17,12 @@ func _ready() -> void:
 
 
 func set_page_size(value: int):
-	page_size = value
+	page_size = max(value, 1)
 	update_max_page()
 
 
 func set_inventory_size(value):
-	inventory_size = value
+	inventory_size = max(value, 1)
 	update_max_page()
 
 
