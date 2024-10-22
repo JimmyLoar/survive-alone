@@ -1,6 +1,7 @@
 extends PanelContainer
 
-signal action_pressed
+signal add_inventory_items
+signal remove_inventory_items
 
 enum Mode{
 	USAGE_PROPERTY = 1,
@@ -19,6 +20,8 @@ func _ready() -> void:
 	_update_usage()
 
 
+
+
 func update(item: ItemData):
 	_item = item
 	if not item: return
@@ -29,6 +32,8 @@ func update(item: ItemData):
 			var property: GameProperty = PlayerProperty.get_property(
 				item.action1_property_names[i])
 			display.update(property.texture, item.action1_property_value[i])
+		
+		$"../../../..".decrease_self_item(1)
 
 
 func _update_usage():

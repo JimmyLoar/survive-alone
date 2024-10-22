@@ -1,9 +1,11 @@
 class_name SlotCotroller
 extends GridContainer
 
-signal slot_pressed
+signal slot_pressed(slot_index: int)
 
 var button_group := ButtonGroup.new()
+var logger = GodotLogger.with('SlotCotroller')
+
 
 func _init() -> void:
 	set("theme_override_constants/h_separation", 0)
@@ -19,6 +21,7 @@ func init_slots(_size := Vector2i(6, 4)):
 		new_slot.button_group = button_group
 		new_slot.toggle_mode = true
 		add_child(new_slot)
+	logger.debug("Done init slots.")
 
 
 func update_slots(slots_list: Array):
@@ -26,9 +29,11 @@ func update_slots(slots_list: Array):
 	for i in slots_list.size():
 		var value = slots_list[i] if slots_list[i] else {}
 		get_child(i).update(value)
+	logger.debug("Done update slots.")
 
 
 func _on_slot_pressed(slot_index: int):
+	logger.debug("Pressed %d slots." % slot_index)
 	slot_pressed.emit(slot_index)
 
 

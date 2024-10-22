@@ -12,7 +12,9 @@ const SLOT = {
 			"amount": 0,
 		}
 
-var _slots := Dictionary()
+var _slots: Array[Dictionary] = []
+var _validate_index = func(index: int): 
+	return index >= 0 and index < _slots.size()
 
 
 func _init(items_list: Array[ItemData] = []) -> void:
@@ -21,58 +23,69 @@ func _init(items_list: Array[ItemData] = []) -> void:
 
 
 func get_size() -> int:
-	return _slots.keys().size()
+	return _slots.size()
 
 
-func add_item(item: ItemData, durability := -1):
+func add_item(item: ItemData, durability := -1, count := 1):
 	var slot: Dictionary = {}
-	var key: String = item.name.to_lower()
-	if not _slots.has(key):
+	var exist_index = find_item(item.name)
+	if exist_index == -1:
 		slot = SLOT.duplicate()
 		slot.item = item
+		_slots.insert(_slots.size(), slot)
 	
 	else:
-		slot = _slots[key]
+		slot = _slots[exist_index]
 	
 	if durability != item.durability or durability != -1:
 		slot.used = [item]
 	
 	else: 
-		slot.amount += 1
-	 
-	_slots[key] = slot
+		slot.amount += count
+	
 	changed.emit(self)
 	change_size.emit(get_size())
 
 
-func add_any_items(items: Array[ItemData]):
-	for _item in items:
-		add_item(_item)
+func find_item(item_name: StringName) -> int:
+	for i in _slots.size():
+		if _slots[i].item.name != item_name:
+			continue
+		return i
+	return -1
 
 
-func remove_item(key: StringName, index: int = 0):
+func remove_item(item: ItemData, first_used := true):
+	var exist_index := find_item(item.name)
+	if exist_index == -1: return
+	var slot = _slots[exist_index]
+	
+	if slot.amount > 0:
+		slot.amount -= 1
+	
+	elif slot.used.size() > 0:
+		slot.used.remove_at(0)
+	
+	if slot.used.size() + slot.amount <= 0:
+		_slots.erase(slot)
+	
 	change_size.emit(get_size())
 
 
-func get_item(key: StringName) -> ItemData:
-	if _slots.has(key):
-		var slot: Dictionary = _slots[key]
-		if not slot.used.is_empty():
-			return slot.used.front()
-		return slot.item
-	return null
+func get_slot(index: int) -> Dictionary:
+	if not _validate_index.call(index):
+		breakpoint
+		return {}
+	
+	return _slots[index]
 
 
-func get_slots() -> Dictionary:
+func get_slots() -> Array:
 	return _slots
 
 
-func get_slots_list() -> Array:
-	return _slots.values()
-
-
-func get_item_count(key: StringName):
-	if _slots.has(key):
-		var slot: Dictionary = _slots[key]
+func get_item_count(index: int):
+	if _validate_index.call(index):
+		var slot: Dictionary = _slots[index]
 		return slot.used.size() + slot.amount
 	return -1

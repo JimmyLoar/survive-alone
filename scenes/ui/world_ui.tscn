@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bknvlejua5guo"]
+[gd_scene load_steps=7 format=3 uid="uid://bknvlejua5guo"]
 
 [ext_resource type="PackedScene" uid="uid://bov1qert3n6ln" path="res://scenes/ui/world_quick_bar.tscn" id="1_lauuj"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_oylj0"]
 [ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://scenes/ui/content_menu.tscn" id="3_swxnr"]
 [ext_resource type="PackedScene" uid="uid://kfafo26645mw" path="res://scenes/ui/status_panel.tscn" id="3_yepll"]
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://scenes/ui/inventory/inventory_display.tscn" id="4_21xkp"]
@@ -13,11 +12,26 @@ script/source = "extends CanvasLayer
 @onready var quick_bar: PanelContainer = %QuickBar
 @onready var tab_container: TabContainer = %TabContainer
 
+var inv: Inventory = Inventory.new([
+	preload(\"res://database/food/water_clear.tres\"),
+	preload(\"res://database/food/water_clear.tres\"),
+	preload(\"res://database/food/water_clear.tres\"),
+	preload(\"res://database/food/water_clear.tres\"),
+	preload(\"res://database/food/water_clear.tres\"),
+	preload(\"res://database/food/fry_meat.tres\"),
+	preload(\"res://database/food/fry_meat.tres\"),
+	preload(\"res://database/food/fry_meat.tres\"),
+])
+
+@onready var menu_inventory: ContentMenu = $\"VBoxContainer/HBoxContainer/TabContainer/ContentMenu6 - Inv\"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	quick_bar.button_pressed.connect(tab_container.set_current_tab)
 	quick_bar.button_pressed.connect($\"../Character/Controller\"._stop)
 	tab_container.set_current_tab(-1)
+	menu_inventory.call_method(true, \"set_inventory\", [inv])
+	menu_inventory.call_method(false, \"set_inventory\", [inv])
 "
 
 [node name="UI" type="CanvasLayer"]
@@ -42,15 +56,6 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/separation = 0
-
-[node name="EmptySpace" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.05
-mouse_filter = 0
-texture = ExtResource("1_oylj0")
-expand_mode = 5
 
 [node name="QuickBar" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_lauuj")]
 unique_name_in_owner = true
@@ -101,28 +106,10 @@ visible = false
 layout_mode = 2
 main_scene = ExtResource("4_21xkp")
 sub_scene = ExtResource("6_50pfk")
+connection_main_to_sub = Array[StringName]([&"slot_pressed,update"])
 metadata/_tab_index = 6
 
 [node name="ContentMenu7" parent="VBoxContainer/HBoxContainer/TabContainer" instance=ExtResource("3_swxnr")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 7
-
-[node name="EmptySpace2" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.05
-mouse_filter = 0
-texture = ExtResource("1_oylj0")
-expand_mode = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8

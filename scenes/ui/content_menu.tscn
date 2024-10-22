@@ -28,6 +28,7 @@ size_flags_stretch_ratio = 2.4
 
 [node name="ReferenceRect" type="ReferenceRect" parent="MarginContainer/HBoxContainer/MainContainer"]
 layout_mode = 2
+mouse_filter = 2
 border_width = 2.0
 editor_only = false
 
@@ -37,6 +38,7 @@ size_flags_horizontal = 3
 
 [node name="ReferenceRect" type="ReferenceRect" parent="MarginContainer/HBoxContainer/SubContainer"]
 layout_mode = 2
+mouse_filter = 2
 border_color = Color(1, 0.392157, 0, 1)
 border_width = 2.0
 editor_only = false

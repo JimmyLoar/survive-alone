@@ -63,3 +63,11 @@ func _connect_signal(emitter: Control, receiver: Control, signal_structure: Stri
 	
 	emitter.connect(_structure[0], Callable(receiver, _structure[1]))
 	return OK
+
+
+func call_method(is_main: bool, method: StringName, args := []):
+	if is_main:
+		get_menu().callv(method, args)
+	
+	else:
+		get_menu(false).callv(method, args)

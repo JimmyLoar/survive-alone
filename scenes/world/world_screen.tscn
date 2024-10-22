@@ -81,6 +81,7 @@ offset_left = -750.0
 offset_top = -750.0
 offset_right = 750.0
 offset_bottom = 750.0
+mouse_filter = 2
 border_width = 300.0
 
 [node name="UI" parent="." instance=ExtResource("4_abk0o")]

@@ -11,6 +11,7 @@ signal changed_page(new_page: int)
 @export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_READ_ONLY + PROPERTY_USAGE_EDITOR
 	) var inventory_size: int = 1: set = set_inventory_size
 
+@onready var currect_page_label: Label = $CurrectPageLabel
 
 func _ready() -> void:
 	set_page(max_page)
@@ -33,9 +34,8 @@ func update_max_page():
 func set_page(new_page: int):
 	currect_page = clampi(new_page, 0, max_page)
 	changed_page.emit(currect_page)
-	var label := $CurrectPageLabel as Label
-	if label:
-		label.set_text("%d" % [currect_page + 1])
+	if currect_page_label:
+		currect_page_label.set_text("%d" % [currect_page + 1])
 
 
 func _on_back_page_button_pressed() -> void:
