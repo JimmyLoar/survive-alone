@@ -4,7 +4,6 @@ extends RefCounted
 signal changed(inv: Inventory)
 signal change_size(new_size: int)
 
-##TODO перерисать инвентарь на монер списка
 
 const SLOT = {
 			"used": [],
@@ -12,42 +11,55 @@ const SLOT = {
 			"amount": 0,
 		}
 
+
 var _slots: Array[Dictionary] = []
 var _validate_index = func(index: int): 
 	return index >= 0 and index < _slots.size()
 
 
-func _init(items_list: Array[ItemData] = []) -> void:
-	for item in items_list:
-		add_item(item, item.durability)
+func create_slot(item: ItemData, used = [], amount = 0) -> int:
+	var slot = {
+		"item": item,
+		"used": used,
+		"amount": amount,
+	}
+	return add_slot(slot)
 
 
-func get_size() -> int:
-	return _slots.size()
-
-
-func add_item(item: ItemData, durability := -1, count := 1):
-	var slot: Dictionary = {}
-	var exist_index = find_item(item.name)
-	if exist_index == -1:
-		slot = SLOT.duplicate()
-		slot.item = item
-		_slots.insert(_slots.size(), slot)
-	
-	else:
-		slot = _slots[exist_index]
-	
-	if durability != item.durability or durability != -1:
-		slot.used = [item]
-	
-	else: 
-		slot.amount += count
-	
-	changed.emit(self)
+func add_slot(new_slot: Dictionary):
+	new_slot.merge(SLOT.duplicate())
+	_slots.push_back(new_slot)
+	changed.emit()
 	change_size.emit(get_size())
+	return _slots.size() - 1
 
 
-func find_item(item_name: StringName) -> int:
+func remove_slot(index: int):
+	if not _validate_index.call(index):
+		breakpoint
+	changed.emit()
+	change_size.emit(get_size())
+	return _slots.pop_at(index)
+
+
+func get_slot(index: int):
+	if not _validate_index.call(index):
+		return {}
+	return _slots[index]
+
+
+func get_slots_list() -> Array[Dictionary]:
+	return _slots.duplicate()
+
+
+func get_slot_for_item(item: ItemData):
+	var slot_index = find_slot(item.name)
+	if slot_index == -1:
+		slot_index = create_slot(item)
+	return _slots[slot_index]
+
+
+func find_slot(item_name: StringName) -> int:
 	for i in _slots.size():
 		if _slots[i].item.name != item_name:
 			continue
@@ -55,37 +67,59 @@ func find_item(item_name: StringName) -> int:
 	return -1
 
 
-func remove_item(item: ItemData, first_used := true):
-	var exist_index := find_item(item.name)
-	if exist_index == -1: return
-	var slot = _slots[exist_index]
-	
-	if slot.amount > 0:
-		slot.amount -= 1
-	
-	elif slot.used.size() > 0:
+func add_miscellaneous_items(items: Array[ItemData]):
+	for i in items:
+		var slot = get_slot_for_item(i)
+		slot.amount += 1
+
+
+func append_used_items(item: ItemData, used : Array[int] = []):
+	var slot = get_slot_for_item(item)
+	slot.used.append_array(used)
+	changed.emit()
+
+
+func add_used_value(item: ItemData, value: int = 1, is_carried := false):
+	var slot = get_slot_for_item(item)
+	var used: Array = slot.used
+	used[0] = min(used[0] + value, item.durability)
+	if used[0] >= item.durability and is_carried:
+		used.remove_at(0)
+		slot.amount += 1
+	changed.emit()
+
+
+func remove_used_value(item: ItemData, value: int = 1):
+	var slot = get_slot_for_item(item)
+	var value_min = fmod(value, item.durability)
+	value -= value_min
+	if value_min > slot.used[0]:
+		value_min -= slot.used[0]
 		slot.used.remove_at(0)
 	
-	if slot.used.size() + slot.amount <= 0:
+	slot.used[0] -= value_min
+	slot.amount -= value
+	changed.emit()
+
+
+func set_items_amount(item: ItemData, new_amount: int = 1):
+	var slot = get_slot_for_item(item)
+	slot.amount = new_amount
+	changed.emit()
+
+
+func add_item_amount(item: ItemData, delta_amount: int = 1):
+	var slot = get_slot_for_item(item)
+	slot.amount = slot.amount + delta_amount
+	if slot.amount <= 0:
 		_slots.erase(slot)
+		changed.emit()
+		change_size.emit(get_size())
 	
-	change_size.emit(get_size())
+	GodotLogger.debug("change inventory slot '%s' amount on '%s' (%d)" %\
+		[item.name, delta_amount, slot.amount])
+	changed.emit()
 
 
-func get_slot(index: int) -> Dictionary:
-	if not _validate_index.call(index):
-		breakpoint
-		return {}
-	
-	return _slots[index]
-
-
-func get_slots() -> Array:
-	return _slots
-
-
-func get_item_count(index: int):
-	if _validate_index.call(index):
-		var slot: Dictionary = _slots[index]
-		return slot.used.size() + slot.amount
-	return -1
+func get_size():
+	return _slots.size()
