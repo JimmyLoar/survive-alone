@@ -32,8 +32,6 @@ func update(item: ItemData):
 			var property: GameProperty = PlayerProperty.get_property(
 				item.action1_property_names[i])
 			display.update(property.texture, item.action1_property_value[i])
-		
-		$"../../../..".decrease_self_item(1)
 
 
 func _update_usage():
@@ -53,7 +51,6 @@ func _update_usage():
 	
 	if is_mode(Mode.USAGE_ITEMS):
 		items_container.show()
-	
 
 
 func is_mode(mode: Mode):
@@ -66,3 +63,5 @@ func _on_button_pressed() -> void:
 			var p_key = _item.action1_property_names[i]
 			var value = PlayerProperty.get_value(p_key) + _item.action1_property_value[i]
 			PlayerProperty.set_value(p_key, value)
+	
+	remove_inventory_items.emit()

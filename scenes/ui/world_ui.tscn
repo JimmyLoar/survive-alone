@@ -12,26 +12,19 @@ script/source = "extends CanvasLayer
 @onready var quick_bar: PanelContainer = %QuickBar
 @onready var tab_container: TabContainer = %TabContainer
 
-var inv: Inventory = Inventory.new([
-	preload(\"res://database/food/water_clear.tres\"),
-	preload(\"res://database/food/water_clear.tres\"),
-	preload(\"res://database/food/water_clear.tres\"),
-	preload(\"res://database/food/water_clear.tres\"),
-	preload(\"res://database/food/water_clear.tres\"),
-	preload(\"res://database/food/fry_meat.tres\"),
-	preload(\"res://database/food/fry_meat.tres\"),
-	preload(\"res://database/food/fry_meat.tres\"),
-])
 
-@onready var menu_inventory: ContentMenu = $\"VBoxContainer/HBoxContainer/TabContainer/ContentMenu6 - Inv\"
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var inventory := InventoriesController.create_inventory(\"player\")
+	inventory.add_miscellaneous_items([
+		preload(\"res://database/food/fry_meat.tres\"),
+		preload(\"res://database/food/water_clear.tres\"),
+	])
+	#inventory.add_item_amount(preload(\"res://database/food/water_clear.tres\"), 10)
+	#inventory.add_item_amount(preload(\"res://database/food/fry_meat.tres\"), 5)
+	
 	quick_bar.button_pressed.connect(tab_container.set_current_tab)
 	quick_bar.button_pressed.connect($\"../Character/Controller\"._stop)
 	tab_container.set_current_tab(-1)
-	menu_inventory.call_method(true, \"set_inventory\", [inv])
-	menu_inventory.call_method(false, \"set_inventory\", [inv])
 "
 
 [node name="UI" type="CanvasLayer"]

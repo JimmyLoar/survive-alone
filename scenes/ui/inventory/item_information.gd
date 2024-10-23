@@ -5,10 +5,10 @@ extends MarginContainer
 
 @onready var name_label: Label = $VBoxContainer/NameLabel
 @onready var text_label: RichTextLabel = $VBoxContainer/ScrollContainer/VBoxContainer/RichTextLabel
-#@onready var pickup_button: Button = $VBoxContainer/Buttons/Button
 
 
-var inventory: Inventory: set = set_inventory
+@onready var inventory: Inventory = InventoriesController.get_inventory("player"): 
+	set = set_inventory
 
 
 func update(slot: Dictionary = {}):
@@ -26,7 +26,5 @@ func set_inventory(new_inv: Inventory):
 	update(inventory.get_slot(0))
 
 
-func decrease_self_item(value: int):
-	for _i in value:
-		inventory.remove_item(_item)
-	
+func _on_remove_inventory_items() -> void:
+	inventory.add_item_amount(_item, -1)

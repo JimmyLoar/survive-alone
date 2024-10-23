@@ -8,15 +8,15 @@ signal slot_pressed(slot: Dictionary)
 @onready var slot_controller: SlotCotroller = $VBoxContainer/SlotController
 @onready var page_controller: PageController = $VBoxContainer/PageController
 
-var inventory: Inventory = Inventory.new([
-	preload("res://database/food/water_clear.tres"),
-	preload("res://database/food/fry_meat.tres"),
-]): set = set_inventory
+var inventory: Inventory: 
+	set = set_inventory
 
 
 func _ready() -> void:
+	visibility_changed.connect(update)
+	set_inventory(InventoriesController.create_inventory("player"))
+	slot_controller.init_slots(page_size)
 	page_controller.set_page_size(page_size.x * page_size.y)
-
 
 func set_inventory(new_inventory: Inventory):
 	if inventory and inventory.changed.is_connected(update):
@@ -32,10 +32,8 @@ func set_inventory(new_inventory: Inventory):
 
 func update():
 	if not visible or not inventory: return
-	
 	if slot_controller:
-		slot_controller.init_slots(page_size)
-		slot_controller.update_slots(inventory.get_slots())
+		slot_controller.update_slots(inventory.get_slots_list())
 	
 	if page_controller:
 		page_controller.set_inventory_size(inventory.get_size())

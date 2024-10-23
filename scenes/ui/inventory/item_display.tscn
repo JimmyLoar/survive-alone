@@ -44,6 +44,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+mouse_filter = 1
 text = "Amount"
 horizontal_alignment = 2
 vertical_alignment = 2
