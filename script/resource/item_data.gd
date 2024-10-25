@@ -39,17 +39,19 @@ const RARE_COLOR = {
 func get_color():
 	return RARE_COLOR[rare]
 
-@export_group("Actions", "action")
 @export var action_count := 0:
 	set(value):
 		action_count = value
 		actions.resize(action_count)
+		_types.fill(0)
 		_types.resize(action_count)
+		_properties.resize(action_count)
+		_properties.fill(1)
 		notify_property_list_changed()
 
 @export_storage var _types: Array[int]:
 	set(value):
-		_properties = value
+		_types = value
 		notify_property_list_changed()
 
 @export_storage var _properties: Array[int]:
@@ -62,10 +64,11 @@ var actions: Array[Dictionary] = []
 
 enum ActionTypes{
 	CHANGE_PROPERTY = 1,
-	REQUIRE_ITEMS = 2,
-	RECEIVE_ITEMS = 4,
-	CAN_STACABLE = 8,
-	USE_TIMER = 16,
+	CHANGE_DURABILITY = 2,
+	REQUIRE_ITEMS = 4,
+	RECEIVE_ITEMS = 8,
+	CAN_STACABLE = 16,
+	USE_TIMER = 32,
 }
 
 func _get_property_list() -> Array[Dictionary]:
@@ -87,6 +90,7 @@ func _get_property_list() -> Array[Dictionary]:
 		
 		if has_bit(_types[i], ActionTypes.CHANGE_PROPERTY):
 			properties.append_array(_add_property(i))
+		
 	return properties
 
 
@@ -132,7 +136,7 @@ func _set(property, value):
 		var index = property.get_slice("/", 0).to_int()
 		var key = property.get_slice("/", 1)
 		if key == "type":
-			_types.insert(index, value)
+			_types[index] = value
 		
 		elif key == "propery_size":
 			_properties[index] = value
