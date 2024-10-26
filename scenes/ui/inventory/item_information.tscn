@@ -43,19 +43,18 @@ layout_mode = 2
 
 [node name="PanelContainer2" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
 layout_mode = 2
-usage_mode = 0
 
 [node name="PanelContainer3" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
 layout_mode = 2
-usage_mode = 0
 
 [node name="PanelContainer4" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
 layout_mode = 2
-usage_mode = 0
 
 [node name="PanelContainer5" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
 layout_mode = 2
-usage_mode = 0
+
+[node name="PanelContainer6" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
+layout_mode = 2
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -66,5 +65,3 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Pick UP"
-
-[connection signal="remove_inventory_items" from="VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer1" to="." method="_on_remove_inventory_items"]

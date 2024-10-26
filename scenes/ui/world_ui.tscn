@@ -19,8 +19,8 @@ func _ready() -> void:
 		preload(\"res://database/food/fry_meat.tres\"),
 		preload(\"res://database/food/water_clear.tres\"),
 	])
-	#inventory.add_item_amount(preload(\"res://database/food/water_clear.tres\"), 10)
-	#inventory.add_item_amount(preload(\"res://database/food/fry_meat.tres\"), 5)
+	inventory.add_item_amount(preload(\"res://database/food/water_clear.tres\"), 9)
+	inventory.add_item_amount(preload(\"res://database/food/fry_meat.tres\"), 4)
 	
 	quick_bar.button_pressed.connect(tab_container.set_current_tab)
 	quick_bar.button_pressed.connect($\"../Character/Controller\"._stop)
