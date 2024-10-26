@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://csx1bauob5bnf"]
+
+[ext_resource type="Script" path="res://script/resource/item_data.gd" id="1_yqaw7"]
+[ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_sq3a0"]
+
+[resource]
+script = ExtResource("1_yqaw7")
+name = "Fresh Meat"
+discription = "Сешь, что бы востановить немного голода."
+texture = ExtResource("2_sq3a0")
+rare = 1
+durability = -1
+is_pickable = true
+action_count = 2
+_types = Array[int]([1, 60])
+_properties = Array[int]([1, 1])
+action_0/name = "Eat"
+action_0/type = 1
+action_0/propery_size = 1
+action_0/reduced_self = 1
+action_0/property_0_name = "exhaustion"
+action_0/property_0_value = 5
+action_1/name = "Cook"
+action_1/type = 60

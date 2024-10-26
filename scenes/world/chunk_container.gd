@@ -14,6 +14,7 @@ var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk",
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)  
 
 const ChunkHeighbor = [
+	Vector2i.ZERO,
 	Vector2i.RIGHT,
 	Vector2i(1, 1),
 	Vector2i.DOWN,
@@ -29,17 +30,45 @@ const ChunkHeighbor = [
 func update_region(center_position: Vector2i):
 	_logger.info("Start update chunks, center is %s" % [center_position])
 	
+	var new_content := Dictionary()
 	for dir in ChunkHeighbor.size():
 		var chunk_position = center_position + ChunkHeighbor[dir]
+		if _content.has(chunk_position): 
+			new_content[chunk_position] = _content[chunk_position]
+			continue
+		
+		var chunk = _create_chunk(chunk_position)
+		new_content[chunk_position] = chunk
+		add_child(chunk)
 	
+	for key in _content.keys():
+		if new_content.has(key): continue
+		var chunk: Node2D = _content[key]
+		remove_child(chunk)
+	
+	_content = new_content
 	_logger.info("DONE update chunks!")
+
+
+func _create_chunk(chunk_pos := Vector2i.ZERO):
+	var chunk := Node2D.new()
+	var bg_texture:= Sprite2D.new()
+	
+	bg_texture.centered = false
+	bg_texture.texture = load("res://assets/sprite/map_chunks/chunk_%d.jpg" % [chunk_pos.x + chunk_pos.y * world_size.x + 1])
+	bg_texture.scale = Vector2.ONE * 10
+	
+	chunk.add_child(bg_texture)
+	chunk.position = chunk_pos * chunk_size * tile_size
+	chunk.name = "chunk %s" % chunk_pos
+	return chunk
 
 
 func _add_chunks(chunk_position: Vector2i):
 	if _content.has(chunk_position): 
 		return
 	
-	var new_canvas := CanvasGroup.new()
+	var new_canvas := Node2D.new()
 	add_child(new_canvas)
 	_content[chunk_position] = new_canvas
 	new_canvas.position = chunk_position * chunk_size * tile_size

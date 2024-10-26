@@ -1,22 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bov1qert3n6ln"]
+[gd_scene load_steps=4 format=3 uid="uid://bov1qert3n6ln"]
 
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_fmwyq"]
-[ext_resource type="PackedScene" uid="uid://c8ildsba35mng" path="res://scenes/ui/property_bar.tscn" id="2_d653t"]
+[ext_resource type="Script" path="res://scenes/ui/world_quick_bar.gd" id="1_qcunc"]
 [ext_resource type="Script" path="res://script/nodes/version_display.gd" id="3_nncfh"]
 
-[sub_resource type="GDScript" id="GDScript_fbrsl"]
-script/source = "extends RichTextLabel
+[sub_resource type="ButtonGroup" id="ButtonGroup_2oy10"]
 
-
-func _ready() -> void:
-	GameTime.time_update.connect(update_time)
-	update_time()
-
-func update_time(_value = 0):
-	text = \"[center]%s\" % \"{hour}:{minut}\\n{year}/{month}/{day}\".format(GameTime.get_date())
-"
-
-[node name="PanelContainer" type="PanelContainer"]
+[node name="QuickBar" type="PanelContainer"]
 custom_minimum_size = Vector2(120, 0)
 anchors_preset = -1
 anchor_top = -0.00555556
@@ -26,6 +15,7 @@ offset_top = 4.0
 offset_right = -52.0
 offset_bottom = -3.99994
 grow_vertical = 2
+script = ExtResource("1_qcunc")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -33,90 +23,89 @@ layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
+theme_override_constants/margin_bottom = 24
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="Clock" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Clock"]
-modulate = Color(0.329158, 0.329158, 0.329158, 1)
-layout_mode = 2
-texture = ExtResource("1_fmwyq")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Clock"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-bbcode_enabled = true
-fit_content = true
-autowrap_mode = 0
-script = SubResource("GDScript_fbrsl")
-
-[node name="HungerBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_d653t")]
-layout_mode = 2
-property_name = "hunger"
-
-[node name="ThirstBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_d653t")]
-layout_mode = 2
-property_name = "thirst"
-
-[node name="FatigueBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_d653t")]
-layout_mode = 2
-property_name = "fatigue"
-
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Button0" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 8
-text = "Button"
+disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2oy10")
+text = "Allies"
+
+[node name="Button1" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 8
+disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2oy10")
+text = "Health"
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 8
-text = "Button"
+disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2oy10")
+text = "..."
 
 [node name="Button3" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 8
-text = "Button"
+disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2oy10")
+text = "Quests"
+
+[node name="Space" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Button4" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 8
-text = "Button"
+disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2oy10")
+text = "Skills
+"
 
 [node name="Button5" type="Button" parent="MarginContainer/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 8
-text = "Button"
+disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2oy10")
+text = "Craft
+"
 
 [node name="Button6" type="Button" parent="MarginContainer/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 8
-text = "Button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2oy10")
+text = "Invetory"
+
+[node name="Button7" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 8
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2oy10")
+text = "Location"
 
 [node name="Control3" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
@@ -147,3 +136,12 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 2
 script = ExtResource("3_nncfh")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button0" to="." method="_on_pressed" binds= [0]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button1" to="." method="_on_pressed" binds= [1]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button2" to="." method="_on_pressed" binds= [2]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button3" to="." method="_on_pressed" binds= [3]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button4" to="." method="_on_pressed" binds= [4]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button5" to="." method="_on_pressed" binds= [5]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button6" to="." method="_on_pressed" binds= [6]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button7" to="." method="_on_pressed" binds= [7]]
