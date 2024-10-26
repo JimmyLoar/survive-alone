@@ -39,7 +39,7 @@ const RARE_COLOR = {
 func get_color():
 	return RARE_COLOR[rare]
 
-@export var action_count := 0:
+@export_range(0, 6, 1) var action_count := 0:
 	set(value):
 		action_count = value
 		actions.resize(action_count)
@@ -81,6 +81,12 @@ func _get_property_list() -> Array[Dictionary]:
 			"name": "%s/name" % _name,
 			"type": TYPE_STRING,
 			})
+		
+		properties.append({
+			"name": "%s/reduced_self" % _name,
+			"type": TYPE_BOOL,
+			})
+		
 		properties.append({
 			"name": "%s/type" % _name,
 			"type": TYPE_INT,
@@ -101,7 +107,7 @@ func _add_property(i: int) -> Array[Dictionary]:
 		"name": "%s/propery_size" % _name,
 		"type": TYPE_INT,
 		"hint": PROPERTY_HINT_RANGE,
-		"hint_string": "1,16,1,or_greater",
+		"hint_string": "1,4,1,or_greater",
 		})
 	
 	for ii in _properties[i]:
@@ -149,6 +155,14 @@ func _set(property, value):
 
 func action_has_type(index: int, type:ActionTypes):
 	return has_bit(_types[index], type)
+
+
+func get_action_types(action_index: int) -> Array[bool]:
+	var types: Array[bool] = []
+	for i in ActionTypes.size():
+		var _result = has_bit(_types[action_index], ActionTypes.values()[i])
+		types.append(_result)
+	return types
 
 
 static func has_bit(value: int, bit: int) -> bool:
