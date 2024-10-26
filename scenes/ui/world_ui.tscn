@@ -16,14 +16,11 @@ script/source = "extends CanvasLayer
 func _ready() -> void:
 	var inventory := InventoriesController.create_inventory(\"player\")
 	inventory.add_miscellaneous_items([
-		#preload(\"res://database/food/fry_meat.tres\"),
 		preload(\"res://database/food/water_clear.tres\"),
 		preload(\"res://database/food/fresh_meat.tres\"),
 	])
 	inventory.add_item_amount(preload(\"res://database/food/water_clear.tres\"), 9)
-	#inventory.add_item_amount(preload(\"res://database/food/fry_meat.tres\"), 4)
 	inventory.add_item_amount(preload(\"res://database/food/fresh_meat.tres\"), 14)
-	
 	quick_bar.button_pressed.connect(tab_container.set_current_tab)
 	quick_bar.button_pressed.connect($\"../Character/Controller\"._stop)
 	tab_container.set_current_tab(-1)

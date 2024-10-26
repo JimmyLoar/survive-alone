@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://b2yydvgka6dr0"]
+
+[ext_resource type="Script" path="res://script/resource/item_data.gd" id="1_gwmyx"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_nbbkd"]
+
+[resource]
+script = ExtResource("1_gwmyx")
+name = "Wood"
+discription = "Деревяшка"
+texture = ExtResource("2_nbbkd")
+rare = 1
+durability = -1

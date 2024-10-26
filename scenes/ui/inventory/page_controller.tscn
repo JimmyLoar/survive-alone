@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cka4psk0x8fb2"]
+
+[ext_resource type="Script" path="res://scenes/ui/inventory/page_controller.gd" id="1_bm02y"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_sun83"]
+
+[node name="PageController" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+alignment = 1
+script = ExtResource("1_bm02y")
+currect_page = 310
+
+[node name="BackPageButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_sun83")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CurrectPageLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "20
+"
+horizontal_alignment = 1
+
+[node name="NextPageButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_sun83")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="BackPageButton" to="." method="_on_back_page_button_pressed"]
+[connection signal="pressed" from="NextPageButton" to="." method="_on_next_page_button_pressed"]

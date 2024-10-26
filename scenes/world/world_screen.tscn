@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpcktvxjqbxag"]
+[gd_scene load_steps=7 format=3 uid="uid://cpcktvxjqbxag"]
 
 [ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://scenes/world/character.tscn" id="1_7v8xb"]
 [ext_resource type="Script" path="res://scenes/world/world_screen.gd" id="1_ljijd"]
 [ext_resource type="Script" path="res://scenes/world/chunk_container.gd" id="2_lswou"]
-[ext_resource type="PackedScene" uid="uid://bov1qert3n6ln" path="res://scenes/ui/world_quick_bar.tscn" id="2_q62ju"]
+[ext_resource type="Texture2D" uid="uid://cd2skbxlqpvj4" path="res://assets/sprite/full_map.jpg" id="2_u2y5o"]
+[ext_resource type="PackedScene" uid="uid://bknvlejua5guo" path="res://scenes/ui/world_ui.tscn" id="4_abk0o"]
 
 [sub_resource type="GDScript" id="GDScript_iq6x5"]
 script/source = "@tool
 extends Node2D
 
 @export var _draw_chunks := false
-
+@export var color := Color.GREEN
 #count chanks in world
 var world_size: Vector2i = ProjectSettings.get_setting(\"application/game/size/world\", Vector2i.ONE * 16)
 
@@ -32,14 +33,14 @@ func _draw() -> void:
 		draw_line(
 			Vector2(x * _pixel_chunk_size, 0), 
 			Vector2(x * _pixel_chunk_size, _pixel_world_size.y), 
-			Color.GREEN, 4
+			color, 4
 		)
 	
 	for y in world_size.y:
 		draw_line(
 			Vector2(0, y * _pixel_chunk_size), 
 			Vector2(_pixel_world_size.x, y * _pixel_chunk_size), 
-			Color.GREEN, 4
+			color, 4
 		)
 	
 	for x in world_size.x:
@@ -47,12 +48,19 @@ func _draw() -> void:
 			draw_string(
 				ThemeDB.fallback_font, 
 				Vector2(x, y) * _pixel_chunk_size - Vector2(-16, -32),
-				\"X:%s  Y:%s\" % [x, y]
+				\"X:%s  Y:%s\" % [x, y], HORIZONTAL_ALIGNMENT_CENTER,
+				-1, 24, color
 			)
 "
 
 [node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_ljijd")
+
+[node name="FullMap" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(10, 10)
+texture = ExtResource("2_u2y5o")
+centered = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
@@ -62,26 +70,18 @@ script = ExtResource("2_lswou")
 [node name="ChunkGridDrawer" type="Node2D" parent="."]
 script = SubResource("GDScript_iq6x5")
 _draw_chunks = true
+color = Color(1, 0.243137, 0, 1)
 
 [node name="Character" parent="." instance=ExtResource("1_7v8xb")]
-position = Vector2(2716, 1839)
+unique_name_in_owner = true
+position = Vector2(15883, 27464)
 
-[node name="UI" type="CanvasLayer" parent="."]
-layer = 15
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ReferenceRect" type="ReferenceRect" parent="Character"]
+offset_left = -750.0
+offset_top = -750.0
+offset_right = 750.0
+offset_bottom = 750.0
 mouse_filter = 2
-theme_override_constants/separation = 0
+border_width = 300.0
 
-[node name="PanelContainer" parent="UI/HBoxContainer" instance=ExtResource("2_q62ju")]
-layout_mode = 2
-
-[node name="TabContainer" type="TabContainer" parent="UI/HBoxContainer"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="UI" parent="." instance=ExtResource("4_abk0o")]

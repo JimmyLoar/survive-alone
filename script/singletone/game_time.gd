@@ -4,11 +4,12 @@ signal new_day
 signal time_update(delta: int)
 signal time_skipped(skipped_time: int)
 
+const DEFAULT_MULTYPER = 2
 const TIME_MULTYPER = 10
 const MINUT_IN_DAY = 1440 * TIME_MULTYPER
 const _DATA =  {
 		"year": 2001,
-		"month": 7, 
+		"month": 6, 
 		"day": 4,
 		"hour": 11,
 		"minut": 23,
@@ -18,7 +19,7 @@ var _time: int = 0  # 1 real second = 6 game minut
 var _day: int = 0 
 
 var _reaming_add_time: int = 0
-var _multiper: int = 1
+var _multiper: int = DEFAULT_MULTYPER
 var _infinite: bool = false:
 	set(value):
 		_infinite = value
@@ -50,7 +51,7 @@ func get_date() -> Dictionary:
 
 func start():
 	_infinite = true
-	_multiper = 1
+	_multiper = DEFAULT_MULTYPER
 
 
 func stop():
@@ -65,7 +66,7 @@ func add_action_time(action_minut: int = 0, multiper: int = 1):
 
 func clear_action_time():
 	_reaming_add_time = 0
-	_multiper = 1.0
+	_multiper = DEFAULT_MULTYPER
 
 
 func timeskip(minut: int) -> void:

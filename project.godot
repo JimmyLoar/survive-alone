@@ -12,11 +12,12 @@ config_version=5
 
 config/name="SurviveAlone"
 run/main_scene="res://bootstrap/bootstrap.tscn"
+run/print_header=false
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
-game/size/world=Vector2i(32, 32)
-game/size/chunk=48
-game/size/tile=16
+game/size/world=Vector2i(70, 35)
+game/size/chunk=50
+game/size/tile=30
 game/version/major=0
 game/version/minor=0
 game/version/patch=0
@@ -30,18 +31,25 @@ GodotLogger="*res://addons/logger/logger.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GameTime="*res://script/singletone/game_time.gd"
 PlayerProperty="*res://script/singletone/player_property.gd"
+InventoriesController="*res://script/singletone/inventories_controller.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg")
+
+[gui]
+
+theme/custom="res://assets/themes/main.tres"
 
 [internationalization]
 

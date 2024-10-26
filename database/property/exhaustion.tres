@@ -1,3 +1,4 @@
+
 [gd_resource type="Resource" script_class="GameProperty" load_steps=3 format=3 uid="uid://d3j3yifrth1q4"]
 
 [ext_resource type="Script" path="res://script/resource/game_property.gd" id="1_vq164"]
