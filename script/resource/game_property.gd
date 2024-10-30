@@ -20,10 +20,10 @@ extends Resource
 @export var texture: Texture
 
 @export_group("Default value", "default_")
-@export var default_value: int = -1
-@export var default_max_value: int = 100000
-@export var default_min_value: int = 0
-@export var default_delta_value: int = 0
+@export_range(-1, 4.29497e+06, 0.001) var default_value: float = -1
+@export_range(1, 4.29497e+06, 0.001) var default_max_value: float = 100
+@export_range(0, 4.29497e+06, 0.001) var default_min_value: float = 0
+@export_range(-2.14748e+06, 2.14748e+06, 0.001) var default_delta_value: float = 0
 
 @export var modulate: Color = Color.WHITE
 

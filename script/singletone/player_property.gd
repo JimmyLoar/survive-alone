@@ -24,9 +24,11 @@ func _init() -> void:
 
 func _init_values():
 	for key in _properties_data.keys():
-		_set_value(key, _properties_data[key].default_value)
-		_set_value(key + "_delta", _properties_data[key].default_delta_value)
-	pass
+		var value = _properties_data[key].default_value 
+		if value == -1: 
+			value = _properties_data[key].default_max_value
+		set_value(key, value)
+		set_value(key + "_delta", _properties_data[key].default_delta_value)
 
 
 func update(delta_time: int = 1):
