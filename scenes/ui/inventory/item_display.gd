@@ -17,5 +17,6 @@ func update_data(data: ItemData):
 
 
 func update_amount(amount: int):
+	label_amount.visible = amount > 1
 	label_amount.text = "%d" % amount
 	

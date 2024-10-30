@@ -1,6 +1,9 @@
 class_name ItemInfoPanel
 extends MarginContainer
 
+signal remove_items(item_list: Array)
+signal add_items(item_list: Array)
+
 @export var _item: ItemData
 
 @onready var name_label: Label = $VBoxContainer/NameLabel
@@ -8,7 +11,7 @@ extends MarginContainer
 @onready var interactive_container: VBoxContainer = $VBoxContainer/ScrollContainer/VBoxContainer
 
 
-@onready var inventory: Inventory = InventoriesController.get_inventory("player"): 
+@onready var inventory: Inventory: 
 	set = set_inventory
 
 
@@ -17,9 +20,12 @@ func _ready() -> void:
 
 
 func update(slot: Dictionary = {}):
-	self.visible = not slot.is_empty()
-	if not self.visible:
+	if slot.is_empty() or slot.item == _item:
+		self.hide()
+		_item = null
 		return
+	
+	self.show()
 	
 	_item = slot.item
 	name_label.text = "%s" % _item.name
@@ -31,8 +37,9 @@ func update(slot: Dictionary = {}):
 		var types: Array[bool] = _item.get_action_types(i) if into_range else Array([], TYPE_BOOL, "", null)
 		var panel: PanelContainer = interactive_container.get_node("PanelContainer%d" % [i + 1])
 		panel.update(action, types)
-		panel.reduced_self.connect(_on_reduced_self)
-	
+		if not panel.reduced_self.is_connected(_on_reduced_self):
+			panel.reduced_self.connect(_on_reduced_self)
+		
 	if not slot.used.is_empty():
 		text_label.append_text("Durability: %d" % slot.used.front())
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b44rlr8ay6jxr"]
+[gd_scene load_steps=5 format=3 uid="uid://b44rlr8ay6jxr"]
 
 [ext_resource type="Script" path="res://scenes/ui/inventory/item_information.gd" id="1_x5t6r"]
 [ext_resource type="Resource" uid="uid://ibrfm6mql4j7" path="res://database/food/fry_meat.tres" id="2_ijknu"]
 [ext_resource type="PackedScene" uid="uid://o7ms6nil7dwq" path="res://scenes/ui/inventory/item_interaction.tscn" id="3_lc75j"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="4_h2j8f"]
 
 [node name="ItemInformationPanel" type="MarginContainer"]
 custom_minimum_size = Vector2(40, 60)
@@ -10,6 +11,10 @@ offset_right = 280.0
 offset_bottom = 234.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 script = ExtResource("1_x5t6r")
 _item = ExtResource("2_ijknu")
 
@@ -65,3 +70,14 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Pick UP"
+
+[node name="CloseButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("4_h2j8f")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="CloseButton" to="." method="hide"]
