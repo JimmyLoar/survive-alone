@@ -32,7 +32,7 @@ func _init() -> void:
 	_time = (_DATA.hour * 60 + _DATA.minut) * TIME_MULTYPER
 	_day = _DATA.month * 30 + _DATA.day
 	
-	_time_progress = preload("uid://ddfsnjx44w5ik").instantiate()
+	_time_progress = preload("res://scenes/ui/displayes/time_progress_display.tscn").instantiate()
 	add_child(_time_progress)
 
 

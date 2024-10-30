@@ -11,6 +11,7 @@ func _ready() -> void:
 
 func show_with_time(value: int):
 	progress_bar.max_value = value
+	progress_bar.value = 0
 	self.show()
 
 
