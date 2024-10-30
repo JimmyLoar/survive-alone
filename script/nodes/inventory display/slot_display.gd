@@ -26,7 +26,9 @@ func _init() -> void:
 
 
 func update(inventory_slot: Dictionary):
-	if not inventory_slot or inventory_slot.is_empty():
+	if (not inventory_slot 
+			or inventory_slot.is_empty() 
+			or Inventory.count_slot_size(inventory_slot) <= 0):
 		disabled = true
 		display.hide()
 		return
