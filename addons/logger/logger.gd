@@ -22,7 +22,7 @@ const COLORS = {
 const LOG_FORMAT = "{level} [{time}]{prefix} {message} "
 
 
-var CURRENT_LOG_LEVEL=LogLevel.INFO
+var CURRENT_LOG_LEVEL=LogLevel.DEBUG
 var CURRENT_FILE_LEVEL = LogLevel.DEBUG
 var USE_ISOTIME: bool = false
 var write_logs: bool = true
