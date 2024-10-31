@@ -17,15 +17,15 @@ func _ready() -> void:
 	var inventory := InventoriesController.create_inventory(\"player\")
 	inventory.add_miscellaneous_items([
 		preload(\"res://database/food/water_clear.tres\"),
-		preload(\"res://database/food/fresh_meat.tres\"),
 	])
 	inventory.add_item_amount(preload(\"res://database/food/water_clear.tres\"), 9)
-	inventory.add_item_amount(preload(\"res://database/food/fresh_meat.tres\"), 14)
 	
 	var local_inv := InventoriesController.create_inventory(\"test_local\")
 	local_inv.add_miscellaneous_items([
 		preload(\"res://database/building/bonfire.tres\"),
+		preload(\"res://database/food/fresh_meat.tres\"),
 	])
+	local_inv.add_item_amount(preload(\"res://database/food/fresh_meat.tres\"), 14)
 	
 	
 	quick_bar.button_pressed.connect(tab_container.set_current_tab)

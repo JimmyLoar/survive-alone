@@ -3,6 +3,9 @@ extends MarginContainer
 
 signal remove_items(item_list: Array)
 signal add_items(item_list: Array)
+signal transfered_items(inv_name: String, slot: Dictionary, count: int)
+
+@export var transfer_inv_name : String = ""
 
 @onready var name_label: Label = $VBoxContainer/NameLabel
 @onready var text_label: RichTextLabel = $VBoxContainer/ScrollContainer/VBoxContainer/RichTextLabel
@@ -60,3 +63,8 @@ func _on_reduced_self() -> void:
 		inventory.add_item_amount(_last_slot.item, -1)
 	if inventory.get_item_count(_last_slot.item) <= 0:
 		update()
+
+
+func _on_pick_up_button_pressed() -> void:
+	transfered_items.emit(transfer_inv_name, _last_slot, -1)
+	update()

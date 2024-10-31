@@ -29,16 +29,16 @@ func create_slot(item: ItemData, used = [], amount = 0) -> int:
 func add_slot(new_slot: Dictionary) -> int:
 	new_slot.merge(SLOT.duplicate())
 	_slots.push_back(new_slot)
-	changed.emit()
-	change_size.emit(get_size())
+	call_deferred("emit_signal", "changed")
+	call_deferred("emit_signal", "change_size", get_size())
 	return _slots.size() - 1
 
 
 func remove_slot(index: int) -> Dictionary:
 	if not _validate_index.call(index):
 		breakpoint
-	changed.emit()
-	change_size.emit(get_size())
+	call_deferred("emit_signal", "changed")
+	call_deferred("emit_signal", "change_size", get_size())
 	return _slots.pop_at(index)
 
 
