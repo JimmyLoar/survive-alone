@@ -41,5 +41,8 @@ func update():
 	return
 
 
+func get_last_pressed():
+	return slot_controller.button_group.get_pressed_button().get_index()
+
 func _on_slot_controller_slot_pressed(slot_index: int) -> void:
 	slot_pressed.emit(inventory.get_slot(slot_index))

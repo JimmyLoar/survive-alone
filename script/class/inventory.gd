@@ -13,11 +13,11 @@ const SLOT = {
 
 
 var _slots: Array[Dictionary] = []
-var _validate_index = func(index: int): 
+var validate_index = func(index: int): 
 	return index >= 0 and index < _slots.size()
 
 
-func create_slot(item: ItemData, used = [], amount = 0) -> int:
+func create_slot(item: ItemData, used = [], amount = 1) -> int:
 	var slot = {
 		"item": item,
 		"used": used,
@@ -26,16 +26,32 @@ func create_slot(item: ItemData, used = [], amount = 0) -> int:
 	return add_slot(slot)
 
 
+func get_slot_and_create_if_not(item: ItemData, used = [], amount = 0) -> Dictionary:
+	var index = find_slot(item.name)
+	if index == -1:
+		index = create_slot(item, used, amount)
+	return get_slot(index)
+
+
 func add_slot(new_slot: Dictionary) -> int:
-	new_slot.merge(SLOT.duplicate())
+	var index = find_slot(new_slot.item.name)
+	if index != -1:
+		append_to_slot(new_slot)
+		call_deferred("emit_signal", "changed")
+		return index
+	
 	_slots.push_back(new_slot)
-	call_deferred("emit_signal", "changed")
 	call_deferred("emit_signal", "change_size", get_size())
+	call_deferred("emit_signal", "changed")
 	return _slots.size() - 1
+
+func append_to_slot(slot: Dictionary):
+	add_item_amount(slot.item, slot.amount)
+	append_used_items(slot.item, slot.used)
 
 
 func remove_slot(index: int) -> Dictionary:
-	if not _validate_index.call(index):
+	if not validate_index.call(index):
 		breakpoint
 	call_deferred("emit_signal", "changed")
 	call_deferred("emit_signal", "change_size", get_size())
@@ -43,7 +59,7 @@ func remove_slot(index: int) -> Dictionary:
 
 
 func get_slot(index: int) -> Dictionary:
-	if not _validate_index.call(index):
+	if not validate_index.call(index):
 		return {}
 	return _slots[index]
 
@@ -73,7 +89,7 @@ func add_miscellaneous_items(items: Array[ItemData]) -> void:
 		slot.amount += 1
 
 
-func append_used_items(item: ItemData, used : Array[int] = []) -> void:
+func append_used_items(item: ItemData, used : Array = []) -> void:
 	var slot = get_slot_for_item(item)
 	slot.used.append_array(used)
 	changed.emit()
@@ -102,7 +118,7 @@ func remove_used_value(item: ItemData, value: int = 1) -> void:
 	changed.emit()
 
 
-func set_items_amount(item: ItemData, new_amount: int = 1) -> void:
+func set_item_amount(item: ItemData, new_amount: int = 1) -> void:
 	var slot = get_slot_for_item(item)
 	slot.amount = new_amount
 	changed.emit()

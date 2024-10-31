@@ -14,17 +14,13 @@ script/source = "extends CanvasLayer
 
 
 func _ready() -> void:
-	var inventory := InventoriesController.create_inventory(\"player\")
-	inventory.add_miscellaneous_items([
-		preload(\"res://database/food/water_clear.tres\"),
-	])
-	inventory.add_item_amount(preload(\"res://database/food/water_clear.tres\"), 9)
-	
-	var local_inv := InventoriesController.create_inventory(\"test_local\")
+	var local_inv := InventoriesController.get_inventory(\"test_local\")
 	local_inv.add_miscellaneous_items([
 		preload(\"res://database/building/bonfire.tres\"),
 		preload(\"res://database/food/fresh_meat.tres\"),
+		preload(\"res://database/food/water_clear.tres\"),
 	])
+	local_inv.add_item_amount(preload(\"res://database/food/water_clear.tres\"), 9)
 	local_inv.add_item_amount(preload(\"res://database/food/fresh_meat.tres\"), 14)
 	
 	

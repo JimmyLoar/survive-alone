@@ -66,5 +66,7 @@ func _on_reduced_self() -> void:
 
 
 func _on_pick_up_button_pressed() -> void:
-	transfered_items.emit(transfer_inv_name, _last_slot, -1)
-	update()
+	var count = 5
+	if count >= Inventory.count_slot_size(_last_slot):
+		update()
+	transfered_items.emit(transfer_inv_name, _last_slot, count)
