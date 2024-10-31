@@ -11,6 +11,6 @@ discription = "PROPERTY_DISCRIPTION_PSYCH"
 texture = ExtResource("3_qdtqh")
 default_value = 367.5
 default_max_value = 432.0
-default_min_value = 0
+default_min_value = 0.0
 default_delta_value = -0.012
 modulate = Color(0.576471, 0.439216, 0.858824, 1)
