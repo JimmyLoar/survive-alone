@@ -10,6 +10,7 @@ signal transfered_items(inv_name: String, slot: Dictionary, count: int)
 @onready var name_label: Label = $VBoxContainer/NameLabel
 @onready var text_label: RichTextLabel = $VBoxContainer/ScrollContainer/VBoxContainer/RichTextLabel
 @onready var interactive_container: VBoxContainer = $VBoxContainer/ScrollContainer/VBoxContainer
+@onready var pick_up_button: Button = $VBoxContainer/Buttons/PickUpButton
 
 
 @onready var inventory: Inventory: 
@@ -40,6 +41,7 @@ func update(slot: Dictionary = {}):
 	if not _last_slot.used.is_empty():
 		text_label.append_text("Durability: %d" % _last_slot.used.front())
 	
+	pick_up_button.visible = item.is_pickable
 	self.show()
 
 
@@ -66,7 +68,17 @@ func _on_reduced_self() -> void:
 
 
 func _on_pick_up_button_pressed() -> void:
-	var count = 5
-	if count >= Inventory.count_slot_size(_last_slot):
+	QuantitySelecter.canseled.connect(_on_selecter_canseled, CONNECT_ONE_SHOT)
+	QuantitySelecter.confirmed_value.connect(_on_selecter_confirmed_value, CONNECT_ONE_SHOT)
+	QuantitySelecter.enable(Inventory.count_slot_size(_last_slot))
+
+
+func _on_selecter_confirmed_value(value: int):
+	QuantitySelecter.canseled.disconnect(_on_selecter_canseled)
+	if value >= Inventory.count_slot_size(_last_slot):
 		update()
-	transfered_items.emit(transfer_inv_name, _last_slot, count)
+	transfered_items.emit(transfer_inv_name, _last_slot, value)
+
+
+func _on_selecter_canseled():
+	QuantitySelecter.confirmed_value.disconnect(_on_selecter_confirmed_value)

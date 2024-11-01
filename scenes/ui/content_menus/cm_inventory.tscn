@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4fhmheukukgv"]
+[gd_scene load_steps=5 format=3 uid="uid://bt7x31hbxwu7a"]
 
 [ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://scenes/ui/content_menus/content_menu.tscn" id="1_rj51l"]
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://scenes/ui/inventory/inventory_display.tscn" id="2_0d8je"]
@@ -25,4 +25,5 @@ layout_mode = 2
 transfer_inv_name = "test_local"
 metadata/_tab_index = 1
 
+[connection signal="duble_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="." method="_on_inventory_display_duble_pressed"]
 [connection signal="slot_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="MarginContainer/HBoxContainer/SubContainer/ItemInformationPanel" method="update"]

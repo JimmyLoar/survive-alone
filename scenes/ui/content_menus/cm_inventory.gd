@@ -30,3 +30,8 @@ func set_name_inventory(value):
 func _on_transfered_items(inv_name: String, slot: Dictionary, count: int) -> void:
 	var index = inventory_display.get_last_pressed()
 	InventoriesController.move_item_in_inventories(inventory_name, inv_name, index, count)
+
+
+func _on_inventory_display_duble_pressed(slot: Dictionary) -> void:
+	if not slot.item.is_pickable: return
+	_on_transfered_items(item_information_panel.transfer_inv_name, slot, -1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8gq26fk1grqs"]
+[gd_scene load_steps=5 format=3 uid="uid://yg7wttxvrjwe"]
 
 [ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://scenes/ui/content_menus/content_menu.tscn" id="1_vemht"]
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://scenes/ui/inventory/inventory_display.tscn" id="2_jvcv2"]
@@ -26,4 +26,5 @@ layout_mode = 2
 transfer_inv_name = "player"
 metadata/_tab_index = 1
 
+[connection signal="duble_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="." method="_on_inventory_display_duble_pressed"]
 [connection signal="slot_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="MarginContainer/HBoxContainer/SubContainer/ItemInformationPanel" method="update"]

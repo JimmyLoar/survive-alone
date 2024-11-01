@@ -71,7 +71,7 @@ func get_slots_list() -> Array[Dictionary]:
 func get_slot_for_item(item: ItemData) -> Dictionary:
 	var slot_index = find_slot(item.name)
 	if slot_index == -1:
-		slot_index = create_slot(item)
+		slot_index = create_slot(item, [], 0)
 	return _slots[slot_index]
 
 

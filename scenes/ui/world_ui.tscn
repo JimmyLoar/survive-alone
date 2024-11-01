@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bov1qert3n6ln" path="res://scenes/ui/world_quick_bar.tscn" id="1_lauuj"]
 [ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://scenes/ui/content_menus/content_menu.tscn" id="3_swxnr"]
 [ext_resource type="PackedScene" uid="uid://kfafo26645mw" path="res://scenes/ui/status_panel.tscn" id="3_yepll"]
-[ext_resource type="PackedScene" uid="uid://c4fhmheukukgv" path="res://scenes/ui/content_menus/cm_inventory.tscn" id="4_r5snf"]
-[ext_resource type="PackedScene" uid="uid://c8gq26fk1grqs" path="res://scenes/ui/content_menus/cm_location.tscn" id="5_lak1p"]
+[ext_resource type="PackedScene" uid="uid://bt7x31hbxwu7a" path="res://scenes/ui/content_menus/cm_inventory.tscn" id="4_r5snf"]
+[ext_resource type="PackedScene" uid="uid://yg7wttxvrjwe" path="res://scenes/ui/content_menus/cm_location.tscn" id="5_lak1p"]
 
 [sub_resource type="GDScript" id="GDScript_kbdun"]
 script/source = "extends CanvasLayer

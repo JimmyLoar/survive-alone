@@ -2,6 +2,7 @@ class_name InventoryDisplay
 extends MarginContainer
 
 signal slot_pressed(slot: Dictionary)
+signal duble_pressed(slot: Dictionary)
 
 @export var page_size := Vector2i(3, 3)
 
@@ -44,5 +45,10 @@ func update():
 func get_last_pressed():
 	return slot_controller.button_group.get_pressed_button().get_index()
 
+
 func _on_slot_controller_slot_pressed(slot_index: int) -> void:
 	slot_pressed.emit(inventory.get_slot(slot_index))
+
+
+func _on_slot_controller_duble_pressed(slot_index: int) -> void:
+	duble_pressed.emit(inventory.get_slot(slot_index))

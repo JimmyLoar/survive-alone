@@ -32,6 +32,7 @@ LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GameTime="*res://script/singletone/game_time.gd"
 PlayerProperty="*res://script/singletone/player_property.gd"
 InventoriesController="*res://script/singletone/inventories_controller.gd"
+QuantitySelecter="*res://scenes/ui/displayes/quantity_selecter.tscn"
 
 [display]
 

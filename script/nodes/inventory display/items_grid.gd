@@ -2,9 +2,10 @@ class_name SlotCotroller
 extends GridContainer
 
 signal slot_pressed(slot_index: int)
+signal duble_pressed(slot_index:int)
 
 var button_group := ButtonGroup.new()
-var logger = GodotLogger.with('SlotCotroller')
+@onready var logger = GodotLogger.with('SlotCotroller')
 
 
 func _init() -> void:
@@ -31,10 +32,21 @@ func update_slots(slots_list: Array):
 		get_child(i).update(value)
 	logger.debug("Done update slots.")
 
-
+var timer: SceneTreeTimer
 func _on_slot_pressed(slot_index: int):
 	logger.debug("Pressed %d slots." % slot_index)
 	slot_pressed.emit(slot_index)
+	
+	if timer and timer.time_left > 0:
+		_duble_click(slot_index)
+		return
+	
+	timer = get_tree().create_timer(0.3)
+
+
+func _duble_click(slot_index: int):
+	logger.debug("Duble pressed on %d" % slot_index)
+	duble_pressed.emit(slot_index)
 
 
 func _on_slot_focused():
