@@ -38,17 +38,19 @@ theme_override_constants/separation = 12
 custom_minimum_size = Vector2(180, 28)
 layout_mode = 2
 size_flags_vertical = 4
-property_name = &"hunger"
+property_id = 2
 
 [node name="ThirstBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
 custom_minimum_size = Vector2(180, 28)
 layout_mode = 2
 size_flags_vertical = 4
+property_id = 6
 
 [node name="FatigueBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
 custom_minimum_size = Vector2(180, 28)
 layout_mode = 2
 size_flags_vertical = 4
+property_id = 1
 
 [node name="Space" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
