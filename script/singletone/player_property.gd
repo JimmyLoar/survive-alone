@@ -1,40 +1,35 @@
 extends Node
 
 const MULTIPER = 1000
+const COLECTION_NAME = &"properties"
 
 var logger :=  GodotLogger.with("Player Properties")
-
-var _properties_data: Dictionary = {
-	preload("res://database/property/exhaustion.tres").name_key: preload("res://database/property/exhaustion.tres"),
-	preload("res://database/property/hunger.tres").name_key: preload("res://database/property/hunger.tres"),
-	preload("res://database/property/thirst.tres").name_key: preload("res://database/property/thirst.tres"),
-	preload("res://database/property/fatigue.tres").name_key: preload("res://database/property/fatigue.tres"),
-	preload("res://database/property/radiation.tres").name_key: preload("res://database/property/radiation.tres"),
-	preload("res://database/property/psych.tres").name_key: preload("res://database/property/psych.tres"),
-}
 
 var _properties_value: Dictionary = {
 	
 }
+var _database: Database
 
 
-func _init() -> void:
+func set_database(database: Database):
+	_database = database
 	_init_values()
 
 
 func _init_values():
-	for key in _properties_data.keys():
-		var value = _properties_data[key].default_value 
+	for data: GameProperty in get_properties_data().values():
+		var value = data.default_value 
 		if value == -1: 
-			value = _properties_data[key].default_max_value
-		set_value(key, value)
-		set_value(key + "_delta", _properties_data[key].default_delta_value)
+			value = data.default_max_value
+		set_value(data.name_key, value)
+		set_value(data.name_key + "_delta", data.default_delta_value)
 
 
 func update(delta_time: int = 1):
-	for prop in _properties_data.keys():
-		var value: int = _get_value(prop) + _get_value("%s_delta" % prop) * delta_time 
-		_set_value(prop, value)
+	for prop: GameProperty in get_properties_data().values():
+		var key = prop.name_key
+		var value: int = _get_value(key) + _get_value("%s_delta" % key) * delta_time 
+		_set_value(key, value)
 	return
 
 
@@ -58,15 +53,16 @@ func get_value(property_name: String, default: Variant = 0) -> float:
 	return _get_value(property_name, default) / MULTIPER
 
 
-func get_property(property_name: String) -> GameProperty:
-	if not _properties_data.has(property_name):
-		return preload("res://database/property/none_property.tres")
-	return _properties_data[property_name]
+func get_property(_name: StringName) -> GameProperty:
+	if _name.ends_with("_delta"):
+		_name = _name.trim_suffix("_delta")
+	return _database.fetch_data(COLECTION_NAME, _name)
 
 
 func get_value_properties_list() -> Array[String]:
 	return _properties_value.keys()
 
 
-func get_data_properties_list() -> Array[String]:
-	return _properties_data.keys()
+func get_properties_data() -> Dictionary:
+	return _database.fetch_collection_data(COLECTION_NAME)
+	

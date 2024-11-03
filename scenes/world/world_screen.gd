@@ -6,6 +6,7 @@ extends Node2D
 
 var logger = GodotLogger.with("World")
 
+
 func _ready() -> void:
 	logger.info("Game starte with date '{hour}:{minut} {day}/{month}/{year}'".format(GameTime.get_date()))
 	character.changed_chunk.connect(chunk_container.update_region)
@@ -13,4 +14,5 @@ func _ready() -> void:
 	chunk_container.update_region(
 		character.get_chunk_position()
 		)
+	
 	

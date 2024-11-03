@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bov1qert3n6ln" path="res://scenes/ui/world_quick_bar.tscn" id="1_lauuj"]
 [ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://scenes/ui/content_menus/content_menu.tscn" id="3_swxnr"]
-[ext_resource type="PackedScene" uid="uid://kfafo26645mw" path="res://scenes/ui/status_panel.tscn" id="3_yepll"]
+[ext_resource type="PackedScene" uid="uid://eqmgneqan3e4" path="res://scenes/ui/status_panel.tscn" id="3_yepll"]
 [ext_resource type="PackedScene" uid="uid://bt7x31hbxwu7a" path="res://scenes/ui/content_menus/cm_inventory.tscn" id="4_r5snf"]
 [ext_resource type="PackedScene" uid="uid://yg7wttxvrjwe" path="res://scenes/ui/content_menus/cm_location.tscn" id="5_lak1p"]
 
@@ -12,16 +12,15 @@ script/source = "extends CanvasLayer
 @onready var quick_bar: PanelContainer = %QuickBar
 @onready var tab_container: TabContainer = %TabContainer
 
-
 func _ready() -> void:
 	var local_inv := InventoriesController.get_inventory(\"test_local\")
 	local_inv.add_miscellaneous_items([
-		preload(\"res://database/building/bonfire.tres\"),
-		preload(\"res://database/food/fresh_meat.tres\"),
-		preload(\"res://database/food/water_clear.tres\"),
+		preload(\"res://database/items/building/bonfire.tres\"),
+		preload(\"res://database/items/food/fresh_meat.tres\"),
+		preload(\"res://database/items/food/water_clear.tres\"),
 	])
-	local_inv.add_item_amount(preload(\"res://database/food/water_clear.tres\"), 9)
-	local_inv.add_item_amount(preload(\"res://database/food/fresh_meat.tres\"), 14)
+	local_inv.add_item_amount(preload(\"res://database/items/food/water_clear.tres\"), 9)
+	local_inv.add_item_amount(preload(\"res://database/items/food/fresh_meat.tres\"), 14)
 	
 	
 	quick_bar.button_pressed.connect(tab_container.set_current_tab)

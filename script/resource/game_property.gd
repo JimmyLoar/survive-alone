@@ -6,7 +6,7 @@ extends Resource
 
 @export var name_key : String = "GAME_PROPERTY":
 	set(value):
-		name_key = value
+		name_key = value.to_lower()
 		visible_name = TranslationServer.translate("PROPERTY_NAME_" + name_key.to_upper())
 		discription = TranslationServer.translate("PROPERTY_DISCRIPTION_" + name_key.to_upper())
 
