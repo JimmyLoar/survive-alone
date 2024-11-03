@@ -12,3 +12,4 @@ export_presets.cfg
 .mono/
 data_*/
 /android/
+*.tmp

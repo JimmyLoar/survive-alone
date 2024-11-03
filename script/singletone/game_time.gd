@@ -25,11 +25,15 @@ var _infinite: bool = false:
 		_infinite = value
 		set_physics_process(value)
 
+var _time_progress: CanvasLayer
 
 func _init() -> void:
 	#set_physics_process(false)
 	_time = (_DATA.hour * 60 + _DATA.minut) * TIME_MULTYPER
 	_day = _DATA.month * 30 + _DATA.day
+	
+	_time_progress = preload("res://scenes/ui/displayes/time_progress_display.tscn").instantiate()
+	add_child(_time_progress)
 
 
 func get_minut() -> int: return fmod(_time / TIME_MULTYPER, 60)
@@ -60,7 +64,8 @@ func stop():
 
 func add_action_time(action_minut: int = 0, multiper: int = 1):
 	_multiper = clampi(multiper, 0, 1000)
-	_reaming_add_time += action_minut * _multiper * TIME_MULTYPER
+	_reaming_add_time = action_minut * TIME_MULTYPER
+	_time_progress.show_with_time(_reaming_add_time)
 	set_physics_process(true)
 
 

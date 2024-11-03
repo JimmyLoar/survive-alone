@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://kfafo26645mw"]
+[gd_scene load_steps=3 format=3 uid="uid://eqmgneqan3e4"]
 
 [ext_resource type="PackedScene" uid="uid://c8ildsba35mng" path="res://scenes/ui/displayes/property_bar.tscn" id="1_c83ua"]
 
@@ -38,19 +38,17 @@ theme_override_constants/separation = 12
 custom_minimum_size = Vector2(180, 28)
 layout_mode = 2
 size_flags_vertical = 4
-property_name = "hunger"
+property_name = &"hunger"
 
 [node name="ThirstBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
 custom_minimum_size = Vector2(180, 28)
 layout_mode = 2
 size_flags_vertical = 4
-property_name = "thirst"
 
 [node name="FatigueBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
 custom_minimum_size = Vector2(180, 28)
 layout_mode = 2
 size_flags_vertical = 4
-property_name = "fatigue"
 
 [node name="Space" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

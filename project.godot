@@ -32,6 +32,7 @@ LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GameTime="*res://script/singletone/game_time.gd"
 PlayerProperty="*res://script/singletone/player_property.gd"
 InventoriesController="*res://script/singletone/inventories_controller.gd"
+QuantitySelecter="*res://scenes/ui/displayes/quantity_selecter.tscn"
 
 [display]
 
@@ -45,7 +46,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [gui]
 
