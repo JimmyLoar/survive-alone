@@ -13,3 +13,4 @@ export_presets.cfg
 data_*/
 /android/
 *.tmp
+database/config.cfg
