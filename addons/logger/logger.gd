@@ -37,7 +37,7 @@ var _file: FileAccess
 
 
 func _ready():
-	_set_loglevel(Config.get_var("log-level","info"))
+	_set_loglevel(Config.get_var("log-level","debug"))
 	_set_time_format(Config.get_var("use-isotime", "false"))
 
 

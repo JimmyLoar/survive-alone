@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://brugrj8gp1m38"]
+
+[ext_resource type="Script" path="res://scenes/world/chunk_node.gd" id="1_futoq"]
+
+[sub_resource type="TileSet" id="TileSet_rtm7g"]
+
+[sub_resource type="GDScript" id="GDScript_7rp62"]
+script/source = "extends Node2D
+
+
+var tile_size: int = ProjectSettings.get_setting(\"application/game/size/tile\", 16)  
+
+var logger: Log
+
+var _currect_list: Array[Array] = []: 
+	set = set_structure_list
+var _pool: Array[WorldObject] = []
+var _cache: Dictionary = {}
+var _amount_existed_object = 0
+
+
+func set_structure_list(list: Array[Array]):
+	_currect_list = list
+	update_objects()
+
+
+func update_objects():
+	logger.debug(\"START update object list.\")
+	_amount_existed_object = get_child_count()
+	for i in _currect_list.size():
+		var data = _currect_list[i][ChunkData.STRUCTURE_DATA]
+		for pos: Vector2i in _currect_list[i][ChunkData.STRUCTURE_POSITION]:
+			var object = get_object()
+			object.data = data
+			object.position = pos * tile_size
+			add_object(object)
+	
+	
+	if _amount_existed_object > 0:
+		remove_unnecessary_objects(_amount_existed_object)
+	
+	logger.debug(\"DONE update object list.\")
+
+
+func get_object() -> WorldObject:
+	if _amount_existed_object > 0:
+		_amount_existed_object -= 1
+		return get_child(_amount_existed_object) as WorldObject
+	
+	return get_object_from_pool()
+
+
+func add_object(obj: WorldObject):
+	if _cache.has(obj.data):
+		_cache[obj.data].append(obj)
+	
+	add_child(obj)
+
+
+func remove_object(index := 0):
+	if get_child_count() <= index: return
+	var child := get_child(index)
+	remove_child(child)
+	_pool.append(child)
+	if _cache.has(child.data):
+		_cache[child.data].erase(child)
+
+
+func remove_unnecessary_objects(amount: int):
+	_amount_existed_object = 0
+	for i in range(get_child_count(), abs(amount), -1):
+		remove_object(i)
+
+
+func create_object() -> WorldObject:
+	var new_object: WorldObject = preload(\"res://scenes/world/structure/world_object.tscn\").instantiate()
+	return new_object
+
+
+func get_object_from_pool() -> WorldObject:
+	if _pool.is_empty():
+		return create_object()
+	return _pool.pop_front()
+"
+
+[node name="ChunkNode" type="Node2D"]
+script = ExtResource("1_futoq")
+
+[node name="BG" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+centered = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_rtm7g")
+
+[node name="StructureContainer" type="Node2D" parent="."]
+script = SubResource("GDScript_7rp62")

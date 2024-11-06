@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ChunkData" load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://scenes/world/chank_data.gd" id="1_i4orr"]
-[ext_resource type="Texture2D" path="res://assets/sprite/map_chunks/chunk_37.jpg" id="2_wfwd4"]
+[ext_resource type="Script" path="res://scenes/world/chunk_data.gd" id="1_i4orr"]
+[ext_resource type="Texture2D" uid="uid://bqt4cj44jgjfn" path="res://assets/sprite/map_chunks/chunk_37.jpg" id="2_wfwd4"]
 
 [resource]
 script = ExtResource("1_i4orr")
