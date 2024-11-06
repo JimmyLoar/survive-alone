@@ -10,4 +10,4 @@ name_key = "HouseTest"
 texture = ExtResource("2_8ily5")
 collision_shape = ExtResource("1_u403t")
 collision_offset = Vector2(0, 0)
-collision_rotation = 45.0
+collision_rotation = 0.0
