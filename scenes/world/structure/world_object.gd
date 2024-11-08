@@ -1,6 +1,10 @@
 class_name WorldObject
 extends Area2D
 
+signal character_entered
+signal character_exited
+signal character_changed_location
+
 @export var data: StructureData:
 	set(value):
 		if data == value: return
@@ -19,10 +23,12 @@ func _ready() -> void:
 
 func _char_entered(_char: Character):
 	print("player entered in '%s' in '%s'" % [self.name, get_parent().name])
+	character_entered.emit()
 
 
 func _char_exited(_char: Character):
 	print("player exited in '%s' in '%s'" % [self.name, get_parent().name])
+	character_exited.emit()
 
 
 func _update():
@@ -33,6 +39,7 @@ func _update():
 	if not sprite:
 		sprite = $Sprite2D
 		collision = $CollisionShape2D
+	
 	sprite.texture = data.texture
 	collision.shape = data.collision_shape
 	collision.position = data.collision_offset

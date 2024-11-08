@@ -14,5 +14,8 @@ func _ready() -> void:
 	chunk_container.update_region(
 		character.get_chunk_position()
 		)
-	
-	
+
+
+func _change_local_inventory(inventory_name: String):
+	var menu: ContentMenu = get_node("UI/VBoxContainer/HBoxContainer/TabContainer/CM Loacation")
+	menu.inventory_name = inventory_name

@@ -25,21 +25,40 @@ func set_structure_list(list: Array[Array]):
 
 
 func update_objects():
+	var chunk_position = get_parent().get_chunk_position()
 	logger.debug(\"START update object list.\")
 	_amount_existed_object = get_child_count()
 	for i in _currect_list.size():
-		var data = _currect_list[i][ChunkData.STRUCTURE_DATA]
+		var data: StructureData = _currect_list[i][ChunkData.STRUCTURE_DATA]
 		for pos: Vector2i in _currect_list[i][ChunkData.STRUCTURE_POSITION]:
 			var object = get_object()
 			object.data = data
 			object.position = pos * tile_size
 			add_object(object)
+			object.name = \"%02d%02d_%s_%02d%02d\" % [
+				chunk_position.x, chunk_position.y,
+				data.name_key,
+				pos.x, pos.y,
+				]
+			_connect_character_changed_location(object)
 	
 	
 	if _amount_existed_object > 0:
 		remove_unnecessary_objects(_amount_existed_object)
 	
 	logger.debug(\"DONE update object list.\")
+
+func _connect_character_changed_location(object: WorldObject):
+	var parent := get_parent() as ChunkNode
+	if not parent \\
+		or object.character_changed_location.is_connected(
+			parent.emit_signal): 
+			return
+	
+	object.character_entered.connect(
+		parent.emit_signal.bind(\"player_changed_location\", object.name))
+	object.character_exited.connect(
+		parent.emit_signal.bind(\"player_changed_location\", \"tmp\"))
 
 
 func get_object() -> WorldObject:

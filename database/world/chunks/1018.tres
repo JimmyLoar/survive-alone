@@ -11,4 +11,4 @@ position = Vector2i(10, 18)
 structure_image = ExtResource("2_df5dp")
 object_count = 1
 object_0/data = ExtResource("1_0k5kb")
-object_0/position = PackedVector2Array(1, 1, 30, 7, 10, 16, 3, 15)
+object_0/position = PackedVector2Array(1, 1, 30, 9, 34, 12, 10, 16, 3, 15)

@@ -8,6 +8,7 @@
 [node name="CM Inventory" instance=ExtResource("1_rj51l")]
 script = ExtResource("2_ev6c3")
 inventory_name = "player"
+transfer_inventory = NodePath("")
 
 [node name="InventoryDisplay" parent="MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("2_0d8je")]
 layout_mode = 2
