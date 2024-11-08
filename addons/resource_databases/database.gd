@@ -45,8 +45,8 @@ func fetch_data(collection: StringName, id: Variant) -> Resource:
 ## [/codeblock]
 ## Pushes an error if the string is invalid.
 func fetch_data_string(string: String) -> Variant:
-	var valid_string_id := RegEx.create_from_string(r"[A-Za-z_][A-Za-z_0-9]*\/[A-Za-z_][A-Za-z_0-9]*").search(string) != null
-	var valid_category := RegEx.create_from_string(r"[A-Za-z_][A-Za-z_0-9]*:[A-Za-z_][A-Za-z_0-9]*").search(string) != null
+	var valid_string_id := RegEx.create_from_string(r"[A-Za-z_][A-Za-z_0-9]*\/[A-Za-z_0-9][A-Za-z_0-9]*").search(string) != null
+	var valid_category := RegEx.create_from_string(r"[A-Za-z_][A-Za-z_0-9]*:[A-Za-z_0-9][A-Za-z_0-9]*").search(string) != null
 	assert((valid_string_id or valid_category) and not (valid_string_id and valid_category), "[ResourceDatabase] Can't fetch data string, invalid format.")
 	var parts := string.split("/" if valid_string_id else ":", false)
 	assert(parts.size() == 2, "[ResourceDatabase] Can't fetch data string, invalid format.")

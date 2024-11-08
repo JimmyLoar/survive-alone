@@ -34,6 +34,12 @@ theme_override_constants/margin_bottom = 2
 layout_mode = 2
 theme_override_constants/separation = 12
 
+[node name="ExhaustionBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
+custom_minimum_size = Vector2(180, 28)
+layout_mode = 2
+size_flags_vertical = 4
+property_id = 0
+
 [node name="HungerBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
 custom_minimum_size = Vector2(180, 28)
 layout_mode = 2

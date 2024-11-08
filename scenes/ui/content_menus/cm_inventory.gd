@@ -1,6 +1,7 @@
 extends ContentMenu
 
 @export var inventory_name: String = '': set = set_name_inventory
+@export var transfer_inventory: NodePath
 
 @onready var inventory_display: InventoryDisplay = $MarginContainer/HBoxContainer/MainContainer/InventoryDisplay
 @onready var item_information_panel: ItemInfoPanel = $MarginContainer/HBoxContainer/SubContainer/ItemInformationPanel
@@ -29,7 +30,10 @@ func set_name_inventory(value):
 
 func _on_transfered_items(inv_name: String, slot: Dictionary, count: int) -> void:
 	var index = inventory_display.get_last_pressed()
-	InventoriesController.move_item_in_inventories(inventory_name, inv_name, index, count)
+	var to_inventory: ContentMenu = get_node(transfer_inventory)
+	InventoriesController.move_item_in_inventories(
+		inventory_name, to_inventory.inventory_name, index, count
+		)
 
 
 func _on_inventory_display_duble_pressed(slot: Dictionary) -> void:
