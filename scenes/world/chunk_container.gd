@@ -26,7 +26,6 @@ const ChunkHeighbor = [
 ]
 
 
-#TODO переделать на подгрузку чанков 3*3
 func update_region(center_position: Vector2i):
 	_logger.info("Start update chunks, center is %s" % [center_position])
 	
@@ -37,7 +36,8 @@ func update_region(center_position: Vector2i):
 			new_loading[chunk_position] = _loaded[chunk_position]
 			continue
 		
-		var chunk = _get_chunk(chunk_position)
+		var chunk: ChunkNode = _get_chunk(chunk_position)
+		chunk.player_changed_location.connect(get_parent()._change_local_inventory)
 		new_loading[chunk_position] = chunk
 		add_child(chunk)
 	
@@ -68,7 +68,6 @@ func _remove_chunk(chunk_position: Vector2i):
 	_loaded.erase(chunk_position)
 
 
-
 func get_loaded_chunk(_position_in_world: Vector2i):
 	if _loaded.has(_position_in_world):
 		return _loaded[_position_in_world]
@@ -87,7 +86,3 @@ func _get_chunk(chunk_pos: Vector2i) -> ChunkNode:
 
 func get_chunk_data(pos: Vector2i) -> ChunkData:
 	return database.fetch_data_string("chunk/%02d%02d" % [pos.x, pos.y])
-
-
-func add_object_in_position(object: Node, object_pos: Vector2, chunk_pos: Vector2) -> void:
-	pass

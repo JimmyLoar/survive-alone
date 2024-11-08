@@ -1,6 +1,7 @@
 class_name ChunkNode
 extends Node2D
 
+signal player_changed_location(locate_name: String)
 
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var bg: Sprite2D = $BG
@@ -28,3 +29,9 @@ func update():
 	
 	bg.texture = data.structure_image
 	structure_container.set_structure_list(data.objects)
+
+
+func get_chunk_position() -> Vector2i:
+	if not data: 
+		return Vector2i(-1, -1)
+	return data.position

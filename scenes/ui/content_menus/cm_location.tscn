@@ -8,6 +8,7 @@
 [node name="CM Loacation" instance=ExtResource("1_vemht")]
 script = ExtResource("2_klwq6")
 inventory_name = "test_local"
+transfer_inventory = NodePath("")
 
 [node name="InventoryDisplay" parent="MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("2_jvcv2")]
 layout_mode = 2

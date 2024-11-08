@@ -13,14 +13,11 @@ script/source = "extends CanvasLayer
 @onready var tab_container: TabContainer = %TabContainer
 
 func _ready() -> void:
-	var local_inv := InventoriesController.get_inventory(\"test_local\")
-	local_inv.add_miscellaneous_items([
-		preload(\"res://database/items/building/bonfire.tres\"),
-		preload(\"res://database/items/food/fresh_meat.tres\"),
-		preload(\"res://database/items/food/water_clear.tres\"),
-	])
-	local_inv.add_item_amount(preload(\"res://database/items/food/water_clear.tres\"), 9)
-	local_inv.add_item_amount(preload(\"res://database/items/food/fresh_meat.tres\"), 14)
+	var database: Database = load(\"res://database/database.gddb\")
+	var local_inv := InventoriesController.get_inventory(\"player\")
+	local_inv.add_item_amount(database.fetch_data_string(\"items/primus\"), 1)
+	local_inv.add_item_amount(database.fetch_data_string(\"items/water_clear\"), 10)
+	local_inv.add_item_amount(database.fetch_data_string(\"items/fresh_meat\"), 15)
 	
 	
 	quick_bar.button_pressed.connect(tab_container.set_current_tab)
@@ -99,9 +96,12 @@ metadata/_tab_index = 5
 [node name="CM Inventory" parent="VBoxContainer/HBoxContainer/TabContainer" instance=ExtResource("4_r5snf")]
 visible = false
 layout_mode = 2
+transfer_inventory = NodePath("../CM Loacation")
 metadata/_tab_index = 6
 
 [node name="CM Loacation" parent="VBoxContainer/HBoxContainer/TabContainer" instance=ExtResource("5_lak1p")]
 visible = false
 layout_mode = 2
+inventory_name = "tmp"
+transfer_inventory = NodePath("../CM Inventory")
 metadata/_tab_index = 7
