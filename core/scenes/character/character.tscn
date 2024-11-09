@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpkdoaq7tk0b8"]
+
+[ext_resource type="Script" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_7q31a"]
+[ext_resource type="Script" path="res://core/scenes/character/character.gd" id="1_p76ae"]
+[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_ellipse.gd" id="2_qnd3l"]
+
+[sub_resource type="Resource" id="Resource_hqprc"]
+script = ExtResource("2_qnd3l")
+
+[sub_resource type="Texture2D" id="Texture2D_lcb6a"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_7q31a")
+size = Vector2i(24, 24)
+shape = SubResource("Resource_hqprc")
+fill_type = 0
+fill_color = Color(0.820196, 0.277411, 0.726446, 1)
+fill_from = Vector2(0, 0)
+fill_to = Vector2(1, 0)
+fill_repeat = "pad"
+stroke_type = 0
+stroke_width = 0.0
+stroke_color = Color(0, 0, 0, 1)
+stroke_from = Vector2(0, 0)
+stroke_to = Vector2(1, 0)
+stroke_repeat = "pad"
+stroke_joint = "round"
+offset = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+
+[sub_resource type="GDScript" id="GDScript_g3eh0"]
+resource_name = "Camera"
+script/source = "extends Camera2D
+
+var world_size: Vector2i = ProjectSettings.get_setting(\"application/game/size/world\", Vector2i.ONE) 
+var chunk_size: int = ProjectSettings.get_setting(\"application/game/size/chunk\", 16) 
+
+#count pixels in tile
+var tile_size: int = ProjectSettings.get_setting(\"application/game/size/tile\", 16)  
+var _chunk_pixel_size: int = chunk_size * tile_size
+
+func _ready() -> void:
+	if get_parent() is Character:
+		get_parent().changed_chunk.connect(update_limits)
+
+
+func update_limits(_position: Vector2i):
+	limit_right  = clamp(_position.x + 2, 0, world_size.x) * _chunk_pixel_size
+	limit_bottom = clamp(_position.y + 2, 0, world_size.y) * _chunk_pixel_size
+	limit_left   = clamp(_position.x - 1, 0, world_size.x) * _chunk_pixel_size
+	limit_top    = clamp(_position.y - 1, 0, world_size.y) * _chunk_pixel_size
+"
+
+[sub_resource type="GDScript" id="GDScript_3ihwq"]
+resource_name = "Controller"
+script/source = "class_name Controller
+extends Node2D
+
+signal changed_chunk
+
+@export var speed: int = 75
+
+var direction := Vector2.ZERO
+var distance := 0.0
+
+var game_time := GameTime
+
+var target : Node2D = null:
+	set(value):
+		target = value
+		set_physics_process(target is Node2D)
+
+
+func _physics_process(delta: float) -> void:
+	if direction.is_zero_approx(): return
+	queue_redraw()
+	var motion: Vector2 = direction * speed * delta
+	if motion.length() > distance:
+		_stop()
+		return
+	
+	distance -= motion.length()
+	target.global_position += motion
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_released():
+		var target_position = get_global_mouse_position() as Vector2
+		direction = target.global_position.direction_to(target_position)
+		distance = target.global_position.distance_to(target_position)
+		game_time.start()
+
+
+func is_moving():
+	return direction != Vector2.ZERO
+
+
+func _stop(_value = null):
+	game_time.stop()
+	direction = Vector2.ZERO
+	distance = 0.0
+
+
+func _draw() -> void:
+	draw_line(
+			Vector2.ZERO, 
+			direction * distance, 
+			Color.RED, 3, true
+		)
+	
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4ehk"]
+radius = 8.0
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_p76ae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("Texture2D_lcb6a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(-60, 0)
+zoom = Vector2(1.25, 1.25)
+script = SubResource("GDScript_g3eh0")
+
+[node name="Controller" type="Node2D" parent="."]
+script = SubResource("GDScript_3ihwq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l4ehk")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChunkData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://core/script/class/chunk_data.gd" id="1_6tpjg"]
+[ext_resource type="Texture2D" uid="uid://c22h5m4vrylvy" path="res://assets/sprite/map_chunks/chunk_1583.jpg" id="2_jv8qd"]
+
+[resource]
+script = ExtResource("1_6tpjg")
+name = "chunk"
+position = Vector2i(42, 22)
+structure_image = ExtResource("2_jv8qd")

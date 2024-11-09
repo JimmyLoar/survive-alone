@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SurviveAlone"
-run/main_scene="res://bootstrap/bootstrap.tscn"
+run/main_scene="res://bootstrap.tscn"
 run/print_header=false
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
@@ -27,11 +27,11 @@ game/version/string="dev"
 
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
-GameTime="*res://script/singletone/game_time.gd"
-PlayerProperty="*res://script/singletone/player_property.gd"
-InventoriesController="*res://script/singletone/inventories_controller.gd"
-QuantitySelecter="*res://scenes/ui/displayes/quantity_selecter.tscn"
-LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
+GodotLogger="*res://addons/logger/logger.gd"
+GameTime="*res://core/script/singletone/game_time.gd"
+PlayerProperty="*res://core/script/singletone/player_property.gd"
+InventoriesController="*res://core/script/singletone/inventories_controller.gd"
+QuantitySelecter="*res://core/script/singletone/quantity_selecter.tscn"
 
 [display]
 
@@ -46,7 +46,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [gui]
 
