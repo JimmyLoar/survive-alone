@@ -16,33 +16,43 @@ signal transfered_items(inv_name: String, slot: Dictionary, count: int)
 @onready var inventory: Inventory: 
 	set = set_inventory
 
-var _last_slot: Dictionary = {}
+var _last_slot: InventorySlot
 
 func _ready() -> void:
 	update()
 
 
-func update(slot: Dictionary = {}):
-	if slot.is_empty() or _last_slot == slot or (slot.used.size() + slot.amount == 0):
-		self.hide()
-		_last_slot = {}
+func update(slot: InventorySlot = null):
+	if not slot or slot.is_empty() or _last_slot == slot:
+		_update_in_null()
 		return
 	
 	_last_slot = slot
+	_update_display(slot)
+	_update_durability_text(slot.get_used())
 	
-	var item: ItemData = _last_slot.item
+	for i in range(6):
+		update_interaction_panel(i, slot.get_data())
+	
+	pick_up_button.visible = slot.get_data().is_pickable
+
+
+func _update_in_null():
+	_last_slot = null
+	hide()
+
+
+func _update_display(slot: InventorySlot):
+	var item: ItemData = slot.get_data()
 	name_label.text = "%s" % item.name
 	text_label.clear()
 	text_label.append_text("%s" % item.discription)
-	
-	for i in range(6):
-		update_interaction_panel(i, item)
-	
-	if not _last_slot.used.is_empty():
-		text_label.append_text("Durability: %d" % _last_slot.used.front())
-	
-	pick_up_button.visible = item.is_pickable
-	self.show()
+	show()
+
+
+func _update_durability_text(used: Array = []):
+	if used.is_empty(): return
+	text_label.append_text("Durability: %d" % used.front())
 
 
 func update_interaction_panel(index: int, item: ItemData):
@@ -62,20 +72,21 @@ func set_inventory(new_inv: Inventory):
 
 func _on_reduced_self() -> void:
 	if not _last_slot.is_empty():
-		inventory.add_item_amount(_last_slot.item, -1)
-	if inventory.get_item_count(_last_slot.item) <= 0:
+		_last_slot.change_amount(-1)
+	
+	if _last_slot.is_empty():
 		update()
 
 
 func _on_pick_up_button_pressed() -> void:
 	QuantitySelecter.canseled.connect(_on_selecter_canseled, CONNECT_ONE_SHOT)
 	QuantitySelecter.confirmed_value.connect(_on_selecter_confirmed_value, CONNECT_ONE_SHOT)
-	QuantitySelecter.enable(Inventory.count_slot_size(_last_slot))
+	QuantitySelecter.enable(_last_slot.get_total_amount())
 
 
 func _on_selecter_confirmed_value(value: int):
 	QuantitySelecter.canseled.disconnect(_on_selecter_canseled)
-	if value >= Inventory.count_slot_size(_last_slot):
+	if value >= _last_slot.get_total_amount():
 		update()
 	transfered_items.emit(transfer_inv_name, _last_slot, value)
 

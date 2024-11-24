@@ -37,6 +37,9 @@ QuantitySelecter="*res://core/script/singletone/quantity_selecter.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/initial_position_type=2
+window/size/initial_position=Vector2i(-135, 0)
+window/size/initial_screen=1
 window/size/always_on_top=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
@@ -47,6 +50,17 @@ window/vsync/vsync_mode=0
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://core/script/class/": "red",
+"res://core/script/nodes/": "blue",
+"res://core/script/resource/": "purple",
+"res://core/script/singletone/": "yellow",
+"res://core/script/static/": "green",
+"res://core/unit_tests/": "red"
+}
 
 [gui]
 
@@ -60,3 +74,7 @@ locale/translations=PackedStringArray("res://localization/localizations.de.trans
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+
+[resource_databases]
+
+main_base_path="res://content/database.gddb"

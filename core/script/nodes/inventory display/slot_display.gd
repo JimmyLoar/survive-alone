@@ -25,15 +25,21 @@ func _init() -> void:
 	display.hide()
 
 
-func update(inventory_slot: Dictionary):
-	if (not inventory_slot 
-			or inventory_slot.is_empty() 
-			or Inventory.count_slot_size(inventory_slot) <= 0):
-		disabled = true
-		display.hide()
-		return
+func update(slot: InventorySlot):
+	if not slot or slot.is_empty():
+		_update_null()
 	
+	else:
+		_update_slot(slot)
+
+
+func _update_null():
+	disabled = true
+	display.hide()
+
+
+func _update_slot(slot: InventorySlot):
 	disabled = false
-	display.update_data(inventory_slot.item)
-	display.update_amount(inventory_slot.used.size() + inventory_slot.amount)
+	display.update_data(slot.get_data())
+	display.update_amount(slot.get_total_amount())
 	display.show()

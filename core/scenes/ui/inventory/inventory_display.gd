@@ -35,7 +35,7 @@ func set_inventory(new_inventory: Inventory):
 func update():
 	if not visible or not inventory: return
 	if slot_controller:
-		slot_controller.update_slots(inventory.get_slots_list())
+		slot_controller.update_slots(inventory.get_slots())
 	
 	if page_controller:
 		page_controller.set_inventory_size(inventory.get_size())
