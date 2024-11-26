@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ChunkData" load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://core/script/class/chunk_data.gd" id="1_qdld7"]
+[ext_resource type="Script" path="res://core/script/resource/chunk_data.gd" id="1_qdld7"]
 [ext_resource type="Texture2D" uid="uid://dpwckmlt2dyu0" path="res://assets/sprite/map_chunks/chunk_210.jpg" id="2_dk6pi"]
 
 [resource]
