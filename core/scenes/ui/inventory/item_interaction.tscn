@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://core/scenes/ui/inventory/item_interaction.gd" id="1_1n33t"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_mbiye"]
 [ext_resource type="PackedScene" uid="uid://dqafjxxiadcpx" path="res://core/scenes/ui/base_elements/property_display.tscn" id="2_kudu4"]
-[ext_resource type="Script" path="res://core/script/nodes/inventory display/items_grid.gd" id="3_jhti2"]
+[ext_resource type="Script" path="res://core/script/inventory/items_grid.gd" id="3_jhti2"]
 
 [node name="ItemInteraction" type="PanelContainer"]
 script = ExtResource("1_1n33t")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://27va2jwjyxqm"]
 
 [ext_resource type="Script" path="res://core/scenes/ui/inventory/inventory_display.gd" id="1_gmv8m"]
-[ext_resource type="Script" path="res://core/script/nodes/inventory display/items_grid.gd" id="2_j4w10"]
+[ext_resource type="Script" path="res://core/script/inventory/items_grid.gd" id="2_j4w10"]
 [ext_resource type="PackedScene" uid="uid://cka4psk0x8fb2" path="res://core/scenes/ui/base_elements/page_controller.tscn" id="3_iui5k"]
 
 [node name="InventoryDisplay" type="MarginContainer"]

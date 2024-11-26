@@ -68,8 +68,8 @@ func _move_item_validate(inv_A: Inventory, inv_B: Inventory, index: int):
 		logger.warn("Attempting to move an item into the same inventory")
 		return false
 	
-	if not inv_A.validate_index.call(index):
-		logger.warn("Not validate index to inventory '%s'" % inv_A)
+	if not inv_A.is_index_validate(index):
+		logger.warn("Not validate index (%d) to inventory '%s' | min: 0 | max: %d |" % [index, inv_A, inv_A.get_size()])
 		return false
 	
 	return true
