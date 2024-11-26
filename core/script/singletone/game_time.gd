@@ -27,6 +27,7 @@ var _infinite: bool = false:
 
 var _time_progress: CanvasLayer
 
+
 func _init() -> void:
 	#set_physics_process(false)
 	_time = (_DATA.hour * 60 + _DATA.minut) * TIME_MULTYPER

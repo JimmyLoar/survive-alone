@@ -3,6 +3,9 @@ extends Node2D
 
 signal changed_chunk(new_chunk: Vector2i)
 
+@export var controller: CharacterController
+
+
 #region CunckProperty
 #count tiles in chunk 
 var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk", 16) 
@@ -12,11 +15,10 @@ var _chunk_pixel_size: int = chunk_size * tile_size
 var _last_visit_chunk := Vector2i.ZERO
 #endregion
 
-@onready var controller: Node2D = $Controller
 
 func _ready() -> void:
 	_last_visit_chunk = get_chunk_position()
-	controller.target = self
+	controller.set_actor(self)
 
 
 func _physics_process(delta: float) -> void:

@@ -2,6 +2,7 @@
 class_name ItemData
 extends Resource
 
+@export var name_key: String = ""
 @export_placeholder("Item N") var name: String
 @export_multiline var discription: String = ""
 @export var texture: Texture = preload("res://icon.svg")

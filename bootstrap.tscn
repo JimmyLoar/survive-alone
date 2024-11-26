@@ -18,7 +18,7 @@ func _ready() -> void:
 	
 	get_tree().call_deferred(\"change_scene_to_file\", \"res://core/scenes/world/world_screen.tscn\")
 	
-	var database: Database = load(\"res://content/database.gddb\")
+	var database: Database = load(ProjectSettings.get_setting(\"resource_databases/main_base_path\", \"res://database.gddb\"))
 	#InventoriesController.set_database(database)
 	#ChunkFilesGenerater.new().generate()
 	
@@ -29,3 +29,11 @@ func _ready() -> void:
 
 [node name="Bootstrap" type="Node"]
 script = SubResource("GDScript_8ew5s")
+
+[node name="LoadingScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

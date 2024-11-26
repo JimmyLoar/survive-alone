@@ -1,10 +1,13 @@
 extends Node2D
 
 
+@export var character: Character
 @onready var chunk_container: Node2D = $ChunkContainer
-@onready var character: Character = $Character
 
 var logger = GodotLogger.with("World")
+
+
+@export var controller: CharacterController
 
 
 func _ready() -> void:

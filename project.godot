@@ -55,6 +55,7 @@ enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/
 
 folder_colors={
 "res://core/script/class/": "red",
+"res://core/script/inventory/": "red",
 "res://core/script/nodes/": "blue",
 "res://core/script/resource/": "purple",
 "res://core/script/singletone/": "yellow",
