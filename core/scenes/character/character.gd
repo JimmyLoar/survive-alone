@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	if not controller.is_moving(): return
 	var _currect_chunk: Vector2i = get_chunk_position()
 	if _currect_chunk != _last_visit_chunk:
-		emit_signal('changed_chunk', _currect_chunk)
+		changed_chunk.emit(_currect_chunk)
 		_last_visit_chunk = _currect_chunk
 
 

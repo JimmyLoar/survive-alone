@@ -7,7 +7,6 @@
 
 [node name="CM Inventory" instance=ExtResource("1_rj51l")]
 script = ExtResource("2_ev6c3")
-inventory_name = "player"
 transfer_inventory = NodePath("")
 
 [node name="InventoryDisplay" parent="MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("2_0d8je")]
@@ -23,7 +22,6 @@ metadata/_tab_index = 0
 [node name="ItemInformationPanel" parent="MarginContainer/HBoxContainer/SubContainer" index="2" instance=ExtResource("3_8kdle")]
 visible = false
 layout_mode = 2
-transfer_inv_name = "test_local"
 metadata/_tab_index = 1
 
 [connection signal="duble_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="." method="_on_inventory_display_duble_pressed"]

@@ -2,7 +2,6 @@ class_name Inventory
 extends RefCounted
 
 signal changed()
-signal change_size(new_size: int)
 
 var database = load(ProjectSettings.get_setting("resource_databases/main_base_path", "res://database.gddb"))
 var name: String
@@ -64,7 +63,6 @@ func _add_in_storage(slot: InventorySlot) -> InventorySlot:
 	_storage.append(slot)
 	_stored_cache[slot.get_data().name] = slot._index
 	call_deferred("emit_signal", "changed")
-	call_deferred("emit_signal", "changed_size")
 	_logger.debug("Added slot [color=green]%s[/color] with [color=green]%s[/color] item" % [slot.get_data().name, slot._index])
 	return slot
 
@@ -76,7 +74,6 @@ func _remove_from_storage(index: int) -> InventorySlot:
 		slot._inventory = ""
 		_stored_cache.erase(slot.get_data().name)
 		call_deferred("emit_signal", "changed")
-		call_deferred("emit_signal", "changed_size")
 		return slot
 	return null
 

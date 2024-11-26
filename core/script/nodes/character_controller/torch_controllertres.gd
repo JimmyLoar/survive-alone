@@ -1,9 +1,6 @@
 class_name TorchController
 extends CharacterController
 
-signal changed_chunk
-
-
 func _physics_process(delta: float) -> void:
 	var direction = _actor.global_position.direction_to(_target).snapped(Vector2(0.01, 0.01))
 	if direction.is_zero_approx(): 

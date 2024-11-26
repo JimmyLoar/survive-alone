@@ -3,9 +3,7 @@ extends MarginContainer
 
 signal remove_items(item_list: Array)
 signal add_items(item_list: Array)
-signal transfered_items(inv_name: String, slot: Dictionary, count: int)
-
-@export var transfer_inv_name : String = ""
+signal transfered_items(slot: InventorySlot, count: int)
 
 @onready var name_label: Label = $VBoxContainer/NameLabel
 @onready var text_label: RichTextLabel = $VBoxContainer/ScrollContainer/VBoxContainer/RichTextLabel
@@ -88,7 +86,7 @@ func _on_selecter_confirmed_value(value: int):
 	QuantitySelecter.canseled.disconnect(_on_selecter_canseled)
 	if value >= _last_slot.get_total_amount():
 		update()
-	transfered_items.emit(transfer_inv_name, _last_slot, value)
+	transfered_items.emit(self._last_slot, value)
 
 
 func _on_selecter_canseled():

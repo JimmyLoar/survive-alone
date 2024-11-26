@@ -4,6 +4,7 @@ extends HBoxContainer
 
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var label: Label = $ProgressBar/Label
 
 var property_id: int = 3
 var _property_name: String = ""
@@ -35,6 +36,7 @@ func update_value():
 		return
 	
 	progress_bar.value = PlayerProperty.get_value(_property_name)
+	label.text = "%d" % ceil(progress_bar.value)
 
 
 func _process(delta: float) -> void:

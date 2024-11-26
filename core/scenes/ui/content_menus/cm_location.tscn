@@ -2,12 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://core/scenes/ui/content_menus/content_menu.tscn" id="1_vemht"]
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://core/scenes/ui/inventory/inventory_display.tscn" id="2_jvcv2"]
-[ext_resource type="Script" path="res://core/scenes/ui/content_menus/cm_inventory.gd" id="2_klwq6"]
+[ext_resource type="Script" path="res://core/scenes/ui/content_menus/cm_location.gd" id="2_xxqiv"]
 [ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://core/scenes/ui/inventory/item_information.tscn" id="3_a87la"]
 
 [node name="CM Loacation" instance=ExtResource("1_vemht")]
-script = ExtResource("2_klwq6")
-inventory_name = "test_local"
+script = ExtResource("2_xxqiv")
 transfer_inventory = NodePath("")
 
 [node name="InventoryDisplay" parent="MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("2_jvcv2")]
@@ -24,7 +23,6 @@ metadata/_tab_index = 0
 [node name="ItemInformationPanel" parent="MarginContainer/HBoxContainer/SubContainer" index="2" instance=ExtResource("3_a87la")]
 visible = false
 layout_mode = 2
-transfer_inv_name = "player"
 metadata/_tab_index = 1
 
 [connection signal="duble_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="." method="_on_inventory_display_duble_pressed"]

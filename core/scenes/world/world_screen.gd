@@ -20,5 +20,4 @@ func _ready() -> void:
 
 
 func _change_local_inventory(inventory_name: String):
-	var menu: ContentMenu = get_node("UI/VBoxContainer/HBoxContainer/TabContainer/CM Loacation")
-	menu.inventory_name = inventory_name
+	InventoriesController.set_local_inventory_name(inventory_name)

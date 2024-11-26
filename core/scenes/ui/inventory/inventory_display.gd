@@ -1,8 +1,8 @@
 class_name InventoryDisplay
 extends MarginContainer
 
-signal slot_pressed(slot: Dictionary)
-signal duble_pressed(slot: Dictionary)
+signal slot_pressed(slot: InventorySlot)
+signal duble_pressed(slot: InventorySlot)
 
 @export var page_size := Vector2i(3, 3)
 
