@@ -4,10 +4,10 @@ extends Node2D
 signal started_move
 signal finished_move
 
-
-@export var _actor: Node2D: set = set_actor
-@export var _target: Vector2 = Vector2.ZERO : set = set_target
 @export var _speed: int = 75
+
+var _actor := Node2D.new(): set = set_actor
+var _target: Vector2 = Vector2.ZERO : set = set_target
 
 var _moving := false
 var game_time := GameTime

@@ -22,7 +22,10 @@ func add_item(data: ItemData, value := 0) -> InventorySlot:
 	if found_index != -1:
 		var slot = get_slot(found_index)
 		slot.change_amount(value)
+		_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in exist slot [color=green]%d[/color]" % [value, data.name, found_index])
 		return slot
+	
+	_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in new slot" % [value, data.name])
 	return _add_in_storage(InventorySlot.new(data, value))
 
 
@@ -50,7 +53,7 @@ func _add_in_storage(slot: InventorySlot) -> InventorySlot:
 	slot._index = _storage.size()
 	_storage.append(slot)
 	_stored_cache[slot.get_data().name] = slot._index
-	_logger.debug("Added slot with '%s' item" % slot.get_data().name)
+	_logger.debug("Added slot [color=green]%d[/color] with [color=green]%s[/color] item" % [slot.get_data().name, slot._index])
 	return slot
 
 
