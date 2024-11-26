@@ -4,13 +4,20 @@ var logger := GodotLogger.with("InventoryController")
 
 var _inventories: Dictionary = {}
 
+var _location_inventory: String = "tmp"
+
+
+func _ready() -> void:
+	create_inventory("player")
+	create_inventory("tmp")
+
 
 func create_inventory(name_inv: String) -> Inventory:
 	if _inventories.has(name_inv):
-		logger.debug("Attempt to create an inventory with an existing name '%s'. Return existed inv." % [name_inv])
+		logger.debug("Attempt to create an inventory with an existing name [color=yellow]%s[/color]. Return existed inv." % [name_inv])
 		return _inventories[name_inv]
 	
-	var new_inventory := Inventory.new()
+	var new_inventory := Inventory.new(name_inv)
 	_inventories[name_inv] = new_inventory
 	return new_inventory
 
@@ -19,57 +26,75 @@ func get_inventory(name_inv: String) -> Inventory:
 	if _inventories.has(name_inv):
 		return _inventories[name_inv]
 	
-	logger.debug("Attempt to getting an inventory with a non-existent name '%s'. Created new inv." % [name_inv])
+	logger.debug("Attempt to getting an inventory with a non-existent name [color=yellow]%s[/color]. Created new inv." % [name_inv])
 	return create_inventory(name_inv)
 
 
-func move_item_in_inventories(inv_name_A: String, inv_name_B: String, slot_index: int, count := -1):
-	var inv_A := get_inventory(inv_name_A)
-	var inv_B := get_inventory(inv_name_B)
-	if not _move_item_validate(inv_A, inv_B, slot_index): 
-		logger.error("Cannot moving item between invetories? become found error.")
+func get_player_inventory() -> Inventory:
+	return get_inventory("player")
+
+
+func set_local_inventory_name(_name: String):
+	_location_inventory = _name
+	logger.debug("Set new local inventory name [color=green]%s[/color]" % _name)
+
+
+func get_location_inventory() -> Inventory:
+	return get_inventory(_location_inventory)
+
+
+func move_item_in_inventories(slot: InventorySlot, count := -1, player_to_local: bool = true):
+	var inventories = [get_location_inventory(), get_player_inventory()]
+	if player_to_local: inventories.reverse()
+	var transfer := ItemTransfer.new(inventories[0], inventories[1])
+	return transfer.transfer(slot, count)
+
+
+class ItemTransfer:
+	var from_inventory: Inventory
+	var to_inventory: Inventory
+	
+	func _init(_from: Inventory, _to: Inventory) -> void:
+		if _from == _to:
+			GodotLogger.warn("ItemTransfer | Attempt to create transfer the same inventory")
+			self.free()
+		
+		from_inventory = _from
+		to_inventory = _to
+	
+	
+	func transfer(slot: InventorySlot, count: int = -1):
+		GodotLogger.debug("ItemTransfer | start transfer for slot '%s'" % [slot.get_index()])
+		if count >= slot.get_total_amount() or count == -1:
+			return _transfer_full_slot(slot)
+		
+		var reaming = _transfer_used(slot, count)
+		_transfer_amount(slot, reaming)
+		GodotLogger.debug("Done transfer [color=green]%d %s[/color] from [color=green]%s[/color] to [color=green]%s[/color]" % 
+			[count, slot.get_data().name, from_inventory.name, to_inventory.name])
 		return false
 	
-	var _amount = inv_A.get_slot_size(slot_index)
-	if count >= _amount:
-		logger.warn("Attempt to move more than it is | count = %d; amount = %d" % [count, _amount])
-		count = -1
 	
-	if count <= -1:
-		var slot = inv_A.remove_slot(slot_index)
-		inv_B.add_slot(slot)
-		logger.debug("Moved all (%d) items '%s' from '%s' to '%s' inventory" %[_amount, slot.item.name, inv_name_A, inv_name_B])
+	func _transfer_full_slot(slot: InventorySlot):
+		from_inventory._remove_from_storage(slot.get_index())
+		to_inventory.add_item(slot.get_data(), slot.get_amount(), slot.get_used())
+		GodotLogger.debug("Done transfer all [color=green]%s[/color] from [color=green]%s[/color] to [color=green]%s[/color]" % 
+			[slot.get_data().name, from_inventory.name, to_inventory.name])
 		return true
 	
-	var slot = inv_A.get_slot(slot_index)
-	var used: Array = slot.used
 	
-	if used.size() > count and not used.is_empty():
-		slot.used = used.slice(count, -1)
-		used = used.slice(0, count)
-	
-	var reaming = count - used.size()
-	slot.amount -= reaming
-	
-	var new_slot: Dictionary = inv_B.get_slot_and_create_if_not(slot.item)
-	new_slot.used.append_array(used)
-	new_slot.amount += reaming
-	logger.debug("Moved items '%s' %d (amount %d/ used %d) from '%s' to '%s' inventory" %
-		[slot.item.name, count, reaming, used.size(), inv_name_A, inv_name_B])
-	inv_A.changed.emit()
-	inv_B.changed.emit()
-	return true
+	func _transfer_used(slot_a: InventorySlot, count: int = 0):
+		var slot_b = to_inventory.get_or_create_slot(slot_a.get_data())
+		var used_array = slot_a.get_used()
+		slot_b.append_used(used_array.slice(0, count))
+		slot_a.set_used(used_array.slice(count, -1))
+		GodotLogger.debug("ItemTransfer | transfered used items [color=green]%s[/color]" %
+			[used_array.slice(0, count)])
+		return count - used_array.slice(0, count).size()
 
 
-
-
-func _move_item_validate(inv_A: Inventory, inv_B: Inventory, index: int):
-	if inv_A == inv_B: 
-		logger.warn("Attempting to move an item into the same inventory")
-		return false
-	
-	if not inv_A.is_index_validate(index):
-		logger.warn("Not validate index (%d) to inventory '%s' | min: 0 | max: %d |" % [index, inv_A, inv_A.get_size()])
-		return false
-	
-	return true
+	func _transfer_amount(slot_a: InventorySlot, count: int = 0):
+		var slot_b = to_inventory.get_or_create_slot(slot_a.get_data())
+		slot_a.change_amount(count * -1)
+		slot_b.change_amount(count)
+		return true
