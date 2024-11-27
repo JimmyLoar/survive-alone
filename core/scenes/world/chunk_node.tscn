@@ -63,18 +63,6 @@ func get_object_name(_name: String, object_position: Vector2):
 		chunk_pos.x, chunk_pos.y,
 		_name, object_position.x, object_position.y,]
 
-func _connect_character_changed_location(object: WorldObject):
-	var parent := get_parent() as ChunkNode
-	if not parent \\
-		or object.character_changed_location.is_connected(
-			parent.emit_signal): 
-			return
-	
-	object.character_entered.connect(
-		parent.emit_signal.bind(\"player_changed_location\", object.name))
-	object.character_exited.connect(
-		parent.emit_signal.bind(\"player_changed_location\", \"tmp\"))
-
 
 func get_object() -> WorldObject:
 	if _amount_existed_object > 0:
