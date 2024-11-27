@@ -5,9 +5,6 @@
 
 [resource]
 script = ExtResource("1_yqaw7")
-name_key = "fresh_meat"
-name = "Fresh Meat"
-discription = "Сешь, что бы востановить немного голода."
 texture = ExtResource("2_sq3a0")
 rare = 1
 durability = -1
@@ -26,3 +23,6 @@ action_0/property_1_value = 20
 action_1/name = "Cook"
 action_1/reduced_self = null
 action_1/type = 60
+name_key = "fresh_meat"
+visible_name = null
+discription = "Сешь, что бы востановить немного голода."

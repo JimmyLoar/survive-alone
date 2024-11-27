@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_xkc8u")
-name_key = "water_clear"
 texture = ExtResource("2_hv3by")
 rare = 1
 durability = -1
@@ -13,11 +12,12 @@ is_pickable = true
 action_count = 1
 _types = Array[int]([1, 1])
 _properties = Array[int]([1, 0])
-name = "Water Clear"
-discription = "discription water_clear"
 action_0/name = "Drink"
 action_0/reduced_self = 1
 action_0/type = 1
 action_0/propery_size = 1
 action_0/property_0_name = "thirst"
 action_0/property_0_value = 25
+name_key = "water_clear"
+visible_name = "ITEM_NAME_WATER_CLEAR"
+discription = "ITEM_DISCRIPTION_WATER_CLEAR"

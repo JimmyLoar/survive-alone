@@ -5,10 +5,6 @@
 
 [resource]
 script = ExtResource("1_gdots")
-name = "Кастёр"
-discription = "Небольшой источник тепла и уюта.
-Можно пожарить еду, 
-Согревает холодными ночами."
 texture = ExtResource("2_pnlvg")
 rare = 1
 durability = -1
@@ -19,3 +15,6 @@ _properties = Array[int]([1])
 action_0/name = "put out"
 action_0/reduced_self = true
 action_0/type = 20
+name_key = "bonfire"
+visible_name = "ITEM_NAME_BONFIRE"
+discription = "ITEM_DISCRIPTION_BONFIRE"

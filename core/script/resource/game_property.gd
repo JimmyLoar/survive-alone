@@ -1,21 +1,8 @@
 @tool
 class_name GameProperty
-extends Resource
+extends MyResource
 
 @export var extend: GameProperty: set = _set_extend
-
-@export var name_key : String = "GAME_PROPERTY":
-	set(value):
-		name_key = value.to_lower()
-		visible_name = TranslationServer.translate("PROPERTY_NAME_" + name_key.to_upper())
-		discription = TranslationServer.translate("PROPERTY_DISCRIPTION_" + name_key.to_upper())
-
-@export_custom(	PROPERTY_HINT_TYPE_STRING, "", 
-	PROPERTY_USAGE_READ_ONLY + PROPERTY_USAGE_DEFAULT
-	) var visible_name: String = "Game Property"
-@export_custom(PROPERTY_HINT_MULTILINE_TEXT, "", 
-	PROPERTY_USAGE_READ_ONLY + PROPERTY_USAGE_DEFAULT
-	) var discription : String = ''
 
 @export var texture: Texture
 
@@ -26,6 +13,10 @@ extends Resource
 @export_range(-2.14748e+06, 2.14748e+06, 0.001) var default_delta_value: float = 0
 
 @export var modulate: Color = Color.WHITE
+
+
+func _init() -> void:
+	_resource_type = "PROPERTY"
 
 
 func _set_extend(value: GameProperty) -> void:

@@ -1,10 +1,8 @@
 @tool
 class_name ItemData
-extends Resource
+extends MyResource
 
-@export var name_key: String = ""
-@export_placeholder("Item N") var name: String
-@export_multiline var discription: String = ""
+
 @export var texture: Texture = preload("res://icon.svg")
 @export var rare := Rare.NORMAL
 @export_range(-1, 65536) var durability := -1
@@ -12,6 +10,9 @@ extends Resource
 
 #"health', "hunger", "thirst", "fatigue", "radiation", "psych",
 
+
+func _init() -> void:
+	_resource_type = "ITEM"
 
 
 enum Rare{
@@ -75,6 +76,7 @@ enum ActionTypes{
 func _get_property_list() -> Array[Dictionary]:
 	var properties: Array[Dictionary] = []
 	var _action_type_string := ", ".join(PackedStringArray(ActionTypes.keys())).capitalize()
+	
 	
 	for i in range(action_count):
 		var _name = "action_%d" % i

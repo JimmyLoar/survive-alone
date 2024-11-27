@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_4k55v")
-name_key = "fry_meat"
 texture = ExtResource("2_e7mdy")
 rare = 1
 durability = -1
@@ -13,11 +12,12 @@ is_pickable = true
 action_count = 1
 _types = Array[int]([1])
 _properties = Array[int]([1, 0, 1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 1])
-name = "Fry Meat"
-discription = "discription fry_meat"
 action_0/name = "Eat"
 action_0/reduced_self = 1
 action_0/type = 1
 action_0/propery_size = 1
 action_0/property_0_name = "hunger"
 action_0/property_0_value = 30
+name_key = "fry_meat"
+visible_name = "ITEM_NAME_FRY_MEAT"
+discription = "ITEM_DISCRIPTION_FRY_MEAT"
