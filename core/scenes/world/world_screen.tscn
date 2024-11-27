@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://core/scenes/world/world_screen.gd" id="1_ljijd"]
 [ext_resource type="Script" path="res://core/scenes/world/chunk_container.gd" id="2_lswou"]
 [ext_resource type="Texture2D" uid="uid://cd2skbxlqpvj4" path="res://assets/sprite/full_map.jpg" id="2_u2y5o"]
-[ext_resource type="PackedScene" uid="uid://bknvlejua5guo" path="res://core/scenes/ui/world_ui.tscn" id="4_abk0o"]
+[ext_resource type="PackedScene" uid="uid://duvuvcyuqptrg" path="res://core/scenes/ui/world_ui.tscn" id="4_abk0o"]
 [ext_resource type="Script" path="res://core/script/nodes/character_controller/torch_controllertres.gd" id="5_4sua5"]
 
 [sub_resource type="GDScript" id="GDScript_iq6x5"]

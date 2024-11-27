@@ -22,12 +22,12 @@ func _ready() -> void:
 
 
 func _char_entered(_char: Character):
-	print("player entered in '%s' in '%s'" % [self.name, get_parent().name])
+	#print("player entered in '%s' in '%s'" % [self.name, get_parent().name])
 	character_entered.emit()
 
 
 func _char_exited(_char: Character):
-	print("player exited in '%s' in '%s'" % [self.name, get_parent().name])
+	#print("player exited in '%s' in '%s'" % [self.name, get_parent().name])
 	character_exited.emit()
 
 
