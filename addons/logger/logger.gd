@@ -154,20 +154,20 @@ func _add_values(msg, values):
 func _print_msg(log_level, msg: String):
 	match log_level:
 		LogLevel.DEBUG:
-			print_rich("[color={debug}]%s[/color]".format(COLORS) % [msg])
+			print_rich("[color={debug}]%s".format(COLORS) % [msg])
 			if printing_stack: print_stack()
 		
 		LogLevel.INFO:
-			print_rich("[color={info}]%s[/color]".format(COLORS) % [msg])
+			print_rich("[color={info}]%s".format(COLORS) % [msg])
 		
 		LogLevel.WARN:
-			print_rich("[color={warn}]%s[/color]".format(COLORS) % [msg])
+			print_rich("[color={warn}]%s".format(COLORS) % [msg])
 			push_warning(msg)
 			print_stack()
 		
 		LogLevel.ERROR:
 			push_error(msg)
-			print_rich("[color={error}]%s[/color]".format(COLORS) % [msg])
+			print_rich("[color={error}]%s".format(COLORS) % [msg])
 			print_stack()
 			print_tree()
 		

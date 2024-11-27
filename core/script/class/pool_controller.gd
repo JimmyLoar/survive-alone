@@ -4,7 +4,7 @@ extends Node
 var _pool = []
 var _create_template: Object
 
-func _init(_type: int, _class: String = "", _script: Variant = null, _template: Object = null) -> void:
+func _init(_type: int, _class: StringName = "", _script: Variant = null, _template: Object = null) -> void:
 	_pool = Array([], _type, _class, _script)
 	_create_template = _template
 

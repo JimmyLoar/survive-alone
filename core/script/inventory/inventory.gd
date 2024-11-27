@@ -14,7 +14,7 @@ var _logger: Log
 func _init(new_name := "Inventory") -> void:
 	name = new_name
 	changed.connect(_recount_index_slots)
-	_logger = GodotLogger.with(self.name)
+	_logger = GodotLogger.with("Inventory [color=green]%s[/color]" % self.name)
 
 
 func add_item(data: ItemData, value := 0, used: Array = []) -> InventorySlot:
@@ -63,7 +63,7 @@ func _add_in_storage(slot: InventorySlot) -> InventorySlot:
 	_storage.append(slot)
 	_stored_cache[slot.get_data().name] = slot._index
 	call_deferred("emit_signal", "changed")
-	_logger.debug("Added slot [color=green]%s[/color] with [color=green]%s[/color] item" % [slot.get_data().name, slot._index])
+	_logger.debug("Added slot [color=green]%s[/color] with [color=green]%s[/color] index" % [slot.get_data().name, slot._index])
 	return slot
 
 

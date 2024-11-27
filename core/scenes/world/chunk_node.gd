@@ -12,7 +12,7 @@ var data: ChunkData: set = set_data
 var logger : Log
 
 func _ready() -> void:
-	logger = GodotLogger.with(self.name)
+	logger = GodotLogger.with("Chunk [color=purple]%s[/color]" % data.position)
 	structure_container.logger = logger
 
 

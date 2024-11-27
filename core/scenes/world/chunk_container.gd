@@ -14,39 +14,46 @@ var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk",
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)  
 
 const ChunkHeighbor = [
-	Vector2i.ZERO,
-	Vector2i.RIGHT,
-	Vector2i(1, 1),
-	Vector2i.DOWN,
-	Vector2i(-1, 1),
-	Vector2i.LEFT,
-	Vector2i(-1, -1),
-	Vector2i.UP,
-	Vector2i(1, -1),
+	Vector2i(-1, -1), Vector2i.UP, Vector2i(1, -1),
+	Vector2i.LEFT, Vector2i.ZERO, Vector2i.RIGHT,
+	Vector2i(-1, 1), Vector2i.DOWN, Vector2i(1, 1),
 ]
 
 
 func update_region(center_position: Vector2i):
-	_logger.info("Start update chunks, center is %s" % [center_position])
+	var list = ChunkHeighbor.duplicate().map(
+		func (element: Vector2i): return element + center_position)
+	_logger.info("Start update chunks: [color=purple]\n	%s\n	%s\n	%s" % [list.slice(0, 3), list.slice(3, 6), list.slice(6, 9)])
 	
+	var new_loading := _get_new_loading_list(center_position)
+	_remove_old_loaded_chunk(new_loading)
+	_loaded = new_loading
+	_logger.call_deferred("info", "DONE update chunks!")
+
+
+func _get_new_loading_list(center: Vector2i) -> Dictionary:
 	var new_loading := Dictionary()
-	for dir in ChunkHeighbor.size():
-		var chunk_position = center_position + ChunkHeighbor[dir]
+	for dir in ChunkHeighbor:
+		var chunk_position = center + dir
 		if _loaded.has(chunk_position): 
 			new_loading[chunk_position] = _loaded[chunk_position]
 			continue
 		
-		var chunk: ChunkNode = _get_chunk(chunk_position)
-		new_loading[chunk_position] = chunk
-		add_child(chunk)
-	
+		new_loading[chunk_position] = _add_chunk(chunk_position)
+	return new_loading
+
+
+func _add_chunk(chunk_position: Vector2i):
+	var chunk: ChunkNode = _get_chunk(chunk_position)
+	add_child(chunk)
+	return chunk
+
+
+func _remove_old_loaded_chunk(new_loading: Dictionary):
 	for key in _loaded.keys():
 		if new_loading.has(key): continue
 		var chunk: Node2D = _loaded[key]
 		remove_child(chunk)
-	
-	_loaded = new_loading
-	_logger.info("DONE update chunks!")
 
 
 func _create_chunk(chunk_pos := Vector2i.ZERO):
@@ -71,7 +78,7 @@ func get_loaded_chunk(_position_in_world: Vector2i):
 	if _loaded.has(_position_in_world):
 		return _loaded[_position_in_world]
 	
-	_logger.warn("Cannot getting chunk '%s', not be loaded! Use 'get_chunk'!." % _position_in_world)
+	_logger.warn("Cannot getting chunk [color=purple]%s[/color], not be loaded! Use [color=green]get_chunk[/color]!." % _position_in_world)
 	return _get_chunk(_position_in_world)
 
 
