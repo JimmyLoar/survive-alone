@@ -1,8 +1,6 @@
 class_name ChunkNode
 extends Node2D
 
-signal player_changed_location(locate_name: String)
-
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var bg: Sprite2D = $BG
 

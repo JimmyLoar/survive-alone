@@ -55,10 +55,8 @@ func _connect_character_changed_location(object: WorldObject):
 			parent.emit_signal): 
 			return
 	
-	object.character_entered.connect(
-		parent.emit_signal.bind(\"player_changed_location\", object.name))
-	object.character_exited.connect(
-		parent.emit_signal.bind(\"player_changed_location\", \"tmp\"))
+	object.character_entered.connect(InventoriesController.set_local_inventory_name.bind(object.name))
+	object.character_exited.connect(InventoriesController.set_local_inventory_name.bind(\"tmp\"))
 
 
 func get_object() -> WorldObject:

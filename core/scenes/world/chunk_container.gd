@@ -37,7 +37,6 @@ func update_region(center_position: Vector2i):
 			continue
 		
 		var chunk: ChunkNode = _get_chunk(chunk_position)
-		chunk.player_changed_location.connect(get_parent()._change_local_inventory)
 		new_loading[chunk_position] = chunk
 		add_child(chunk)
 	

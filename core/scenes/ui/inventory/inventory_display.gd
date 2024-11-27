@@ -28,7 +28,6 @@ func set_inventory(new_inventory: Inventory):
 	if not inventory.changed.is_connected(update):
 		inventory.changed.connect(update)
 	
-	inventory.change_size.connect(page_controller.set_inventory_size)
 	update()
 
 

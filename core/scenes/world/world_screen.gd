@@ -17,7 +17,3 @@ func _ready() -> void:
 	chunk_container.update_region(
 		character.get_chunk_position()
 		)
-
-
-func _change_local_inventory(inventory_name: String):
-	InventoriesController.set_local_inventory_name(inventory_name)

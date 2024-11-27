@@ -13,3 +13,8 @@ func update_inventory():
 
 func _on_transfered_items(slot: InventorySlot, count: int = -1) -> void:
 	InventoriesController.move_item_in_inventories(slot, count, false)
+
+
+func _on_visibility_changed() -> void:
+	if not is_node_ready(): return
+	update_inventory()
