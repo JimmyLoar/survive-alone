@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://brugrj8gp1m38"]
+
+[ext_resource type="Script" path="res://core/scenes/world/chunk_node.gd" id="1_futoq"]
+
+[sub_resource type="TileSet" id="TileSet_rtm7g"]
+
+[sub_resource type="GDScript" id="GDScript_7rp62"]
+script/source = "extends Node2D
+
+
+var tile_size: int = ProjectSettings.get_setting(\"application/game/size/tile\", 16)  
+
+var logger: Log
+
+var _currect_list: Array[Array] = []: 
+	set = set_structure_list
+var _pool := ObjectsPool.new(TYPE_OBJECT, &\"Node2D\", WorldObject, preload(\"res://core/scenes/world/structure/world_object.tscn\"))
+var _cache: Dictionary = {}
+var _amount_existed_object = 0
+
+
+func set_structure_list(list: Array[Array]):
+	_currect_list = list
+	update_objects()
+
+
+func update_objects():
+	_amount_existed_object = get_child_count()
+	for i in _currect_list.size():
+		var data: StructureData = _currect_list[i][ChunkData.STRUCTURE_DATA]
+		for pos: Vector2i in _currect_list[i][ChunkData.STRUCTURE_POSITION]:
+			_update_object(pos, data)
+		logger.debug(\"DONE update object [color=green]%s[/color].\" % data.name_key)
+		
+	
+	remove_unnecessary_objects(_amount_existed_object)
+	logger.debug(\"DONE update [color=green]all[/color] objects.\")
+
+
+func _update_object(pos: Vector2i, data: StructureData):
+	var object: WorldObject = get_object()
+	object.data = data
+	object.position = pos * tile_size
+	add_object(object)
+	object.name = get_object_name(data.name_key, pos)
+	_connect_character_changed_location(object)
+
+
+func _connect_character_changed_location(object: WorldObject):
+	var parent := get_parent() as ChunkNode
+	if not parent \\
+		or object.character_changed_location.is_connected(
+			parent.emit_signal): 
+			return
+	
+	object.character_entered.connect(InventoriesController.set_local_inventory_name.bind(object.name))
+	object.character_exited.connect(InventoriesController.set_local_inventory_name.bind(\"tmp\"))
+
+
+func get_object_name(_name: String, object_position: Vector2):
+	var chunk_pos: Vector2i = get_parent().get_chunk_position()
+	return \"%02d%02d_%s_%02d%02d\" % [
+		chunk_pos.x, chunk_pos.y,
+		_name, object_position.x, object_position.y,]
+
+
+func get_object() -> WorldObject:
+	if _amount_existed_object > 0:
+		_amount_existed_object -= 1
+		return get_child(_amount_existed_object) as WorldObject
+	
+	return _pool.take()
+
+
+func add_object(obj: WorldObject):
+	if _cache.has(obj.data):
+		_cache[obj.data].append(obj)
+	
+	add_child(obj)
+
+
+func remove_object(index := 0):
+	if get_child_count() <= index: return
+	var child := get_child(index)
+	remove_child(child)
+	_pool.add(child)
+	if _cache.has(child.data):
+		_cache[child.data].erase(child)
+
+
+func remove_unnecessary_objects(amount: int):
+	if _amount_existed_object <= 0: return
+	_amount_existed_object = 0
+	for i in range(get_child_count(), abs(amount), -1):
+		remove_object(i)
+"
+
+[node name="ChunkNode" type="Node2D"]
+script = ExtResource("1_futoq")
+
+[node name="BG" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+centered = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_rtm7g")
+
+[node name="StructureContainer" type="Node2D" parent="."]
+script = SubResource("GDScript_7rp62")

@@ -1,7 +1,7 @@
 class_name ChunkFilesGenerater
 extends RefCounted
 
-const PATH = "res://database/world/chunks/"
+const PATH = "res://content/world/chunks/"
 
 var world_size: Vector2i = ProjectSettings.get_setting("application/game/size/world", Vector2i.ONE * 16)
 

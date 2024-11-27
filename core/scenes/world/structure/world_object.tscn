@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b46qwc5ol2ev5"]
+
+[ext_resource type="Script" path="res://core/scenes/world/structure/world_object.gd" id="1_n1mao"]
+[ext_resource type="Texture2D" uid="uid://bxeih2e1uswj" path="res://assets/sprite/placeholders/citybuilder-tileset/HochhausA.png" id="2_mwdq7"]
+[ext_resource type="Shape2D" uid="uid://7jre21hmgxhw" path="res://core/scenes/world/structure/shapes/shape_00.tres" id="3_5hjwg"]
+
+[node name="WorldObject" type="Area2D"]
+script = ExtResource("1_n1mao")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mwdq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("3_5hjwg")
+
+[node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+scale = Vector2(3, 3)
+
+[connection signal="body_entered" from="." to="." method="_char_entered"]
+[connection signal="body_exited" from="." to="." method="_char_exited"]
