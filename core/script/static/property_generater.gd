@@ -6,7 +6,7 @@ func _init() -> void:
 	self.free()
 
 
-static func take_int(_name: String, range_values := [], _usage: int = PROPERTY_USAGE_DEFAULT):
+static func take_int(_name: String, range_values := [], _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	var result = {
 		"name": _name,
 		"type": TYPE_INT,
@@ -18,7 +18,13 @@ static func take_int(_name: String, range_values := [], _usage: int = PROPERTY_U
 	return result 
 
 
-static func take_resource(_name: String, _class_name: String, _usage: int = PROPERTY_USAGE_DEFAULT):
+static func take_float(_name: String, range_values := [], _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
+	var result := take_int(_name, range_values, _usage)
+	result.type = TYPE_FLOAT
+	return result 
+
+
+static func take_resource(_name: String, _class_name: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	return {
 		"name": _name,
 		"type": TYPE_OBJECT,
@@ -28,7 +34,7 @@ static func take_resource(_name: String, _class_name: String, _usage: int = PROP
 	}
 
 
-static func take_simple_array(_name: String, _subclass_name: String, _usage: int = PROPERTY_USAGE_DEFAULT):
+static func take_simple_array(_name: String, _subclass_name: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	return {
 		"name": _name,
 		"type": TYPE_ARRAY,
@@ -48,7 +54,7 @@ static func take_string(_name: String, use_multiline := false, read_only := fals
 	}
 
 
-static func take_enum_string(_name: String, enum_string: String, _usage: int = PROPERTY_USAGE_DEFAULT):
+static func take_enum_string(_name: String, enum_string: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	var _prop := take_string(_name)
 	_prop.merge({
 		hint = PROPERTY_HINT_ENUM_SUGGESTION,
