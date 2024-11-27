@@ -18,7 +18,7 @@ static func take_int(_name: String, range_values := [], _usage: int = PROPERTY_U
 	return result 
 
 
-static func take_custom_resource(_name: String, _class_name: String, _usage: int = PROPERTY_USAGE_DEFAULT):
+static func take_resource(_name: String, _class_name: String, _usage: int = PROPERTY_USAGE_DEFAULT):
 	return {
 		"name": _name,
 		"type": TYPE_OBJECT,
@@ -26,6 +26,7 @@ static func take_custom_resource(_name: String, _class_name: String, _usage: int
 		"hint_string": _class_name,
 		"usage": _usage,
 	}
+
 
 static func take_simple_array(_name: String, _subclass_name: String, _usage: int = PROPERTY_USAGE_DEFAULT):
 	return {
@@ -35,3 +36,33 @@ static func take_simple_array(_name: String, _subclass_name: String, _usage: int
 		"hint_string": _subclass_name,
 		"usage": _usage,
 	}
+
+
+static func take_string(_name: String, use_multiline := false, read_only := false) -> Dictionary:
+	return {
+		"name": _name,
+		"type": TYPE_STRING,
+		"hint": PROPERTY_HINT_MULTILINE_TEXT if use_multiline else PROPERTY_HINT_NONE,
+		"hint_string": "",
+		"usage": PROPERTY_USAGE_DEFAULT + PROPERTY_USAGE_READ_ONLY if read_only else PROPERTY_USAGE_DEFAULT,
+	}
+
+
+static func take_enum_string(_name: String, enum_string: String, _usage: int = PROPERTY_USAGE_DEFAULT):
+	var _prop := take_string(_name)
+	_prop.merge({
+		hint = PROPERTY_HINT_ENUM_SUGGESTION,
+		hint_string = enum_string,
+		usage = _usage,
+	}, true)
+	return _prop
+
+
+static func take_enum_int(_name: String, enum_string: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
+	var _prop = take_int(_name)
+	_prop.merge({
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = enum_string,
+		usage = _usage,
+	}, true)
+	return _prop
