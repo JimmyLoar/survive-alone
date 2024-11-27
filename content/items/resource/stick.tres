@@ -5,8 +5,13 @@
 
 [resource]
 script = ExtResource("1_iaon8")
-name = "Stick"
-discription = "Палка"
+name_key = "stick"
 texture = ExtResource("2_u4uht")
 rare = 1
 durability = -1
+is_pickable = true
+action_count = 0
+_types = Array[int]([])
+_properties = Array[int]([])
+name = "Stick"
+discription = "discription stick"

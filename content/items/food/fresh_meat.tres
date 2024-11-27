@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_yqaw7")
+name_key = "fresh_meat"
 name = "Fresh Meat"
 discription = "Сешь, что бы востановить немного голода."
 texture = ExtResource("2_sq3a0")

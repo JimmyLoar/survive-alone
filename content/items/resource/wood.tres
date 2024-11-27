@@ -5,8 +5,13 @@
 
 [resource]
 script = ExtResource("1_gwmyx")
-name = "Wood"
-discription = "Деревяшка"
+name_key = "wood"
 texture = ExtResource("2_nbbkd")
 rare = 1
 durability = -1
+is_pickable = true
+action_count = 0
+_types = Array[int]([])
+_properties = Array[int]([])
+name = "Wood"
+discription = "discription wood"

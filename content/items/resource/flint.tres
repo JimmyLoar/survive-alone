@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://deweoka8ravkd"]
+
+[ext_resource type="Script" path="res://core/script/resource/item_data.gd" id="1_wc4sl"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_sve4q"]
+
+[resource]
+script = ExtResource("1_wc4sl")
+name_key = "flint"
+texture = ExtResource("2_sve4q")
+rare = 1
+durability = -1
+is_pickable = true
+action_count = 0
+_types = Array[int]([])
+_properties = Array[int]([])
+name = "Flint"
+discription = "discription flint"
