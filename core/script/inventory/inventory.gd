@@ -18,15 +18,15 @@ func _init(new_name := "Inventory") -> void:
 
 
 func add_item(data: ItemData, value := 0, used: Array = []) -> InventorySlot:
-	var found_index = find_slot(data.name)
+	var found_index = find_slot(data.name_key)
 	if found_index != -1:
 		var slot = get_slot(found_index)
 		slot.change_amount(value)
 		slot.append_used(used)
-		_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in exist slot [color=green]%d[/color]" % [value, data.name, found_index])
+		_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in exist slot [color=green]%d[/color]" % [value, data.name_key, found_index])
 		return slot
 	
-	_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in new slot" % [value, data.name])
+	_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in new slot" % [value, data.name_key])
 	return _add_in_storage(InventorySlot.new(data, value))
 
 
@@ -51,7 +51,7 @@ func is_index_validate(index: int) -> bool:
 
 
 func get_or_create_slot(item: ItemData) -> InventorySlot:
-	var index = find_slot(item.name)
+	var index = find_slot(item.name_key)
 	if index == -1:
 		return _add_in_storage(InventorySlot.new(item))
 	return get_slot(index)
@@ -61,9 +61,9 @@ func _add_in_storage(slot: InventorySlot) -> InventorySlot:
 	slot._index = _storage.size()
 	slot._inventory = self.name
 	_storage.append(slot)
-	_stored_cache[slot.get_data().name] = slot._index
+	_stored_cache[slot.get_data().name_key] = slot._index
 	call_deferred("emit_signal", "changed")
-	_logger.debug("Added slot [color=green]%s[/color] with [color=green]%s[/color] index" % [slot.get_data().name, slot._index])
+	_logger.debug("Added slot [color=green]%s[/color] with [color=green]%s[/color] index" % [slot.get_data().name_key, slot._index])
 	return slot
 
 
@@ -72,7 +72,7 @@ func _remove_from_storage(index: int) -> InventorySlot:
 		var slot: InventorySlot = _storage.pop_at(index)
 		slot._index = -1
 		slot._inventory = ""
-		_stored_cache.erase(slot.get_data().name)
+		_stored_cache.erase(slot.get_data().name_key)
 		call_deferred("emit_signal", "changed")
 		return slot
 	return null
@@ -81,7 +81,7 @@ func _remove_from_storage(index: int) -> InventorySlot:
 func _recount_index_slots():
 	for i in _storage.size():
 		_storage[i]._index = i
-		_stored_cache[_storage[i]._data.name] = i
+		_stored_cache[_storage[i]._data.name_key] = i
 
 
 func get_slots() -> Array[InventorySlot]: return _storage.duplicate()

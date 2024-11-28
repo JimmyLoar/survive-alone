@@ -71,7 +71,7 @@ class ItemTransfer:
 		var reaming = _transfer_used(slot, count)
 		_transfer_amount(slot, reaming)
 		GodotLogger.debug("Done transfer [color=green]%d %s[/color] from [color=green]%s[/color] to [color=green]%s[/color]" % 
-			[count, slot.get_data().name, from_inventory.name, to_inventory.name])
+			[count, slot.get_data().name_key, from_inventory.name, to_inventory.name])
 		return false
 	
 	
@@ -79,7 +79,7 @@ class ItemTransfer:
 		from_inventory._remove_from_storage(slot.get_index())
 		to_inventory.add_item(slot.get_data(), slot.get_amount(), slot.get_used())
 		GodotLogger.debug("Done transfer all [color=green]%s[/color] from [color=green]%s[/color] to [color=green]%s[/color]" % 
-			[slot.get_data().name, from_inventory.name, to_inventory.name])
+			[slot.get_data().name_key, from_inventory.name, to_inventory.name])
 		return true
 	
 	

@@ -42,7 +42,7 @@ func _update_in_null():
 
 func _update_display(slot: InventorySlot):
 	var item: ItemData = slot.get_data()
-	name_label.text = "%s" % item.name
+	name_label.text = "%s" % item.name_key
 	text_label.clear()
 	text_label.append_text("%s" % item.discription)
 	show()
