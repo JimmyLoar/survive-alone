@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://blu6dgnc6blyn"]
+
+[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://content/search_drop/test/test_1.tres" id="1_63sot"]
+
+[sub_resource type="GDScript" id="GDScript_tm8pp"]
+script/source = "extends Node2D
+
+@export var drop: SearchDrop
+@export_range(1, 64, 1) var count := 4
+
+var searcher: Searcher
+var _string = \"data: [color=green]%s[/color]; amount: {amount}; loop: {loops}; chance: {chance}\"
+
+func _ready() -> void:
+	searcher = Searcher.new()
+	for i in range(count):
+		check(i)
+	
+
+
+func check(attempt_num: int):
+	printerr(\"Attempt #%d\" % attempt_num)
+	for item in searcher.search(drop):
+		print_rich(_string.format(item) % [item.data.name_key])
+	print()
+"
+
+[node name="Seacher test" type="Node2D"]
+visible = false
+script = SubResource("GDScript_tm8pp")
+drop = ExtResource("1_63sot")
