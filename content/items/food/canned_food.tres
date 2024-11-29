@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://chxbdcao06tc6"]
 
 [ext_resource type="Script" path="res://core/script/resource/item_data.gd" id="1_87aen"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_78ve6"]
+[ext_resource type="Texture2D" uid="uid://bgocs4vak2jj4" path="res://assets/sprite/placeholders/Item16.png" id="2_fnsd8"]
 
 [resource]
 script = ExtResource("1_87aen")
-name_key = "canned food"
-texture = ExtResource("2_78ve6")
+texture = ExtResource("2_fnsd8")
 rare = 1
 durability = -1
 is_pickable = true
 action_count = 0
 _types = Array[int]([])
 _properties = Array[int]([])
-name = "Canned Food"
+name_key = "canned food"
+visible_name = "ITEM_NAME_CANNED FOOD"
 discription = "discription canned food"

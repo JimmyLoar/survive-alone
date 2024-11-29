@@ -30,7 +30,7 @@ var printing_stack: bool = false
 var log_path: String = "res://.logs/game.log"
 var _config
 
-var _prefix  = ""
+var _prefix  = "Game"
 var _default_args = {}
 
 var _file: FileAccess
@@ -68,7 +68,7 @@ func _set_time_format(level:String):
 func with(prefix:String="",args:Dictionary={}) ->Log :
 	var l = Log.new()
 	l.CURRENT_LOG_LEVEL = self.CURRENT_LOG_LEVEL
-	l._prefix = " %s |" % prefix
+	l._prefix = "%s" % prefix
 	for k in args:
 		l._default_args[k] = args[k]
 	return l
@@ -93,7 +93,7 @@ func logger(message:String,values,log_level=LogLevel.INFO):
 func _get_format_massage(message: String, log_level) -> String:
 	var msg = LOG_FORMAT.format(
 		{
-			"prefix":_prefix,
+			"prefix": " [color=orangered]%s[/color] | " % _prefix,
 			"message":message,
 			"time": _get_time(),
 			"level": LogLevel.keys()[log_level].rpad(5, " ")

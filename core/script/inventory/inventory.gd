@@ -84,5 +84,16 @@ func _recount_index_slots():
 		_stored_cache[_storage[i]._data.name_key] = i
 
 
-func get_slots() -> Array[InventorySlot]: return _storage.duplicate()
 func get_size() -> int: return _storage.size()
+func get_slots(erise_empty := false) -> Array[InventorySlot]: 
+	if erise_empty:
+		return _clear_empty(_storage.duplicate())
+	return _storage.duplicate()
+
+
+func _clear_empty(_array: Array[InventorySlot] = _storage.duplicate()):
+	var new_array: Array[InventorySlot] = [] 
+	for i in _array.size():
+		if _array[i].is_empty(): continue
+		new_array.append(_array[i])
+	return new_array

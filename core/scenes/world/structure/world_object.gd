@@ -3,7 +3,6 @@ extends Area2D
 
 signal character_entered
 signal character_exited
-signal character_changed_location
 
 @export var data: StructureData:
 	set(value):
@@ -14,7 +13,7 @@ signal character_changed_location
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
-
+var is_looted := false
 
 
 func _ready() -> void:
@@ -22,13 +21,17 @@ func _ready() -> void:
 
 
 func _char_entered(_char: Character):
-	#print("player entered in '%s' in '%s'" % [self.name, get_parent().name])
+	Game.set_player_location(self)
 	character_entered.emit()
 
 
 func _char_exited(_char: Character):
-	#print("player exited in '%s' in '%s'" % [self.name, get_parent().name])
+	Game.set_player_location(null)
 	character_exited.emit()
+
+
+func looting():
+	pass
 
 
 func _update():

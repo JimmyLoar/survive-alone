@@ -17,3 +17,4 @@ func _ready() -> void:
 	chunk_container.update_region(
 		character.get_chunk_position()
 		)
+	

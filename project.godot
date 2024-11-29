@@ -32,6 +32,7 @@ GameTime="*res://core/script/singletone/game_time.gd"
 PlayerProperty="*res://core/script/singletone/player_property.gd"
 InventoriesController="*res://core/script/singletone/inventories_controller.gd"
 QuantitySelecter="*res://core/script/singletone/quantity_selecter.tscn"
+Game="*res://core/script/singletone/game.gd"
 
 [display]
 

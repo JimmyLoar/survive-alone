@@ -13,5 +13,5 @@ collision_shape = ExtResource("1_u403t")
 collision_offset = Vector2(0, 0)
 collision_rotation = 0.0
 name_key = "house_test"
-visible_name = ""
-discription = ""
+visible_name = "STRUCTURE_NAME_HOUSE_TEST"
+discription = "STRUCTURE_DISCRIPTION_HOUSE_TEST"

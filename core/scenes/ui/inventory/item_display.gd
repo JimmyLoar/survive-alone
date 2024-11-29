@@ -16,7 +16,7 @@ func update_data(data: ItemData):
 	texture_rect.texture = data.texture
 
 
-func update_amount(amount: int):
+func update_amount(amount):
 	label_amount.visible = amount > 1
 	label_amount.text = "%d" % amount
 	

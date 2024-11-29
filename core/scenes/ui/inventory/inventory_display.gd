@@ -9,6 +9,7 @@ signal duble_pressed(slot: InventorySlot)
 @onready var slot_controller: SlotCotroller = $VBoxContainer/SlotController
 @onready var page_controller: PageController = $VBoxContainer/PageController
 
+var _slots: Array[InventorySlot]
 
 var inventory: Inventory: 
 	set = set_inventory
@@ -34,7 +35,8 @@ func set_inventory(new_inventory: Inventory):
 func update():
 	if not visible or not inventory: return
 	if slot_controller:
-		slot_controller.update_slots(inventory.get_slots())
+		_slots = inventory.get_slots(true)
+		slot_controller.update_slots(_slots)
 	
 	if page_controller:
 		page_controller.set_inventory_size(inventory.get_size())
@@ -46,8 +48,8 @@ func get_last_pressed():
 
 
 func _on_slot_controller_slot_pressed(slot_index: int) -> void:
-	slot_pressed.emit(inventory.get_slot(slot_index))
+	slot_pressed.emit(_slots[slot_index])
 
 
 func _on_slot_controller_duble_pressed(slot_index: int) -> void:
-	duble_pressed.emit(inventory.get_slot(slot_index))
+	duble_pressed.emit(_slots[slot_index])

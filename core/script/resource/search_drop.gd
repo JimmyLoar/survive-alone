@@ -15,6 +15,10 @@ func _init() -> void:
 	_resource_type = "SEARCH_DROP"
 
 
+func get_items() -> Array[Array]:
+	return _items.duplicate()
+
+
 enum Value{DATA, REWARD, CHANCE, REDUCTION}
 func get_value(index: int, value_type: Value):
 	return _get_item_value(_items[index], value_type)

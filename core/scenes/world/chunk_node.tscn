@@ -47,12 +47,6 @@ func _update_object(pos: Vector2i, data: StructureData):
 
 
 func _connect_character_changed_location(object: WorldObject):
-	var parent := get_parent() as ChunkNode
-	if not parent \\
-		or object.character_changed_location.is_connected(
-			parent.emit_signal): 
-			return
-	
 	object.character_entered.connect(InventoriesController.set_local_inventory_name.bind(object.name))
 	object.character_exited.connect(InventoriesController.set_local_inventory_name.bind(\"tmp\"))
 

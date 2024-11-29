@@ -28,7 +28,8 @@ func update_slots(slots_list: Array):
 	slots_list.resize(get_child_count())
 	for i in slots_list.size():
 		var value = slots_list[i] if slots_list[i] else null
-		get_child(i).update(value)
+		var child = get_child(i)
+		child.update(value)
 
 
 var timer: SceneTreeTimer

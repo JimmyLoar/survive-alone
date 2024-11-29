@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cqvooygqbwtxj"]
 
 [ext_resource type="Script" path="res://core/script/resource/item_data.gd" id="1_enkfl"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_otokx"]
+[ext_resource type="Texture2D" uid="uid://dpvuhnk2o45v6" path="res://assets/sprite/placeholders/Item8.png" id="2_b8h8x"]
 
 [resource]
 script = ExtResource("1_enkfl")
-name_key = "duct_tape"
-texture = ExtResource("2_otokx")
+texture = ExtResource("2_b8h8x")
 rare = 1
 durability = -1
 is_pickable = true
 action_count = 0
 _types = Array[int]([])
 _properties = Array[int]([])
-name = "Duct Tape"
+name_key = "duct_tape"
+visible_name = "ITEM_NAME_DUCT_TAPE"
 discription = "discription duct_tape"
