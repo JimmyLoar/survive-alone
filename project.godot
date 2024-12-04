@@ -73,6 +73,19 @@ theme/custom="res://assets/themes/main.tres"
 
 locale/translations=PackedStringArray("res://localization/localizations.de.translation", "res://localization/localizations.en.translation", "res://localization/localizations.ru.translation")
 
+[layer_names]
+
+2d_render/layer_1="Defualt"
+2d_render/layer_2="Enveroment"
+2d_render/layer_3="Buildings"
+2d_render/layer_4="Character"
+2d_render/layer_5="Tiles"
+2d_physics/layer_1="Default"
+2d_physics/layer_2="Bioms"
+2d_physics/layer_3="Structure"
+2d_physics/layer_4="Events"
+2d_physics/layer_5="s"
+
 [rendering]
 
 renderer/rendering_method="mobile"

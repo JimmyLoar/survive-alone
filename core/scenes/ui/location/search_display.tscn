@@ -9,10 +9,6 @@ signal finished
 
 @onready var grid_container: GridContainer = $GridContainer
 
-### TODO 
-### Переписать дисплей только не отображение по словарю с дропом. 
-### Вынести логику генерации лута за пределы этого объекта
-
 
 func update(drop: SearchDrop):
 	if not drop: 
