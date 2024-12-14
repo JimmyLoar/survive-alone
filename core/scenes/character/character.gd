@@ -31,3 +31,16 @@ func _physics_process(delta: float) -> void:
 
 func get_chunk_position() -> Vector2i:
 	return global_position / _chunk_pixel_size
+
+
+func _on_area_2d_body_entered(body: TileMapLayer) -> void:
+	var pos: Vector2i = Vector2i(global_position) / tile_size - get_chunk_position() * chunk_size
+	var data = body.get_cell_tile_data(pos)
+	if not data: 
+		printerr(pos)
+		return
+	print("player enter biom %s" % data.get_custom_data("biome"))
+
+
+func _on_area_2d_area_entered(area: Node2D) -> void:
+	print("player enter biom %s (area)" % area)

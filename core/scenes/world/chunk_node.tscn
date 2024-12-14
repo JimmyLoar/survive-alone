@@ -1,8 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brugrj8gp1m38"]
 
 [ext_resource type="Script" path="res://core/scenes/world/chunk_node.gd" id="1_futoq"]
-
-[sub_resource type="TileSet" id="TileSet_rtm7g"]
+[ext_resource type="TileSet" uid="uid://dceei5xh2ipkw" path="res://assets/tilesets/base.tres" id="2_61mbw"]
 
 [sub_resource type="GDScript" id="GDScript_7rp62"]
 script/source = "extends Node2D
@@ -97,7 +96,7 @@ scale = Vector2(10, 10)
 centered = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_rtm7g")
+tile_set = ExtResource("2_61mbw")
 
 [node name="StructureContainer" type="Node2D" parent="."]
 script = SubResource("GDScript_7rp62")

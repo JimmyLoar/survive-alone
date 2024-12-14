@@ -3,6 +3,7 @@ class_name ChunkData
 extends Resource
 
 @export var name: String = "chunk"
+@export var _tiles : Array[Dictionary] = []
 
 const STRUCTURE_DATA = 0
 const STRUCTURE_POSITION = 1

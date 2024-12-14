@@ -82,9 +82,9 @@ locale/translations=PackedStringArray("res://localization/localizations.de.trans
 2d_render/layer_5="Tiles"
 2d_physics/layer_1="Default"
 2d_physics/layer_2="Bioms"
-2d_physics/layer_3="Structure"
-2d_physics/layer_4="Events"
-2d_physics/layer_5="s"
+2d_physics/layer_3="BiomsBlock"
+2d_physics/layer_4="Structure"
+2d_physics/layer_5="Events"
 
 [rendering]
 
