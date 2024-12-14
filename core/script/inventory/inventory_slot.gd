@@ -19,7 +19,7 @@ func _init(new_data: ItemData, new_amount := 0, new_used := []) -> void:
 
 func set_used(new_used: Array):
 	_used = Array(new_used, TYPE_INT, "", null)
-	changed.emit()
+	changed.emit(_index)
 
 
 func get_data() -> ItemData: return _data

@@ -14,3 +14,6 @@ data_*/
 /android/
 *.tmp
 database/config.cfg
+
+#IDE
+.vscode/
