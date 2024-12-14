@@ -23,3 +23,7 @@ func set_player_location(new_data: WorldObject):
 
 func get_player_location():
 	return _current_location
+
+
+func get_world_screen() -> WorldScreen:
+	return get_tree().root.get_node("WorldScreen")

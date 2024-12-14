@@ -1,7 +1,8 @@
+class_name GameTimeCounter
 extends Node
 
 signal new_day
-signal time_update(delta: int)
+signal time_updated(delta: int)
 signal time_skipped(skipped_time: int)
 
 const DEFAULT_MULTYPER = 2
@@ -29,7 +30,6 @@ var _time_progress: CanvasLayer
 
 
 func _init() -> void:
-	#set_physics_process(false)
 	_time = (_DATA.hour * 60 + _DATA.minut) * TIME_MULTYPER
 	_day = _DATA.month * 30 + _DATA.day
 	
@@ -95,10 +95,12 @@ func _physics_process(_delta: float) -> void:
 
 func _time_step(delta: int):
 	_time += delta
-	emit_signal("time_update", delta)
+	time_updated.emit(delta)
 	if _time >= MINUT_IN_DAY:
 		_day += floori(_time / MINUT_IN_DAY)
 		_time -= snapped(_time, MINUT_IN_DAY)
 		new_day.emit()
 	
 	PlayerProperty.update(delta)
+	
+	

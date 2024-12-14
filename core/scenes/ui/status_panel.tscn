@@ -5,16 +5,16 @@
 [sub_resource type="GDScript" id="GDScript_ntuuk"]
 script/source = "extends Label
 
+var game_time : GameTimeCounter
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameTime.time_update.connect(update)
-	update(0)
+	game_time = Game.get_world_screen().get_game_time()
+	game_time.time_updated.connect(update)
+	update()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func update(_delta):
-	self.text = \"{hour}:{minut} {day}/{month}/{year}\".format(GameTime.get_date())
+func update(_delta: int = 0):
+	self.text = \"{hour}:{minut} {day}/{month}/{year}\".format(game_time.get_date())
 "
 
 [node name="StatusPanel" type="PanelContainer"]

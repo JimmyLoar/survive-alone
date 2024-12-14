@@ -42,7 +42,7 @@ func _ready():
 
 
 func _set_loglevel(level:String):
-	logger("setting log level",{"level":level},LogLevel.INFO)
+	#logger("setting log level",{"level":level},LogLevel.INFO)
 	match level.to_lower():
 		"debug":
 			CURRENT_LOG_LEVEL = LogLevel.DEBUG
@@ -57,7 +57,7 @@ func _set_loglevel(level:String):
 
 
 func _set_time_format(level:String):
-	logger("setting iso format",{"level":level},LogLevel.INFO)
+	#logger("setting iso format",{"level":level},LogLevel.INFO)
 	match level.to_lower():
 		"true":
 			USE_ISOTIME = true

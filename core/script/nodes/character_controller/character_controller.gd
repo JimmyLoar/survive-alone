@@ -10,12 +10,16 @@ var _actor := Node2D.new(): set = set_actor
 var _target: Vector2 = Vector2.ZERO : set = set_target
 
 var _moving := false
-var game_time := GameTime
+var game_time: GameTimeCounter
 
 
 func _init() -> void:
 	started_move.connect(_on_started_move)
 	finished_move.connect(_on_finished_move)
+
+
+func _ready() -> void:
+	game_time = Game.get_world_screen().get_game_time()
 
 
 func set_actor(new_actor: Node2D):

@@ -5,7 +5,8 @@ signal canseled
 @onready var progress_bar: TextureProgressBar = $VBoxContainer/TextureProgressBar
 
 func _ready() -> void:
-	GameTime.time_update.connect(update)
+	var game_time = Game.get_world_screen().get_game_time()
+	game_time.time_updated.connect(update)
 	self.hide()
 
 
