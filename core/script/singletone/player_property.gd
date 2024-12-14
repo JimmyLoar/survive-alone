@@ -1,4 +1,4 @@
-extends Node
+class_name PlayerPropertiesController
 
 const MULTIPER = 1000
 const COLECTION_NAME = &"properties"

@@ -4,12 +4,11 @@ extends MarginContainer
 @onready var label: Label = $HBoxContainer/Label
 
 
-func update(property_name = "", value = 0):
-	if property_name == "": 
+func update(property: GameProperty, value = 0):
+	if not property: 
 		hide()
 		return
 	
-	var property = PlayerProperty.get_property(property_name)
 	texture_rect.texture = property.texture
 	label.text = "%s%d" % ["+" if value >= 0 else "", value]
 	show()

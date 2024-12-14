@@ -19,18 +19,19 @@ func _ready() -> void:
 	container.name = \"Bootstrap Container\"
 	container.add_child.call_deferred(FpsDisplay.new())
 	
+	#loading main game scene
+	await ResourceLoader.load_threaded_request(\"res://core/scenes/world/world_screen.tscn\")
+	var game_screen: WorldScreen = ResourceLoader.load_threaded_get(\"res://core/scenes/world/world_screen.tscn\").instantiate()
+	root.remove_child.call_deferred(self)
+	root.add_child.call_deferred(game_screen)
+	
 	#load database
 	var database_path := ProjectSettings.get_setting(\"resource_databases/main_base_path\", \"res://database.gddb\") as String
 	await ResourceLoader.load_threaded_request(database_path)
 	var database: Database = ResourceLoader.load_threaded_get(database_path)
-	PlayerProperty.set_database(database)
+	game_screen.database = database
 	
-	#loading main game scene
-	await ResourceLoader.load_threaded_request(\"res://core/scenes/world/world_screen.tscn\")
-	var game_screen: Node2D = ResourceLoader.load_threaded_get(\"res://core/scenes/world/world_screen.tscn\").instantiate()
-	root.remove_child.call_deferred(self)
-	root.add_child.call_deferred(game_screen)
-	await game_screen.ready
+	#await game_screen.ready
 	GodotLogger.info(\"Loaded bootstrap!\")
 	
 "

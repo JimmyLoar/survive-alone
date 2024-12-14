@@ -100,7 +100,3 @@ func _time_step(delta: int):
 		_day += floori(_time / MINUT_IN_DAY)
 		_time -= snapped(_time, MINUT_IN_DAY)
 		new_day.emit()
-	
-	PlayerProperty.update(delta)
-	
-	

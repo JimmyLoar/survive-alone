@@ -39,14 +39,17 @@ func update(_action: Dictionary, _type_map: Array[bool] = []):
 
 
 func update_properties(action: Dictionary):
+	var properties := Game.get_world_screen().get_player_properties()
 	for i in property_container.get_child_count():
 		var display: MarginContainer = property_container.get_child(i)
-		var _name = ""
-		var value = 0
-		if action.has("property_%d_name" % i):
-			_name = action["property_%d_name" % i]
-			value = action["property_%d_value" % i]
-		display.update(_name, value)
+		if not action.has("property_%d_name" % i):
+			display.update(null, 0)
+			continue
+		
+		var _name = action["property_%d_name" % i]
+		var value = action["property_%d_value" % i]
+		display.update(properties.get_property(_name), value)
+		
 
 
 func _on_button_pressed() -> void:
@@ -65,12 +68,13 @@ func _on_button_pressed() -> void:
 		pass
 
 func _on_pressed_properties():
+	var properties := Game.get_world_screen().get_player_properties()
 	for i in property_container.get_child_count():
 		var display: MarginContainer = property_container.get_child(i)
 		if action.has("property_%d_name" % i):
 			var _name = action["property_%d_name" % i]
-			var value = PlayerProperty.get_value(_name) + action["property_%d_value" % i]
-			PlayerProperty.set_value(_name, value)
+			var value = properties.get_value(_name) + action["property_%d_value" % i]
+			properties.set_value(_name, value)
 		
 	if action.reduced_self:
 		reduced_self.emit()

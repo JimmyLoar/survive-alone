@@ -8,6 +8,7 @@ extends HBoxContainer
 
 var property_id: int = 3
 var _property_name: String = ""
+var _properties: PlayerPropertiesController
 
 var database: Database = load("res://content/database.gddb")
 var data: GameProperty
@@ -18,6 +19,7 @@ func _ready() -> void:
 		set_process(false)
 		return
 	
+	_properties = Game.get_world_screen().get_player_properties()
 	data = database.fetch_data("properties", property_id)
 	update()
 
@@ -35,7 +37,7 @@ func update_value():
 	if Engine.is_editor_hint(): 
 		return
 	
-	progress_bar.value = PlayerProperty.get_value(_property_name)
+	progress_bar.value = _properties.get_value(_property_name)
 	label.text = "%d" % ceil(progress_bar.value)
 
 
