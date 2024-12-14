@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpcktvxjqbxag"]
+[gd_scene load_steps=10 format=3 uid="uid://cpcktvxjqbxag"]
 
 [ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://core/scenes/character/character.tscn" id="1_7v8xb"]
 [ext_resource type="Script" path="res://core/scenes/world/world_screen.gd" id="1_ljijd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://duvuvcyuqptrg" path="res://core/scenes/ui/world_ui.tscn" id="4_abk0o"]
 [ext_resource type="Script" path="res://core/script/nodes/character_controller/torch_controllertres.gd" id="5_4sua5"]
 [ext_resource type="Script" path="res://core/scenes/ui/ui.gd" id="7_580q4"]
+[ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://core/script/singletone/quantity_selecter.tscn" id="8_es3n5"]
 
 [sub_resource type="GDScript" id="GDScript_iq6x5"]
 script/source = "@tool
@@ -96,6 +97,8 @@ script = ExtResource("7_580q4")
 character = NodePath("../Objects/Character")
 
 [node name="Other" type="Node" parent="."]
+
+[node name="QuantitySelecter" parent="." instance=ExtResource("8_es3n5")]
 
 [editable path="UI"]
 [editable path="UI/VBoxContainer/StatusPanel"]

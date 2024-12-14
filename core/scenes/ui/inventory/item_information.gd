@@ -15,6 +15,7 @@ signal transfered_items(slot: InventorySlot, count: int)
 	set = set_inventory
 
 var _last_slot: InventorySlot
+var _quantity_selecter: QuantitySelecter
 
 func _ready() -> void:
 	update()
@@ -77,17 +78,19 @@ func _on_reduced_self() -> void:
 
 
 func _on_pick_up_button_pressed() -> void:
-	QuantitySelecter.canseled.connect(_on_selecter_canseled, CONNECT_ONE_SHOT)
-	QuantitySelecter.confirmed_value.connect(_on_selecter_confirmed_value, CONNECT_ONE_SHOT)
-	QuantitySelecter.enable(_last_slot.get_total_amount())
+	if not _quantity_selecter:
+		_quantity_selecter = Game.get_world_screen().get_quantity_selecter()
+	_quantity_selecter.canseled.connect(_on_selecter_canseled, CONNECT_ONE_SHOT)
+	_quantity_selecter.confirmed_value.connect(_on_selecter_confirmed_value, CONNECT_ONE_SHOT)
+	_quantity_selecter.enable(_last_slot.get_total_amount())
 
 
 func _on_selecter_confirmed_value(value: int):
-	QuantitySelecter.canseled.disconnect(_on_selecter_canseled)
+	_quantity_selecter.canseled.disconnect(_on_selecter_canseled)
+	transfered_items.emit(self._last_slot, value)
 	if value >= _last_slot.get_total_amount():
 		update()
-	transfered_items.emit(self._last_slot, value)
 
 
 func _on_selecter_canseled():
-	QuantitySelecter.confirmed_value.disconnect(_on_selecter_confirmed_value)
+	_quantity_selecter.confirmed_value.disconnect(_on_selecter_confirmed_value)

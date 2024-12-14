@@ -4,10 +4,10 @@ extends Node2D
 
 @export var character: Character
 
-@export_file("*.gd") var time_path: String
-
 @onready var ui_node: CanvasLayer = $UI
 @onready var chunk_container: Node2D = $ChunkContainer
+
+@onready var _quantity_selecter: CanvasLayer = $QuantitySelecter
 
 var logger = GodotLogger.with("World")
 var database: Database
@@ -15,6 +15,7 @@ var database: Database
 var _player_properties: PlayerPropertiesController
 var _game_time: GameTimeCounter 
 var _inventories_controller: InventoriesController
+
 
 
 func _init() -> void:
@@ -46,3 +47,7 @@ func get_player_properties() -> PlayerPropertiesController:
 
 func get_inventories_controller() -> InventoriesController:
 	return _inventories_controller
+
+
+func get_quantity_selecter() -> QuantitySelecter:
+	return _quantity_selecter

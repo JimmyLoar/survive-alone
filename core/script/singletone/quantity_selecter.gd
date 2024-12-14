@@ -1,3 +1,4 @@
+class_name QuantitySelecter
 extends CanvasLayer
 
 signal confirmed_value(value: int)
