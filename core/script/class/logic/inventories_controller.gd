@@ -1,13 +1,12 @@
-extends Node
+class_name InventoriesController
 
 var logger := GodotLogger.with("InventoryController")
 
 var _inventories: Dictionary = {}
-
 var _location_inventory: String = "tmp"
 
 
-func _ready() -> void:
+func _init() -> void:
 	create_inventory("player")
 	create_inventory("tmp")
 

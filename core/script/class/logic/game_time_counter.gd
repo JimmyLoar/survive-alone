@@ -77,6 +77,7 @@ func clear_action_time():
 
 func timeskip(minut: int) -> void:
 	_time_step(minut)
+	time_skipped.emit(minut)
 
 
 func _physics_process(_delta: float) -> void:

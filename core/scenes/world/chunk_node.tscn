@@ -46,8 +46,9 @@ func _update_object(pos: Vector2i, data: StructureData):
 
 
 func _connect_character_changed_location(object: WorldObject):
-	object.character_entered.connect(InventoriesController.set_local_inventory_name.bind(object.name))
-	object.character_exited.connect(InventoriesController.set_local_inventory_name.bind(\"tmp\"))
+	var _inv_controller := Game.get_world_screen().get_inventories_controller()
+	object.character_entered.connect(_inv_controller.set_local_inventory_name.bind(object.name))
+	object.character_exited.connect(_inv_controller.set_local_inventory_name.bind(\"tmp\"))
 
 
 func get_object_name(_name: String, object_position: Vector2):

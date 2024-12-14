@@ -14,11 +14,13 @@ var database: Database
 
 var _player_properties: PlayerPropertiesController
 var _game_time: GameTimeCounter 
+var _inventories_controller: InventoriesController
 
 
 func _init() -> void:
 	_game_time = load("res://core/script/class/logic/game_time_counter.gd").new()
-	_player_properties = load("res://core/script/singletone/player_property.gd").new()
+	_player_properties = load("res://core/script/class/logic/player_property.gd").new()
+	_inventories_controller = load("res://core/script/class/logic/inventories_controller.gd").new()
 	add_child.call_deferred(_game_time)
 	_game_time.time_updated.connect(_player_properties.update)
 
@@ -40,3 +42,7 @@ func get_game_time() -> GameTimeCounter:
 
 func get_player_properties() -> PlayerPropertiesController:
 	return _player_properties
+
+
+func get_inventories_controller() -> InventoriesController:
+	return _inventories_controller

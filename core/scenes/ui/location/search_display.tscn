@@ -37,18 +37,16 @@ func start_search(drop: Array[Dictionary]):
 var finished_amount := 0
 func _on_finished_search(_child_index: int, drop: Array[Dictionary]):
 	finished_amount -= 1
-	if finished_amount <= 0:
-		self.hide()
-		var inv := InventoriesController.get_inventory(Game.get_player_location().name)
-		
-		for i in drop.size():
-			var loot = drop[i]
-			inv.add_item(loot.data, loot.amount)
-		
-		emit_signal(\"finished\")
-
-
+	if finished_amount > 0: return
+	self.hide()
+	var inv := Game.get_world_screen().get_inventories_controller()\\
+				.get_inventory(Game.get_player_location().name)
 	
+	for i in drop.size():
+		var loot = drop[i]
+		inv.add_item(loot.data, loot.amount)
+	
+	emit_signal(\"finished\")
 "
 
 [node name="SearchDisplay" type="MarginContainer"]

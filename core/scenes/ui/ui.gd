@@ -14,7 +14,8 @@ enum CMKeys{INVENTORY, LOCATION}
 
 func _ready() -> void:
 	var database: Database = load(ProjectSettings.get_setting("resource_databases/main_base_path", "res://database.gddb"))
-	var local_inv := InventoriesController.get_inventory("player")
+	var _inventory_controller = Game.get_world_screen().get_inventories_controller()
+	var local_inv := _inventory_controller.get_inventory("player")
 	local_inv.add_item(database.fetch_data_string("items/primus"), 1)
 	local_inv.add_item(database.fetch_data_string("items/water_clear"), 10)
 	local_inv.add_item(database.fetch_data_string("items/fresh_meat"), 15)
