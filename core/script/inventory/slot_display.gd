@@ -2,6 +2,7 @@ class_name InventorySlotDisplay
 extends Button
 
 var display: ItemDisplay
+var current_slot: InventorySlot = null
 
 func _init() -> void:
 	set("theme_override_styles/disabled", preload("res://assets/themes/buttons/default-normal.tres"))
@@ -26,20 +27,36 @@ func _init() -> void:
 
 
 func update(slot: InventorySlot):
+	if slot != current_slot:
+		if slot:
+			slot.connect("changed", Callable(self, "_on_slot_changed"))
+		if current_slot:
+			current_slot.disconnect("changed", Callable(self, "_on_slot_changed"))
+		current_slot = slot
+	
+	_display(slot)
+
+		
+func _display(slot):
 	if not slot or slot.is_empty():
-		_update_null()
+		_display_empty()
 	
 	else:
-		_update_slot(slot)
+		_display_slot(slot)
 
-
-func _update_null():
+func _display_empty():
 	disabled = true
 	display.hide()
+	current_slot = null
+	
 
 
-func _update_slot(slot: InventorySlot):
+func _display_slot(slot: InventorySlot):
 	disabled = false
 	display.update_data(slot.get_data())
 	display.update_amount(slot.get_total_amount())
 	display.show()
+	
+
+func _on_slot_changed(_never):
+	_display(current_slot)
