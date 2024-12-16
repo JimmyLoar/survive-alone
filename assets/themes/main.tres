@@ -1,3 +1,18 @@
-[gd_resource type="Theme" format=3 uid="uid://cfhrwmys6lnl6"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cfhrwmys6lnl6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6ae3"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_detail = 5
 
 [resource]
+Panel/styles/panel = SubResource("StyleBoxFlat_o6ae3")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_o6ae3")

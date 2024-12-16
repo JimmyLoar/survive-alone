@@ -4,7 +4,11 @@
 script/source = "#Bootstrap Script
 extends Node
 
+const WORLD_PATH := \"res://feature/!world/world_screen.tscn\"
+
+
 var container := Node.new()
+
 
 func _init() -> void:
 	pass
@@ -20,8 +24,8 @@ func _ready() -> void:
 	container.add_child.call_deferred(FpsDisplay.new())
 	
 	#loading main game scene
-	await ResourceLoader.load_threaded_request(\"res://core/scenes/world/world_screen.tscn\")
-	var game_screen: WorldScreen = ResourceLoader.load_threaded_get(\"res://core/scenes/world/world_screen.tscn\").instantiate()
+	await ResourceLoader.load_threaded_request(WORLD_PATH)
+	var game_screen: WorldScreen = ResourceLoader.load_threaded_get(WORLD_PATH).instantiate()
 	root.remove_child.call_deferred(self)
 	root.add_child.call_deferred(game_screen)
 	

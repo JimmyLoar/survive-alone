@@ -1,0 +1,120 @@
+[gd_scene load_steps=3 format=3 uid="uid://fabysmmsww7k"]
+
+[ext_resource type="PackedScene" uid="uid://4ss22j7qgjf0" path="res://feature/!world/ui_sreens/location/drop_display.tscn" id="1_h5epp"]
+
+[sub_resource type="GDScript" id="GDScript_ehswf"]
+script/source = "extends MarginContainer
+
+signal finished
+
+@onready var grid_container: GridContainer = $GridContainer
+
+
+func update(drop: SearchDrop):
+	if not drop: 
+		hide()
+		return
+	
+	var items := drop.get_items()
+	items.resize(grid_container.get_child_count())
+	for i in grid_container.get_child_count():
+		var data: ItemData = null
+		if items[i].size() > 0:
+			data = items[i][0]
+		grid_container.get_child(i).update(data)
+	show()
+
+
+func start_search(drop: Array[Dictionary]):
+	for i in grid_container.get_child_count():
+		var child: Control = grid_container.get_child(i)
+		if not child.visible: continue
+		finished_amount += 1
+		child.show_progress(drop[i].loops, drop[i].chance, drop[i].amount)
+		child.finished.connect(_on_finished_search.bind(drop), CONNECT_ONE_SHOT)
+
+
+var finished_amount := 0
+func _on_finished_search(_child_index: int, drop: Array[Dictionary]):
+	finished_amount -= 1
+	if finished_amount > 0: return
+	self.hide()
+	var inv := Game.get_world_screen().get_inventories_controller()\\
+				.get_inventory(Game.get_player_location().name)
+	
+	for i in drop.size():
+		var loot = drop[i]
+		inv.add_item(loot.data, loot.amount)
+	
+	emit_signal(\"finished\")
+"
+
+[node name="SearchDisplay" type="MarginContainer"]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 307.0
+offset_bottom = 193.0
+script = SubResource("GDScript_ehswf")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 5
+
+[node name="DropDisplay" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay2" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay3" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay4" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay5" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay6" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay7" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay8" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay9" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay10" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay11" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay12" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay13" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay14" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DropDisplay15" parent="GridContainer" instance=ExtResource("1_h5epp")]
+layout_mode = 2
+size_flags_horizontal = 3

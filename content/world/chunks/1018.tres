@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ChunkData" load_steps=4 format=3 uid="uid://dxoxhvxyk4inp"]
 
 [ext_resource type="Resource" uid="uid://2k7uoyp4ngdn" path="res://content/world/structure/house_test.tres" id="1_0k5kb"]
-[ext_resource type="Script" path="res://core/script/resource/chunk_data.gd" id="1_t27vr"]
+[ext_resource type="Script" path="res://feature/!world/chunk_data.gd" id="1_t27vr"]
 [ext_resource type="Texture2D" uid="uid://cpvnq8sdtpfx4" path="res://assets/sprite/map_chunks/chunk_1271.jpg" id="2_df5dp"]
 
 [resource]

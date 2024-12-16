@@ -1,0 +1,136 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6aol5assiiq7"]
+
+[ext_resource type="Script" path="res://common/ui/element/quantity_selecter.gd" id="1_tia52"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11np1"]
+
+[node name="QuantitySelecter" type="CanvasLayer"]
+layer = 30
+script = ExtResource("1_tia52")
+
+[node name="InputBlock" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_11np1")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -339.5
+offset_top = -85.0
+offset_right = 339.5
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Pick Up"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/grabber_offset = -4
+min_value = 1.0
+max_value = 10000.0
+value = 20.0
+exp_edit = true
+
+[node name="QuantityContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 12
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuantityContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "+1"
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuantityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "-10"
+
+[node name="Button3" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuantityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "-1"
+
+[node name="ValueLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/QuantityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.75
+theme_override_font_sizes/font_size = 24
+text = "32
+"
+horizontal_alignment = 1
+
+[node name="Button4" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuantityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "+1"
+
+[node name="Button5" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuantityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "+10"
+
+[node name="Button6" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuantityContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "-1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="CanselButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "cansel"
+
+[node name="ConfirmButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 24
+text = "pick up"
+
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuantityContainer/Button" to="." method="_on_change_value_pressed" binds= [1]]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuantityContainer/Button2" to="." method="_on_change_value_pressed" binds= [-10]]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuantityContainer/Button3" to="." method="_on_change_value_pressed" binds= [-1]]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuantityContainer/Button4" to="." method="_on_change_value_pressed" binds= [1]]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuantityContainer/Button5" to="." method="_on_change_value_pressed" binds= [10]]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/CanselButton" to="." method="_on_cansel_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

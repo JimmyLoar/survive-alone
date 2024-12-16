@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqafjxxiadcpx"]
+
+[ext_resource type="Script" path="res://common/ui/element/property_display.gd" id="1_dw8bb"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_hpjs6"]
+
+[node name="PropertyDisplay" type="MarginContainer"]
+script = ExtResource("1_dw8bb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+texture = ExtResource("1_hpjs6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "+10"
