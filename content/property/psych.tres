@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GameProperty" load_steps=3 format=3 uid="uid://pbgbhwc5vroa"]
 
-[ext_resource type="Script" path="res://core/script/resource/game_property.gd" id="2_4kwjn"]
+[ext_resource type="Script" path="res://feature/player/game_property.gd" id="2_4kwjn"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_qdtqh"]
 
 [resource]

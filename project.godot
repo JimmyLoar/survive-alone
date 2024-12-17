@@ -28,7 +28,7 @@ game/version/string="dev"
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 GodotLogger="*res://addons/logger/logger.gd"
-Game="*res://core/script/singletone/game.gd"
+Game="*res://feature/!autoloads/game.gd"
 
 [display]
 
@@ -46,19 +46,6 @@ window/stretch/aspect="expand"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
-
-[file_customization]
-
-folder_colors={
-"res://core/my_tests/": "red",
-"res://core/script/class/": "red",
-"res://core/script/inventory/": "red",
-"res://core/script/nodes/": "blue",
-"res://core/script/resource/": "purple",
-"res://core/script/singletone/": "yellow",
-"res://core/script/static/": "green",
-"res://core/unit_tests/": "red"
-}
 
 [gui]
 

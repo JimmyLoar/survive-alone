@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://xkocsmhfxip5"]
+
+[ext_resource type="PackedScene" uid="uid://c8ildsba35mng" path="res://common/ui/element/property_bar.tscn" id="1_c83ua"]
+
+[sub_resource type="GDScript" id="GDScript_ntuuk"]
+script/source = "extends Label
+
+var game_time : GameTimeCounter
+
+func _ready() -> void:
+	game_time = Game.get_world_screen().get_game_time()
+	game_time.time_updated.connect(update)
+	update()
+
+
+func update(_delta: int = 0):
+	self.text = \"{hour}:{minut} {day}/{month}/{year}\".format(game_time.get_date())
+"
+
+[node name="StatusPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 36)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ExhaustionBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
+custom_minimum_size = Vector2(180, 28)
+layout_mode = 2
+size_flags_vertical = 4
+property_id = 0
+
+[node name="HungerBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
+custom_minimum_size = Vector2(180, 28)
+layout_mode = 2
+size_flags_vertical = 4
+property_id = 2
+
+[node name="ThirstBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
+custom_minimum_size = Vector2(180, 28)
+layout_mode = 2
+size_flags_vertical = 4
+property_id = 6
+
+[node name="FatigueBar" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_c83ua")]
+custom_minimum_size = Vector2(180, 28)
+layout_mode = 2
+size_flags_vertical = 4
+property_id = 1
+
+[node name="Space" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "00:00 00.00.0000"
+script = SubResource("GDScript_ntuuk")

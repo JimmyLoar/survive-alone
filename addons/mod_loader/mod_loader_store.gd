@@ -20,7 +20,7 @@ const MODLOADER_VERSION = "6.2.0"
 const DEBUG_ENABLE_STORING_FILEPATHS := false
 
 # This is where mod ZIPs are unpacked to
-const UNPACKED_DIR := "res://mods-unpacked/"
+const UNPACKED_DIR := "res://mods/unpacked/"
 
 # Set to true to require using "--enable-mods" to enable them
 const REQUIRE_CMD_LINE := false
