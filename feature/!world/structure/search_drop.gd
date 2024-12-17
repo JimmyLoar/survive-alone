@@ -12,7 +12,7 @@ extends MyResource
 @export_storage var _items: Array[Array] = [[]]
 
 func _init() -> void:
-	_resource_type = "SEARCH_DROP"
+	super("SEARCH_DROP")
 
 
 func get_items() -> Array[Array]:
