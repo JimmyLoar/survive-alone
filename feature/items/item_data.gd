@@ -7,12 +7,12 @@ extends MyResource
 @export var rare := Rare.NORMAL
 @export_range(-1, 65536) var durability := -1
 @export var is_pickable := true 
-
 #"health', "hunger", "thirst", "fatigue", "radiation", "psych",
+@export var _actions: Array[ItemActionData] = [] 
 
 
 func _init() -> void:
-	_resource_type = "ITEM"
+	super("Item")
 
 
 enum Rare{

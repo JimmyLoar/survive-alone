@@ -1,17 +1,19 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c2dl3xfx8wogm"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://c2dl3xfx8wogm"]
 
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_dyn3n"]
+[ext_resource type="Script" path="res://feature/items/res_item_action.gd" id="1_yq3oa"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_8ah8p"]
 
 [resource]
 script = ExtResource("1_dyn3n")
-name_key = "saucepan"
 texture = ExtResource("2_8ah8p")
 rare = 1
 durability = -1
 is_pickable = true
+_actions = Array[ExtResource("1_yq3oa")]([])
 action_count = 0
 _types = Array[int]([])
 _properties = Array[int]([])
-name = "Saucepan"
-discription = "discription saucepan"
+name_key = "saucepan"
+visible_name = "ITEM_NAME_SAUCEPAN"
+discription = "ITEM_DISCRIPTION_SAUCEPAN"

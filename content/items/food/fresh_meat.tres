@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://csx1bauob5bnf"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://csx1bauob5bnf"]
 
+[ext_resource type="Script" path="res://feature/items/res_item_action.gd" id="1_22vyk"]
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_yqaw7"]
 [ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_sq3a0"]
+
+[sub_resource type="Resource" id="Resource_3ymru"]
+script = ExtResource("1_22vyk")
+name_key = "use"
+visible_name = ""
+discription = ""
 
 [resource]
 script = ExtResource("1_yqaw7")
@@ -9,6 +16,7 @@ texture = ExtResource("2_sq3a0")
 rare = 1
 durability = -1
 is_pickable = true
+_actions = Array[ExtResource("1_22vyk")]([SubResource("Resource_3ymru")])
 action_count = 2
 _types = Array[int]([1, 60])
 _properties = Array[int]([2, 1])
@@ -24,5 +32,5 @@ action_1/name = "Cook"
 action_1/reduced_self = null
 action_1/type = 60
 name_key = "fresh_meat"
-visible_name = null
+visible_name = "ITEM_NAME_FRESH_MEAT"
 discription = "Сешь, что бы востановить немного голода."
