@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://cqvooygqbwtxj"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://cqvooygqbwtxj"]
 
-[ext_resource type="Script" path="res://feature/items/res_item_action.gd" id="1_5clpa"]
+[ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_5clpa"]
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_enkfl"]
 [ext_resource type="Texture2D" uid="uid://dpvuhnk2o45v6" path="res://assets/sprite/placeholders/Item8.png" id="2_b8h8x"]
 
+[sub_resource type="GDScript" id="GDScript_yvo86"]
+
 [sub_resource type="Resource" id="Resource_nbesi"]
 script = ExtResource("1_5clpa")
+actions = Array[SubResource("GDScript_yvo86")]([])
 name_key = "name_key"
 visible_name = "ITEM_ACTION_NAME_NAME_KEY"
 discription = "ITEM_ACTION_DISCRIPTION_NAME_KEY"

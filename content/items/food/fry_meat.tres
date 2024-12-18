@@ -1,8 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://ibrfm6mql4j7"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://ibrfm6mql4j7"]
 
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_4k55v"]
-[ext_resource type="Script" path="res://feature/items/res_item_action.gd" id="1_jstbl"]
+[ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_ha0gq"]
 [ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_e7mdy"]
+[ext_resource type="Script" path="res://feature/items/actions/!action.gd" id="2_wdf0p"]
+
+[sub_resource type="Resource" id="Resource_jjrwt"]
+script = ExtResource("1_ha0gq")
+actions = Array[ExtResource("2_wdf0p")]([])
+name_key = "name_key"
+visible_name = ""
+discription = ""
 
 [resource]
 script = ExtResource("1_4k55v")
@@ -10,7 +18,7 @@ texture = ExtResource("2_e7mdy")
 rare = 1
 durability = -1
 is_pickable = true
-_actions = Array[ExtResource("1_jstbl")]([])
+_actions = Array[ExtResource("1_ha0gq")]([SubResource("Resource_jjrwt")])
 action_count = 1
 _types = Array[int]([1])
 _properties = Array[int]([1, 0, 1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 1])
