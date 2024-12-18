@@ -1,14 +1,27 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://csx1bauob5bnf"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=8 format=3 uid="uid://csx1bauob5bnf"]
 
-[ext_resource type="Script" path="res://feature/items/res_item_action.gd" id="1_22vyk"]
+[ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_22vyk"]
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_yqaw7"]
+[ext_resource type="Script" path="res://feature/items/actions/!action.gd" id="2_3t0wc"]
 [ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_sq3a0"]
+[ext_resource type="Script" path="res://feature/items/actions/add_properties.gd" id="3_q33fj"]
 
-[sub_resource type="Resource" id="Resource_3ymru"]
+[sub_resource type="Resource" id="Resource_copvr"]
+script = ExtResource("3_q33fj")
+count_properties = 2
+property_0/name = "hunger"
+property_0/value = 18
+property_1/name = "exhaustion"
+property_1/value = 5
+
+[sub_resource type="Resource" id="Resource_bh5nm"]
 script = ExtResource("1_22vyk")
+actions = Array[ExtResource("2_3t0wc")]([SubResource("Resource_copvr")])
+reduced_when_used = true
+can_stacable = false
 name_key = "use"
-visible_name = ""
-discription = ""
+visible_name = "ITEM_ACTION_NAME_USE"
+discription = "ITEM_ACTION_DISCRIPTION_USE"
 
 [resource]
 script = ExtResource("1_yqaw7")
@@ -16,21 +29,7 @@ texture = ExtResource("2_sq3a0")
 rare = 1
 durability = -1
 is_pickable = true
-_actions = Array[ExtResource("1_22vyk")]([SubResource("Resource_3ymru")])
-action_count = 2
-_types = Array[int]([1, 60])
-_properties = Array[int]([2, 1])
-action_0/name = "Eat"
-action_0/reduced_self = 1
-action_0/type = 1
-action_0/propery_size = 2
-action_0/property_0_name = "exhaustion"
-action_0/property_0_value = 5
-action_0/property_1_name = "hunger"
-action_0/property_1_value = 20
-action_1/name = "Cook"
-action_1/reduced_self = null
-action_1/type = 60
+actions = Array[ExtResource("1_22vyk")]([SubResource("Resource_bh5nm")])
 name_key = "fresh_meat"
 visible_name = "ITEM_NAME_FRESH_MEAT"
 discription = "Сешь, что бы востановить немного голода."
