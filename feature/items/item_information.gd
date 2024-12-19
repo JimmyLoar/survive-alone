@@ -56,10 +56,9 @@ func _update_durability_text(used: Array = []):
 
 func update_interaction_panel(index: int, item: ItemData):
 	var into_range = index < item.actions.size()
-	var action = item.actions[index] if into_range else {}
-	var types: Array[bool] = item.get_action_types(index) if into_range else Array([], TYPE_BOOL, "", null)
+	var action: ItemIntaractionData = item.actions[index] if into_range else null
 	var panel: PanelContainer = interactive_container.get_node("PanelContainer%d" % [index + 1])
-	panel.update(action, types)
+	panel.update(action)
 	if not panel.reduced_self.is_connected(_on_reduced_self):
 		panel.reduced_self.connect(_on_reduced_self)
 

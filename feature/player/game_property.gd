@@ -16,7 +16,7 @@ extends MyResource
 
 
 func _init() -> void:
-	_resource_type = "PROPERTY"
+	super("PROPERTY")
 
 
 func _set_extend(value: GameProperty) -> void:
