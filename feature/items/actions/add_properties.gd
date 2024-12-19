@@ -22,7 +22,7 @@ func set_dependence(objects: Array):
 		return
 	
 	_dependence = null
-	GodotLogger.warn("%s | setted dependence array have not [color=green]PlayerPropertiesController[/color]" % [self.get_script().get_global_name()])
+	GodotLogger.warn("%s | setted dependence array have not [color=green]PlayerPropertiesController[/color]" % [self.get_script().get_global_name()], objects)
 	return
 
 

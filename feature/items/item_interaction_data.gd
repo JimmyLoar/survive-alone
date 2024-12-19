@@ -27,5 +27,5 @@ func has_change_properties() -> bool:
 func has_change_items() -> bool:
 	return actions.any(
 		func(element): 
-		return (element is ReceiveItemsAction or element is RequireItemsAction)
+		return (element is ChangeItemsAction)
 		)

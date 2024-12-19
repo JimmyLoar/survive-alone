@@ -28,7 +28,7 @@ func update(item: Item = null):
 	
 	_last_item = item
 	_update_display(item)
-	_update_durability_text(item.get_used())
+	_update_durability_text(item)
 	
 	for i in range(6):
 		update_interaction_panel(i, item.get_data())
@@ -49,9 +49,13 @@ func _update_display(item: Item):
 	show()
 
 
-func _update_durability_text(used: Array = []):
-	if used.is_empty(): return
-	text_label.append_text("Durability: %d" % used.front())
+func _update_durability_text(item: Item):
+	text_label.newline()
+	var value := item.get_data().durability
+	if not item.get_used().is_empty(): 
+		value = item.get_used().front()
+	if value <= 0: return
+	text_label.append_text("Durability: %d" % value)
 
 
 func update_interaction_panel(index: int, item: ItemData):
