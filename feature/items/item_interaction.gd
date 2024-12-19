@@ -8,7 +8,7 @@ signal reduced_self
 @onready var button: Button = $MarginContainer/VBoxContainer/Button
 
 var interaction: ItemIntaractionData
-var type_map: Array[bool]
+var item: ItemData 
 
 func update(_interaction: ItemIntaractionData):
 	interaction = _interaction
@@ -33,8 +33,8 @@ var _callibles_display = {
 }
 func display_actions():
 	for action in interaction.actions:
-		var _scripte_name = action.get_script().get_global_name()
-		_callibles_display[_scripte_name].call(action)
+		var _key = action.get_class_name()
+		_callibles_display[_key].call(action)
 
 
 func _display_properties(action: AddProppertyAction):
@@ -48,26 +48,22 @@ func _display_properties(action: AddProppertyAction):
 		var _name = action._properties[i].name
 		var value = action._properties[i].value
 		display.update(properties.get_property(_name), value)
-	
 
-var _callibles_on_pressed = {
-	"AddProppertyAction"		: _on_pressed_properties,
-	"ChangeDurabilityAction"	: print,
-	"ReceiveItemsAction"		: print,
-	"RequireItemsAction"		: print,
-	"UseTimerAction"			: print,
+
+@onready var _dependences = {
+	"AddProppertyAction"		: [Game.get_world_screen().get_player_properties()],
+	"ChangeDurabilityAction"	: [],
+	"ChangeItemsAction"			: [],
+	"UseTimerAction"			: [],
 }
 func _on_button_pressed() -> void:
 	for action in interaction.actions: 
-		var _scripte_name = action.get_script().get_global_name()
-		_callibles_on_pressed[_scripte_name].call(action)
+		var _key = action.get_class_name()
+		action.set_dependence(_dependences[_key])
+		action.execute()
 	
+	if interaction.reduced_when_used:
+		reduced_self.emit()
 
-func _on_pressed_properties(action: AddProppertyAction):
-	var properties := Game.get_world_screen().get_player_properties()
-	for i in action.count_properties:
-		var _name = action._properties[i].name
-		var value = action._properties[i].value + properties.get_value(_name)
-		properties.set_value(_name, value)
-	
-	reduced_self.emit()
+func get_item():
+	return $"../../../.."._last_slot

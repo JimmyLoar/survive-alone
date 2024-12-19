@@ -2,6 +2,7 @@
 class_name AddProppertyAction
 extends IAction
 
+
 @export_range(1, 4) var count_properties := 1:
 	set(value):
 		count_properties = value
@@ -15,11 +16,37 @@ var _properties: Array[Dictionary] = [{
 }]
 
 
+func set_dependence(objects: Array):
+	if objects[0] as PlayerPropertiesController:
+		_dependence = objects[0]
+		return
+	
+	_dependence = null
+	GodotLogger.warn("%s | setted dependence array have not [color=green]PlayerPropertiesController[/color]" % [self.get_script().get_global_name()])
+	return
+
+
+func execute():
+	var properties: PlayerPropertiesController = _dependence
+	for i in count_properties:
+		var _name = _properties[i].name
+		var value = _properties[i].value + properties.get_value(_name)
+		properties.set_value(_name, value)
+
+
 func _get_property_list() -> Array[Dictionary]:
 	var properties: Array[Dictionary] = []
 	var property_names = "exhaustion,hunger,thirst,fatigue,radiation,psych"
 	for i in count_properties:
 		properties.append_array(_add_property(i, property_names))
+	
+	properties.append({
+		"name": "_dependence",
+		"type": TYPE_OBJECT,
+		"hint": PROPERTY_HINT_ENUM,
+		"hint_string": property_names,
+		"usage": PROPERTY_USAGE_DEFAULT,
+		})
 	return properties
 
 
