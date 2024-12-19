@@ -68,4 +68,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "use"
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,4 +1,4 @@
-class_name InventorySlot
+class_name Item
 extends RefCounted
 
 signal changed
@@ -42,6 +42,27 @@ func change_amount(delta_value: int):
 	changed.emit(_index)
 
 
+func change_durability(total_value: int):
+	var reaming = total_value
+	var loopbreak := 120
+	GodotLogger.info("%s" % self)
+	while reaming > 0 and get_total_amount() > 0 and loopbreak > 0:
+		if _used.is_empty():
+			_used.append(_data.durability)
+			_amount -= 1
+		reaming = reaming - _used[0]
+		if reaming >= 0:
+			_used.remove_at(0)
+		else:
+			_used[0] = abs(reaming)
+		loopbreak -= 1
+	
+	changed.emit(_index)
+	GodotLogger.info("%s" % self)
+
+
 func append_used(new_used: Array):
-	_used.append_array(new_used)
+	for i in new_used:
+		if i <= 0: continue
+		_used.append(i)
 	changed.emit(_index)

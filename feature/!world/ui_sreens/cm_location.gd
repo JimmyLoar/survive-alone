@@ -11,7 +11,7 @@ func update_inventory():
 	item_information_panel.set_inventory(inv)
 
 
-func _on_transfered_items(slot: InventorySlot, count: int = -1) -> void:
+func _on_transfered_items(slot: Item, count: int = -1) -> void:
 	_inventory_controller.move_item_in_inventories(slot, count, false)
 
 
