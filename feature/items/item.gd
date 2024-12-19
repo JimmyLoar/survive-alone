@@ -50,11 +50,11 @@ func change_durability(total_value: int):
 		if _used.is_empty():
 			_used.append(_data.durability)
 			_amount -= 1
-		reaming = reaming - _used[0]
+		reaming = reaming + _used[0]
 		if reaming >= 0:
 			_used.remove_at(0)
 		else:
-			_used[0] = abs(reaming)
+			_used[0] = min(abs(reaming), _data.durability)
 		loopbreak -= 1
 	
 	changed.emit(_index)

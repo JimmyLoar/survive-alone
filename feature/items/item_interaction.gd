@@ -26,10 +26,9 @@ func update(_interaction: ItemIntaractionData):
 
 var _callibles_display = {
 	"AddProppertyAction"		: _display_properties,
-	"ChangeDurabilityAction"	: print,
-	"ReceiveItemsAction"		: print,
-	"RequireItemsAction"		: print,
-	"UseTimerAction"			: print,
+	"ChangeDurabilityAction"	: _display_durability,
+	"ChangeItemsAction"			: _display_items,
+	"UseTimerAction"			: _display_timer,
 }
 func display_actions():
 	for action in interaction.actions:
@@ -50,13 +49,33 @@ func _display_properties(action: AddProppertyAction):
 		display.update(properties.get_property(_name), value)
 
 
+func _display_durability(action: ChangeDurabilityAction):
+	pass
+
+
+func _display_items(action: ChangeItemsAction):
+	pass
+
+
+func _display_timer(action: UseTimerAction):
+	pass
+
+
 @onready var _dependences = {
 	"AddProppertyAction"		: [Game.get_world_screen().get_player_properties()],
 	"ChangeDurabilityAction"	: [],
 	"ChangeItemsAction"			: [],
-	"UseTimerAction"			: [],
+	"UseTimerAction"			: [$Timer],
 }
+func _update_dependence():
+	var inventories: InventoriesController = Game.get_world_screen().get_inventories_controller()
+	_dependences.merge({
+		"ChangeDurabilityAction"	: [get_item()],
+		"ChangeItemsAction"			: [inventories.get_location_inventory(), inventories.get_player_inventory()],
+	}, true)
+
 func _on_button_pressed() -> void:
+	_update_dependence()
 	for action in interaction.actions: 
 		var _key = action.get_class_name()
 		action.set_dependence(_dependences[_key])
@@ -65,5 +84,6 @@ func _on_button_pressed() -> void:
 	if interaction.reduced_when_used:
 		reduced_self.emit()
 
+
 func get_item():
-	return $"../../../.."._last_slot
+	return $"../../../.."._last_item
