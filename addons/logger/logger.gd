@@ -13,6 +13,8 @@ enum LogLevel {
 }
 
 const COLORS = {
+	"title" : "orangered",
+	"value" : "#edb3ff",
 	"debug" : "#BEFFE7",
 	"info"  : "white",
 	"warn"  : "yellow",
@@ -69,8 +71,7 @@ func with(prefix:String="",args:Dictionary={}) ->Log :
 	var l = Log.new()
 	l.CURRENT_LOG_LEVEL = self.CURRENT_LOG_LEVEL
 	l._prefix = "%s" % prefix
-	for k in args:
-		l._default_args[k] = args[k]
+	l._default_args.merge(args)
 	return l
 
 
@@ -93,7 +94,7 @@ func logger(message:String,values,log_level=LogLevel.INFO):
 func _get_format_massage(message: String, log_level) -> String:
 	var msg = LOG_FORMAT.format(
 		{
-			"prefix": " [color=orangered]%s[/color] | " % _prefix,
+			"prefix": " [color={title}]%s[/color] | ".format(COLORS) % _prefix,
 			"message":message,
 			"time": _get_time(),
 			"level": LogLevel.keys()[log_level].rpad(5, " ")
@@ -116,6 +117,7 @@ func _get_time(file_format := false) -> String:
 
 
 func _add_values(msg, values):
+	msg += "[color={value}]".format(COLORS)
 	match typeof(values):
 		TYPE_ARRAY:
 			if values.size() > 0:
@@ -148,6 +150,7 @@ func _add_values(msg, values):
 			msg += JSON.stringify(null)
 		_:
 			msg += JSON.stringify(values)
+	msg += "[/color]"
 	return msg
 
 

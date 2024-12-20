@@ -12,4 +12,4 @@ extends MyResource
 
 
 func _init() -> void:
-	_resource_type = "STRUCTURE"
+	super("STRUCTURE")

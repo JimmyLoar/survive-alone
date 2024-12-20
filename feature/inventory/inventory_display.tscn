@@ -35,4 +35,4 @@ script = ExtResource("2_j4w10")
 layout_mode = 2
 
 [connection signal="duble_pressed" from="VBoxContainer/SlotController" to="." method="_on_slot_controller_duble_pressed"]
-[connection signal="slot_pressed" from="VBoxContainer/SlotController" to="." method="_on_slot_controller_slot_pressed"]
+[connection signal="item_pressed" from="VBoxContainer/SlotController" to="." method="_on_item_controller_item_pressed"]

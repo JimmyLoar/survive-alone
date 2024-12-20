@@ -27,9 +27,9 @@ game/version/string="dev"
 
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
+GodotLogger="*res://addons/logger/logger.gd"
 Game="*res://feature/!autoloads/game.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
-GodotLogger="*res://addons/logger/logger.gd"
 
 [display]
 

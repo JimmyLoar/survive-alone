@@ -25,4 +25,4 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [connection signal="duble_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="." method="_on_inventory_display_duble_pressed"]
-[connection signal="slot_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="MarginContainer/HBoxContainer/SubContainer/ItemInformationPanel" method="update"]
+[connection signal="item_pressed" from="MarginContainer/HBoxContainer/MainContainer/InventoryDisplay" to="MarginContainer/HBoxContainer/SubContainer/ItemInformationPanel" method="update"]
