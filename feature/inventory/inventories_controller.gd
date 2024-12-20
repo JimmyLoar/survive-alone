@@ -42,11 +42,11 @@ func get_location_inventory() -> Inventory:
 	return get_inventory(_location_inventory)
 
 
-func move_item_in_inventories(slot: Item, count := -1, player_to_local: bool = true):
+func move_item_in_inventories(item: Item, count := -1, player_to_local: bool = true):
 	var inventories = [get_location_inventory(), get_player_inventory()]
 	if player_to_local: inventories.reverse()
 	var transfer := ItemTransfer.new(inventories[0], inventories[1])
-	return transfer.transfer(slot, count)
+	return transfer.transfer(item, count)
 
 
 class ItemTransfer:
@@ -62,38 +62,38 @@ class ItemTransfer:
 		to_inventory = _to
 	
 	
-	func transfer(slot: Item, count: int = -1):
-		GodotLogger.debug("ItemTransfer | start transfer for slot '%s'" % [slot.get_index()])
-		if count >= slot.get_total_amount() or count == -1:
-			return _transfer_full_slot(slot)
+	func transfer(item: Item, count: int = -1):
+		GodotLogger.debug("ItemTransfer | start transfer for item '%s'" % [item.get_index()])
+		if count >= item.get_total_amount() or count == -1:
+			return _transfer_full_item(item)
 		
-		var reaming = _transfer_used(slot, count)
-		_transfer_amount(slot, reaming)
+		var reaming = _transfer_used(item, count)
+		_transfer_amount(item, reaming)
 		GodotLogger.debug("Done transfer [color=green]%d %s[/color] from [color=green]%s[/color] to [color=green]%s[/color]" % 
-			[count, slot.get_data().name_key, from_inventory.name, to_inventory.name])
+			[count, item.get_data().name_key, from_inventory.name, to_inventory.name])
 		return false
 	
 	
-	func _transfer_full_slot(slot: Item):
-		from_inventory._remove_from_storage(slot.get_index())
-		to_inventory.add_item(slot.get_data(), slot.get_amount(), slot.get_used())
+	func _transfer_full_item(item: Item):
+		from_inventory._remove_from_storage(item.get_index())
+		to_inventory.add_item(item.get_data(), item.get_amount(), item.get_used())
 		GodotLogger.debug("Done transfer all [color=green]%s[/color] from [color=green]%s[/color] to [color=green]%s[/color]" % 
-			[slot.get_data().name_key, from_inventory.name, to_inventory.name])
+			[item.get_data().name_key, from_inventory.name, to_inventory.name])
 		return true
 	
 	
-	func _transfer_used(slot_a: Item, count: int = 0):
-		var slot_b = to_inventory.get_or_create_slot(slot_a.get_data())
-		var used_array = slot_a.get_used()
-		slot_b.append_used(used_array.slice(0, count))
-		slot_a.set_used(used_array.slice(count, -1))
+	func _transfer_used(item_a: Item, count: int = 0):
+		var item_b = to_inventory.get_or_create_item(item_a.get_data())
+		var used_array = item_a.get_used()
+		item_b.append_used(used_array.slice(0, count))
+		item_a.set_used(used_array.slice(count, -1))
 		GodotLogger.debug("ItemTransfer | transfered used items [color=green]%s[/color]" %
 			[used_array.slice(0, count)])
 		return count - used_array.slice(0, count).size()
 
 
-	func _transfer_amount(slot_a: Item, count: int = 0):
-		var slot_b = to_inventory.get_or_create_slot(slot_a.get_data())
-		slot_a.change_amount(count * -1)
-		slot_b.change_amount(count)
+	func _transfer_amount(item_a: Item, count: int = 0):
+		var item_b = to_inventory.get_or_create_item(item_a.get_data())
+		item_a.change_amount(count * -1)
+		item_b.change_amount(count)
 		return true
