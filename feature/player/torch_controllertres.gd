@@ -1,6 +1,7 @@
 class_name TorchController
 extends CharacterController
 
+
 func _physics_process(delta: float) -> void:
 	var direction = _actor.global_position.direction_to(_target).snapped(Vector2(0.01, 0.01))
 	if direction.is_zero_approx(): 
@@ -15,8 +16,8 @@ func _physics_process(delta: float) -> void:
 	_actor.global_position += motion
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_released():
+func _unhandled_input(event: InputEvent) -> void:		
+	if event is InputEventMouseButton  and event.button_index == MOUSE_BUTTON_LEFT:
 		set_target(get_global_mouse_position())
 		start()
 
