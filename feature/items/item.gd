@@ -66,3 +66,9 @@ func append_used(new_used: Array):
 		if i <= 0: continue
 		_used.append(i)
 	changed.emit(_index)
+
+
+func remove_used_amount(amount: int) -> int:
+	amount = max(amount - _used.size(), 0)
+	_used = _used.slice(amount, _used.size(), 1)
+	return amount
