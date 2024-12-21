@@ -30,19 +30,22 @@ func add_item(data: ItemData, value := 0, used: Array = []) -> Item:
 	return _add_in_storage(Item.new(data, value, used))
 
 
-func remove_item(data: ItemData, amount := 0):
+func remove_item(data: ItemData, _amount := 1):
+	var amount = _amount
 	var index := find_item(data.name_key)
 	if index == -1:
-		_logger.error("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [data.name_key, amount])
-		return
+		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [data.name_key, amount])
+		return amount
 	
 	var item := get_item(index)
 	amount = item.remove_used_amount(amount)
 	item.change_amount(amount * -1)
+	amount = max(amount - item.get_amount(), 0)
 	
 	if item.get_total_amount() <= 0:
 		_remove_from_storage(index)
-	
+	_logger.debug("Removed [color=green]%d (reaming %d)[/color] items [color=green]%s (%d)[/color]" % [_amount - amount, amount, data.name_key, item.get_total_amount()])
+	return amount
 
 
 func has_item(data: ItemData) -> bool:
@@ -67,6 +70,10 @@ func get_item(index: int) -> Item:
 	if is_index_validate(index):
 		return _storage[index]
 	return null
+
+
+func fetch_item(item_name: String):
+	return get_item(find_item(item_name))
 
 
 func is_index_validate(index: int) -> bool:

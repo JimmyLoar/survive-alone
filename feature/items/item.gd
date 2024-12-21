@@ -40,6 +40,7 @@ func get_total_amount() -> int:
 func change_amount(delta_value: int):
 	_amount += delta_value
 	changed.emit(_index)
+	return _amount
 
 
 func change_durability(total_value: int):

@@ -71,7 +71,7 @@ func _update_dependence():
 	var inventories: InventoriesController = Game.get_world_screen().get_inventories_controller()
 	_dependences.merge({
 		"ChangeDurabilityAction"	: [get_item()],
-		"ChangeItemsAction"			: [inventories.get_location_inventory(), inventories.get_player_inventory()],
+		"ChangeItemsAction"			: [load("res://content/database.gddb"), inventories.get_player_inventory(), inventories.get_location_inventory()],
 	}, true)
 
 func _on_button_pressed() -> void:

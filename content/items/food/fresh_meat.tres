@@ -1,21 +1,19 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=14 format=3 uid="uid://csx1bauob5bnf"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=11 format=3 uid="uid://csx1bauob5bnf"]
 
 [ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_22vyk"]
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_yqaw7"]
 [ext_resource type="Script" path="res://feature/items/actions/!action.gd" id="2_3t0wc"]
 [ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_sq3a0"]
 [ext_resource type="Script" path="res://feature/items/actions/add_properties.gd" id="3_q33fj"]
-[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://content/items/resource/wood.tres" id="5_f124p"]
 [ext_resource type="Script" path="res://feature/items/actions/change_items.gd" id="6_cbk8l"]
-[ext_resource type="Resource" uid="uid://ibrfm6mql4j7" path="res://content/items/food/fry_meat.tres" id="7_32fvd"]
 
 [sub_resource type="Resource" id="Resource_copvr"]
 script = ExtResource("3_q33fj")
 count_properties = 2
-property_0/name = "hunger"
-property_0/value = 18
-property_1/name = "exhaustion"
-property_1/value = 5
+property_0/name = "exhaustion"
+property_0/value = 3
+property_1/name = "hunger"
+property_1/value = 15
 
 [sub_resource type="Resource" id="Resource_bh5nm"]
 script = ExtResource("1_22vyk")
@@ -26,28 +24,21 @@ name_key = "use"
 visible_name = "ITEM_ACTION_NAME_USE"
 discription = "ITEM_ACTION_DISCRIPTION_USE"
 
-[sub_resource type="Resource" id="Resource_yvr7e"]
+[sub_resource type="Resource" id="Resource_falop"]
 script = ExtResource("6_cbk8l")
-mode = 0
-items = Array[ExtResource("1_yqaw7")]([ExtResource("5_f124p")])
-items_amount = {
-"fresh_meat": 2,
-"wood": 0
+require_items_amount = {
+"fresh_meat": 1,
+"wood": 3
 }
-
-[sub_resource type="Resource" id="Resource_g7myt"]
-script = ExtResource("6_cbk8l")
-mode = 1
-items = Array[ExtResource("1_yqaw7")]([ExtResource("7_32fvd")])
-items_amount = {
+receive_items_amount = {
 "fry_meat": 1
 }
 
-[sub_resource type="Resource" id="Resource_avwqu"]
+[sub_resource type="Resource" id="Resource_70ht1"]
 script = ExtResource("1_22vyk")
-actions = Array[ExtResource("2_3t0wc")]([SubResource("Resource_yvr7e"), SubResource("Resource_g7myt")])
-reduced_when_used = true
-can_stacable = true
+actions = Array[ExtResource("2_3t0wc")]([SubResource("Resource_falop")])
+reduced_when_used = false
+can_stacable = false
 name_key = "cook"
 visible_name = "ITEM_ACTION_NAME_COOK"
 discription = "ITEM_ACTION_DISCRIPTION_COOK"
@@ -58,7 +49,7 @@ texture = ExtResource("2_sq3a0")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_22vyk")]([SubResource("Resource_bh5nm"), SubResource("Resource_avwqu")])
+actions = Array[ExtResource("1_22vyk")]([SubResource("Resource_bh5nm"), SubResource("Resource_70ht1")])
 name_key = "fresh_meat"
 visible_name = "ITEM_NAME_FRESH_MEAT"
 discription = "Сешь, что бы востановить немного голода."

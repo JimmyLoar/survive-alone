@@ -20,5 +20,4 @@ func test_change_durability():
 	item.change_durability(66)
 	assert_eq(item.get_used(), [item._data.durability - 6])
 	assert_eq(item.get_total_amount(), 15)
-	#breakpoint
 	
