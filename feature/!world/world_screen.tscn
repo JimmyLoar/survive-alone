@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpcktvxjqbxag"]
+[gd_scene load_steps=12 format=3 uid="uid://cpcktvxjqbxag"]
 
 [ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://feature/player/character.tscn" id="1_7v8xb"]
 [ext_resource type="Script" path="res://feature/!world/world_screen.gd" id="1_ljijd"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cd2skbxlqpvj4" path="res://assets/sprite/full_map.jpg" id="2_u2y5o"]
 [ext_resource type="PackedScene" uid="uid://duvuvcyuqptrg" path="res://feature/!world/ui.tscn" id="4_abk0o"]
 [ext_resource type="Script" path="res://feature/player/torch_controllertres.gd" id="5_4sua5"]
+[ext_resource type="PackedScene" uid="uid://b4t57loikxmp8" path="res://feature/camera/FreeCamera.tscn" id="6_bbt4e"]
 [ext_resource type="Script" path="res://feature/!world/ui.gd" id="7_580q4"]
+[ext_resource type="Script" path="res://feature/camera/free_camera_controller.gd" id="7_yxmkw"]
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://common/ui/element/quantity_selecter.tscn" id="8_es3n5"]
 
 [sub_resource type="GDScript" id="GDScript_iq6x5"]
@@ -91,6 +93,13 @@ border_width = 300.0
 
 [node name="TorchController" type="Node2D" parent="Objects/Character"]
 script = ExtResource("5_4sua5")
+
+[node name="FreeCamera" parent="Objects" node_paths=PackedStringArray("camera_controller") instance=ExtResource("6_bbt4e")]
+camera_controller = NodePath("FreeCameraController")
+
+[node name="FreeCameraController" type="Node" parent="Objects/FreeCamera" node_paths=PackedStringArray("default_target")]
+script = ExtResource("7_yxmkw")
+default_target = NodePath("../../Character")
 
 [node name="UI" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_abk0o")]
 script = ExtResource("7_580q4")
