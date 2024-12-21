@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpkdoaq7tk0b8"]
+[gd_scene load_steps=8 format=3 uid="uid://bpkdoaq7tk0b8"]
 
 [ext_resource type="Script" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_7q31a"]
 [ext_resource type="Script" path="res://feature/player/character.gd" id="1_p76ae"]
@@ -32,6 +32,29 @@ scale = Vector2(1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4ehk"]
 radius = 8.0
 
+[sub_resource type="GDScript" id="GDScript_g3eh0"]
+resource_name = "Camera"
+script/source = "extends Camera2D
+
+var world_size: Vector2i = ProjectSettings.get_setting(\"application/game/size/world\", Vector2i.ONE) 
+var chunk_size: int = ProjectSettings.get_setting(\"application/game/size/chunk\", 16) 
+
+#count pixels in tile
+var tile_size: int = ProjectSettings.get_setting(\"application/game/size/tile\", 16)  
+var _chunk_pixel_size: int = chunk_size * tile_size
+
+func _ready() -> void:
+	if get_parent() is Character:
+		get_parent().changed_chunk.connect(update_limits)
+
+
+func update_limits(_position: Vector2i):
+	limit_right  = clamp(_position.x + 2, 0, world_size.x) * _chunk_pixel_size
+	limit_bottom = clamp(_position.y + 2, 0, world_size.y) * _chunk_pixel_size
+	limit_left   = clamp(_position.x - 1, 0, world_size.x) * _chunk_pixel_size
+	limit_top    = clamp(_position.y - 1, 0, world_size.y) * _chunk_pixel_size
+"
+
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_p76ae")
 
@@ -40,6 +63,11 @@ texture = SubResource("Texture2D_lcb6a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_l4ehk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(-60, 0)
+zoom = Vector2(1.25, 1.25)
+script = SubResource("GDScript_g3eh0")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

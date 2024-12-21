@@ -27,9 +27,8 @@ game/version/string="dev"
 
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
-Game="*res://feature/!autoloads/game.gd"
-LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GodotLogger="*res://addons/logger/logger.gd"
+Game="*res://feature/!autoloads/game.gd"
 
 [display]
 
@@ -46,51 +45,11 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
-
-[file_customization]
-
-folder_colors={
-"res://core/my_tests/": "red",
-"res://core/script/class/": "red",
-"res://core/script/inventory/": "red",
-"res://core/script/nodes/": "blue",
-"res://core/script/resource/": "purple",
-"res://core/script/singletone/": "yellow",
-"res://core/script/static/": "green",
-"res://core/unit_tests/": "red"
-}
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [gui]
 
 theme/custom="res://assets/themes/main.tres"
-
-[input]
-
-camera_debug_left={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194319,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
-]
-}
-camera_debug_right={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
-]
-}
-camera_debug_up={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
-]
-}
-camera_debug_down={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
-]
-}
-
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
