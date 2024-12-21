@@ -1,15 +1,15 @@
 class_name InventoryDisplay
 extends MarginContainer
 
-signal slot_pressed(slot: InventorySlot)
-signal duble_pressed(slot: InventorySlot)
+signal item_pressed(item: Item)
+signal duble_pressed(item: Item)
 
 @export var page_size := Vector2i(3, 3)
 
-@onready var slot_controller: SlotCotroller = $VBoxContainer/SlotController
+@onready var item_controller: SlotCotroller = $VBoxContainer/SlotController
 @onready var page_controller: PageController = $VBoxContainer/PageController
 
-var _slots: Array[InventorySlot]
+var _items: Array[Item]
 
 var inventory: Inventory: 
 	set = set_inventory
@@ -17,7 +17,7 @@ var inventory: Inventory:
 
 func _ready() -> void:
 	visibility_changed.connect(update)
-	slot_controller.init_slots(page_size)
+	item_controller.init_items(page_size)
 	page_controller.set_page_size(page_size.x * page_size.y)
 
 
@@ -34,9 +34,9 @@ func set_inventory(new_inventory: Inventory):
 
 func update():
 	if not visible or not inventory: return
-	if slot_controller:
-		_slots = inventory.get_slots(true)
-		slot_controller.update_slots(_slots)
+	if item_controller:
+		_items = inventory.get_items(true)
+		item_controller.update_items(_items)
 	
 	if page_controller:
 		page_controller.set_inventory_size(inventory.get_size())
@@ -44,12 +44,12 @@ func update():
 
 
 func get_last_pressed():
-	return slot_controller.button_group.get_pressed_button().get_index()
+	return item_controller.button_group.get_pressed_button().get_index()
 
 
-func _on_slot_controller_slot_pressed(slot_index: int) -> void:
-	slot_pressed.emit(_slots[slot_index])
+func _on_item_controller_item_pressed(item_index: int) -> void:
+	item_pressed.emit(_items[item_index])
 
 
-func _on_slot_controller_duble_pressed(slot_index: int) -> void:
-	duble_pressed.emit(_slots[slot_index])
+func _on_item_controller_duble_pressed(item_index: int) -> void:
+	duble_pressed.emit(_items[item_index])
