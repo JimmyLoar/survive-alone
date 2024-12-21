@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_released():
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		set_target(get_global_mouse_position())
 		start()
 
