@@ -109,5 +109,7 @@ character = NodePath("../Objects/Character")
 
 [node name="QuantitySelecter" parent="." instance=ExtResource("8_es3n5")]
 
+[connection signal="changed_chunk" from="Objects/Character" to="Objects/FreeCamera" method="_on_character_changed_chunk"]
+
 [editable path="UI"]
 [editable path="UI/VBoxContainer/StatusPanel"]
