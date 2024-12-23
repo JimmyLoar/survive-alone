@@ -46,8 +46,20 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg", "res://addons/script_panel_plus/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://core/my_tests/": "red",
+"res://core/script/class/": "red",
+"res://core/script/inventory/": "red",
+"res://core/script/nodes/": "blue",
+"res://core/script/resource/": "purple",
+"res://core/script/singletone/": "yellow",
+"res://core/script/static/": "green",
+"res://core/unit_tests/": "red"
+}
 
 [gui]
 
@@ -75,6 +87,10 @@ camera_debug_down={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 

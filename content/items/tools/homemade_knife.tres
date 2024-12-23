@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://pr76410n87uh"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://pr76410n87uh"]
 
+[ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_1th5d"]
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_i8dsh"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_fiteu"]
 
 [resource]
 script = ExtResource("1_i8dsh")
-name_key = "homemade_knife"
 texture = ExtResource("2_fiteu")
 rare = 1
 durability = -1
 is_pickable = true
-action_count = 0
-_types = Array[int]([])
-_properties = Array[int]([])
-name = "Homemade Knife"
+actions = Array[ExtResource("1_1th5d")]([])
+name_key = "homemade_knife"
+visible_name = "ITEM_NAME_HOMEMADE_KNIFE"
 discription = "discription homemade_knife"
