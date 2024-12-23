@@ -2,13 +2,20 @@ class_name FreeCameraController
 extends CameraController
 # реализация контроллера камеры на момент боксинга
 @export var default_target: Node2D
+
+@export var camera_speed = 100
+
+@export_category('Zoom')
 @export var zoom_factor: float = 0.1
 
 @export var max_zoom = 2.0
 @export var min_zoom = 0.5
 
-@export var camera_speed = 100
 
+@export var zoom_sensitivity = 10
+
+var events = {}
+var last_drag_distance = 0
 
 func zoom_camera(factor:float) -> void:
 	# зуум с ограничениями
@@ -25,6 +32,29 @@ func _ready() -> void:
 
 
 func _unhandled_input(event) -> void:
+	
+	# Управление жестами
+	
+	# Считываем тап регестрируя ивент
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			events[event.index] = event
+		else:
+			events.erase(event.index)
+	# Считываем драг
+	if event is InputEventScreenDrag:
+		events[event.index] = event
+		# Если палец на экране один
+		if events.size() == 1:
+			# Слегка криво обращаемся к зуму камеры чтобы камера двигалась с постоянной скоростью
+			_move_camera(-event.relative / _actor.zoom.x)
+		# Если палецев два на экране
+		if events.size() == 2:
+			var drag_distance = events[0].position.distance_to(events[1].position)
+			if abs(drag_distance - last_drag_distance) > zoom_sensitivity:
+				var new_zoom = (zoom_factor) if drag_distance < last_drag_distance else (- zoom_factor)
+				zoom_camera(new_zoom)
+				last_drag_distance = drag_distance
 	# зумм на колесеко мыши
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
 		zoom_camera(zoom_factor)
@@ -44,11 +74,3 @@ func _unhandled_input(event) -> void:
 func track_default_target() -> void:
 	# следуем за целью по умолчанию
 	set_camera_target(default_target)
-
-
-func _process(delta) -> void:
-	# дебаг функции	движение камеры на стрелочки 
-	super._process(delta)
-	var direction = Input.get_vector('camera_debug_left', "camera_debug_right", "camera_debug_up", "camera_debug_down")
-	if direction:
-		_move_camera(direction * camera_speed * delta)
