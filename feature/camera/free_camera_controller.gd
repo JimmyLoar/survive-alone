@@ -11,8 +11,8 @@ extends CameraController
 @export var max_zoom = 2.0
 @export var min_zoom = 0.5
 
+@export var zoom_sensitivity = 30
 
-@export var zoom_sensitivity = 10
 
 var events = {}
 var last_drag_distance = 0
@@ -24,7 +24,10 @@ func zoom_camera(factor:float) -> void:
 		 Vector2(min_zoom, min_zoom),
 		 Vector2(max_zoom, max_zoom)
 		)
-
+	# смягчение скачков
+	if not _following:
+		_move_camera(Vector2.ZERO)
+	
 
 func _ready() -> void:
 	super._ready() 
@@ -41,6 +44,7 @@ func _unhandled_input(event) -> void:
 			events[event.index] = event
 		else:
 			events.erase(event.index)
+	
 	# Считываем драг
 	if event is InputEventScreenDrag:
 		events[event.index] = event
@@ -55,9 +59,11 @@ func _unhandled_input(event) -> void:
 				var new_zoom = (zoom_factor) if drag_distance < last_drag_distance else (- zoom_factor)
 				zoom_camera(new_zoom)
 				last_drag_distance = drag_distance
+	
 	# зумм на колесеко мыши
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
 		zoom_camera(zoom_factor)
+	
 	# зумм на колесеко мыши
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 		zoom_camera(-zoom_factor)
