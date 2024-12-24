@@ -15,6 +15,7 @@ func set_actor(new_actor: Camera2D) -> void:
 func zoom_camera(factor: float) -> void:
 	# Приближение камера на factor
 	_actor.zoom += Vector2(factor, factor)
+	
 
 
 func set_camera_target(target: Node2D) -> void:
@@ -37,15 +38,23 @@ func _set_follow(new_state: bool) -> void:
 
 
 func _move_camera(step: Vector2) -> void:
-	# При передвижении камеры контролером режим следования отрубаем
+	# При передвижении камеры контролером режим следования отрубаем 
 	if _following:
 		camera_free_mode()
 	if _actor:
 		if not _following:
 			_actor.position += step	
-	#TODO Убрать магические числа
-		_actor.position.x = clamp(_actor.position.x, _actor.limit_left + 640 / _actor.zoom.x, _actor.limit_right- 640 / _actor.zoom.x)
-		_actor.position.y = clamp(_actor.position.y, _actor.limit_top + 360 / _actor.zoom.y, _actor.limit_bottom - 360 / _actor.zoom.y)
+		# Ограничеваем камеру размером аьюпорта (уменьшаем скачки)
+		_actor.position.x = clamp(
+			_actor.position.x,
+			_actor.limit_left + (_actor.get_viewport_rect().size.x / 2) / _actor.zoom.x,
+			_actor.limit_right - (_actor.get_viewport_rect().size.x / 2) / _actor.zoom.x
+			)
+		_actor.position.y = clamp(
+			_actor.position.y,
+			_actor.limit_top + (_actor.get_viewport_rect().size.y / 2) / _actor.zoom.y,
+			_actor.limit_bottom - (_actor.get_viewport_rect().size.y / 2) / _actor.zoom.y
+			)
 
 
 func _ready() -> void:

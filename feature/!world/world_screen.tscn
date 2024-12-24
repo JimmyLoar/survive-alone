@@ -100,6 +100,7 @@ camera_controller = NodePath("FreeCameraController")
 [node name="FreeCameraController" type="Node" parent="Objects/FreeCamera" node_paths=PackedStringArray("default_target")]
 script = ExtResource("7_yxmkw")
 default_target = NodePath("../../Character")
+zoom_factor = 0.05
 
 [node name="UI" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_abk0o")]
 script = ExtResource("7_580q4")
