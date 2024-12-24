@@ -56,7 +56,7 @@ func _unhandled_input(event) -> void:
 		if events.size() == 2:
 			var drag_distance = events[0].position.distance_to(events[1].position)
 			if abs(drag_distance - last_drag_distance) > zoom_sensitivity:
-				var new_zoom = (zoom_factor) if drag_distance < last_drag_distance else (- zoom_factor)
+				var new_zoom = (-zoom_factor) if drag_distance < last_drag_distance else (zoom_factor)
 				zoom_camera(new_zoom)
 				last_drag_distance = drag_distance
 	
