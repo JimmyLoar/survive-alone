@@ -65,13 +65,14 @@ func _display_timer(action: UseTimerAction):
 	"AddProppertyAction"		: [Game.get_world_screen().get_player_properties()],
 	"ChangeDurabilityAction"	: [],
 	"ChangeItemsAction"			: [],
-	"UseTimerAction"			: [$Timer],
+	"UseTimerAction"			: [],
 }
 func _update_dependence():
 	var inventories: InventoriesController = Game.get_world_screen().get_inventories_controller()
 	_dependences.merge({
 		"ChangeDurabilityAction"	: [get_item()],
 		"ChangeItemsAction"			: [load("res://content/database.gddb"), inventories.get_player_inventory(), inventories.get_location_inventory()],
+		"UseTimerAction": [Game.get_world_screen().get_game_time()],
 	}, true)
 
 func _on_button_pressed() -> void:
