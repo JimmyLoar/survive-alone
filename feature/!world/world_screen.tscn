@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpcktvxjqbxag"]
+[gd_scene load_steps=13 format=3 uid="uid://cpcktvxjqbxag"]
 
 [ext_resource type="Script" path="res://feature/!world/world_screen.gd" id="1_ljijd"]
 [ext_resource type="PackedScene" uid="uid://duvuvcyuqptrg" path="res://feature/!world/ui.tscn" id="4_abk0o"]
 [ext_resource type="Script" path="res://feature/!world/ui.gd" id="7_580q4"]
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://common/ui/element/quantity_selecter.tscn" id="8_es3n5"]
+[ext_resource type="AudioStream" uid="uid://bfjpjy3v5fb2b" path="res://assets/music/1-1.mp3" id="11_k100e"]
 
 [node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_ljijd")
@@ -27,5 +28,12 @@ script = null
 [node name="Other" type="Node" parent="."]
 
 [node name="QuantitySelecter" parent="." instance=ExtResource("8_es3n5")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_k100e")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="changed_chunk" from="Objects/Character" to="Objects/FreeCamera" method="_on_character_changed_chunk"]
 
 [editable path="UI"]
