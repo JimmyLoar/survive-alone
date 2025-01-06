@@ -113,5 +113,4 @@ metadata/_tab_index = 6
 [node name="CM Loacation" parent="VBoxContainer/HBoxContainer/TabContainer" instance=ExtResource("5_hmmlf")]
 visible = false
 layout_mode = 2
-transfer_inventory = NodePath("../CM Inventory")
 metadata/_tab_index = 7

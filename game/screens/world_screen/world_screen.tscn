@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsq170wia7k5p"]
+
+[ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
+[ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
+[ext_resource type="PackedScene" uid="uid://skppxmtw5diw" path="res://feature/virtual_chunks/virtual_chunks.tscn" id="3_6pu03"]
+[ext_resource type="PackedScene" uid="uid://dyck7g6ogkopw" path="res://feature/main_camera/main_camera.tscn" id="4_j0xa1"]
+[ext_resource type="PackedScene" uid="uid://bmx1kvsxqsfod" path="res://feature/screen_mouse_events/screen_mouse_events.tscn" id="5_myumh"]
+
+[node name="WorldScreen" type="Node2D"]
+script = ExtResource("1_nlrl3")
+
+[node name="BiomesLayer" parent="." instance=ExtResource("2_pbygt")]
+
+[node name="VirtualChunks" parent="." instance=ExtResource("3_6pu03")]
+
+[node name="MainCamera" parent="." instance=ExtResource("4_j0xa1")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScreenMouseEvents" parent="UI" instance=ExtResource("5_myumh")]

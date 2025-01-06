@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_t27vr")
 name = "chunk"
+_tiles = Array[Dictionary]([])
 position = Vector2i(10, 18)
 structure_image = ExtResource("2_df5dp")
 object_count = 1

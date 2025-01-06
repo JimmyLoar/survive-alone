@@ -1,4 +1,4 @@
-class_name WorldScreen
+class_name WorldScree
 extends Node2D
 
 

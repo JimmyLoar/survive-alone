@@ -19,7 +19,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	game_time = Game.get_world_screen().get_game_time()
+	pass
+	#game_time = Game.get_world_screen().get_game_time()
 
 
 func set_actor(new_actor: Node2D):

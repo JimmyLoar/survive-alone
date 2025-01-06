@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5xytcdrlyfyg"]
+[gd_scene load_steps=2 format=3 uid="uid://b0ufp05ydp4fl"]
 
 [sub_resource type="GDScript" id="GDScript_8ew5s"]
-script/source = "#Bootstrap Script
+script/source = "Bootstrap Script
 extends Node
 
 const WORLD_PATH := \"res://feature/!world/world_screen.tscn\"

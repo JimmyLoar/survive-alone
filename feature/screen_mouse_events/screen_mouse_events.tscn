@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmx1kvsxqsfod"]
+
+[ext_resource type="Script" path="res://feature/screen_mouse_events/screen_mouse_events.gd" id="1_doa75"]
+
+[node name="ScreenMouseEvents" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_doa75")
