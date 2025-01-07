@@ -19,5 +19,5 @@ func _draw() -> void:
 
 func _set_draw_transform():
 	var camera_pos = _main_camera_sate.viewport_rect.position
-	
-	#draw_set_transform(camera_pos * -1)
+	var scale =_main_camera_sate.zoom
+	draw_set_transform(camera_pos * -1, 0, scale)

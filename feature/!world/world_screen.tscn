@@ -1,105 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpcktvxjqbxag"]
+[gd_scene load_steps=5 format=3 uid="uid://cpcktvxjqbxag"]
 
-[ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://feature/player/character.tscn" id="1_7v8xb"]
 [ext_resource type="Script" path="res://feature/!world/world_screen.gd" id="1_ljijd"]
-[ext_resource type="Script" path="res://feature/!world/chunk_container.gd" id="2_lswou"]
-[ext_resource type="Texture2D" uid="uid://cd2skbxlqpvj4" path="res://assets/sprite/full_map.jpg" id="2_u2y5o"]
 [ext_resource type="PackedScene" uid="uid://duvuvcyuqptrg" path="res://feature/!world/ui.tscn" id="4_abk0o"]
-[ext_resource type="Script" path="res://feature/player/torch_controllertres.gd" id="5_4sua5"]
 [ext_resource type="Script" path="res://feature/!world/ui.gd" id="7_580q4"]
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://common/ui/element/quantity_selecter.tscn" id="8_es3n5"]
 
-[sub_resource type="GDScript" id="GDScript_iq6x5"]
-script/source = "@tool
-extends Node2D
-
-@export var _draw_chunks := false
-@export var color := Color.GREEN
-#count chanks in world
-var world_size: Vector2i = ProjectSettings.get_setting(\"application/game/size/world\", Vector2i.ONE * 16)
-
-#count tiles in chunk 
-var chunk_size: int = ProjectSettings.get_setting(\"application/game/size/chunk\", 16) 
-
-#count pixels in tile
-var tile_size: int = ProjectSettings.get_setting(\"application/game/size/tile\", 16)  
-
-
-@onready var _pixel_chunk_size: int = tile_size * chunk_size 
-@onready var _pixel_world_size: Vector2i = _pixel_chunk_size * world_size
-
-
-func _draw() -> void:
-	if not _draw_chunks: return
-	
-	for x in world_size.x:
-		draw_line(
-			Vector2(x * _pixel_chunk_size, 0), 
-			Vector2(x * _pixel_chunk_size, _pixel_world_size.y), 
-			color, 4
-		)
-	
-	for y in world_size.y:
-		draw_line(
-			Vector2(0, y * _pixel_chunk_size), 
-			Vector2(_pixel_world_size.x, y * _pixel_chunk_size), 
-			color, 4
-		)
-	
-	for x in world_size.x:
-		for y in world_size.y:
-			draw_string(
-				ThemeDB.fallback_font, 
-				Vector2(x, y) * _pixel_chunk_size - Vector2(-16, -32),
-				\"X:%s  Y:%s\" % [x, y], HORIZONTAL_ALIGNMENT_CENTER,
-				-1, 24, color
-			)
-"
-
-[node name="WorldScreen" type="Node2D" node_paths=PackedStringArray("character")]
+[node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_ljijd")
-character = NodePath("Objects/Character")
 
-[node name="FullMap" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(10, 10)
-texture = ExtResource("2_u2y5o")
-centered = false
-
-[node name="ChunkContainer" type="Node2D" parent="."]
-script = ExtResource("2_lswou")
-
-[node name="ChunkGridDrawer" type="Node2D" parent="."]
-script = SubResource("GDScript_iq6x5")
-_draw_chunks = true
-color = Color(1, 0.243137, 0, 1)
-
-[node name="Objects" type="Node2D" parent="."]
-
-[node name="Character" parent="Objects" instance=ExtResource("1_7v8xb")]
-unique_name_in_owner = true
-position = Vector2(15883, 27464)
-
-[node name="ReferenceRect" type="ReferenceRect" parent="Objects/Character"]
-offset_left = -750.0
-offset_top = -750.0
-offset_right = 750.0
-offset_bottom = 750.0
-mouse_filter = 2
-border_width = 300.0
-
-[node name="TorchController" type="Node2D" parent="Objects/Character"]
-script = ExtResource("5_4sua5")
-
-[node name="Objects_FreeCamera#FreeCameraController" type="Node" parent="."]
-
-[node name="UI" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_abk0o")]
+[node name="UI" parent="." instance=ExtResource("4_abk0o")]
 script = ExtResource("7_580q4")
-character = NodePath("../Objects/Character")
+character = null
+
+[node name="StatusPanel" parent="UI/VBoxContainer" index="0"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
 
 [node name="Other" type="Node" parent="."]
 
 [node name="QuantitySelecter" parent="." instance=ExtResource("8_es3n5")]
 
 [editable path="UI"]
-[editable path="UI/VBoxContainer/StatusPanel"]

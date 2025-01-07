@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="SearchDrop" load_steps=6 format=3 uid="uid://cmj3q638n6mio"]
+
+[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://resources/items/food/water_clear.tres" id="1_mi0yu"]
+[ext_resource type="Script" path="res://feature/!world/structure/search_drop.gd" id="1_vtl6q"]
+[ext_resource type="Resource" uid="uid://chxbdcao06tc6" path="res://resources/items/food/canned_food.tres" id="2_jt0ol"]
+[ext_resource type="Resource" uid="uid://cqvooygqbwtxj" path="res://resources/items/resource/duct_tape.tres" id="3_boqxm"]
+[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/items/resource/wood.tres" id="4_4dv1q"]
+
+[resource]
+script = ExtResource("1_vtl6q")
+items_count = 4
+_items = Array[Array]([[ExtResource("1_mi0yu"), 1.0, 0.3, 1.125], [ExtResource("2_jt0ol"), 1.12, 0.25, 1.125], [ExtResource("3_boqxm"), 1.0, 0.4, 1.125], [ExtResource("4_4dv1q"), 1.0, 0.7, 1.125]])
+item_01/data = ExtResource("1_mi0yu")
+item_01/reward_count = 1.0
+item_01/chance_base = 0.3
+item_01/reduction_rate = 1.125
+item_02/data = ExtResource("2_jt0ol")
+item_02/reward_count = 1.12
+item_02/chance_base = 0.25
+item_02/reduction_rate = 1.125
+item_03/data = ExtResource("3_boqxm")
+item_03/reward_count = 1.0
+item_03/chance_base = 0.4
+item_03/reduction_rate = 1.125
+item_04/data = ExtResource("4_4dv1q")
+item_04/reward_count = 1.0
+item_04/chance_base = 0.7
+item_04/reduction_rate = 1.125
+name_key = "test1"
+visible_name = "SEARCH_DROP_NAME_TEST1"
+discription = "SEARCH_DROP_DISCRIPTION_TEST1"

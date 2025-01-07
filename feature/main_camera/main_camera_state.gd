@@ -1,6 +1,11 @@
 class_name MainCameraState
 extends Injectable
 
+var _node: Camera2D
+func _init(node: Camera2D) -> void:
+	_node = node
+
+
 var _viewport_rect: Rect2:
 	set(value):
 		if value != _viewport_rect:
@@ -10,6 +15,9 @@ var _viewport_rect: Rect2:
 signal viewport_rect_changed(value: Rect2)
 var viewport_rect: Rect2:
 	get: return _viewport_rect
+
+var zoom: Vector2:
+	get: return _node.zoom
 
 
 #

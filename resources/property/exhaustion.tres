@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterPropertyResource" load_steps=3 format=3 uid="uid://d3j3yifrth1q4"]
+
+[ext_resource type="Script" path="res://common/repositories/character_property_resource.gd" id="1_vq164"]
+[ext_resource type="Texture2D" uid="uid://bcs2vt30q01oj" path="res://assets/sprite/placeholders/Item14.png" id="2_ttwa2"]
+
+[resource]
+script = ExtResource("1_vq164")
+texture = ExtResource("2_ttwa2")
+default_value = 0.0
+default_max_value = 75.0
+default_min_value = 0.0
+default_delta_value = 0.0
+modulate = Color(0.250793, 0.0686622, 0.687399, 1)
+name_key = "exhaustion"
+visible_name = "PROPERTY_NAME_EXHAUSTION"
+discription = "PROPERTY_DISCRIPTION_EXHAUSTION"

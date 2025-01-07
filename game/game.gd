@@ -4,6 +4,10 @@ var _state: GameState
 
 func _enter_tree() -> void:
 	_state = Injector.provide(GameState, GameState.new(), self)
+	var resource_db = Injector.provide(ResourceDb,  ResourceDb.new(), self)
+	Injector.provide(CharacterPropertyRepository, CharacterPropertyRepository.new(self), self)
+	
+	resource_db.db_connect("res://resources/database.gddb")
 
 func _ready() -> void:
 	_state.current_screen_changed.connect(Callable(self, "_on_screen_changed"))
