@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WorldLocationResource" load_steps=5 format=3 uid="uid://btka18hqk5dfx"]
+
+[ext_resource type="Shape2D" uid="uid://cwu4uvhktlqal" path="res://resources/collection/world_object/location/crossroad_shape.tres" id="1_qhfta"]
+[ext_resource type="Script" path="res://resources/schema/world_object/world_location.gd" id="2_hovwf"]
+[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/search_drop/test/test_1.tres" id="3_nuv16"]
+[ext_resource type="Texture2D" uid="uid://djh8y7tcvjq02" path="res://assets/sprite/placeholders/citybuilder-tileset/StraßeB_1111.png" id="4_avd8t"]
+
+[resource]
+script = ExtResource("2_hovwf")
+texture = ExtResource("4_avd8t")
+search_drop = ExtResource("3_nuv16")
+name = "Перекресток"
+collision_shape = ExtResource("1_qhfta")
+collision_offset = Vector2(100, 100)
+collision_rotation = 0.0
+name_key = "house_world_location"
+visible_name = "STRUCTURE_NAME_HOUSE_WORLD_LOCATION"
+discription = "STRUCTURE_DISCRIPTION_HOUSE_WORLD_LOCATION"

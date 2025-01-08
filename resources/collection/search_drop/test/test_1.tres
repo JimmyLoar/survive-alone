@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="SearchDrop" load_steps=6 format=3 uid="uid://cmj3q638n6mio"]
 
-[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://resources/items/food/water_clear.tres" id="1_mi0yu"]
+[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://resources/collection/items/food/water_clear.tres" id="1_mi0yu"]
 [ext_resource type="Script" path="res://feature/!world/structure/search_drop.gd" id="1_vtl6q"]
-[ext_resource type="Resource" uid="uid://chxbdcao06tc6" path="res://resources/items/food/canned_food.tres" id="2_jt0ol"]
-[ext_resource type="Resource" uid="uid://cqvooygqbwtxj" path="res://resources/items/resource/duct_tape.tres" id="3_boqxm"]
-[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/items/resource/wood.tres" id="4_4dv1q"]
+[ext_resource type="Resource" uid="uid://chxbdcao06tc6" path="res://resources/collection/items/food/canned_food.tres" id="2_jt0ol"]
+[ext_resource type="Resource" uid="uid://cqvooygqbwtxj" path="res://resources/collection/items/resource/duct_tape.tres" id="3_boqxm"]
+[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/wood.tres" id="4_4dv1q"]
 
 [resource]
 script = ExtResource("1_vtl6q")

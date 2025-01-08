@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://feature/!world/structure/world_object.gd" id="1_n1mao"]
 [ext_resource type="Texture2D" uid="uid://bxeih2e1uswj" path="res://assets/sprite/placeholders/citybuilder-tileset/HochhausA.png" id="2_mwdq7"]
-[ext_resource type="Shape2D" uid="uid://7jre21hmgxhw" path="res://feature/!world/structure/shapes/shape_00.tres" id="3_5hjwg"]
+[ext_resource type="Shape2D" uid="uid://7jre21hmgxhw" path="res://resources/collection/world_object/location/house_shape.tres" id="3_5hjwg"]
 
 [node name="WorldObject" type="Area2D"]
 script = ExtResource("1_n1mao")

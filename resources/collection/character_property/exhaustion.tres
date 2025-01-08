@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CharacterPropertyResource" load_steps=3 format=3 uid="uid://d3j3yifrth1q4"]
 
-[ext_resource type="Script" path="res://common/repositories/character_property_resource.gd" id="1_vq164"]
+[ext_resource type="Script" path="res://resources/schema/character_property.gd" id="1_vq164"]
 [ext_resource type="Texture2D" uid="uid://bcs2vt30q01oj" path="res://assets/sprite/placeholders/Item14.png" id="2_ttwa2"]
 
 [resource]

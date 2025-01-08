@@ -56,6 +56,14 @@ CREATE TABLE IF NOT EXISTS "biome_rect" (
 	PRIMARY KEY("id" AUTOINCREMENT)
 	FOREIGN KEY("biome_id") REFERENCES "biome"("id") ON DELETE CASCADE
 );
+CREATE TABLE IF NOT EXISTS "world_object" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"x"	INTEGER NOT NULL,
+	"y"	INTEGER NOT NULL,
+	"end_x"	INTEGER NOT NULL,
+	"end_y"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
 """
 	if not connection.query(query):
 		return false

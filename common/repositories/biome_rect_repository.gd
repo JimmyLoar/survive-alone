@@ -1,5 +1,5 @@
 class_name BiomeRectRepository
-extends Object
+extends Injectable
 
 var _db: GameDb
 

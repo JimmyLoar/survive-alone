@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterPropertyResource" load_steps=3 format=3 uid="uid://bk6piro7truso"]
 
 [ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_3p4xb"]
-[ext_resource type="Script" path="res://common/repositories/character_property_resource.gd" id="2_t3d70"]
+[ext_resource type="Script" path="res://resources/schema/character_property.gd" id="2_t3d70"]
 
 [resource]
 script = ExtResource("2_t3d70")

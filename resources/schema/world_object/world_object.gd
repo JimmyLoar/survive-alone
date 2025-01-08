@@ -1,9 +1,7 @@
 @tool
-class_name StructureData
+class_name WorldObjectResource
 extends MyResource
 
-@export var texture: Texture2D
-@export var search_drop: SearchDrop
 @export_group("Collision Shape", "collision")
 @export var collision_shape: Shape2D
 @export var collision_offset := Vector2.ZERO
