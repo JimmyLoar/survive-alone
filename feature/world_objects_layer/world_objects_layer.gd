@@ -1,6 +1,41 @@
 extends Node2D
 
+var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk", 16)
 var _state: WorldObjectsLayerState
+@onready var _virtual_chunks_state: VirtualChunksState = Injector.inject(VirtualChunksState, self)
+
+var _visible_object_nodes = Dictionary()
 
 func _enter_tree() -> void:
 	_state = Injector.provide(WorldObjectsLayerState, WorldObjectsLayerState.new(), self, "closest")
+
+func _ready() -> void:
+	_state._world_object_repository = Injector.inject(WorldObjectRepository, self)
+	_virtual_chunks_state.visible_chunks_rect_changed.connect(_on_virtual_chunks_rect_changed)
+	_state.visible_objects_changed.connect(_on_visible_objects_changed)
+
+func _on_virtual_chunks_rect_changed(rect: Rect2i):
+	_state.visible_rect = Rect2(rect.position * chunk_size, rect.size * chunk_size)
+
+func _on_visible_objects_changed(diff: WorldObjectsLayerState.VisibleObjectsDiff, value: Dictionary):
+	for object_id in diff.removed:
+		_remove_visible_object_node(object_id)
+	for object_id in diff.added:
+		_add_visible_object_node(object_id)
+
+func _remove_visible_object_node(object_id: int):
+	if _visible_object_nodes.has(object_id):
+		remove_child(_visible_object_nodes[object_id])
+		_visible_object_nodes.erase(object_id)
+func _add_visible_object_node(object_id: int):
+	if not _visible_object_nodes.has(object_id):
+		var node = _load_object_node(_state.visible_objects[object_id])
+		add_child(node)
+		_visible_object_nodes[object_id] = node
+
+func _load_object_node(entity: WorldObjectEntity):
+	if entity.resource is WorldLocationResource:
+		var node_package = load("res://feature/world_objects_layer/internal/world_location_node.tscn")
+		var node: WorldLocationNode = node_package.instantiate()
+		node.resource = entity.resource
+		return node

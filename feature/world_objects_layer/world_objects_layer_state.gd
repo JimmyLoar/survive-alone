@@ -4,21 +4,18 @@ extends Injectable
 var _world_object_repository: WorldObjectRepository
 var _host_node: Node
 
-func _init(host_node: Node) -> void:
-	_host_node = host_node
-	_world_object_repository = Injector.inject(WorldObjectRepository, host_node)
-
 class VisibleObjectsDiff:
-	var removed: Array[String] # Array of ids
-	var added: Array[String]
-	var updated: Array[String]
+	var removed: Array[int] # Array of ids
+	var added: Array[int]
 	
 	var is_empty:
 		get:
-			return removed.size() == 0 and added.size() == 0 and updated.size() == 0
+			return removed.size() == 0 and added.size() == 0
 
 var _visible_objects: Dictionary
 signal visible_objects_changed(diff: VisibleObjectsDiff, value: Dictionary)
+var visible_objects:
+	get: return _visible_objects
 
 var _visible_rect: Rect2
 var visible_rect: Rect2:
