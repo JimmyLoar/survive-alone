@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsousn3bw4sgu"]
+
+[ext_resource type="Script" path="res://game_editor/screens/editor_screen/features/biomes_tool/game_editor__biomes_tool.gd" id="1_5c64g"]
+[ext_resource type="Script" path="res://game_editor/screens/editor_screen/features/biomes_tool/internal/visible_biome_rects.gd" id="2_72hsh"]
+[ext_resource type="PackedScene" uid="uid://eahcnuvi8twy" path="res://game_editor/screens/editor_screen/features/biomes_tool/internal/biomes_list.tscn" id="2_a7f53"]
+[ext_resource type="Script" path="res://game_editor/screens/editor_screen/features/biomes_tool/internal/paint_view.gd" id="4_muf2j"]
+
+[node name="BiomesTool" type="Node2D"]
+script = ExtResource("1_5c64g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VisibleBiomeRects" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_72hsh")
+
+[node name="PaintView" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_muf2j")
+
+[node name="MapHoveredCatcher" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BiomesList" parent="CanvasLayer" instance=ExtResource("2_a7f53")]
+
+[node name="HoveredTilePos" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 7.0
+offset_top = 690.0
+offset_right = 203.0
+offset_bottom = 713.0
+text = "unhovered"
+
+[node name="SelectedBiomeTools" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 17.0
+offset_right = 875.0
+offset_bottom = 45.0
+
+[node name="PaintRect" type="Button" parent="CanvasLayer/SelectedBiomeTools"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "Paint Rect"
+
+[node name="RemoveRect" type="Button" parent="CanvasLayer/SelectedBiomeTools"]
+modulate = Color(0.596783, 0.172031, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+disabled = true
+text = "Remove Rect"
+
+[connection signal="mouse_entered" from="CanvasLayer/MapHoveredCatcher" to="." method="_on_map_hovered_catcher_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MapHoveredCatcher" to="." method="_on_map_hovered_catcher_mouse_exited"]
+[connection signal="toggled" from="CanvasLayer/SelectedBiomeTools/PaintRect" to="." method="_on_paint_rect_toggled"]

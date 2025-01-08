@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="GameProperty" load_steps=3 format=3 uid="uid://fnk6s753jtyh"]
+
+[ext_resource type="Script" path="res://resources/schema/character_property.gd" id="2_d1dcn"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_2d5s1"]
+
+[resource]
+script = ExtResource("2_d1dcn")
+name_key = "radiation"
+visible_name = "PROPERTY_NAME_RADIATION"
+discription = "PROPERTY_DISCRIPTION_RADIATION"
+texture = ExtResource("3_2d5s1")
+default_value = 5.1
+default_max_value = 201.6
+default_min_value = 0.0
+default_delta_value = 0.0
+modulate = Color(0.913725, 0.588235, 0.478431, 1)

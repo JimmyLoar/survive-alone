@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3tltb1ssxrye"]
+
+[ext_resource type="Script" path="res://feature/world_objects_layer/world_objects_layer.gd" id="1_gj5ut"]
+
+[node name="WorldObjectsLayer" type="Node2D"]
+script = ExtResource("1_gj5ut")

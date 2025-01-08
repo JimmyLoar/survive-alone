@@ -1,0 +1,46 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsq170wia7k5p"]
+
+[ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
+[ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
+[ext_resource type="PackedScene" uid="uid://skppxmtw5diw" path="res://feature/virtual_chunks/virtual_chunks.tscn" id="3_6pu03"]
+[ext_resource type="PackedScene" uid="uid://d3alad2ncunfn" path="res://feature/game_time/game_time.tscn" id="3_odwc8"]
+[ext_resource type="PackedScene" uid="uid://d3tltb1ssxrye" path="res://feature/world_objects_layer/world_objects_layer.tscn" id="4_3odrv"]
+[ext_resource type="PackedScene" uid="uid://dyck7g6ogkopw" path="res://feature/main_camera/main_camera.tscn" id="4_j0xa1"]
+[ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://feature/character/character.tscn" id="5_g3jl3"]
+[ext_resource type="PackedScene" uid="uid://di5n7reysaxjj" path="res://feature/virtual_chunks_grid/virtual_chunks_grid.tscn" id="5_m4yp1"]
+[ext_resource type="PackedScene" uid="uid://bmx1kvsxqsfod" path="res://feature/screen_mouse_events/screen_mouse_events.tscn" id="5_myumh"]
+[ext_resource type="PackedScene" uid="uid://c08a22asf3v80" path="res://feature/fps_display/fps_display.tscn" id="7_hexpw"]
+[ext_resource type="PackedScene" uid="uid://bn7r5o20xaisj" path="res://feature/character_properties_bar/charater_properties_bar.tscn" id="7_ksbsw"]
+
+[node name="WorldScreen" type="Node2D"]
+script = ExtResource("1_nlrl3")
+
+[node name="BiomesLayer" parent="." instance=ExtResource("2_pbygt")]
+
+[node name="VirtualChunks" parent="." instance=ExtResource("3_6pu03")]
+
+[node name="WorldObjectsLayer" parent="." instance=ExtResource("4_3odrv")]
+
+[node name="VirtualChunksGrid" parent="." instance=ExtResource("5_m4yp1")]
+visible = false
+_draw_chunks = true
+color = Color(0.749338, 0, 0.264808, 1)
+
+[node name="Character" parent="." instance=ExtResource("5_g3jl3")]
+
+[node name="MainCamera" parent="." instance=ExtResource("4_j0xa1")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FpsDisplay" parent="UI" instance=ExtResource("7_hexpw")]
+visible = false
+
+[node name="CharaterPropertiesBar" parent="UI" instance=ExtResource("7_ksbsw")]
+
+[node name="ScreenMouseEvents" parent="UI" instance=ExtResource("5_myumh")]
+
+[node name="GameTime" parent="UI" instance=ExtResource("3_odwc8")]
+offset_left = 1083.0
+offset_top = 10.0
+offset_right = 1111.0
+offset_bottom = 33.0

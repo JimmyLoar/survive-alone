@@ -1,4 +1,4 @@
-class_name WorldScreen
+class_name WorldScree
 extends Node2D
 
 
@@ -13,7 +13,7 @@ var logger = GodotLogger.with("World")
 var database: Database
 
 var _player_properties: PlayerPropertiesController
-var _game_time: GameTimeCounter 
+var _game_time:  
 var _inventories_controller: InventoriesController
 
 

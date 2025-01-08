@@ -1,0 +1,144 @@
+[gd_scene load_steps=2 format=3 uid="uid://eahcnuvi8twy"]
+
+[ext_resource type="Script" path="res://game_editor/screens/editor_screen/features/biomes_tool/internal/biomes_list.gd" id="1_dwyjm"]
+
+[node name="BiomesList" type="Panel"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -672.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_dwyjm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+split_offset = 400
+
+[node name="Control" type="VBoxContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VSplitContainer/Control"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/Control/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Biomes"
+
+[node name="VScrollBar" type="ScrollContainer" parent="MarginContainer/VSplitContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="BiomesList" type="ItemList" parent="MarginContainer/VSplitContainer/Control/VScrollBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+auto_height = true
+text_overrun_behavior = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="CreateBiome" type="Button" parent="MarginContainer/VSplitContainer/Control/MarginContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VSplitContainer/Control"]
+layout_mode = 2
+
+[node name="Inspector" type="Control" parent="MarginContainer/VSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VSplitContainer/Inspector"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 60.0
+offset_bottom = 25.0
+text = "Id:"
+
+[node name="IdLabel" type="Label" parent="MarginContainer/VSplitContainer/Inspector"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 69.0
+offset_top = 1.0
+offset_right = 259.0
+offset_bottom = 24.0
+text = "id"
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/Inspector"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 39.0
+offset_right = 49.0
+offset_bottom = 62.0
+text = "Name:"
+
+[node name="NameInput" type="TextEdit" parent="MarginContainer/VSplitContainer/Inspector"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 68.0
+offset_top = 30.0
+offset_right = 273.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 16
+placeholder_text = "new biome"
+
+[node name="Label3" type="Label" parent="MarginContainer/VSplitContainer/Inspector"]
+layout_mode = 0
+offset_top = 91.0
+offset_right = 40.0
+offset_bottom = 114.0
+text = "Type"
+
+[node name="TypeOption" type="OptionButton" parent="MarginContainer/VSplitContainer/Inspector"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 72.0
+offset_top = 88.0
+offset_right = 266.0
+offset_bottom = 116.0
+item_count = 2
+popup/item_0/text = "Forest"
+popup/item_1/text = "Grass"
+popup/item_1/id = 1
+
+[node name="RemoveBiome" type="Button" parent="MarginContainer/VSplitContainer/Inspector"]
+unique_name_in_owner = true
+modulate = Color(0.729791, 0.0957922, 2.88785e-07, 1)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 191.0
+offset_right = 270.0
+offset_bottom = 222.0
+text = "Remove"
+
+[connection signal="item_selected" from="MarginContainer/VSplitContainer/Control/VScrollBar/BiomesList" to="." method="_on_biomes_list_item_selected"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/Control/MarginContainer/CreateBiome" to="." method="_on_create_biome_pressed"]
+[connection signal="text_changed" from="MarginContainer/VSplitContainer/Inspector/NameInput" to="." method="_on_name_input_text_changed"]
+[connection signal="item_selected" from="MarginContainer/VSplitContainer/Inspector/TypeOption" to="." method="_on_type_option_item_selected"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/Inspector/RemoveBiome" to="." method="_on_remove_biome_pressed"]

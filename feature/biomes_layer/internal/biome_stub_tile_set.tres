@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://by7a2apq6l0wn"]
+
+[ext_resource type="Texture2D" uid="uid://dcjdo3algf4ky" path="res://feature/biomes_layer/internal/biome_stub_attlass.jpg" id="1_kiypl"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t381j"]
+texture = ExtResource("1_kiypl")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_t381j")

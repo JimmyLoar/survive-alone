@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://pgjky2v24tb1"]
+
+[ext_resource type="Script" path="res://game_editor/game_editor.gd" id="1_xbjlh"]
+
+[node name="GameEditor" type="Node2D"]
+script = ExtResource("1_xbjlh")

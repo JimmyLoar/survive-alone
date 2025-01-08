@@ -17,21 +17,23 @@ var _properties: Array[Dictionary] = [{
 
 
 func set_dependence(objects: Array):
-	if objects[0] as PlayerPropertiesController:
-		_dependence = objects[0]
-		return
-	
-	_dependence = null
-	GodotLogger.warn("%s | setted dependence array have not [color=green]PlayerPropertiesController[/color]" % [self.get_script().get_global_name()], objects)
-	return
+	pass
+	#if objects[0] as PlayerPropertiesController:
+		#_dependence = objects[0]
+		#return
+	#
+	#_dependence = null
+	#GodotLogger.warn("%s | setted dependence array have not [color=green]PlayerPropertiesController[/color]" % [self.get_script().get_global_name()], objects)
+	#return
 
 
 func execute():
-	var properties: PlayerPropertiesController = _dependence
-	for i in count_properties:
-		var _name = _properties[i].name
-		var value = _properties[i].value + properties.get_value(_name)
-		properties.set_value(_name, value)
+	pass
+	#var properties: PlayerPropertiesController = _dependence
+	#for i in count_properties:
+		#var _name = _properties[i].name
+		#var value = _properties[i].value + properties.get_value(_name)
+		#properties.set_value(_name, value)
 
 
 func _get_property_list() -> Array[Dictionary]:

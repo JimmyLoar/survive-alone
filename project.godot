@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="SurviveAlone"
-run/main_scene="res://bootstrap.tscn"
+run/main_scene="res://game/game.tscn"
 run/print_header=false
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 game/size/world=Vector2i(70, 35)
 game/size/chunk=50
-game/size/tile=30
+game/size/tile=32
 game/version/major=0
 game/version/minor=0
 game/version/patch=0
@@ -27,9 +27,7 @@ game/version/string="dev"
 
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
-GodotLogger="*res://addons/logger/logger.gd"
-Game="*res://feature/!autoloads/game.gd"
-LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
+Injector="*res://addons/godot-di/Injector.gd"
 
 [display]
 
@@ -44,22 +42,13 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[dotnet]
+
+project/assembly_name="SurviveAlone"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg", "res://addons/script_panel_plus/plugin.cfg")
-
-[file_customization]
-
-folder_colors={
-"res://core/my_tests/": "red",
-"res://core/script/class/": "red",
-"res://core/script/inventory/": "red",
-"res://core/script/nodes/": "blue",
-"res://core/script/resource/": "purple",
-"res://core/script/singletone/": "yellow",
-"res://core/script/static/": "green",
-"res://core/unit_tests/": "red"
-}
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [gui]
 
@@ -68,6 +57,7 @@ theme/custom="res://assets/themes/main.tres"
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
