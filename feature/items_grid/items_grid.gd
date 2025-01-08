@@ -4,20 +4,28 @@ extends GridContainer
 signal item_pressed(item_index: int)
 signal duble_pressed(item_index:int)
 
+@export var _init_size: Vector2i = Vector2i(6, 4): 
+	set(value): 
+		_init_size = value.max(Vector2i(1, 1))
+
 var button_group := ButtonGroup.new()
+var timer: SceneTreeTimer
+
 @onready var logger = GodotLogger.with('SlotCotroller')
 
 
 func _init() -> void:
 	set("theme_override_constants/h_separation", 0)
 	set("theme_override_constants/v_separation", 0)
+	init_items(_init_size)
 
 
-func init_items(_size := Vector2i(6, 4)):
+func init_items(_size: Vector2i):
 	#button_group.allow_unpress = true
+	_clear_items()
 	columns = _size.x
 	for i in _size.x * _size.y:
-		var new_item := InventorySlotDisplay.new()
+		var new_item := ItemContainer.new()
 		new_item.pressed.connect(_on_item_pressed.bind(i))
 		new_item.button_group = button_group
 		new_item.toggle_mode = true
@@ -32,7 +40,12 @@ func update_items(items_list: Array):
 		child.update(value)
 
 
-var timer: SceneTreeTimer
+func _clear_items():
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
+
+
 func _on_item_pressed(item_index: int):
 	logger.debug("Pressed %d items." % item_index)
 	item_pressed.emit(item_index)

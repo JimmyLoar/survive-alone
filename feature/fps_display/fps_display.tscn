@@ -6,8 +6,9 @@
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1.0
+offset_left = -82.0
 offset_bottom = 23.0
 grow_horizontal = 0
+text = "FPS: f"
 horizontal_alignment = 2
 script = ExtResource("1_smsc0")

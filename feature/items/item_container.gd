@@ -1,4 +1,4 @@
-class_name InventorySlotDisplay
+class_name ItemContainer
 extends Button
 
 var display: ItemDisplay

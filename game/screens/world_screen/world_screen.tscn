@@ -31,16 +31,27 @@ color = Color(0.749338, 0, 0.264808, 1)
 [node name="MainCamera" parent="." instance=ExtResource("4_j0xa1")]
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="FpsDisplay" parent="UI" instance=ExtResource("7_hexpw")]
-visible = false
+offset_left = -83.0
+offset_top = 10.0
+offset_right = -1.0
+offset_bottom = 33.0
+size_flags_horizontal = 8
+text = "FPS  "
 
 [node name="CharaterPropertiesBar" parent="UI" instance=ExtResource("7_ksbsw")]
 
 [node name="ScreenMouseEvents" parent="UI" instance=ExtResource("5_myumh")]
 
 [node name="GameTime" parent="UI" instance=ExtResource("3_odwc8")]
-offset_left = 1083.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -215.0
 offset_top = 10.0
-offset_right = 1111.0
+offset_right = -75.0
 offset_bottom = 33.0
+grow_horizontal = 0
+text = "aaaaaaaaaaaaaaa"

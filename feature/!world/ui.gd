@@ -8,7 +8,7 @@ extends CanvasLayer
 enum CMKeys{INVENTORY, LOCATION}
 
 @onready var _content_menus := {
-	CMKeys.INVENTORY: $"VBoxContainer/HBoxContainer/TabContainer/CM Inventory",
+	CMKeys.INVENTORY: $"VBoxContainer/HBoxContainer/TabContainer/CM InventoryState",
 	CMKeys.LOCATION: $"VBoxContainer/HBoxContainer/TabContainer/CM Loacation",
 }
 

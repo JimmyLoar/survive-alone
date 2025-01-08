@@ -1,6 +1,6 @@
 extends GutTest
 
-var inventory := Inventory.new("for testing")
+var inventory := InventoryState.new("for testing")
 
 
 func test_append_used():

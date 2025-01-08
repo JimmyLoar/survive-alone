@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://feature/items/item_interaction.gd" id="1_1n33t"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_mbiye"]
-[ext_resource type="PackedScene" uid="uid://dqafjxxiadcpx" path="res://common/ui/element/property_display.tscn" id="2_kudu4"]
-[ext_resource type="Script" path="res://feature/inventory/items_grid.gd" id="3_jhti2"]
+[ext_resource type="PackedScene" path="res://common/ui/element/property_display.tscn" id="2_kudu4"]
+[ext_resource type="Script" path="res://feature/items_grid/items_grid.gd" id="3_jhti2"]
 
 [node name="ItemInteraction" type="PanelContainer"]
 offset_right = 313.0

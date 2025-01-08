@@ -11,17 +11,17 @@ func _init() -> void:
 	create_inventory("tmp")
 
 
-func create_inventory(name_inv: String) -> Inventory:
+func create_inventory(name_inv: String) -> InventoryState:
 	if _inventories.has(name_inv):
 		logger.debug("Attempt to create an inventory with an existing name [color=yellow]%s[/color]. Return existed inv." % [name_inv])
 		return _inventories[name_inv]
 	
-	var new_inventory := Inventory.new(name_inv)
+	var new_inventory := InventoryState.new(name_inv)
 	_inventories[name_inv] = new_inventory
 	return new_inventory
 
 
-func get_inventory(name_inv: String) -> Inventory:
+func get_inventory(name_inv: String) -> InventoryState:
 	if _inventories.has(name_inv):
 		return _inventories[name_inv]
 	
@@ -29,7 +29,7 @@ func get_inventory(name_inv: String) -> Inventory:
 	return create_inventory(name_inv)
 
 
-func get_player_inventory() -> Inventory:
+func get_player_inventory() -> InventoryState:
 	return get_inventory("player")
 
 
@@ -38,7 +38,7 @@ func set_local_inventory_name(_name: String):
 	logger.debug("Set new local inventory name [color=green]%s[/color]" % _name)
 
 
-func get_location_inventory() -> Inventory:
+func get_location_inventory() -> InventoryState:
 	return get_inventory(_location_inventory)
 
 
@@ -50,10 +50,10 @@ func move_item_in_inventories(item: Item, count := -1, player_to_local: bool = t
 
 
 class ItemTransfer:
-	var from_inventory: Inventory
-	var to_inventory: Inventory
+	var from_inventory: InventoryState
+	var to_inventory: InventoryState
 	
-	func _init(_from: Inventory, _to: Inventory) -> void:
+	func _init(_from: InventoryState, _to: InventoryState) -> void:
 		if _from == _to:
 			GodotLogger.warn("ItemTransfer | Attempt to create transfer the same inventory")
 			self.free()

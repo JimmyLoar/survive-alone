@@ -33,10 +33,10 @@ func _update_items_amount(items: Array[ItemData]):
 
 func set_dependence(objects: Array): #virtual
 	database = objects[0]
-	_dependence = [] as Array[Inventory]
+	_dependence = [] as Array[InventoryState]
 	for i in objects.size():
 		if i == 0: continue
-		var inv: Inventory = objects[i]
+		var inv: InventoryState = objects[i]
 		if not inv: continue
 		_dependence.append(objects[i])
 
@@ -52,7 +52,7 @@ func execute(): #virtual
 func _add_items():
 	for key in receive_items_amount:
 		var data: ItemData = database.fetch_data_string("items/%s" % key)
-		var inv: Inventory = _dependence[0]
+		var inv: InventoryState = _dependence[0]
 		inv.add_item(data, receive_items_amount[key])
 
 
@@ -60,7 +60,7 @@ func _remove_items():
 	for key in require_items_amount:
 		var data: ItemData = database.fetch_data_string("items/%s" % key)
 		var reaming: int = require_items_amount[key]
-		for inv: Inventory in _dependence:
+		for inv: InventoryState in _dependence:
 			if reaming <= 0: continue
 			reaming = inv.remove_item(data, reaming)
 
@@ -69,7 +69,7 @@ func _has_items() -> bool:
 	var result := true
 	for key: String in require_items_amount.keys():
 		var items := 0
-		for inv: Inventory in _dependence:
+		for inv: InventoryState in _dependence:
 			var item: Item = inv.fetch_item(key)
 			if not item: continue
 			items += item.get_total_amount()

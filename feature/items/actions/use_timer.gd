@@ -4,10 +4,11 @@ extends IAction
 @export_range(1, 144000, 1) var game_time := 1
 @export_range(1, 1000, 1) var multiper := 1
 
-var time: GameTimeCounter
+var time: GameTimeState
 
 func set_dependence(objects := []):
-	time = objects[0] as GameTimeCounter
+	pass
+	#time = Injector.inject(GameTimeState, self)
 
 
 func execute():

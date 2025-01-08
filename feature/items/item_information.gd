@@ -11,7 +11,7 @@ signal transfered_items(item: Item, count: int)
 @onready var pick_up_button: Button = $VBoxContainer/Buttons/PickUpButton
 
 
-@onready var inventory: Inventory: 
+@onready var inventory: InventoryState: 
 	set = set_inventory
 
 var _last_item: Item
@@ -67,7 +67,7 @@ func update_interaction_panel(index: int, item: ItemData):
 		panel.reduced_self.connect(_on_reduced_self)
 
 
-func set_inventory(new_inv: Inventory):
+func set_inventory(new_inv: InventoryState):
 	inventory = new_inv
 	update()
 
