@@ -6,7 +6,7 @@ signal duble_pressed(item: Item)
 
 @export var page_size := Vector2i(3, 3)
 
-@onready var item_controller: SlotCotroller = $VBoxContainer/SlotController
+@onready var items_grid: SlotCotroller = $VBoxContainer/ItemsGrid
 @onready var page_controller: PageController = $VBoxContainer/PageController
 
 var _items: Array[Item]
@@ -17,7 +17,7 @@ var inventory: InventoryState:
 
 func _ready() -> void:
 	visibility_changed.connect(update)
-	item_controller.init_items(page_size)
+	items_grid.init_items(page_size)
 	page_controller.set_page_size(page_size.x * page_size.y)
 
 
@@ -34,9 +34,9 @@ func set_inventory(new_inventory: InventoryState):
 
 func update():
 	if not visible or not inventory: return
-	if item_controller:
+	if items_grid:
 		_items = inventory.get_items(true)
-		item_controller.update_items(_items)
+		items_grid.update_items(_items)
 	
 	if page_controller:
 		page_controller.set_inventory_size(inventory.get_size())
@@ -44,7 +44,7 @@ func update():
 
 
 func get_last_pressed():
-	return item_controller.button_group.get_pressed_button().get_index()
+	return items_grid.button_group.get_pressed_button().get_index()
 
 
 func _on_item_controller_item_pressed(item_index: int) -> void:

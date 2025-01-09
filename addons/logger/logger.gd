@@ -205,9 +205,14 @@ func fatal(message:String,values={}):
 	call_thread_safe("logger",message,values,LogLevel.FATAL)
 
 
+static func get_global_logger() -> Log:
+	if not Engine.has_singleton("GodotLogger"): 
+		Engine.register_singleton("GodotLogger", Log.new())
+	return Engine.get_singleton("GodotLogger")
+
 func _write_logs(message:String, log_level):
 	if not _file:
-		var global_logger = _get_global_logger()
+		var global_logger = get_global_logger()
 		if not global_logger: return
 		if not global_logger._file:
 			global_logger._load_file()
@@ -233,12 +238,6 @@ func _get_log_path():
 	if Engine.is_editor_hint(): 
 		return  "%s_editor_%s.%s" % [path_array[0], time, path_array[1]]
 	return "%s_%s.%s" % [path_array[0], time, path_array[1]]
-
-
-func _get_global_logger():
-	if not Engine.has_singleton("GodotLogger"): 
-		Engine.register_singleton("GodotLogger", GodotLogger)
-	return Engine.get_singleton("GodotLogger")
 
 
 func _load_file():

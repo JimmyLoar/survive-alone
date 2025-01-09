@@ -46,7 +46,7 @@ func change_amount(delta_value: int):
 func change_durability(total_value: int):
 	var reaming = total_value
 	var loopbreak := 120
-	GodotLogger.info("%s" % self)
+	Log.get_global_logger().info("%s" % self)
 	while reaming > 0 and get_total_amount() > 0 and loopbreak > 0:
 		if _used.is_empty():
 			_used.append(_data.durability)
@@ -59,7 +59,7 @@ func change_durability(total_value: int):
 		loopbreak -= 1
 	
 	changed.emit(_index)
-	GodotLogger.info("%s" % self)
+	Log.get_global_logger().info("%s" % self)
 
 
 func append_used(new_used: Array):

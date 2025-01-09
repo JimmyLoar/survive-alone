@@ -12,8 +12,8 @@ extends Node2D
 var logger = GodotLogger.with("World")
 var database: Database
 
-var _player_properties: PlayerPropertiesController
-var _game_time:  
+var _player_properties: CharacterPropertyResource
+var _game_time: GameTimeState
 var _inventories_controller: InventoriesController
 
 

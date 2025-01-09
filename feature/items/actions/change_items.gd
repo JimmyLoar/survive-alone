@@ -42,11 +42,11 @@ func set_dependence(objects: Array): #virtual
 
 
 func execute(): #virtual
-	GodotLogger.debug("[color=orangered]ChangeItemAction[/color] | Start execute!")
+	Log.get_global_logger().debug("[color=orangered]ChangeItemAction[/color] | Start execute!")
 	if _has_items():
 		_remove_items()
 		_add_items()
-		GodotLogger.debug("succes!")
+		Log.get_global_logger().debug("succes!")
 
 
 func _add_items():

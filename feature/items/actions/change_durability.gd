@@ -10,7 +10,7 @@ func set_dependence(objects: Array): #virtual
 		return
 	
 	_dependence = null
-	GodotLogger.warn("%s | setted dependence array have not [color=green]Item[/color]" % [self.get_script().get_global_name()], objects)
+	Log.get_global_logger().warn("%s | setted dependence array have not [color=green]Item[/color]" % [self.get_script().get_global_name()], objects)
 	return
 
 

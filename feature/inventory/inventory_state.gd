@@ -14,7 +14,7 @@ var _logger: Log
 func _init(new_name := "InventoryState") -> void:
 	name = new_name
 	changed.connect(_recount_index_items)
-	_logger = GodotLogger.with("InventoryState [color=green]%s[/color]" % self.name)
+	_logger = Log.get_global_logger().with("InventoryState [color=green]%s[/color]" % self.name)
 
 
 func add_item(data: ItemData, value := 0, used: Array = []) -> Item:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=16 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://bmx1kvsxqsfod" path="res://feature/screen_mouse_events/screen_mouse_events.tscn" id="5_myumh"]
 [ext_resource type="PackedScene" uid="uid://c08a22asf3v80" path="res://feature/fps_display/fps_display.tscn" id="7_hexpw"]
 [ext_resource type="PackedScene" uid="uid://bn7r5o20xaisj" path="res://feature/character_properties_bar/charater_properties_bar.tscn" id="7_ksbsw"]
+[ext_resource type="PackedScene" uid="uid://bksbtwk2euyms" path="res://feature/ui_content_menu/content_menu.tscn" id="12_yoyd0"]
+[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/ui_content_container/content_container.tscn" id="13_pjors"]
+[ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory.tscn" id="14_kcr10"]
+[ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="15_ql36p"]
 
 [node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_nlrl3")
@@ -55,3 +59,48 @@ offset_right = -75.0
 offset_bottom = 33.0
 grow_horizontal = 0
 text = "aaaaaaaaaaaaaaa"
+
+[node name="ContentMenu" parent="UI" instance=ExtResource("12_yoyd0")]
+offset_top = 30.0
+
+[node name="ContentContainer1" parent="UI/ContentMenu" instance=ExtResource("13_pjors")]
+layout_mode = 2
+
+[node name="ContentContainer2" parent="UI/ContentMenu" instance=ExtResource("13_pjors")]
+layout_mode = 2
+
+[node name="ContentContainer3" parent="UI/ContentMenu" instance=ExtResource("13_pjors")]
+layout_mode = 2
+
+[node name="ContentContainer4" parent="UI/ContentMenu" instance=ExtResource("13_pjors")]
+layout_mode = 2
+
+[node name="ContentContainer5" parent="UI/ContentMenu" instance=ExtResource("13_pjors")]
+layout_mode = 2
+
+[node name="ContentContainer6" parent="UI/ContentMenu" instance=ExtResource("13_pjors")]
+layout_mode = 2
+
+[node name="ContentContainer7-Inventory" parent="UI/ContentMenu" instance=ExtResource("13_pjors")]
+visible = false
+layout_mode = 2
+
+[node name="Main-InventoryDisplay" parent="UI/ContentMenu/ContentContainer7-Inventory" instance=ExtResource("14_kcr10")]
+visible = false
+layout_mode = 2
+
+[node name="Sub-ItemInformationPanel" parent="UI/ContentMenu/ContentContainer7-Inventory" instance=ExtResource("15_ql36p")]
+visible = false
+layout_mode = 2
+
+[node name="ContentContainer8-Location" parent="UI/ContentMenu" instance=ExtResource("13_pjors")]
+visible = false
+layout_mode = 2
+
+[node name="Main-InventoryDisplay" parent="UI/ContentMenu/ContentContainer8-Location" instance=ExtResource("14_kcr10")]
+visible = false
+layout_mode = 2
+
+[node name="Sub-ItemInformationPanel" parent="UI/ContentMenu/ContentContainer8-Location" instance=ExtResource("15_ql36p")]
+visible = false
+layout_mode = 2

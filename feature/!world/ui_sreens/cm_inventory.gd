@@ -7,7 +7,7 @@ extends ContentMenu
 var _inventory_controller: InventoriesController
 
 func _init() -> void:
-	name = "Inventory"
+	name = "InventoryState"
 
 
 func _ready() -> void:
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func update_inventory():
-	var inv: Inventory = _inventory_controller.get_player_inventory()
+	var inv: InventoryState = _inventory_controller.get_player_inventory()
 	inventory_display.set_inventory(inv)
 	item_information_panel.set_inventory(inv)
 

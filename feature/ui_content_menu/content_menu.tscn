@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bksbtwk2euyms"]
+
+[ext_resource type="Script" path="res://feature/ui_content_menu/content_menu.gd" id="1_c6v8d"]
+[ext_resource type="PackedScene" uid="uid://os5qyr4xwmqx" path="res://feature/ui_content_menu/menu_buttons_bar.tscn" id="2_xflwk"]
+
+[node name="ContentMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c6v8d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ContentBattonsBar" parent="HBoxContainer" node_paths=PackedStringArray("target_node") instance=ExtResource("2_xflwk")]
+layout_mode = 2
+target_node = NodePath("../TabContainer")
+
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+clip_tabs = false
+tabs_visible = false
+deselect_enabled = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+border_width = 2.0
+
+[connection signal="button_pressed" from="HBoxContainer/ContentBattonsBar" to="HBoxContainer/TabContainer" method="set_current_tab"]

@@ -11,7 +11,7 @@ signal duble_pressed(item_index:int)
 var button_group := ButtonGroup.new()
 var timer: SceneTreeTimer
 
-@onready var logger = GodotLogger.with('SlotCotroller')
+@onready var logger = Log.get_global_logger().with('SlotCotroller')
 
 
 func _init() -> void:

@@ -6,7 +6,7 @@ func _init() -> void:
 
 
 func update_inventory():
-	var inv: Inventory = _inventory_controller.get_location_inventory()
+	var inv: InventoryState = _inventory_controller.get_location_inventory()
 	inventory_display.set_inventory(inv)
 	item_information_panel.set_inventory(inv)
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://duvuvcyuqptrg"]
+[gd_scene load_steps=6 format=3 uid="uid://duvuvcyuqptrg"]
 
-[ext_resource type="PackedScene" uid="uid://xkocsmhfxip5" path="res://game/screens/world_screen/internal/ui_status_panel.tscn" id="1_4rn0x"]
 [ext_resource type="PackedScene" uid="uid://bov1qert3n6ln" path="res://feature/!world/ui_quick_bar.tscn" id="2_fgr0d"]
-[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/!world/ui_sreens/content_menu.tscn" id="3_ewsbk"]
+[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/ui_content_container/content_container.tscn" id="3_ewsbk"]
 [ext_resource type="PackedScene" uid="uid://bt7x31hbxwu7a" path="res://feature/!world/ui_sreens/cm_inventory.tscn" id="4_i7tgh"]
 [ext_resource type="PackedScene" uid="uid://yg7wttxvrjwe" path="res://feature/!world/ui_sreens/cm_location.tscn" id="5_hmmlf"]
 
@@ -50,9 +49,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
-
-[node name="StatusPanel" parent="VBoxContainer" instance=ExtResource("1_4rn0x")]
-layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
