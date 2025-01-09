@@ -10,3 +10,4 @@ repos:
         language_version: python3
         require_serial: true
         types: [gdscript]
+        additional_dependencies: [setuptools]
