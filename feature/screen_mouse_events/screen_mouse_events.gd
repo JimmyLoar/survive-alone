@@ -7,22 +7,25 @@ extends Control
 
 var _state: ScreenMouseEventsState
 
+
 func _enter_tree() -> void:
 	_state = Injector.provide(ScreenMouseEventsState, ScreenMouseEventsState.new(), self, "closest")
 
-func _input(event: InputEvent) -> void:
+
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_process_left_button(event)
-		_process_right_button(event)
+		#_process_right_button(event)
 	elif event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_process_left_button(event)
-		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			_process_right_button(event)
+		#elif event.button_index == MOUSE_BUTTON_RIGHT:
+			#_process_right_button(event)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			_process_zoom(event)
 	elif event is InputEventPanGesture:
 		_process_zoom(event)
+
 
 func _process_left_button(event: InputEvent):
 	# drag or click start
@@ -103,7 +106,7 @@ func _process_right_button(event: InputEvent):
 	# check threshold and start drag
 	elif event is InputEventMouseMotion and _state.right_button  is ScreenMouseEventsState.InitialPress:
 		var local_mouse_pos = get_local_mouse_position()
-		if local_mouse_pos.distance_to(_state.left_button.mouse_pos) > drag_threshold:
+		if local_mouse_pos.distance_to(_state.right_button.mouse_pos) > drag_threshold:
 			var new_right_button = ScreenMouseEventsState.DragStart.new()
 			new_right_button.input_event = event
 			new_right_button.initial_press = _state.right_button

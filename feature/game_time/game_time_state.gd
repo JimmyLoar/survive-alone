@@ -5,6 +5,9 @@ var _node
 func _init(node: Node):
 	_node = node
 
+signal time_changed(delta: int, value: int)
+signal day_changed(value: int)
+
 const DEFAULT_MULTYPER = 2
 const TIME_MULTYPER = 10.0
 const MINUT_IN_DAY = 1440 * TIME_MULTYPER
@@ -25,24 +28,22 @@ var _infinite: bool = false:
 		_node.set_physics_process(value)
 
 
-var _time: int = 0  # 1 real second = 6 game minut
-signal time_changed(delta: int, value: int)
-var time:int:
+var _time: int = 0: # 1 real second = 6 game minut
 	get: return _time
 	set(value):
 		if _time != value:
 			var delta = value - _time
 			_time = value
 			time_changed.emit(value, delta)
+ 
 
-var _day: int = 0 
-signal day_changed(value: int)
-var day:int:
+var _day: int = 0:
 	get: return _day
 	set(value):
-		if _day != value:
-			_day = value
-			day_changed.emit(value)
+		if _day != value: return
+		_day = value
+		day_changed.emit(value)
+
 
 func init_time(time: int, day: int):
 	_time = time
@@ -50,9 +51,11 @@ func init_time(time: int, day: int):
 	time_changed.emit(0, _time)
 	day_changed.emit(_day)
 
+
 func start():
 	_infinite = true
 	_multiper = DEFAULT_MULTYPER
+
 
 func stop():
 	_infinite = false
@@ -63,13 +66,16 @@ func stop():
 	#_reaming_add_time = action_minut * TIME_MULTYPER
 	#_time_progress.show_with_time(_reaming_add_time)
 	#_node.set_physics_process(true)
-#
+
+
 #func clear_action_time():
 	#_reaming_add_time = 0
 	#_multiper = DEFAULT_MULTYPER
-	
+
+
 func timeskip(minut: int) -> void:
 	_time_step(minut)
+
 
 func _time_step(delta: int):
 	_time += delta
@@ -78,6 +84,7 @@ func _time_step(delta: int):
 		_day += floori(_time / MINUT_IN_DAY)
 		_time -= snapped(_time, MINUT_IN_DAY)
 		day_changed.emit()
+
 
 func get_minut() -> int: return fmod(_time / TIME_MULTYPER, 60)
 func get_hour() -> int: return floori(_time / TIME_MULTYPER / 60.0)
