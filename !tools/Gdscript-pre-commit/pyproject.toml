@@ -1,0 +1,18 @@
+[project]
+name = "pre-commit-gdscript"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Egorich0270",email = "egorich0270@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pre-commit (>=4.0.1,<5.0.0)",
+    "gdtoolkit @ git+https://github.com/Scony/godot-gdscript-toolkit.git",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
