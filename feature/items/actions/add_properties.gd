@@ -16,7 +16,7 @@ var _properties: Array[Dictionary] = [{
 }]
 
 
-func set_dependence(objects: Array):
+func set_dependence(_objects: Array):
 	pass
 	#if objects[0] as PlayerPropertiesController:
 		#_dependence = objects[0]

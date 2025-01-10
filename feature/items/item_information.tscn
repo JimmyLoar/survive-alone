@@ -23,6 +23,7 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/Control"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3

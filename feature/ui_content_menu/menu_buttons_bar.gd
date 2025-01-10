@@ -16,7 +16,7 @@ func _ready() -> void:
 			continue
 
 
-func set_containers(containers: Array[Node], tab_containner: TabContainer):
+func set_containers(containers: Array[Node]):
 	var index: int = 0
 	for button in buttons_container.get_children():
 		if index >= containers.size():

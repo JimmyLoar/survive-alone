@@ -9,8 +9,10 @@ var _state: MainCameraState
 var _touch_events = {}
 var _last_drag_distance = 0
 
+
 func _enter_tree() -> void:
 	_state = Injector.provide(MainCameraState, MainCameraState.new(self), self, "closest")
+
 
 func _ready() -> void:
 	_screen_mouse_event_state.left_button_changed.connect(Callable(self, "_on_screen_left_mouse_button_changed"))
@@ -50,6 +52,7 @@ func _on_screen_zoom_changed(value: ScreenMouseEventsState.Zoom):
 				#var new_zoom = (-zoom_factor) if drag_distance < _last_drag_distance else (zoom_factor)
 				#zoom_camera(new_zoom)
 				#_last_drag_distance = drag_distance
+
 
 func zoom_camera(factor:float) -> void:
 	# зуум с ограничениями

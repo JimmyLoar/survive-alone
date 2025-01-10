@@ -2,7 +2,7 @@ extends PanelContainer
 
 signal reduced_self
 
-@onready var property_container: HBoxContainer = $MarginContainer/VBoxContainer/PropertyContainer
+@onready var property_container: HBoxContainer = $MarginContainer/VBoxContainer/CharaterPropertiesBar
 @onready var items_container: HBoxContainer = $MarginContainer/VBoxContainer/ItemsContainer
 @onready var slider: HSlider = $MarginContainer/VBoxContainer/HSlider
 @onready var button: Button = $MarginContainer/VBoxContainer/Button

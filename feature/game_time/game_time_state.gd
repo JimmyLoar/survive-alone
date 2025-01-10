@@ -6,7 +6,7 @@ func _init(node: Node):
 	_node = node
 
 const DEFAULT_MULTYPER = 2
-const TIME_MULTYPER = 10
+const TIME_MULTYPER = 10.0
 const MINUT_IN_DAY = 1440 * TIME_MULTYPER
 const _DATA =  {
 		"year": 2001,
@@ -17,6 +17,7 @@ const _DATA =  {
 	}
 
 var _reaming_add_time: int = 0
+
 var _multiper: int = DEFAULT_MULTYPER
 var _infinite: bool = false:
 	set(value):

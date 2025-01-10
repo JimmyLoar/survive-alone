@@ -6,7 +6,7 @@ extends IAction
 
 var time: GameTimeState
 
-func set_dependence(objects := []):
+func set_dependence(_objects := []):
 	pass
 	#time = Injector.inject(GameTimeState, self)
 

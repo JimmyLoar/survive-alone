@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=14 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -12,6 +12,18 @@
 [ext_resource type="PackedScene" uid="uid://c08a22asf3v80" path="res://feature/fps_display/fps_display.tscn" id="7_hexpw"]
 [ext_resource type="PackedScene" uid="uid://bn7r5o20xaisj" path="res://feature/character_properties_bar/charater_properties_bar.tscn" id="7_ksbsw"]
 [ext_resource type="PackedScene" uid="uid://bksbtwk2euyms" path="res://feature/ui_content_menu/content_menu.tscn" id="12_yoyd0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u53ai"]
+bg_color = Color(0.245984, 0.245984, 0.245984, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_blend = true
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 2.0
 
 [node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_nlrl3")
@@ -50,19 +62,23 @@ theme_override_constants/margin_bottom = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u53ai")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="CharaterPropertiesBar" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_ksbsw")]
+[node name="CharaterPropertiesBar" parent="UI/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" instance=ExtResource("7_ksbsw")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
-[node name="Space" type="Control" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Space" type="Control" parent="UI/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.4
 
-[node name="GameTime" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_odwc8")]
+[node name="GameTime" parent="UI/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" instance=ExtResource("3_odwc8")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -70,7 +86,7 @@ text = "aaaaaaaaaaaaaaa"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FpsDisplay" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_hexpw")]
+[node name="FpsDisplay" parent="UI/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" instance=ExtResource("7_hexpw")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8

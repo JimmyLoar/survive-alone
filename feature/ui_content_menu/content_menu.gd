@@ -6,5 +6,5 @@ extends MarginContainer
 
 
 func _ready() -> void:
-	battons_bar.set_containers(tab_container.get_children(), tab_container)
+	battons_bar.set_containers(tab_container.get_children())
 	tab_container.current_tab = -1

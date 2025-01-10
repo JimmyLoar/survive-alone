@@ -5,7 +5,7 @@ signal remove_items(item_list: Array)
 signal add_items(item_list: Array)
 signal transfered_items(item: Item, count: int)
 
-@onready var name_label: Label = $VBoxContainer/NameLabel
+@onready var name_label: Label = %NameLabel
 @onready var text_label: RichTextLabel = $VBoxContainer/ScrollContainer/VBoxContainer/RichTextLabel
 @onready var interactive_container: VBoxContainer = $VBoxContainer/ScrollContainer/VBoxContainer
 @onready var pick_up_button: Button = $VBoxContainer/Buttons/PickUpButton
