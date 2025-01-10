@@ -83,7 +83,7 @@ func _on_reduced_self() -> void:
 func _on_pick_up_button_pressed() -> void:
 	return
 	#if not _quantity_selecter:
-		#_quantity_selecter = Game.get_world_screen().get_quantity_selecter()
+		#_quantity_selecter = #Game.get_world_screen().get_quantity_selecter()
 	#_quantity_selecter.canseled.connect(_on_selecter_canseled, CONNECT_ONE_SHOT)
 	#_quantity_selecter.confirmed_value.connect(_on_selecter_confirmed_value, CONNECT_ONE_SHOT)
 	#_quantity_selecter.enable(_last_item.get_total_amount())

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bimu1uujo2qmv"]
+
+[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/ui_content_menu/content_containers/content_container_root.tscn" id="1_12ots"]
+[ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory.tscn" id="2_pr5kb"]
+[ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="3_vlfbt"]
+
+[node name="CC-Inventory" instance=ExtResource("1_12ots")]
+
+[node name="InventoryDisplay" parent="_MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("2_pr5kb")]
+layout_mode = 2
+
+[node name="SubContainer" parent="_MarginContainer/HBoxContainer" index="1"]
+current_tab = 0
+
+[node name="ItemInformationPanel" parent="_MarginContainer/HBoxContainer/SubContainer" index="1" instance=ExtResource("3_vlfbt")]
+layout_mode = 2
+metadata/_tab_index = 0

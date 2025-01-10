@@ -32,7 +32,7 @@ var printing_stack: bool = false
 var log_path: String = "res://.logs/game.log"
 var _config
 
-var _prefix  = "Game"
+var _prefix  = "#Game"
 var _default_args = {}
 
 var _file: FileAccess

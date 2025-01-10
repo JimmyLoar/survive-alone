@@ -30,6 +30,18 @@ func _ready() -> void:
 			child.queue_free()
 
 
+func change_visible():
+	self.visible = not self.visible
+
+
 func _transfer_to_container(child: Node, container: Node):
 	self.remove_child(child)
 	container.add_child(child)
+
+
+func _on_close_button_pressed():
+	if sub_container.current_tab == 0:
+		self.hide()
+		return
+	
+	sub_container.current_tab = 0

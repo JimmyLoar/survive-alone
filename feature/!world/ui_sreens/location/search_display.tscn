@@ -39,8 +39,7 @@ func _on_finished_search(_child_index: int, drop: Array[Dictionary]):
 	finished_amount -= 1
 	if finished_amount > 0: return
 	self.hide()
-	var inv := Game.get_world_screen().get_inventories_controller()\\
-				.get_inventory(Game.get_player_location().name)
+	var inv := InventoryState.new()
 	
 	for i in drop.size():
 		var loot = drop[i]

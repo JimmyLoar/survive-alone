@@ -37,7 +37,7 @@ func display_actions():
 
 
 func _display_properties(action: AddProppertyAction):
-	#var properties := Game.get_world_screen().get_player_properties()
+	#var properties := #Game.get_world_screen().get_player_properties()
 	for i in property_container.get_child_count():
 		var display: MarginContainer = property_container.get_child(i)
 		if action.count_properties <= i:
@@ -62,17 +62,17 @@ func _display_timer(action: UseTimerAction):
 
 
 #@onready var _dependences = {
-	#"AddProppertyAction"		: [Game.get_world_screen().get_player_properties()],
+	#"AddProppertyAction"		: [#Game.get_world_screen().get_player_properties()],
 	#"ChangeDurabilityAction"	: [],
 	#"ChangeItemsAction"			: [],
 	#"UseTimerAction"			: [],
 #}
 #func _update_dependence():
-	#var inventories: InventoriesController = Game.get_world_screen().get_inventories_controller()
+	#var inventories: InventoriesController = #Game.get_world_screen().get_inventories_controller()
 	#_dependences.merge({
 		#"ChangeDurabilityAction"	: [get_item()],
 		#"ChangeItemsAction"			: [load("res://content/database.gddb"), inventories.get_player_inventory(), inventories.get_location_inventory()],
-		#"UseTimerAction": [Game.get_world_screen().get_game_time()],
+		#"UseTimerAction": [#Game.get_world_screen().get_game_time()],
 	#}, true)
 
 func _on_button_pressed() -> void:

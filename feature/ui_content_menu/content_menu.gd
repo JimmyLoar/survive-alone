@@ -2,13 +2,9 @@ class_name ContentMenu
 extends MarginContainer
 
 @onready var tab_container: TabContainer = $HBoxContainer/TabContainer
+@onready var battons_bar: MarginContainer = $HBoxContainer/ContentBattonsBar
 
 
 func _ready() -> void:
-	for child in self.get_children():
-		if not child is ContentContainer:
-			continue
-		
-		self.remove_child(child)
-		tab_container.add_child(child)
+	battons_bar.set_containers(tab_container.get_children(), tab_container)
 	tab_container.current_tab = -1

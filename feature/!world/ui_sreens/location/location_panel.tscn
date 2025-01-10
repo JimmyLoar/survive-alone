@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://djj8lftj7w8hq"]
+[gd_scene load_steps=3 format=3 uid="uid://djj8lftj7w8hq"]
 
 [ext_resource type="Script" path="res://feature/!world/ui_sreens/location/location_panel.gd" id="1_f25e6"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_s8kgf"]
 [ext_resource type="PackedScene" uid="uid://fabysmmsww7k" path="res://feature/!world/ui_sreens/location/search_display.tscn" id="3_fp44n"]
 
 [node name="LocationPanel" type="MarginContainer"]
@@ -21,25 +20,23 @@ metadata/_tab_index = 0
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(1, 1)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 24
-text = "Location name"
+theme_override_font_sizes/font_size = 20
+text = "Item Name"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="CloseTextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="CloseSpace" type="Control" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture_normal = ExtResource("2_s8kgf")
-ignore_texture_size = true
-stretch_mode = 5
+mouse_filter = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2

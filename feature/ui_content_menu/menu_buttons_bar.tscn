@@ -18,72 +18,90 @@ script = ExtResource("1_rhtma")
 layout_mode = 2
 
 [node name="Button0" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 11
-disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_dbce0")
 text = "Allies"
+autowrap_mode = 3
+clip_text = true
 
 [node name="Button1" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 11
-disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_dbce0")
 text = "Health"
+autowrap_mode = 3
+clip_text = true
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 11
-disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_dbce0")
 text = "..."
+autowrap_mode = 3
+clip_text = true
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 11
-disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_dbce0")
 text = "Quests"
+autowrap_mode = 3
+clip_text = true
 
 [node name="Space" type="ReferenceRect" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Button4" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 11
-disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_dbce0")
 text = "Skills
 "
+autowrap_mode = 3
+clip_text = true
 
 [node name="Button5" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 11
-disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_dbce0")
 text = "Craft
 "
+autowrap_mode = 3
+clip_text = true
 
 [node name="Button6" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 11
 toggle_mode = true
 button_group = SubResource("ButtonGroup_dbce0")
 text = "Invetory"
+autowrap_mode = 3
+clip_text = true
 
 [node name="Button7" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 11
 toggle_mode = true
 button_group = SubResource("ButtonGroup_dbce0")
 text = "Location"
+autowrap_mode = 3
+clip_text = true
 
 [node name="Control3" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
