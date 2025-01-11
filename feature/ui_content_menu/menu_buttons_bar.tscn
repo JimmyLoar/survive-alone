@@ -1,0 +1,134 @@
+[gd_scene load_steps=5 format=3 uid="uid://os5qyr4xwmqx"]
+
+[ext_resource type="Script" path="res://common/version_display.gd" id="1_g2con"]
+[ext_resource type="Script" path="res://feature/ui_content_menu/menu_buttons_bar.gd" id="1_rhtma"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7o5kn"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+expand_margin_left = 6.0
+expand_margin_top = 2.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_dbce0"]
+
+[node name="ContentBattonsBar" type="MarginContainer"]
+offset_right = 75.0
+offset_bottom = 621.0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+script = ExtResource("1_rhtma")
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7o5kn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Button0" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 11
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dbce0")
+text = "Allies"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Button1" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 11
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dbce0")
+text = "Health"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 11
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dbce0")
+text = "..."
+autowrap_mode = 3
+clip_text = true
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 11
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dbce0")
+text = "Quests"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Space" type="ReferenceRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 11
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dbce0")
+text = "Skills
+"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Button5" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 11
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dbce0")
+text = "Craft
+"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Button6" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 11
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dbce0")
+text = "Invetory"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Button7" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 11
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dbce0")
+text = "Location"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Control3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="VersionDisplay" type="Label" parent="VBoxContainer/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 2
+script = ExtResource("1_g2con")

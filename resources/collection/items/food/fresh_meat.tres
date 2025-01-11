@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=11 format=3 uid="uid://csx1bauob5bnf"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=13 format=3 uid="uid://csx1bauob5bnf"]
 
 [ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_22vyk"]
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_yqaw7"]
 [ext_resource type="Script" path="res://feature/items/actions/!action.gd" id="2_3t0wc"]
 [ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_sq3a0"]
 [ext_resource type="Script" path="res://feature/items/actions/add_properties.gd" id="3_q33fj"]
+[ext_resource type="Script" path="res://feature/items/actions/use_timer.gd" id="5_77nok"]
 [ext_resource type="Script" path="res://feature/items/actions/change_items.gd" id="6_cbk8l"]
 
 [sub_resource type="Resource" id="Resource_copvr"]
@@ -34,9 +35,14 @@ receive_items_amount = {
 "fry_meat": 1
 }
 
+[sub_resource type="Resource" id="Resource_15k2s"]
+script = ExtResource("5_77nok")
+game_time = 90
+multiper = 6
+
 [sub_resource type="Resource" id="Resource_70ht1"]
 script = ExtResource("1_22vyk")
-actions = Array[ExtResource("2_3t0wc")]([SubResource("Resource_falop")])
+actions = Array[ExtResource("2_3t0wc")]([SubResource("Resource_falop"), SubResource("Resource_15k2s")])
 reduced_when_used = false
 can_stacable = false
 name_key = "cook"

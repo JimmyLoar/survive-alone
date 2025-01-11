@@ -17,4 +17,6 @@ database/config.cfg
 
 #IDE
 .vscode/
-/addons/script_panel_plus/saves
+
+#folders
+addons/script_panel_plus/saves/

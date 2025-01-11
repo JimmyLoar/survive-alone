@@ -7,24 +7,27 @@ extends MarginContainer
 var _drop_data: SearchDrop
 
 func _ready() -> void:
-	Game.player_changed_location.connect(_update)
+	##Game.player_changed_location.connect(_update)
+	
+	pass
 
 
 func _update():
-	var location : WorldObject = Game.get_player_location()
-	if not location or location.is_looted:
-		search_display.hide()
-		return
+	#var location : WorldObject = #Game.get_player_location()
+	#if not location or location.is_looted:
+		#search_display.hide()
+		#return
 	
-	var data: StructureData = location.data
-	name_label.text = "%s" % data.visible_name
-	_drop_data = data.search_drop
-	search_display.update(data.search_drop)
-	search_button.show()
+	#var data: StructureData = ResourceDb..data
+	#name_label.text = "%s" % data.visible_name
+	#_drop_data = data.search_drop
+	#search_display.update(data.search_drop)
+	#search_button.show()
+	pass
 
 
 func _on_search_pressed() -> void:
 	var searcher := Searcher.new()
 	search_button.hide()
 	search_display.start_search(searcher.search(_drop_data))
-	Game.get_player_location().is_looted = true
+	##Game.get_player_location().is_looted = true

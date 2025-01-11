@@ -19,7 +19,7 @@ func _on_visible_chunks_rect_changed(chunks_rect: Rect2i):
 	var tiles_rect = Rect2i(chunks_rect.position * tile_size, chunks_rect.size * tile_size)
 	_state.visible_tiles_rect = tiles_rect
 
-func _on_visible_tiles_rect_changed(diff: VisibleTilesDiff, visible_rect: Rect2i):
+func _on_visible_tiles_rect_changed(diff: VisibleTilesDiff, _visible_rect: Rect2i):
 	for rect in diff.removed:
 		_clear_rect(rect)
 	for rect in diff.added:

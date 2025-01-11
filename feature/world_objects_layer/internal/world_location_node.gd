@@ -29,13 +29,13 @@ func _ready() -> void:
 #
 #
 #func _char_entered(_char: Character):
-	##Game.set_player_location(self)
+	###Game.set_player_location(self)
 	##character_entered.emit()
 	#pass
 #
 #
 #func _char_exited(_char: Character):
-	##Game.set_player_location(null)
+	###Game.set_player_location(null)
 	##character_exited.emit()
 	#pass
 #

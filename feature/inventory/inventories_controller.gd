@@ -11,17 +11,17 @@ func _init() -> void:
 	create_inventory("tmp")
 
 
-func create_inventory(name_inv: String) -> Inventory:
+func create_inventory(name_inv: String) -> InventoryState:
 	if _inventories.has(name_inv):
 		logger.debug("Attempt to create an inventory with an existing name [color=yellow]%s[/color]. Return existed inv." % [name_inv])
 		return _inventories[name_inv]
 	
-	var new_inventory := Inventory.new(name_inv)
+	var new_inventory := InventoryState.new(name_inv)
 	_inventories[name_inv] = new_inventory
 	return new_inventory
 
 
-func get_inventory(name_inv: String) -> Inventory:
+func get_inventory(name_inv: String) -> InventoryState:
 	if _inventories.has(name_inv):
 		return _inventories[name_inv]
 	
@@ -29,7 +29,7 @@ func get_inventory(name_inv: String) -> Inventory:
 	return create_inventory(name_inv)
 
 
-func get_player_inventory() -> Inventory:
+func get_player_inventory() -> InventoryState:
 	return get_inventory("player")
 
 
@@ -38,11 +38,11 @@ func set_local_inventory_name(_name: String):
 	logger.debug("Set new local inventory name [color=green]%s[/color]" % _name)
 
 
-func get_location_inventory() -> Inventory:
+func get_location_inventory() -> InventoryState:
 	return get_inventory(_location_inventory)
 
 
-func move_item_in_inventories(item: Item, count := -1, player_to_local: bool = true):
+func move_item_in_inventories(item: ItemEntity, count := -1, player_to_local: bool = true):
 	var inventories = [get_location_inventory(), get_player_inventory()]
 	if player_to_local: inventories.reverse()
 	var transfer := ItemTransfer.new(inventories[0], inventories[1])
@@ -50,10 +50,10 @@ func move_item_in_inventories(item: Item, count := -1, player_to_local: bool = t
 
 
 class ItemTransfer:
-	var from_inventory: Inventory
-	var to_inventory: Inventory
+	var from_inventory: InventoryState
+	var to_inventory: InventoryState
 	
-	func _init(_from: Inventory, _to: Inventory) -> void:
+	func _init(_from: InventoryState, _to: InventoryState) -> void:
 		if _from == _to:
 			GodotLogger.warn("ItemTransfer | Attempt to create transfer the same inventory")
 			self.free()
@@ -62,7 +62,7 @@ class ItemTransfer:
 		to_inventory = _to
 	
 	
-	func transfer(item: Item, count: int = -1):
+	func transfer(item: ItemEntity, count: int = -1):
 		GodotLogger.debug("ItemTransfer | start transfer for item '%s'" % [item.get_index()])
 		if count >= item.get_total_amount() or count == -1:
 			return _transfer_full_item(item)
@@ -74,7 +74,7 @@ class ItemTransfer:
 		return false
 	
 	
-	func _transfer_full_item(item: Item):
+	func _transfer_full_item(item: ItemEntity):
 		from_inventory._remove_from_storage(item.get_index())
 		to_inventory.add_item(item.get_data(), item.get_amount(), item.get_used())
 		GodotLogger.debug("Done transfer all [color=green]%s[/color] from [color=green]%s[/color] to [color=green]%s[/color]" % 
@@ -82,7 +82,7 @@ class ItemTransfer:
 		return true
 	
 	
-	func _transfer_used(item_a: Item, count: int = 0):
+	func _transfer_used(item_a: ItemEntity, count: int = 0):
 		var item_b = to_inventory.get_or_create_item(item_a.get_data())
 		var used_array = item_a.get_used()
 		item_b.append_used(used_array.slice(0, count))
@@ -92,7 +92,7 @@ class ItemTransfer:
 		return count - used_array.slice(0, count).size()
 
 
-	func _transfer_amount(item_a: Item, count: int = 0):
+	func _transfer_amount(item_a: ItemEntity, count: int = 0):
 		var item_b = to_inventory.get_or_create_item(item_a.get_data())
 		item_a.change_amount(count * -1)
 		item_b.change_amount(count)

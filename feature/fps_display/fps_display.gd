@@ -7,4 +7,5 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	text = "FPS: %s" % Engine.get_frames_per_second()
+	text = "FPS: %d" % Engine.get_frames_per_second()
+	text = text.rpad(9, " ")

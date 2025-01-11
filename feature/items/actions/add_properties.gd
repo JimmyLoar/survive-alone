@@ -16,7 +16,7 @@ var _properties: Array[Dictionary] = [{
 }]
 
 
-func set_dependence(objects: Array):
+func set_dependence(_objects: Array):
 	pass
 	#if objects[0] as PlayerPropertiesController:
 		#_dependence = objects[0]
@@ -55,18 +55,8 @@ func _get_property_list() -> Array[Dictionary]:
 func _add_property(i: int, property_names: String) -> Array[Dictionary]:
 	var _name = "property_%d" % i
 	var properties: Array[Dictionary] = []
-	properties.append({
-		"name": "%s/name" % [_name],
-		"type": TYPE_STRING,
-		"hint": PROPERTY_HINT_ENUM,
-		"hint_string": property_names,
-		})
-	properties.append({
-		"name": "%s/value" % [_name],
-		"type": TYPE_INT,
-		"hint": PROPERTY_HINT_RANGE,
-		"hint_string": "-2.1474836488e+06-,2.1474836488e+06,1" 
-		})
+	properties.append(PropertyGenerater.take_enum_string("%s/name" % [_name], property_names))
+	properties.append(PropertyGenerater.convent_to_range(PropertyGenerater.take_int("%s/value" % [_name]), -2.1474836488e+06, 2.1474836488e+06))
 	return properties
 
 

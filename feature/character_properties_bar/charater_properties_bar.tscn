@@ -6,16 +6,20 @@
 
 [node name="ExhaustionBar" parent="." instance=ExtResource("1_y67cn")]
 layout_mode = 2
+size_flags_horizontal = 3
 property_name = "exhaustion"
 
 [node name="HungerBar" parent="." instance=ExtResource("1_y67cn")]
 layout_mode = 2
+size_flags_horizontal = 3
 property_name = "hunger"
 
 [node name="ThirstBar" parent="." instance=ExtResource("1_y67cn")]
 layout_mode = 2
+size_flags_horizontal = 3
 property_name = "third"
 
 [node name="FatigueBar" parent="." instance=ExtResource("1_y67cn")]
 layout_mode = 2
+size_flags_horizontal = 3
 property_name = "fatigue"

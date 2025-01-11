@@ -1,10 +1,8 @@
 extends Label
 
-signal new_day
-signal time_updated(delta: int)
-signal time_skipped(skipped_time: int)
 
 var _state: GameTimeState
+
 
 func _enter_tree() -> void:
 	_state = Injector.provide(GameTimeState, GameTimeState.new(self), self, "closest")
@@ -18,11 +16,12 @@ func _ready() -> void:
 		_state.init_time(time, day)
 	).call_deferred()
 
+
 func _physics_process(_delta: float) -> void:
 	if _state._infinite: 
 		_state.time_step(_state._multiper)
 		return
-
+	
 	elif _state._reaming_add_time > 0:
 		_state._reaming_add_time -= _state._multiper
 		_state.time_step(_state._multiper)
@@ -30,6 +29,7 @@ func _physics_process(_delta: float) -> void:
 	
 	set_physics_process(false)
 	return
+
 
 func _update_time_label(_delta, _value):
 	text = "{hour}:{minut} {day}/{month}/{year}".format(_state.get_date())

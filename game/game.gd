@@ -6,6 +6,7 @@ func _enter_tree() -> void:
 	_state = Injector.provide(GameState, GameState.new(), self)
 	var resource_db = Injector.provide(ResourceDb,  ResourceDb.new(), self)
 	Injector.provide(CharacterPropertyRepository, CharacterPropertyRepository.new(self), self)
+	Injector.provide(InventoryRepository, InventoryRepository.new(), self)
 	
 	resource_db.db_connect("res://resources/database.gddb")
 
