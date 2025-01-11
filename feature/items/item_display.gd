@@ -11,7 +11,7 @@ func _init() -> void:
 	set("size_flags_vertical", SIZE_EXPAND_FILL)
 
 
-func update_data(data: ItemData):
+func update_data(data: ItemResource):
 	rarety_rect.modulate = data.get_color()
 	texture_rect.texture = data.texture
 

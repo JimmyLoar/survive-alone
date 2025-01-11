@@ -2,7 +2,7 @@ class_name ItemContainer
 extends Button
 
 var display: ItemDisplay
-var current_item: Item = null
+var current_item: ItemEntity = null
 
 func _init() -> void:
 	set("theme_override_styles/disabled", preload("res://assets/themes/buttons/default-normal.tres"))
@@ -26,7 +26,7 @@ func _init() -> void:
 	display.hide()
 
 
-func update(item: Item):
+func update(item: ItemEntity):
 	if item != current_item:
 		if item:
 			item.connect("changed", Callable(self, "_on_item_changed"))
@@ -36,7 +36,7 @@ func update(item: Item):
 	
 	_display(item)
 
-		
+
 func _display(item):
 	if not item or item.is_empty():
 		_display_empty()
@@ -44,19 +44,19 @@ func _display(item):
 	else:
 		_display_item(item)
 
+
 func _display_empty():
 	disabled = true
 	display.hide()
 	current_item = null
-	
 
 
-func _display_item(item: Item):
+func _display_item(item: ItemEntity):
 	disabled = false
 	display.update_data(item.get_data())
 	display.update_amount(item.get_total_amount())
 	display.show()
-	
+
 
 func _on_item_changed(_never):
 	_display(current_item)

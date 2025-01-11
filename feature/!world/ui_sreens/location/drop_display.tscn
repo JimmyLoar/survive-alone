@@ -42,7 +42,7 @@ func _count_time(step: int = 0, max_step: int = 1, time: float = 1.0, ):
 	return MIN_TIME
 
 
-func update(data: ItemData):
+func update(data: ItemResource):
 	if not data:
 		hide()
 		return

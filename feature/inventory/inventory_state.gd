@@ -6,7 +6,7 @@ signal changed()
 var database = load(ProjectSettings.get_setting("resource_databases/main_base_path", "res://database.gddb"))
 var name: String
 
-var _storage: Array[Item] = []
+var _storage: Array[ItemEntity] = []
 var _stored_cache: Dictionary = {}
 var _logger: Log
 
@@ -17,7 +17,7 @@ func _init(new_name := "InventoryState") -> void:
 	_logger = Log.get_global_logger().with("InventoryState [color=green]%s[/color]" % self.name)
 
 
-func add_item(data: ItemData, value := 0, used: Array = []) -> Item:
+func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 	var found_index = find_item(data.name_key)
 	if found_index != -1:
 		var item = get_item(found_index)
@@ -27,10 +27,10 @@ func add_item(data: ItemData, value := 0, used: Array = []) -> Item:
 		return item
 	
 	_logger.debug("Added [color=green]%d (+%d)[/color] items [color=green]%s[/color] in new item" % [value, used.size(), data.name_key])
-	return _add_in_storage(Item.new(data, value, used))
+	return _add_in_storage(ItemEntity.new(data, value, used))
 
 
-func remove_item(data: ItemData, _amount := 1):
+func remove_item(data: ItemResource, _amount := 1):
 	var amount = _amount
 	var index := find_item(data.name_key)
 	if index == -1:
@@ -48,11 +48,11 @@ func remove_item(data: ItemData, _amount := 1):
 	return amount
 
 
-func has_item(data: ItemData) -> bool:
+func has_item(data: ItemResource) -> bool:
 	return find_item(data.name) != -1
 
 
-func has_item_amount(data: ItemData, amount: int = 1) -> bool:
+func has_item_amount(data: ItemResource, amount: int = 1) -> bool:
 	amount = abs(amount)
 	var index := find_item(data.name_key)
 	if index != -1:
@@ -66,7 +66,7 @@ func find_item(item_name: StringName) -> int:
 	return -1
 
 
-func get_item(index: int) -> Item:
+func get_item(index: int) -> ItemEntity:
 	if is_index_validate(index):
 		return _storage[index]
 	return null
@@ -80,14 +80,14 @@ func is_index_validate(index: int) -> bool:
 	return index >= 0 and index < _storage.size()
 
 
-func get_or_create_item(data: ItemData) -> Item:
+func get_or_create_item(data: ItemResource) -> ItemEntity:
 	var index = find_item(data.name_key)
 	if index == -1:
-		return _add_in_storage(Item.new(data))
+		return _add_in_storage(ItemEntity.new(data))
 	return get_item(index)
 
 
-func _add_in_storage(item: Item) -> Item:
+func _add_in_storage(item: ItemEntity) -> ItemEntity:
 	item._index = _storage.size()
 	item._inventory = self.name
 	_storage.append(item)
@@ -97,9 +97,9 @@ func _add_in_storage(item: Item) -> Item:
 	return item
 
 
-func _remove_from_storage(index: int) -> Item:
+func _remove_from_storage(index: int) -> ItemEntity:
 	if is_index_validate(index):
-		var item: Item = _storage.pop_at(index)
+		var item: ItemEntity = _storage.pop_at(index)
 		item._index = -1
 		item._inventory = ""
 		_stored_cache.erase(item.get_data().name_key)
@@ -115,14 +115,14 @@ func _recount_index_items():
 
 
 func get_size() -> int: return _storage.size()
-func get_items(erise_empty := false) -> Array[Item]: 
+func get_items(erise_empty := false) -> Array[ItemEntity]: 
 	if erise_empty:
 		return _clear_empty(_storage.duplicate())
 	return _storage.duplicate()
 
 
-func _clear_empty(_array: Array[Item] = _storage.duplicate()):
-	var new_array: Array[Item] = [] 
+func _clear_empty(_array: Array[ItemEntity] = _storage.duplicate()):
+	var new_array: Array[ItemEntity] = [] 
 	for i in _array.size():
 		if _array[i].is_empty(): continue
 		new_array.append(_array[i])

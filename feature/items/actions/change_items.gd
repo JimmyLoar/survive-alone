@@ -2,9 +2,9 @@
 class_name ChangeItemsAction
 extends IAction
 
-@export_custom(PROPERTY_HINT_TYPE_STRING, "24/17:ItemData", #TYPE_OBJECT/PROPERTY_HINT_RESOURCE_TYPE:"ItemData"
+@export_custom(PROPERTY_HINT_TYPE_STRING, "24/17:ItemResource", #TYPE_OBJECT/PROPERTY_HINT_RESOURCE_TYPE:"ItemResource"
 		PROPERTY_USAGE_DEFAULT - PROPERTY_USAGE_STORAGE
-	) var require_items: Array[ItemData] = []:
+	) var require_items: Array[ItemResource] = []:
 	set(value):
 		require_items = value
 		if value.is_empty(): return
@@ -12,9 +12,9 @@ extends IAction
 @export var require_items_amount: Dictionary = {}
 
 
-@export_custom(PROPERTY_HINT_TYPE_STRING, "24/17:ItemData", #TYPE_OBJECT/PROPERTY_HINT_RESOURCE_TYPE:"ItemData"
+@export_custom(PROPERTY_HINT_TYPE_STRING, "24/17:ItemResource", #TYPE_OBJECT/PROPERTY_HINT_RESOURCE_TYPE:"ItemResource"
 		PROPERTY_USAGE_DEFAULT - PROPERTY_USAGE_STORAGE
-	) var receive_items: Array[ItemData] = []:
+	) var receive_items: Array[ItemResource] = []:
 	set(value):
 		receive_items = value
 		if value.is_empty(): return
@@ -23,9 +23,9 @@ extends IAction
 
 var database: Database
 
-func _update_items_amount(items: Array[ItemData]):
+func _update_items_amount(items: Array[ItemResource]):
 	var dictionary := {}
-	for data: ItemData in items:
+	for data: ItemResource in items:
 		if not data: continue
 		dictionary[data.name_key] = 1
 	return dictionary
@@ -51,14 +51,14 @@ func execute(): #virtual
 
 func _add_items():
 	for key in receive_items_amount:
-		var data: ItemData = database.fetch_data_string("items/%s" % key)
+		var data: ItemResource = database.fetch_data_string("items/%s" % key)
 		var inv: InventoryState = _dependence[0]
 		inv.add_item(data, receive_items_amount[key])
 
 
 func _remove_items():
 	for key in require_items_amount:
-		var data: ItemData = database.fetch_data_string("items/%s" % key)
+		var data: ItemResource = database.fetch_data_string("items/%s" % key)
 		var reaming: int = require_items_amount[key]
 		for inv: InventoryState in _dependence:
 			if reaming <= 0: continue
@@ -70,7 +70,7 @@ func _has_items() -> bool:
 	for key: String in require_items_amount.keys():
 		var items := 0
 		for inv: InventoryState in _dependence:
-			var item: Item = inv.fetch_item(key)
+			var item: ItemEntity = inv.fetch_item(key)
 			if not item: continue
 			items += item.get_total_amount()
 		result = result and items >= require_items_amount[key]

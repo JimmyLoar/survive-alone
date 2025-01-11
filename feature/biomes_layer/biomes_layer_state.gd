@@ -56,11 +56,13 @@ var visible_tiles_rect: Rect2i:
 		if _is_visible_biome_rects_changed:
 			visible_biome_rects_chaged.emit(_visible_biome_rects)
 
+
 func _decrease_biome_counter(biome_id: int):
 	_visible_biomes_ref_count[biome_id] -= 1
 	if (_visible_biomes_ref_count[biome_id] == 0):
 		_visible_biomes_ref_count.erase(biome_id)
 		_visible_biomes.erase(biome_id)
+
 
 func _increase_biome_counter(biome_id: int):
 	if not _visible_biomes_ref_count.has(biome_id):

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bimu1uujo2qmv"]
+
+[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/ui_content_menu/content_containers/content_container_root.tscn" id="1_jmd1g"]
+[ext_resource type="Script" path="res://feature/inventory_character/inventory_character.gd" id="2_ehgjh"]
+[ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory.tscn" id="3_dpr2j"]
+[ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="4_f0gnu"]
+
+[node name="CC-Inventory" instance=ExtResource("1_jmd1g")]
+script = ExtResource("2_ehgjh")
+
+[node name="Inventory" parent="_MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("3_dpr2j")]
+layout_mode = 2
+
+[node name="SubContainer" parent="_MarginContainer/HBoxContainer" index="1"]
+custom_minimum_size = Vector2(380, 0)
+current_tab = 0
+
+[node name="ItemInformationPanel" parent="_MarginContainer/HBoxContainer/SubContainer" index="1" instance=ExtResource("4_f0gnu")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Control" type="Control" parent="." index="2"]
+layout_mode = 2

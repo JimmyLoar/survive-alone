@@ -1,15 +1,15 @@
 class_name InventoryDisplay
 extends MarginContainer
 
-signal item_pressed(item: Item)
-signal duble_pressed(item: Item)
+signal item_pressed(item: ItemEntity)
+signal duble_pressed(item: ItemEntity)
 
 @export var page_size := Vector2i(3, 3)
 
 @onready var items_grid: SlotCotroller = $VBoxContainer/ItemsGrid
 @onready var page_controller: PageController = $VBoxContainer/PageController
 
-var _items: Array[Item]
+var _items: Array[ItemEntity]
 
 var inventory: InventoryState: 
 	set = set_inventory

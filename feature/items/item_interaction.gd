@@ -8,7 +8,7 @@ signal reduced_self
 @onready var button: Button = $MarginContainer/VBoxContainer/Button
 
 var interaction: ItemIntaractionData
-var item: ItemData 
+var item: ItemResource 
 
 func update(_interaction: ItemIntaractionData):
 	interaction = _interaction

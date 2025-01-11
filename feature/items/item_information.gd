@@ -3,7 +3,7 @@ extends MarginContainer
 
 signal remove_items(item_list: Array)
 signal add_items(item_list: Array)
-signal transfered_items(item: Item, count: int)
+signal transfered_items(item: ItemEntity, count: int)
 
 @onready var name_label: Label = %NameLabel
 @onready var text_label: RichTextLabel = $VBoxContainer/ScrollContainer/VBoxContainer/RichTextLabel
@@ -14,14 +14,14 @@ signal transfered_items(item: Item, count: int)
 @onready var inventory: InventoryState: 
 	set = set_inventory
 
-var _last_item: Item
+var _last_item: ItemEntity
 var _quantity_selecter: QuantitySelecter
 
 func _ready() -> void:
 	update()
 
 
-func update(item: Item = null):
+func update(item: ItemEntity = null):
 	if not item or item.is_empty() or _last_item == item:
 		_update_in_null()
 		return
@@ -41,24 +41,24 @@ func _update_in_null():
 	hide()
 
 
-func _update_display(item: Item):
-	var data: ItemData = item.get_data()
+func _update_display(item: ItemEntity):
+	var data: ItemResource = item.get_data()
 	name_label.text = "%s" % data.name_key
 	text_label.clear()
 	text_label.append_text("%s" % data.discription)
 	show()
 
 
-func _update_durability_text(item: Item):
+func _update_durability_text(item: ItemEntity):
 	text_label.newline()
-	var value := item.get_data().durability
+	var value := item.get_resource().durability
 	if not item.get_used().is_empty(): 
 		value = item.get_used().front()
 	if value <= 0: return
 	text_label.append_text("Durability: %d" % value)
 
 
-func update_interaction_panel(index: int, item: ItemData):
+func update_interaction_panel(index: int, item: ItemResource):
 	var into_range = index < item.actions.size()
 	var action: ItemIntaractionData = item.actions[index] if into_range else null
 	var panel: PanelContainer = interactive_container.get_node("PanelContainer%d" % [index + 1])

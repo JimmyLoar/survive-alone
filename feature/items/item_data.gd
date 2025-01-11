@@ -1,5 +1,5 @@
 @tool
-class_name ItemData
+class_name ItemResource
 extends MyResource
 
 
@@ -12,7 +12,7 @@ extends MyResource
 
 
 func _init() -> void:
-	super("Item")
+	super("ItemResource")
 
 
 enum Rare{

@@ -33,7 +33,7 @@ func _get_property_list() -> Array[Dictionary]:
 
 func _get_item_properties(index: int):
 	var properties: Array[Dictionary] = []
-	properties.append(PropertyGenerater.take_resource("item_%02d/data" % [index + 1], "ItemData"))
+	properties.append(PropertyGenerater.take_resource("item_%02d/data" % [index + 1], "ItemResource"))
 	
 	var _property := PropertyGenerater.take_float("item_%02d/reward_count" % [index + 1])
 	properties.append(PropertyGenerater.convent_to_range(_property, 1, 3, 0.01, "or_greater"))

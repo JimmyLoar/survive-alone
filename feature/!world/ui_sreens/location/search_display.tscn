@@ -18,7 +18,7 @@ func update(drop: SearchDrop):
 	var items := drop.get_items()
 	items.resize(grid_container.get_child_count())
 	for i in grid_container.get_child_count():
-		var data: ItemData = null
+		var data: ItemResource = null
 		if items[i].size() > 0:
 			data = items[i][0]
 		grid_container.get_child(i).update(data)
