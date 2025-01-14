@@ -11,6 +11,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mk0du")
 
+[node name="_ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+border_color = Color(0.957171, 0.558125, 1.15514e-06, 1)
+
 [node name="_MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 4
@@ -41,7 +46,4 @@ texture_normal = ExtResource("2_uc1wn")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="_ReferenceRect" type="ReferenceRect" parent="."]
-layout_mode = 2
-mouse_filter = 2
-border_color = Color(0.957171, 0.558125, 1.15514e-06, 1)
+[connection signal="pressed" from="_MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]

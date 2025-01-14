@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b44rlr8ay6jxr"]
+[gd_scene load_steps=2 format=3 uid="uid://b44rlr8ay6jxr"]
 
 [ext_resource type="Script" path="res://feature/items/item_information.gd" id="1_x5t6r"]
-[ext_resource type="PackedScene" uid="uid://o7ms6nil7dwq" path="res://feature/items/item_interaction.tscn" id="3_lc75j"]
 
 [node name="ItemInformationPanel" type="MarginContainer"]
 custom_minimum_size = Vector2(40, 60)
@@ -52,24 +51,6 @@ bbcode_enabled = true
 text = "Item discription"
 fit_content = true
 scroll_active = false
-
-[node name="PanelContainer1" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
-layout_mode = 2
-
-[node name="PanelContainer2" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
-layout_mode = 2
-
-[node name="PanelContainer3" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
-layout_mode = 2
-
-[node name="PanelContainer4" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
-layout_mode = 2
-
-[node name="PanelContainer5" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
-layout_mode = 2
-
-[node name="PanelContainer6" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_lc75j")]
-layout_mode = 2
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

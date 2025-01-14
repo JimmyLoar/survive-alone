@@ -6,7 +6,7 @@ signal duble_pressed(item: ItemEntity)
 
 @export var page_size := Vector2i(3, 3)
 
-@onready var items_grid: SlotCotroller = $VBoxContainer/ItemsGrid
+@onready var items_grid: ItemsGrid = $VBoxContainer/ItemsGrid
 @onready var page_controller: PageController = $VBoxContainer/PageController
 
 var _inventory_entity: InventoryEntity
@@ -16,6 +16,8 @@ var inventory: InventoryState:
 
 
 func _ready() -> void:
+	items_grid.item_pressed.connect(_on_items_grid_item_pressed)
+	items_grid.duble_pressed.connect(_on_items_grid_duble_pressed)
 	items_grid.init_items(page_size)
 	page_controller.set_page_size(page_size.x * page_size.y)
 
@@ -46,9 +48,9 @@ func get_last_pressed():
 	return items_grid.button_group.get_pressed_button().get_index()
 
 
-func _on_item_controller_item_pressed(item_index: int) -> void:
+func _on_items_grid_item_pressed(item_index: int) -> void:
 	item_pressed.emit(inventory.get_item(item_index))
 
 
-func _on_item_controller_duble_pressed(item_index: int) -> void:
+func _on_items_grid_duble_pressed(item_index: int) -> void:
 	duble_pressed.emit(inventory.get_item(item_index))

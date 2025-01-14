@@ -22,6 +22,8 @@ func _ready() -> void:
 		_test_inventory()
 		).call_deferred()
 	inventory.set_inventory(_state)
+	inventory.item_pressed.connect(item_information_panel.update)
+	
 
 
 func _test_inventory():
