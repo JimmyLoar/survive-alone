@@ -21,4 +21,7 @@ func _ready() -> void:
 		_state.inventory_entity = _inventory_repository.get_by_temp_id()
 		_state.add_item(load("res://resources/collection/items/resource/wood.tres"), 8)
 		).call_deferred()
-	inventory.set_inventory(_state)
+	
+	_state.changed_inventory_entity.connect(inventory.update)
+	inventory.item_pressed.connect(item_information_panel.update)
+	inventory.update(_state.inventory_entity)

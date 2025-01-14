@@ -21,8 +21,10 @@ func _ready() -> void:
 		_state.inventory_entity = _inventory_repository.get_by_player_id()
 		_test_inventory()
 		).call_deferred()
-	inventory.set_inventory(_state)
+		
+	_state.changed_inventory_entity.connect(inventory.update)
 	inventory.item_pressed.connect(item_information_panel.update)
+	inventory.update(_state.inventory_entity)
 	
 
 

@@ -6,8 +6,8 @@ const TEMP_ID = 0
 
 
 var _array := {
-	PLAYER_ID: InventoryEntity.new(PLAYER_ID),
-	TEMP_ID: InventoryEntity.new(TEMP_ID),
+	PLAYER_ID: InventoryEntity.new(),
+	TEMP_ID: InventoryEntity.new(),
 	}
 
 
