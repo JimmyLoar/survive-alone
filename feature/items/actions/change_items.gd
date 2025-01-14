@@ -21,7 +21,9 @@ extends IAction
 		receive_items_amount = _update_items_amount(receive_items)
 @export var receive_items_amount: Dictionary = {}
 
+
 var database: Database
+
 
 func _update_items_amount(items: Array[ItemResource]):
 	var dictionary := {}

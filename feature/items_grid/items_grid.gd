@@ -1,4 +1,4 @@
-class_name SlotCotroller
+class_name ItemsGrid
 extends GridContainer
 
 signal item_pressed(item_index: int)
@@ -11,7 +11,7 @@ signal duble_pressed(item_index:int)
 var button_group := ButtonGroup.new()
 var timer: SceneTreeTimer
 
-@onready var logger = Log.get_global_logger().with('SlotCotroller')
+@onready var logger = Log.get_global_logger().with('ItemGrid')
 
 
 func _init() -> void:
@@ -32,12 +32,11 @@ func init_items(_size: Vector2i):
 		add_child(new_item)
 
 
-func update_items(items_list: Array):
-	items_list.resize(get_child_count())
-	for i in items_list.size():
-		var value = items_list[i] if items_list[i] else null
-		var child = get_child(i)
-		child.update(value)
+func update_items_list(list: Array[ItemEntity]):
+	list.resize(get_child_count())
+	for i in list.size():
+		var child = get_child(i) as ItemContainer
+		child.update(list[i])
 
 
 func _clear_items():
@@ -60,7 +59,3 @@ func _on_item_pressed(item_index: int):
 func _duble_click(item_index: int):
 	logger.debug("Duble pressed on %d" % item_index)
 	duble_pressed.emit(item_index)
-
-
-func _on_item_focused():
-	pass

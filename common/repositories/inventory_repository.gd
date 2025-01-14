@@ -15,8 +15,8 @@ func get_by_world_object(id: int):
 	return _array[id]
 
 
-func get_by_player_id():
-	return _array[PLAYER_ID]
+func get_by_player_id(): return _array[PLAYER_ID]
+func get_by_temp_id(): return _array[TEMP_ID]
 
 
 func has_by_world_object(id: int) -> bool:
