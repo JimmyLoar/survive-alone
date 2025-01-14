@@ -9,34 +9,33 @@ signal duble_pressed(item: ItemEntity)
 @onready var items_grid: SlotCotroller = $VBoxContainer/ItemsGrid
 @onready var page_controller: PageController = $VBoxContainer/PageController
 
-var _items: Array[ItemEntity]
+var _inventory_entity: InventoryEntity
 
 var inventory: InventoryState: 
 	set = set_inventory
 
 
 func _ready() -> void:
-	visibility_changed.connect(update)
 	items_grid.init_items(page_size)
 	page_controller.set_page_size(page_size.x * page_size.y)
 
 
 func set_inventory(new_inventory: InventoryState):
-	if inventory and inventory.changed.is_connected(update):
-		inventory.changed.disconnect(update)
+	if inventory and inventory.changed_inventory_entity.is_connected(update):
+		inventory.changed_inventory_entity.disconnect(update)
 	
 	inventory = new_inventory
-	if not inventory.changed.is_connected(update):
-		inventory.changed.connect(update)
+	if not inventory.changed_inventory_entity.is_connected(update):
+		inventory.changed_inventory_entity.connect(update)
 	
-	update()
+	update(_inventory_entity)
 
 
-func update():
-	if not visible or not inventory: return
+func update(entity: InventoryEntity):
+	if not visible or not entity: return
 	if items_grid:
-		_items = inventory.get_items(true)
-		items_grid.update_items(_items)
+		var _items := entity.items.duplicate()
+		items_grid.update_items_list(_items)
 	
 	if page_controller:
 		page_controller.set_inventory_size(inventory.get_size())
@@ -48,8 +47,8 @@ func get_last_pressed():
 
 
 func _on_item_controller_item_pressed(item_index: int) -> void:
-	item_pressed.emit(_items[item_index])
+	item_pressed.emit(inventory.get_item(item_index))
 
 
 func _on_item_controller_duble_pressed(item_index: int) -> void:
-	duble_pressed.emit(_items[item_index])
+	duble_pressed.emit(inventory.get_item(item_index))

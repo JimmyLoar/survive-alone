@@ -32,12 +32,11 @@ func init_items(_size: Vector2i):
 		add_child(new_item)
 
 
-func update_items(items_list: Array):
-	items_list.resize(get_child_count())
-	for i in items_list.size():
-		var value = items_list[i] if items_list[i] else null
-		var child = get_child(i)
-		child.update(value)
+func update_items_list(list: Array[ItemEntity]):
+	list.resize(get_child_count())
+	for i in list.size():
+		var child = get_child(i) as ItemContainer
+		child.update(list[i])
 
 
 func _clear_items():
