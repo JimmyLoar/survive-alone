@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsousn3bw4sgu"]
 
-[ext_resource type="Script" path="res://game_editor/screens/editor_screen/features/biomes_tool/game_editor__biomes_tool.gd" id="1_5c64g"]
-[ext_resource type="Script" path="res://game_editor/screens/editor_screen/features/biomes_tool/internal/visible_biome_rects.gd" id="2_72hsh"]
-[ext_resource type="PackedScene" uid="uid://eahcnuvi8twy" path="res://game_editor/screens/editor_screen/features/biomes_tool/internal/biomes_list.tscn" id="2_a7f53"]
-[ext_resource type="Script" path="res://game_editor/screens/editor_screen/features/biomes_tool/internal/paint_view.gd" id="4_muf2j"]
+[ext_resource type="Script" path="res://!tools/game_editor/screens/editor_screen/features/biomes_tool/game_editor__biomes_tool.gd" id="1_5c64g"]
+[ext_resource type="Script" path="res://!tools/game_editor/screens/editor_screen/features/biomes_tool/internal/visible_biome_rects.gd" id="2_72hsh"]
+[ext_resource type="PackedScene" uid="uid://eahcnuvi8twy" path="res://!tools/game_editor/screens/editor_screen/features/biomes_tool/internal/biomes_list.tscn" id="2_a7f53"]
+[ext_resource type="Script" path="res://!tools/game_editor/screens/editor_screen/features/biomes_tool/internal/paint_view.gd" id="4_muf2j"]
 
 [node name="BiomesTool" type="Node2D"]
 script = ExtResource("1_5c64g")
@@ -38,6 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BiomesList" parent="CanvasLayer" instance=ExtResource("2_a7f53")]
+script = null
 
 [node name="HoveredTilePos" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true

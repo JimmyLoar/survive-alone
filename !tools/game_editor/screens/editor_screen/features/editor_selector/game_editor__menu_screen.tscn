@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://7nvmy7ym0tb0"]
 
-[ext_resource type="Script" path="res://game_editor/screens/editor_screen/features/editor_selector/game_editor__choose_db.gd" id="1_ulp1d"]
+[ext_resource type="Script" path="res://!tools/game_editor/screens/editor_screen/features/editor_selector/game_editor__choose_db.gd" id="1_ulp1d"]
 
 [node name="ChooseToolEditor" type="TabBar"]
 anchors_preset = 1

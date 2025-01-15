@@ -37,3 +37,19 @@ var visible_rect: Rect2:
 		
 		if not diff.is_empty:
 			visible_objects_changed.emit(diff, _visible_objects)
+
+func get_object_by_position_fast(pos: Vector2) -> WorldObjectEntity:
+	var intersect_polygon_with_pos = func (entity: WorldObjectEntity):
+		return Geometry2D.is_point_in_polygon(pos - entity.resource.collision_offset, entity.resource.collision_shape.points)
+
+	var intersected_visible_world_objects = _visible_objects.values().filter(intersect_polygon_with_pos)
+
+	if intersected_visible_world_objects.size() > 0:
+		return intersected_visible_world_objects[0]
+	
+	var visible_world_objects = _world_object_repository.get_all_intersected(Rect2(pos, Vector2.ZERO))
+
+	if visible_world_objects.size() > 0:
+		return visible_world_objects[0]
+	
+	return null
