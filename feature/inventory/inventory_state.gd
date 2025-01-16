@@ -14,6 +14,7 @@ var _logger: Log
 func _init(new_name := "InventoryState") -> void:
 	name = new_name
 	_logger = Log.get_global_logger().with("Inventory%sState " % new_name)
+	# TODO connect нужно делать только в _ready что бы быть увереным что все уже проинициализировано
 	changed_inventory_entity.connect(_recount_index_items)
 
 
@@ -132,6 +133,8 @@ func get_size() -> int:
 	return inventory_entity.items.size()
 
 
+#Todo erise_empty - сайд эфект в функции. Выглядит что нужно убрать и вместо этого в местах вызова get_items явно вызывать публичный аналог _clear_empty
+# get функции не должны делать доп работу. Только возвращать что просят
 func get_items(erise_empty := false) -> Array[ItemEntity]: 
 	if not inventory_entity: 
 		return []

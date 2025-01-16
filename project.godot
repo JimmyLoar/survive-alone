@@ -42,7 +42,6 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -50,7 +49,7 @@ project/assembly_name="SurviveAlone"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg", "res://addons/script_panel_plus/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg", "res://addons/script_panel_plus/plugin.cfg")
 
 [file_customization]
 
