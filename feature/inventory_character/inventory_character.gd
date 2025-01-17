@@ -25,6 +25,7 @@ func _ready() -> void:
 	_state.changed_inventory_entity.connect(inventory.update)
 	inventory.item_pressed.connect(item_information_panel.update)
 	inventory.update(_state.inventory_entity)
+	inventory.state = _state
 	
 
 

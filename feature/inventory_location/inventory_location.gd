@@ -24,6 +24,7 @@ func _ready() -> void:
 	_character_location.current_location_changed.connect(_on_location_changed)
 
 	inventory.item_pressed.connect(item_information_panel.update)
+	inventory.state = _state
 	inventory.update(_state.inventory_entity)
 
 

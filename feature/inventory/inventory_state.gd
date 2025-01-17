@@ -4,7 +4,7 @@ extends Injectable
 signal changed_inventory_entity(new_entity: InventoryEntity)
 
 var name: String
-var inventory_entity: InventoryEntity: set = change_entity
+var inventory_entity: InventoryEntity = InventoryEntity.new(): set = change_entity
 
 var _inventory_repository: InventoryRepository
 var _stored_cache: Dictionary = {}
@@ -14,7 +14,6 @@ var _logger: Log
 func _init(new_name := "InventoryState") -> void:
 	name = new_name
 	_logger = Log.get_global_logger().with("Inventory%sState " % new_name)
-	# TODO connect нужно делать только в _ready что бы быть увереным что все уже проинициализировано
 	changed_inventory_entity.connect(_recount_index_items)
 
 
