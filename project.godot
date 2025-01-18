@@ -28,6 +28,7 @@ game/version/string="dev"
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Injector="*res://addons/godot-di/Injector.gd"
+GodotLogger="*res://addons/logger/logger.gd"
 
 [display]
 
@@ -54,6 +55,7 @@ enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/
 
 folder_colors={
 "res://feature/inventory_character/": "yellow",
+"res://feature/item_action/": "yellow",
 "res://game/": "red"
 }
 

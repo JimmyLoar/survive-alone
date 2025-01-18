@@ -7,7 +7,7 @@ var _db: ResourceDb
 func _init(host_node: Node) -> void:
 	_db = Injector.inject(ResourceDb, host_node)
 
-func get_by_string_id(id: String) -> CharacterPropertyResource:
+func get_by_string_id(id: StringName) -> CharacterPropertyResource:
 	return _db.connection.fetch_data(COLECTION_NAME, id)
 
 func get_all() -> Array:

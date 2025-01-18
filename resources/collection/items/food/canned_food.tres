@@ -1,8 +1,24 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://chxbdcao06tc6"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://chxbdcao06tc6"]
 
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_87aen"]
-[ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_fgnjc"]
+[ext_resource type="Script" path="res://feature/item_action/item_action_entity.gd" id="1_hhqk7"]
 [ext_resource type="Texture2D" uid="uid://bgocs4vak2jj4" path="res://assets/sprite/placeholders/Item16.png" id="2_fnsd8"]
+
+[sub_resource type="Resource" id="Resource_v3q7y"]
+script = ExtResource("1_hhqk7")
+type = 1
+use_stack = false
+_properties = {
+"exhaustion": -5,
+"fatigue": 0,
+"hunger": 10,
+"psych": 0,
+"radiation": 0,
+"thirst": 12
+}
+name_key = null
+visible_name = null
+discription = null
 
 [resource]
 script = ExtResource("1_87aen")
@@ -10,10 +26,7 @@ texture = ExtResource("2_fnsd8")
 rare = 1
 durability = -1
 is_pickable = true
-_actions = Array[ExtResource("1_fgnjc")]([])
-action_count = 0
-_types = Array[int]([])
-_properties = Array[int]([])
+actions = Array[ExtResource("1_hhqk7")]([SubResource("Resource_v3q7y")])
 name_key = "canned food"
 visible_name = "ITEM_NAME_CANNED FOOD"
 discription = "ITEM_DISCRIPTION_CANNED FOOD"

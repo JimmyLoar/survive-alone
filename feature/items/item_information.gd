@@ -6,7 +6,7 @@ signal add_items(item_list: Array)
 signal transfered_items(item: ItemEntity, count: int)
 
 @onready var name_label: Label = %NameLabel
-@onready var text_label: RichTextLabel = $VBoxContainer/ScrollContainer/VBoxContainer/RichTextLabel
+@onready var text_label: RichTextLabel = %RichTextDiscription
 @onready var interactive_container: VBoxContainer = $VBoxContainer/ScrollContainer/VBoxContainer
 @onready var pick_up_button: Button = $VBoxContainer/Buttons/PickUpButton
 
@@ -28,12 +28,14 @@ func update(item: ItemEntity = null):
 	
 	if not item.changed_durability.is_connected(_update_durability_text):
 		item.changed_durability.connect(_update_durability_text)
+	
 	if _last_item:
 		_last_item.changed_durability.disconnect(_update_durability_text)
 	
 	_last_item = item
 	_update_display(item)
 	_update_durability_text(item)
+	update_interaction_panel(item.get_resource().actions)
 	
 	pick_up_button.visible = item.get_resource().is_pickable
 
@@ -61,13 +63,18 @@ func _update_durability_text(item: ItemEntity):
 	text_label.append_text("Durability: %d" % value)
 
 
-func update_interaction_panel(index: int, item: ItemResource):
-	var into_range = index < item.actions.size()
-	var action: ItemIntaractionData = item.actions[index] if into_range else null
-	var panel: PanelContainer = interactive_container.get_node("PanelContainer%d" % [index + 1])
-	panel.update(action)
-	if not panel.reduced_self.is_connected(_on_reduced_self):
-		panel.reduced_self.connect(_on_reduced_self)
+func update_interaction_panel(actions: Array[ItemActionEntity]):
+	for i in interactive_container.get_child_count() - 1:
+		var child := interactive_container.get_child(i + 1) as ItemAction
+		if not child:
+			continue
+		
+		if i >= actions.size():
+			child.hide()
+			continue
+		
+		child.display(actions[i])
+		child.show()
 
 
 func set_inventory(new_inv: InventoryState):

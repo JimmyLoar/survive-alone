@@ -77,6 +77,7 @@ static func take_simple_array(property_name: String, elem_type: String, _usage: 
 		"usage": _usage,
 	}
 
+
 static func take_two_dimensional_array(property_name: String, elem_type: int = TYPE_INT, elem_hint: int = PROPERTY_HINT_NONE, elem_hint_string: String = '', _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	return {
 		"name": property_name,
@@ -85,6 +86,7 @@ static func take_two_dimensional_array(property_name: String, elem_type: int = T
 		"hint_string": "%d:%d/%d:%s" % [TYPE_ARRAY, elem_type, elem_hint, elem_hint_string],
 		"usage": _usage,
 	}
+
 
 static func take_free_dimensional_array(property_name: String, elem_type: int = TYPE_INT, elem_hint: int = PROPERTY_HINT_NONE, elem_hint_string: String = '', _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	return {
@@ -95,11 +97,20 @@ static func take_free_dimensional_array(property_name: String, elem_type: int = 
 		"usage": _usage,
 	}
 
+
 static func take_resource(property_name: String, _class_name: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	return {
 		"name": property_name,
 		"type": TYPE_OBJECT,
 		"hint": PROPERTY_HINT_RESOURCE_TYPE,
 		"hint_string": _class_name,
+		"usage": _usage,
+	}
+
+
+static func take_dictionary(property_name: String, _usage: int = PROPERTY_USAGE_DEFAULT):
+	return {
+		"name": property_name,
+		"type": TYPE_DICTIONARY,
 		"usage": _usage,
 	}
