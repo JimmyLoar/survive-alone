@@ -9,7 +9,7 @@ signal time_changed(delta: int, value: int)
 signal day_changed(value: int)
 
 const DEFAULT_MULTYPER = 2
-const TIME_MULTYPER = 10.0
+const TIME_MULTYPER = 1.0
 const MINUT_IN_DAY = 1440 * TIME_MULTYPER
 const _DATA =  {
 		"year": 2001,
@@ -86,11 +86,11 @@ func _time_step(delta: int):
 		day_changed.emit()
 
 
-func get_minut() -> int: return fmod(_time / TIME_MULTYPER, 60)
-func get_hour() -> int: return floori(_time / TIME_MULTYPER / 60.0)
-func get_month_day() -> int: return fmod(_day, 30.0) 
-func get_month() -> int: return ceil(fmod(_day, 360.0) / 30)
-func get_year() -> int: return _DATA.year + floori(_day / 360.0)
+func get_minut() -> int: return fmod((_DATA.minut + _time) / TIME_MULTYPER, 60)
+func get_hour() -> int: return floori((_DATA.hour + _time) / TIME_MULTYPER / 60.0)
+func get_month_day() -> int: return fmod(_DATA.day + _day, 30.0) 
+func get_month() -> int: return ceil(fmod(_DATA.month + _day, 360.0) / 30)
+func get_year() -> int: return _DATA.year + floori((_DATA.month + _day) / 360.0)
 func get_date() -> Dictionary:
 	return {
 		"year": str(get_year()).lpad(2, "4"),
