@@ -1,5 +1,2 @@
 class_name InventoryLocationState
-extends Injectable
-
-var _inventory_repository: InventoryRepository
-var inventory: InventoryEntity
+extends InventoryState

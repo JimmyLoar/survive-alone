@@ -22,31 +22,34 @@ func _ready() -> void:
 
 
 func update(item: ItemEntity = null):
-	if not item or item.is_empty() or _last_item == item:
+	if not item or _last_item == item:
 		_update_in_null()
 		return
+	
+	if not item.changed_durability.is_connected(_update_durability_text):
+		item.changed_durability.connect(_update_durability_text)
+	if _last_item:
+		_last_item.changed_durability.disconnect(_update_durability_text)
 	
 	_last_item = item
 	_update_display(item)
 	_update_durability_text(item)
 	
-	for i in range(6):
-		update_interaction_panel(i, item.get_data())
-	
-	pick_up_button.visible = item.get_data().is_pickable
+	pick_up_button.visible = item.get_resource().is_pickable
 
 
 func _update_in_null():
+	get_parent().current_tab = 0
 	_last_item = null
-	hide()
 
 
 func _update_display(item: ItemEntity):
-	var data: ItemResource = item.get_data()
+	var data: ItemResource = item.get_resource()
 	name_label.text = "%s" % data.name_key
 	text_label.clear()
 	text_label.append_text("%s" % data.discription)
-	show()
+	get_parent().current_tab = get_index()
+	#show()
 
 
 func _update_durability_text(item: ItemEntity):

@@ -1,14 +1,11 @@
 class_name InventoryRepository
 extends Injectable
 
-const PLAYER_ID = -1
-const TEMP_ID = 0
-
+const PLAYER_ID = 0
 
 var _array := {
-	PLAYER_ID: InventoryEntity.new(),
-	TEMP_ID: InventoryEntity.new(),
-	}
+	PLAYER_ID: InventoryEntity.new(PLAYER_ID),
+}
 
 
 func get_by_world_object(id: int):
@@ -32,7 +29,7 @@ func insert(entity: InventoryEntity):
 	if has_by_world_object(entity.world_object_id):
 		update(entity)
 		return
-	
+
 	create(entity)
 
 

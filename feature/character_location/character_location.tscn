@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl8k81se1whi6"]
+
+[ext_resource type="Script" path="res://feature/character_location/character_location.gd" id="1_rsfsv"]
+
+[node name="CharacterLocation" type="Node"]
+script = ExtResource("1_rsfsv")

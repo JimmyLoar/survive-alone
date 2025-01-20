@@ -18,6 +18,3 @@ current_tab = 0
 [node name="ItemInformationPanel" parent="_MarginContainer/HBoxContainer/SubContainer" index="1" instance=ExtResource("4_f0gnu")]
 layout_mode = 2
 metadata/_tab_index = 0
-
-[node name="Control" type="Control" parent="." index="2"]
-layout_mode = 2

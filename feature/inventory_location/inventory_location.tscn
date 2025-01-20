@@ -23,3 +23,5 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[connection signal="item_pressed" from="_MarginContainer/HBoxContainer/MainContainer/Inventory" to="_MarginContainer/HBoxContainer/SubContainer/ItemInformationPanel" method="update"]

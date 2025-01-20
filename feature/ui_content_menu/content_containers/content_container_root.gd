@@ -13,7 +13,11 @@ signal closed
 
 func _on_close_button_pressed():
 	if sub_container.current_tab == 0:
-		self.hide()
+		var parent = get_parent()
+		if parent is TabContainer:
+			parent.current_tab = -1
+		else:
+			self.hide()
 		return
 	
 	sub_container.current_tab = 0
