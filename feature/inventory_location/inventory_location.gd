@@ -7,11 +7,11 @@ var _character_location: CharacterLocationState = Injector.inject(CharacterLocat
 
 var _state := InventoryLocationState.new("Location")
 
-@onready var inventory: InventoryDisplay = $_MarginContainer/HBoxContainer/MainContainer/Inventory
+@onready var inventory: InventoryDisplay = %Inventory
 @onready
-var location_panel: MarginContainer = $_MarginContainer/HBoxContainer/SubContainer/LocationPanel
+var location_panel: MarginContainer = %LocationPanel
 @onready
-var item_information_panel: ItemInfoPanel = $_MarginContainer/HBoxContainer/SubContainer/ItemInformationPanel
+var item_information_panel: ItemInfoPanel = %ItemInformationPanel
 
 
 func _enter_tree() -> void:
