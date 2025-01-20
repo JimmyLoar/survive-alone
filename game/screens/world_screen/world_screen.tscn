@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bsq170wia7k5p"]
 
-[ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
+[ext_resource type="Script" uid="uid://cocdetna7ow4o" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
 [ext_resource type="PackedScene" uid="uid://skppxmtw5diw" path="res://feature/virtual_chunks/virtual_chunks.tscn" id="3_6pu03"]
 [ext_resource type="PackedScene" uid="uid://d3alad2ncunfn" path="res://feature/game_time/game_time.tscn" id="3_odwc8"]

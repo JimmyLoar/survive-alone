@@ -1,5 +1,5 @@
 @tool
-class_name ItemActionEntity
+class_name ItemActionResource
 extends MyResource
 
 enum Types{

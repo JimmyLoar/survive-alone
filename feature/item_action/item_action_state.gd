@@ -2,13 +2,11 @@ class_name ItemActionState
 extends Node
 
 
-
-
-func can_execute(action_entity: ItemActionEntity) -> bool:
+func can_execute(action_entity: ItemActionResource) -> bool:
 	return true
 
 
-func execute(action_entity: ItemActionEntity) -> void:
+func execute(action_entity: ItemActionResource) -> void:
 	var data := action_entity.get_values()
 	if data.has(&"properties"):
 		_execute_properties(data.properties)

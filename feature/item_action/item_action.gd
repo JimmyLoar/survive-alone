@@ -2,7 +2,7 @@ class_name ItemAction
 extends Node
 
 
-var currect_action: ItemActionEntity
+var currect_action: ItemActionResource
 
 @onready var state: ItemActionState = %ItemActionState
 
@@ -15,7 +15,7 @@ var currect_action: ItemActionEntity
 @onready var reward_slot_cotroller: ItemsGrid = %RewardSlotCotroller
 
 
-func display(action: ItemActionEntity):
+func display(action: ItemActionResource):
 	currect_action = action
 	if currect_action.get_values().has(&"properties"):
 		_display_properties(currect_action.get_values().properties)

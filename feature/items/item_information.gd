@@ -63,7 +63,7 @@ func _update_durability_text(item: ItemEntity):
 	text_label.append_text("Durability: %d" % value)
 
 
-func update_interaction_panel(actions: Array[ItemActionEntity]):
+func update_interaction_panel(actions: Array[ItemActionResource]):
 	for i in interactive_container.get_child_count() - 1:
 		var child := interactive_container.get_child(i + 1) as ItemAction
 		if not child:
