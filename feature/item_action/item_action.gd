@@ -19,8 +19,13 @@ func display(action: ItemActionResource):
 	currect_action = action
 	if currect_action.get_values().has(&"properties"):
 		_display_properties(currect_action.get_values().properties)
+		properties_container.show()
 	
-	elif false:
+	else:
+		properties_container.hide()
+	
+	
+	if false:
 		_display_items_grids()
 	
 	slider.visible = action.use_stack

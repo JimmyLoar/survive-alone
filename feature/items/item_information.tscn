@@ -57,6 +57,18 @@ scroll_active = false
 [node name="ItemAction" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_arwvw")]
 layout_mode = 2
 
+[node name="ItemAction2" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_arwvw")]
+layout_mode = 2
+
+[node name="ItemAction3" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_arwvw")]
+layout_mode = 2
+
+[node name="ItemAction4" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_arwvw")]
+layout_mode = 2
+
+[node name="ItemAction5" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_arwvw")]
+layout_mode = 2
+
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1

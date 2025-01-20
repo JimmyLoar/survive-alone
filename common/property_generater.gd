@@ -30,14 +30,6 @@ static func take_range_int(property_name: String, min_value: int, max_value: int
 	return dict
 
 
-static func convent_to_range(property_dict: Dictionary, min_value: float, max_value: float, step: float = 1.0, overside: String = '') -> Dictionary:
-	property_dict.merge({
-		"hint" = PROPERTY_HINT_RANGE,
-		"hint_string" = "%s,%s,%s,%s" % [min_value, max_value, step, overside]
-	}, true)
-	return property_dict
-
-
 static func take_string(property_name: String, use_multiline := false, read_only := false) -> Dictionary:
 	return {
 		"name": property_name,
@@ -48,32 +40,22 @@ static func take_string(property_name: String, use_multiline := false, read_only
 	}
 
 
-static func take_enum_string(property_name: String, enum_string: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
-	var _prop := take_string(property_name)
-	_prop.merge({
-		hint = PROPERTY_HINT_ENUM_SUGGESTION,
-		hint_string = enum_string,
-		usage = _usage,
-	}, true)
-	return _prop
-
-
-static func take_enum_int(property_name: String, enum_string: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
-	var _prop = take_int(property_name)
-	_prop.merge({
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = enum_string,
-		usage = _usage,
-	}, true)
-	return _prop
-
-
 static func take_simple_array(property_name: String, elem_type: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	return {
 		"name": property_name,
 		"type": TYPE_ARRAY,
 		"hint": PROPERTY_HINT_ARRAY_TYPE,
 		"hint_string": elem_type,
+		"usage": _usage,
+	}
+
+
+static func take_array(property_name: String, elem_type: int, elem_hint: int, elem_hint_string: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
+	return {
+		"name": property_name,
+		"type": TYPE_ARRAY,
+		"hint": PROPERTY_HINT_TYPE_STRING,
+		"hint_string": "%d/%d:%s" % [elem_type, elem_hint, elem_hint_string],
 		"usage": _usage,
 	}
 
@@ -114,3 +96,19 @@ static func take_dictionary(property_name: String, _usage: int = PROPERTY_USAGE_
 		"type": TYPE_DICTIONARY,
 		"usage": _usage,
 	}
+
+
+static func convent_to_range(property_dict: Dictionary, min_value: float, max_value: float, step: float = 1.0, overside: String = '') -> Dictionary:
+	property_dict.merge({
+		"hint" = PROPERTY_HINT_RANGE,
+		"hint_string" = "%s,%s,%s,%s" % [min_value, max_value, step, overside]
+	}, true)
+	return property_dict
+
+
+static func convert_to_enum(property: Dictionary, enum_string: String, is_int_value := true) -> Dictionary:
+	property.merge({
+		hint = PROPERTY_HINT_ENUM if is_int_value else PROPERTY_HINT_ENUM_SUGGESTION,
+		hint_string = enum_string,
+	}, true)
+	return property

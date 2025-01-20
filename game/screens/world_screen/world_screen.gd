@@ -3,6 +3,7 @@ extends Node2D
 
 @export var data_base_path: String
 
+
 func _enter_tree() -> void:
 	var db = Injector.provide(GameDb, GameDb.new(), self)
 	Injector.provide(BiomeRepository, BiomeRepository.new(self), self)

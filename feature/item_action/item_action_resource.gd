@@ -6,6 +6,8 @@ enum Types{
 	CHANGE_PROPERTY = 1,
 	NEED_ITEMS = 2,
 	REWARD_ITEMS = 4,
+	CHANGE_DURABILITY = 8,
+	REDUCED_BY_USE = 16,
 }
 
 @export_flags(
@@ -28,12 +30,27 @@ var _properties: Dictionary = {
 	"psych": 0,
 } 
 
-var need_items: Array[String] = []
-var reward_items: Array[String] = []
+
+var need_items: Dictionary = {}
+var reward_items: Dictionary = {}
+var used_item_keys := []:
+	set(value):
+		used_item_keys = value
+		need_items.merge(Utils.create_dictionary_with_keys(value, 0))
+		need_items = Utils.dictionary_erase_keys_without_list(need_items, value)
+		reward_items.merge(Utils.create_dictionary_with_keys(value, 0))
+		reward_items = Utils.dictionary_erase_keys_without_list(reward_items, value)
+		notify_property_list_changed()
+
+var _items_names: PackedStringArray = []
 
 
 func _init() -> void:
 	super("ITEM_ACTION")
+	if Engine.is_editor_hint():
+		var database := preload("res://resources/database.gddb")
+		_items_names = PackedStringArray(database.get_data_string_ids(&"items"))
+		notify_property_list_changed()
 
 
 func get_values() -> Dictionary:
@@ -55,8 +72,15 @@ func _get_property_list() -> Array[Dictionary]:
 	var properties: Array[Dictionary] = []
 	if _is_type(type, Types.CHANGE_PROPERTY):
 		properties.append(PropertyGenerater.take_dictionary("_properties"))
+	
 	if _is_type(type, Types.NEED_ITEMS):
-		properties.append(PropertyGenerater.take_simple_array("need_items", "String"))
+		properties.append(PropertyGenerater.take_dictionary("need_items"))
+	
 	if _is_type(type, Types.REWARD_ITEMS):
-		properties.append(PropertyGenerater.take_simple_array("reward_items", "String"))
+		properties.append(PropertyGenerater.take_dictionary("reward_items"))
+	
+	if _is_type(type, Types.REWARD_ITEMS) or _is_type(type, Types.NEED_ITEMS):
+		var prop := PropertyGenerater.take_array("used_item_keys", TYPE_STRING, PROPERTY_HINT_ENUM_SUGGESTION, ','.join(_items_names))
+		properties.append(prop)
+	
 	return properties

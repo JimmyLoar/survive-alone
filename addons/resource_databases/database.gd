@@ -100,6 +100,11 @@ func get_data_categories(collection: StringName, id: Variant) -> Array[StringNam
 		if (_collections_data[collection][&"categories_to_ints"][category] as Dictionary).has(int_id):
 			result.append(category)
 	return result
+
+## Return an [class Array[StringName]]
+func get_data_string_ids(collection: StringName) -> Array:
+	var result: Array = _collections_data[collection][&"strings_to_ints"].keys()
+	return result
 #endregion
 
 
