@@ -38,7 +38,7 @@ func update(item: ItemEntity):
 
 
 func _display(item):
-	if not item or item.is_empty():
+	if not item or item.get_total_amount() == 0:
 		_display_empty()
 	
 	else:

@@ -64,6 +64,10 @@ func get_values() -> Dictionary:
 	return _result
 
 
+func is_type(_type: Types) -> bool:
+	return _is_type(type, _type)
+
+
 func _is_type(value: int, type: Types) -> bool:
 	return fmod(value, type * 2) >= type
 

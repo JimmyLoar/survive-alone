@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://feature/item_action/item_action.gd" id="1_thsb4"]
 [ext_resource type="PackedScene" uid="uid://ccyeuduk7vphu" path="res://feature/item_action/internal/character_property_value.tscn" id="2_2yibf"]
-[ext_resource type="Script" uid="uid://bt6x5481dd855" path="res://feature/items_grid/items_grid.gd" id="3_0ahuu"]
+[ext_resource type="Script" path="res://feature/items_grid/items_grid.gd" id="3_0ahuu"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="4_k0ap7"]
 [ext_resource type="Script" path="res://feature/item_action/item_action_state.gd" id="5_tcyth"]
 
@@ -43,7 +43,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ItemsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="NeedLabel" type="Label" parent="MarginContainer/VBoxContainer/ItemsContainer"]
@@ -54,6 +53,7 @@ horizontal_alignment = 1
 
 [node name="NeedSlotCotroller" type="GridContainer" parent="MarginContainer/VBoxContainer/ItemsContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 54)
 layout_mode = 2
 columns = 2
 script = ExtResource("3_0ahuu")
@@ -75,6 +75,7 @@ horizontal_alignment = 1
 
 [node name="RewardSlotCotroller" type="GridContainer" parent="MarginContainer/VBoxContainer/ItemsContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 columns = 2
 script = ExtResource("3_0ahuu")

@@ -15,7 +15,7 @@ var state: InventoryState
 func _ready() -> void:
 	items_grid.item_pressed.connect(_on_items_grid_item_pressed)
 	items_grid.duble_pressed.connect(_on_items_grid_duble_pressed)
-	items_grid.init_items(page_size)
+	items_grid.reset_items_slots(page_size)
 	page_controller.set_page_size(page_size.x * page_size.y)
 
 

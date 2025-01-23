@@ -4,6 +4,7 @@ extends GridContainer
 signal item_pressed(item_index: int)
 signal duble_pressed(item_index:int)
 
+@export_enum("Display Only", "Interactive") var display_mode := 1
 @export var _init_size: Vector2i = Vector2i(6, 4): 
 	set(value): 
 		_init_size = value.max(Vector2i(1, 1))
@@ -17,10 +18,10 @@ var timer: SceneTreeTimer
 func _init() -> void:
 	set("theme_override_constants/h_separation", 0)
 	set("theme_override_constants/v_separation", 0)
-	init_items(_init_size)
+	reset_items_slots(_init_size)
 
 
-func init_items(_size: Vector2i):
+func reset_items_slots(_size: Vector2i):
 	#button_group.allow_unpress = true
 	_clear_items()
 	columns = _size.x
@@ -29,6 +30,8 @@ func init_items(_size: Vector2i):
 		new_item.pressed.connect(_on_item_pressed.bind(i))
 		new_item.button_group = button_group
 		new_item.toggle_mode = true
+		new_item.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		new_item.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		add_child(new_item)
 
 
@@ -37,6 +40,7 @@ func update_items_list(list: Array[ItemEntity]):
 	for i in list.size():
 		var child = get_child(i) as ItemContainer
 		child.update(list[i])
+		child.disabled = display_mode == 0
 
 
 func _clear_items():
