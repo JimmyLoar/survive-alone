@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://fabysmmsww7k"]
 
-[ext_resource type="PackedScene" uid="uid://4ss22j7qgjf0" path="res://feature/!world/ui_sreens/location/drop_display.tscn" id="1_h5epp"]
+[ext_resource type="PackedScene" uid="uid://4ss22j7qgjf0" path="res://feature/inventory_location/internal/drop_display.tscn" id="1_8awhv"]
 
 [sub_resource type="GDScript" id="GDScript_ehswf"]
 script/source = "extends MarginContainer
@@ -8,9 +8,9 @@ script/source = "extends MarginContainer
 signal finished
 
 @onready var grid_container: GridContainer = $GridContainer
+@onready var _inventory_location_state: InventoryLocationState = Injector.inject(InventoryLocationState, self)
 
-
-func update(drop: SearchDrop):
+func update(drop: SearchDropResource):
 	if not drop: 
 		hide()
 		return
@@ -39,11 +39,10 @@ func _on_finished_search(_child_index: int, drop: Array[Dictionary]):
 	finished_amount -= 1
 	if finished_amount > 0: return
 	self.hide()
-	var inv := InventoryState.new()
 	
 	for i in drop.size():
 		var loot = drop[i]
-		inv.add_item(loot.data, loot.amount)
+		_inventory_location_state.add_item(loot.data, loot.amount)
 	
 	emit_signal(\"finished\")
 "
@@ -58,62 +57,62 @@ script = SubResource("GDScript_ehswf")
 layout_mode = 2
 columns = 5
 
-[node name="DropDisplay" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay2" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay2" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay3" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay3" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay4" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay4" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay5" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay5" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay6" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay6" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay7" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay7" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay8" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay8" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay9" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay9" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay10" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay10" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay11" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay11" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay12" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay12" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay13" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay13" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay14" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay14" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DropDisplay15" parent="GridContainer" instance=ExtResource("1_h5epp")]
+[node name="DropDisplay15" parent="GridContainer" instance=ExtResource("1_8awhv")]
 layout_mode = 2
 size_flags_horizontal = 3

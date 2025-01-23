@@ -1,17 +1,16 @@
 class_name Searcher
 
-
 var rng := RandomNumberGenerator.new()
 
 
 func _init(seed := -1) -> void:
-	if seed == -1: 
+	if seed == -1:
 		rng.randomize()
-	else: 
+	else:
 		rng.seed = seed
 
 
-func search(drop: SearchDrop) -> Array[Dictionary]:
+func search(drop: SearchDropResource) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for i in drop.items_count:
 		result.append(_count_item(i, drop))
@@ -19,21 +18,29 @@ func search(drop: SearchDrop) -> Array[Dictionary]:
 	return result
 
 
-func _count_item(index: int, drop: SearchDrop) -> Dictionary:
+func _count_item(index: int, drop: SearchDropResource) -> Dictionary:
 	var _item = {
 		"data": drop.get_value(index, drop.Value.DATA),
 		"amount": 0.0,
 		"loops": 0,
 	}
-	
+
 	var attempt_value = rng.randf()
-	var currect_chance = _count_chance(drop.get_value(index, drop.Value.CHANCE), drop.get_value(index, drop.Value.REDUCTION), _item.loops)
+	var currect_chance = _count_chance(
+		drop.get_value(index, drop.Value.CHANCE),
+		drop.get_value(index, drop.Value.REDUCTION),
+		_item.loops
+	)
 	while attempt_value <= currect_chance:
 		_item.loops += 1
 		_item.amount += drop.get_value(index, drop.Value.REWARD)
-		currect_chance = _count_chance(drop.get_value(index, drop.Value.CHANCE), drop.get_value(index, drop.Value.REDUCTION), _item.loops)
+		currect_chance = _count_chance(
+			drop.get_value(index, drop.Value.CHANCE),
+			drop.get_value(index, drop.Value.REDUCTION),
+			_item.loops
+		)
 		attempt_value = rng.randf()
-	
+
 	_item["chance"] = attempt_value
 	return _item
 

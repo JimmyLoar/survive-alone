@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://4ss22j7qgjf0"]
 
-[ext_resource type="PackedScene" uid="uid://1a1ip2k7trg1" path="res://feature/items/item_display.tscn" id="1_v1aci"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="2_w5apy"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_rectangle.gd" id="3_ohhxy"]
+[ext_resource type="PackedScene" uid="uid://1a1ip2k7trg1" path="res://feature/items/item_display.tscn" id="1_8s24l"]
+[ext_resource type="Script" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="2_2rplx"]
+[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_rectangle.gd" id="3_ma3hb"]
 
 [sub_resource type="GDScript" id="GDScript_c4g7g"]
 script/source = "extends HBoxContainer
@@ -54,13 +54,13 @@ func update(data: ItemResource):
 "
 
 [sub_resource type="Resource" id="Resource_t8jc4"]
-script = ExtResource("3_ohhxy")
+script = ExtResource("3_ma3hb")
 corner_rounding = 0.0
 
 [sub_resource type="Texture2D" id="Texture2D_qkguk"]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("2_w5apy")
+script = ExtResource("2_2rplx")
 size = Vector2i(16, 16)
 shape = SubResource("Resource_t8jc4")
 fill_type = 0
@@ -86,7 +86,7 @@ colors = PackedColorArray(0.933327, 3.27289e-06, 9.62615e-07, 1, 0.866667, 0.760
 [sub_resource type="Texture2D" id="Texture2D_s4fpm"]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("2_w5apy")
+script = ExtResource("2_2rplx")
 size = Vector2i(16, 160)
 shape = SubResource("Resource_t8jc4")
 fill_type = 1
@@ -111,7 +111,7 @@ custom_minimum_size = Vector2(30, 60)
 theme_override_constants/separation = 0
 script = SubResource("GDScript_c4g7g")
 
-[node name="ItemDisplay" parent="." instance=ExtResource("1_v1aci")]
+[node name="ItemDisplay" parent="." instance=ExtResource("1_8s24l")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

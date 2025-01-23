@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://djj8lftj7w8hq"]
 
-[ext_resource type="Script" path="res://feature/!world/ui_sreens/location/location_panel.gd" id="1_f25e6"]
-[ext_resource type="PackedScene" uid="uid://fabysmmsww7k" path="res://feature/!world/ui_sreens/location/search_display.tscn" id="3_fp44n"]
+[ext_resource type="Script" path="res://feature/inventory_location/internal/location_panel.gd" id="1_f25e6"]
+[ext_resource type="PackedScene" uid="uid://fabysmmsww7k" path="res://feature/inventory_location/internal/search_display.tscn" id="3_fp44n"]
 
 [node name="LocationPanel" type="MarginContainer"]
 custom_minimum_size = Vector2(40, 40)
