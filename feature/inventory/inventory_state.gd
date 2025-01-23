@@ -22,10 +22,8 @@ func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
 	var tmp = inventory_entity
 	inventory_entity = _new_entity
 	
-	var _get_names: Callable = func(item: ItemEntity): 
+	var _get_names: Callable = func(item: ItemEntity):
 		return item.get_resource().name_key 
-	_logger.debug("Changed storage entiry on entity:", 
-		{"id": _new_entity.world_object_id, "items": _new_entity.items.map(_get_names)})
 	
 	changed_inventory_entity.emit(_new_entity)
 	return tmp

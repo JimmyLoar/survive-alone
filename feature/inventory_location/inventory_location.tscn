@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/ui_content_menu/content_containers/content_container_root.tscn" id="1_bv0e0"]
 [ext_resource type="Script" path="res://feature/inventory_location/inventory_location.gd" id="2_g7boo"]
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory.tscn" id="2_o8nlk"]
-[ext_resource type="PackedScene" uid="uid://djj8lftj7w8hq" path="res://feature/!world/ui_sreens/location/location_panel.tscn" id="3_15qhe"]
+[ext_resource type="PackedScene" uid="uid://djj8lftj7w8hq" path="res://feature/inventory_location/internal/location_panel.tscn" id="3_15qhe"]
 [ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="3_sakew"]
 
 [node name="CC-Location" instance=ExtResource("1_bv0e0")]

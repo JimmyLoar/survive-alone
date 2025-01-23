@@ -2,7 +2,7 @@
 
 [ext_resource type="Shape2D" uid="uid://7jre21hmgxhw" path="res://resources/collection/world_object/location/house_shape.tres" id="1_i5hha"]
 [ext_resource type="Script" path="res://resources/schema/world_object/world_location.gd" id="2_s7nfq"]
-[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/search_drop/test/test_1.tres" id="3_tba6b"]
+[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/search_drop/test_1.tres" id="3_tba6b"]
 [ext_resource type="Texture2D" uid="uid://doejxjjp3fxgd" path="res://assets/sprite/placeholders/citybuilder-tileset/Hochhaus.1.png" id="4_2p5p8"]
 
 [resource]
