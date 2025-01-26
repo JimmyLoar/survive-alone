@@ -16,7 +16,7 @@ _properties = {
 "radiation": 0,
 "thirst": 30
 }
-name_key = "drink"
+name_key = &"drink"
 visible_name = "<null>_NAME_DRINK"
 discription = "<null>_DISCRIPTION_DRINK"
 
@@ -27,6 +27,6 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_l5obt")]([SubResource("Resource_qadvn")])
-name_key = "water_clear"
+name_key = &"water_clear"
 visible_name = "ITEM_NAME_WATER_CLEAR"
 discription = "ITEM_DISCRIPTION_WATER_CLEAR"

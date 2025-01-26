@@ -34,25 +34,33 @@ func get_total_amount() -> int:
 	return _used.size() + _not_used_amount
 
 
-func change_amount(delta_value: int):
+func increase_total_amount(delta_value: int):
 	_not_used_amount += delta_value
 	changed_amount.emit(get_total_amount())
 	return _not_used_amount
 
 
+func decrease_total_amount(value: int) -> int:
+	value = abs(value)
+	value = remove_used_amount(value)
+	value = increase_total_amount(value * -1)
+	changed_amount.emit(get_total_amount())
+	return min(value, 0) * -1  
+
+
 func change_durability(total_value: int):
 	var start_amount := get_total_amount()
-	var reaming = total_value
+	var remaing = total_value
 	var loopbreak := 120
-	while reaming > 0 and get_total_amount() > 0 and loopbreak > 0:
+	while remaing > 0 and get_total_amount() > 0 and loopbreak > 0:
 		if _used.is_empty():
 			_used.append(_resource.durability)
 			_not_used_amount -= 1
-		reaming = reaming + _used[0]
-		if reaming >= 0:
+		remaing = remaing + _used[0]
+		if remaing >= 0:
 			_used.remove_at(0)
 		else:
-			_used[0] = min(abs(reaming), _resource.durability)
+			_used[0] = min(abs(remaing), _resource.durability)
 		loopbreak -= 1
 	
 	if start_amount != get_total_amount():
@@ -68,7 +76,10 @@ func append_used(new_used: Array):
 	changed_amount.emit(get_total_amount())
 
 
-func remove_used_amount(amount: int) -> int:
+func remove_used_amount(amount: int) -> int: # Returns the remainder of the value
+	if _used.is_empty():
+		return amount
+	
 	amount = max(amount - _used.size(), 0)
 	_used = _used.slice(amount, _used.size(), 1)
 	changed_amount.emit(get_total_amount())

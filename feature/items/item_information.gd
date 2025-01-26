@@ -28,9 +28,11 @@ func update(item: ItemEntity = null):
 	
 	if not item.changed_durability.is_connected(_update_durability_text):
 		item.changed_durability.connect(_update_durability_text)
+		item.changed_amount.connect(_on_changed_value)
 	
 	if _last_item:
 		_last_item.changed_durability.disconnect(_update_durability_text)
+		_last_item.changed_amount.disconnect(_on_changed_value)
 	
 	_last_item = item
 	_update_display(item)
@@ -46,6 +48,11 @@ func _update_in_null():
 	name_label.hide()
 	interactive_container.hide()
 	pick_up_button.hide()
+
+
+func _on_changed_value(value):
+	if value <= 0:
+		_update_in_null()
 
 
 func _update_display(item: ItemEntity):
@@ -90,7 +97,7 @@ func set_inventory(new_inv: InventoryState):
 
 func _on_reduced_self() -> void:
 	if not _last_item.is_empty():
-		_last_item.change_amount(-1)
+		_last_item.increase_total_amount(-1)
 	
 	if _last_item.is_empty():
 		update()

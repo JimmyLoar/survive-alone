@@ -31,7 +31,7 @@ func update(item: ItemEntity):
 		if item:
 			item.changed_amount.connect(display.update_amount)
 		if current_item:
-			item.changed_amount.disconnect(display.update_amount)
+			current_item.changed_amount.disconnect(display.update_amount)
 		current_item = item
 	
 	_display(item)

@@ -32,7 +32,7 @@ func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 	var found_index = find_item(data.name_key)
 	if found_index != -1:
 		var item = get_item(found_index)
-		item.change_amount(value)
+		item.increase_total_amount(value)
 		item.append_used(used)
 		_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in exist item with index [color=green]%d[/color]" % 
 			[value, used.size(), data.name_key, found_index])
@@ -52,12 +52,12 @@ func remove_item(data: ItemResource, _amount := 1):
 	
 	var item := get_item(index)
 	amount = item.remove_used_amount(amount)
-	item.change_amount(amount * -1)
+	item.increase_total_amount(amount * -1)
 	amount = max(amount - item.get_amount(), 0)
 	
 	if item.get_total_amount() <= 0:
 		_remove_from_storage_entity(index)
-	_logger.debug("Removed [color=green]%d (reaming %d)[/color] items [color=green]%s (%d)[/color]" % [_amount - amount, amount, data.name_key, item.get_total_amount()])
+	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items [color=green]%s (%d)[/color]" % [_amount - amount, amount, data.name_key, item.get_total_amount()])
 	return amount
 
 
@@ -73,10 +73,17 @@ func has_item_amount(data: ItemResource, amount: int = 1) -> bool:
 	return false #возвращается если предмета нет в инветоре
 
 
-func find_item(item_name: StringName) -> int:
+func find_item(item_name: String) -> int:
 	if _stored_cache.has(item_name):
 		return _stored_cache[item_name]
 	return -1
+
+
+func find_and_get_amount(item_name: String) -> int:
+	var index = find_item(item_name)
+	if index == -1:
+		return 0
+	return get_item(index).get_total_amount()
 
 
 func get_item(index: int) -> ItemEntity:
@@ -85,7 +92,7 @@ func get_item(index: int) -> ItemEntity:
 	return null
 
 
-func fetch_item(item_name: String):
+func fetch_item(item_name: StringName) -> ItemEntity:
 	return get_item(find_item(item_name))
 
 
@@ -103,20 +110,25 @@ func get_or_create_item(data: ItemResource) -> ItemEntity:
 func _add_in_storage_entity(item: ItemEntity) -> ItemEntity:
 	var _index: int = inventory_entity.items.size()
 	inventory_entity.items.append(item)
-	_stored_cache[item.get_resource().name_key] = _index
 	changed_inventory_entity.emit(inventory_entity)
+	_stored_cache[item.get_resource().name_key] = _index
+	item.changed_amount.connect(_on_changed_value.bind(item.get_resource().name_key))
 	return item
 
 
 func _remove_from_storage_entity(index: int) -> ItemEntity:
 	if is_index_validate(index):
 		var item: ItemEntity = inventory_entity.items.pop_at(index)
-		item._index = -1
-		item._inventory = ""
 		_stored_cache.erase(item.get_resource().name_key)
 		changed_inventory_entity.emit(inventory_entity)
+		item.changed_amount.disconnect(_on_changed_value)
 		return item
 	return null
+
+
+func _on_changed_value(value: int, index: String):
+	if value <= 0:
+		_remove_from_storage_entity(find_item(index))
 
 
 func _recount_index_items(entity: InventoryEntity):
@@ -130,7 +142,7 @@ func get_size() -> int:
 	return inventory_entity.items.size()
 
 
-#Todo erise_empty - сайд эфект в функции. Выглядит что нужно убрать и вместо этого в местах вызова get_items явно вызывать публичный аналог _clear_empty
+# TODO erise_empty - сайд эфект в функции. Выглядит что нужно убрать и вместо этого в местах вызова get_items явно вызывать публичный аналог _clear_empty
 # get функции не должны делать доп работу. Только возвращать что просят
 func get_items(erise_empty := false) -> Array[ItemEntity]: 
 	if not inventory_entity: 

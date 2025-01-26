@@ -19,7 +19,7 @@ reward_items = {
 "wood": 0
 }
 used_item_keys = [&"fresh_meat", &"wood", &"fry_meat"]
-name_key = "cook"
+name_key = &"cook"
 visible_name = "ITEM_ACTION_NAME_COOK"
 discription = "ITEM_ACTION_DISCRIPTION_COOK"
 
@@ -35,7 +35,7 @@ _properties = {
 "radiation": 0,
 "thirst": 0
 }
-name_key = "eat"
+name_key = &"eat"
 visible_name = "ITEM_ACTION_NAME_EAT"
 discription = "ITEM_ACTION_DISCRIPTION_EAT"
 
@@ -46,6 +46,6 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_cpj0t")]([SubResource("Resource_pne58"), SubResource("Resource_gcwfx")])
-name_key = "fresh_meat"
+name_key = &"fresh_meat"
 visible_name = "ITEM_NAME_FRESH_MEAT"
 discription = "Сешь, что бы востановить немного голода."

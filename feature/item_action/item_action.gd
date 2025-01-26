@@ -36,7 +36,7 @@ func _update_action_types(action: ItemActionResource):
 	for type in _VALUE.keys():
 		var array = _VALUE[type]
 		var container: Control = get(array[1])
-		if action.is_type(type):
+		if action.has_type(type):
 			call(array[0], _values[array[2]])
 			container.show()
 		

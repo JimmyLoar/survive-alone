@@ -16,7 +16,7 @@ _properties = {
 "radiation": 0,
 "thirst": 12
 }
-name_key = "name_key"
+name_key = &"name_key"
 visible_name = ""
 discription = ""
 
@@ -27,6 +27,6 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_hhqk7")]([SubResource("Resource_v3q7y")])
-name_key = "canned food"
+name_key = &"canned food"
 visible_name = "ITEM_NAME_CANNED FOOD"
 discription = "ITEM_DISCRIPTION_CANNED FOOD"

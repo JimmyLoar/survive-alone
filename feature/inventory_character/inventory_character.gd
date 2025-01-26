@@ -11,7 +11,7 @@ var _state := InventoryCharacterState.new("Character")
 
 
 func _enter_tree() -> void:
-	Injector.provide(InventoryCharacterState, _state, self)
+	Injector.provide(InventoryCharacterState, _state, get_parent())
 
 
 func _ready() -> void:
