@@ -43,6 +43,9 @@ func update(item: ItemEntity = null):
 func _update_in_null():
 	get_parent().current_tab = 0
 	_last_item = null
+	name_label.hide()
+	interactive_container.hide()
+	pick_up_button.hide()
 
 
 func _update_display(item: ItemEntity):
@@ -51,6 +54,8 @@ func _update_display(item: ItemEntity):
 	text_label.clear()
 	text_label.append_text("%s" % data.discription)
 	get_parent().current_tab = get_index()
+	name_label.show()
+	pick_up_button.show()
 	#show()
 
 
@@ -75,6 +80,7 @@ func update_interaction_panel(actions: Array[ItemActionResource]):
 		
 		child.display(actions[i])
 		child.show()
+	interactive_container.show()
 
 
 func set_inventory(new_inv: InventoryState):

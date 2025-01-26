@@ -18,7 +18,7 @@ reward_items = {
 "fry_meat": 1,
 "wood": 0
 }
-used_item_keys = ["fresh_meat", "wood", "fry_meat"]
+used_item_keys = [&"fresh_meat", &"wood", &"fry_meat"]
 name_key = "cook"
 visible_name = "ITEM_ACTION_NAME_COOK"
 discription = "ITEM_ACTION_DISCRIPTION_COOK"
