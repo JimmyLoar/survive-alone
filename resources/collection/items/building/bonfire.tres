@@ -11,6 +11,6 @@ rare = 1
 durability = -1
 is_pickable = false
 actions = Array[ExtResource("1_0odt7")]([])
-name_key = "bonfire"
+name_key = &"bonfire"
 visible_name = "ITEM_NAME_BONFIRE"
 discription = "ITEM_DISCRIPTION_BONFIRE"

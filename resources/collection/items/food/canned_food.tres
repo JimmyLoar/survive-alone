@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_v3q7y"]
 script = ExtResource("1_hhqk7")
-type = 1
+type = 3
 use_stack = false
 _properties = {
 "exhaustion": -5,
@@ -16,9 +16,9 @@ _properties = {
 "radiation": 0,
 "thirst": 12
 }
-name_key = &"name_key"
-visible_name = ""
-discription = ""
+name_key = &"eat"
+visible_name = "ITEM_ACTION_NAME_EAT"
+discription = "ITEM_ACTION_DISCRIPTION_EAT"
 
 [resource]
 script = ExtResource("1_87aen")
