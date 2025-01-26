@@ -87,7 +87,7 @@ var current_sorting = {
 	}
 
 var custom_names: Dictionary = {}
-const custom_names_path := "res://addons/script_panel_plus/saves/custom_names.json"
+const custom_names_path := "user://addons/script_panel_plus/saves/custom_names.json"
 
 ## Script Class
 class ScriptItem:
