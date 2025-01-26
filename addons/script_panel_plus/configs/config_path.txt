@@ -1,1 +1,1 @@
-user://addons/script_panel_plus/configs
+res://addons/script_panel_plus/configs
