@@ -5,13 +5,13 @@ var _inventory_repository: InventoryRepository
 var _state := InventoryCharacterState.new("Character")
 
 
-@onready var inventory: InventoryDisplay = $_MarginContainer/HBoxContainer/MainContainer/Inventory
-@onready var item_information_panel: ItemInfoPanel = $_MarginContainer/HBoxContainer/SubContainer/ItemInformationPanel
+@onready var inventory: InventoryDisplay = %Inventory
+@onready var item_information_panel: ItemInfoPanel = %ItemInformationPanel
 
 
 
 func _enter_tree() -> void:
-	Injector.provide(InventoryCharacterState, _state, self)
+	Injector.provide(InventoryCharacterState, _state, self, "closest")
 
 
 func _ready() -> void:
@@ -25,11 +25,14 @@ func _ready() -> void:
 	_state.changed_inventory_entity.connect(inventory.update)
 	inventory.item_pressed.connect(item_information_panel.update)
 	inventory.update(_state.inventory_entity)
+	inventory.state = _state
 	
 
 
 func _test_inventory():
-	_state.add_item(load("res://resources/collection/items/food/fry_meat.tres"), 10)
+	#_state.add_item(load("res://resources/collection/items/food/fry_meat.tres"), 10)
 	_state.add_item(load("res://resources/collection/items/food/canned_food.tres"), 5)
 	_state.add_item(load("res://resources/collection/items/food/water_clear.tres"), 25)
+	_state.add_item(load("res://resources/collection/items/food/fresh_meat.tres"), 10)
+	_state.add_item(load("res://resources/collection/items/resource/wood.tres"), 30)
 	

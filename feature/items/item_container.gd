@@ -31,14 +31,14 @@ func update(item: ItemEntity):
 		if item:
 			item.changed_amount.connect(display.update_amount)
 		if current_item:
-			item.changed_amount.disconnect(display.update_amount)
+			current_item.changed_amount.disconnect(display.update_amount)
 		current_item = item
 	
 	_display(item)
 
 
 func _display(item):
-	if not item or item.is_empty():
+	if not item or item.get_total_amount() == 0:
 		_display_empty()
 	
 	else:

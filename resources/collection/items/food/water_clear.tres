@@ -1,18 +1,24 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://t6dvd3ikteh5"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://t6dvd3ikteh5"]
 
-[ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_w8cuk"]
+[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_l5obt"]
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_xkc8u"]
-[ext_resource type="Script" path="res://feature/items/actions/!action.gd" id="2_dvtiq"]
 [ext_resource type="Texture2D" uid="uid://cgyfvvr7f75qe" path="res://assets/sprite/placeholders/Item3.png" id="2_hv3by"]
 
-[sub_resource type="Resource" id="Resource_uv76w"]
-script = ExtResource("1_w8cuk")
-actions = Array[ExtResource("2_dvtiq")]([])
-reduced_when_used = true
-can_stacable = false
-name_key = "drink"
-visible_name = "ITEM_ACTION_NAME_DRINK"
-discription = "ITEM_ACTION_DISCRIPTION_DRINK"
+[sub_resource type="Resource" id="Resource_qadvn"]
+script = ExtResource("1_l5obt")
+type = 3
+use_stack = false
+_properties = {
+"exhaustion": 0,
+"fatigue": 0,
+"hunger": 0,
+"psych": 0,
+"radiation": 0,
+"thirst": 30
+}
+name_key = &"drink"
+visible_name = "<null>_NAME_DRINK"
+discription = "<null>_DISCRIPTION_DRINK"
 
 [resource]
 script = ExtResource("1_xkc8u")
@@ -20,7 +26,7 @@ texture = ExtResource("2_hv3by")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_w8cuk")]([SubResource("Resource_uv76w")])
-name_key = "water_clear"
+actions = Array[ExtResource("1_l5obt")]([SubResource("Resource_qadvn")])
+name_key = &"water_clear"
 visible_name = "ITEM_NAME_WATER_CLEAR"
 discription = "ITEM_DISCRIPTION_WATER_CLEAR"

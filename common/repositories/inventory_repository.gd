@@ -11,11 +11,11 @@ var _array := [
 ]
 
 
-func get_by_id(id: int):
+func get_by_id(id: int) -> InventoryEntity:
 	return Utils.find_first(_array, func(x): return x.id == id)
 
 
-func get_by_player_id():
+func get_by_player_id() -> InventoryEntity:
 	return get_by_id(PLAYER_ID)
 
 
@@ -27,12 +27,12 @@ func has_by_id(id: int) -> bool:
 	return Utils.find_first(_array, func(x): return x.id == id)
 
 
-func create(entity: InventoryEntity):
+func create(entity: InventoryEntity) -> void:
 	assert(_array.has(entity.id), "existed invetory entity with id %s" % entity.id)
 	_array.push_back(entity)
 
 
-func insert(entity: InventoryEntity):
+func insert(entity: InventoryEntity) -> void:
 	if has_by_id(entity.id):
 		update(entity)
 		return
@@ -40,17 +40,17 @@ func insert(entity: InventoryEntity):
 	create(entity)
 
 
-func update(entity: InventoryEntity):
+func update(entity: InventoryEntity) -> void:
 	assert(not _array.has(entity.id), "not invetory entity with id %s" % entity.id)
 	var index = Utils.find_index(_array, func(x): return x.id == entity.id)
 	_array[index] = entity
 
 
-func update_player_inventory(entity: InventoryEntity):
+func update_player_inventory(entity: InventoryEntity) -> void:
 	_array[PLAYER_ID] = entity
 
 
-func to_row(entity: InventoryEntity):
+func to_row(entity: InventoryEntity) -> Dictionary:
 	return inst_to_dict(entity)
 
 

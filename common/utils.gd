@@ -28,3 +28,19 @@ static func find_first(array: Array, callable: Callable) -> Variant:
 			return array[i]
 
 	return null
+
+
+static func create_dictionary_with_keys(keys_array: Array, filling_value: Variant = null) -> Dictionary:
+	var dict := {}
+	for key in keys_array:
+		dict[key] = filling_value
+	return dict
+
+
+static func dictionary_erase_keys_without_list(dict: Dictionary, keys_list: Array) -> Dictionary:
+	var new_dict := {}
+	for key in dict:
+		if keys_list.has(key): 
+			new_dict[key] = dict[key]
+	#print_debug("old dict: %s\n keylist: %s\nnew dict: %s" % [dict, keys_list, new_dict])
+	return new_dict 

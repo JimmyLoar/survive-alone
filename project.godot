@@ -54,7 +54,12 @@ enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/
 [file_customization]
 
 folder_colors={
+"res://feature/inventory/": "yellow",
 "res://feature/inventory_character/": "yellow",
+"res://feature/inventory_location/": "yellow",
+"res://feature/item_action/": "yellow",
+"res://feature/items/": "yellow",
+"res://feature/items_grid/": "yellow",
 "res://game/": "red"
 }
 
@@ -93,3 +98,7 @@ anti_aliasing/quality/msaa_2d=1
 [resource_databases]
 
 main_base_path="res://content/database.gddb"
+
+[script_panel_plus]
+
+panel_settings/show_bottom_bar=true

@@ -9,6 +9,7 @@
 script = ExtResource("2_ehgjh")
 
 [node name="Inventory" parent="_MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("3_dpr2j")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SubContainer" parent="_MarginContainer/HBoxContainer" index="1"]
@@ -16,5 +17,6 @@ custom_minimum_size = Vector2(380, 0)
 current_tab = 0
 
 [node name="ItemInformationPanel" parent="_MarginContainer/HBoxContainer/SubContainer" index="1" instance=ExtResource("4_f0gnu")]
+unique_name_in_owner = true
 layout_mode = 2
 metadata/_tab_index = 0

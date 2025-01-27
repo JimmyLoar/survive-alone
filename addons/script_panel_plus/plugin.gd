@@ -4,11 +4,11 @@ extends EditorPlugin
 const project_settings_category := "script_panel_plus/panel_settings/"
 const scene := preload("res://addons/script_panel_plus/script_panel/script_panel.tscn")
 
-const default_config_path := "res://addons/script_panel_plus/configs"
-var config_path := "res://addons/script_panel_plus/configs"
+const default_config_path := "user://addons/script_panel_plus/configs"
+var config_path := "user://addons/script_panel_plus/configs"
 var config_name := "config.cfg"
 
-var defaults_path := "res://addons/script_panel_plus/configs/defaults.cfg"
+var defaults_path := "user://addons/script_panel_plus/configs/defaults.cfg"
 
 var config: ConfigFile
 var defaults: ConfigFile
