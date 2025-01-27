@@ -73,8 +73,9 @@ func stop():
 	#_multiper = DEFAULT_MULTYPER
 
 
-func timeskip(minut: int) -> void:
-	_time_step(minut)
+func timeskip(min: int) -> void:
+	#чтобы пропустить 2 часа нужно пропустить 1200 min (тоесть 2 часав минуты * 10)
+	_time_step(min)
 
 
 func _time_step(delta: int):

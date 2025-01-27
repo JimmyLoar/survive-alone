@@ -48,5 +48,5 @@ func set_property(value: CharacterPropertyResource):
 	_properties[value.name_key] = value
 	property_changed.emit(value)
 
-func get_property(id: String) -> CharacterPropertyResource:
-	return _properties[id]
+func get_property(name: String) -> CharacterPropertyResource:
+	return _properties[name]

@@ -17,7 +17,7 @@ property_name = "hunger"
 [node name="ThirstBar" parent="." instance=ExtResource("1_y67cn")]
 layout_mode = 2
 size_flags_horizontal = 3
-property_name = "third"
+property_name = "thirst"
 
 [node name="FatigueBar" parent="." instance=ExtResource("1_y67cn")]
 layout_mode = 2
