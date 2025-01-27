@@ -15,7 +15,7 @@ var item_information_panel: ItemInfoPanel = %ItemInformationPanel
 
 
 func _enter_tree() -> void:
-	Injector.provide(InventoryLocationState, _state, get_parent())
+	Injector.provide(InventoryLocationState, _state, self, "closest")
 
 
 func _ready() -> void:

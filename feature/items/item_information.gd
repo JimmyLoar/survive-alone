@@ -37,9 +37,10 @@ func update(item: ItemEntity = null):
 	_last_item = item
 	_update_display(item)
 	_update_durability_text(item)
-	update_interaction_panel(item.get_resource().actions)
+	_update_interaction_panel(item.get_resource().actions)
 	
 	pick_up_button.visible = item.get_resource().is_pickable
+	Injector.provide(ItemEntity, _last_item, self)
 
 
 func _update_in_null():
@@ -75,7 +76,7 @@ func _update_durability_text(item: ItemEntity):
 	text_label.append_text("Durability: %d" % value)
 
 
-func update_interaction_panel(actions: Array[ItemActionResource]):
+func _update_interaction_panel(actions: Array[ItemActionResource]):
 	for i in interactive_container.get_child_count() - 1:
 		var child := interactive_container.get_child(i + 1) as ItemAction
 		if not child:

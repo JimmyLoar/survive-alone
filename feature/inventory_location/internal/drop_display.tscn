@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://4ss22j7qgjf0"]
 
 [ext_resource type="PackedScene" uid="uid://1a1ip2k7trg1" path="res://feature/items/item_display.tscn" id="1_8s24l"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="2_2rplx"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_rectangle.gd" id="3_ma3hb"]
+[ext_resource type="Script" uid="uid://cpyers3ikip6v" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="2_2rplx"]
+[ext_resource type="Script" uid="uid://dwht7t87fm3p2" path="res://addons/shape_texture_2d/drawable_rectangle.gd" id="3_ma3hb"]
 
 [sub_resource type="GDScript" id="GDScript_c4g7g"]
 script/source = "extends HBoxContainer

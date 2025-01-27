@@ -73,8 +73,9 @@ func _display_reward_items_grids(items: Dictionary):
 
 
 # TODO найти более подходящие место для функции ниже
-@onready var database := Injector.inject(ResourceDb, self).connection as Database
+@onready var resource_db := Injector.inject(ResourceDb, self) as ResourceDb
 func _get_item_entities(items: Dictionary) -> Array[ItemEntity]:
+	var database: Database = resource_db.connection
 	var array: Array[ItemEntity] = []
 	for _name in items:
 		if items[_name] == 0:

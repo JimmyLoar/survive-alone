@@ -3,18 +3,20 @@ class_name ItemActionResource
 extends MyResource
 
 enum Types{
-	CHANGE_PROPERTY = 1,
-	NEED_ITEMS = 2,
-	REWARD_ITEMS = 4,
-	CHANGE_DURABILITY = 8,
-	REDUCED_BY_USE = 16,
+	DECREASE_WHEN_ACTIVATE = 1, # TODO
+	CHANGE_PROPERTY = 2,
+	NEED_ITEMS = 4,
+	REWARD_ITEMS = 8,
+	CHANGE_DURABILITY = 16, # TODO
 }
 
 @export_flags(
+	"Decrease when activated:%d" % Types.DECREASE_WHEN_ACTIVATE,
 	"Change Property:%d" % Types.CHANGE_PROPERTY,
 	"Need Items:%d" % Types.NEED_ITEMS,
 	"Reward Items:%d" % Types.REWARD_ITEMS,
-	) var type := 0:
+	"Change durability:%d" % Types.CHANGE_DURABILITY,
+	) var type := 1:
 		set(value):
 			type = value
 			notify_property_list_changed()
