@@ -7,7 +7,6 @@ var _state: CharacterState
 @export var move_speed = 50 # pixels per time_unit
 @onready var _moving_line = %MovingLine
 @onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
-@onready var _game_time_old: GameTimeState = Injector.inject(GameTimeState, self)
 @onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
 @onready var _character_properties_repository: CharacterPropertyRepository = Injector.inject(CharacterPropertyRepository, self)
 
