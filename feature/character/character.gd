@@ -52,7 +52,7 @@ func _process_moving(delta: float):
 		_state.position = _state.target_position
 		time_unit = max(time_unit * (distance / move_step), 1)
 		_game_time.do_step(time_unit)
-
+		
 	_moving_line.points[1] = _state.target_position - _state.position
 	_moving_line.show()
 	_update_props_by_time_spend(time_unit)
