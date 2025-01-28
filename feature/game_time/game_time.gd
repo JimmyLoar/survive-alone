@@ -14,7 +14,3 @@ func _ready() -> void:
 
 func _update_time_label(_delta):
 	text = "{hour}:{minut} {day}/{month}/{year}".format(_state._time.get_date())
-
-
-func _on_button_pressed() -> void:
-	_state.start_skip(1440)

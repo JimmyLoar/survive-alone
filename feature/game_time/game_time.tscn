@@ -6,13 +6,3 @@
 offset_right = 289.0
 offset_bottom = 23.0
 script = ExtResource("1_unh62")
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 41.0
-offset_right = 136.0
-offset_bottom = 72.0
-text = "time skip (1 day)"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
