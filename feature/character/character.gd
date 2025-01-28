@@ -7,15 +7,18 @@ var _state: CharacterState
 @export var move_speed = 50 # pixels per time_unit
 @onready var _moving_line = %MovingLine
 @onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
+@onready var _game_time_old: GameTimeState = Injector.inject(GameTimeState, self)
 @onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
 @onready var _character_properties_repository: CharacterPropertyRepository = Injector.inject(CharacterPropertyRepository, self)
 
 func _enter_tree() -> void:
 	_state = Injector.provide(CharacterState, CharacterState.new(self), self, "closest")
 
+
 func _ready() -> void:
 	_screen_mouse_events.left_button_changed.connect(_on_screen_left_button)
-	_game_time.time_changed.connect(_update_props_by_time_spend)
+	_game_time.finished_skip.connect(_update_props_by_time_spend)
+	_game_time.started_skip.connect(_state.reset_target, CONNECT_DEFERRED)
 	
 	Callable(func():
 		var props = _character_properties_repository.get_all()
@@ -25,9 +28,11 @@ func _ready() -> void:
 		_state._properties = dict
 	).call_deferred()
 
+
 func _on_screen_left_button(value):
 	if value is ScreenMouseEventsState.Click:
 		_state.target_position = get_global_mouse_position()
+
 
 func _physics_process(delta: float) -> void:
 	if _state.is_moving:
@@ -41,21 +46,26 @@ func _process_moving(delta: float):
 
 	if distance > move_step:
 		_state.position =_state.position.move_toward(_state.target_position, move_step)
-		_game_time.timeskip(time_unit)
+		_game_time.do_step(time_unit)
+		
 	else:
 		_state.position = _state.target_position
-		_game_time.timeskip(time_unit * (distance / move_step))
+		time_unit = max(time_unit * (distance / move_step), 1)
+		_game_time.do_step(time_unit)
 
 	_moving_line.points[1] = _state.target_position - _state.position
 	_moving_line.show()
+	_update_props_by_time_spend(time_unit)
+
 
 func _process_idle():
 	_moving_line.hide()
 
-func _update_props_by_time_spend(_delta: int, _time: int):
+
+func _update_props_by_time_spend(_delta: int):
 	var props = _state._properties.values()
 	for prop in props:
 		var prop_value_delta = prop.default_delta_value
 		if prop_value_delta != 0:
-			prop.default_value += prop_value_delta
+			prop.default_value += prop_value_delta * _delta
 			_state.set_property(prop)

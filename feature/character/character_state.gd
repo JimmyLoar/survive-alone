@@ -29,7 +29,11 @@ var target_position: Vector2:
 
 var is_moving: bool:
 	get: return _target_postion != position
-	
+
+
+func reset_target(_delta):
+	target_position = position
+
 
 #
 # Caracter properties
