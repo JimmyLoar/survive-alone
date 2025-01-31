@@ -250,6 +250,6 @@ text = "REST"
 
 [connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/TimeSubtractButton" to="." method="_on_time_subtract_button_pressed"]
 [connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/TimeAddButton" to="." method="_on_time_add_button_pressed"]
-[connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer/ButtonCancelRest" to="." method="_on_button_accept_cancel_pressed"]
 [connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer/ButtonCancelRest" to="." method="_on_button_cancel_rest_pressed"]
+[connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer/ButtonCancelRest" to="." method="_on_button_accept_cancel_pressed"]
 [connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer/ButtonAcceptRest" to="." method="_on_button_accept_rest_pressed"]
