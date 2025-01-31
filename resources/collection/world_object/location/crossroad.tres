@@ -2,7 +2,7 @@
 
 [ext_resource type="Shape2D" uid="uid://cwu4uvhktlqal" path="res://resources/collection/world_object/location/crossroad_shape.tres" id="1_qhfta"]
 [ext_resource type="Script" path="res://resources/schema/world_object/world_location.gd" id="2_hovwf"]
-[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/search_drop/test/test_1.tres" id="3_nuv16"]
+[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/search_drop/test_1.tres" id="3_nuv16"]
 [ext_resource type="Texture2D" uid="uid://djh8y7tcvjq02" path="res://assets/sprite/placeholders/citybuilder-tileset/StraßeB_1111.png" id="4_avd8t"]
 
 [resource]

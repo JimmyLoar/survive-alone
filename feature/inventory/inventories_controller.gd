@@ -67,8 +67,8 @@ class ItemTransfer:
 		if count >= item.get_total_amount() or count == -1:
 			return _transfer_full_item(item)
 		
-		var reaming = _transfer_used(item, count)
-		_transfer_amount(item, reaming)
+		var remaing = _transfer_used(item, count)
+		_transfer_amount(item, remaing)
 		GodotLogger.debug("Done transfer [color=green]%d %s[/color] from [color=green]%s[/color] to [color=green]%s[/color]" % 
 			[count, item.get_data().name_key, from_inventory.name, to_inventory.name])
 		return false
@@ -94,6 +94,6 @@ class ItemTransfer:
 
 	func _transfer_amount(item_a: ItemEntity, count: int = 0):
 		var item_b = to_inventory.get_or_create_item(item_a.get_data())
-		item_a.change_amount(count * -1)
-		item_b.change_amount(count)
+		item_a.increase_total_amount(count * -1)
+		item_b.increase_total_amount(count)
 		return true

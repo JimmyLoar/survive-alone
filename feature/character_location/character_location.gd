@@ -29,10 +29,15 @@ func _on_character_position_changed(pos: Vector2):
 		return
 
 	var tile_pos = _biomes_layer_state.global_to_map(pos)
-	if (
-		not is_instance_of(_state.current_location, CharacterLocationState.BiomesLocation)
-		or _state.current_location.tile_pos != tile_pos
-	):
+
+	if not is_instance_of(_state.current_location, CharacterLocationState.BiomesLocation):
 		var biomes = _biomes_layer_state.get_visible_tile_biomes_fast(tile_pos)
-		print(biomes)
 		_state.current_location = CharacterLocationState.BiomesLocation.new(tile_pos, biomes)
+		return
+	if tile_pos != _state.current_location._tile_pos:
+		var biomes = _biomes_layer_state.get_visible_tile_biomes_fast(tile_pos)
+		var new_location = CharacterLocationState.BiomesLocation.new(tile_pos, biomes)
+
+		if not _state.current_location.is_equal_biomes(new_location):
+			_state.current_location = new_location
+			return

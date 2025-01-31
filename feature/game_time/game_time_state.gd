@@ -12,7 +12,7 @@ signal time_changed(delta: int, value: int)
 signal day_changed(value: int)
 
 const DEFAULT_MULTYPER = 2
-const TIME_MULTYPER = 10.0
+const TIME_MULTYPER = 1.0
 const MINUT_IN_DAY = 1440 * TIME_MULTYPER
 const _DATA = {
 	"year": 2001,

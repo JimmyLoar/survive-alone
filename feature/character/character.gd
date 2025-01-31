@@ -3,7 +3,7 @@ extends Node2D
 
 var _state: CharacterState
 
-@export var time_unit = 10 # times per one _physics_process
+@export var time_unit = 1 # times per one _physics_process
 @export var move_speed = 50 # pixels per time_unit
 @onready var _moving_line = %MovingLine
 @onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
@@ -52,10 +52,10 @@ func _process_moving(delta: float):
 func _process_idle():
 	_moving_line.hide()
 
-func _update_props_by_time_spend(delta: int, _time: int):
+func _update_props_by_time_spend(_delta: int, _time: int):
 	var props = _state._properties.values()
 	for prop in props:
-		var prop_value_delta = prop.default_delta_value * delta
+		var prop_value_delta = prop.default_delta_value
 		if prop_value_delta != 0:
 			prop.default_value += prop_value_delta
 			_state.set_property(prop)

@@ -3,7 +3,7 @@ extends Resource
 
 var _resource_type: String = "MYRESOURCE"
 
-@export var name_key : String = "name_key":
+@export var name_key : StringName = "name_key":
 	set(value):
 		name_key = value.to_lower()
 		visible_name = TranslationServer.translate("%s_NAME_" % [_resource_type] + name_key.to_upper())

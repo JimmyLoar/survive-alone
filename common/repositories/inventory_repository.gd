@@ -3,46 +3,54 @@ extends Injectable
 
 const PLAYER_ID = 0
 
-var _array := {
-	PLAYER_ID: InventoryEntity.new(PLAYER_ID),
-}
+var _array := [
+	InventoryEntity.new(
+		PLAYER_ID,
+		InventoryEntity.BelongsAtObject.new(-1, InventoryEntity.BelongsAtObject.Type.PLAYER)
+	)
+]
 
 
-func get_by_world_object(id: int):
-	return _array[id]
+func get_by_id(id: int) -> InventoryEntity:
+	return Utils.find_first(_array, func(x): return x.id == id)
 
 
-func get_by_player_id():
-	return _array[PLAYER_ID]
+func get_by_player_id() -> InventoryEntity:
+	return get_by_id(PLAYER_ID)
 
 
-func has_by_world_object(id: int) -> bool:
-	return _array.has(id)
+func get_by_belong_at_object(belong_at):
+	return Utils.find_first(_array, func(x): return x.belongs_at.is_equal(belong_at))
 
 
-func create(entity: InventoryEntity):
-	assert(_array.has(entity.world_object_id), "existed entity")
-	_array[entity.world_object_id] = entity
+func has_by_id(id: int) -> bool:
+	return Utils.find_first(_array, func(x): return x.id == id)
 
 
-func insert(entity: InventoryEntity):
-	if has_by_world_object(entity.world_object_id):
+func create(entity: InventoryEntity) -> void:
+	assert(_array.has(entity.id), "existed invetory entity with id %s" % entity.id)
+	_array.push_back(entity)
+
+
+func insert(entity: InventoryEntity) -> void:
+	if has_by_id(entity.id):
 		update(entity)
 		return
 
 	create(entity)
 
 
-func update(entity: InventoryEntity):
-	assert(not _array.has(entity.world_object_id), "not existed entity")
-	_array[entity.world_object_id] = entity
+func update(entity: InventoryEntity) -> void:
+	assert(not _array.has(entity.id), "not invetory entity with id %s" % entity.id)
+	var index = Utils.find_index(_array, func(x): return x.id == entity.id)
+	_array[index] = entity
 
 
-func update_player_inventory(entity: InventoryEntity):
+func update_player_inventory(entity: InventoryEntity) -> void:
 	_array[PLAYER_ID] = entity
 
 
-func to_row(entity: InventoryEntity):
+func to_row(entity: InventoryEntity) -> Dictionary:
 	return inst_to_dict(entity)
 
 
