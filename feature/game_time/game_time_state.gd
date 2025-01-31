@@ -11,14 +11,14 @@ const STARTED_TIME = {
 
 signal started_skip(value: int)
 signal finished_step(delta: int)
-signal finished_skip(delta: int)
+signal finished_skip(remiang: int)
 
 
-var custom_wait_signal: Signal
 var decrease_by_step: int = 30:
 	set(value):
 		decrease_by_step = abs(value)
 		assert(decrease_by_step == 0, "'decrease_by_step' cannot be zero!")
+
 
 var _time := GameTimeEntity.new(GameTimeEntity.date_to_time(STARTED_TIME))
 var _remiang_value: int = 0
@@ -34,7 +34,7 @@ func start_skip(value: int):
 	_remiang_value = value
 	while _remiang_value > 0:
 		do_step(decrease_by_step)
-		await _get_wait_signal()
+		await _node.get_tree().physics_frame
 		_remiang_value -= decrease_by_step
 	finish_skip(value)
 	return true
@@ -47,13 +47,7 @@ func do_step(delta: int):
 
 func finish_skip(_value: int = 0):
 	_remiang_value = 0
-	finished_skip.emit(_value)
-
-
-func _get_wait_signal():
-	if custom_wait_signal and custom_wait_signal is Signal:
-		return custom_wait_signal
-	return _node.get_tree().physics_frame
+	finished_skip.emit(_remiang_value)
 
 
 func open():
