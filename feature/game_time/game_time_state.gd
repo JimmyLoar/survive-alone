@@ -1,9 +1,9 @@
 class_name GameTimeState
 extends Node
-
+ 
 const STARTED_TIME = {
 	"year": 2001,
-	"month": 6, 
+	"month": 6,
 	"day": 4,
 	"hour": 11,
 	"minut": 23,
@@ -18,7 +18,6 @@ var decrease_by_step: int = 30:
 	set(value):
 		decrease_by_step = abs(value)
 		assert(decrease_by_step == 0, "'decrease_by_step' cannot be zero!")
-
 
 var _time := GameTimeEntity.new(GameTimeEntity.date_to_time(STARTED_TIME))
 var _remiang_value: int = 0
@@ -52,3 +51,33 @@ func finish_skip(_value: int = 0):
 
 func open():
 	_node.open()
+
+
+func get_minut() -> int:
+	return fmod(_time / TIME_MULTYPER, 60)
+
+
+func get_hour() -> int:
+	return floori(_time / TIME_MULTYPER / 60.0)
+
+
+func get_month_day() -> int:
+	return fmod(_day, 30.0)
+
+
+func get_month() -> int:
+	return ceil(fmod(_day, 360.0) / 30)
+
+
+func get_year() -> int:
+	return _DATA.year + floori(_day / 360.0)
+
+
+func get_date() -> Dictionary:
+	return {
+		"year": str(get_year()).lpad(4, "0"),
+		"month": str(get_month()).lpad(2, "0"),
+		"day": str(get_month_day()).lpad(2, "0"),
+		"hour": str(get_hour()).lpad(2, "0"),
+		"minut": str(get_minut()).lpad(2, "0"),
+	}
