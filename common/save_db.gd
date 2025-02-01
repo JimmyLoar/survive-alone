@@ -41,7 +41,7 @@ func _create_tables_if_not_exist() -> bool:
 		return false
 
 	var query = """
-CREATE TABLE "character_world_pos" (
+CREATE TABLE IF NOT EXISTS "character_world_pos" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"x"	REAL NOT NULL,
 	"y"	REAL NOT NULL,
