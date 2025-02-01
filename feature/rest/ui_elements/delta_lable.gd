@@ -6,7 +6,7 @@ extends Label
 
 
 func set_delta_number(delta: float):
-	text = str(delta)
+	text = str(int(delta))
 	if delta == 0:
 		add_theme_color_override("font_color", zero_color)
 	if delta > 0:
