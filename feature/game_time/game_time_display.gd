@@ -6,7 +6,7 @@ var _time: GameTimeEntity
 
 
 func _ready() -> void:
-	_time = Injector.inject(GameTimeEntity, self)
+	_time = Injector.inject(GameTimeState, self).time
 	_time.changed_value.connect(_update_time_label)
 	_update_time_label(0)
 
