@@ -1,8 +1,8 @@
 extends PanelContainer
 
-signal canseled
 
 var _state: GameTimeState
+
 
 @onready var progress_bar: TextureProgressBar = $VBoxContainer/TextureProgressBar
 
@@ -34,7 +34,3 @@ func _reset(start_value: int):
 func _update(delta: int):
 	if not visible: return
 	progress_bar.value += delta
-
-
-func cansel():
-	pass

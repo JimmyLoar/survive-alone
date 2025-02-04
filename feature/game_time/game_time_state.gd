@@ -42,7 +42,7 @@ func start_skip(value: int):
 		do_step(decrease_by_step)
 		await _node.get_tree().physics_frame
 		_remiang_value -= decrease_by_step
-	finish_skip(value)
+	finish_skip()
 	return true
 
 
@@ -51,7 +51,7 @@ func do_step(delta: int):
 	finished_step.emit(delta)
 
 
-func finish_skip(_value: int = 0):
+func finish_skip():
 	finished_skip.emit(_remiang_value)
 	_remiang_value = 0
 
