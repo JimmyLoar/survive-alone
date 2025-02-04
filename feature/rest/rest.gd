@@ -147,7 +147,7 @@ func start_rest():
 	fatigue.default_value += _state._delta_fatigue
 	character_state.set_property(fatigue)
 	#Изменение времени
-	game_time.timeskip(_state._selected_time * 10)
+	game_time.timeskip(_state._selected_time, 3)
 
 	#По идее тут нужна анимация сна или-что-то такое
 	close()

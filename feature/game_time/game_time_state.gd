@@ -14,18 +14,25 @@ signal finished_step(delta: int)
 signal finished_skip(remiang: int)
 
 
+var time := GameTimeEntity.new(GameTimeEntity.date_to_time(STARTED_TIME))
 var decrease_by_step: int = 30:
 	set(value):
+		assert(value != 0, "'decrease_by_step' cannot be zero!")
 		decrease_by_step = abs(value)
-		assert(decrease_by_step == 0, "'decrease_by_step' cannot be zero!")
 
-var _time := GameTimeEntity.new(GameTimeEntity.date_to_time(STARTED_TIME))
 var _remiang_value: int = 0
 var _node: Node
 
 
 func _init(node: Node) -> void:
 	_node = node
+
+
+func timeskip(skipped_time: int, for_real_sec: float = 1.0, with_progress_screen := false):
+	decrease_by_step = ceil(skipped_time / Engine.physics_ticks_per_second / for_real_sec)
+	if with_progress_screen:
+		_node.open()
+	start_skip(skipped_time)
 
 
 func start_skip(value: int):
@@ -35,49 +42,19 @@ func start_skip(value: int):
 		do_step(decrease_by_step)
 		await _node.get_tree().physics_frame
 		_remiang_value -= decrease_by_step
-	finish_skip(value)
+	finish_skip()
 	return true
 
 
 func do_step(delta: int):
-	_time._value += delta
+	time._value += delta
 	finished_step.emit(delta)
 
 
-func finish_skip(_value: int = 0):
-	_remiang_value = 0
+func finish_skip():
 	finished_skip.emit(_remiang_value)
+	_remiang_value = 0
 
 
-func open():
-	_node.open()
-
-
-func get_minut() -> int:
-	return fmod(_time / TIME_MULTYPER, 60)
-
-
-func get_hour() -> int:
-	return floori(_time / TIME_MULTYPER / 60.0)
-
-
-func get_month_day() -> int:
-	return fmod(_day, 30.0)
-
-
-func get_month() -> int:
-	return ceil(fmod(_day, 360.0) / 30)
-
-
-func get_year() -> int:
-	return _DATA.year + floori(_day / 360.0)
-
-
-func get_date() -> Dictionary:
-	return {
-		"year": str(get_year()).lpad(4, "0"),
-		"month": str(get_month()).lpad(2, "0"),
-		"day": str(get_month_day()).lpad(2, "0"),
-		"hour": str(get_hour()).lpad(2, "0"),
-		"minut": str(get_minut()).lpad(2, "0"),
-	}
+func is_process():
+	return _remiang_value != 0
