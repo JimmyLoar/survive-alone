@@ -9,7 +9,6 @@ var _state: GameTimeState
 
 func _enter_tree() -> void:
 	_state = Injector.provide(GameTimeState, GameTimeState.new(self), self, "closest")
-	_state.time = Injector.provide(GameTimeEntity, _state.time, self, "closest")
 
 
 func open():
