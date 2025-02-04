@@ -6,6 +6,7 @@ var _logger := Log.get_global_logger().with("ItemActionState")
 var _get_names: Callable = func(item: ItemEntity): 
 	return item.get_resource().name_key 
 
+var last_entity: ItemEntity
 
 #region PublicFunction
 func can_execute(action_entity: ItemActionResource) -> bool:
@@ -29,8 +30,7 @@ func execute(action_entity: ItemActionResource) -> void:
 	if action_entity.has_type(ItemActionResource.Types.REWARD_ITEMS):
 		_execute_add_items(data.reward_items)
 	if action_entity.has_type(ItemActionResource.Types.DECREASE_WHEN_ACTIVATE):
-		var entity := Injector.inject(ItemEntity, self) as ItemEntity
-		entity.decrease_total_amount(1)
+		last_entity.decrease_total_amount(1)
 	
 #endregion
 
