@@ -54,6 +54,7 @@ enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/
 [file_customization]
 
 folder_colors={
+"res://feature/game_time/": "teal",
 "res://feature/inventory/": "yellow",
 "res://feature/inventory_character/": "yellow",
 "res://feature/inventory_location/": "yellow",

@@ -14,18 +14,25 @@ signal finished_step(delta: int)
 signal finished_skip(remiang: int)
 
 
+var time := GameTimeEntity.new(GameTimeEntity.date_to_time(STARTED_TIME))
 var decrease_by_step: int = 30:
 	set(value):
+		assert(value != 0, "'decrease_by_step' cannot be zero!")
 		decrease_by_step = abs(value)
-		assert(decrease_by_step == 0, "'decrease_by_step' cannot be zero!")
 
-var _time := GameTimeEntity.new(GameTimeEntity.date_to_time(STARTED_TIME))
 var _remiang_value: int = 0
 var _node: Node
 
 
 func _init(node: Node) -> void:
 	_node = node
+
+
+func timeskip(skipped_time: int, for_real_sec: float = 1.0, with_progress_screen := false):
+	decrease_by_step = ceil(skipped_time / Engine.physics_ticks_per_second / for_real_sec)
+	if with_progress_screen:
+		_node.open()
+	start_skip(skipped_time)
 
 
 func start_skip(value: int):
@@ -40,14 +47,14 @@ func start_skip(value: int):
 
 
 func do_step(delta: int):
-	_time._value += delta
+	time._value += delta
 	finished_step.emit(delta)
 
 
 func finish_skip(_value: int = 0):
-	_remiang_value = 0
 	finished_skip.emit(_remiang_value)
+	_remiang_value = 0
 
 
-func open():
-	_node.open()
+func is_process():
+	return _remiang_value != 0
