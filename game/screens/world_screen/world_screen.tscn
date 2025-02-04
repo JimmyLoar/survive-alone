@@ -104,12 +104,8 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RestUi" parent="UI/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("14_453vv")]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="!ButunRest" type="Button" parent="UI/MarginContainer/VBoxContainer/MarginContainer"]
+show_behind_parent = true
 custom_minimum_size = Vector2(52.785, 56.95)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -117,9 +113,30 @@ size_flags_vertical = 8
 text = "rest"
 script = ExtResource("15_bav1l")
 
+[node name="RestUi" parent="UI/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("14_453vv")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="TimeProgress" parent="UI/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("16_s66yn")]
 visible = false
 layout_mode = 2
+
+[node name="EmptySpace" type="Control" parent="UI/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EventDisplay" type="PanelContainer" parent="UI/MarginContainer/VBoxContainer/MarginContainer/EmptySpace"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("13_63jsv")
