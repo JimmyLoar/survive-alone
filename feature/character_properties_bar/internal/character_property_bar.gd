@@ -16,7 +16,7 @@ func _on_property_changed(prop: CharacterPropertyResource):
 
 
 func rerender(prop: CharacterPropertyResource):
-	if prop.name_key != property_name:
+	if prop.code_name != property_name:
 		return
 	
 	texture_rect.texture = prop.texture

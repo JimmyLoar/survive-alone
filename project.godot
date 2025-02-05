@@ -54,6 +54,7 @@ enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/
 [file_customization]
 
 folder_colors={
+"res://feature/": "purple",
 "res://feature/character/": "orange",
 "res://feature/character_location/": "orange",
 "res://feature/character_properties_bar/": "orange",
@@ -65,7 +66,8 @@ folder_colors={
 "res://feature/item_action/": "yellow",
 "res://feature/items/": "yellow",
 "res://feature/items_grid/": "yellow",
-"res://game/": "red"
+"res://game/": "red",
+"res://resources/": "blue"
 }
 
 [gui]

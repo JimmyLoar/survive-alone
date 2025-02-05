@@ -22,32 +22,32 @@ func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
 	inventory_entity = _new_entity
 	
 	var _get_names: Callable = func(item: ItemEntity):
-		return item.get_resource().name_key 
+		return item.get_resource().code_name 
 	
 	changed_inventory_entity.emit(_new_entity)
 	return tmp
 
 
 func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
-	var found_index = find_item(data.name_key)
+	var found_index = find_item(data.code_name)
 	if found_index != -1:
 		var item = get_item(found_index)
 		item.increase_total_amount(value)
 		item.append_used(used)
 		_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in exist item with index [color=green]%d[/color]" % 
-			[value, used.size(), data.name_key, found_index])
+			[value, used.size(), data.code_name, found_index])
 		return item
 	
 	_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in new item, with index [color=green]%s[/color]" % 
-		[value, used.size(), data.name_key, inventory_entity.items.size()])
+		[value, used.size(), data.code_name, inventory_entity.items.size()])
 	return _add_in_storage_entity(ItemEntity.new(data, value, used))
 
 
 func remove_item(data: ItemResource, _amount := 1):
 	var amount = _amount
-	var index := find_item(data.name_key)
+	var index := find_item(data.code_name)
 	if index == -1:
-		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [data.name_key, amount])
+		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [data.code_name, amount])
 		return amount
 	
 	var item := get_item(index)
@@ -57,7 +57,7 @@ func remove_item(data: ItemResource, _amount := 1):
 	
 	if item.get_total_amount() <= 0:
 		_remove_from_storage_entity(index)
-	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items [color=green]%s (%d)[/color]" % [_amount - amount, amount, data.name_key, item.get_total_amount()])
+	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items [color=green]%s (%d)[/color]" % [_amount - amount, amount, data.code_name, item.get_total_amount()])
 	return amount
 
 
@@ -67,7 +67,7 @@ func has_item(data: ItemResource) -> bool:
 
 func has_item_amount(data: ItemResource, amount: int = 1) -> bool:
 	amount = abs(amount)
-	var index := find_item(data.name_key)
+	var index := find_item(data.code_name)
 	if index != -1:
 		return get_item(index).get_total_amount() >= amount
 	return false #возвращается если предмета нет в инветоре
@@ -101,7 +101,7 @@ func is_index_validate(index: int) -> bool:
 
 
 func get_or_create_item(data: ItemResource) -> ItemEntity:
-	var index = find_item(data.name_key)
+	var index = find_item(data.code_name)
 	if index == -1:
 		return _add_in_storage_entity(ItemEntity.new(data))
 	return get_item(index)
@@ -111,15 +111,15 @@ func _add_in_storage_entity(item: ItemEntity) -> ItemEntity:
 	var _index: int = inventory_entity.items.size()
 	inventory_entity.items.append(item)
 	changed_inventory_entity.emit(inventory_entity)
-	_stored_cache[item.get_resource().name_key] = _index
-	item.changed_amount.connect(_on_changed_value.bind(item.get_resource().name_key))
+	_stored_cache[item.get_resource().code_name] = _index
+	item.changed_amount.connect(_on_changed_value.bind(item.get_resource().code_name))
 	return item
 
 
 func _remove_from_storage_entity(index: int) -> ItemEntity:
 	if is_index_validate(index):
 		var item: ItemEntity = inventory_entity.items.pop_at(index)
-		_stored_cache.erase(item.get_resource().name_key)
+		_stored_cache.erase(item.get_resource().code_name)
 		changed_inventory_entity.emit(inventory_entity)
 		item.changed_amount.disconnect(_on_changed_value)
 		return item
@@ -133,7 +133,7 @@ func _on_changed_value(value: int, index: String):
 
 func _recount_index_items(entity: InventoryEntity):
 	for i in entity.items.size():
-		_stored_cache[entity.items[i].get_resource().name_key] = i
+		_stored_cache[entity.items[i].get_resource().code_name] = i
 
 
 func get_size() -> int: 

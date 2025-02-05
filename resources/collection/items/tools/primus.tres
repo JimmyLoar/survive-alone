@@ -1,27 +1,8 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=7 format=3 uid="uid://w30mnp2gmvuy"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://w30mnp2gmvuy"]
 
 [ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_72g03"]
-[ext_resource type="Script" path="res://feature/items/item_interaction_data.gd" id="1_av2l1"]
-[ext_resource type="Script" path="res://feature/items/actions/!action.gd" id="2_lq1r8"]
+[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_fccwb"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_wreec"]
-
-[sub_resource type="Resource" id="Resource_4lrvc"]
-script = ExtResource("1_av2l1")
-actions = Array[ExtResource("2_lq1r8")]([])
-reduced_when_used = false
-can_stacable = false
-name_key = "use"
-visible_name = "ITEM_ACTION_NAME_USE"
-discription = "ITEM_ACTION_DISCRIPTION_USE"
-
-[sub_resource type="Resource" id="Resource_k4rne"]
-script = ExtResource("1_av2l1")
-actions = Array[ExtResource("2_lq1r8")]([])
-reduced_when_used = true
-can_stacable = false
-name_key = "name_key"
-visible_name = ""
-discription = ""
 
 [resource]
 script = ExtResource("1_72g03")
@@ -29,7 +10,7 @@ texture = ExtResource("2_wreec")
 rare = 1
 durability = 100
 is_pickable = true
-actions = Array[ExtResource("1_av2l1")]([SubResource("Resource_4lrvc"), SubResource("Resource_k4rne")])
-name_key = "primus"
-visible_name = "ITEM_NAME_PRIMUS"
-discription = "ITEM_DISCRIPTION_PRIMUS"
+actions = Array[ExtResource("1_fccwb")]([])
+code_name = &"primus"
+visible_name = "ITEMRESOURCE_NAME_PRIMUS"
+discription = "ITEMRESOURCE_DISCRIPTION_PRIMUS"

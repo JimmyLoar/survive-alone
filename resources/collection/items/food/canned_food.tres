@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_v3q7y"]
 script = ExtResource("1_hhqk7")
-type = 3
 use_stack = false
+type = 9
 _properties = {
 "exhaustion": -5,
 "fatigue": 0,
@@ -16,9 +16,9 @@ _properties = {
 "radiation": 0,
 "thirst": 12
 }
-name_key = &"eat"
-visible_name = "ITEM_ACTION_NAME_EAT"
-discription = "ITEM_ACTION_DISCRIPTION_EAT"
+code_name = &"eat"
+visible_name = "ACTION_NAME_EAT"
+discription = "ACTION_DISCRIPTION_EAT"
 
 [resource]
 script = ExtResource("1_87aen")
@@ -27,6 +27,6 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_hhqk7")]([SubResource("Resource_v3q7y")])
-name_key = &"canned food"
-visible_name = "ITEM_NAME_CANNED FOOD"
-discription = "ITEM_DISCRIPTION_CANNED FOOD"
+code_name = &"canned_food"
+visible_name = "ITEMRESOURCE_NAME_CANNED_FOOD"
+discription = "ITEMRESOURCE_DISCRIPTION_CANNED_FOOD"

@@ -4,32 +4,32 @@ extends Node
 
 var _logger := Log.get_global_logger().with("ItemActionState")
 var _get_names: Callable = func(item: ItemEntity): 
-	return item.get_resource().name_key 
+	return item.get_resource().code_name 
 
 var last_entity: ItemEntity
 
 #region PublicFunction
 func can_execute(action_entity: ItemActionResource) -> bool:
 	var result := true
-	if action_entity.has_type(ItemActionResource.Types.NEED_ITEMS):
+	if action_entity.has_type(ItemActionResource.ACTION_NEED_ITEMS):
 		result = result and _has_items_in_inventories(action_entity.get_values().need_items)
 		if not result:
-			_logger.debug("Can not execute '%s' become have not needed items" % action_entity.name_key)
+			_logger.debug("Can not execute '%s' become have not needed items" % action_entity.code_name)
 	
 	if result:
-		_logger.debug("Can be execute '%s'" % action_entity.name_key)
+		_logger.debug("Can be execute '%s'" % action_entity.code_name)
 	return result
 
 
 func execute(action_entity: ItemActionResource) -> void:
 	var data := action_entity.get_values()
-	if action_entity.has_type(ItemActionResource.Types.CHANGE_PROPERTY):
+	if action_entity.has_type(ItemActionResource.ACTION_CHANGE_PROPERTY):
 		_execute_properties(data.properties)
-	if action_entity.has_type(ItemActionResource.Types.NEED_ITEMS):
+	if action_entity.has_type(ItemActionResource.ACTION_NEED_ITEMS):
 		_execute_remove_items(data.need_items)
-	if action_entity.has_type(ItemActionResource.Types.REWARD_ITEMS):
+	if action_entity.has_type(ItemActionResource.ACTION_REWARD_ITEMS):
 		_execute_add_items(data.reward_items)
-	if action_entity.has_type(ItemActionResource.Types.DECREASE_WHEN_ACTIVATE):
+	if action_entity.has_type(ItemActionResource.ACTION_DECREASE_WHEN_ACTIVATE):
 		last_entity.decrease_total_amount(1)
 	
 #endregion

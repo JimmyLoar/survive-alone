@@ -55,7 +55,7 @@ signal property_changed(value: CharacterPropertyResource)
 
 
 func set_property(value: CharacterPropertyResource):
-	_properties[value.name_key] = value
+	_properties[value.code_name] = value
 	property_changed.emit(value)
 
 

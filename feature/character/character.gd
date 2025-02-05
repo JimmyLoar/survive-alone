@@ -23,7 +23,7 @@ func _ready() -> void:
 		var props = _character_properties_repository.get_all()
 		var dict = Dictionary()
 		for prop in props:
-			dict[prop.name_key] = prop
+			dict[prop.code_name] = prop
 		_state._properties = dict
 	).call_deferred()
 

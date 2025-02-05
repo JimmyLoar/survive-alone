@@ -1,6 +1,6 @@
 @tool
 class_name ItemResource
-extends MyResource
+extends NamedResource
 
 
 @export var texture: Texture = preload("res://icon.svg")
