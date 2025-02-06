@@ -7,7 +7,7 @@ extends HBoxContainer
 
 func update_data(_name: StringName):
 	var repository := Injector.inject(CharacterPropertyRepository, self) as CharacterPropertyRepository
-	texture_rect.texture = repository.get_by_string_id(_name).texture
+	texture_rect.texture = repository.get_by_name(_name).texture
 
 
 func update_value(value):

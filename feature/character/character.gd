@@ -8,17 +8,21 @@ var _state: CharacterState
 @onready var _moving_line = %MovingLine
 @onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
 @onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
-@onready var _character_properties_repository: CharacterPropertyRepository = Injector.inject(CharacterPropertyRepository, self)
 @onready var _character_repositoty: CharacterRepository = Injector.inject(CharacterRepository, self)
+@onready var _resource_db: ResourceDb = Injector.inject(ResourceDb, self)
+@onready var _save_db: SaveDb = Injector.inject(SaveDb, self)
+var _character_properties_repository: CharacterPropertyRepository
 
 func _enter_tree() -> void:
 	_state = Injector.provide(CharacterState, CharacterState.new(self), self, "closest")
-
+	_character_properties_repository = Injector.provide(CharacterPropertyRepository, CharacterPropertyRepository.new(), self, "closest")
 
 func _ready() -> void:
 	_screen_mouse_events.left_button_changed.connect(_on_screen_left_button)
 	_game_time.finished_skip.connect(_update_props_by_time_spend)
 	_game_time.started_skip.connect(_state.reset_target, CONNECT_DEFERRED)
+
+	_character_properties_repository.init(_resource_db, _save_db)
 	
 	Callable(func():
 		position = _character_repositoty.get_world_position()
@@ -80,3 +84,7 @@ func update_position(pos: Vector2):
 var _save_position_debounce = Debounce.new(_save_position, 0.2)
 func _save_position():
 	_character_repositoty.set_world_position(position)
+
+var _save_properties_debounce = Debounce.new(_save_properties, 0.2)
+func _save_properties():
+	_character_properties_repository.update_batch(_state._properties.values())
