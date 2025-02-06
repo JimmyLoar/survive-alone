@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=20 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dbxwa4c3uxw1" path="res://feature/rest/rest_ui.tscn" id="14_453vv"]
 [ext_resource type="Script" path="res://feature/rest/ui_elements/!button_rest.gd" id="15_bav1l"]
 [ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
+[ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u53ai"]
 bg_color = Color(0.245984, 0.245984, 0.245984, 1)
@@ -47,6 +48,8 @@ _draw_chunks = true
 color = Color(0.749338, 0, 0.264808, 1)
 
 [node name="Character" parent="." instance=ExtResource("5_g3jl3")]
+time_unit = null
+move_speed = null
 
 [node name="MainCamera" parent="." instance=ExtResource("4_j0xa1")]
 
@@ -123,22 +126,57 @@ visible = false
 layout_mode = 2
 
 [node name="EmptySpace" type="Control" parent="UI/MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 
-[node name="EventDisplay" type="PanelContainer" parent="UI/MarginContainer/VBoxContainer/MarginContainer/EmptySpace"]
+[node name="EventDisplay" parent="UI/MarginContainer/VBoxContainer/MarginContainer/EmptySpace" instance=ExtResource("17_p8jes")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("13_63jsv")
+
+[node name="ForbidenImputZone" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 725.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="ForbidenImputZone2" type="Control" parent="UI/ForbidenImputZone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -9.0
+offset_top = 34.0
+offset_right = 1285.0
+offset_bottom = 38.0
+
+[node name="ForbidenImputZone5" type="Control" parent="UI/ForbidenImputZone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -6.0
+offset_right = 1285.0
+offset_bottom = -2.0
+
+[node name="ForbidenImputZone4" type="Control" parent="UI/ForbidenImputZone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 712.0
+offset_right = 1287.0
+offset_bottom = 721.0
+
+[node name="ForbidenImputZone3" type="Control" parent="UI/ForbidenImputZone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1277.0
+offset_top = -27.0
+offset_right = 1287.0
+offset_bottom = 715.0
 
 [connection signal="pressed" from="UI/MarginContainer/VBoxContainer/MarginContainer/!ButunRest" to="UI/MarginContainer/VBoxContainer/MarginContainer/!ButunRest" method="_on_pressed"]
