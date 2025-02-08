@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_qadvn"]
 script = ExtResource("1_l5obt")
-type = 3
 use_stack = false
+type = 9
 _properties = {
 "exhaustion": 0,
 "fatigue": 0,
@@ -16,9 +16,9 @@ _properties = {
 "radiation": 0,
 "thirst": 30
 }
-name_key = &"drink"
-visible_name = "<null>_NAME_DRINK"
-discription = "<null>_DISCRIPTION_DRINK"
+code_name = &"drink"
+visible_name = "ACTION_NAME_DRINK"
+discription = "ACTION_DISCRIPTION_DRINK"
 
 [resource]
 script = ExtResource("1_xkc8u")
@@ -27,6 +27,6 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_l5obt")]([SubResource("Resource_qadvn")])
-name_key = &"water_clear"
-visible_name = "ITEM_NAME_WATER_CLEAR"
-discription = "ITEM_DISCRIPTION_WATER_CLEAR"
+code_name = &"water_clear"
+visible_name = "ITEMRESOURCE_NAME_WATER_CLEAR"
+discription = "ITEMRESOURCE_DISCRIPTION_WATER_CLEAR"

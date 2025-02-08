@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_n6jag"]
 script = ExtResource("1_1wv2u")
-type = 3
 use_stack = false
+type = 9
 _properties = {
 "exhaustion": 0,
 "fatigue": 0,
@@ -16,9 +16,9 @@ _properties = {
 "radiation": 0,
 "thirst": 0
 }
-name_key = &"eat"
-visible_name = "<null>_NAME_EAT"
-discription = "<null>_DISCRIPTION_EAT"
+code_name = &"code_name"
+visible_name = ""
+discription = ""
 
 [resource]
 script = ExtResource("1_4k55v")
@@ -27,6 +27,6 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_1wv2u")]([SubResource("Resource_n6jag")])
-name_key = &"fry_meat"
-visible_name = "ITEM_NAME_FRY_MEAT"
-discription = "ITEM_DISCRIPTION_FRY_MEAT"
+code_name = &"fry_meat"
+visible_name = "ITEMRESOURCE_NAME_FRY_MEAT"
+discription = "ITEMRESOURCE_DISCRIPTION_FRY_MEAT"

@@ -1,6 +1,6 @@
 @tool
 class_name CharacterPropertyResource
-extends MyResource
+extends NamedResource
 
 
 @export var extend: CharacterPropertyResource: set = _set_extend
@@ -26,7 +26,7 @@ func _set_extend(value: CharacterPropertyResource) -> void:
 	if not value: 
 		return
 	
-	name_key = value.name_key
+	code_name = value.code_name
 	
 	default_value = value.default_value
 	default_max_value = value.default_max_value

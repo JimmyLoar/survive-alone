@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_pne58"]
 script = ExtResource("1_cpj0t")
-type = 12
 use_stack = true
+type = 6
 need_items = {
 "fresh_meat": 1,
 "fry_meat": 0,
@@ -19,14 +19,14 @@ reward_items = {
 "wood": 0
 }
 used_item_keys = [&"fresh_meat", &"wood", &"fry_meat"]
-name_key = &"cook"
-visible_name = "ITEM_ACTION_NAME_COOK"
-discription = "ITEM_ACTION_DISCRIPTION_COOK"
+code_name = &"cook"
+visible_name = "ACTION_NAME_COOK"
+discription = "ACTION_DISCRIPTION_COOK"
 
 [sub_resource type="Resource" id="Resource_gcwfx"]
 script = ExtResource("1_cpj0t")
-type = 3
 use_stack = false
+type = 9
 _properties = {
 "exhaustion": 3,
 "fatigue": 0,
@@ -35,9 +35,9 @@ _properties = {
 "radiation": 0,
 "thirst": 0
 }
-name_key = &"eat"
-visible_name = "ITEM_ACTION_NAME_EAT"
-discription = "ITEM_ACTION_DISCRIPTION_EAT"
+code_name = &"eat"
+visible_name = "ACTION_NAME_EAT"
+discription = "ACTION_DISCRIPTION_EAT"
 
 [resource]
 script = ExtResource("1_yqaw7")
@@ -46,6 +46,6 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_cpj0t")]([SubResource("Resource_pne58"), SubResource("Resource_gcwfx")])
-name_key = &"fresh_meat"
-visible_name = "ITEM_NAME_FRESH_MEAT"
-discription = "Сешь, что бы востановить немного голода."
+code_name = &"fresh_meat"
+visible_name = "ITEMRESOURCE_NAME_FRESH_MEAT"
+discription = "ITEMRESOURCE_DISCRIPTION_FRESH_MEAT"

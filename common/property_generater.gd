@@ -98,6 +98,16 @@ static func take_dictionary(property_name: String, _usage: int = PROPERTY_USAGE_
 	}
 
 
+static func take_flags(property_name: String, flags: PackedStringArray = ["None:0"], _usage: int = PROPERTY_USAGE_DEFAULT):
+	return {
+		"name": property_name,
+		"type": TYPE_INT,
+		"hint": PROPERTY_HINT_FLAGS,
+		"hint_string": ", ".join(flags).capitalize(),
+		"usage": _usage,
+	}
+
+
 static func convent_to_range(property_dict: Dictionary, min_value: float, max_value: float, step: float = 1.0, overside: String = '') -> Dictionary:
 	property_dict.merge({
 		"hint" = PROPERTY_HINT_RANGE,

@@ -1,6 +1,15 @@
 class_name Utils
 extends Object
 
+const NUMB_POWERS_2: PackedInt32Array = [ #powers from 0 to 32
+	1, 2, 4, 8, 16,
+	32, 64, 128, 256, 512,
+	1024, 2048, 4096, 8192, 16384,
+	32768, 65536, 131072, 262144, 524288,
+	1.04858e+06, 2.09715e+06, 4.1943e+06, 8.38861e+06, 1.67772e+07,
+	3.35544e+07, 6.71089e+07, 1.34218e+08, 2.68435e+08, 5.36871e+08,
+	1.07374e+09, 2.14748e+09, 4.29497e+09,
+]
 
 static func join_to_str(array: Array, separator: String) -> String:
 	var result: String = ""

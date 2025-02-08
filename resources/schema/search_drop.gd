@@ -1,6 +1,6 @@
 @tool
 class_name SearchDropResource
-extends MyResource
+extends NamedResource
 
 @export_range(0, 12, 1) var items_count := 4:
 	set(value):

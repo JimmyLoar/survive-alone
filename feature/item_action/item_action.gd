@@ -19,25 +19,24 @@ var currect_action: ItemActionResource
 
 
 const _VALUE = { #0 - func_name #1 - container varible #2 - data key
-	ItemActionResource.Types.CHANGE_PROPERTY: 	["_display_properties", "properties_container", &"properties"],
-	ItemActionResource.Types.NEED_ITEMS: 		["_display_need_items_grids", "items_container", &"need_items"],
-	ItemActionResource.Types.REWARD_ITEMS: 		["_display_reward_items_grids", "items_container", &"reward_items"],
+	ItemActionResource.ACTION_CHANGE_PROPERTY: 	["_display_properties", "properties_container", &"properties"],
+	ItemActionResource.ACTION_NEED_ITEMS: 		["_display_need_items_grids", "items_container", &"need_items"],
+	ItemActionResource.ACTION_REWARD_ITEMS: 	["_display_reward_items_grids", "items_container", &"reward_items"],
 }
 
 func display(action: ItemActionResource):
 	currect_action = action
 	_update_action_types(action)
 	slider.visible = action.use_stack
-	button.text = action.name_key
+	button.text = action.code_name
 
 
 func _update_action_types(action: ItemActionResource):
 	var _values := action.get_values() as Dictionary
 	for type in _VALUE.keys():
-		var array = _VALUE[type]
-		var container: Control = get(array[1])
+		var container: Control = get(_VALUE[type][1])
 		if action.has_type(type):
-			call(array[0], _values[array[2]])
+			call(_VALUE[type][0], _values[_VALUE[type][2]])
 			container.show()
 		
 		else:

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemActionResource" load_steps=2 format=3 uid="uid://cfc7ykfxqp8r"]
+
+[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_4m3i0"]
+
+[resource]
+script = ExtResource("1_4m3i0")
+use_stack = false
+type = 4
+reward_items = {}
+used_item_keys = []
+code_name = &"code_name"
+visible_name = ""
+discription = ""
