@@ -3,7 +3,6 @@ extends Injectable
 
 var _node: Node2D
 
-
 func _init(node: Node2D):
 	_node = node
 
@@ -15,9 +14,6 @@ signal position_changed(value: Vector2)
 var position: Vector2:
 	get:
 		return _node.position
-	set(value):
-		_node.position = value
-		position_changed.emit(value)
 
 #
 # Target position where the character moves
@@ -32,8 +28,12 @@ var target_position: Vector2:
 		target_position_changed.emit(value)
 
 var is_moving: bool:
-	get:
-		return _target_postion != position
+	get: return _target_postion != position
+
+
+func reset_target(_delta):
+	target_position = position
+
 
 #
 # Caracter properties

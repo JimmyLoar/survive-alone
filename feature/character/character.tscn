@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bpkdoaq7tk0b8"]
 
-[ext_resource type="Script" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_7q31a"]
+[ext_resource type="Script" uid="uid://cpyers3ikip6v" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_7q31a"]
 [ext_resource type="Script" path="res://feature/character/character.gd" id="1_p76ae"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_ellipse.gd" id="2_qnd3l"]
+[ext_resource type="Script" uid="uid://cstrxukhnpb1h" path="res://addons/shape_texture_2d/drawable_ellipse.gd" id="2_qnd3l"]
 
 [sub_resource type="Resource" id="Resource_hqprc"]
 script = ExtResource("2_qnd3l")

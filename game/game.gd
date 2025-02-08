@@ -15,7 +15,7 @@ func _ready() -> void:
 
 	# called when all scenes ready
 	Callable(func():
-		_state.open_world_screen("res://databases/test_editor.sqlite3")
+		_state.open_world_screen("res://databases/test_editor.sqlite3", "res://!saves/test_save.db")
 	).call_deferred()
 
 
