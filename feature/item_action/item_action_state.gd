@@ -21,4 +21,5 @@ func execute(action_entity: ActionResource) -> void:
 	super(action_entity)
 	if action_entity.has_type(ItemActionResource.ACTION_DECREASE_WHEN_ACTIVATE):
 		last_entity.decrease_total_amount(1)
+
 #endregion

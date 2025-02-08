@@ -35,3 +35,30 @@ func _set_extend(value: CharacterPropertyResource) -> void:
 	
 	modulate = value.modulate
 	return
+
+func serialize() -> PackedByteArray:
+	var dict = {
+		"name_key": name_key,
+		"default_value": default_value,
+		"default_max_value": default_max_value,
+		"default_min_value": default_min_value,
+		"default_delta_value": default_delta_value,
+		"modulate": [modulate.r, modulate.g, modulate.b , modulate.a],
+		"texture_path": texture.resource_path
+	}
+
+	return var_to_bytes(dict)
+
+static func deserialize(bytes: PackedByteArray) -> CharacterPropertyResource:
+	var dict = bytes_to_var(bytes)
+
+	var result = CharacterPropertyResource.new()
+	result.name_key = dict["name_key"]
+	result.default_value = dict["default_value"]
+	result.default_max_value = dict["default_max_value"]
+	result.default_min_value = dict["default_min_value"]
+	result.default_delta_value = dict["default_delta_value"]
+	result.modulate = Color(dict["modulate"][0], dict["modulate"][1], dict["modulate"][2], dict["modulate"][3])
+	result.texture = load(dict["texture_path"])
+
+	return result

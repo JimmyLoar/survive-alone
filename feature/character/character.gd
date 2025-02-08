@@ -8,18 +8,25 @@ var _state: CharacterState
 @onready var _moving_line = %MovingLine
 @onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
 @onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
-@onready var _character_properties_repository: CharacterPropertyRepository = Injector.inject(CharacterPropertyRepository, self)
+@onready var _character_repositoty: CharacterRepository = Injector.inject(CharacterRepository, self)
+@onready var _resource_db: ResourceDb = Injector.inject(ResourceDb, self)
+@onready var _save_db: SaveDb = Injector.inject(SaveDb, self)
+var _character_properties_repository: CharacterPropertyRepository
 
 func _enter_tree() -> void:
 	_state = Injector.provide(CharacterState, CharacterState.new(self), self, "closest")
-
+	_character_properties_repository = Injector.provide(CharacterPropertyRepository, CharacterPropertyRepository.new(), self, "closest")
 
 func _ready() -> void:
 	_screen_mouse_events.left_button_changed.connect(_on_screen_left_button)
 	_game_time.finished_skip.connect(_update_props_by_time_spend)
 	_game_time.started_skip.connect(_state.reset_target, CONNECT_DEFERRED)
+
+	_character_properties_repository.init(_resource_db, _save_db)
 	
 	Callable(func():
+		position = _character_repositoty.get_world_position()
+		_state._target_postion = _character_repositoty.get_world_position()
 		var props = _character_properties_repository.get_all()
 		var dict = Dictionary()
 		for prop in props:
@@ -41,18 +48,18 @@ func _physics_process(delta: float) -> void:
 
 func _process_moving(delta: float):
 	var move_step = delta * move_speed
-	var distance = _state.position.distance_to(_state.target_position)
+	var distance = position.distance_to(_state.target_position)
 
 	if distance > move_step:
-		_state.position =_state.position.move_toward(_state.target_position, move_step)
+		update_position(position.move_toward(_state.target_position, move_step))
 		_game_time.do_step(time_unit)
 		
 	else:
-		_state.position = _state.target_position
+		update_position(_state.target_position)
 		time_unit = max(time_unit * (distance / move_step), 1)
 		_game_time.do_step(time_unit)
 		
-	_moving_line.points[1] = _state.target_position - _state.position
+	_moving_line.points[1] = _state.target_position - position
 	_moving_line.show()
 	_update_props_by_time_spend(time_unit)
 
@@ -68,3 +75,16 @@ func _update_props_by_time_spend(_delta: int):
 		if prop_value_delta != 0:
 			prop.default_value += prop_value_delta * _delta
 			_state.set_property(prop)
+
+func update_position(pos: Vector2):
+	position = pos
+	_state.position_changed.emit(pos)
+	_save_position_debounce.emit()
+
+var _save_position_debounce = Debounce.new(_save_position, 0.2)
+func _save_position():
+	_character_repositoty.set_world_position(position)
+
+var _save_properties_debounce = Debounce.new(_save_properties, 0.2)
+func _save_properties():
+	_character_properties_repository.update_batch(_state._properties.values())
