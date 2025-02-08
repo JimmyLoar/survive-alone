@@ -47,6 +47,11 @@ CREATE TABLE IF NOT EXISTS "character_world_pos" (
 	"y"	REAL NOT NULL,
 	PRIMARY KEY("id")
 );
+CREATE TABLE IF NOT EXISTS "character_prop" (
+	"name"	TEXT NOT NULL UNIQUE,
+	"resource"	BLOB NOT NULL,
+	PRIMARY KEY("name")
+);
 """
 	if not connection.query(query):
 		return false

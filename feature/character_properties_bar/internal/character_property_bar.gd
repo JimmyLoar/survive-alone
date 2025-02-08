@@ -18,7 +18,7 @@ func _on_property_changed(prop: CharacterPropertyResource):
 func rerender(prop: CharacterPropertyResource):
 	if prop.name_key != property_name:
 		return
-	
+
 	texture_rect.texture = prop.texture
 	progress_bar.max_value = prop.default_max_value
 	self.modulate = prop.modulate

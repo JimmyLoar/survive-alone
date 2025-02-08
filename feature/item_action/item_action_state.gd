@@ -43,7 +43,7 @@ func _execute_properties(properties: Dictionary):
 		if properties[property_name] == 0:
 			continue
 		
-		var property: CharacterPropertyResource = property_repository.get_by_string_id(property_name)
+		var property: CharacterPropertyResource = property_repository.get_by_name(property_name)
 		property.default_value += properties[property_name]
 		prop_state.set_property(property)
 
