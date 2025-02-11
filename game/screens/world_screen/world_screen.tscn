@@ -48,8 +48,6 @@ _draw_chunks = true
 color = Color(0.749338, 0, 0.264808, 1)
 
 [node name="Character" parent="." instance=ExtResource("5_g3jl3")]
-time_unit = null
-move_speed = null
 
 [node name="MainCamera" parent="." instance=ExtResource("4_j0xa1")]
 
