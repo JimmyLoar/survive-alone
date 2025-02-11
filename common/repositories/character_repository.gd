@@ -13,7 +13,9 @@ func _init(host_node: Node) -> void:
 func get_world_position() -> Vector2:
 	var select_condition = "id = %d" % WORLD_POS_ROW_ID
 	var rows = _save_db.connection.select_rows("character_world_pos", select_condition, ["x", "y"])
-
+	if rows.is_empty():
+		return Vector2.ZERO
+	
 	return Vector2(rows[0].x, rows[0].y)
 
 

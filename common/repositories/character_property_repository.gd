@@ -31,7 +31,7 @@ func has_batch(names: Array) -> Array:
 	return rows.map(func(row): return row["name"])
 
 func update(res: CharacterPropertyResource):
-	var select_condition = "name = %s" % res.name_key
+	var select_condition = "name = %s" % res.code_name
 	_save_db.connection.update_rows(TABLE_NAME, select_condition, _resource_to_row(res))
 
 
@@ -41,7 +41,7 @@ func create(res: CharacterPropertyResource) -> int:
 
 
 func insert(res: CharacterPropertyResource):
-	if has(res.name_key):
+	if has(res.code_name):
 		update(res)
 	else:
 		create(res)
@@ -103,7 +103,7 @@ func create_initial_props():
 	create_batch(initial_props)
 
 func _resource_to_row(res: CharacterPropertyResource):
-	return {"name": str(res.name_key), "resource": res.serialize()}
+	return {"name": str(res.code_name), "resource": res.serialize()}
 
 func _row_to_resource(row: Dictionary) -> CharacterPropertyResource:
 	return CharacterPropertyResource.deserialize(row["resource"])

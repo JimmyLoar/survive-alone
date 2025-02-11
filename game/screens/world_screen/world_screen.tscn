@@ -126,7 +126,6 @@ visible = false
 layout_mode = 2
 
 [node name="EmptySpace" type="Control" parent="UI/MarginContainer/VBoxContainer/MarginContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 2
 
