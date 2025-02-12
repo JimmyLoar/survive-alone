@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=20 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dbxwa4c3uxw1" path="res://feature/rest/rest_ui.tscn" id="14_453vv"]
 [ext_resource type="Script" path="res://feature/rest/ui_elements/!button_rest.gd" id="15_bav1l"]
 [ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
+[ext_resource type="PackedScene" uid="uid://cpf5e4ywdn7fy" path="res://feature/character_pointer_button/ui_elements/pointer.tscn" id="17_0abfs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u53ai"]
 bg_color = Color(0.245984, 0.245984, 0.245984, 1)
@@ -120,6 +121,11 @@ script = ExtResource("15_bav1l")
 [node name="TimeProgress" parent="UI/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("16_s66yn")]
 visible = false
 layout_mode = 2
+
+[node name="Pointer" parent="UI/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("17_0abfs")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("13_63jsv")

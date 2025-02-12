@@ -6,8 +6,7 @@ extends Camera2D
 
 @onready var _screen_mouse_event_state: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
 var _state: MainCameraState
-var _touch_events = {}
-var _last_drag_distance = 0
+
 
 
 func _enter_tree() -> void:
@@ -17,6 +16,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	_screen_mouse_event_state.left_button_changed.connect(Callable(self, "_on_screen_left_mouse_button_changed"))
 	_screen_mouse_event_state.zoom_changed.connect(Callable(self, "_on_screen_zoom_changed"))
+	_state.mode_changed.connect(Callable(self, "mode_changed"))
 	# called when all scenes ready
 	Callable(func():
 		_update_state_viewport_rect()
@@ -34,24 +34,6 @@ func _on_screen_left_mouse_button_changed(value):
 
 func _on_screen_zoom_changed(value: ScreenMouseEventsState.Zoom):
 	zoom_camera(value.delta)
-
-#func _unhandled_input(event) -> void:
-	#if event is InputEventScreenTouch:
-		#if event.pressed:
-			#_touch_events[event.index] = event
-		#else:
-			#_touch_events.erase(event.index)
-#
-	## Считываем драг
-	#if event is InputEventScreenDrag:
-		#_touch_events[event.index] = event
-#
-		#if _touch_events.size() == 2:
-			#var drag_distance = _touch_events[0].position.distance_to(_touch_events[1].position)
-			#if abs(drag_distance - _last_drag_distance) > zoom_sensitivity:
-				#var new_zoom = (-zoom_factor) if drag_distance < _last_drag_distance else (zoom_factor)
-				#zoom_camera(new_zoom)
-				#_last_drag_distance = drag_distance
 
 
 func zoom_camera(factor:float) -> void:
@@ -76,3 +58,14 @@ func _update_state_viewport_rect():
 	var anhor_shift = Vector2.ZERO if anchor_mode == ANCHOR_MODE_FIXED_TOP_LEFT else -0.5 * size
 	var pos = global_position + anhor_shift
 	_state._viewport_rect = Rect2(pos, size)
+
+func _on_mode_changed(mode):
+	if mode is MainCameraState.FreeMode:
+		pass
+	if mode is MainCameraState.TargetMode:
+		pass
+		
+func _process(delta):
+	if _state.mode is MainCameraState.TargetMode:
+		position = _state.mode.target.position
+	
