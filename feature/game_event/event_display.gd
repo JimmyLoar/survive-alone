@@ -5,8 +5,21 @@ extends PanelContainer
 @onready var item_list: ItemList = %ItemList
 
 
-@export var test_event: EventResource
-
 
 func _ready() -> void:
-	pass
+	var test = _get_test_resource()
+
+
+func _get_test_resource() -> EventResource:
+	var event := EventResource.new("Test")
+	var start_id = event.add_stage("start", "start event -_-")
+	var left_id = event.add_stage("left", "left side")
+	var right_id = event.add_stage("right", "right_side")
+	var finish_id = event.add_stage("finish", "finished")
+	
+	event.add_action(start_id, "[turn left]", left_id)
+	event.add_action(start_id, "[turn right]", right_id)
+	event.add_action(left_id, "Im sad(", finish_id, true)
+	event.add_action(right_id, "Im fun)", finish_id, true)
+	event.add_action(finish_id, "[exit]", -1, true)
+	return event

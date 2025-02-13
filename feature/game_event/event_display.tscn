@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbkwdbwvqc3qy"]
+[gd_scene load_steps=3 format=3 uid="uid://dbkwdbwvqc3qy"]
 
 [ext_resource type="Script" path="res://feature/game_event/event_display.gd" id="1_8cq4k"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_h1y6y"]
-[ext_resource type="Resource" uid="uid://sykf5mgelmtd" path="res://resources/collection/events/test/test.tres" id="2_hj0ir"]
 
 [node name="EventDisplay" type="PanelContainer"]
 custom_minimum_size = Vector2(952, 648)
@@ -14,7 +13,6 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("1_8cq4k")
-test_event = ExtResource("2_hj0ir")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
