@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="BiomeSearchList" load_steps=9 format=3 uid="uid://dcgbiiy8tbv8b"]
+
+[ext_resource type="Script" path="res://feature/biom_search_event/biome_searcg_list.gd" id="1_4lsjt"]
+[ext_resource type="Script" path="res://feature/biom_search_event/biome_search_resource.gd" id="1_q6b16"]
+[ext_resource type="Resource" uid="uid://p87q2gu41esh" path="res://feature/biom_search_event/test/nothing.tres" id="2_uempm"]
+[ext_resource type="Resource" uid="uid://cy7t5tb2khs88" path="res://feature/biom_search_event/test/flowers.tres" id="3_fcacv"]
+[ext_resource type="Resource" uid="uid://dq2k6kcwcusov" path="res://feature/biom_search_event/test/wood_1.tres" id="4_hy40a"]
+[ext_resource type="Resource" uid="uid://dqfvlh61m6pyf" path="res://feature/biom_search_event/test/wood_2.tres" id="5_28emc"]
+[ext_resource type="Resource" uid="uid://ctjrc4bmwqqyb" path="res://feature/biom_search_event/test/wood_3.tres" id="6_3qeml"]
+[ext_resource type="Resource" uid="uid://bukhycp4s402r" path="res://feature/biom_search_event/test/wood_house.tres" id="7_qfr4c"]
+
+[resource]
+script = ExtResource("1_4lsjt")
+base_tags_weight = {
+"berries": 0,
+"carnivores": 0,
+"flower_meadow": 0,
+"herbivorous": 0,
+"herbs": 0,
+"large_animals": 0,
+"mushrooms": 0,
+"ruins": 0,
+"small_animals": 0,
+"trees": 0,
+"water": 0
+}
+events_list = Array[ExtResource("1_q6b16")]([ExtResource("2_uempm"), ExtResource("3_fcacv"), ExtResource("4_hy40a"), ExtResource("5_28emc"), ExtResource("6_3qeml"), ExtResource("7_qfr4c")])
+events = {
+"berries": [],
+"carnivores": [],
+"flower_meadow": [],
+"herbivorous": [],
+"herbs": [],
+"large_animals": [],
+"mushrooms": [],
+"ruins": [],
+"small_animals": [],
+"trees": [],
+"water": []
+}

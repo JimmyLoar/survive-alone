@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BiomeSerchEventResource" load_steps=2 format=3 uid="uid://p87q2gu41esh"]
+
+[ext_resource type="Script" path="res://feature/biom_search_event/biome_search_resource.gd" id="1_cdnyt"]
+
+[resource]
+script = ExtResource("1_cdnyt")
+tags = Array[int]([0])
+weith = 5
+code_name = &"Nothing"
+visible_name = ""
+discription = ""
