@@ -55,6 +55,7 @@ enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/
 
 folder_colors={
 "res://feature/": "purple",
+"res://feature/biom_search_event/": "teal",
 "res://feature/character/": "orange",
 "res://feature/character_location/": "orange",
 "res://feature/character_properties_bar/": "orange",
