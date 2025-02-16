@@ -9,6 +9,7 @@ signal finished
 
 @onready var grid_container: GridContainer = $GridContainer
 @onready var _inventory_location_state: InventoryLocationState = Injector.inject(InventoryLocationState, self)
+@onready var _inventory_repository: InventoryRepository = Injector.inject(InventoryRepository, self)
 
 func update(drop: SearchDropResource):
 	if not drop: 
@@ -43,6 +44,9 @@ func _on_finished_search(_child_index: int, drop: Array[Dictionary]):
 	for i in drop.size():
 		var loot = drop[i]
 		_inventory_location_state.add_item(loot.data, loot.amount)
+	
+	if drop.size() > 0:
+		_inventory_repository.insert(_inventory_location_state.inventory_entity)
 	
 	emit_signal(\"finished\")
 "

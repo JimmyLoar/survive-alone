@@ -84,3 +84,22 @@ func remove_used_amount(amount: int) -> int: # Returns the remainder of the valu
 	_used = _used.slice(amount, _used.size(), 1)
 	changed_amount.emit(get_total_amount())
 	return amount
+
+func serialize() -> PackedByteArray:
+	var dict = {}
+
+	dict["resource_path"] = _resource.resource_path
+	dict["not_used_amount"] = _not_used_amount
+	dict["used"] = _used
+
+	return var_to_bytes(dict)
+
+static func deserialize(bytes: PackedByteArray) -> ItemEntity:
+	var dict = bytes_to_var(bytes)
+	
+	var result = ItemEntity.new(
+		load(dict["resource_path"]),
+		dict["not_used_amount"],
+		dict["used"],
+	)
+	return result

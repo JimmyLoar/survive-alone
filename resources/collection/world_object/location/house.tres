@@ -13,6 +13,6 @@ name = "Дом"
 collision_shape = ExtResource("1_i5hha")
 collision_offset = Vector2(150, 100)
 collision_rotation = 0.0
-name_key = "house_world_location"
+code_name = "house_world_location"
 visible_name = ""
 discription = ""

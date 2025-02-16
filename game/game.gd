@@ -7,7 +7,6 @@ var _resource_db: ResourceDb
 func _enter_tree() -> void:
 	_state = Injector.provide(GameState, GameState.new(), self)
 	_resource_db = Injector.provide(ResourceDb,  ResourceDb.new(), self)
-	Injector.provide(InventoryRepository, InventoryRepository.new(), self)
 	
 	_resource_db.db_connect("res://resources/database.gddb")
 
@@ -19,12 +18,7 @@ func _ready() -> void:
 		var game_path = "res://databases/test_editor.sqlite3"
 		var save_path = "res://!saves/test_save.db"
 
-		# Создаем character props если их нет в сохранении
-		var _save_db = SaveDb.new()
-		_save_db.db_connect(save_path)
-		var _character_property_repository = CharacterPropertyRepository.new()
-		_character_property_repository.init(_resource_db, _save_db)
-		_character_property_repository.create_initial_props()
+		_create_new_save_if_not_exist(save_path)
 		
 		_state.open_world_screen(game_path, save_path)
 	).call_deferred()
@@ -34,3 +28,47 @@ func _on_screen_changed(prev_screen: Node, current_screen: Node):
 	if get_child_count() != 0:
 		remove_child(prev_screen)
 	add_child(current_screen)
+	
+func _create_new_save_if_not_exist(save_path: String):
+	if FileAccess.file_exists(save_path):
+		return
+	
+	var save_db = SaveDb.new()
+	var character_property_repository = CharacterPropertyRepository.new()
+	var character_repository = CharacterRepository.new(save_db)
+	var inventory_repository = InventoryRepository.new(save_db)
+
+	save_db.db_connect(save_path)
+	character_property_repository.init(save_db)
+	
+
+	var character_props = _resource_db.connection.fetch_collection_data(&"properties").values()
+	var character_world_pos = Vector2(0, 0)
+	var character_inventory = InventoryEntity.new(
+		InventoryRepository.PLAYER_ID,
+		InventoryEntity.BelongsAtObject.new(-1, InventoryEntity.BelongsAtObject.Type.PLAYER),
+		[
+			ItemEntity.new(
+				load("res://resources/collection/items/food/canned_food.tres"),
+				5
+			),
+			ItemEntity.new(
+				load("res://resources/collection/items/food/water_clear.tres"),
+				25
+			),
+			ItemEntity.new(
+				load("res://resources/collection/items/food/fresh_meat.tres"),
+				10
+			),
+			ItemEntity.new(
+				load("res://resources/collection/items/resource/wood.tres"),
+				30
+			),
+		]
+	)
+
+
+	character_repository.insert_world_position(character_world_pos)
+	character_property_repository.create_batch(character_props)
+	inventory_repository.create(character_inventory)
+	

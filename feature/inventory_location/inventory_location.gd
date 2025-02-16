@@ -19,7 +19,6 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	_state._inventory_repository = _inventory_repository
 	_state.changed_inventory_entity.connect(inventory.update)
 	_character_location.current_location_changed.connect(_on_location_changed)
 
@@ -39,7 +38,12 @@ func _on_location_changed(location: Variant):
 		if existed_inventory != null:
 			_state.change_entity(existed_inventory)
 		else:
-			_state.change_entity(InventoryEntity.new())
+			_state.change_entity(InventoryEntity.new(
+				-1,
+				InventoryEntity.BelongsAtObject.new(
+					location.id, InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION
+				)
+			))
 
 		_state.search_drop = location.resource.search_drop
 		return

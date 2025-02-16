@@ -6,7 +6,6 @@ signal changed_inventory_entity(new_entity: InventoryEntity)
 var name: String
 var inventory_entity: InventoryEntity = InventoryEntity.new(): set = change_entity
 
-var _inventory_repository: InventoryRepository
 var _stored_cache: Dictionary = {}
 var _logger: Log 
 
@@ -142,19 +141,17 @@ func get_size() -> int:
 	return inventory_entity.items.size()
 
 
-# TODO erise_empty - сайд эфект в функции. Выглядит что нужно убрать и вместо этого в местах вызова get_items явно вызывать публичный аналог _clear_empty
-# get функции не должны делать доп работу. Только возвращать что просят
-func get_items(erise_empty := false) -> Array[ItemEntity]: 
+func get_items() -> Array[ItemEntity]: 
 	if not inventory_entity: 
 		return []
-	if erise_empty:
-		return _clear_empty(inventory_entity.items.duplicate())
 	return inventory_entity.items.duplicate()
 
 
-func _clear_empty(_array: Array[ItemEntity] = inventory_entity.items.duplicate()):
-	var new_array: Array[ItemEntity] = [] 
-	for i in _array.size():
-		if _array[i].is_empty(): continue
-		new_array.append(_array[i])
+func clear_empty():
+	if not inventory_entity:
+		return
+	var new_array: Array[ItemEntity] = []
+	for i in inventory_entity.items.size():
+		if inventory_entity.items[i].is_empty(): continue
+		new_array.append(inventory_entity.items[i])
 	return new_array
