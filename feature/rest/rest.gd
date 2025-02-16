@@ -18,7 +18,7 @@ var _t = 0
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(RestScreenState, RestScreenState.new(self), self, "closest")
+	_state = Injector.provide(RestScreenState, RestScreenState.new(self), self, Injector.ContainerType.CLOSEST)
 
 
 @onready var visual_number_1 = %TimerNumber1

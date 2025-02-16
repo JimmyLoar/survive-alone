@@ -9,7 +9,7 @@ var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 1
 var _state: BiomesLayerState
 
 func _enter_tree() -> void:
-	_state = Injector.provide(BiomesLayerState, BiomesLayerState.new(self), self, "closest")
+	_state = Injector.provide(BiomesLayerState, BiomesLayerState.new(self), self, Injector.ContainerType.CLOSEST)
 
 func _ready() -> void:
 	_virtual_chunks_state.visible_chunks_rect_changed.connect(Callable(self, "_on_visible_chunks_rect_changed"))

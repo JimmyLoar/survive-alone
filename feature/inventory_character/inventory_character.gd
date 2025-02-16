@@ -11,7 +11,7 @@ var _state := InventoryCharacterState.new("Character")
 
 
 func _enter_tree() -> void:
-	Injector.provide(InventoryCharacterState, _state, self, "closest")
+	Injector.provide(InventoryCharacterState, _state, self, Injector.ContainerType.CLOSEST)
 
 
 func _ready() -> void:
