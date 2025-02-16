@@ -35,7 +35,7 @@ func add_stage(_name: String, text: String= "", texture: Texture2D = null) -> in
 		"name": _name,
 		"text": text,
 		"texture": texture,
-		"actions": STAGE.actions,
+		"actions": Array([], TYPE_DICTIONARY, "", null),
 	}
 	return set_stage(stage)
 
@@ -111,7 +111,7 @@ func set_stage_texture(new_texture: Texture2D, stage_index: int) -> void:
 	_stages[stage_index].texture = new_texture
 
 
-func get_stage_texture(stage_index: int) -> String:
+func get_stage_texture(stage_index: int) -> Texture2D:
 	return _stages[stage_index].texture
 
 
@@ -121,7 +121,7 @@ func set_stage_actions(new_actions: Array[Dictionary], stage_index: int) -> void
 	_stages[stage_index].actions = new_actions
 
 
-func get_stage_actions(stage_index: int) -> String:
+func get_stage_actions(stage_index: int) -> Array[Dictionary]:
 	return _stages[stage_index].actions.duplicate()
 
 

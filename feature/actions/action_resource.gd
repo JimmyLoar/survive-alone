@@ -45,8 +45,8 @@ var used_item_keys := []:
 var _items_names: PackedStringArray = []
 
 
-func _init() -> void:
-	super("ACTION")
+func _init(_name := "ACTION") -> void:
+	super(_name)
 	if Engine.is_editor_hint():
 		var database := preload("res://resources/database.gddb")
 		_items_names = PackedStringArray(database.get_data_string_ids(&"items"))

@@ -1,5 +1,5 @@
 class_name BiomeSearchList
-extends Resource
+extends EventList
 
 
 @export var offset_tags_weight : Dictionary = {
@@ -18,34 +18,20 @@ extends Resource
 	BiomeSerchEventResource.Tags.location: 0,		#локация
 } 
 
-var rng := RandomNumberGenerator.new() as RandomNumberGenerator
-
-@export var events: Array[BiomeSerchEventResource] = []:
-	set(value):
-		events = value
-		_sort_events_for_tags(events)
-
-
 @export var tags_list: Dictionary = {}
+
+
 
 var _weights: PackedInt32Array
 var _amount_weight := 0
 
-func _create_weight_list() -> PackedInt32Array:
-	var array := PackedInt32Array()
-	_amount_weight = 0
-	for i in events.size():
-		var weight: int = events[i].weight
-		for tag in events[i].tags:
-			weight += offset_tags_weight[tag]
-		_amount_weight += weight
-		array.append(_amount_weight)
-	return array 
+func set_events(value):
+	events = value
+	_sort_events_for_tags(events)
 
 
-func get_selected_event() -> BiomeSerchEventResource:
-	if _weights.is_empty():
-		_weights = _create_weight_list()
+func get_event() -> BiomeSerchEventResource:
+	_weights = _create_weight_list()
 	
 	var random_value := rng.randi_range(0, _amount_weight)
 	var index: int = 0
@@ -58,9 +44,25 @@ func get_selected_event() -> BiomeSerchEventResource:
 	return events[index]
 
 
-func _sort_events_for_tags(_events: Array[BiomeSerchEventResource]):
+func _create_weight_list() -> PackedInt32Array:
+	var array := PackedInt32Array()
+	_amount_weight = 0
+	for i in events.size():
+		var weight: int = events[i].weight
+		for tag in events[i].tags:
+			weight += offset_tags_weight[tag]
+		if weight > 0:
+			_amount_weight += weight
+		array.append(_amount_weight)
+	print(array)
+	return array 
+
+
+func _sort_events_for_tags(_events: Array):
 	tags_list.clear()
 	for i in _events.size():
+		if events[i] is not BiomeSerchEventResource:
+			continue
 		for tag in _events[i].tags:
 			if not tags_list.has(tag):
 				tags_list[tag] = []
