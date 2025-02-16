@@ -1,20 +1,15 @@
 extends Node
 
-const FLOWERS = preload("res://feature/biom_search_event/test/flowers.tres")
-const NOTHING = preload("res://feature/biom_search_event/test/nothing.tres")
-const WOOD_1 = preload("res://feature/biom_search_event/test/wood_1.tres")
-const WOOD_2 = preload("res://feature/biom_search_event/test/wood_2.tres")
-const WOOD_3 = preload("res://feature/biom_search_event/test/wood_3.tres")
-const WOOD_HOUSE = preload("res://feature/biom_search_event/test/wood_house.tres")
+var list: BiomeSearchList = preload("res://feature/biom_search_event/test/biom_list_test.tres")
+
 
 func get_event_list() -> BiomeSearchList:
-	var list: BiomeSearchList = preload("res://feature/biom_search_event/test/test.tres")
-	list.events_list.append(FLOWERS)
-	list.events_list.append(NOTHING)
-	list.events_list.append(WOOD_1)
-	list.events_list.append(WOOD_2)
-	list.events_list.append(WOOD_3)
-	list.events_list.append(WOOD_HOUSE)
+	var FLOWERS := preload("res://feature/biom_search_event/test/flowers.tres") as BiomeSerchEventResource
+	var NOTHING := preload("res://feature/biom_search_event/test/nothing.tres") as BiomeSerchEventResource
+	var WOOD_1 := preload("res://feature/biom_search_event/test/wood_1.tres") as BiomeSerchEventResource
+	var WOOD_2 := preload("res://feature/biom_search_event/test/wood_2.tres") as BiomeSerchEventResource
+	var WOOD_3 := preload("res://feature/biom_search_event/test/wood_3.tres") as BiomeSerchEventResource
+	var WOOD_HOUSE := preload("res://feature/biom_search_event/test/wood_house.tres") as BiomeSerchEventResource
 	
 	var id = FLOWERS.add_stage("start", "Вы вышли на поляну с цветами.")
 	var next_id = FLOWERS.add_stage("reward_1", "Вы содрали несколько цветов:\n")
@@ -57,4 +52,6 @@ func get_event_list() -> BiomeSearchList:
 	next_id = WOOD_HOUSE.add_stage("house", "Зайдя внутарь, ничего кроме нескольких семян и старых газет найти не удалось.")
 	WOOD_HOUSE.add_action(id, "Зайти", next_id)
 	WOOD_HOUSE.add_action(next_id, "...", -1)
+	
+	list.events = Array([FLOWERS, NOTHING, WOOD_1, WOOD_2, WOOD_3, WOOD_HOUSE], TYPE_OBJECT, "Resource", BiomeSerchEventResource)
 	return list

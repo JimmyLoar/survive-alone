@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_nyw74")
 tags = Array[int]([1, 2])
-weith = 5
+weight = 5
+_stages = Array[Dictionary]([])
 code_name = &"code_name"
 visible_name = ""
 discription = ""
