@@ -53,5 +53,5 @@ func get_event_list() -> BiomeSearchList:
 	WOOD_HOUSE.add_action(id, "Зайти", next_id)
 	WOOD_HOUSE.add_action(next_id, "...", -1)
 	
-	list.events = Array([FLOWERS, NOTHING, WOOD_1, WOOD_2, WOOD_3, WOOD_HOUSE], TYPE_OBJECT, "Resource", BiomeSerchEventResource)
+	list.events = Array([FLOWERS, NOTHING, WOOD_1, WOOD_2, WOOD_3, WOOD_HOUSE], TYPE_OBJECT, "Resource", EventResource)
 	return list

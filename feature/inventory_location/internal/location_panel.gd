@@ -8,6 +8,13 @@ var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxCon
 @onready var _inventory_location_state: InventoryLocationState = Injector.inject(
 	InventoryLocationState, self
 )
+@onready var _biome_search_state: BiomeSearchState = Injector.inject(
+	BiomeSearchState, self
+)
+@onready var _location: CharacterLocationState = Injector.inject(
+	CharacterLocationState, self
+)
+
 
 
 func _ready() -> void:
@@ -33,6 +40,10 @@ func _rerender():
 
 
 func _on_search_pressed() -> void:
-	var searcher := Searcher.new()
-	search_button.hide()
-	search_display.start_search(searcher.search(_inventory_location_state.search_drop))
+	if is_instance_of(_location, WorldObjectEntity):
+		var searcher := Searcher.new()
+		search_button.hide()
+		search_display.start_search(searcher.search(_inventory_location_state.search_drop))
+	if is_instance_of(_location, CharacterLocationState.BiomesLocation):
+		_biome_search_state.open()
+	
