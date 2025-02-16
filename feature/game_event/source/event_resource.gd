@@ -20,7 +20,7 @@ static var STAGE = {
 }
 
 
-var _stages: Array[Dictionary] = [STAGE.duplicate()]
+@export var _stages: Array[Dictionary] = []
 var _ids: PackedStringArray = []
 
 

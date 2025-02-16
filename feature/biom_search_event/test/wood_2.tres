@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_08tpf")
 tags = Array[int]([1, 4])
-weith = 5
+weight = 5
+_stages = Array[Dictionary]([])
 code_name = &"code_name"
 visible_name = ""
 discription = ""

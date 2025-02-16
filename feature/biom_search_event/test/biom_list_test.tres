@@ -11,30 +11,20 @@
 
 [resource]
 script = ExtResource("1_4lsjt")
-base_tags_weight = {
-"berries": 0,
-"carnivores": 0,
-"flower_meadow": 0,
-"herbivorous": 0,
-"herbs": 0,
-"large_animals": 0,
-"mushrooms": 0,
-"ruins": 0,
-"small_animals": 0,
-"trees": 0,
-"water": 0
+offset_tags_weight = {
+0: 0,
+1: 0,
+2: 0,
+3: 0,
+4: 0,
+5: 0,
+6: 0,
+7: 0,
+8: 0,
+9: 0,
+10: 0,
+11: 0,
+12: 0
 }
-events_list = Array[ExtResource("1_q6b16")]([ExtResource("2_uempm"), ExtResource("3_fcacv"), ExtResource("4_hy40a"), ExtResource("5_28emc"), ExtResource("6_3qeml"), ExtResource("7_qfr4c")])
-events = {
-"berries": [],
-"carnivores": [],
-"flower_meadow": [],
-"herbivorous": [],
-"herbs": [],
-"large_animals": [],
-"mushrooms": [],
-"ruins": [],
-"small_animals": [],
-"trees": [],
-"water": []
-}
+events = Array[ExtResource("1_q6b16")]([ExtResource("3_fcacv"), ExtResource("2_uempm"), ExtResource("4_hy40a"), ExtResource("5_28emc"), ExtResource("6_3qeml"), ExtResource("7_qfr4c")])
+tags_list = {}
