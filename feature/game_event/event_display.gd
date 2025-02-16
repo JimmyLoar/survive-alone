@@ -1,3 +1,4 @@
+class_name EventDisplay 
 extends PanelContainer
 
 @onready var texture_rect: TextureRect = %TextureRect

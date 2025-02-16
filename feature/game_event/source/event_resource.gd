@@ -24,10 +24,9 @@ var _stages: Array[Dictionary] = [STAGE.duplicate()]
 var _ids: PackedStringArray = []
 
 
-func _init(_name: String, stages_count: int = 1) -> void:
+func _init(_name: String = "", stages_count: int = 1) -> void:
 	super("EVENT")
 	code_name = _name
-	
 
 
 #region Stage

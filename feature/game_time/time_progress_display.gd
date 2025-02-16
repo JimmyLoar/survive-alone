@@ -8,7 +8,7 @@ var _state: GameTimeState
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(GameTimeState, GameTimeState.new(self), self, "closest")
+	_state = Injector.provide(GameTimeState, GameTimeState.new(self), self, Injector.ContainerType.CLOSEST)
 
 
 func open():

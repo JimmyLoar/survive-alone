@@ -11,7 +11,7 @@ var _last_drag_distance = 0
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(MainCameraState, MainCameraState.new(self), self, "closest")
+	_state = Injector.provide(MainCameraState, MainCameraState.new(self), self, Injector.ContainerType.CLOSEST)
 
 
 func _ready() -> void:

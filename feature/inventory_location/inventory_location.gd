@@ -15,7 +15,7 @@ var item_information_panel: ItemInfoPanel = %ItemInformationPanel
 
 
 func _enter_tree() -> void:
-	Injector.provide(InventoryLocationState, _state, self, "closest")
+	Injector.provide(InventoryLocationState, _state, self, Injector.ContainerType.CLOSEST)
 
 
 func _ready() -> void:

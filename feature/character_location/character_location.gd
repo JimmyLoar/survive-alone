@@ -10,7 +10,7 @@ var _state: CharacterLocationState
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(CharacterLocationState, CharacterLocationState.new(), self, "closest")
+	_state = Injector.provide(CharacterLocationState, CharacterLocationState.new(), self, Injector.ContainerType.CLOSEST)
 
 
 func _ready() -> void:
