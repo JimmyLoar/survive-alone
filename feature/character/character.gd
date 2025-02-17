@@ -9,7 +9,6 @@ var _state: CharacterState
 @onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
 @onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
 @onready var _character_repositoty: CharacterRepository = Injector.inject(CharacterRepository, self)
-@onready var _resource_db: ResourceDb = Injector.inject(ResourceDb, self)
 @onready var _save_db: SaveDb = Injector.inject(SaveDb, self)
 var _character_properties_repository: CharacterPropertyRepository
 
@@ -22,7 +21,7 @@ func _ready() -> void:
 	_game_time.finished_skip.connect(_update_props_by_time_spend)
 	_game_time.started_skip.connect(_state.reset_target, CONNECT_DEFERRED)
 
-	_character_properties_repository.init(_resource_db, _save_db)
+	_character_properties_repository.init(_save_db)
 	
 	Callable(func():
 		position = _character_repositoty.get_world_position()

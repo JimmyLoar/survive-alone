@@ -18,11 +18,14 @@ class BelongsAtObject:
 	var id: int  # Id of object that hold the inventory
 	var type: Type  # The object type
 
-	func _init(_id: int, _type) -> void:
+	func _init(_id: int, _type: Type) -> void:
 		id = _id
-		_type = type
+		type = _type
 
-	enum Type { PLAYER, WORLD_LOCATION }
+	enum Type { 
+		PLAYER, 
+		WORLD_LOCATION 
+	}
 
 	func is_equal(other: BelongsAtObject):
 		return id == other.id and type == other.type

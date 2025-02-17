@@ -38,7 +38,7 @@ func _set_extend(value: CharacterPropertyResource) -> void:
 
 func serialize() -> PackedByteArray:
 	var dict = {
-		"name_key": name_key,
+		"code_name": code_name,
 		"default_value": default_value,
 		"default_max_value": default_max_value,
 		"default_min_value": default_min_value,
@@ -53,7 +53,7 @@ static func deserialize(bytes: PackedByteArray) -> CharacterPropertyResource:
 	var dict = bytes_to_var(bytes)
 
 	var result = CharacterPropertyResource.new()
-	result.name_key = dict["name_key"]
+	result.code_name = dict["code_name"]
 	result.default_value = dict["default_value"]
 	result.default_max_value = dict["default_max_value"]
 	result.default_min_value = dict["default_min_value"]
