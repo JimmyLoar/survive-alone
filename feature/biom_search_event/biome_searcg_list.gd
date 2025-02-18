@@ -21,9 +21,9 @@ extends EventList
 @export var tags_list: Dictionary = {}
 
 
-
 var _weights: PackedInt32Array
 var _amount_weight := 0
+
 
 func set_events(value):
 	events = value
@@ -49,12 +49,10 @@ func _create_weight_list() -> PackedInt32Array:
 	_amount_weight = 0
 	for i in events.size():
 		var weight: int = events[i].weight
-		for tag in events[i].tags:
-			weight += offset_tags_weight[tag]
 		if weight > 0:
 			_amount_weight += weight
+		
 		array.append(_amount_weight)
-	print(array)
 	return array 
 
 
@@ -63,6 +61,7 @@ func _sort_events_for_tags(_events: Array):
 	for i in _events.size():
 		if events[i] is not BiomeSerchEventResource:
 			continue
+		
 		for tag in _events[i].tags:
 			if not tags_list.has(tag):
 				tags_list[tag] = []

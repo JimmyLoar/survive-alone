@@ -6,6 +6,7 @@
 script = ExtResource("1_k44hp")
 tags = Array[int]([0])
 weight = 5
+_stage_count = 0
 _stages = Array[Dictionary]([])
 code_name = &""
 visible_name = "EVENT_NAME_"

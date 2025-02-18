@@ -40,5 +40,17 @@ tint_progress = Color(0, 0.770944, 0.722345, 1)
 [node name="VBoxContainer" parent="HBoxContainer" index="1"]
 size_flags_stretch_ratio = 1.25
 
+[node name="RichTextLabel" parent="HBoxContainer/VBoxContainer" index="0"]
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+
+[node name="ItemList" parent="HBoxContainer/VBoxContainer" index="1"]
+theme_override_font_sizes/font_size = 20
+allow_search = false
+text_overrun_behavior = 4
+
 [node name="EventActionState" type="Node" parent="." index="1"]
 script = ExtResource("4_ebje0")

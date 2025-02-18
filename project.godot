@@ -28,6 +28,7 @@ game/version/string="dev"
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Injector="*res://addons/godot-di/Injector.gd"
+GodotLogger="*res://addons/logger/logger.gd"
 
 [display]
 
@@ -105,3 +106,7 @@ anti_aliasing/quality/msaa_2d=1
 [resource_databases]
 
 main_base_path="res://content/database.gddb"
+
+[script_panel_plus]
+
+panel_settings/show_bottom_bar=true
