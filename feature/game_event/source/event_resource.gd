@@ -19,7 +19,14 @@ static var STAGE = {
 	"actions": Array([], TYPE_DICTIONARY, "", null),
 }
 
-
+@export_range(0, 6, 1, "or_greater") var _stage_count := 0:
+	set(value):
+		_stage_count = value
+		_stages.resize(value)
+		for i in value:
+			_stages[i] = STAGE.duplicate()
+			_stages[i].actions = [ACTION_DICTIONARY.duplicate(), ACTION_DICTIONARY.duplicate()]
+		notify_property_list_changed()
 @export var _stages: Array[Dictionary] = []
 var _ids: PackedStringArray = []
 

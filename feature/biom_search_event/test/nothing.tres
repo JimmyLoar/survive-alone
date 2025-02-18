@@ -6,6 +6,7 @@
 script = ExtResource("1_cdnyt")
 tags = Array[int]([0])
 weight = 5
+_stage_count = 0
 _stages = Array[Dictionary]([])
 code_name = &"nothing"
 visible_name = ""
