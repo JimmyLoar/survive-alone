@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=21 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]

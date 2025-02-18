@@ -5,6 +5,7 @@ extends HBoxContainer
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var character_property_repository : CharacterPropertyRepository = Injector.inject(CharacterPropertyRepository, self)
 
+
 func update_data(_name: StringName):
 	texture_rect.texture = character_property_repository.get_by_name(_name).texture
 
