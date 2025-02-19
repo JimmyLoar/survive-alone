@@ -3,19 +3,19 @@ extends EventList
 
 
 @export var offset_tags_weight : Dictionary = {
-	BiomeSerchEventResource.Tags.nothing: 0, 		#ничего
-	BiomeSerchEventResource.Tags.trees: 0, 			#деревья
-	BiomeSerchEventResource.Tags.water: 0, 			#вода
-	BiomeSerchEventResource.Tags.flower: 0,			#цветы
-	BiomeSerchEventResource.Tags.berries: 0,		#ягоды
-	BiomeSerchEventResource.Tags.mushrooms: 0, 		#грибы
-	BiomeSerchEventResource.Tags.plants: 0,			#травы
-	BiomeSerchEventResource.Tags.herbivorous: 0,	#травоядные жевотные
-	BiomeSerchEventResource.Tags.carnivores: 0,		#хищьники
-	BiomeSerchEventResource.Tags.large_animals: 0, 	#крупные звери
-	BiomeSerchEventResource.Tags.small_animals: 0, 	#небольшие звери
-	BiomeSerchEventResource.Tags.ruins: 0,  		#руины
-	BiomeSerchEventResource.Tags.location: 0,		#локация
+	BiomeSearchEventResource.Tags.nothing: 0, 		#ничего
+	BiomeSearchEventResource.Tags.trees: 0, 			#деревья
+	BiomeSearchEventResource.Tags.water: 0, 			#вода
+	BiomeSearchEventResource.Tags.flower: 0,			#цветы
+	BiomeSearchEventResource.Tags.berries: 0,		#ягоды
+	BiomeSearchEventResource.Tags.mushrooms: 0, 		#грибы
+	BiomeSearchEventResource.Tags.plants: 0,			#травы
+	BiomeSearchEventResource.Tags.herbivorous: 0,	#травоядные жевотные
+	BiomeSearchEventResource.Tags.carnivores: 0,		#хищьники
+	BiomeSearchEventResource.Tags.large_animals: 0, 	#крупные звери
+	BiomeSearchEventResource.Tags.small_animals: 0, 	#небольшие звери
+	BiomeSearchEventResource.Tags.ruins: 0,  		#руины
+	BiomeSearchEventResource.Tags.location: 0,		#локация
 } 
 
 @export var tags_list: Dictionary = {}
@@ -30,7 +30,7 @@ func set_events(value):
 	_sort_events_for_tags(events)
 
 
-func get_event() -> BiomeSerchEventResource:
+func get_event() -> BiomeSearchEventResource:
 	_weights = _create_weight_list()
 	
 	var random_value := rng.randi_range(0, _amount_weight)
@@ -59,7 +59,7 @@ func _create_weight_list() -> PackedInt32Array:
 func _sort_events_for_tags(_events: Array):
 	tags_list.clear()
 	for i in _events.size():
-		if events[i] is not BiomeSerchEventResource:
+		if events[i] is not BiomeSearchEventResource:
 			continue
 		
 		for tag in _events[i].tags:

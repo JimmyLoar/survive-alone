@@ -1,5 +1,5 @@
 @tool
-class_name BiomeSerchEventResource
+class_name BiomeSearchEventResource
 extends EventResource
 
 enum Tags{

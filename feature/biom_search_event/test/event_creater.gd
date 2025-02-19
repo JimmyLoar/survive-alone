@@ -4,12 +4,12 @@ var list: BiomeSearchList = preload("res://feature/biom_search_event/test/biom_l
 
 
 func get_event_list() -> BiomeSearchList:
-	var FLOWERS := preload("res://feature/biom_search_event/test/flowers.tres") as BiomeSerchEventResource
-	var NOTHING := preload("res://feature/biom_search_event/test/nothing.tres") as BiomeSerchEventResource
-	var WOOD_1 := preload("res://feature/biom_search_event/test/wood_1.tres") as BiomeSerchEventResource
-	var WOOD_2 := preload("res://feature/biom_search_event/test/wood_2.tres") as BiomeSerchEventResource
-	var WOOD_3 := preload("res://feature/biom_search_event/test/wood_3.tres") as BiomeSerchEventResource
-	var WOOD_HOUSE := preload("res://feature/biom_search_event/test/wood_house.tres") as BiomeSerchEventResource
+	var FLOWERS := preload("res://feature/biom_search_event/test/flowers.tres") as BiomeSearchEventResource
+	var NOTHING := preload("res://feature/biom_search_event/test/nothing.tres") as BiomeSearchEventResource
+	var WOOD_1 := preload("res://feature/biom_search_event/test/wood_1.tres") as BiomeSearchEventResource
+	var WOOD_2 := preload("res://feature/biom_search_event/test/wood_2.tres") as BiomeSearchEventResource
+	var WOOD_3 := preload("res://feature/biom_search_event/test/wood_3.tres") as BiomeSearchEventResource
+	var WOOD_HOUSE := preload("res://feature/biom_search_event/test/wood_house.tres") as BiomeSearchEventResource
 	
 	var id = FLOWERS.add_stage("start", "Вы вышли на поляну с цветами.")
 	var next_id = FLOWERS.add_stage("reward_1", "Вы содрали несколько цветов:\n")

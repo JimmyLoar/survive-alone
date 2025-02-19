@@ -1,4 +1,4 @@
-class_name BiomeSerchUI
+class_name BiomeSearchUI
 extends PanelContainer
 
 
@@ -30,7 +30,7 @@ func close():
 	_state.currect_event = null
 
 
-func display_stage(event: BiomeSerchEventResource, stage: int):
+func display_stage(event: BiomeSearchEventResource, stage: int):
 	if event._stages.is_empty():
 		event.add_stage("start", "none")
 		var action_resource: EventActionResource = preload("res://feature/biom_search_event/internal/0_search_action.tres")
