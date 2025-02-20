@@ -10,7 +10,7 @@ var _visible_object_nodes = Dictionary()
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(WorldObjectsLayerState, WorldObjectsLayerState.new(), self, "closest")
+	_state = Injector.provide(WorldObjectsLayerState, WorldObjectsLayerState.new(), self, Injector.ContainerType.CLOSEST)
 
 
 func _ready() -> void:

@@ -7,7 +7,7 @@ extends Node2D
 var _state: GameEditor__BiomesToolState
 
 func _enter_tree() -> void:
-	_state = Injector.provide(GameEditor__BiomesToolState, GameEditor__BiomesToolState.new(self), self, "closest")
+	_state = Injector.provide(GameEditor__BiomesToolState, GameEditor__BiomesToolState.new(self), self, Injector.ContainerType.CLOSEST)
 	
 func _ready() -> void:
 	_state.hovered_biome_tile_pos_changed.connect(_on_hovered_biome_tile_pos_changed)

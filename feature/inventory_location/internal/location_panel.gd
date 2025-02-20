@@ -8,6 +8,13 @@ var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxCon
 @onready var _inventory_location_state: InventoryLocationState = Injector.inject(
 	InventoryLocationState, self
 )
+@onready var _biome_search_state: BiomeSearchState = Injector.inject(
+	BiomeSearchState, self
+)
+@onready var _location: CharacterLocationState = Injector.inject(
+	CharacterLocationState, self
+)
+
 
 
 func _ready() -> void:
@@ -21,18 +28,28 @@ func _on_search_drop_changed(search_drop: SearchDropResource):
 
 
 func _rerender():
-	if (
-		_inventory_location_state.search_drop == null
-		or _inventory_location_state.search_drop.items_count == 0
-	):
-		search_button.disabled = true
+	if is_instance_of(_location.current_location, WorldObjectEntity):
+		if (
+			_inventory_location_state.search_drop == null
+			or _inventory_location_state.search_drop.items_count == 0
+		):
+			search_button.hide()
+		else:
+			search_button.show()
 	else:
-		search_button.disabled = false
-
+		search_button.show()
 	search_display.update(_inventory_location_state.search_drop)
 
 
 func _on_search_pressed() -> void:
-	var searcher := Searcher.new()
-	search_button.hide()
-	search_display.start_search(searcher.search(_inventory_location_state.search_drop))
+	if is_instance_of(_location.current_location, WorldObjectEntity):
+		var searcher := Searcher.new()
+		search_button.hide()
+		search_display.start_search(searcher.search(_inventory_location_state.search_drop))
+	elif is_instance_of(_location.current_location, CharacterLocationState.BiomesLocation):
+		_biome_search_state.open()
+	
+	else:
+		print_debug("location none")
+		#breakpoint
+		

@@ -10,6 +10,14 @@ var META_INJECTABLES_NAME: String = 'InjectableMeatas'
 ## A list of nodes that have injectables.
 var containers: Array = []
 
+
+enum ContainerType{
+	SOURCE,
+	ROOT,
+	CLOSEST,
+	}
+
+
 class MetaData:
 	var type: Variant
 	var value: Variant
@@ -27,16 +35,16 @@ class MetaData:
 ## * [type] &ndash; is the injectable class to provide. This can be an instance of Injectable or InjectionToken or String.
 ## * [value] &ndash; is value to provide
 ## * [source] &ndash; is node relative that makes provide. Usualy self  
-## * [container] &ndash; is the node to add the provider data to. One of "root", "closest", "source".
-## * 	"root" - value will be added to the root node. Create container if not exist
-## * 	"closest" - value will be added to nerrest down to up parrent of source. Includes source
-## * 	"source" - value will be added to the source node. Create container if not exist
+## * [container] &ndash; is the node to add the provider data to. One of ContainerType.ROOT, ContainerType.SOURCE, ContainerType.CLOSES.
+## * 	ContainerType.ROOT - value will be added to the root node. Create container if not exist
+## * 	ContainerType.CLOSEST - value will be added to nerrest down to up parrent of source. Includes source
+## * 	ContainerType.CLOSES - value will be added to the source node. Create container if not exist
 ## * [parameters] &ndash; is an array of parameters to pass to the Injectable's constructor. If the [type] is an InjectionToken, this is the value to inject, such as a [Node], [String], [Int], etc.
 ## * return &ndash; is provided value or null if not provided
-func provide(type: Variant, value: Variant, source: Node, container = "source") -> Variant:
-	if container is String and  container != 'source' and container != 'root' and container != "closest":
-		printerr('Injectable.provide: "container" must be one of "root", "closest", "source".')
-		push_error('Injectable.provide: "v" must be of "root", "closest", "source".')
+func provide(type: Variant, value: Variant, source: Node, container = ContainerType.SOURCE) -> Variant:
+	if container is ContainerType and container != ContainerType.SOURCE and container != ContainerType.ROOT and container != ContainerType.CLOSEST:
+		printerr('Injectable.provide: "container" must be one of "root", ContainerType.CLOSEST, "source".')
+		push_error('Injectable.provide: "v" must be of "root", ContainerType.CLOSEST, "source".')
 		return null
 
 	if !is_instance_of(value, type) and !(is_instance_of(type, InjectionToken) or (type is String)):
@@ -44,13 +52,13 @@ func provide(type: Variant, value: Variant, source: Node, container = "source") 
 		push_error('Injectable.provide: "value" must be an instance of "type" or use InjectionToken or String.')
 		return null
 
-	if container is String and container == 'root':
+	if container is ContainerType and container == ContainerType.ROOT:
 		container = get_tree().root
 
-	if container is String and container == 'closest':
+	if container is ContainerType and container == ContainerType.CLOSEST:
 		container = _closest_container(source)
 		
-	if container is String and container == 'source':
+	if container is ContainerType and container == ContainerType.SOURCE:
 		container = source
 
 	var meta_data = MetaData.new(type, value, container, source)

@@ -21,6 +21,14 @@ static func take_float(property_name: String, _usage: int = PROPERTY_USAGE_DEFAU
 	return result 
 
 
+static func take_bool(property_name: String, _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
+	return {
+		"name": property_name,
+		"type": TYPE_BOOL,
+		"usage": _usage,
+	}
+
+
 static func take_range_int(property_name: String, min_value: int, max_value: int, step: int = 1, overside: String = '', _usage: int = PROPERTY_USAGE_DEFAULT) -> Dictionary:
 	var dict := take_int(property_name, _usage)
 	dict.merge({

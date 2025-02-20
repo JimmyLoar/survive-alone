@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EventActionResource" load_steps=2 format=3 uid="uid://by8miuogaguub"]
+
+[ext_resource type="Script" path="res://feature/game_event/internal/event_action_resource.gd" id="1_6wyro"]
+
+[resource]
+script = ExtResource("1_6wyro")
+type = 1
+_properties = {
+"exhaustion": 0,
+"fatigue": -15,
+"hunger": 0,
+"psych": 0,
+"radiation": 0,
+"thirst": 0
+}
+type = 1
+_properties = {
+"exhaustion": 0,
+"fatigue": -15,
+"hunger": 0,
+"psych": 0,
+"radiation": 0,
+"thirst": 0
+}
+code_name = &"code_name"
+visible_name = ""
+discription = ""
