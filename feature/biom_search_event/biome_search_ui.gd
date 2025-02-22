@@ -10,6 +10,8 @@ var _state: BiomeSearchState
 @onready var texture_progress_bar: TextureProgressBar = $HBoxContainer/PanelContainer/TextureProgressBar
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
 @onready var item_list: ItemList = %ItemList
+@onready var event_action_state: ActionState = $EventActionState
+
 
 
 func _enter_tree() -> void:
@@ -54,8 +56,9 @@ func display_stage(event: BiomeSearchEventResource, stage: int):
 
 
 func _action_pressed(action_index: int):
+	# TODO Переделать в действий
 	if not _state.currect_event or _state.currect_event.get_instance_id() == DEFUALT_EVENT.get_instance_id():
-		if action_index == item_list.item_count -1:
+		if action_index == item_list.item_count - 1:
 			# close if defualt event and pressed last action
 			close()
 			return
@@ -64,6 +67,7 @@ func _action_pressed(action_index: int):
 		return
 	
 	_state.go_to(_state.currect_event.get_action_next_stage(_state.currect_stage, action_index))
+	#event_action_state.execute(_state.currect_event.get_action(_state., _state.currect_stage))
 	if _state.currect_stage == -1:
 		_state.currect_event = null
 		display_stage(DEFUALT_EVENT, 0)

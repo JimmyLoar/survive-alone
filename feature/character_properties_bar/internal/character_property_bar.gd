@@ -9,6 +9,17 @@ extends HBoxContainer
 
 func _ready() -> void:
 	_character_state.property_changed.connect(_on_property_changed)
+	var conditions: CondisionsAndEffects = Injector.inject(CondisionsAndEffects, self)
+	conditions.register_custom_effect("set_charracter_property", 
+		func (prop_name: String, check_value: int):
+			var property := _character_state.get_property(property_name)
+			_character_state.set_property(property)
+	)
+	conditions.register_custom_condition("has_charracter_property", 
+		func(prop_name: String, check_value: int): 
+			var property := _character_state.get_property(property_name)
+			return property.default_value >= check_value
+	)
 
 
 func _on_property_changed(prop: CharacterPropertyResource):

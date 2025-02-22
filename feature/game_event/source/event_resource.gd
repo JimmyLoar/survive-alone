@@ -28,6 +28,7 @@ static var STAGE = {
 			_stages[i].actions = [ACTION_DICTIONARY.duplicate(), ACTION_DICTIONARY.duplicate()]
 		notify_property_list_changed()
 @export var _stages: Array[Dictionary] = []
+@export var _context: Dictionary = {}
 var _ids: PackedStringArray = []
 
 

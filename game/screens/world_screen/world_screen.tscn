@@ -131,13 +131,15 @@ mouse_filter = 2
 [node name="EventDisplay" parent="UI/MarginContainer/VBoxContainer/MarginContainer/EmptySpace" instance=ExtResource("17_p8jes")]
 visible = false
 layout_mode = 1
+offset_top = -7.0
+offset_bottom = -7.0
 
 [node name="BiomeSearchDisplay" parent="UI/MarginContainer/VBoxContainer/MarginContainer/EmptySpace" instance=ExtResource("18_64yo3")]
 layout_mode = 1
-offset_left = -3.0
-offset_top = -51.0
-offset_right = 3.0
-offset_bottom = 51.0
+offset_left = -389.0
+offset_top = -244.0
+offset_right = 551.0
+offset_bottom = 216.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("13_63jsv")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BiomeSerchEventResource" load_steps=2 format=3 uid="uid://dw6j3yeanfdqt"]
+[gd_resource type="Resource" script_class="BiomeSearchEventResource" load_steps=2 format=3 uid="uid://dw6j3yeanfdqt"]
 
 [ext_resource type="Script" path="res://feature/biom_search_event/biome_search_resource.gd" id="1_k44hp"]
 
@@ -8,6 +8,7 @@ tags = Array[int]([0])
 weight = 5
 _stage_count = 0
 _stages = Array[Dictionary]([])
+_context = {}
 code_name = &""
 visible_name = "EVENT_NAME_"
 discription = "EVENT_DISCRIPTION_"

@@ -7,8 +7,9 @@ var _resource_db: ResourceDb
 func _enter_tree() -> void:
 	_state = Injector.provide(GameState, GameState.new(), self)
 	_resource_db = Injector.provide(ResourceDb,  ResourceDb.new(), self)
-	
 	_resource_db.db_connect("res://resources/database.gddb")
+	Injector.provide(CondisionsAndEffects, CondisionsAndEffects.new(), self)
+
 
 func _ready() -> void:
 	_state.current_screen_changed.connect(Callable(self, "_on_screen_changed"))

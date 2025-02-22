@@ -8,6 +8,7 @@ const ACTION_START_EVENT_FROM_LIST = "START_EVENT_FOM_LIST"
 var event: EventResource
 var events_list: BiomeSearchList
 
+
 func _init() -> void:
 	super("EventAction")
 	Actions.merge({
