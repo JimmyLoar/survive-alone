@@ -1,21 +1,22 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://chxbdcao06tc6"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://chxbdcao06tc6"]
 
 [ext_resource type="Script" path="res://resources/schema/item.gd" id="1_87aen"]
 [ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_hhqk7"]
+[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_q7ucy"]
+[ext_resource type="Script" path="res://feature/actions/condition_resource.gd" id="2_1jfel"]
 [ext_resource type="Texture2D" uid="uid://bgocs4vak2jj4" path="res://assets/sprite/placeholders/Item16.png" id="2_fnsd8"]
+[ext_resource type="Script" path="res://feature/actions/effect_resource.gd" id="3_rkc1w"]
+
+[sub_resource type="Resource" id="Resource_wvbmy"]
+script = ExtResource("3_rkc1w")
+currect_type = 0
+currect_type = 0
 
 [sub_resource type="Resource" id="Resource_v3q7y"]
 script = ExtResource("1_hhqk7")
 use_stack = false
-type = 9
-_properties = {
-"exhaustion": -5,
-"fatigue": 0,
-"hunger": 10,
-"psych": 0,
-"radiation": 0,
-"thirst": 12
-}
+conditions = Array[ExtResource("2_1jfel")]([])
+effects = Array[ExtResource("3_rkc1w")]([SubResource("Resource_wvbmy")])
 code_name = &"eat"
 visible_name = "ACTION_NAME_EAT"
 discription = "ACTION_DISCRIPTION_EAT"
@@ -26,7 +27,7 @@ texture = ExtResource("2_fnsd8")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_hhqk7")]([SubResource("Resource_v3q7y")])
+actions = Array[ExtResource("1_q7ucy")]([SubResource("Resource_v3q7y")])
 code_name = &"canned_food"
 visible_name = "ITEMRESOURCE_NAME_CANNED_FOOD"
 discription = "ITEMRESOURCE_DISCRIPTION_CANNED_FOOD"

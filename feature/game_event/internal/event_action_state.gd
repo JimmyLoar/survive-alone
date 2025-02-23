@@ -1,7 +1,7 @@
 class_name EventActionState
 extends ActionState
 
-@onready var action_state
+
 
 
 func can_execute(action_entity: ActionResource) -> bool:

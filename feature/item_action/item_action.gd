@@ -4,7 +4,7 @@ extends Node
 
 var currect_action: ItemActionResource
 
-@onready var state: ItemActionState = %ItemActionState
+@onready var state: ItemActionState
 
 @onready var properties_container: HBoxContainer = $MarginContainer/VBoxContainer/PropertiesContainer
 @onready var slider: HSlider = $MarginContainer/VBoxContainer/HSlider
@@ -19,14 +19,14 @@ var currect_action: ItemActionResource
 
 
 const _VALUE = { #0 - func_name #1 - container varible #2 - data key
-	ItemActionResource.ACTION_CHANGE_PROPERTY: 	["_display_properties", "properties_container", &"properties"],
-	ItemActionResource.ACTION_NEED_ITEMS: 		["_display_need_items_grids", "items_container", &"need_items"],
-	ItemActionResource.ACTION_REWARD_ITEMS: 	["_display_reward_items_grids", "items_container", &"reward_items"],
+	#ActionResource.ACTION_CHANGE_PROPERTY: 	["_display_properties", "properties_container", &"properties"],
+	#ActionResource.ACTION_NEED_ITEMS: 		["_display_need_items_grids", "items_container", &"need_items"],
+	#ActionResource.ACTION_REWARD_ITEMS: 	["_display_reward_items_grids", "items_container", &"reward_items"],
 }
 
 func display(action: ItemActionResource):
 	currect_action = action
-	_update_action_types(action)
+	#_update_action_types(action)
 	slider.visible = action.use_stack
 	button.text = action.code_name
 

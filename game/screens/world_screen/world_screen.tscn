@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=22 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
 [ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
 [ext_resource type="PackedScene" uid="uid://pgcmlu6ch3ey" path="res://feature/biom_search_event/biome_search_ui.tscn" id="18_64yo3"]
+[ext_resource type="Script" path="res://feature/actions/action_node.gd" id="20_vdqgx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u53ai"]
 bg_color = Color(0.245984, 0.245984, 0.245984, 1)
@@ -185,5 +186,9 @@ offset_left = 1277.0
 offset_top = -27.0
 offset_right = 1287.0
 offset_bottom = 715.0
+
+[node name="ActionNode" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("20_vdqgx")
 
 [connection signal="pressed" from="UI/MarginContainer/VBoxContainer/MarginContainer/!ButunRest" to="UI/MarginContainer/VBoxContainer/MarginContainer/!ButunRest" method="_on_pressed"]

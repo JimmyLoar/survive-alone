@@ -8,7 +8,7 @@ extends NamedResource
 @export_range(-1, 65536) var durability := -1
 @export var is_pickable := true 
 
-@export var actions: Array[ItemActionResource] = [] 
+@export var actions: Array[ActionResource] = [] 
 
 
 func _init() -> void:

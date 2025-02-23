@@ -1,18 +1,19 @@
-[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://cyejt07t5u1ej"]
+[gd_resource type="Resource" script_class="ActionResource" load_steps=5 format=3 uid="uid://cyejt07t5u1ej"]
 
 [ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_ara7v"]
+[ext_resource type="Script" path="res://feature/actions/condition_resource.gd" id="1_m7fol"]
+[ext_resource type="Script" path="res://feature/actions/effect_resource.gd" id="2_nytag"]
+
+[sub_resource type="Resource" id="Resource_l8jp4"]
+script = ExtResource("2_nytag")
+name = "set_character_property"
+arg_0 = "exhaustion"
+arg_1 = null
 
 [resource]
 script = ExtResource("1_ara7v")
-type = 1
-_properties = {
-"exhaustion": 0,
-"fatigue": 0,
-"hunger": 0,
-"psych": 0,
-"radiation": 0,
-"thirst": 0
-}
+conditions = Array[ExtResource("1_m7fol")]([])
+effects = Array[ExtResource("2_nytag")]([SubResource("Resource_l8jp4")])
 code_name = &"code_name"
 visible_name = "<null>_NAME_SS"
 discription = "<null>_DISCRIPTION_SS"

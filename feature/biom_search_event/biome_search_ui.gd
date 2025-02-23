@@ -10,7 +10,7 @@ var _state: BiomeSearchState
 @onready var texture_progress_bar: TextureProgressBar = $HBoxContainer/PanelContainer/TextureProgressBar
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
 @onready var item_list: ItemList = %ItemList
-@onready var event_action_state: ActionState = $EventActionState
+@onready var event_action_state: ActionState
 
 
 

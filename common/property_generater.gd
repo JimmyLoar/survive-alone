@@ -126,6 +126,7 @@ static func convent_to_range(property_dict: Dictionary, min_value: float, max_va
 
 static func convert_to_enum(property: Dictionary, enum_string: String, is_int_value := true) -> Dictionary:
 	property.merge({
+		type = TYPE_INT if is_int_value else TYPE_STRING,
 		hint = PROPERTY_HINT_ENUM if is_int_value else PROPERTY_HINT_ENUM_SUGGESTION,
 		hint_string = enum_string,
 	}, true)
