@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=7 format=3 uid="uid://4ruhoeddk4os"]
+
+[ext_resource type="Script" path="res://feature/actions/condition_resource.gd" id="1_0swtw"]
+[ext_resource type="Script" path="res://feature/actions/effect_resource.gd" id="2_w7nl4"]
+[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="3_wd2s0"]
+
+[sub_resource type="Resource" id="Resource_3oh1r"]
+script = ExtResource("1_0swtw")
+
+[sub_resource type="Resource" id="Resource_mkn7u"]
+script = ExtResource("2_w7nl4")
+currect_type = 1
+
+[sub_resource type="Resource" id="Resource_4tqtn"]
+script = ExtResource("2_w7nl4")
+currect_type = 7
+currect_type = 7
+_properties = {
+"exhaustion": 0,
+"fatigue": 0,
+"hunger": 0,
+"psych": 0,
+"radiation": 0,
+"thirst": 0
+}
+need_items = {}
+reward_items = {}
+used_item_keys = []
+
+[resource]
+script = ExtResource("3_wd2s0")
+conditions = Array[ExtResource("1_0swtw")]([SubResource("Resource_3oh1r")])
+effects = Array[ExtResource("2_w7nl4")]([SubResource("Resource_mkn7u"), SubResource("Resource_4tqtn")])
+code_name = &"code_name"
+visible_name = ""
+discription = ""
