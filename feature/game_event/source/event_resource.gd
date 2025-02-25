@@ -146,13 +146,13 @@ func _validate_action(action: Dictionary) -> Dictionary:
 		action["conditions"] = ACTION_DICTIONARY.conditions
 	if not action.has("next_stage") or typeof(action.is_said) != TYPE_INT:
 		action["next_stage"] = ACTION_DICTIONARY.next_stage
-	if not action.has("action_resource") or action.is_said is not EventActionResource:
+	if not action.has("action_resource") or action.is_said is not ActionResource:
 		action["action_resource"] = ACTION_DICTIONARY.action_resource
 	return action
 
 
 func add_action(stage_index: int, text: String, next_stage: int, is_said: bool = false, icon: Texture2D = null, 
-	action_resource: EventActionResource = null, conditions: Array = []):
+	action_resource: ActionResource = null, conditions: Array = []):
 	var new_action := {
 		"text": text,
 		"is_said": is_said,
@@ -218,9 +218,9 @@ func get_action_next_stage(stage_index: int, action_index: int) -> int:
 	return get_action(stage_index, action_index).next_stage
 
 
-func set_action_resource(value: EventActionResource, stage_index: int, action_index: int):
+func set_action_resource(value: ActionResource, stage_index: int, action_index: int):
 	get_action(stage_index, action_index).action_resource = value
 
 
-func get_action_resource(stage_index: int, action_index: int) -> EventActionResource:
+func get_action_resource(stage_index: int, action_index: int) -> ActionResource:
 	return get_action(stage_index, action_index).action_resource

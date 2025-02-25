@@ -1,24 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://t6dvd3ikteh5"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://t6dvd3ikteh5"]
 
-[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_l5obt"]
+[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_2ad6i"]
 [ext_resource type="Script" path="res://resources/schema/item.gd" id="1_xkc8u"]
 [ext_resource type="Texture2D" uid="uid://cgyfvvr7f75qe" path="res://assets/sprite/placeholders/Item3.png" id="2_hv3by"]
-
-[sub_resource type="Resource" id="Resource_qadvn"]
-script = ExtResource("1_l5obt")
-use_stack = false
-type = 9
-_properties = {
-"exhaustion": 0,
-"fatigue": 0,
-"hunger": 0,
-"psych": 0,
-"radiation": 0,
-"thirst": 30
-}
-code_name = &"drink"
-visible_name = "ACTION_NAME_DRINK"
-discription = "ACTION_DISCRIPTION_DRINK"
 
 [resource]
 script = ExtResource("1_xkc8u")
@@ -26,7 +10,7 @@ texture = ExtResource("2_hv3by")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_l5obt")]([SubResource("Resource_qadvn")])
+actions = Array[ExtResource("1_2ad6i")]([])
 code_name = &"water_clear"
 visible_name = "ITEMRESOURCE_NAME_WATER_CLEAR"
 discription = "ITEMRESOURCE_DISCRIPTION_WATER_CLEAR"

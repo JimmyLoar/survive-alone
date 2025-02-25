@@ -8,7 +8,8 @@ const TYPE_EFFECT		= ExecuteKeeperState.EFFECT_KEY
 var type: String = ExecuteKeeperState._types[0]:
 	set(value):
 		type = value 
-		set_method_name(ExecuteKeeperState.NONE_NAME)
+		_update_names()
+
 
 var name: String : set = set_method_name
 var _names: PackedStringArray = ExecuteKeeperState.get_names(self.type)
@@ -18,14 +19,19 @@ var _args_types: Array = []
 
 
 func set_method_name(new_name: String):
+	printerr("new_name: " + new_name)
 	name = new_name if new_name != "" else ExecuteKeeperState.NONE_NAME
 	_args_types = ExecuteKeeperState.get_args(self.type, name)
 	args_data.resize(_args_types[0].size())
+	_update_names()
+	notify_property_list_changed()
+
+
+func _update_names():
 	if Engine.is_editor_hint():
 		_names = ExecuteKeeperState.get_names(self.type)
 		if _names.size() == 0:
 			_names.append("")
-	notify_property_list_changed()
 
 
 func get_type_values() -> Array:
@@ -34,6 +40,10 @@ func get_type_values() -> Array:
 
 func get_default_values() -> Array:
 	return _args_types[1]
+
+
+func get_context() -> Array:
+	return _args_types[2]
 
 
 func _get_property_list() -> Array[Dictionary]:

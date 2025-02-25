@@ -48,6 +48,7 @@ var _properties = Dictionary():
 		for prop in _properties.values():
 			property_changed.emit(prop)
 
+
 signal properties_changed(value: Dictionary)
 signal property_changed(value: CharacterPropertyResource)
 

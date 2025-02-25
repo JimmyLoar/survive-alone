@@ -1,20 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=8 format=3 uid="uid://ibrfm6mql4j7"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://ibrfm6mql4j7"]
 
 [ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_0a4h2"]
-[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_1wv2u"]
 [ext_resource type="Script" path="res://resources/schema/item.gd" id="1_4k55v"]
-[ext_resource type="Script" path="res://feature/actions/internal/condition_resource.gd" id="2_82jsy"]
 [ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_e7mdy"]
-[ext_resource type="Script" path="res://feature/actions/internal/effect_resource.gd" id="3_8gxlt"]
-
-[sub_resource type="Resource" id="Resource_n6jag"]
-script = ExtResource("1_1wv2u")
-use_stack = false
-conditions = Array[ExtResource("2_82jsy")]([])
-effects = Array[ExtResource("3_8gxlt")]([])
-code_name = &"code_name"
-visible_name = ""
-discription = ""
 
 [resource]
 script = ExtResource("1_4k55v")
@@ -22,7 +10,7 @@ texture = ExtResource("2_e7mdy")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_0a4h2")]([SubResource("Resource_n6jag")])
+actions = Array[ExtResource("1_0a4h2")]([])
 code_name = &"fry_meat"
 visible_name = "ITEMRESOURCE_NAME_FRY_MEAT"
 discription = "ITEMRESOURCE_DISCRIPTION_FRY_MEAT"

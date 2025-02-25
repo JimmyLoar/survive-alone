@@ -10,17 +10,21 @@ func _ready() -> void:
 	execute_keeper = Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
 
 
-func execute(action: ActionResource) -> Error:
+func execute(action: ActionResource) -> Dictionary:
 	if not is_met_conditions(action):
-		return 1
+		return {}
 	
-	for i in action.effects.size():
-		execute_keeper.execute(action.effects[i])
-	return OK
+	var result: Dictionary = {}
+	for effect in action.effects:
+		result[effect.name] = execute_keeper.execute(effect)
+	return result
 
 
 func is_met_conditions(action: ActionResource) -> bool:
-	var result = true
+	if action.conditions.is_empty():
+		return false
+	
 	for i in action.conditions.size():
-		result = result and execute_keeper.execute(action.conditions[i])
+		if not execute_keeper.execute(action.conditions[i]):
+			return false
 	return true 
