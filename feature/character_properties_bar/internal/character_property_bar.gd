@@ -9,18 +9,21 @@ extends HBoxContainer
 
 func _ready() -> void:
 	_character_state.property_changed.connect(_on_property_changed)
-	var conditions: CondisionsAndEffects = Injector.inject(CondisionsAndEffects, self) as CondisionsAndEffects
+	
 	var effect = func (prop_name: String, check_value: int):
 		var property := _character_state.get_property(property_name)
 		_character_state.set_property(property)
+	
 	var condition = func(prop_name: String, check_value: int): 
 		var property := _character_state.get_property(property_name)
 		return property.default_value >= check_value
-	conditions.register_effect("set_character_property", effect, 
+	
+	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	execute_keeper.register(execute_keeper.EFFECT_KEY, "set_character_property", effect, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
 		["exhaustion", 0]
 	)
-	conditions.register_condition("has_character_property", condition, 
+	execute_keeper.register(execute_keeper.CONDITION_KEY, "has_character_property", condition, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
 		["exhaustion", 0]
 	)

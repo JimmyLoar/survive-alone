@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://resources/schema/item.gd" id="1_87aen"]
 [ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_hhqk7"]
 [ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_q7ucy"]
-[ext_resource type="Script" path="res://feature/actions/condition_resource.gd" id="2_1jfel"]
+[ext_resource type="Script" path="res://feature/actions/internal/condition_resource.gd" id="2_1jfel"]
 [ext_resource type="Texture2D" uid="uid://bgocs4vak2jj4" path="res://assets/sprite/placeholders/Item16.png" id="2_fnsd8"]
-[ext_resource type="Script" path="res://feature/actions/effect_resource.gd" id="3_rkc1w"]
+[ext_resource type="Script" path="res://feature/actions/internal/effect_resource.gd" id="3_rkc1w"]
 
 [sub_resource type="Resource" id="Resource_wvbmy"]
 script = ExtResource("3_rkc1w")

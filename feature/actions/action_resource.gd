@@ -3,8 +3,8 @@ class_name ActionResource
 extends NamedResource
 
 
-@export var conditions: Array[ConditionResource] = []
-@export var effects: Array[EffectResource] = []
+@export var conditions: Array[ExecuteKeeperResource] = []
+@export var effects: Array[ExecuteKeeperResource] = []
 
 
 var type := 1:

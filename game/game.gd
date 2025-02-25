@@ -8,7 +8,7 @@ func _enter_tree() -> void:
 	_state = Injector.provide(GameState, GameState.new(), self)
 	_resource_db = Injector.provide(ResourceDb,  ResourceDb.new(), self)
 	_resource_db.db_connect("res://resources/database.gddb")
-	Injector.provide(CondisionsAndEffects, CondisionsAndEffects.new(), self)
+	Injector.provide(ExecuteKeeperState, ExecuteKeeperState.new(), self)
 
 
 func _ready() -> void:
