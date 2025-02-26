@@ -16,7 +16,7 @@ func _ready() -> void:
 		_character_state.set_property(property)
 	
 	var condition = func(prop_name: String, check_value: int): 
-		var property := _character_state.get_property(property_name)
+		var property := _character_state.get_property(prop_name)
 		return property.default_value >= check_value
 	
 	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
@@ -31,14 +31,14 @@ func _ready() -> void:
 		["exhaustion", 0]
 	)
 	
-	condition = func(prop_name: String, check_value: int): 
-		var property := _character_state.get_property(property_name)
-		return property.default_value < check_value
+	condition = func(prop_name: String): 
+		var property := _character_state.get_property(prop_name)
+		return property.default_value < property.default_max_value
 	
 	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
-		"char property less than value", condition, 
-		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
-		["exhaustion", 0]
+		"char property less than max value", condition, 
+		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst"], 
+		["exhaustion"]
 	)
 
 
@@ -49,9 +49,11 @@ func _on_property_changed(prop: CharacterPropertyResource):
 func rerender(prop: CharacterPropertyResource):
 	if prop.code_name != property_name:
 		return
-
 	texture_rect.texture = prop.texture
+	
 	progress_bar.max_value = prop.default_max_value
-	self.modulate = prop.modulate
 	progress_bar.value = prop.default_value
-	label.text = "%d" % ceil(progress_bar.value)
+	progress_bar.self_modulate = prop.modulate
+	
+	label.text = "%d" % ceil(prop.default_value)
+	label.modulate = prop.modulate

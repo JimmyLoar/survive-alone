@@ -7,6 +7,8 @@
 script = ExtResource("2_qic65")
 conditions = Array[ExtResource("1_e232w")]([])
 effects = Array[ExtResource("1_e232w")]([])
+context_show_properties_bar = false
+context_use_slider = false
 code_name = &"exit"
 visible_name = "ACTION_NAME_EXIT"
 discription = "ACTION_DISCRIPTION_EXIT"

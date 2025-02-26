@@ -28,6 +28,9 @@ func display(action: ActionResource):
 func _update_action_types():
 	if currect_action.context_show_properties_bar:
 		_display_properties()
+	else:
+		for i in range(6):
+			properties_container.get_child(i).hide()
 	self.show()
 
 
@@ -35,8 +38,9 @@ func _display_properties():
 	var _properties_index: int = 0
 	for i in currect_action.effects.size():
 		var effect: ExecuteKeeperResource = currect_action.effects[i] 
-		_display_property_bar(_properties_index, effect.args_data[0], effect.args_data[1])
-		_properties_index += 1
+		if effect.name.contains("property"):
+			_display_property_bar(_properties_index, effect.args_data[0], effect.args_data[1])
+			_properties_index += 1
 	
 	for i in range(_properties_index, 6):
 		properties_container.get_child(i).hide()

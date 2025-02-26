@@ -4,7 +4,7 @@ extends NamedResource
 
 
 @export var conditions: Array[ExecuteKeeperResource] = []: set = set_conditions
-@export var effects: Array[ExecuteKeeperResource] = []: set = set_effects
+@export var effects: Array[ExecuteKeeperResource] = []: set = set_effects, get = get_effects
 
 @export_group("Context", "context")
 @export var context_show_properties_bar := false
@@ -32,8 +32,18 @@ func set_conditions(value: Array[ExecuteKeeperResource]):
 
 func set_effects(value: Array[ExecuteKeeperResource]):
 	effects = value
-	for i in value.size():
+	_update_effects()
+
+
+func get_effects():
+	return effects
+
+
+func _update_effects():
+	for i in effects.size():
 		if effects[i] is not ExecuteKeeperResource:
 			continue
 		
 		effects[i].type = ExecuteKeeperState.TYPE_EFFECT
+		if effects[i].name == "remove self item":
+			effects[i].args_data[0] = self.code_name

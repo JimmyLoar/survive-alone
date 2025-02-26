@@ -17,6 +17,23 @@ func _ready() -> void:
 	items_grid.duble_pressed.connect(_on_items_grid_duble_pressed)
 	items_grid.reset_items_slots(page_size)
 	page_controller.set_page_size(page_size.x * page_size.y)
+	
+	var database := Injector.inject(ResourceDb, self) as ResourceDb
+	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	var effect = func(item: String, amount: int):
+		state = Injector.inject(InventoryLocationState, self) as InventoryLocationState
+		var item_data: ItemResource = database.connection.fetch_data("items", StringName(item))
+		if not state.has_item(item_data):
+			state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
+		return state.remove_item(item_data, abs(amount))
+	
+	var ids = database.connection.get_data_string_ids("items")
+	execute_keeper.register(
+		execute_keeper.TYPE_EFFECT, "remove item", effect,
+		["enum/String/%s" % [",".join(ids)], "int"], 
+		["", 1],
+	)
+	
 
 
 func update(entity: InventoryEntity):

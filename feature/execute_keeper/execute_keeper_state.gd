@@ -8,7 +8,7 @@ const TYPE_CONDITION = "condition"
 const TYPE_EFFECT = "effect"
 
 const NONE_NAME = "none"
-const EMPTY_STRUCTURE = [[], [], []]
+const EMPTY_STRUCTURE = [[], []]
 
 
 static var _types: PackedStringArray = [
@@ -25,9 +25,14 @@ func _init() -> void:
 
 
 # Регистрация кастомного метода
-func register(type: String, id: String, callback: Callable, args_type: Array = [], args_default: Array[Variant] = []) -> void:
+func register(type: String, id: String, callback: Callable, args_type: Array = [], args_default: Array[Variant] = []) -> void: 
 	_storage[type][id] = callback
 	_save_config(type, id, [args_type, args_default])
+
+
+func has(type: String, id: String) -> bool:
+	var config: ConfigFile = _load_config()
+	return config.has_section_key(type, id)
 
 
 # Вызов кастомного метода
@@ -39,7 +44,7 @@ func execute(resource: ExecuteKeeperResource) -> Variant:
 	
 	var callable: Callable = callbacks.get(resource.name, func(): return false)
 	var result = callable.callv(resource.args_data)
-	_logger.debug("code executed: {\nname: '%s' \ntype: %s\nargs: %s\nresulte: %s\n}" %
+	_logger.debug("code executed: {\nname: '%s' \ntype: %s\nargs: %s\nresult: %s\n}" %
 		[resource.name, resource.type, resource.args_data, result])
 	return result
 
@@ -74,6 +79,8 @@ func _save_config(type: String, id: String, value: Array = EMPTY_STRUCTURE):
 	if OS.is_debug_build():
 		var config: ConfigFile = _load_config()
 		config.set_value(type, id, value)
-		config.set_value("<registered from>", id, get_stack()[2])
+		var source := get_stack()[2] as Dictionary
+		source["type"] = type
+		config.set_value("<registered from>", id, source)
 		config.save(PATH)
 	

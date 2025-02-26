@@ -49,10 +49,10 @@ func remove_item(data: ItemResource, _amount := 1):
 		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [data.code_name, amount])
 		return amount
 	
-	var item := get_item(index)
+	var item := get_item(index) as ItemEntity
 	amount = item.remove_used_amount(amount)
 	item.increase_total_amount(amount * -1)
-	amount = max(amount - item.get_amount(), 0)
+	amount = max(amount - item.get_total_amount(), 0)
 	
 	if item.get_total_amount() <= 0:
 		_remove_from_storage_entity(index)
@@ -61,7 +61,7 @@ func remove_item(data: ItemResource, _amount := 1):
 
 
 func has_item(data: ItemResource) -> bool:
-	return find_item(data.name) != -1
+	return find_item(data.code_name) != -1
 
 
 func has_item_amount(data: ItemResource, amount: int = 1) -> bool:
@@ -93,6 +93,10 @@ func get_item(index: int) -> ItemEntity:
 
 func fetch_item(item_name: StringName) -> ItemEntity:
 	return get_item(find_item(item_name))
+
+
+func fetch_item_data(item_name: StringName) -> ItemResource:
+	return fetch_item(item_name).get_resource()
 
 
 func is_index_validate(index: int) -> bool:

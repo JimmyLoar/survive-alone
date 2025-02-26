@@ -61,8 +61,15 @@ func _get_property_list() -> Array[Dictionary]:
 
 func _get_arg_property(arg_type: String, _name: String):
 	match arg_type:
-		"String":	return PropertyGenerater.take_string(_name)
-		"int":		return PropertyGenerater.take_int(_name)
+		var key when key.begins_with("String"): 
+			var hints = key.split("/")
+			return PropertyGenerater.take_string(_name, 
+				hints.has(str(PROPERTY_HINT_MULTILINE_TEXT)), 
+				hints.has(str(PROPERTY_USAGE_READ_ONLY))
+			)
+		
+		"int":
+			return PropertyGenerater.take_int(_name)
 		
 		var key when key.begins_with("enum"): 
 			var property: Dictionary = PropertyGenerater.take_int(_name)
@@ -73,13 +80,18 @@ func _get_arg_property(arg_type: String, _name: String):
 		var key when key.begins_with("Resource"): 
 			return PropertyGenerater.take_resource(_name, arg_type.get_slice("/", 1))
 		
-		_: return {}
+		_: return {
+			"name": _name,
+			"type": TYPE_NIL,
+		}
 
 
 func _set(property: StringName, value: Variant) -> bool:
 	if name != "":
 		if property.begins_with("arg"):
 			var index: int = property.to_int()
+			if index >= args_data.size():
+				args_data.resize(index + 1)
 			args_data[index] = value
 			return true
 	return false
