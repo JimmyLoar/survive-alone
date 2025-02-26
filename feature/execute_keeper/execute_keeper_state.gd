@@ -45,7 +45,9 @@ func execute(resource: ExecuteKeeperResource) -> Variant:
 	var callable: Callable = callbacks.get(resource.name, func(): return false)
 	var result = callable.callv(resource.args_data)
 	_logger.debug("code executed: {\nname: '%s' \ntype: %s\nargs: %s\nresult: %s\n}" %
-		[resource.name, resource.type, resource.args_data, result])
+		[resource.name, resource.type, resource.args_data, result, 
+			#"\n".join(get_stack().map(func(dict: Dictionary): return "\"%s\" in %s" % [dict.function, dict.source.get_slice("/", dict.source.get_slice_count("/") - 1)]))
+		])
 	return result
 
 

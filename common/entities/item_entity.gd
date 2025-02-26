@@ -24,7 +24,11 @@ func set_used(new_used: Array):
 func get_resource() -> ItemResource: return _resource
 func get_not_used_amount() -> int: return _not_used_amount
 func get_used() -> Array: return _used.duplicate()
-
+func get_total_dutability() -> int:
+	var used_amount = 0
+	for value in get_used():
+		used_amount += value
+	return _resource.durability * get_not_used_amount() + used_amount
 
 func is_empty():
 	return get_total_amount() <= 0

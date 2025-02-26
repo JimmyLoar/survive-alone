@@ -61,6 +61,9 @@ func _get_property_list() -> Array[Dictionary]:
 
 func _get_arg_property(arg_type: String, _name: String):
 	match arg_type:
+		"int":
+			return PropertyGenerater.take_int(_name)
+		
 		var key when key.begins_with("String"): 
 			var hints = key.split("/")
 			return PropertyGenerater.take_string(_name, 
@@ -68,8 +71,8 @@ func _get_arg_property(arg_type: String, _name: String):
 				hints.has(str(PROPERTY_USAGE_READ_ONLY))
 			)
 		
-		"int":
-			return PropertyGenerater.take_int(_name)
+		var key when key.begins_with("Array"):
+			return PropertyGenerater.take_simple_array(_name, key.get_slice("/", 1))
 		
 		var key when key.begins_with("enum"): 
 			var property: Dictionary = PropertyGenerater.take_int(_name)

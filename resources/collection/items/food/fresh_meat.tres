@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://csx1bauob5bnf"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=14 format=3 uid="uid://csx1bauob5bnf"]
 
 [ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_4hf7q"]
 [ext_resource type="Script" path="res://resources/schema/item.gd" id="1_yqaw7"]
@@ -35,13 +35,51 @@ code_name = &"eat"
 visible_name = "ACTION_NAME_EAT"
 discription = "ACTION_DISCRIPTION_EAT"
 
+[sub_resource type="Resource" id="Resource_5a0kc"]
+script = ExtResource("2_iadbk")
+type = "condition"
+name = "has item total amount"
+arg_0 = "wood"
+arg_1 = 3
+
+[sub_resource type="Resource" id="Resource_xuc2m"]
+script = ExtResource("2_iadbk")
+type = "effect"
+name = "remove item"
+arg_0 = "fresh_meat"
+arg_1 = 1
+
+[sub_resource type="Resource" id="Resource_37ng6"]
+script = ExtResource("2_iadbk")
+type = "effect"
+name = "remove item"
+arg_0 = "wood"
+arg_1 = 3
+
+[sub_resource type="Resource" id="Resource_dibac"]
+script = ExtResource("2_iadbk")
+type = "effect"
+name = "add new item"
+arg_0 = "fry_meat"
+arg_1 = 1
+
+[sub_resource type="Resource" id="Resource_uydly"]
+script = ExtResource("1_4hf7q")
+conditions = Array[ExtResource("2_iadbk")]([SubResource("Resource_5a0kc")])
+effects = Array[ExtResource("2_iadbk")]([SubResource("Resource_xuc2m"), SubResource("Resource_37ng6"), SubResource("Resource_dibac")])
+context_show_properties_bar = false
+context_use_slider = false
+code_name = &"cook"
+visible_name = "ACTION_NAME_COOK"
+discription = "ACTION_DISCRIPTION_COOK"
+
 [resource]
 script = ExtResource("1_yqaw7")
 texture = ExtResource("2_sq3a0")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_4hf7q")]([SubResource("Resource_a4345")])
+actions = Array[ExtResource("1_4hf7q")]([SubResource("Resource_a4345"), SubResource("Resource_uydly")])
 code_name = &"fresh_meat"
 visible_name = "ITEMRESOURCE_NAME_FRESH_MEAT"
 discription = "ITEMRESOURCE_DISCRIPTION_FRESH_MEAT"

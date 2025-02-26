@@ -11,9 +11,6 @@ func _ready() -> void:
 
 
 func execute(action: ActionResource) -> Dictionary:
-	if not is_met_conditions(action):
-		return {}
-	
 	var result: Dictionary = {}
 	for effect in action.effects:
 		result[effect.name] = execute_keeper.execute(effect)
@@ -22,7 +19,7 @@ func execute(action: ActionResource) -> Dictionary:
 
 func is_met_conditions(action: ActionResource) -> bool:
 	if action.conditions.is_empty():
-		return false
+		return true
 	
 	for i in action.conditions.size():
 		if not execute_keeper.execute(action.conditions[i]):
