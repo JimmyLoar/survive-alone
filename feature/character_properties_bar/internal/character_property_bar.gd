@@ -20,12 +20,12 @@ func _ready() -> void:
 		return property.default_value >= check_value
 	
 	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
-	execute_keeper.register(execute_keeper.EFFECT_KEY, 
+	execute_keeper.register(execute_keeper.TYPE_EFFECT, 
 		"set character property", effect, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
-		["exhaustion", 0], ["show property bar"]
+		["exhaustion", 0]
 	)
-	execute_keeper.register(execute_keeper.CONDITION_KEY, 
+	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
 		"char property greater than value", condition, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
 		["exhaustion", 0]
@@ -35,7 +35,7 @@ func _ready() -> void:
 		var property := _character_state.get_property(property_name)
 		return property.default_value < check_value
 	
-	execute_keeper.register(execute_keeper.CONDITION_KEY, 
+	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
 		"char property less than value", condition, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
 		["exhaustion", 0]

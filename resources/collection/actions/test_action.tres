@@ -7,6 +7,7 @@
 script = ExtResource("1_ara7v")
 conditions = Array[ExtResource("1_0u700")]([])
 effects = Array[ExtResource("1_0u700")]([])
+context_show_properties_bar = false
 code_name = &"code_name"
 visible_name = "<null>_NAME_SS"
 discription = "<null>_DISCRIPTION_SS"

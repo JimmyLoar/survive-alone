@@ -2,8 +2,8 @@
 class_name ExecuteKeeperResource 
 extends Resource
 
-const TYPE_CONDITION	= ExecuteKeeperState.CONDITION_KEY
-const TYPE_EFFECT		= ExecuteKeeperState.EFFECT_KEY
+const TYPE_CONDITION	= ExecuteKeeperState.TYPE_CONDITION
+const TYPE_EFFECT		= ExecuteKeeperState.TYPE_EFFECT
 
 var type: String = ExecuteKeeperState._types[0]:
 	set(value):
@@ -19,7 +19,7 @@ var _args_types: Array = []
 
 
 func set_method_name(new_name: String):
-	printerr("new_name: " + new_name)
+	#printerr("new_name: " + new_name)
 	name = new_name if new_name != "" else ExecuteKeeperState.NONE_NAME
 	_args_types = ExecuteKeeperState.get_args(self.type, name)
 	args_data.resize(_args_types[0].size())
@@ -40,10 +40,6 @@ func get_type_values() -> Array:
 
 func get_default_values() -> Array:
 	return _args_types[1]
-
-
-func get_context() -> Array:
-	return _args_types[2]
 
 
 func _get_property_list() -> Array[Dictionary]:

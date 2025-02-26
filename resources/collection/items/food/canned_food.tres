@@ -12,17 +12,19 @@ name = "char property less than value"
 arg_0 = "hunger"
 arg_1 = 100
 
-[sub_resource type="Resource" id="Resource_amdu1"]
+[sub_resource type="Resource" id="Resource_lkrfk"]
 script = ExtResource("2_vmamg")
 type = "effect"
 name = "set character property"
 arg_0 = "hunger"
-arg_1 = 22
+arg_1 = 25
 
-[sub_resource type="Resource" id="Resource_qck14"]
+[sub_resource type="Resource" id="Resource_20gef"]
 script = ExtResource("1_q7ucy")
 conditions = Array[ExtResource("2_vmamg")]([SubResource("Resource_mba5r")])
-effects = Array[ExtResource("2_vmamg")]([SubResource("Resource_amdu1")])
+effects = Array[ExtResource("2_vmamg")]([SubResource("Resource_lkrfk")])
+context_show_properties_bar = true
+context_use_slider = false
 code_name = &"eat"
 visible_name = "ACTION_NAME_EAT"
 discription = "ACTION_DISCRIPTION_EAT"
@@ -33,7 +35,7 @@ texture = ExtResource("2_fnsd8")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_q7ucy")]([SubResource("Resource_qck14")])
+actions = Array[ExtResource("1_q7ucy")]([SubResource("Resource_20gef")])
 code_name = &"canned_food"
 visible_name = "ITEMRESOURCE_NAME_CANNED_FOOD"
 discription = "ITEMRESOURCE_DISCRIPTION_CANNED_FOOD"

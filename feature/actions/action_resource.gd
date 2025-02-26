@@ -6,6 +6,10 @@ extends NamedResource
 @export var conditions: Array[ExecuteKeeperResource] = []: set = set_conditions
 @export var effects: Array[ExecuteKeeperResource] = []: set = set_effects
 
+@export_group("Context", "context")
+@export var context_show_properties_bar := false
+@export var context_use_slider := false
+
 
 var type := 1:
 	set(value):
@@ -23,7 +27,7 @@ func set_conditions(value: Array[ExecuteKeeperResource]):
 		if conditions[i] is not ExecuteKeeperResource:
 			continue
 		
-		conditions[i].type = ExecuteKeeperState.CONDITION_KEY
+		conditions[i].type = ExecuteKeeperState.TYPE_CONDITION
 
 
 func set_effects(value: Array[ExecuteKeeperResource]):
@@ -32,4 +36,4 @@ func set_effects(value: Array[ExecuteKeeperResource]):
 		if effects[i] is not ExecuteKeeperResource:
 			continue
 		
-		effects[i].type = ExecuteKeeperState.EFFECT_KEY
+		effects[i].type = ExecuteKeeperState.TYPE_EFFECT

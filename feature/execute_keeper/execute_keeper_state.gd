@@ -3,15 +3,19 @@ class_name ExecuteKeeperState
 extends Injectable
 
 const PATH = "res://!saves/execute_keeper.cfg"
-const CONDITION_KEY = "condition"
-const EFFECT_KEY = "effect"
+
+const TYPE_CONDITION = "condition"
+const TYPE_EFFECT = "effect"
+
 const NONE_NAME = "none"
 const EMPTY_STRUCTURE = [[], [], []]
 
+
 static var _types: PackedStringArray = [
-	CONDITION_KEY, 
-	EFFECT_KEY,
+	TYPE_CONDITION, 
+	TYPE_EFFECT,
 ]
+var _logger = Log.get_global_logger().with("ExecuteKeeperState")
 var _storage: Dictionary = {}
 
 
@@ -21,22 +25,22 @@ func _init() -> void:
 
 
 # Регистрация кастомного метода
-func register(type: String, id: String, callback: Callable, args_type: Array = [], args_default: Array[Variant] = [], context: PackedStringArray = []) -> void:
+func register(type: String, id: String, callback: Callable, args_type: Array = [], args_default: Array[Variant] = []) -> void:
 	_storage[type][id] = callback
-	_save_config(type, id, [args_type, args_default, context])
+	_save_config(type, id, [args_type, args_default])
 
 
 # Вызов кастомного метода
 func execute(resource: ExecuteKeeperResource) -> Variant:
 	var callbacks: Dictionary = _storage.get(resource.type, {})
 	if callbacks.is_empty():
-		push_error("type '%s' have not methods to execute!", resource.type)
+		_logger.error("type '%s' have not methods to execute!", resource.type)
 		return null
 	
 	var callable: Callable = callbacks.get(resource.name, func(): return false)
 	var result = callable.callv(resource.args_data)
-	print("code executed: '%s' (%s)\nargs: %s\ncontext: %s\nresulte: %s\n" %
-		[resource.name, resource.type, resource.args_data, resource.get_context(), result])
+	_logger.debug("code executed: {\nname: '%s' \ntype: %s\nargs: %s\nresulte: %s\n}" %
+		[resource.name, resource.type, resource.args_data, result])
 	return result
 
 
@@ -70,5 +74,6 @@ func _save_config(type: String, id: String, value: Array = EMPTY_STRUCTURE):
 	if OS.is_debug_build():
 		var config: ConfigFile = _load_config()
 		config.set_value(type, id, value)
+		config.set_value("<registered from>", id, get_stack()[2])
 		config.save(PATH)
 	

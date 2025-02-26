@@ -26,7 +26,8 @@ func display(action: ActionResource):
 
 
 func _update_action_types():
-	_display_properties()
+	if currect_action.context_show_properties_bar:
+		_display_properties()
 	self.show()
 
 
@@ -34,9 +35,11 @@ func _display_properties():
 	var _properties_index: int = 0
 	for i in currect_action.effects.size():
 		var effect: ExecuteKeeperResource = currect_action.effects[i] 
-		if effect.get_context().has("show_property_bar"):
-			_display_property_bar(_properties_index, effect.args_data[0], effect.args_data[1])
-			_properties_index += 1
+		_display_property_bar(_properties_index, effect.args_data[0], effect.args_data[1])
+		_properties_index += 1
+	
+	for i in range(_properties_index, 6):
+		properties_container.get_child(i).hide()
 
 
 func _display_need_items_grids(items: Dictionary):
