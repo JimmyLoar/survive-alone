@@ -8,8 +8,8 @@ var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxCon
 @onready var _inventory_location_state: InventoryLocationState = Injector.inject(
 	InventoryLocationState, self
 )
-@onready var _biome_search_state: BiomeSearchState = Injector.inject(
-	BiomeSearchState, self
+@onready var _event_state: EventState = Injector.inject(
+	EventState, self
 )
 @onready var _location: CharacterLocationState = Injector.inject(
 	CharacterLocationState, self
@@ -47,7 +47,7 @@ func _on_search_pressed() -> void:
 		search_button.hide()
 		search_display.start_search(searcher.search(_inventory_location_state.search_drop))
 	elif is_instance_of(_location.current_location, CharacterLocationState.BiomesLocation):
-		_biome_search_state.open()
+		_event_state.activate_event(preload("res://resources/collection/events/biome_search/bs_defualt_event.tres"))
 	
 	else:
 		print_debug("location none")

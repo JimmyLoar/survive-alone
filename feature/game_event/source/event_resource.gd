@@ -2,33 +2,23 @@
 class_name EventResource
 extends NamedResource
 
-
-static var ACTION_DICTIONARY = {
-	"text": 'exit',
-	"is_said": false,
-	"icon": preload("res://icon.svg"),
-	"conditions": [],
-	"next_stage": -1,
-	"action_resource": null,
+enum Tags{
+	nothing, 		#ничего
+	trees, 			#деревья
+	water, 			#вода
+	flower,			#цветы
+	berries,		#ягоды
+	mushrooms, 		#грибы
+	plants,			#травы
+	herbivorous,	#травоядные жевотные
+	carnivores,		#хищьники
+	large_animals, 	#крупные звери
+	small_animals, 	#небольшие звери
+	ruins,  		#руины
+	location,		#локация
 }
 
-static var STAGE = {
-	"name": "stage name",
-	"text": "exemple text",
-	"texture": null,
-	"actions": Array([], TYPE_DICTIONARY, "", null),
-}
-
-@export_range(0, 6, 1, "or_greater") var _stage_count := 0:
-	set(value):
-		_stage_count = value
-		_stages.resize(value)
-		for i in value:
-			_stages[i] = STAGE.duplicate()
-			_stages[i].actions = [ACTION_DICTIONARY.duplicate(), ACTION_DICTIONARY.duplicate()]
-		notify_property_list_changed()
-@export var _stages: Array[Dictionary] = []
-@export var _context: Dictionary = {}
+@export var _stages: Array[EventStageResource] = []
 var _ids: PackedStringArray = []
 
 
@@ -39,17 +29,17 @@ func _init(_name: String = "", stages_count: int = 1) -> void:
 
 #region Stage
 func add_stage(_name: String, text: String= "", texture: Texture2D = null) -> int:
-	var stage := {
-		"name": _name,
-		"text": text,
-		"texture": texture,
-		"actions": Array([], TYPE_DICTIONARY, "", null),
-	}
+	var stage := EventStageResource.new()
+	stage.name = _name
+	stage.text = text
+	stage.texture = texture
+	var action = ActionResource.new()
+	action.code_name = "..."
+	stage.actions = [action]
 	return set_stage(stage)
 
 
-func set_stage(stage_data: Dictionary, stage_id: int = -1) -> int:
-	stage_data = _validate_stage(stage_data)
+func set_stage(stage_data: EventStageResource, stage_id: int = -1) -> int:
 	if stage_id == -1:
 		stage_id = _stages.size()
 		_stages.append(stage_data)
@@ -69,28 +59,14 @@ func found_stage(stage_name: String):
 	return _ids.find(stage_name)
 
 
-func get_full_data() -> Array[Dictionary]:
+func get_full_data() -> Array[EventActionResource]:
 	return _stages.duplicate()
 
 
-func _get_new_stage() -> Dictionary:
-	return STAGE.duplicate()
+func _get_new_stage() -> EventActionResource:
+	return EventActionResource.new()
 
 
-func _validate_stage(stage: Dictionary) -> Dictionary:
-	if stage.is_empty(): 
-		return STAGE.duplicate()
-	if not stage.has("name") or typeof(stage.name) != TYPE_STRING:
-		stage["name"] = STAGE.name
-	if not stage.has("text") or typeof(stage.name) != TYPE_STRING: 
-		stage["text"] = STAGE.text
-	if not stage.has("texture") or stage.texture is not Texture2D:
-		stage["texture"] = STAGE.texture
-	if not stage.has("actions") or typeof(stage.actions) != TYPE_ARRAY: 
-		stage["actions"] = STAGE["actions"].duplicate()
-	elif stage.actions.is_read_only(): 
-		stage["actions"] = stage["actions"].duplicate()
-	return stage
 #endregion
 
 
@@ -123,9 +99,7 @@ func get_stage_texture(stage_index: int) -> Texture2D:
 	return _stages[stage_index].texture
 
 
-func set_stage_actions(new_actions: Array[Dictionary], stage_index: int) -> void:
-	for i in new_actions.size():
-		new_actions[i] = _validate_action(new_actions[i])
+func set_stage_actions(new_actions: Array[EventActionResource], stage_index: int) -> void:
 	_stages[stage_index].actions = new_actions
 
 
@@ -133,38 +107,19 @@ func get_stage_actions(stage_index: int) -> Array[Dictionary]:
 	return _stages[stage_index].actions.duplicate()
 
 
-func _validate_action(action: Dictionary) -> Dictionary:
-	if action.is_empty(): 
-		return ACTION_DICTIONARY.duplicate()
-	if not action.has("text") or typeof(action.text) != TYPE_STRING:
-		action["text"] = ACTION_DICTIONARY.text
-	if not action.has("is_said") or typeof(action.is_said) != TYPE_BOOL:
-		action["is_said"] = ACTION_DICTIONARY.is_said
-	if not action.has("icon") or action.is_said is not Texture2D:
-		action["icon"] = ACTION_DICTIONARY.icon
-	if not action.has("conditions") or typeof(action.is_said) != TYPE_ARRAY:
-		action["conditions"] = ACTION_DICTIONARY.conditions
-	if not action.has("next_stage") or typeof(action.is_said) != TYPE_INT:
-		action["next_stage"] = ACTION_DICTIONARY.next_stage
-	if not action.has("action_resource") or action.is_said is not ActionResource:
-		action["action_resource"] = ACTION_DICTIONARY.action_resource
-	return action
-
-
 func add_action(stage_index: int, text: String, next_stage: int, is_said: bool = false, icon: Texture2D = null, 
-	action_resource: ActionResource = null, conditions: Array = []):
-	var new_action := {
-		"text": text,
-		"is_said": is_said,
-		"icon": icon,
-		"conditions": conditions,
-		"next_stage": next_stage,
-		"action_resource": action_resource,
-	}
+	conditions: Array[ExecuteKeeperResource] = [], effects: Array[ExecuteKeeperResource] = []):
+	var new_action := EventActionResource.new()
+	new_action.code_name = text
+	new_action.is_said = is_said
+	new_action.icon = icon
+	new_action.next_stage = next_stage
+	new_action.set_conditions(conditions)
+	new_action.set_effects(effects)
 	return set_action(new_action, stage_index)
 
 
-func set_action(action: Dictionary, stage_index: int, action_index: int = -1):
+func set_action(action: EventActionResource, stage_index: int, action_index: int = -1):
 	var stage = get_stage(stage_index)
 	if action_index == -1:
 		action_index = stage.actions.size()
@@ -174,7 +129,7 @@ func set_action(action: Dictionary, stage_index: int, action_index: int = -1):
 	return action_index
 
 
-func get_action(stage_index: int, action_index: int) -> Dictionary:
+func get_action(stage_index: int, action_index: int) -> EventActionResource:
 	return _stages[stage_index].actions[action_index]
 
 

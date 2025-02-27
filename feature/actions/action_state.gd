@@ -15,6 +15,8 @@ func _init(new_node: ActionNode) -> void:
 
 
 func can_execute(action_resource: ActionResource) -> bool:
+	if not action_resource: 
+		return false
 	return _node.is_met_conditions(action_resource)
 
 

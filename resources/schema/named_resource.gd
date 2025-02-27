@@ -12,10 +12,12 @@ var _resource_type: String = "MYRESOURCE"
 @export_group("Translation")
 @export_custom(	PROPERTY_HINT_TYPE_STRING, "", 
 	PROPERTY_USAGE_READ_ONLY + PROPERTY_USAGE_DEFAULT
-	) var visible_name: String = ""
+	) var visible_name: String = "":
+		get(): return TranslationServer.translate("%s_NAME_" % [_resource_type] + code_name.to_upper())
 @export_custom(PROPERTY_HINT_MULTILINE_TEXT, "", 
 	PROPERTY_USAGE_READ_ONLY + PROPERTY_USAGE_DEFAULT
-	) var discription : String = ''
+	) var discription : String = '':
+		get(): return TranslationServer.translate("%s_DISCRIPTION_" % [_resource_type] + code_name.to_upper())
 
 
 func _init(resource_type_name: String = "MYRESOURCE") -> void:
