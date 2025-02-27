@@ -14,10 +14,10 @@
 [ext_resource type="Script" path="res://feature/game_time/game_time_display.gd" id="11_fvjg5"]
 [ext_resource type="PackedScene" uid="uid://bksbtwk2euyms" path="res://feature/ui_content_menu/content_menu.tscn" id="12_yoyd0"]
 [ext_resource type="AudioStream" uid="uid://bfjpjy3v5fb2b" path="res://assets/music/1-1.mp3" id="13_63jsv"]
+[ext_resource type="PackedScene" uid="uid://bpr2e0l6fxmwj" path="res://feature/character_pointer_button/pointer_space.tscn" id="13_pqelk"]
 [ext_resource type="PackedScene" uid="uid://dbxwa4c3uxw1" path="res://feature/rest/rest_ui.tscn" id="14_453vv"]
 [ext_resource type="Script" path="res://feature/rest/ui_elements/!button_rest.gd" id="15_bav1l"]
 [ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
-[ext_resource type="PackedScene" uid="uid://cpf5e4ywdn7fy" path="res://feature/character_pointer_button/ui_elements/pointer.tscn" id="17_0abfs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u53ai"]
 bg_color = Color(0.245984, 0.245984, 0.245984, 1)
@@ -121,11 +121,11 @@ script = ExtResource("15_bav1l")
 [node name="TimeProgress" parent="UI/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("16_s66yn")]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 
-[node name="Pointer" parent="UI/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("17_0abfs")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="PointerSpace" parent="UI" instance=ExtResource("13_pqelk")]
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_bottom = 80
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("13_63jsv")

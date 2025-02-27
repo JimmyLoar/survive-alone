@@ -1,16 +1,18 @@
 extends Control
 
+var dir_vector: Vector2 = Vector2.ZERO
+
 @onready var character_state: CharacterState = Injector.inject(CharacterState, self)
 @onready var camera_state: MainCameraState = Injector.inject(MainCameraState, self)
 
 func _ready():
+	visible = false
 	character_state.player_enter_on_screen.connect(enter_screen)
 	character_state.player_exited_from_screen.connect(exit_screen)
 
 func rotate_arrow():
-	var g_pos = camera_state.global_position + position + Vector2(0, 32) - (camera_state.viewport_rect.size / (2 / camera_state.zoom.x ))
-	$"Sprite-0003-export".rotation = (g_pos - character_state.global_position).angle() + PI/2
-
+	$"Sprite-0003-export".rotation = (dir_vector).angle() - PI/2
+	
 func _process(delta):
 	rotate_arrow()
 
@@ -24,4 +26,5 @@ func exit_screen():
 
 
 func _on_texture_button_pressed():
+	visible = false
 	camera_state.mode = MainCameraState.TargetMode.new(character_state._node)
