@@ -61,8 +61,20 @@ func _get_property_list() -> Array[Dictionary]:
 
 func _get_arg_property(arg_type: String, _name: String):
 	match arg_type:
-		"int":
-			return PropertyGenerater.take_int(_name)
+		"bool":
+			return PropertyGenerater.take_bool(_name)
+		
+		var key when key.begins_with("int"):
+			var property = PropertyGenerater.take_int(_name)
+			if key.get_slice("/", 1) == "int":
+				return property
+			return PropertyGenerater.convent_to_range_string(property, key.get_slice("/", 1))
+		
+		var key when key.begins_with("float"):
+			var property = PropertyGenerater.take_float(_name)
+			if key.get_slice("/", 1).is_empty():
+				return property
+			return PropertyGenerater.convent_to_range_string(property, key.get_slice("/", 1))
 		
 		var key when key.begins_with("String"): 
 			var hints = key.split("/")
@@ -77,11 +89,11 @@ func _get_arg_property(arg_type: String, _name: String):
 		var key when key.begins_with("enum"): 
 			var property: Dictionary = PropertyGenerater.take_int(_name)
 			return PropertyGenerater.convert_to_enum(
-				property, arg_type.get_slice("/", 2), arg_type.get_slice("/", 1) == "int"
+				property, key.get_slice("/", 2), key.get_slice("/", 1) == "int"
 			)
 		
 		var key when key.begins_with("Resource"): 
-			return PropertyGenerater.take_resource(_name, arg_type.get_slice("/", 1))
+			return PropertyGenerater.take_resource(_name, key.get_slice("/", 1))
 		
 		_: return {
 			"name": _name,

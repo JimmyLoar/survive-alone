@@ -81,5 +81,5 @@ func _display_property_bar(index: int, property_name: String, value: int):
 
 
 func _on_button_pressed() -> void:
-	if action_state.can_execute(currect_action):
+	if await action_state.can_execute(currect_action):
 		action_state.execute(currect_action)

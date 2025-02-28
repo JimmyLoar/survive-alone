@@ -28,7 +28,7 @@ arg_1 = 5
 [sub_resource type="Resource" id="Resource_tjpfy"]
 script = ExtResource("2_iadbk")
 type = "effect"
-name = "time_skip"
+name = "time skip"
 arg_0 = 15
 arg_1 = 1.0
 arg_2 = false
@@ -49,6 +49,14 @@ type = "condition"
 name = "has item total amount"
 arg_0 = "wood"
 arg_1 = 3
+
+[sub_resource type="Resource" id="Resource_g6pje"]
+script = ExtResource("2_iadbk")
+type = "condition"
+name = "use time"
+arg_0 = 120
+arg_1 = 3.0
+arg_2 = true
 
 [sub_resource type="Resource" id="Resource_xuc2m"]
 script = ExtResource("2_iadbk")
@@ -71,18 +79,10 @@ name = "add new item"
 arg_0 = "fry_meat"
 arg_1 = 1
 
-[sub_resource type="Resource" id="Resource_n7edf"]
-script = ExtResource("2_iadbk")
-type = "effect"
-name = "time_skip"
-arg_0 = 120
-arg_1 = 3.0
-arg_2 = true
-
 [sub_resource type="Resource" id="Resource_uydly"]
 script = ExtResource("1_4hf7q")
-conditions = Array[ExtResource("2_iadbk")]([SubResource("Resource_5a0kc")])
-effects = Array[ExtResource("2_iadbk")]([SubResource("Resource_xuc2m"), SubResource("Resource_37ng6"), SubResource("Resource_dibac"), SubResource("Resource_n7edf")])
+conditions = Array[ExtResource("2_iadbk")]([SubResource("Resource_5a0kc"), SubResource("Resource_g6pje")])
+effects = Array[ExtResource("2_iadbk")]([SubResource("Resource_xuc2m"), SubResource("Resource_37ng6"), SubResource("Resource_dibac")])
 context_show_properties_bar = false
 context_use_slider = false
 code_name = &"cook"

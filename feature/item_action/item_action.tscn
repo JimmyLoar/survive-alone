@@ -42,6 +42,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ItemsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="NeedLabel" type="Label" parent="MarginContainer/VBoxContainer/ItemsContainer"]
@@ -80,6 +81,7 @@ columns = 2
 script = ExtResource("3_0ahuu")
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]

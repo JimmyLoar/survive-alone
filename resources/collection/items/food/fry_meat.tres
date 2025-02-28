@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://ibrfm6mql4j7"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=10 format=3 uid="uid://ibrfm6mql4j7"]
 
 [ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_0a4h2"]
 [ext_resource type="Script" path="res://resources/schema/item.gd" id="1_4k55v"]
@@ -21,15 +21,22 @@ arg_1 = 30
 [sub_resource type="Resource" id="Resource_inque"]
 script = ExtResource("2_7nkxf")
 type = "effect"
-name = "time_skip"
+name = "time skip"
 arg_0 = 20
 arg_1 = 0.2
 arg_2 = false
 
+[sub_resource type="Resource" id="Resource_y2i6s"]
+script = ExtResource("2_7nkxf")
+type = "effect"
+name = "remove item"
+arg_0 = "fry_meat"
+arg_1 = 1
+
 [sub_resource type="Resource" id="Resource_2deu3"]
 script = ExtResource("1_0a4h2")
 conditions = Array[ExtResource("2_7nkxf")]([SubResource("Resource_mba5r")])
-effects = Array[ExtResource("2_7nkxf")]([SubResource("Resource_abxia"), SubResource("Resource_inque")])
+effects = Array[ExtResource("2_7nkxf")]([SubResource("Resource_abxia"), SubResource("Resource_inque"), SubResource("Resource_y2i6s")])
 context_show_properties_bar = true
 context_use_slider = false
 code_name = &"eat"

@@ -55,7 +55,7 @@ func _on_action_pressed(pressed_index: int):
 	else:
 		_display_stage(currect_stage)
 	
-	if action_state.can_execute(action):
+	if await action_state.can_execute(action):
 		action_state.execute(action)
 
 

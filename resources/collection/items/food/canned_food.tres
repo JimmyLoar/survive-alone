@@ -28,7 +28,7 @@ arg_1 = 1
 [sub_resource type="Resource" id="Resource_ebex5"]
 script = ExtResource("2_vmamg")
 type = "effect"
-name = "time_skip"
+name = "time skip"
 arg_0 = 45
 arg_1 = 0.2
 arg_2 = false

@@ -22,6 +22,6 @@ func is_met_conditions(action: ActionResource) -> bool:
 		return true
 	
 	for i in action.conditions.size():
-		if not execute_keeper.execute(action.conditions[i]):
+		if not await execute_keeper.execute(action.conditions[i]):
 			return false
 	return true 
