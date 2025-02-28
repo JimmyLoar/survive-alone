@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=14 format=3 uid="uid://csx1bauob5bnf"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=16 format=3 uid="uid://csx1bauob5bnf"]
 
 [ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_4hf7q"]
 [ext_resource type="Script" path="res://resources/schema/item.gd" id="1_yqaw7"]
 [ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="2_iadbk"]
-[ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_sq3a0"]
+[ext_resource type="Texture2D" uid="uid://b5ckhqrg1b5yo" path="res://assets/sprite/items/food-fresh_meat.png" id="4_ur58b"]
 
-[sub_resource type="Resource" id="Resource_mba5r"]
+[sub_resource type="Resource" id="Resource_cxlva"]
 script = ExtResource("2_iadbk")
 type = "condition"
 name = "char property less than max value"
-arg_0 = "exhaustion"
+arg_0 = "hunger"
 
 [sub_resource type="Resource" id="Resource_63y63"]
 script = ExtResource("2_iadbk")
@@ -25,10 +25,18 @@ name = "set character property"
 arg_0 = "exhaustion"
 arg_1 = 5
 
+[sub_resource type="Resource" id="Resource_tjpfy"]
+script = ExtResource("2_iadbk")
+type = "effect"
+name = "time_skip"
+arg_0 = 15
+arg_1 = 1.0
+arg_2 = false
+
 [sub_resource type="Resource" id="Resource_a4345"]
 script = ExtResource("1_4hf7q")
-conditions = Array[ExtResource("2_iadbk")]([SubResource("Resource_mba5r")])
-effects = Array[ExtResource("2_iadbk")]([SubResource("Resource_63y63"), SubResource("Resource_6ia84")])
+conditions = Array[ExtResource("2_iadbk")]([SubResource("Resource_cxlva")])
+effects = Array[ExtResource("2_iadbk")]([SubResource("Resource_63y63"), SubResource("Resource_6ia84"), SubResource("Resource_tjpfy")])
 context_show_properties_bar = true
 context_use_slider = false
 code_name = &"eat"
@@ -63,10 +71,18 @@ name = "add new item"
 arg_0 = "fry_meat"
 arg_1 = 1
 
+[sub_resource type="Resource" id="Resource_n7edf"]
+script = ExtResource("2_iadbk")
+type = "effect"
+name = "time_skip"
+arg_0 = 120
+arg_1 = 3.0
+arg_2 = true
+
 [sub_resource type="Resource" id="Resource_uydly"]
 script = ExtResource("1_4hf7q")
 conditions = Array[ExtResource("2_iadbk")]([SubResource("Resource_5a0kc")])
-effects = Array[ExtResource("2_iadbk")]([SubResource("Resource_xuc2m"), SubResource("Resource_37ng6"), SubResource("Resource_dibac")])
+effects = Array[ExtResource("2_iadbk")]([SubResource("Resource_xuc2m"), SubResource("Resource_37ng6"), SubResource("Resource_dibac"), SubResource("Resource_n7edf")])
 context_show_properties_bar = false
 context_use_slider = false
 code_name = &"cook"
@@ -75,7 +91,7 @@ discription = "ACTION_DISCRIPTION_COOK"
 
 [resource]
 script = ExtResource("1_yqaw7")
-texture = ExtResource("2_sq3a0")
+texture = ExtResource("4_ur58b")
 rare = 1
 durability = -1
 is_pickable = true
