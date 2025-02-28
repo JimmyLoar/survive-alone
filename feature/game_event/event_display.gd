@@ -72,7 +72,7 @@ func _register_methods():
 		_state.activate_event(event)
 	
 	execute_keeper.register(ExecuteKeeperState.TYPE_EFFECT, "activate event", _activate_event,
-		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event", "bs"))]], 
+		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event"))]], 
 		[""],
 	)
 	execute_keeper.register(ExecuteKeeperState.TYPE_EFFECT, "activate event from list", _activate_event_list,

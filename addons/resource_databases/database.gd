@@ -102,13 +102,8 @@ func get_data_categories(collection: StringName, id: Variant) -> Array[StringNam
 	return result
 
 ## Return an [class Array[StringName]]
-func get_data_string_ids(collection: StringName, preffix: String = "") -> Array:
+func get_data_string_ids(collection: StringName) -> Array:
 	var result: Array = _collections_data[collection][&"strings_to_ints"].keys()
-	if preffix != "":
-		result.sort()
-		var start := result.bsearch_custom(preffix, func(a: String, b: String): return a.begins_with(preffix), true)
-		var end := result.bsearch_custom(preffix, func(a: String, b: String): return a.begins_with(preffix), false)
-		result = result.slice(start, end)
 	return result
 #endregion
 
