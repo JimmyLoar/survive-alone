@@ -73,6 +73,7 @@ folder_colors={
 [gui]
 
 theme/custom="res://assets/themes/main.tres"
+theme/custom_font="res://assets/themes/fonts/yaginya/Yaginya.otf"
 
 [input_devices]
 

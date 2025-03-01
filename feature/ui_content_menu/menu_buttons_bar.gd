@@ -1,4 +1,4 @@
-extends MarginContainer
+extends PanelContainer
 
 signal button_pressed(index: int)
 

@@ -16,6 +16,7 @@ script = ExtResource("1_c6v8d")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="ContentBattonsBar" parent="HBoxContainer" node_paths=PackedStringArray("target_node") instance=ExtResource("2_xflwk")]
 layout_mode = 2

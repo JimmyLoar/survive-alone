@@ -32,4 +32,4 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "0%"
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
