@@ -75,6 +75,36 @@ folder_colors={
 theme/custom="res://assets/themes/main.tres"
 theme/custom_font="res://assets/themes/fonts/yaginya/Yaginya.otf"
 
+[importer_defaults]
+
+font_data_dynamic={
+"Compress": null,
+"Fallbacks": null,
+"Rendering": null,
+"allow_system_fallback": true,
+"antialiasing": 1,
+"compress": true,
+"disable_embedded_bitmaps": true,
+"fallbacks": [],
+"force_autohinter": false,
+"generate_mipmaps": false,
+"hinting": 1,
+"language_support": {},
+"msdf_pixel_range": 8,
+"msdf_size": 48,
+"multichannel_signed_distance_field": false,
+"opentype_features": {},
+"oversampling": 0.0,
+"preload": [{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}],
+"script_support": {},
+"subpixel_positioning": 1
+}
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
@@ -83,6 +113,9 @@ pointing/emulate_mouse_from_touch=false
 [internationalization]
 
 locale/translations=PackedStringArray("res://localization/localizations.de.translation", "res://localization/localizations.en.translation", "res://localization/localizations.ru.translation")
+locale/language_filter=["en", "ru"]
+locale/country_filter=["RU", "US"]
+locale/locale_filter_mode=1
 
 [layer_names]
 
