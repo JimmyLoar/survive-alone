@@ -81,6 +81,11 @@ func update_position(pos: Vector2):
 	_save_position_debounce.emit()
 
 
+var _save_position_debounce = Debounce.new(_save_position, 0.2)
+func _save_position():
+	_character_repositoty.set_world_position(position)
+
+
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	_state.player_exited_from_screen.emit()
 
@@ -92,4 +97,3 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 var _save_properties_debounce = Debounce.new(_save_properties, 0.2)
 func _save_properties():
 	_character_properties_repository.update_batch(_state._properties.values())
-
