@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpr2e0l6fxmwj"]
+
+[ext_resource type="Script" path="res://feature/character_pointer_button/pointer_space.gd" id="1_47ryg"]
+[ext_resource type="PackedScene" uid="uid://cpf5e4ywdn7fy" path="res://feature/character_pointer_button/ui_elements/pointer.tscn" id="2_124yg"]
+
+[node name="PointerSpace" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 195
+theme_override_constants/margin_top = 130
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 110
+script = ExtResource("1_47ryg")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+border_color = Color(0.845146, 0.1951, 0.363484, 1)
+border_width = 5.0
+
+[node name="Pointer" parent="." instance=ExtResource("2_124yg")]
+layout_mode = 2

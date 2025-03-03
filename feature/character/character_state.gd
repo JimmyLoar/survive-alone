@@ -7,6 +7,8 @@ func _init(node: Node2D):
 	_node = node
 
 
+signal player_exited_from_screen()
+signal player_enter_on_screen()
 #
 # Character world position
 #
@@ -14,6 +16,10 @@ signal position_changed(value: Vector2)
 var position: Vector2:
 	get:
 		return _node.position
+
+var global_position: Vector2:
+	get:
+		return _node.global_position
 
 #
 # Target position where the character moves

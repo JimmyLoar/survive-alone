@@ -167,7 +167,7 @@ func update_delta_stats() -> void:
 
 	var hunger = character_state.get_property("hunger")
 	var thirst = character_state.get_property("thirst")
-
+	var exhaustion = character_state.get_property("exhaustion")
 	# Если хватает и воды и еды
 	if (
 		hunger.default_value >= selected_hours * hunger_per_hour
@@ -175,7 +175,9 @@ func update_delta_stats() -> void:
 	):
 		_state._delta_thirst = -selected_hours * hunger_per_hour
 		_state._delta_hunger = -selected_hours * thirst_per_hour
-		_state._delta_exhaustion = -heal_per_hour
+		_state._delta_exhaustion = -min(
+			selected_hours * heal_per_hour, exhaustion.default_delta_value
+		)
 	# Если не хватает и воды и еды
 	elif (
 		hunger.default_value < selected_hours * hunger_per_hour
