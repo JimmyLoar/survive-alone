@@ -97,3 +97,4 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 var _save_properties_debounce = Debounce.new(_save_properties, 0.2)
 func _save_properties():
 	_character_properties_repository.update_batch(_state._properties.values())
+
