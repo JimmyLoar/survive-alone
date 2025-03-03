@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://b2yydvgka6dr0"]
 
-[ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_gwmyx"]
-[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_lqfku"]
+[ext_resource type="Script" path="res://resources/schema/item.gd" id="1_gwmyx"]
+[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_mp8wm"]
 [ext_resource type="Texture2D" uid="uid://d4m467lqoigs0" path="res://assets/sprite/placeholders/Item18.png" id="2_o2wty"]
 
 [resource]
@@ -10,7 +10,7 @@ texture = ExtResource("2_o2wty")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_lqfku")]([])
-name_key = &"wood"
-visible_name = "ITEM_NAME_WOOD"
-discription = "discription wood"
+actions = Array[ExtResource("1_mp8wm")]([])
+code_name = &"wood"
+visible_name = "ITEMRESOURCE_NAME_WOOD"
+discription = "ITEMRESOURCE_DISCRIPTION_WOOD"

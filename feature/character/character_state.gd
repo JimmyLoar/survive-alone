@@ -50,16 +50,20 @@ var _properties = Dictionary():
 	set(value):
 		_properties = value
 		properties_changed.emit(value)
+		_node._save_properties_debounce.emit()
 		for prop in _properties.values():
 			property_changed.emit(prop)
+
+
 signal properties_changed(value: Dictionary)
 signal property_changed(value: CharacterPropertyResource)
 
 
 func set_property(value: CharacterPropertyResource):
-	_properties[value.name_key] = value
+	_properties[value.code_name] = value
+	_node._save_properties_debounce.emit()
 	property_changed.emit(value)
 
 
 func get_property(name: String) -> CharacterPropertyResource:
-	return _properties[name]
+	return _properties.get(name, null)

@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dek51bt5lyb66"]
+[gd_scene load_steps=5 format=3 uid="uid://dek51bt5lyb66"]
 
 [ext_resource type="Script" path="res://feature/item_action/item_action.gd" id="1_thsb4"]
 [ext_resource type="PackedScene" uid="uid://ccyeuduk7vphu" path="res://feature/item_action/internal/character_property_value.tscn" id="2_2yibf"]
 [ext_resource type="Script" path="res://feature/items_grid/items_grid.gd" id="3_0ahuu"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="4_k0ap7"]
-[ext_resource type="Script" path="res://feature/item_action/item_action_state.gd" id="5_tcyth"]
 
 [node name="ItemAction" type="PanelContainer"]
 offset_right = 352.0
@@ -43,6 +42,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ItemsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="NeedLabel" type="Label" parent="MarginContainer/VBoxContainer/ItemsContainer"]
@@ -81,6 +81,7 @@ columns = 2
 script = ExtResource("3_0ahuu")
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -88,10 +89,6 @@ custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "use"
-
-[node name="ItemActionState" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("5_tcyth")
 
 [node name="Timer" type="Timer" parent="."]
 

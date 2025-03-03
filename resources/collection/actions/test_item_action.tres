@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemActionResource" load_steps=3 format=3 uid="uid://cfc7ykfxqp8r"]
+
+[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_4m3i0"]
+[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="1_vwevf"]
+
+[resource]
+script = ExtResource("1_4m3i0")
+use_stack = false
+conditions = Array[ExtResource("1_vwevf")]([])
+effects = Array[ExtResource("1_vwevf")]([])
+code_name = &"code_name"
+visible_name = ""
+discription = ""

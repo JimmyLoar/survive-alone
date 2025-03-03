@@ -47,6 +47,18 @@ CREATE TABLE IF NOT EXISTS "character_world_pos" (
 	"y"	REAL NOT NULL,
 	PRIMARY KEY("id")
 );
+CREATE TABLE IF NOT EXISTS "character_prop" (
+	"name"	TEXT NOT NULL UNIQUE,
+	"resource"	BLOB NOT NULL,
+	PRIMARY KEY("name")
+);
+CREATE TABLE IF NOT EXISTS "inventory" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"belongs_at_object_id"	INTEGER NOT NULL,
+	"belongs_at_object_type"	INTEGER NOT NULL,
+	"items"	BLOB NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
 """
 	if not connection.query(query):
 		return false

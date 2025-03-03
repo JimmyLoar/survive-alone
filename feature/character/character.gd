@@ -8,17 +8,20 @@ var _state: CharacterState
 @onready var _moving_line = %MovingLine
 @onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
 @onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
-@onready var _character_properties_repository: CharacterPropertyRepository = Injector.inject(CharacterPropertyRepository, self)
 @onready var _character_repositoty: CharacterRepository = Injector.inject(CharacterRepository, self)
+@onready var _save_db: SaveDb = Injector.inject(SaveDb, self)
+var _character_properties_repository: CharacterPropertyRepository
 
 func _enter_tree() -> void:
-	_state = Injector.provide(CharacterState, CharacterState.new(self), self, "closest")
-
+	_state = Injector.provide(CharacterState, CharacterState.new(self), self, Injector.ContainerType.CLOSEST)
+	_character_properties_repository = Injector.provide(CharacterPropertyRepository, CharacterPropertyRepository.new(), self, Injector.ContainerType.CLOSEST)
 
 func _ready() -> void:
 	_screen_mouse_events.left_button_changed.connect(_on_screen_left_button)
-	_game_time.finished_skip.connect(_update_props_by_time_spend)
+	_game_time.finished_step.connect(_update_props_by_time_spend)
 	_game_time.started_skip.connect(_state.reset_target, CONNECT_DEFERRED)
+
+	_character_properties_repository.init(_save_db)
 	
 	Callable(func():
 		position = _character_repositoty.get_world_position()
@@ -26,7 +29,7 @@ func _ready() -> void:
 		var props = _character_properties_repository.get_all()
 		var dict = Dictionary()
 		for prop in props:
-			dict[prop.name_key] = prop
+			dict[prop.code_name] = prop
 		_state._properties = dict
 	).call_deferred()
 
@@ -77,10 +80,6 @@ func update_position(pos: Vector2):
 	_state.position_changed.emit(pos)
 	_save_position_debounce.emit()
 
-var _save_position_debounce = Debounce.new(_save_position, 0.2)
-func _save_position():
-	_character_repositoty.set_world_position(position)
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	_state.player_exited_from_screen.emit()
@@ -88,3 +87,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	_state.player_enter_on_screen.emit()
+
+
+var _save_properties_debounce = Debounce.new(_save_properties, 0.2)
+func _save_properties():
+	_character_properties_repository.update_batch(_state._properties.values())
+

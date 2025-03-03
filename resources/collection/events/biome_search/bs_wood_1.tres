@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="EventResource" load_steps=11 format=3 uid="uid://dq2k6kcwcusov"]
+
+[ext_resource type="Script" path="res://feature/game_event/source/event_stage.gd" id="1_3gspl"]
+[ext_resource type="Script" path="res://feature/game_event/source/event_action.gd" id="2_5w4a2"]
+[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="3_gnxgc"]
+[ext_resource type="Resource" uid="uid://c66ptthr6m3wo" path="res://resources/collection/events/biome_search/actions/return_to_default.tres" id="4_qq604"]
+[ext_resource type="Script" path="res://feature/game_event/source/event_resource.gd" id="5_s5y4h"]
+
+[sub_resource type="Resource" id="Resource_scj74"]
+script = ExtResource("2_5w4a2")
+is_said = false
+next_stage = 1
+conditions = Array[ExtResource("3_gnxgc")]([])
+effects = Array[ExtResource("3_gnxgc")]([])
+context_show_properties_bar = false
+context_use_slider = false
+code_name = &"Собрать"
+visible_name = ""
+discription = ""
+
+[sub_resource type="Resource" id="Resource_ofn2r"]
+script = ExtResource("2_5w4a2")
+is_said = false
+next_stage = 2
+conditions = Array[ExtResource("3_gnxgc")]([])
+effects = Array[ExtResource("3_gnxgc")]([])
+context_show_properties_bar = false
+context_use_slider = false
+code_name = &"Пройти мимо"
+visible_name = ""
+discription = ""
+
+[sub_resource type="Resource" id="Resource_kn0r2"]
+script = ExtResource("1_3gspl")
+name = &"start"
+text = "Бродя по округе вы замечаете, опавщие деревья"
+actions = Array[ExtResource("2_5w4a2")]([SubResource("Resource_scj74"), SubResource("Resource_ofn2r")])
+
+[sub_resource type="Resource" id="Resource_qwlru"]
+script = ExtResource("1_3gspl")
+name = &"reward_1"
+text = "Вы собрали немного хвороста"
+actions = Array[ExtResource("2_5w4a2")]([ExtResource("4_qq604")])
+
+[sub_resource type="Resource" id="Resource_rgt6w"]
+script = ExtResource("1_3gspl")
+name = &"exit"
+text = "Вы решатие не тратить время на их сбор. Кто знает может вы сможите найти что то получше..."
+actions = Array[ExtResource("2_5w4a2")]([ExtResource("4_qq604")])
+
+[resource]
+script = ExtResource("5_s5y4h")
+_stages = Array[ExtResource("1_3gspl")]([SubResource("Resource_kn0r2"), SubResource("Resource_qwlru"), SubResource("Resource_rgt6w")])
+code_name = &"code_name"
+visible_name = "EVENT_NAME_CODE_NAME"
+discription = "EVENT_DISCRIPTION_CODE_NAME"

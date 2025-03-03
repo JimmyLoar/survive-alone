@@ -11,6 +11,6 @@ default_max_value = 75.0
 default_min_value = 0.0
 default_delta_value = 0.0
 modulate = Color(0.250793, 0.0686622, 0.687399, 1)
-name_key = "exhaustion"
+code_name = &"exhaustion"
 visible_name = "PROPERTY_NAME_EXHAUSTION"
 discription = "PROPERTY_DISCRIPTION_EXHAUSTION"

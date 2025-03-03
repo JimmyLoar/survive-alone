@@ -7,7 +7,7 @@ var _state: VirtualChunksState
 @onready var _main_camera_state: MainCameraState = Injector.inject(MainCameraState, self)
 
 func _enter_tree() -> void:
-	_state = Injector.provide(VirtualChunksState, VirtualChunksState.new(), self, "closest")
+	_state = Injector.provide(VirtualChunksState, VirtualChunksState.new(), self, Injector.ContainerType.CLOSEST)
 
 func _ready() -> void:
 	_main_camera_state.viewport_rect_changed.connect(Callable(self, "_on_main_camera_viewport_changed"))

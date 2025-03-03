@@ -24,7 +24,7 @@ class BiomesLocation:
 
 
 signal current_location_changed(value: Variant)
-var current_location: Variant:
+var current_location: Variant: # WorldObjectEntity или BiomesLocation
 	get:
 		return current_location
 	set(value):

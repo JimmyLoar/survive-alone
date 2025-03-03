@@ -7,7 +7,7 @@ func _init(host_node: Node) -> void:
 	_db = Injector.inject(GameDb, host_node)
 
 func get_by_id(id: int) -> BiomeRectEntity:
-	var select_condition = "SELECT 1 FROM your_table WHERE id = %d" % id
+	var select_condition = "SELECT 1 FROM biome_rect WHERE id = %d" % id
 	var rows = _db.connection.select_rows("biome_rect", select_condition, ["id", "x", "y", "end_x", "end_y", "biome_id"])
 
 	if rows.size() == 0:
@@ -41,7 +41,7 @@ WHERE NOT
 func has(id: int):
 	if id < 0:
 		return false
-	var select_condition = "SELECT 1 FROM your_table WHERE id = %d" % id
+	var select_condition = "SELECT 1 FROM biome_rect WHERE id = %d" % id
 	var rows = _db.connection.select_rows("biome_rect", select_condition, ["id"])
 
 	return rows.size() > 0

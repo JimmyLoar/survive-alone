@@ -18,7 +18,7 @@ var _t = 0
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(RestScreenState, RestScreenState.new(self), self, "closest")
+	_state = Injector.provide(RestScreenState, RestScreenState.new(self), self, Injector.ContainerType.CLOSEST)
 
 
 @onready var visual_number_1 = %TimerNumber1
@@ -84,10 +84,16 @@ func _on_time_subtract_button_pressed():
 
 
 func update_sprite_visual() -> void:
-	%IconE.texture = character_state.get_property("exhaustion").texture
-	%IconH.texture = character_state.get_property("hunger").texture
-	%IconT.texture = character_state.get_property("thirst").texture
-	%IconF.texture = character_state.get_property("fatigue").texture
+	var prop_names = ["exhaustion", "hunger", "thirst", "fatigue"]
+	var prop_icons = [%IconE, %IconH, %IconT, %IconF]
+	
+	for i in range(0, prop_names.size()):
+		var icon = prop_icons[i]
+		var name = prop_names[i]
+		var prop = character_state.get_property(name)
+		
+		if prop != null:
+			icon.texture = prop.texture
 
 
 func update_time_visual() -> void:

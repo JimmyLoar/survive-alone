@@ -9,7 +9,7 @@ var _state: ScreenMouseEventsState
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(ScreenMouseEventsState, ScreenMouseEventsState.new(), self, "closest")
+	_state = Injector.provide(ScreenMouseEventsState, ScreenMouseEventsState.new(), self, Injector.ContainerType.CLOSEST)
 
 
 func _unhandled_input(event: InputEvent) -> void:

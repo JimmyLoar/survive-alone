@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bksbtwk2euyms"]
 
-[ext_resource type="Script" uid="uid://d2g3yp1pjmu1j" path="res://feature/ui_content_menu/content_menu.gd" id="1_c6v8d"]
+[ext_resource type="Script" path="res://feature/ui_content_menu/content_menu.gd" id="1_c6v8d"]
 [ext_resource type="PackedScene" uid="uid://os5qyr4xwmqx" path="res://feature/ui_content_menu/menu_buttons_bar.tscn" id="2_xflwk"]
 [ext_resource type="PackedScene" uid="uid://bimu1uujo2qmv" path="res://feature/inventory_character/inventory_character.tscn" id="3_8i0qu"]
 [ext_resource type="PackedScene" uid="uid://cjhy00q8mvwrs" path="res://feature/inventory_location/inventory_location.tscn" id="4_c7uu5"]
@@ -11,10 +11,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_c6v8d")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="ContentBattonsBar" parent="HBoxContainer" node_paths=PackedStringArray("target_node") instance=ExtResource("2_xflwk")]
 layout_mode = 2
@@ -31,11 +33,13 @@ deselect_enabled = true
 
 [node name="CC-Inventory" parent="HBoxContainer/TabContainer" instance=ExtResource("3_8i0qu")]
 layout_mode = 2
+mouse_filter = 1
 metadata/_tab_index = 0
 
 [node name="CC-Location" parent="HBoxContainer/TabContainer" instance=ExtResource("4_c7uu5")]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 metadata/_tab_index = 1
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]

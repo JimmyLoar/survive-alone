@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SearchDrop" load_steps=2 format=3 uid="uid://56f1qivn2r5c"]
+[gd_resource type="Resource" script_class="SearchDropResource" load_steps=2 format=3 uid="uid://56f1qivn2r5c"]
 
 [ext_resource type="Script" path="res://resources/schema/search_drop.gd" id="1_5s56n"]
 
@@ -6,6 +6,6 @@
 script = ExtResource("1_5s56n")
 items_count = 0
 _items = Array[Array]([])
-name_key = "none"
+code_name = &"none"
 visible_name = "SEARCH_DROP_NAME_NONE"
 discription = "SEARCH_DROP_DISCRIPTION_NONE"

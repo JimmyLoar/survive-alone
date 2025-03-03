@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://y4ljuqoxwvhc"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://y4ljuqoxwvhc"]
 
-[ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_le7xj"]
+[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_f70w3"]
+[ext_resource type="Script" path="res://resources/schema/item.gd" id="1_le7xj"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_vv0ul"]
 
 [resource]
 script = ExtResource("1_le7xj")
-name_key = "homemade_axe"
 texture = ExtResource("2_vv0ul")
 rare = 1
 durability = -1
 is_pickable = true
-action_count = 0
-_types = Array[int]([])
-_properties = Array[int]([])
-name = "Homemade Axe"
-discription = "discription homemade_axe"
+actions = Array[ExtResource("1_f70w3")]([])
+code_name = &"homemade_axe"
+visible_name = "ITEMRESOURCE_NAME_HOMEMADE_AXE"
+discription = "ITEMRESOURCE_DISCRIPTION_HOMEMADE_AXE"

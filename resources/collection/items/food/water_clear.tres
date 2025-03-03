@@ -1,32 +1,55 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://t6dvd3ikteh5"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=10 format=3 uid="uid://t6dvd3ikteh5"]
 
-[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_l5obt"]
-[ext_resource type="Script" path="res://feature/items/item_data.gd" id="1_xkc8u"]
-[ext_resource type="Texture2D" uid="uid://cgyfvvr7f75qe" path="res://assets/sprite/placeholders/Item3.png" id="2_hv3by"]
+[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_2ad6i"]
+[ext_resource type="Script" path="res://resources/schema/item.gd" id="1_xkc8u"]
+[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="2_l7hak"]
+[ext_resource type="Texture2D" uid="uid://bxm7us5xmnn1j" path="res://assets/sprite/items/food-clear_water.png" id="4_swjk1"]
 
-[sub_resource type="Resource" id="Resource_qadvn"]
-script = ExtResource("1_l5obt")
-type = 3
-use_stack = false
-_properties = {
-"exhaustion": 0,
-"fatigue": 0,
-"hunger": 0,
-"psych": 0,
-"radiation": 0,
-"thirst": 30
-}
-name_key = &"drink"
-visible_name = "<null>_NAME_DRINK"
-discription = "<null>_DISCRIPTION_DRINK"
+[sub_resource type="Resource" id="Resource_5htr3"]
+script = ExtResource("2_l7hak")
+type = "condition"
+name = "char property less than max value"
+arg_0 = "thirst"
+
+[sub_resource type="Resource" id="Resource_qml4c"]
+script = ExtResource("2_l7hak")
+type = "effect"
+name = "set character property"
+arg_0 = "thirst"
+arg_1 = 20
+
+[sub_resource type="Resource" id="Resource_jckjk"]
+script = ExtResource("2_l7hak")
+type = "effect"
+name = "remove item"
+arg_0 = "water_clear"
+arg_1 = 1
+
+[sub_resource type="Resource" id="Resource_y0hac"]
+script = ExtResource("2_l7hak")
+type = "effect"
+name = "time skip"
+arg_0 = 3
+arg_1 = 0.2
+arg_2 = false
+
+[sub_resource type="Resource" id="Resource_oidti"]
+script = ExtResource("1_2ad6i")
+conditions = Array[ExtResource("2_l7hak")]([SubResource("Resource_5htr3")])
+effects = Array[ExtResource("2_l7hak")]([SubResource("Resource_qml4c"), SubResource("Resource_jckjk"), SubResource("Resource_y0hac")])
+context_show_properties_bar = true
+context_use_slider = false
+code_name = &"drink"
+visible_name = "ACTION_NAME_DRINK"
+discription = "ACTION_DISCRIPTION_DRINK"
 
 [resource]
 script = ExtResource("1_xkc8u")
-texture = ExtResource("2_hv3by")
+texture = ExtResource("4_swjk1")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_l5obt")]([SubResource("Resource_qadvn")])
-name_key = &"water_clear"
-visible_name = "ITEM_NAME_WATER_CLEAR"
-discription = "ITEM_DISCRIPTION_WATER_CLEAR"
+actions = Array[ExtResource("1_2ad6i")]([SubResource("Resource_oidti")])
+code_name = &"water_clear"
+visible_name = "ITEMRESOURCE_NAME_WATER_CLEAR"
+discription = "ITEMRESOURCE_DISCRIPTION_WATER_CLEAR"
