@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6aol5assiiq7"]
 
-[ext_resource type="Script" path="res://common/ui/element/quantity_selecter.gd" id="1_tia52"]
+[ext_resource type="Script" uid="uid://btn53de2wpnu" path="res://common/ui/element/quantity_selecter.gd" id="1_tia52"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11np1"]
 

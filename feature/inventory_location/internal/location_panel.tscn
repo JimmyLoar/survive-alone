@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djj8lftj7w8hq"]
 
-[ext_resource type="Script" path="res://feature/inventory_location/internal/location_panel.gd" id="1_f25e6"]
+[ext_resource type="Script" uid="uid://bh7jjovu0jc58" path="res://feature/inventory_location/internal/location_panel.gd" id="1_f25e6"]
 [ext_resource type="PackedScene" uid="uid://fabysmmsww7k" path="res://feature/inventory_location/internal/search_display.tscn" id="3_fp44n"]
 
 [node name="LocationPanel" type="MarginContainer"]

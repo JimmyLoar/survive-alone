@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bkeugb6vucegl" path="res://addons/localization_editor/icons/Audio.svg" id="2_6uq4h"]
 [ext_resource type="Texture2D" uid="uid://dl6cg75c815d8" path="res://addons/localization_editor/icons/Image.svg" id="3_aivuy"]
 [ext_resource type="Texture2D" uid="uid://oxmydroedm6f" path="res://addons/localization_editor/icons/Video.svg" id="4_mrycj"]
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeysHead.gd" id="5"]
+[ext_resource type="Script" uid="uid://b53b7g05216pf" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeysHead.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://n1yxscibler4" path="res://addons/localization_editor/icons/Cancel.svg" id="5_ydycg"]
 
 [node name="Head" type="MarginContainer"]

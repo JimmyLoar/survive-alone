@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://wd4tkg0uxd18"]
 
-[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/newline.gd" id="1_q0o8v"]
+[ext_resource type="Script" uid="uid://cu4w6q72x7xm1" path="res://addons/ridiculous_coding/resources/effects/newline.gd" id="1_q0o8v"]
 [ext_resource type="Texture2D" uid="uid://b1vn1823wqae2" path="res://addons/ridiculous_coding/images/newline.png" id="2_vndcj"]
 
 [sub_resource type="AtlasTexture" id="1"]
@@ -49,6 +49,7 @@ animations = [{
 [sub_resource type="Animation" id="7"]
 resource_name = "default"
 length = 0.3
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,7 +65,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwr1r"]
 _data = {
-"default": SubResource("7")
+&"default": SubResource("7")
 }
 
 [node name="RcNewline" type="Node2D"]

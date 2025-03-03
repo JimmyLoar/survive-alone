@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://q72oab0u7so8"]
 
-[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/interfaces/skill_window.gd" id="1_epfhj"]
+[ext_resource type="Script" uid="uid://dv728wlf7mi2e" path="res://addons/ridiculous_coding/resources/interfaces/skill_window.gd" id="1_epfhj"]
 [ext_resource type="Texture2D" uid="uid://byrik8o2aqyc7" path="res://addons/ridiculous_coding/images/levelUp.png" id="2_55so8"]
 [ext_resource type="Texture2D" uid="uid://cbwjn2pj8aimr" path="res://addons/ridiculous_coding/images/information-sign.png" id="2_xi77u"]
 [ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="3_hrekt"]

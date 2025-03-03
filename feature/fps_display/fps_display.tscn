@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c08a22asf3v80"]
 
-[ext_resource type="Script" path="res://feature/fps_display/fps_display.gd" id="1_smsc0"]
+[ext_resource type="Script" uid="uid://crrnl1vvh5h8l" path="res://feature/fps_display/fps_display.gd" id="1_smsc0"]
 
 [node name="FpsDisplay" type="Label"]
 anchors_preset = 1
