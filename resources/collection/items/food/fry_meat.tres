@@ -1,32 +1,55 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://ibrfm6mql4j7"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=10 format=3 uid="uid://ibrfm6mql4j7"]
 
-[ext_resource type="Script" path="res://feature/item_action/item_action_resource.gd" id="1_1wv2u"]
+[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_0a4h2"]
 [ext_resource type="Script" path="res://resources/schema/item.gd" id="1_4k55v"]
-[ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_e7mdy"]
+[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="2_7nkxf"]
+[ext_resource type="Texture2D" uid="uid://c8fhrq2g1ci2g" path="res://assets/sprite/items/food-fry_meat.png" id="4_78yvs"]
 
-[sub_resource type="Resource" id="Resource_n6jag"]
-script = ExtResource("1_1wv2u")
-use_stack = false
-type = 9
-_properties = {
-"exhaustion": 0,
-"fatigue": 0,
-"hunger": 25,
-"psych": 0,
-"radiation": 0,
-"thirst": 0
-}
-code_name = &"code_name"
-visible_name = ""
-discription = ""
+[sub_resource type="Resource" id="Resource_mba5r"]
+script = ExtResource("2_7nkxf")
+type = "condition"
+name = "char property less than max value"
+arg_0 = "hunger"
+
+[sub_resource type="Resource" id="Resource_abxia"]
+script = ExtResource("2_7nkxf")
+type = "effect"
+name = "set character property"
+arg_0 = "hunger"
+arg_1 = 30
+
+[sub_resource type="Resource" id="Resource_inque"]
+script = ExtResource("2_7nkxf")
+type = "effect"
+name = "time skip"
+arg_0 = 20
+arg_1 = 0.2
+arg_2 = false
+
+[sub_resource type="Resource" id="Resource_y2i6s"]
+script = ExtResource("2_7nkxf")
+type = "effect"
+name = "remove item"
+arg_0 = "fry_meat"
+arg_1 = 1
+
+[sub_resource type="Resource" id="Resource_2deu3"]
+script = ExtResource("1_0a4h2")
+conditions = Array[ExtResource("2_7nkxf")]([SubResource("Resource_mba5r")])
+effects = Array[ExtResource("2_7nkxf")]([SubResource("Resource_abxia"), SubResource("Resource_inque"), SubResource("Resource_y2i6s")])
+context_show_properties_bar = true
+context_use_slider = false
+code_name = &"eat"
+visible_name = "ACTION_NAME_EAT"
+discription = "ACTION_DISCRIPTION_EAT"
 
 [resource]
 script = ExtResource("1_4k55v")
-texture = ExtResource("2_e7mdy")
+texture = ExtResource("4_78yvs")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_1wv2u")]([SubResource("Resource_n6jag")])
+actions = Array[ExtResource("1_0a4h2")]([SubResource("Resource_2deu3")])
 code_name = &"fry_meat"
 visible_name = "ITEMRESOURCE_NAME_FRY_MEAT"
 discription = "ITEMRESOURCE_DISCRIPTION_FRY_MEAT"

@@ -2,7 +2,7 @@ class_name ContentMenu
 extends MarginContainer
 
 @onready var tab_container: TabContainer = $HBoxContainer/TabContainer
-@onready var battons_bar: MarginContainer = $HBoxContainer/ContentBattonsBar
+@onready var battons_bar: PanelContainer = $HBoxContainer/ContentBattonsBar
 
 
 func _ready() -> void:

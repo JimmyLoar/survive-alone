@@ -47,9 +47,10 @@ var _properties = Dictionary():
 		_node._save_properties_debounce.emit()
 		for prop in _properties.values():
 			property_changed.emit(prop)
+
+
 signal properties_changed(value: Dictionary)
 signal property_changed(value: CharacterPropertyResource)
-
 
 
 func set_property(value: CharacterPropertyResource):

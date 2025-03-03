@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EventResource" load_steps=6 format=3 uid="uid://p87q2gu41esh"]
+
+[ext_resource type="Script" path="res://feature/game_event/source/event_resource.gd" id="1_cdnyt"]
+[ext_resource type="Script" path="res://feature/game_event/source/event_stage.gd" id="1_tssby"]
+[ext_resource type="Script" path="res://feature/game_event/source/event_action.gd" id="2_ybw5k"]
+[ext_resource type="Resource" uid="uid://c66ptthr6m3wo" path="res://resources/collection/events/biome_search/actions/return_to_default.tres" id="3_jassr"]
+
+[sub_resource type="Resource" id="Resource_7e2gk"]
+script = ExtResource("1_tssby")
+name = &"start"
+text = "Через какоето время вы замечаете, что ходите кругами. Вам неудалось найти что то полезное..."
+actions = Array[ExtResource("2_ybw5k")]([ExtResource("3_jassr")])
+
+[resource]
+script = ExtResource("1_cdnyt")
+_stages = Array[ExtResource("1_tssby")]([SubResource("Resource_7e2gk")])
+code_name = &"nothing"
+visible_name = "EVENT_NAME_NOTHING"
+discription = "EVENT_DISCRIPTION_NOTHING"

@@ -77,7 +77,7 @@ func _update_durability_text(item: ItemEntity):
 
 
 func _update_interaction_panel(item: ItemEntity):
-	var actions: Array[ItemActionResource] = item.get_resource().actions
+	var actions: Array[ActionResource] = item.get_resource().actions
 	for i in interactive_container.get_child_count() - 1:
 		var child := interactive_container.get_child(i + 1) as ItemAction
 		if not child:
@@ -87,7 +87,7 @@ func _update_interaction_panel(item: ItemEntity):
 			child.hide()
 			continue
 		
-		child.state.last_entity = item
+		child.action_state.last_item = item
 		child.display(actions[i])
 		child.show()
 	interactive_container.show()

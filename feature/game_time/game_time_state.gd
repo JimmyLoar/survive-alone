@@ -29,10 +29,11 @@ func _init(node: Node) -> void:
 
 
 func timeskip(skipped_time: int, for_real_sec: float = 1.0, with_progress_screen := false):
-	decrease_by_step = ceil(skipped_time / Engine.physics_ticks_per_second / for_real_sec)
+	decrease_by_step = ceil(float(skipped_time) / Engine.physics_ticks_per_second / for_real_sec)
 	if with_progress_screen:
 		_node.open()
 	start_skip(skipped_time)
+	print_debug("starter skip")
 
 
 func start_skip(value: int):

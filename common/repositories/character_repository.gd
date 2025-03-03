@@ -21,6 +21,7 @@ func set_world_position(pos: Vector2):
 	var row = {"x": pos.x, "y": pos.y}
 	_save_db.connection.update_rows("character_world_pos", select_condition, row)
 
+
 func insert_world_position(pos: Vector2):
 	var query = """
 			INSERT OR REPLACE INTO character_world_pos 

@@ -14,7 +14,7 @@ func _enter_tree() -> void:
 	Injector.provide(WorldObjectRepository, WorldObjectRepository.new(self), self)
 	Injector.provide(WorldScreenState, WorldScreenState.new(), self)
 	Injector.provide(CharacterRepository, CharacterRepository.new(save_db), self)
+	Injector.provide(ActionState, ActionState.new(%ActionNode), self)
 	
-
 	game_db.db_connect(game_db_path)
 	save_db.db_connect(save_db_path)

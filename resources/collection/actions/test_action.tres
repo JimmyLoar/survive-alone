@@ -1,18 +1,13 @@
-[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://cyejt07t5u1ej"]
+[gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://cyejt07t5u1ej"]
 
+[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="1_0u700"]
 [ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_ara7v"]
 
 [resource]
 script = ExtResource("1_ara7v")
-type = 1
-_properties = {
-"exhaustion": 0,
-"fatigue": 0,
-"hunger": 0,
-"psych": 0,
-"radiation": 0,
-"thirst": 0
-}
+conditions = Array[ExtResource("1_0u700")]([])
+effects = Array[ExtResource("1_0u700")]([])
+context_show_properties_bar = false
 code_name = &"code_name"
 visible_name = "<null>_NAME_SS"
 discription = "<null>_DISCRIPTION_SS"

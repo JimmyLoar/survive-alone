@@ -1,10 +1,9 @@
 class_name ItemAction
-extends Node
+extends Control
 
 
-var currect_action: ItemActionResource
+var currect_action: ActionResource
 
-@onready var state: ItemActionState = %ItemActionState
 
 @onready var properties_container: HBoxContainer = $MarginContainer/VBoxContainer/PropertiesContainer
 @onready var slider: HSlider = $MarginContainer/VBoxContainer/HSlider
@@ -16,45 +15,35 @@ var currect_action: ItemActionResource
 @onready var items_container: VBoxContainer = $MarginContainer/VBoxContainer/ItemsContainer
 
 @onready var button: Button = $MarginContainer/VBoxContainer/Button
+@onready var action_state: ActionState = Injector.inject(ActionState, self)
 
 
-const _VALUE = { #0 - func_name #1 - container varible #2 - data key
-	ItemActionResource.ACTION_CHANGE_PROPERTY: 	["_display_properties", "properties_container", &"properties"],
-	ItemActionResource.ACTION_NEED_ITEMS: 		["_display_need_items_grids", "items_container", &"need_items"],
-	ItemActionResource.ACTION_REWARD_ITEMS: 	["_display_reward_items_grids", "items_container", &"reward_items"],
-}
 
-func display(action: ItemActionResource):
+func display(action: ActionResource):
 	currect_action = action
-	_update_action_types(action)
-	slider.visible = action.use_stack
 	button.text = action.code_name
+	_update_action_types()
 
 
-func _update_action_types(action: ItemActionResource):
-	var _values := action.get_values() as Dictionary
-	for type in _VALUE.keys():
-		var container: Control = get(_VALUE[type][1])
-		if action.has_type(type):
-			call(_VALUE[type][0], _values[_VALUE[type][2]])
-			container.show()
-		
-		else:
-			container.hide()
+func _update_action_types():
+	if currect_action.context_show_properties_bar:
+		_display_properties()
+	else:
+		for i in range(6):
+			properties_container.get_child(i).hide()
+	self.show()
 
 
-func _display_properties(properties: Dictionary):
-	var _names := properties.keys()
-	var _values := properties.values()
-	for i in 6:
-		var property_value = properties_container.get_child(i)
-		if _names.size() <= i or _values[i] == 0:
-			property_value.hide()
-			continue
-		
-		property_value.update_data(_names[i])
-		property_value.update_value(_values[i])
-		property_value.show()
+func _display_properties():
+	var _properties_index: int = 0
+	for i in currect_action.effects.size():
+		var effect: ExecuteKeeperResource = currect_action.effects[i] 
+		if effect.name.contains("property"):
+			_display_property_bar(_properties_index, effect.args_data[0], effect.args_data[1])
+			_properties_index += 1
+	
+	for i in range(_properties_index, 6):
+		properties_container.get_child(i).hide()
 
 
 func _display_need_items_grids(items: Dictionary):
@@ -84,6 +73,13 @@ func _get_item_entities(items: Dictionary) -> Array[ItemEntity]:
 	return array
 
 
+func _display_property_bar(index: int, property_name: String, value: int):
+	var property_bar := properties_container.get_child(index)
+	property_bar.update_data(property_name)
+	property_bar.update_value(value)
+	property_bar.show()
+
+
 func _on_button_pressed() -> void:
-	if state.can_execute(currect_action):
-		state.execute(currect_action)
+	if await action_state.can_execute(currect_action):
+		action_state.execute(currect_action)

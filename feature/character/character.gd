@@ -18,7 +18,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	_screen_mouse_events.left_button_changed.connect(_on_screen_left_button)
-	_game_time.finished_skip.connect(_update_props_by_time_spend)
+	_game_time.finished_step.connect(_update_props_by_time_spend)
 	_game_time.started_skip.connect(_state.reset_target, CONNECT_DEFERRED)
 
 	_character_properties_repository.init(_save_db)

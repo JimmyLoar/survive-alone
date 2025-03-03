@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=5 format=3 uid="uid://c15r1ate8r8t0"]
+
+[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="1_wrpw6"]
+[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="2_1bv3p"]
+
+[sub_resource type="Resource" id="Resource_mba5r"]
+script = ExtResource("1_wrpw6")
+type = "condition"
+name = "char property less than value"
+arg_0 = "hunger"
+arg_1 = 100
+
+[sub_resource type="Resource" id="Resource_amdu1"]
+script = ExtResource("1_wrpw6")
+type = "effect"
+name = "set character property"
+arg_0 = "hunger"
+arg_1 = 20
+
+[resource]
+script = ExtResource("2_1bv3p")
+conditions = Array[ExtResource("1_wrpw6")]([SubResource("Resource_mba5r")])
+effects = Array[ExtResource("1_wrpw6")]([SubResource("Resource_amdu1")])
+context_show_properties_bar = true
+context_use_slider = false
+code_name = &"eat"
+visible_name = "ACTION_NAME_EAT"
+discription = "ACTION_DISCRIPTION_EAT"

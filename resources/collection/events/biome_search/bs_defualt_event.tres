@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="EventResource" load_steps=12 format=3 uid="uid://dw6j3yeanfdqt"]
+
+[ext_resource type="Script" path="res://feature/game_event/source/event_stage.gd" id="1_jtjwl"]
+[ext_resource type="Script" path="res://feature/game_event/source/event_action.gd" id="2_ttjp6"]
+[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="3_8783l"]
+[ext_resource type="Script" path="res://feature/game_event/source/event_resource.gd" id="4_ifb0a"]
+
+[sub_resource type="Resource" id="Resource_clg8p"]
+script = ExtResource("3_8783l")
+type = "condition"
+name = "char property greater than value"
+arg_0 = "fatigue"
+arg_1 = 15
+
+[sub_resource type="Resource" id="Resource_oljap"]
+script = ExtResource("3_8783l")
+type = "effect"
+name = "activate event from list"
+arg_0 = "biom_list_test"
+
+[sub_resource type="Resource" id="Resource_gtsvv"]
+script = ExtResource("3_8783l")
+type = "effect"
+name = "set character property"
+arg_0 = "fatigue"
+arg_1 = -15
+
+[sub_resource type="Resource" id="Resource_c7eoe"]
+script = ExtResource("2_ttjp6")
+is_said = false
+next_stage = -1
+conditions = Array[ExtResource("3_8783l")]([SubResource("Resource_clg8p")])
+effects = Array[ExtResource("3_8783l")]([SubResource("Resource_oljap"), SubResource("Resource_gtsvv")])
+context_show_properties_bar = false
+context_use_slider = false
+code_name = &"search"
+visible_name = ""
+discription = ""
+
+[sub_resource type="Resource" id="Resource_lii0l"]
+script = ExtResource("3_8783l")
+type = "effect"
+name = "activate event"
+arg_0 = "bs_defualt_event"
+
+[sub_resource type="Resource" id="Resource_xwweg"]
+script = ExtResource("2_ttjp6")
+is_said = false
+next_stage = -1
+conditions = Array[ExtResource("3_8783l")]([])
+effects = Array[ExtResource("3_8783l")]([SubResource("Resource_lii0l")])
+context_show_properties_bar = false
+context_use_slider = false
+code_name = &"finish"
+visible_name = ""
+discription = ""
+
+[sub_resource type="Resource" id="Resource_r1qr0"]
+script = ExtResource("1_jtjwl")
+name = &"start"
+text = "Вокруг вас немного растительности. Может стоит поискать дальше?"
+actions = Array[ExtResource("2_ttjp6")]([SubResource("Resource_c7eoe"), SubResource("Resource_xwweg")])
+
+[resource]
+script = ExtResource("4_ifb0a")
+_stages = Array[ExtResource("1_jtjwl")]([SubResource("Resource_r1qr0")])
+code_name = &""
+visible_name = "EVENT_NAME_"
+discription = "EVENT_DISCRIPTION_"

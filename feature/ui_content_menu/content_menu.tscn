@@ -16,6 +16,7 @@ script = ExtResource("1_c6v8d")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="ContentBattonsBar" parent="HBoxContainer" node_paths=PackedStringArray("target_node") instance=ExtResource("2_xflwk")]
 layout_mode = 2
@@ -25,12 +26,12 @@ target_node = NodePath("../TabContainer")
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+current_tab = 0
 clip_tabs = false
 tabs_visible = false
 deselect_enabled = true
 
 [node name="CC-Inventory" parent="HBoxContainer/TabContainer" instance=ExtResource("3_8i0qu")]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 metadata/_tab_index = 0
