@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://resources/collection/items/food/water_clear.tres" id="1_mk24a"]
 [ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/wood.tres" id="4_bmyky"]
-[ext_resource type="Script" path="res://resources/schema/search_drop.gd" id="5_6mpjo"]
+[ext_resource type="Script" uid="uid://daiqkhjf0g3d3" path="res://resources/schema/search_drop.gd" id="5_6mpjo"]
 
 [resource]
 script = ExtResource("5_6mpjo")

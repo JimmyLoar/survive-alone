@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://c0fhho0dp1svt"]
 
-[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/blip.gd" id="1_b2lxn"]
+[ext_resource type="Script" uid="uid://dfjdb1t3lafm8" path="res://addons/ridiculous_coding/resources/effects/blip.gd" id="1_b2lxn"]
 [ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/images/blip.png" id="2_n5ksr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhabj"]
@@ -84,7 +84,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8epm6"]
 _data = {
-"default": SubResource("Animation_u2m4c")
+&"default": SubResource("Animation_u2m4c")
 }
 
 [node name="RcBlip" type="Node2D"]

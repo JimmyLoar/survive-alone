@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EventResource" load_steps=11 format=3 uid="uid://dq2k6kcwcusov"]
 
-[ext_resource type="Script" path="res://feature/game_event/source/event_stage.gd" id="1_3gspl"]
-[ext_resource type="Script" path="res://feature/game_event/source/event_action.gd" id="2_5w4a2"]
-[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="3_gnxgc"]
+[ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_3gspl"]
+[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_5w4a2"]
+[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="3_gnxgc"]
 [ext_resource type="Resource" uid="uid://c66ptthr6m3wo" path="res://resources/collection/events/biome_search/actions/return_to_default.tres" id="4_qq604"]
-[ext_resource type="Script" path="res://feature/game_event/source/event_resource.gd" id="5_s5y4h"]
+[ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="5_s5y4h"]
 
 [sub_resource type="Resource" id="Resource_scj74"]
 script = ExtResource("2_5w4a2")

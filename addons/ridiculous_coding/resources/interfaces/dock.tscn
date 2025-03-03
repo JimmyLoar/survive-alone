@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://b76vnt4rv4p0q"]
 
-[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/interfaces/dock.gd" id="1_bsxap"]
+[ext_resource type="Script" uid="uid://e0f38gjgyl3q" path="res://addons/ridiculous_coding/resources/interfaces/dock.gd" id="1_bsxap"]
 [ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="2_30kug"]
 [ext_resource type="Texture2D" uid="uid://dgda8elabipl5" path="res://addons/ridiculous_coding/images/under.png" id="2_31vgn"]
 [ext_resource type="Texture2D" uid="uid://dqpxh1bccjaae" path="res://addons/ridiculous_coding/images/progress.png" id="3_8udha"]
@@ -27,7 +27,7 @@ gradient = SubResource("Gradient_pbe0o")
 width = 512
 
 [sub_resource type="Curve" id="Curve_jhteb"]
-min_value = 0.1
+_limits = [0.1, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=16 format=3 uid="uid://csx1bauob5bnf"]
 
-[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="1_4hf7q"]
-[ext_resource type="Script" path="res://resources/schema/item.gd" id="1_yqaw7"]
-[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="2_iadbk"]
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_4hf7q"]
+[ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="1_yqaw7"]
+[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="2_iadbk"]
 [ext_resource type="Texture2D" uid="uid://b5ckhqrg1b5yo" path="res://assets/sprite/items/food-fresh_meat.png" id="4_ur58b"]
 
 [sub_resource type="Resource" id="Resource_cxlva"]

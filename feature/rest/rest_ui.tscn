@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbxwa4c3uxw1"]
 
-[ext_resource type="Script" path="res://feature/rest/rest.gd" id="1_3hays"]
+[ext_resource type="Script" uid="uid://cvg7piw0dj3m3" path="res://feature/rest/rest.gd" id="1_3hays"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_a40ga"]
 [ext_resource type="PackedScene" uid="uid://bju41818qf8k8" path="res://feature/rest/ui_elements/delta_lable.tscn" id="3_gknjw"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8v5lr3gwe6mq"]
 
 [ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="1_80iah"]
-[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/key.gd" id="1_unvpb"]
+[ext_resource type="Script" uid="uid://be4v4bt8p6no7" path="res://addons/ridiculous_coding/resources/effects/key.gd" id="1_unvpb"]
 
 [sub_resource type="Animation" id="Animation_kl773"]
 resource_name = "blip"
@@ -86,9 +86,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocb2c"]
 _data = {
-"blip": SubResource("Animation_kl773"),
-"boom": SubResource("Animation_o46vu"),
-"default": SubResource("Animation_pxf6h")
+&"blip": SubResource("Animation_kl773"),
+&"boom": SubResource("Animation_o46vu"),
+&"default": SubResource("Animation_pxf6h")
 }
 
 [node name="RcKey" type="Node2D"]

@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="ActionResource" load_steps=5 format=3 uid="uid://c15r1ate8r8t0"]
 
-[ext_resource type="Script" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="1_wrpw6"]
-[ext_resource type="Script" path="res://feature/actions/action_resource.gd" id="2_1bv3p"]
+[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="1_wrpw6"]
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="2_1bv3p"]
 
 [sub_resource type="Resource" id="Resource_mba5r"]
 script = ExtResource("1_wrpw6")
 type = "condition"
 name = "char property less than value"
-arg_0 = "hunger"
-arg_1 = 100
 
 [sub_resource type="Resource" id="Resource_amdu1"]
 script = ExtResource("1_wrpw6")

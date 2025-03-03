@@ -1,10 +1,10 @@
 [gd_scene load_steps=32 format=3 uid="uid://bv13phvxlqvpe"]
 
-[ext_resource type="Script" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_5c4ns"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_rectangle.gd" id="2_844d7"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_polygon.gd" id="3_br467"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_capsule.gd" id="4_g541m"]
-[ext_resource type="Script" path="res://addons/shape_texture_2d/drawable_ellipse.gd" id="5_3is8r"]
+[ext_resource type="Script" uid="uid://cpyers3ikip6v" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_5c4ns"]
+[ext_resource type="Script" uid="uid://dwht7t87fm3p2" path="res://addons/shape_texture_2d/drawable_rectangle.gd" id="2_844d7"]
+[ext_resource type="Script" uid="uid://dh3kuwi0o01ks" path="res://addons/shape_texture_2d/drawable_polygon.gd" id="3_br467"]
+[ext_resource type="Script" uid="uid://b68kfm5qa4gkv" path="res://addons/shape_texture_2d/drawable_capsule.gd" id="4_g541m"]
+[ext_resource type="Script" uid="uid://cstrxukhnpb1h" path="res://addons/shape_texture_2d/drawable_ellipse.gd" id="5_3is8r"]
 
 [sub_resource type="Gradient" id="Gradient_p1po4"]
 colors = PackedColorArray(0.929579, 0.996308, 0.735452, 1, 0.677149, 0.941563, 0.938797, 1)

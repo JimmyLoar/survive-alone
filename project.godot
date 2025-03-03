@@ -13,7 +13,7 @@ config_version=5
 config/name="SurviveAlone"
 run/main_scene="res://game/game.tscn"
 run/print_header=false
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 game/size/world=Vector2i(70, 35)
 game/size/chunk=50
@@ -48,7 +48,7 @@ project/assembly_name="SurviveAlone"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg", "res://addons/script_panel_plus/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [file_customization]
 
@@ -139,7 +139,3 @@ anti_aliasing/quality/msaa_2d=1
 [resource_databases]
 
 main_base_path="res://content/database.gddb"
-
-[script_panel_plus]
-
-panel_settings/show_bottom_bar=true

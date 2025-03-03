@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://chxbdcao06tc6" path="res://resources/collection/items/food/canned_food.tres" id="2_jt0ol"]
 [ext_resource type="Resource" uid="uid://cqvooygqbwtxj" path="res://resources/collection/items/resource/duct_tape.tres" id="3_boqxm"]
 [ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/wood.tres" id="4_4dv1q"]
-[ext_resource type="Script" path="res://resources/schema/search_drop.gd" id="5_wwbr7"]
+[ext_resource type="Script" uid="uid://daiqkhjf0g3d3" path="res://resources/schema/search_drop.gd" id="5_wwbr7"]
 
 [resource]
 script = ExtResource("5_wwbr7")

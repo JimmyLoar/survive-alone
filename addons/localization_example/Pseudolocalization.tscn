@@ -14,36 +14,36 @@ size = Vector2(26, 569)
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(920, 235)
-texture = ExtResource( "1_td1kr" )
+texture = ExtResource("1_td1kr")
 
 [node name="Floor" type="StaticBody2D" parent="Background"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Floor"]
 position = Vector2(1, 340)
-shape = SubResource( "RectangleShape2D_s52ac" )
+shape = SubResource("RectangleShape2D_s52ac")
 
 [node name="Left" type="StaticBody2D" parent="Background"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Left"]
 position = Vector2(-880, 61)
-shape = SubResource( "RectangleShape2D_01hb5" )
+shape = SubResource("RectangleShape2D_01hb5")
 
 [node name="Right" type="StaticBody2D" parent="Background"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Right"]
 position = Vector2(874, 61)
-shape = SubResource( "RectangleShape2D_01hb5" )
+shape = SubResource("RectangleShape2D_01hb5")
 
 [node name="BackgroundSideRight" type="Sprite2D" parent="Background"]
 position = Vector2(1920, 0)
-texture = ExtResource( "2_udff2" )
+texture = ExtResource("2_udff2")
 flip_h = true
 
 [node name="BackgroundSideLeft" type="Sprite2D" parent="Background"]
 position = Vector2(-1920, 0)
-texture = ExtResource( "2_udff2" )
+texture = ExtResource("2_udff2")
 flip_h = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PseudolocalizationEditorView" parent="CanvasLayer" instance=ExtResource( "3_kal3l" )]
+[node name="PseudolocalizationEditorView" parent="CanvasLayer" instance=ExtResource("3_kal3l")]
