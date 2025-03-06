@@ -15,6 +15,10 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	_character_state.position_changed.connect(_on_character_position_changed)
+	
+	Callable(func():
+		_on_character_position_changed(_character_state.position)
+	).call_deferred()
 
 
 func _on_character_position_changed(pos: Vector2):

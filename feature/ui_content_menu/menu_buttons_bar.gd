@@ -7,7 +7,7 @@ signal button_pressed(index: int)
 
 @onready var buttons_container: VBoxContainer = $VBoxContainer
 @onready var version_display: VersionDisplay = $VBoxContainer/Control3/VersionDisplay
-
+@onready var character_state: CharacterState = Injector.inject(CharacterState, self)
 
 func _ready() -> void:
 	version_display.visible = showing_version
@@ -42,4 +42,8 @@ func _display_button_name(button, _name: String):
 func _on_button_pressed(container: ContentContainer):
 	if not container: return
 	container.visible = not container.visible
+
+	# Если открывается панель, например инвентарь то нужно остановить игрока
+	if character_state.is_moving and container.visible:
+		character_state.stop_moving()
 	#button_pressed.emit(index if target_node.current_tab != index else -1)

@@ -72,11 +72,3 @@ layout_mode = 2
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
-
-[node name="PickUpButton" type="Button" parent="VBoxContainer/Buttons"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Pick UP"
-
-[connection signal="pressed" from="VBoxContainer/Buttons/PickUpButton" to="." method="_on_pick_up_button_pressed"]
