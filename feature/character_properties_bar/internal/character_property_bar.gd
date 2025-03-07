@@ -39,7 +39,7 @@ func _ready() -> void:
 	
 	condition = func(prop_name: String): 
 		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
-		return property.value < property.default_max_value
+		return property.value < property.get_max_value()
 	
 	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
 		"char property less than max value", condition, 
