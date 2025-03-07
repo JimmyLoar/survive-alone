@@ -4,7 +4,7 @@ extends Resource
 var data_name: StringName
 var value: float = 0.0:
 	set(_value): 
-		value = clamp(_value, _min, _max)
+		value = clamp(_value, _min, _max * 2)
 var delta: float = 0.0
 var _min: float = 0.0: get = get_min_value
 var _max: float = 1.0: get = get_max_value
