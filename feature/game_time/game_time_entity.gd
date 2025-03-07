@@ -6,9 +6,7 @@ const MINUT_IN_DAY	 = 1440.0
 const MINUT_IN_MONTH = 43200.0
 const MINUT_IN_YEAR	 = 518400.0
 
-
 signal changed_value(new_value)
-
 
 var _value: int = 0:
 	set(value):
@@ -27,6 +25,7 @@ func get_hour() -> int: 		return time_to_hour	(_start_value + _value)
 func get_day() -> int: 			return time_to_day	(_start_value + _value)
 func get_month() -> int: 		return time_to_month(_start_value + _value)
 func get_year() -> int: 		return time_to_year	(_start_value + _value)
+
 
 func get_date() -> Dictionary:
 	return {
@@ -49,6 +48,7 @@ static func time_to_month(time: int) -> int:
 static func time_to_year(time: int) -> int:
 	return floori(time / MINUT_IN_YEAR)
 
+
 static func hour_to_time(hours: int) -> int:
 	return MINUT_IN_HOUR * hours
 static func day_to_time(days: int) -> int:
@@ -57,6 +57,7 @@ static func month_to_time(months: int) -> int:
 	return MINUT_IN_MONTH * months
 static func year_to_time(years: int) -> int:
 	return MINUT_IN_YEAR * years
+
 
 static func date_to_time(date: Dictionary) -> int:
 	var _time: int = 0

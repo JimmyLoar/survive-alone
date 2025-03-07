@@ -10,7 +10,9 @@ var _state: CharacterState
 @onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
 @onready var _character_repositoty: CharacterRepository = Injector.inject(CharacterRepository, self)
 @onready var _save_db: SaveDb = Injector.inject(SaveDb, self)
+@onready var _resource_db: ResourceDb = Injector.inject(ResourceDb, self)
 var _character_properties_repository: CharacterPropertyRepository
+
 
 func _enter_tree() -> void:
 	_state = Injector.provide(CharacterState, CharacterState.new(self), self, Injector.ContainerType.CLOSEST)
@@ -23,13 +25,14 @@ func _ready() -> void:
 
 	_character_properties_repository.init(_save_db)
 	
+	
 	Callable(func():
 		position = _character_repositoty.get_world_position()
 		_state._target_postion = _character_repositoty.get_world_position()
 		var props = _character_properties_repository.get_all()
 		var dict = Dictionary()
 		for prop in props:
-			dict[prop.code_name] = prop
+			dict[prop.data_name] = prop
 		_state._properties = dict
 	).call_deferred()
 
@@ -70,10 +73,11 @@ func _process_idle():
 func _update_props_by_time_spend(_delta: int):
 	var props = _state._properties.values()
 	for prop in props:
-		var prop_value_delta = prop.default_delta_value
+		var prop_value_delta = prop.delta
 		if prop_value_delta != 0:
-			prop.default_value += prop_value_delta * _delta
+			prop.value += prop_value_delta * _delta
 			_state.set_property(prop)
+
 
 func update_position(pos: Vector2):
 	position = pos
@@ -97,4 +101,3 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 var _save_properties_debounce = Debounce.new(_save_properties, 0.2)
 func _save_properties():
 	_character_properties_repository.update_batch(_state._properties.values())
-

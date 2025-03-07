@@ -44,7 +44,7 @@ func reset_target(_delta):
 #
 # Caracter properties
 #
-var _properties = Dictionary():
+var _properties: Dictionary = Dictionary():
 	get:
 		return _properties
 	set(value):
@@ -56,14 +56,19 @@ var _properties = Dictionary():
 
 
 signal properties_changed(value: Dictionary)
-signal property_changed(value: CharacterPropertyResource)
+signal property_changed(value: CharacterPropertyEntity)
 
 
-func set_property(value: CharacterPropertyResource):
-	_properties[value.code_name] = value
+func set_property(value: CharacterPropertyEntity):
+	_properties[value.data_name] = value
 	_node._save_properties_debounce.emit()
 	property_changed.emit(value)
 
 
-func get_property(name: String) -> CharacterPropertyResource:
+func get_property(name: String) -> CharacterPropertyEntity:
 	return _properties.get(name, null)
+
+
+func get_property_data(name: StringName) -> CharacterPropertyResource:
+	var database := _node._resource_db.connection as Database
+	return database.fetch_data("properties", name)

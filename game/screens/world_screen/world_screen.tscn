@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=23 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -127,10 +127,6 @@ visible = false
 layout_mode = 2
 mouse_filter = 1
 
-[node name="PointerSpace" parent="UI" instance=ExtResource("13_pqelk")]
-theme_override_constants/margin_top = 120
-theme_override_constants/margin_bottom = 80
-
 [node name="EmptySpace" type="MarginContainer" parent="UI/VBoxContainer/MarginContainer"]
 visible = false
 layout_mode = 2
@@ -146,6 +142,10 @@ custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
+
+[node name="PointerSpace" parent="UI" instance=ExtResource("13_pqelk")]
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_bottom = 80
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("13_63jsv")
