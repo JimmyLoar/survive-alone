@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://os5qyr4xwmqx"]
 
-[ext_resource type="Script" uid="uid://b3okimvbdex1s" path="res://common/version_display.gd" id="1_g2con"]
+[ext_resource type="Script" uid="uid://ba4qhwjqiml7r" path="res://common/version_display.gd" id="1_g2con"]
 [ext_resource type="Script" uid="uid://73tevg3bmefe" path="res://feature/ui_content_menu/menu_buttons_bar.gd" id="1_rhtma"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_dbce0"]
