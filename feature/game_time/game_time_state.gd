@@ -33,7 +33,6 @@ func timeskip(skipped_time: int, for_real_sec: float = 1.0, with_progress_screen
 	if with_progress_screen:
 		_node.open()
 	start_skip(skipped_time)
-	print_debug("starter skip")
 
 
 func start_skip(value: int):
