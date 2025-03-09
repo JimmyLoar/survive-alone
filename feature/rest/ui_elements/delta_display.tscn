@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4ga5glrmq6if"]
+
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_oucva"]
+[ext_resource type="Script" uid="uid://xl4yhju3l2s3" path="res://feature/rest/ui_elements/delta_display.gd" id="1_rfwyg"]
+
+[node name="HDelataBox" type="HBoxContainer"]
+script = ExtResource("1_rfwyg")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_oucva")
+expand_mode = 2
+
+[node name="DeltaLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+text = "-10"
+horizontal_alignment = 1
+vertical_alignment = 1

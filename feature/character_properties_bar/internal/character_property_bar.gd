@@ -1,6 +1,11 @@
 extends HBoxContainer
 
-@export var property_name: String
+@export_enum("exhaustion","fatigue","hunger","psych","radiation","thirst") var property_name: String:
+	set(value):
+		property_name = value
+		if _character_state:
+			render(_character_state.get_property_data(property_name))
+		
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var label: Label = $ProgressBar/Label
@@ -9,15 +14,16 @@ extends HBoxContainer
 
 func _ready() -> void:
 	_character_state.property_changed.connect(_on_property_changed)
+	render(_character_state.get_property_data(property_name))
 	
 	var effect = func (prop_name: String, value: int):
-		var property := _character_state.get_property(prop_name)
-		property.default_value += value
+		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
+		property.value += value
 		_character_state.set_property(property)
 	
 	var condition = func(prop_name: String, check_value: int): 
-		var property := _character_state.get_property(prop_name)
-		return property.default_value >= check_value
+		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
+		return property.value >= check_value
 	
 	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
 	execute_keeper.register(execute_keeper.TYPE_EFFECT, 
@@ -32,8 +38,8 @@ func _ready() -> void:
 	)
 	
 	condition = func(prop_name: String): 
-		var property := _character_state.get_property(prop_name)
-		return property.default_value < property.default_max_value
+		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
+		return property.value < property.get_max_value()
 	
 	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
 		"char property less than max value", condition, 
@@ -42,18 +48,21 @@ func _ready() -> void:
 	)
 
 
-func _on_property_changed(prop: CharacterPropertyResource):
+func _on_property_changed(prop: CharacterPropertyEntity):
 	rerender(prop)
 
 
-func rerender(prop: CharacterPropertyResource):
-	if prop.code_name != property_name:
-		return
+func render(prop: CharacterPropertyResource):
 	texture_rect.texture = prop.texture
-	
-	progress_bar.max_value = prop.default_max_value
-	progress_bar.value = prop.default_value
-	progress_bar.self_modulate = prop.modulate
-	
-	label.text = "%d" % ceil(prop.default_value)
 	label.modulate = prop.modulate
+	progress_bar.self_modulate = prop.modulate
+
+
+func rerender(prop: CharacterPropertyEntity):
+	if prop.data_name != property_name:
+		return
+	
+	progress_bar.max_value = prop.get_max_value()
+	progress_bar.min_value = prop.get_min_value()
+	progress_bar.value = prop.value
+	label.text = "%d" % ceil(prop.value)

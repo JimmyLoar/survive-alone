@@ -7,7 +7,7 @@ extends HBoxContainer
 
 
 func update_data(_name: StringName):
-	var property: CharacterPropertyResource = character_state.get_property(_name)
+	var property: CharacterPropertyResource = character_state.get_property_data(_name)
 	texture_rect.texture = property.texture
 
 
