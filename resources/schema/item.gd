@@ -12,7 +12,7 @@ extends NamedResource
 
 
 func _init() -> void:
-	super("ItemResource")
+	super("Item")
 
 
 enum Rare{

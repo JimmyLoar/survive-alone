@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EventResource" load_steps=6 format=3 uid="uid://4lsplaql8qte"]
+
+[ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_p32d4"]
+[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_8wpcp"]
+[ext_resource type="Resource" uid="uid://c66ptthr6m3wo" path="res://resources/collection/events/biome_search/actions/return_to_default.tres" id="3_uxojo"]
+[ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="4_j1hu6"]
+
+[sub_resource type="Resource" id="Resource_n068v"]
+script = ExtResource("1_p32d4")
+name = &"start"
+text = "EVENT_BS_ANIMAL_CORPSE_START"
+actions = Array[ExtResource("2_8wpcp")]([ExtResource("3_uxojo")])
+
+[resource]
+script = ExtResource("4_j1hu6")
+_stages = Array[ExtResource("1_p32d4")]([SubResource("Resource_n068v")])
+code_name = &"bs_animal_corpse"
+visible_name = "EVENT_BS_ANIMAL_CORPSE_NAME"
+discription = "EVENT_BS_ANIMAL_CORPSE_DISCRIPTION"

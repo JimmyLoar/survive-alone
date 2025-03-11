@@ -42,7 +42,7 @@ func _display_stage(stage_index: int):
 	
 	var stage: EventStageResource = currect_event.get_stage(stage_index)
 	texture_rect.texture = stage.texture
-	rich_text_label.text = stage.text
+	rich_text_label.text = TranslationServer.translate(stage.text)
 	action_list.update_actions(stage.actions)
 
 

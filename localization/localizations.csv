@@ -1,16 +1,98 @@
-keys,en,de,ru
-KEY_NAME,English,Deutsch,Русский
-KEY_PLAY,Play,Spielen,Играть
-KEY_SETTINGS,Settings,Einstellungen,Настройки
-KEY_LANGUAGE,Language,Sprache,Язык
-KEY_LANGUAGESELECT,Languages,Sprachauswahl,Языки
-KEY_BACK,Back,Zurück,Назад
-KEY_QUIT,Quit,Beenden,Закрыть
-KEY_TEXT,"In the beginning+ God+ created+ the heavens and the earth.+  2 The earth was formless and empty, and there was darkness+ on the surface of the watery deep,+ and the active power of God was hovering+ over the surface of the waters.+  3 And God said,+ “Let there be light.”  And there was light.+  4 God saw that the light was good, and God separated the light from the darkness.+  5 God has called the light Day,+ And the darkness Night.+  And there was evening and there was morning, the first day.  6 And God said: “Let there be a space+ between the waters, and let the waters be separated from the waters.”+  7 Then God created the expanse and separated the waters under the expanse from the waters above the expanse.+  And it became so.  8 God has called the space Heaven.+  And there was evening and there was morning, the second day.  9 And God said: “Let the waters under the heavens be gathered into one place, and let the dry land appear.”+  And it became so.  10 God called the dry land Earth+ And the collected waters he called Seas.+  And God saw that it was good.+  11 Then God said, “Let the earth bring forth grass, plants yielding seeds+, fruit-trees bearing fruits+ according to their kind,+ with seeds+—so be it on the earth.”  And it became so.  12 The earth has brought forth grass, plants bearing seeds according to their kind,+ And trees bearing fruit with seeds according to their kind.+  And God saw that it was good.  13 And there was evening and there was morning, the third day.","Am Anfang erschuf Gott Himmel und Erde.+ 2  Die Erde nun war formlos und öde*. Über dem tiefen* Wasser+ war Dunkelheit und Gottes aktive Kraft*+ bewegte sich über der Wasseroberfläche+ hin und her. 3  Gott sagte: „Es soll Licht erscheinen.“ Da erschien Licht.+ 4  Danach sah Gott, dass das Licht gut war, und er begann das Licht von der Dunkelheit zu trennen. 5  Gott nannte das Licht Tag, die Dunkelheit aber nannte er Nacht.+ Es wurde Abend und es wurde Morgen: der erste Tag. 6  Weiter sagte Gott: „Zwischen dem Wasser soll eine Ausdehnung+ entstehen und das Wasser soll getrennt werden.“+ 7  Da machte Gott die Ausdehnung und trennte das Wasser unterhalb der Ausdehnung von dem Wasser oberhalb der Ausdehnung.+ Und so geschah es. 8  Gott nannte die Ausdehnung Himmel. Es wurde Abend und es wurde Morgen: der zweite Tag. 9  Weiter sagte Gott: „Das Wasser unter dem Himmel soll sich an einem Ort sammeln und das trockene Land soll erscheinen.“+ Und so geschah es. 10  Gott nannte das trockene Land Erde,+ die Wasseransammlungen aber nannte er Meere.+ Und Gott sah, dass es gut war.+ 11  Dann sagte Gott: „Auf der Erde soll Gras wachsen. Es sollen Pflanzen und Bäume nach ihren Arten wachsen mit Samen und Samen tragenden Früchten.“ Und so geschah es. 12  Die Erde brachte Gras hervor, Samen tragende Pflanzen+ und Bäume, die Früchte mit Samen trugen — nach ihren Arten. Dann sah Gott, dass es gut war. 13  Es wurde Abend und es wurde Morgen: der dritte Tag. ","В начале+ Бог+ сотворил+ небо и землю+. 2 Земля была бесформенна и пуста, и тьма+ была над водной бездной+, и действующая сила Бога парила+ над поверхностью воды+. 3  И Бог сказал+: «Да будет свет».  И был свет+. 4 Бог увидел, что свет хорош, и отделил Бог свет от тьмы+. 5 Бог назвал свет днем+, а тьму ночью+. И был вечер, и было утро,  первый день.  6 И сказал Бог: «Пусть будет пространство+ между водами, и пусть воды отделятся от вод»+. 7 Затем Бог создал пространство и отделил воду под пространством от воды над пространством+.  стало так.  8 Бог назвал это пространство Небесами+. И был вечер, и было утро, день второй.  9 И сказал Бог: «Да соберётся вода под небом в одно место, и да явится суша»+. Так и стало.  10 Бог назвал сушу землей+, а собранные воды — морями+. И увидел Бог, что это хорошо+.  доброе+, с семенами+ — да будет так на земле».  Так и стало.  12 Земля произвела траву, растения, приносящие семена по роду их+, и деревья, приносящие плоды с семенами по роду их+. И увидел Бог, что это хорошо.  13 И был вечер, и было утро: день третий."
-KEY_PLAY_VIDEO,Play video,Video abspielen,Воспроизвести видео
-KEY_PLACEHOLDER,Placeholder:,Platzhalter:,Заполнитель:
-KEY_VALUE,Value:,Wert:,Ценность:
-KEY_APPLY,Apply,Anwenden,Применить
-KEY_PLACEHOLDER_NAME,My name is {{NAME}}.,Mein Name ist {{NAME}}.,Меня зовут {{NAME}}.
-KEY_PLACEHOLDER_AGE,I'm {{OLD}}  years old.,Ich bin {{OLD}} Jahre alt.,Мне {{OLD}} лет.
-KEY_PLACEHOLDER_NAME_AGE,"My name is {{NAME}}, and I'm {{OLD}}  years old.",Mein Name ist {{NAME}} und ich bin {{OLD}} Jahre alt.,Меня зовут {{NAME}} и мне {{OLD}} лет.
+keys,en,ru,de
+KEY,English_NAME,Русский,Deutsch
+KEY_PLAY,Play,Играть,Spielen
+KEY_SETTINGS,Settings,Настройки,Einstellungen
+KEY_LANGUAGE,Language,Язык,Sprache
+KEY_LANGUAGESELECT,Languages,Языки,Sprachauswahl
+KEY_BACK,Back,Назад,Zurück
+KEY_QUIT,Quit,Закрыть,Beenden
+KEY_PLAY_VIDEO,Play video,Воспроизвести видео,Video abspielen
+KEY_PLACEHOLDER,Placeholder:,Заполнитель:,Platzhalter:
+KEY_VALUE,Value:,Ценность:,Wert:
+KEY_APPLY,Apply,Применить,Anwenden
+KEY_PLACEHOLDER,My_NAME name is {{NAME}}.,Меня зовут {{NAME}}.,Mein Name ist {{NAME}}.
+KEY_PLACEHOLDER_AGE,I'm {{OLD}}  years old.,Мне {{OLD}} лет.,Ich bin {{OLD}} Jahre alt.
+KEY_PLACEHOLDER_AGE_NAME,"My name is {{NAME}}, and I'm {{OLD}}  years old.",Меня зовут {{NAME}} и мне {{OLD}} лет.,Mein Name ist {{NAME}} und ich bin {{OLD}} Jahre alt.
+ACTION_TEST_NAME,Action_NAME Test,Тестовое Действие,
+ACTION_EAT_NAME,Eat,Съесть,
+ACTION_DRINK_NAME,Drink,Выпить,
+ACTION_COOK_NAME,Cook,Готовить,
+PROPERTY_EXHAUSTION_NAME,,Истощение,
+PROPERTY_EXHAUSTION_DISCRIPTION,,,
+PROPERTY_FATIGUE_NAME,,Бодрость,
+PROPERTY_FATIGUE_DISCRIPTION,,,
+PROPERTY_HUNGER_NAME,,Сытость,
+PROPERTY_HUNGER_DISCRIPTION,,,
+PROPERTY_NONE_PROPERTY_NAME,,Ничего!,
+PROPERTY_NONE_PROPERTY_DISCRIPTION,,,
+PROPERTY_PSYCH_NAME,,Психика,
+PROPERTY_PSYCH_DISCRIPTION,,,
+PROPERTY_RADIATION_NAME,,Радиация,
+PROPERTY_RADIATION_DISCRIPTION,,,
+PROPERTY_THIRST_NAME,,Жажда,
+PROPERTY_THIRST_DISCRIPTION,,,
+EVENT_ACTION_DOTS_NAME,…,…,…
+EVENT_ACTION_DOTS_DISCRIPTION,…,…,…
+EVENT_BS_DEFUALT_NAME,,Пойти на поиски,
+EVENT_BS_DEFUALT_START,,Вокруг вас немного растительности. Может стоит поискать дальше?,
+EVENT_ACTION_SEARCH_NAME,,Искать,
+EVENT_ACTION_FINISH_NAME,,Вернуться,
+EVENT_BS_FLOWERS_NAME,,Цветочная поляна,
+EVENT_BS_FLOWERS_START,,Вы вышли на поляну с цветами,
+EVENT_ACTION_COLLECT_SOME_NAME,,Собрать немного,
+EVENT_ACTION_PASS_BY_NAME,,Пройти мимо,
+EVENT_BS_FLOWERS_REWARD_1,,Вы собрали несколько цветов:\n,
+EVENT_BS_EXIT,,Вы решатие не тратить время на их сбор. Кто знает может вы сможите найти что то получше...,
+EVENT_BS_NOTHING_NAME,,Ничего!,
+EVENT_BS_NOTHING_START,,"Через какоето время вы замечаете, что ходите кругами. Вам неудалось найти что то полезное...",
+EVENT_BS_WOOD_1_NAME,,Поваленые деревья,
+EVENT_BS_WOOD_1_START,,"Бродя по округе вы замечаете, опавщие деревья",
+EVENT_BS_WOOD_1_REWARD,,Вы собрали немного хвороста,
+EVENT_BS_WOOD_2_NAME,,Яблоня,
+EVENT_BS_WOOD_2_START,,,
+EVENT_BS_WOOD_3_NAME,,Лесной родник,
+EVENT_BS_WOOD_3_START,,,
+EVENT_BS_WOOD_HOUSE_NAME,,Древянная хижина,
+EVENT_BS_WOOD_HOUSE_START,,,
+EVENT_BS_ANIMAL_CORPSE_NAME,,Труп животного,
+EVENT_BS_ANIMAL_CORPSE_START,,,
+ITEM_BUILDING_BONFIRE_NAME,,Кастер,
+ITEM_BUILDING_BONFIRE_DISCRIPTION,,,
+ITEM_FOOD_CANNED_FOOD_NAME,,Консерва,
+ITEM_FOOD_CANNED_FOOD_DISCRIPTION,,,
+ITEM_FOOD_FRESH_MEAT_NAME,,Сырое мясо,
+ITEM_FOOD_FRESH_MEAT_DISCRIPTION,,,
+ITEM_FOOD_FRY_MEAT_NAME,,Жаренное мясо,
+ITEM_FOOD_FRY_MEAT_DISCRIPTION,,,
+ITEM_FOOD_WATER_CLEAR_NAME,,Чистая вода,
+ITEM_FOOD_WATER_CLEAR_DISCRIPTION,,,
+ITEM_RESOURCE_DUCT_TAPE_NAME,,Изолента,
+ITEM_RESOURCE_DUCT_TAPE_DISCRIPTION,,,
+ITEM_RESOURCE_FLINT_NAME,,Кремень,
+ITEM_RESOURCE_FLINT_DISCRIPTION,,,
+ITEM_RESOURCE_STICK_NAME,,Палка,
+ITEM_RESOURCE_STICK_DISCRIPTION,,,
+ITEM_RESOURCE_WOOD_NAME,,Деревяшка,
+ITEM_RESOURCE_WOOD_DISCRIPTION,,,
+ITEM_TOOL_HOMEMADE_AXE_NAME,,Самодельный топор,
+ITEM_TOOL_HOMEMADE_AXE_DISCRIPTION,,,
+ITEM_TOOL_HOMEMADE_KNIFE_NAME,,Самодельный нож,
+ITEM_TOOL_HOMEMADE_KNIFE_DISCRIPTION,,,
+ITEM_TOOL_PRIMUS_NAME,,Примус,
+ITEM_TOOL_PRIMUS_DISCRIPTION,,,
+ITEM_TOOL_SAUCEPAN_NAME,,Кастрюля,
+ITEM_TOOL_SAUCEPAN_DISCRIPTION,,,
+SEARCH_DROP_NONE_NAME,,Поис ничего,
+SEARCH_DROP_TEST_NAME,,Поиск Тест,
+SEARCH_DROP_FOREST_BIOME_NAME,,Поиск Лес,
+STRUCTURE_CROSSROAD_NAME,,Переход,
+STRUCTURE_CROSSROAD_DISCRIPTION,,Выглядит пустым,
+STRUCTURE_HOUSE_NAME,,Дом,
+STRUCTURE_HOUSE_DISCRIPTION,,Обычный жилой дом,
+INVENTORY_TITLE,,Инвентарь,
+LOCATION_TITLE,,Локация,
+KEY_BUTTON_DROP,Drop,Бросить,
+BIOME_GRASS_NAME,,Поляна,
+BIOME_GRASS_DISCRIPTION,,Просто кавер из разных трав,
+BIOME_FOREST_NAME,,Лес,
+BIOME_FOREST_DISCRIPTION,,Заросли из деревьев,
