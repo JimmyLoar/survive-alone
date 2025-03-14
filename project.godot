@@ -113,7 +113,7 @@ pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://localization/localizations.de.translation", "res://localization/localizations.en.translation", "res://localization/localizations.ru.translation")
+locale/translations=PackedStringArray("res://localization/localizations.en.translation", "res://localization/localizations.ru.translation", "res://localization/localizations.de.translation")
 locale/language_filter=["en", "ru"]
 locale/country_filter=["RU", "US"]
 locale/locale_filter_mode=1
@@ -134,6 +134,7 @@ locale/locale_filter_mode=1
 [localization_editor]
 
 locales_path_to_file="res://localization/localizations.csv"
+translations_save_auth=false
 
 [rendering]
 

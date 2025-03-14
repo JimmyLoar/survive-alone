@@ -56,26 +56,33 @@ text = "Path:"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+current_tab = 5
 
 [node name="Translations" parent="VBox/Tabs" instance=ExtResource("4_kmfo1")]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="Remaps" parent="VBox/Tabs" instance=ExtResource("8_orcd3")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Locales" parent="VBox/Tabs" instance=ExtResource("4_mauhd")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="Placeholders" parent="VBox/Tabs" instance=ExtResource("12_tkjln")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="Pseudolocalization" parent="VBox/Tabs" instance=ExtResource("12_w0ry5")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 4
 
 [node name="AutoTranslate" parent="VBox/Tabs" instance=ExtResource("10_3m4id")]
-visible = false
 layout_mode = 2
+metadata/_tab_index = 5

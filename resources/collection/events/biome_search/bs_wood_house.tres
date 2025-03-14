@@ -14,6 +14,6 @@ actions = Array[ExtResource("2_avtqg")]([ExtResource("3_ymyqt")])
 [resource]
 script = ExtResource("1_borl2")
 _stages = Array[ExtResource("1_2r3yv")]([SubResource("Resource_n068v")])
-code_name = &"code_name"
-visible_name = "EVENT_CODE_NAME_NAME"
-discription = "EVENT_CODE_NAME_DISCRIPTION"
+code_name = &"bs_wood_house"
+visible_name = "EVENT_BS_WOOD_HOUSE_NAME"
+discription = "EVENT_BS_WOOD_HOUSE_DISCRIPTION"
