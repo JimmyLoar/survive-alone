@@ -20,6 +20,10 @@ func _ready() -> void:
 		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
 		property.value += value
 		_character_state.set_property(property)
+		return {
+			"resource": _character_state.get_property_data(prop_name), 
+			"change_value": value
+		}
 	
 	var condition = func(prop_name: String, check_value: int): 
 		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity

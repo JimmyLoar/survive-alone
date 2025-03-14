@@ -5,12 +5,16 @@ extends PanelContainer
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
 @onready var action_list: ItemList = %ActionList
 @onready var action_state := Injector.inject(ActionState, self) as ActionState
+@onready var result_list: ItemList = %ResultList
+@onready var hint_container: VBoxContainer = %HintContainer
+
 
 
 var _state: EventState
 
 var currect_event: EventResource
 var currect_stage: int = -1
+var _result: ActionResource
 
 func _enter_tree() -> void:
 	_state = Injector.provide(EventState, EventState.new(self), self, Injector.ContainerType.CLOSEST)
@@ -19,6 +23,8 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	action_list.item_selected.connect(_on_action_pressed)
 	action_list.action_state = action_state
+	%ResultContainer.hide()
+	%HintContainer.hide()
 	self.hide()
 	_register_methods()
 
@@ -46,6 +52,12 @@ func _display_stage(stage_index: int):
 	action_list.update_actions(stage.actions)
 
 
+func _display_actions_hint(stage: EventStageResource):
+	for i in stage.actions.size():
+		var action := stage.actions[i] as EventActionResource
+	
+
+
 func _on_action_pressed(pressed_index: int):
 	var action := currect_event.get_action(currect_stage, pressed_index) as EventActionResource
 	currect_stage = action.next_stage
@@ -55,8 +67,29 @@ func _on_action_pressed(pressed_index: int):
 	else:
 		_display_stage(currect_stage)
 	
+	var result := {}
 	if await action_state.can_execute(action):
-		action_state.execute(action)
+		result = action_state.execute(action)
+	
+	if not action.showing_result:
+		result = {}
+	_display_result(result)
+	
+
+
+func _display_result(result: Dictionary):
+	if result.is_empty():
+		%ResultContainer.hide()
+		return
+	
+	%ResultList.clear()
+	for data in result.values():
+		if data is not Dictionary: 
+			continue
+		%ResultList.add_item(str(data.change_value), data.resource.texture as Texture2D)
+	
+	%ResultContainer.show()
+
 
 
 func _register_methods():

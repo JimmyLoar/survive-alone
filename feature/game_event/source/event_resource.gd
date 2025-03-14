@@ -133,6 +133,10 @@ func get_action(stage_index: int, action_index: int) -> EventActionResource:
 	return _stages[stage_index].actions[action_index]
 
 
+func get_actions_count(stage: int):
+	return get_stage(stage).actions.size()
+
+
 func set_action_text(value: String, stage_index: int, action_index: int):
 	get_action(stage_index, action_index).text = value
 

@@ -42,7 +42,7 @@ func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 	return _add_in_storage_entity(ItemEntity.new(data, value, used))
 
 
-func remove_item(data: ItemResource, _amount := 1):
+func remove_item(data: ItemResource, _amount := 1) -> int:
 	var amount = _amount
 	var index := find_item(data.code_name)
 	if index == -1:

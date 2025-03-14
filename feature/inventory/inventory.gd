@@ -55,7 +55,10 @@ func _register_methods():
 		var item_data: ItemResource = database.connection.fetch_data("items", StringName(item))
 		if not _state.has_item(item_data):
 			_state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
-		return _state.remove_item(item_data, abs(amount))
+		return {
+			"reaming": _state.remove_item(item_data, abs(amount)),
+			"data": item_data, "change_value": amount,
+		}
 	
 	var ids = database.connection.get_data_string_ids("items")
 	execute_keeper.register(
@@ -67,7 +70,10 @@ func _register_methods():
 	effect = func(item: String, amount: int):
 		var _state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
 		var item_data: ItemResource = database.connection.fetch_data("items", StringName(item))
-		return _state.add_item(item_data, amount)
+		return {
+			"entity": _state.add_item(item_data, amount),
+			"resource": item_data, "change_value": amount,
+			}
 	
 	execute_keeper.register(
 		execute_keeper.TYPE_EFFECT, "add new item", effect,
@@ -77,7 +83,10 @@ func _register_methods():
 	effect = func(item: String, used: Array[int]):
 		var _state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
 		var item_data: ItemResource = database.connection.fetch_data("items", StringName(item))
-		return _state.add_item(item_data, 0, used)
+		return {
+			"entity": _state.add_item(item_data, 0, used), "value": used,
+			"resource": item_data, "change_value": used.size(),
+			}
 	
 	execute_keeper.register(
 		execute_keeper.TYPE_EFFECT, "add used item", effect,
