@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EventResource" load_steps=12 format=3 uid="uid://dw6j3yeanfdqt"]
 
-[ext_resource type="Script" uid="uid://caegyljvdhq5g" path="res://feature/game_event/source/event_stage.gd" id="1_jtjwl"]
-[ext_resource type="Script" uid="uid://b5iougp17ird7" path="res://feature/game_event/source/event_action.gd" id="2_ttjp6"]
-[ext_resource type="Script" uid="uid://dal5ux037epid" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="3_8783l"]
-[ext_resource type="Script" uid="uid://b2ydfns1d8wmg" path="res://feature/game_event/source/event_resource.gd" id="4_ifb0a"]
+[ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_jtjwl"]
+[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_ttjp6"]
+[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="3_8783l"]
+[ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="4_ifb0a"]
 
 [sub_resource type="Resource" id="Resource_clg8p"]
 script = ExtResource("3_8783l")
