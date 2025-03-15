@@ -53,7 +53,6 @@ var _properties: Dictionary = Dictionary():
 	set(value):
 		_properties = value
 		properties_changed.emit(value)
-		_node._save_properties_debounce.emit()
 		for prop in _properties.values():
 			property_changed.emit(prop)
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpr2e0l6fxmwj"]
 
-[ext_resource type="Script" uid="uid://jirrp7lsngir" path="res://feature/character_pointer_button/pointer_space.gd" id="1_47ryg"]
+[ext_resource type="Script" uid="uid://63phr0ivaa0g" path="res://feature/character_pointer_button/pointer_space.gd" id="1_47ryg"]
 [ext_resource type="PackedScene" uid="uid://cpf5e4ywdn7fy" path="res://feature/character_pointer_button/ui_elements/pointer.tscn" id="2_124yg"]
 
 [node name="PointerSpace" type="MarginContainer"]

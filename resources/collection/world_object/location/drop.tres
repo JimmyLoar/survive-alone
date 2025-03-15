@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WorldLocationResource" load_steps=4 format=3 uid="uid://1h5o7be30f1l"]
+
+[ext_resource type="Shape2D" uid="uid://b24f3j7dwdw2m" path="res://resources/collection/world_object/location/drop_shape.tres" id="1_gm42n"]
+[ext_resource type="Script" uid="uid://c502la2j7briu" path="res://resources/schema/world_object/world_location.gd" id="2_2dvqp"]
+[ext_resource type="Texture2D" uid="uid://cwjmv1ybu2uk0" path="res://assets/sprite/placeholders/Item11.png" id="3_rra03"]
+
+[resource]
+script = ExtResource("2_2dvqp")
+texture = ExtResource("3_rra03")
+name = "Дроп"
+collision_shape = ExtResource("1_gm42n")
+code_name = &"drop_location"
+visible_name = "STRUCTURE_NAME_DROP_LOCATION"
+discription = "STRUCTURE_DISCRIPTION_DROP_LOCATION"
