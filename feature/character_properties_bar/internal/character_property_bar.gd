@@ -29,11 +29,13 @@ func _ready() -> void:
 	execute_keeper.register(execute_keeper.TYPE_EFFECT, 
 		"set character property", effect, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
+		[],
 		["exhaustion", 0]
 	)
 	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
 		"char property greater than value", condition, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
+		[],
 		["exhaustion", 0]
 	)
 	
@@ -44,6 +46,7 @@ func _ready() -> void:
 	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
 		"char property less than max value", condition, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst"], 
+		[],
 		["exhaustion"]
 	)
 

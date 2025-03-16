@@ -71,12 +71,15 @@ func _register_methods():
 		var event: EventResource = list.get_event()
 		_state.activate_event(event)
 	
-	execute_keeper.register(ExecuteKeeperState.TYPE_EFFECT, "activate event", _activate_event,
+	execute_keeper.register(
+		ExecuteKeeperState.TYPE_EFFECT, "activate event", _activate_event,
 		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event"))]], 
+		[],
 		[""],
 	)
 	execute_keeper.register(ExecuteKeeperState.TYPE_EFFECT, "activate event from list", _activate_event_list,
 		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event_list"))]],
+		[],
 		[""]
 	)
 	

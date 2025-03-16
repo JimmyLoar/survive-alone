@@ -61,6 +61,7 @@ func _register_methods():
 	execute_keeper.register(
 		execute_keeper.TYPE_EFFECT, "remove item", effect,
 		["enum/String/%s" % [",".join(ids)], "int"], 
+		[],
 		["", 1],
 	)
 	
@@ -72,6 +73,7 @@ func _register_methods():
 	execute_keeper.register(
 		execute_keeper.TYPE_EFFECT, "add new item", effect,
 		["enum/String/%s" % [",".join(ids)], "int"], 
+		[],
 		["", 1],
 	)
 	effect = func(item: String, used: Array[int]):
@@ -82,6 +84,7 @@ func _register_methods():
 	execute_keeper.register(
 		execute_keeper.TYPE_EFFECT, "add used item", effect,
 		["enum/String/%s" % [",".join(ids)], "Array/int"], 
+		[],
 		["", [50]],
 	)
 	var condition = func(item: String, amount: int):
@@ -97,6 +100,7 @@ func _register_methods():
 	execute_keeper.register(
 		execute_keeper.TYPE_CONDITION, "has item total amount", condition,
 		["enum/String/%s" % [",".join(ids)], "int"], 
+		[],
 		["", 1],
 	)
 	
@@ -113,5 +117,6 @@ func _register_methods():
 	execute_keeper.register(
 		execute_keeper.TYPE_CONDITION, "has item durability", condition,
 		["enum/String/%s" % [",".join(ids)], "int"], 
+		[],
 		["", 1],
 	)

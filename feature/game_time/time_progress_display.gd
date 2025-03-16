@@ -52,11 +52,17 @@ func _register_methods():
 		await _state.finished_skip
 		return _state._remiang_value <= 0
 	
-	execute_keeper.register(execute_keeper.TYPE_CONDITION, "use time", _use_time,
-		["int/1,1440,1,or_greater", "float/0.1,10,0.1,or_greater", "bool"], [15, 1.0, false]
+	execute_keeper.register(
+		execute_keeper.TYPE_CONDITION, "is used time", _use_time,
+		["int/1,1440,1,or_greater", "float/0.1,10,0.1,or_greater", "bool"], 
+		["time", "real_time", "using_progres_bar"], 
+		[15, 1.0, false]
 	)
 	
-	execute_keeper.register(execute_keeper.TYPE_EFFECT, "time skip", _state.timeskip,
-		["int/1,1440,1,or_greater", "float/0.1,10,0.1,or_greater", "bool"], [15, 1.0, false]
+	execute_keeper.register(
+		execute_keeper.TYPE_EFFECT, "time skip", _state.timeskip,
+		["int/1,1440,1,or_greater", "float/0.1,10,0.1,or_greater", "bool"], 
+		["time", "real_time", "using_progres_bar"], 
+		[15, 1.0, false]
 	)
 	
