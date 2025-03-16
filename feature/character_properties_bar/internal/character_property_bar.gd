@@ -27,7 +27,7 @@ func _register_methods():
 		_character_state.set_property(property)
 		
 	execute_keeper.register(execute_keeper.TYPE_EFFECT, 
-		"set character property", set_prop, 
+		"set property", set_prop, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
 		["property_name", "value"],
 		["exhaustion", 0]
@@ -38,7 +38,7 @@ func _register_methods():
 		return property.value >= check_value
 	
 	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
-		"char property greater than value", greater_than_value, 
+		"property greater than value", greater_than_value, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
 		["property_name", "value"],
 		["exhaustion", 0]
@@ -49,7 +49,7 @@ func _register_methods():
 		return property.value < property.get_max_value()
 	
 	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
-		"char property less than max value", less_than_max, 
+		"property less than max value", less_than_max, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst"], 
 		["property_name"],
 		["exhaustion"]
