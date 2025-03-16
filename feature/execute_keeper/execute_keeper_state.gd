@@ -58,7 +58,9 @@ func execute(resource: ExecuteKeeperResource) -> Variant:
 ## Получение массива имён зарегистрированых методов 
 static func get_names(type: String) -> PackedStringArray:
 	var config: ConfigFile = _load_config()
-	return config.get_section_keys(type)
+	if config.has_section(type):
+		return config.get_section_keys(type)
+	return PackedStringArray()
 
 
 ## Получение массива аргументов (тип, значение поумолчанию) зарегистрированых методов
