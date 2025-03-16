@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=12 format=3 uid="uid://dq2k6kcwcusov"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=13 format=3 uid="uid://dq2k6kcwcusov"]
 
 [ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_3gspl"]
 [ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_5w4a2"]
@@ -9,9 +9,17 @@
 [sub_resource type="Resource" id="Resource_0p4fc"]
 script = ExtResource("3_gnxgc")
 type = "effect"
-name = "add new item"
-arg_0 = "resource_wood"
-arg_1 = 4
+name = "add new item in location"
+"arg_0: item_name" = "resource_wood"
+"arg_1: quantity" = 4
+metadata/_custom_type_script = "uid://c33om3s7ld1l5"
+
+[sub_resource type="Resource" id="Resource_wmdre"]
+script = ExtResource("3_gnxgc")
+type = "effect"
+name = "set property"
+"arg_0: property_name" = "fatigue"
+"arg_1: value" = -15
 metadata/_custom_type_script = "uid://c33om3s7ld1l5"
 
 [sub_resource type="Resource" id="Resource_scj74"]
@@ -19,7 +27,7 @@ script = ExtResource("2_5w4a2")
 is_said = false
 next_stage = 1
 conditions = Array[ExtResource("3_gnxgc")]([])
-effects = Array[ExtResource("3_gnxgc")]([SubResource("Resource_0p4fc")])
+effects = Array[ExtResource("3_gnxgc")]([SubResource("Resource_0p4fc"), SubResource("Resource_wmdre")])
 context_show_properties_bar = false
 context_use_slider = false
 context_use_item_grid = false
