@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbkwdbwvqc3qy"]
+[gd_scene load_steps=5 format=3 uid="uid://dbkwdbwvqc3qy"]
 
 [ext_resource type="Script" uid="uid://wjdskjwxrgd2" path="res://feature/game_event/event_display.gd" id="1_8cq4k"]
 [ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_h1y6y"]
 [ext_resource type="Script" uid="uid://v47pf3i6c7sy" path="res://feature/game_event/internal/action_list.gd" id="3_dria2"]
 [ext_resource type="Script" uid="uid://bjohqnoqeop6w" path="res://feature/game_event/internal/discription_rich_text_label.gd" id="3_ew800"]
-[ext_resource type="Script" uid="uid://b7tm05hlct2yn" path="res://feature/ui_content_menu/content_containers/content_container_root.gd" id="5_ttjxu"]
 
 [node name="EventDisplay" type="PanelContainer"]
 custom_minimum_size = Vector2(952, 648)
@@ -110,15 +109,6 @@ item_11/icon = ExtResource("2_h1y6y")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-
-[node name="ContentContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/HintContainer"]
-layout_mode = 2
-script = ExtResource("5_ttjxu")
-metadata/_custom_type_script = "uid://b7tm05hlct2yn"
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/HintContainer/ContentContainer"]
-layout_mode = 2
-text = "Action 1"
 
 [node name="ActionList" type="ItemList" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true

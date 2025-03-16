@@ -27,7 +27,7 @@ script = ExtResource("3_gnxgc")
 type = "effect"
 name = "time skip"
 arg_0 = 30
-arg_1 = 0.2
+arg_1 = 0.5
 arg_2 = false
 metadata/_custom_type_script = "uid://c33om3s7ld1l5"
 

@@ -4,17 +4,18 @@ extends PanelContainer
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
 @onready var action_list: ItemList = %ActionList
-@onready var action_state := Injector.inject(ActionState, self) as ActionState
 @onready var result_list: ItemList = %ResultList
 @onready var hint_container: VBoxContainer = %HintContainer
 
+@onready var action_state := Injector.inject(ActionState, self) as ActionState
+@onready var resource_db := Injector.inject(ResourceDb, self) as ResourceDb
 
 
 var _state: EventState
 
 var currect_event: EventResource
 var currect_stage: int = -1
-var _result: ActionResource
+var _result: Dictionary
 
 func _enter_tree() -> void:
 	_state = Injector.provide(EventState, EventState.new(self), self, Injector.ContainerType.CLOSEST)
@@ -50,31 +51,24 @@ func _display_stage(stage_index: int):
 	texture_rect.texture = stage.texture
 	rich_text_label.text = TranslationServer.translate(stage.text)
 	action_list.update_actions(stage.actions)
+	_display_result(_result)
 
 
 func _display_actions_hint(stage: EventStageResource):
 	for i in stage.actions.size():
 		var action := stage.actions[i] as EventActionResource
-	
 
 
 func _on_action_pressed(pressed_index: int):
 	var action := currect_event.get_action(currect_stage, pressed_index) as EventActionResource
 	currect_stage = action.next_stage
-	if action.next_stage == -1 and not action.effects.any(func(effect: ExecuteKeeperResource): return effect.name.contains("activate event")):
-		self.hide()
-
-	else:
+	
+	if await action_state.can_execute(action) :
+		_result = action_state.execute(action)
+		if not action.showing_result:
+			_result = {}
+		
 		_display_stage(currect_stage)
-	
-	var result := {}
-	if await action_state.can_execute(action):
-		result = action_state.execute(action)
-	
-	if not action.showing_result:
-		result = {}
-	_display_result(result)
-	
 
 
 func _display_result(result: Dictionary):
@@ -83,10 +77,20 @@ func _display_result(result: Dictionary):
 		return
 	
 	%ResultList.clear()
-	for data in result.values():
-		if data is not Dictionary: 
+	for data: ExecuteKeeperResource in result.keys():
+		var collection := ""
+		if data.name.contains("item"):
+			collection = "items"
+		
+		elif  data.name.contains("property"):
+			collection = "properties"
+		
+		else:
 			continue
-		%ResultList.add_item(str(data.change_value), data.resource.texture as Texture2D)
+		
+		var _name: String = "%d" % data.args_data[1]
+		var icon: Texture2D = resource_db.connection.fetch_data(collection, StringName(data.args_data[0])).texture
+		%ResultList.add_item(_name, icon)
 	
 	%ResultContainer.show()
 
