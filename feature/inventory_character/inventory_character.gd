@@ -40,7 +40,7 @@ func on_drop_item(item: ItemEntity):
 
 
 func _on_confirmed_drop_item(item: ItemEntity, count: int):
-	_state.remove_item(item.get_resource(), count)
+	_state.remove_item(item.get_resource().code_name, count)
 	_inventory_repository.insert(_state.inventory_entity)
 	
 	# TODO: 
