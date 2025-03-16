@@ -26,7 +26,7 @@ func _ready() -> void:
 	inventory.state = _state
 	item_information_panel.set_bottom_actions([
 		{
-			"text": "Drop",
+			"text": "KEY_BUTTON_DROP",
 			"on_pressed": on_drop_item
 		}
 	])

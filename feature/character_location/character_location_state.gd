@@ -31,3 +31,23 @@ var current_location: Variant: # WorldObjectEntity или BiomesLocation
 		if value != current_location:
 			current_location = value
 			current_location_changed.emit(value)
+
+
+func get_location_name():
+	if is_instance_of(current_location, WorldObjectEntity):
+		return current_location.resource.visible_name
+	
+	var biomes := current_location.biomes as Array
+	if not biomes or biomes.is_empty():
+		return ""
+	return TranslationServer.translate("BIOME_%s_NAME" % [biomes.front().name.to_upper()])
+
+
+func get_location_discription():
+	if is_instance_of(current_location, WorldObjectEntity):
+		return current_location.resource.discription
+	
+	var biomes := current_location.biomes as Array
+	if not biomes or biomes.is_empty():
+		return ""
+	return TranslationServer.translate("BIOME_%s_DISCRIPTION" % [biomes.front().name.to_upper()])

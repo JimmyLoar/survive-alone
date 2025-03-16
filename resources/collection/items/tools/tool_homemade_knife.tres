@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://pr76410n87uh"]
+
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_o07ln"]
+[ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_4iv0w"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_80y4q"]
+
+[resource]
+script = ExtResource("2_4iv0w")
+texture = ExtResource("3_80y4q")
+rare = 1
+durability = -1
+is_pickable = true
+actions = Array[ExtResource("1_o07ln")]([])
+code_name = &"tool_homemade_knife"
+visible_name = "ITEM_NAME_TOOL_HOMEMADE_KNIFE"
+discription = "ITEM_DISCRIPTION_TOOL_HOMEMADE_KNIFE"

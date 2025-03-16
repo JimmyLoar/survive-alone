@@ -14,6 +14,7 @@ var location_panel: MarginContainer = %LocationPanel
 var item_information_panel: ItemInfoPanel = %ItemInformationPanel
 
 
+
 func _enter_tree() -> void:
 	Injector.provide(InventoryLocationState, _state, self, Injector.ContainerType.CLOSEST)
 
@@ -28,6 +29,7 @@ func _ready() -> void:
 
 
 func _on_location_changed(location: Variant):
+	location_panel._visual_randerer()
 	if is_instance_of(location, WorldObjectEntity):
 		var existed_inventory = _inventory_repository.get_by_belong_at_object(
 			InventoryEntity.BelongsAtObject.new(

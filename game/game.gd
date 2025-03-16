@@ -51,19 +51,19 @@ func _create_new_save_if_not_exist(save_path: String):
 		InventoryEntity.BelongsAtObject.new(-1, InventoryEntity.BelongsAtObject.Type.PLAYER),
 		[
 			ItemEntity.new(
-				load("res://resources/collection/items/food/canned_food.tres"),
+				load("res://resources/collection/items/food/food_canned_food.tres"),
 				5
 			),
 			ItemEntity.new(
-				load("res://resources/collection/items/food/water_clear.tres"),
+				load("res://resources/collection/items/food/food_water_clear.tres"),
 				25
 			),
 			ItemEntity.new(
-				load("res://resources/collection/items/food/fresh_meat.tres"),
+				load("res://resources/collection/items/food/food_fresh_meat.tres"),
 				10
 			),
 			ItemEntity.new(
-				load("res://resources/collection/items/resource/wood.tres"),
+				load("res://resources/collection/items/resource/resource_wood.tres"),
 				30
 			),
 		]

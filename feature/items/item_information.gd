@@ -60,7 +60,7 @@ func _on_changed_value(value):
 
 func _update_display(item: ItemEntity):
 	var data: ItemResource = item.get_resource()
-	name_label.text = "%s" % data.code_name
+	name_label.text = "%s" % data.visible_name
 	text_label.clear()
 	text_label.append_text("%s" % data.discription)
 	get_parent().current_tab = get_index()

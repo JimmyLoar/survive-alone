@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=17 format=3 uid="uid://csx1bauob5bnf"]
+
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_ojq0o"]
+[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="2_vfxuf"]
+[ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="3_4m21k"]
+[ext_resource type="Texture2D" uid="uid://b5ckhqrg1b5yo" path="res://assets/sprite/items/food-fresh_meat.png" id="4_8sw87"]
+
+[sub_resource type="Resource" id="Resource_cxlva"]
+script = ExtResource("2_vfxuf")
+type = "condition"
+name = "char property less than max value"
+arg_0 = "hunger"
+
+[sub_resource type="Resource" id="Resource_63y63"]
+script = ExtResource("2_vfxuf")
+type = "effect"
+name = "set character property"
+arg_0 = "hunger"
+arg_1 = 30
+
+[sub_resource type="Resource" id="Resource_6ia84"]
+script = ExtResource("2_vfxuf")
+type = "effect"
+name = "set character property"
+arg_0 = "exhaustion"
+arg_1 = 5
+
+[sub_resource type="Resource" id="Resource_nearo"]
+script = ExtResource("2_vfxuf")
+type = "effect"
+name = "remove item"
+arg_0 = "food_fresh_meat"
+arg_1 = 1
+metadata/_custom_type_script = "uid://c33om3s7ld1l5"
+
+[sub_resource type="Resource" id="Resource_tjpfy"]
+script = ExtResource("2_vfxuf")
+type = "effect"
+name = "time skip"
+arg_0 = 15
+arg_1 = 1.0
+arg_2 = false
+
+[sub_resource type="Resource" id="Resource_a4345"]
+script = ExtResource("1_ojq0o")
+conditions = Array[ExtResource("2_vfxuf")]([SubResource("Resource_cxlva")])
+effects = Array[ExtResource("2_vfxuf")]([SubResource("Resource_63y63"), SubResource("Resource_6ia84"), SubResource("Resource_nearo"), SubResource("Resource_tjpfy")])
+context_show_properties_bar = true
+context_use_slider = false
+code_name = &"eat"
+visible_name = "ACTION_NAME_EAT"
+discription = "ACTION_DISCRIPTION_EAT"
+
+[sub_resource type="Resource" id="Resource_5a0kc"]
+script = ExtResource("2_vfxuf")
+type = "condition"
+name = "has item total amount"
+arg_0 = "wood"
+arg_1 = 3
+
+[sub_resource type="Resource" id="Resource_g6pje"]
+script = ExtResource("2_vfxuf")
+type = "condition"
+name = "use time"
+arg_0 = 120
+arg_1 = 3.0
+arg_2 = true
+
+[sub_resource type="Resource" id="Resource_xuc2m"]
+script = ExtResource("2_vfxuf")
+type = "effect"
+name = "remove item"
+arg_0 = "food_fresh_meat"
+arg_1 = 1
+
+[sub_resource type="Resource" id="Resource_37ng6"]
+script = ExtResource("2_vfxuf")
+type = "effect"
+name = "remove item"
+arg_0 = "resource_wood"
+arg_1 = 3
+
+[sub_resource type="Resource" id="Resource_dibac"]
+script = ExtResource("2_vfxuf")
+type = "effect"
+name = "add new item"
+arg_0 = "food_fry_meat"
+arg_1 = 1
+
+[sub_resource type="Resource" id="Resource_uydly"]
+script = ExtResource("1_ojq0o")
+conditions = Array[ExtResource("2_vfxuf")]([SubResource("Resource_5a0kc"), SubResource("Resource_g6pje")])
+effects = Array[ExtResource("2_vfxuf")]([SubResource("Resource_xuc2m"), SubResource("Resource_37ng6"), SubResource("Resource_dibac")])
+context_show_properties_bar = false
+context_use_slider = false
+code_name = &"cook"
+visible_name = "ACTION_NAME_COOK"
+discription = "ACTION_DISCRIPTION_COOK"
+
+[resource]
+script = ExtResource("3_4m21k")
+texture = ExtResource("4_8sw87")
+rare = 1
+durability = -1
+is_pickable = true
+actions = Array[ExtResource("1_ojq0o")]([SubResource("Resource_a4345"), SubResource("Resource_uydly")])
+code_name = &"food_fresh_meat"
+visible_name = "ITEM_NAME_FOOD_FRESH_MEAT"
+discription = "ITEM_DISCRIPTION_FOOD_FRESH_MEAT"
