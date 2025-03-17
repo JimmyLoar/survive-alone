@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WorldLocationResource" load_steps=5 format=3 uid="uid://il5t6636f0o2"]
+
+[ext_resource type="Shape2D" uid="uid://dbaprlgddervr" path="res://resources/collection/world_object/location/drop_shape.tres" id="1_gm42n"]
+[ext_resource type="Script" uid="uid://flwx64hqmnj6" path="res://resources/schema/world_object/world_location.gd" id="2_2dvqp"]
+[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/search_drop/test_1.tres" id="3_antjr"]
+[ext_resource type="Texture2D" uid="uid://djh8y7tcvjq02" path="res://assets/sprite/placeholders/citybuilder-tileset/StraßeB_1111.png" id="4_15cqa"]
+
+[resource]
+script = ExtResource("2_2dvqp")
+texture = ExtResource("4_15cqa")
+search_drop = ExtResource("3_antjr")
+name = "Дроп"
+collision_shape = ExtResource("1_gm42n")
+collision_offset = Vector2(200, 200)
+collision_rotation = 0.0
+code_name = &"crossroad_world_location"
+visible_name = "STRUCTURE_NAME_CROSSROAD_WORLD_LOCATION"
+discription = "STRUCTURE_DISCRIPTION_CROSSROAD_WORLD_LOCATION"

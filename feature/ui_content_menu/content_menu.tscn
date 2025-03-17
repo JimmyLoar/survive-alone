@@ -34,6 +34,7 @@ deselect_enabled = true
 [node name="CC-Inventory" parent="HBoxContainer/TabContainer" instance=ExtResource("3_8i0qu")]
 layout_mode = 2
 mouse_filter = 1
+main_stretch_ratio = null
 metadata/_tab_index = 0
 
 [node name="CC-Location" parent="HBoxContainer/TabContainer" instance=ExtResource("4_c7uu5")]

@@ -9,6 +9,7 @@ var _state := InventoryCharacterState.new("Character")
 @onready var item_information_panel: ItemInfoPanel = %ItemInformationPanel
 @onready var quantity_selector_state: QuantitySelectorState = Injector.inject(QuantitySelectorState, self)
 @onready var location_inventory_state: InventoryLocationState = Injector.inject(InventoryLocationState, self)
+@onready var character_location_state: CharacterLocationState = Injector.inject(CharacterLocationState, self)
 
 
 func _enter_tree() -> void:
@@ -40,8 +41,20 @@ func on_drop_item(item: ItemEntity):
 
 
 func _on_confirmed_drop_item(item: ItemEntity, count: int):
-	_state.remove_item(item.get_resource(), count)
+	var all_used = item.get_used()
+	var real_drop_count = _state.remove_item(item.get_resource(), count)
+	var used = all_used.slice(0, min(all_used.count, real_drop_count))
+	
+	location_inventory_state.add_item(item.get_resource(), real_drop_count, used)
+	
+	var current_location = character_location_state.current_location
+	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
+		var world_object = WorldObjectEntity.new()
+		world_object.resource = load("res://resources/collection/world_object/location/drop.tres")
+		world_object.boundary_rect = world_object.resource.collision_shape.
+
 	_inventory_repository.insert(_state.inventory_entity)
+	_inventory_repository.insert(location_inventory_state.inventory_entity)
 	
 	# TODO: 
 	#	1) Обновить location inventory
