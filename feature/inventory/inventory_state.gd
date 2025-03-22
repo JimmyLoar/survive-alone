@@ -42,31 +42,34 @@ func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 	return _add_in_storage_entity(ItemEntity.new(data, value, used))
 
 
-func remove_item(data: ItemResource, _amount := 1) -> int:
-	var amount = _amount
-	var index := find_item(data.code_name)
+func remove_item(name: String, _amount := 1):
+	if _amount <= 0: 
+		return 0
+	
+	var remaining = _amount
+	var index := find_item(name)
 	if index == -1:
-		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [data.code_name, amount])
-		return amount
+		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [name, remaining])
+		return remaining
 	
 	var item := get_item(index) as ItemEntity
-	amount = item.remove_used_amount(amount)
-	item.increase_total_amount(amount * -1)
-	amount = max(amount - item.get_total_amount(), 0)
+	remaining = item.remove_used_amount(_amount)
+	item.decrease_total_amount(remaining)
+	remaining = max(remaining - item.get_total_amount(), 0)
 	
 	if item.get_total_amount() <= 0:
 		_remove_from_storage_entity(index)
-	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items [color=green]%s (%d)[/color]" % [_amount - amount, amount, data.code_name, item.get_total_amount()])
-	return amount
+	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items [color=green]%s (%d)[/color]" % [_amount, remaining, name, item.get_total_amount()])
+	return remaining
 
 
-func has_item(data: ItemResource) -> bool:
-	return find_item(data.code_name) != -1
+func has_data(name: String):
+	return find_item(name) != -1
 
 
-func has_item_amount(data: ItemResource, amount: int = 1) -> bool:
+func has_item_amount(name: String, amount: int = 1) -> bool:
 	amount = abs(amount)
-	var index := find_item(data.code_name)
+	var index := find_item(name)
 	if index != -1:
 		return get_item(index).get_total_amount() >= amount
 	return false #возвращается если предмета нет в инветоре

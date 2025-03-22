@@ -7,7 +7,7 @@
 script = ExtResource("1_5uac7")
 type = "effect"
 name = "activate event"
-arg_0 = "bs_defualt_event"
+"arg_0: event name" = "bs_defualt_event"
 
 [resource]
 script = ExtResource("3_4rmag")

@@ -5,7 +5,7 @@ extends Resource
 const TYPE_CONDITION	= ExecuteKeeperState.TYPE_CONDITION
 const TYPE_EFFECT		= ExecuteKeeperState.TYPE_EFFECT
 
-var type: String = ExecuteKeeperState._types[0]:
+var type: String = ExecuteKeeperState.NONE_NAME:
 	set(value):
 		type = value 
 		_update_names()
@@ -24,7 +24,6 @@ func set_method_name(new_name: String):
 	_args_types = ExecuteKeeperState.get_args(self.type, name)
 	args_data.resize(_args_types[0].size())
 	_update_names()
-	notify_property_list_changed()
 
 
 func _update_names():
@@ -32,14 +31,19 @@ func _update_names():
 		_names = ExecuteKeeperState.get_names(self.type)
 		if _names.size() == 0:
 			_names.append("")
+	notify_property_list_changed()
 
 
 func get_type_values() -> Array:
 	return _args_types[0]
 
 
-func get_default_values() -> Array:
+func get_name_values() -> Array:
 	return _args_types[1]
+
+
+func get_default_values() -> Array:
+	return _args_types[2]
 
 
 func _get_property_list() -> Array[Dictionary]:
@@ -51,10 +55,14 @@ func _get_property_list() -> Array[Dictionary]:
 	
 	property = PropertyGenerater.take_string("name")
 	properties.append(PropertyGenerater.convert_to_enum(property, ",".join(_names), false))
+	var prop_names := get_name_values()
 	if name != "": 
 		var types := get_type_values()
 		for i in types.size():
-			property = _get_arg_property(types[i], "arg_%d" % i)
+			var arg_name = "arg_%d" % i
+			if i < prop_names.size():
+				arg_name += ": %s" % prop_names[i]
+			property = _get_arg_property(types[i], arg_name) #"arg_%d: %s" % [i, prop_names[i]]
 			properties.append(property)
 	return properties
 
@@ -104,7 +112,7 @@ func _get_arg_property(arg_type: String, _name: String):
 func _set(property: StringName, value: Variant) -> bool:
 	if name != "":
 		if property.begins_with("arg"):
-			var index: int = property.to_int()
+			var index: int = property.get_slice(":", 0).to_int()
 			if index >= args_data.size():
 				args_data.resize(index + 1)
 			args_data[index] = value
@@ -115,7 +123,7 @@ func _set(property: StringName, value: Variant) -> bool:
 func _get(property: StringName):
 	if name != "":
 		if property.begins_with("arg"):
-			var index: int = property.to_int()
+			var index: int = property.get_slice(":", 0).to_int()
 			var value = args_data[index]
 			return value if value else _property_get_revert(property)
 
@@ -123,6 +131,6 @@ func _get(property: StringName):
 func _property_get_revert(property: StringName) -> Variant:
 	if name != "":
 		if property.begins_with("arg"):
-			var index: int = property.to_int()
+			var index: int = property.get_slice(":", 0).to_int()
 			return get_default_values()[index]
 	return null

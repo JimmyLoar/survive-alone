@@ -12,5 +12,5 @@ durability = 100
 is_pickable = true
 actions = Array[ExtResource("1_yvnmw")]([])
 code_name = &"tool_primus"
-visible_name = "ITEM_NAME_TOOL_PRIMUS"
-discription = "ITEM_DISCRIPTION_TOOL_PRIMUS"
+visible_name = "ITEM_TOOL_PRIMUS_NAME"
+discription = "ITEM_TOOL_PRIMUS_DISCRIPTION"

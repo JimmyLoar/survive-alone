@@ -8,22 +8,22 @@
 [sub_resource type="Resource" id="Resource_clg8p"]
 script = ExtResource("3_8783l")
 type = "condition"
-name = "char property greater than value"
-arg_0 = "fatigue"
-arg_1 = 15
+name = "property greater than value"
+"arg_0: property_name" = "fatigue"
+"arg_1: value" = 10
 
 [sub_resource type="Resource" id="Resource_oljap"]
 script = ExtResource("3_8783l")
 type = "effect"
 name = "activate event from list"
-arg_0 = "biom_list_test"
+"arg_0: event list" = "biom_list_test"
 
 [sub_resource type="Resource" id="Resource_gtsvv"]
 script = ExtResource("3_8783l")
 type = "effect"
-name = "set character property"
-arg_0 = "fatigue"
-arg_1 = -15
+name = "set property"
+"arg_0: property_name" = "fatigue"
+"arg_1: value" = -10
 
 [sub_resource type="Resource" id="Resource_a8v7q"]
 script = ExtResource("3_8783l")
@@ -52,7 +52,7 @@ discription = "EVENT_ACTION_SEARCH_DISCRIPTION"
 script = ExtResource("3_8783l")
 type = "effect"
 name = "activate event"
-arg_0 = "bs_defualt_event"
+"arg_0: event name" = "bs_defualt_event"
 
 [sub_resource type="Resource" id="Resource_xwweg"]
 script = ExtResource("2_ttjp6")

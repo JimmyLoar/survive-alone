@@ -12,5 +12,5 @@ durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_o07ln")]([])
 code_name = &"tool_homemade_knife"
-visible_name = "ITEM_NAME_TOOL_HOMEMADE_KNIFE"
-discription = "ITEM_DISCRIPTION_TOOL_HOMEMADE_KNIFE"
+visible_name = "ITEM_TOOL_HOMEMADE_KNIFE_NAME"
+discription = "ITEM_TOOL_HOMEMADE_KNIFE_DISCRIPTION"

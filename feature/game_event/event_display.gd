@@ -22,12 +22,41 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	_register_methods()
 	action_list.item_selected.connect(_on_action_pressed)
 	action_list.action_state = action_state
 	%ResultContainer.hide()
 	%HintContainer.hide()
 	self.hide()
-	_register_methods()
+
+
+func _register_methods():
+	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	var db_resource := Injector.inject(ResourceDb, self) as ResourceDb
+	
+	var _activate_event = func(event_name: String):
+		var event: EventResource = db_resource.connection.fetch_data("event", StringName(event_name))
+		_state.activate_event(event)
+	
+	execute_keeper.register(
+		ExecuteKeeperState.TYPE_EFFECT, "activate event", _activate_event,
+		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event"))]], 
+		["event name"],
+		[""],
+	)
+	
+	var _activate_event_list = func(list_name: String):
+		var list: EventList = db_resource.connection.fetch_data("event_list", StringName(list_name))
+		var event: EventResource = list.get_event()
+		_state.activate_event(event)
+	
+	execute_keeper.register(
+		ExecuteKeeperState.TYPE_EFFECT, "activate event from list", _activate_event_list,
+		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event_list"))]],
+		["event list"],
+		[""]
+	)
+	return
 
 
 func display(event: EventResource):
@@ -96,24 +125,5 @@ func _display_result(result: Dictionary):
 
 
 
-func _register_methods():
-	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
-	var db_resource := Injector.inject(ResourceDb, self) as ResourceDb
-	var _activate_event = func(event_name: String):
-		var event: EventResource = db_resource.connection.fetch_data("event", StringName(event_name))
-		_state.activate_event(event)
-	
-	var _activate_event_list = func(list_name: String):
-		var list: EventList = db_resource.connection.fetch_data("event_list", StringName(list_name))
-		var event: EventResource = list.get_event()
-		_state.activate_event(event)
-	
-	execute_keeper.register(ExecuteKeeperState.TYPE_EFFECT, "activate event", _activate_event,
-		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event"))]], 
-		[""],
-	)
-	execute_keeper.register(ExecuteKeeperState.TYPE_EFFECT, "activate event from list", _activate_event_list,
-		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event_list"))]],
-		[""]
-	)
+
 	

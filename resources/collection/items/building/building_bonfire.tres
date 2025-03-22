@@ -12,5 +12,5 @@ durability = -1
 is_pickable = false
 actions = Array[ExtResource("1_hxmvr")]([])
 code_name = &"building_bonfire"
-visible_name = "ITEM_NAME_BUILDING_BONFIRE"
-discription = "ITEM_DISCRIPTION_BUILDING_BONFIRE"
+visible_name = "ITEM_BUILDING_BONFIRE_NAME"
+discription = "ITEM_BUILDING_BONFIRE_DISCRIPTION"
