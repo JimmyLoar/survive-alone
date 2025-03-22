@@ -53,7 +53,7 @@ func _register_methods():
 	execute_keeper.register(
 		ExecuteKeeperState.TYPE_EFFECT, "activate event from list", _activate_event_list,
 		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event_list"))]],
-		["event list"],
+		["events list"],
 		[""]
 	)
 	return

@@ -66,10 +66,9 @@ static func get_names(type: String) -> PackedStringArray:
 ## Получение массива аргументов (тип, значение поумолчанию) зарегистрированых методов
 static func get_args(type: String, name: String) -> Array:
 	var config: ConfigFile = _load_config()
-	var data = config.get_value(type, name)
-	if not data:
-		return EMPTY_STRUCTURE
-	return data
+	if config.has_section_key(type, name):
+		return config.get_value(type, name)
+	return EMPTY_STRUCTURE
 
 
 ## Загрузка конфига файла
