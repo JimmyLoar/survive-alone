@@ -47,15 +47,16 @@ conditions = Array[ExtResource("2_vfxuf")]([SubResource("Resource_cxlva")])
 effects = Array[ExtResource("2_vfxuf")]([SubResource("Resource_63y63"), SubResource("Resource_6ia84"), SubResource("Resource_nearo"), SubResource("Resource_tjpfy")])
 context_show_properties_bar = true
 context_use_slider = false
+context_use_item_grid = false
 code_name = &"eat"
-visible_name = "ACTION_NAME_EAT"
-discription = "ACTION_DISCRIPTION_EAT"
+visible_name = "ACTION_EAT_NAME"
+discription = "ACTION_EAT_DISCRIPTION"
 
 [sub_resource type="Resource" id="Resource_5a0kc"]
 script = ExtResource("2_vfxuf")
 type = "condition"
 name = "has item total amount"
-arg_0 = "wood"
+arg_0 = "resource_wood"
 arg_1 = 3
 
 [sub_resource type="Resource" id="Resource_g6pje"]
@@ -93,9 +94,10 @@ conditions = Array[ExtResource("2_vfxuf")]([SubResource("Resource_5a0kc"), SubRe
 effects = Array[ExtResource("2_vfxuf")]([SubResource("Resource_xuc2m"), SubResource("Resource_37ng6"), SubResource("Resource_dibac")])
 context_show_properties_bar = false
 context_use_slider = false
+context_use_item_grid = false
 code_name = &"cook"
-visible_name = "ACTION_NAME_COOK"
-discription = "ACTION_DISCRIPTION_COOK"
+visible_name = "ACTION_COOK_NAME"
+discription = "ACTION_COOK_DISCRIPTION"
 
 [resource]
 script = ExtResource("3_4m21k")
@@ -105,5 +107,5 @@ durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_ojq0o")]([SubResource("Resource_a4345"), SubResource("Resource_uydly")])
 code_name = &"food_fresh_meat"
-visible_name = "ITEM_NAME_FOOD_FRESH_MEAT"
-discription = "ITEM_DISCRIPTION_FOOD_FRESH_MEAT"
+visible_name = "ITEM_FOOD_FRESH_MEAT_NAME"
+discription = "ITEM_FOOD_FRESH_MEAT_DISCRIPTION"

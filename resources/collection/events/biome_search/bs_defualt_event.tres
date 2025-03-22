@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=12 format=3 uid="uid://dw6j3yeanfdqt"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=13 format=3 uid="uid://dw6j3yeanfdqt"]
 
 [ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_jtjwl"]
 [ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_ttjp6"]
@@ -25,12 +25,22 @@ name = "set character property"
 arg_0 = "fatigue"
 arg_1 = -15
 
+[sub_resource type="Resource" id="Resource_a8v7q"]
+script = ExtResource("3_8783l")
+type = "effect"
+name = "time skip"
+arg_0 = 35
+arg_1 = 0.5
+arg_2 = false
+metadata/_custom_type_script = "uid://c33om3s7ld1l5"
+
 [sub_resource type="Resource" id="Resource_c7eoe"]
 script = ExtResource("2_ttjp6")
 is_said = false
 next_stage = -1
+showing_result = false
 conditions = Array[ExtResource("3_8783l")]([SubResource("Resource_clg8p")])
-effects = Array[ExtResource("3_8783l")]([SubResource("Resource_oljap"), SubResource("Resource_gtsvv")])
+effects = Array[ExtResource("3_8783l")]([SubResource("Resource_oljap"), SubResource("Resource_gtsvv"), SubResource("Resource_a8v7q")])
 context_show_properties_bar = false
 context_use_slider = false
 context_use_item_grid = false
@@ -48,6 +58,7 @@ arg_0 = "bs_defualt_event"
 script = ExtResource("2_ttjp6")
 is_said = false
 next_stage = -1
+showing_result = false
 conditions = Array[ExtResource("3_8783l")]([])
 effects = Array[ExtResource("3_8783l")]([SubResource("Resource_lii0l")])
 context_show_properties_bar = false
@@ -62,6 +73,7 @@ script = ExtResource("1_jtjwl")
 name = &"start"
 text = "EVENT_BS_DEFUALT_START"
 actions = Array[ExtResource("2_ttjp6")]([SubResource("Resource_c7eoe"), SubResource("Resource_xwweg")])
+showing_action_hints = false
 
 [resource]
 script = ExtResource("4_ifb0a")

@@ -13,7 +13,7 @@ func _ready() -> void:
 func execute(action: ActionResource) -> Dictionary:
 	var result: Dictionary = {}
 	for effect in action.effects:
-		result[effect.name] = execute_keeper.execute(effect)
+		result[effect] = execute_keeper.execute(effect)
 	return result
 
 
