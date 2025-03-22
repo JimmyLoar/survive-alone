@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://wq8eaeo5eftd"]
+
+[ext_resource type="Script" uid="uid://b7tm05hlct2yn" path="res://feature/ui_content_menu/content_containers/content_container_root.gd" id="1_mk0du"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_uc1wn"]
+
+[node name="ContentContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mk0du")
+
+[node name="_ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+border_color = Color(0.957171, 0.558125, 1.15514e-06, 1)
+
+[node name="_MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="_MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MainContainer" type="MarginContainer" parent="_MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.4
+
+[node name="SubContainer" type="TabContainer" parent="_MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tabs_visible = false
+
+[node name="CloseButton" type="TextureButton" parent="_MarginContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("2_uc1wn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="_MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://27va2jwjyxqm"]
+
+[ext_resource type="Script" uid="uid://dlef7gju0tg1x" path="res://feature/inventory/inventory.gd" id="1_gmv8m"]
+[ext_resource type="Script" uid="uid://bt6x5481dd855" path="res://feature/items_grid/items_grid.gd" id="2_j4w10"]
+[ext_resource type="PackedScene" uid="uid://cka4psk0x8fb2" path="res://common/ui/element/page_controller.tscn" id="3_iui5k"]
+
+[node name="Inventory" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+script = ExtResource("1_gmv8m")
+page_size = Vector2i(6, 4)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+border_color = Color(0.17675, 0.514726, 1, 1)
+border_width = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="ItemsGrid" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+script = ExtResource("2_j4w10")
+
+[node name="PageController" parent="VBoxContainer" instance=ExtResource("3_iui5k")]
+layout_mode = 2

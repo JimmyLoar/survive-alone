@@ -1,0 +1,204 @@
+[gd_scene load_steps=24 format=3 uid="uid://bsq170wia7k5p"]
+
+[ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
+[ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
+[ext_resource type="PackedScene" uid="uid://skppxmtw5diw" path="res://feature/virtual_chunks/virtual_chunks.tscn" id="3_6pu03"]
+[ext_resource type="PackedScene" uid="uid://d3tltb1ssxrye" path="res://feature/world_objects_layer/world_objects_layer.tscn" id="4_3odrv"]
+[ext_resource type="PackedScene" uid="uid://dyck7g6ogkopw" path="res://feature/main_camera/main_camera.tscn" id="4_j0xa1"]
+[ext_resource type="PackedScene" uid="uid://cl8k81se1whi6" path="res://feature/character_location/character_location.tscn" id="4_twwnk"]
+[ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://feature/character/character.tscn" id="5_g3jl3"]
+[ext_resource type="PackedScene" uid="uid://di5n7reysaxjj" path="res://feature/virtual_chunks_grid/virtual_chunks_grid.tscn" id="5_m4yp1"]
+[ext_resource type="PackedScene" uid="uid://bmx1kvsxqsfod" path="res://feature/screen_mouse_events/screen_mouse_events.tscn" id="5_myumh"]
+[ext_resource type="PackedScene" uid="uid://c08a22asf3v80" path="res://feature/fps_display/fps_display.tscn" id="7_hexpw"]
+[ext_resource type="PackedScene" uid="uid://bn7r5o20xaisj" path="res://feature/character_properties_bar/charater_properties_bar.tscn" id="7_ksbsw"]
+[ext_resource type="Theme" uid="uid://cfhrwmys6lnl6" path="res://assets/themes/main.tres" id="10_2w4h6"]
+[ext_resource type="Script" uid="uid://xtum3t0baoax" path="res://feature/game_time/game_time_display.gd" id="11_fvjg5"]
+[ext_resource type="PackedScene" uid="uid://bksbtwk2euyms" path="res://feature/ui_content_menu/content_menu.tscn" id="12_yoyd0"]
+[ext_resource type="AudioStream" uid="uid://bfjpjy3v5fb2b" path="res://assets/music/1-1.mp3" id="13_63jsv"]
+[ext_resource type="PackedScene" uid="uid://bpr2e0l6fxmwj" path="res://feature/character_pointer_button/pointer_space.tscn" id="13_pqelk"]
+[ext_resource type="PackedScene" uid="uid://dbxwa4c3uxw1" path="res://feature/rest/rest_ui.tscn" id="14_453vv"]
+[ext_resource type="Script" uid="uid://b757n4axwnkdp" path="res://feature/rest/ui_elements/!button_rest.gd" id="15_bav1l"]
+[ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
+[ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
+[ext_resource type="Script" uid="uid://bm3q6fg6x55mx" path="res://feature/actions/action_node.gd" id="20_vdqgx"]
+[ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
+
+[sub_resource type="GDScript" id="GDScript_7tx77"]
+script/source = "extends MarginContainer
+
+
+func _ready() -> void:
+	for child: Control in get_children():
+		child.visibility_changed.connect(_on_visibility_changed)
+	self.hide()
+
+
+func _on_visibility_changed() -> void:
+	self.visible = get_children().any(func(child: Control): return child.visible)
+"
+
+[node name="WorldScreen" type="Node2D"]
+script = ExtResource("1_nlrl3")
+
+[node name="BiomesLayer" parent="." instance=ExtResource("2_pbygt")]
+
+[node name="VirtualChunks" parent="." instance=ExtResource("3_6pu03")]
+
+[node name="CharacterLocation" parent="." instance=ExtResource("4_twwnk")]
+
+[node name="WorldObjectsLayer" parent="." instance=ExtResource("4_3odrv")]
+
+[node name="VirtualChunksGrid" parent="." instance=ExtResource("5_m4yp1")]
+visible = false
+_draw_chunks = true
+color = Color(0.749338, 0, 0.264808, 1)
+
+[node name="Character" parent="." instance=ExtResource("5_g3jl3")]
+
+[node name="MainCamera" parent="." instance=ExtResource("4_j0xa1")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ScreenMouseEvents" parent="UI" instance=ExtResource("5_myumh")]
+theme = ExtResource("10_2w4h6")
+
+[node name="PointerSpace" parent="UI" instance=ExtResource("13_pqelk")]
+show_behind_parent = true
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="CharaterPropertiesBar" parent="UI/VBoxContainer/PanelContainer/HBoxContainer" instance=ExtResource("7_ksbsw")]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Space" type="Control" parent="UI/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.4
+
+[node name="GameTimeDisplay" type="Label" parent="UI/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+vertical_alignment = 2
+script = ExtResource("11_fvjg5")
+
+[node name="FpsDisplay" parent="UI/VBoxContainer/PanelContainer/HBoxContainer" instance=ExtResource("7_hexpw")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "FPS  "
+vertical_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContentMenu" parent="UI/VBoxContainer/MarginContainer" instance=ExtResource("12_yoyd0")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="!ButunRest" type="Button" parent="UI/VBoxContainer/MarginContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(52.785, 56.95)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "rest"
+script = ExtResource("15_bav1l")
+
+[node name="RestUi" parent="UI/VBoxContainer/MarginContainer" instance=ExtResource("14_453vv")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+
+[node name="EmptySpace" type="MarginContainer" parent="UI/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+script = SubResource("GDScript_7tx77")
+
+[node name="EventDisplay" parent="UI/VBoxContainer/MarginContainer/EmptySpace" instance=ExtResource("17_p8jes")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="TimeProgress" parent="UI/VBoxContainer/MarginContainer" instance=ExtResource("16_s66yn")]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("13_63jsv")
+
+[node name="ForbidenImputZone" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 725.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="ForbidenImputZone2" type="Control" parent="UI/ForbidenImputZone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -9.0
+offset_top = 34.0
+offset_right = 1285.0
+offset_bottom = 38.0
+
+[node name="ForbidenImputZone5" type="Control" parent="UI/ForbidenImputZone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -6.0
+offset_right = 1285.0
+offset_bottom = -2.0
+
+[node name="ForbidenImputZone4" type="Control" parent="UI/ForbidenImputZone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 712.0
+offset_right = 1287.0
+offset_bottom = 721.0
+
+[node name="ForbidenImputZone3" type="Control" parent="UI/ForbidenImputZone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1277.0
+offset_top = -27.0
+offset_right = 1287.0
+offset_bottom = 715.0
+
+[node name="ActionNode" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("20_vdqgx")
+
+[node name="QuantitySelecter" parent="." instance=ExtResource("22_scc3c")]
+
+[connection signal="pressed" from="UI/VBoxContainer/MarginContainer/!ButunRest" to="UI/VBoxContainer/MarginContainer/!ButunRest" method="_on_pressed"]

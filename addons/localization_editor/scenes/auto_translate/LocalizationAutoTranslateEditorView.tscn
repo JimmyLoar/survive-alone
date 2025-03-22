@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://2e10hsy4f7ak"]
 
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/auto_translate/LocalizationAutoTranslateEditorView.gd" id="1"]
+[ext_resource type="Script" uid="uid://bsdgai6d151oh" path="res://addons/localization_editor/scenes/auto_translate/LocalizationAutoTranslateEditorView.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bssdhtctthadv" path="res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslate.tscn" id="2"]
 
 [node name="LocalizationAutotranslateEditorView" type="VBoxContainer"]
@@ -13,3 +13,4 @@ script = ExtResource("1")
 
 [node name="Translators" parent="." instance=ExtResource("2")]
 layout_mode = 2
+size_flags_vertical = 3

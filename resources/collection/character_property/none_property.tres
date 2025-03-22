@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterPropertyResource" load_steps=3 format=3 uid="uid://u4wcq6ucjv5i"]
+
+[ext_resource type="Script" uid="uid://circ63nhvigul" path="res://resources/schema/character_property.gd" id="1_3ibha"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_rnstc"]
+
+[resource]
+script = ExtResource("1_3ibha")
+texture = ExtResource("2_rnstc")
+default_value = 0.0
+default_max_value = 100.0
+default_min_value = 0.0
+default_delta_value = 0.0
+modulate = Color(1, 1, 1, 1)
+code_name = &"none_property"
+visible_name = "PROPERTY_NAME_NONE_PROPERTY"
+discription = "PROPERTY_DISCRIPTION_NONE_PROPERTY"

@@ -13,6 +13,8 @@ enum LogLevel {
 }
 
 const COLORS = {
+	"title" : "orangered",
+	"value" : "#edb3ff",
 	"debug" : "#BEFFE7",
 	"info"  : "white",
 	"warn"  : "yellow",
@@ -30,19 +32,19 @@ var printing_stack: bool = false
 var log_path: String = "res://.logs/game.log"
 var _config
 
-var _prefix  = ""
+var _prefix  = "#Game"
 var _default_args = {}
 
 var _file: FileAccess
 
 
 func _ready():
-	_set_loglevel(Config.get_var("log-level","info"))
+	_set_loglevel(Config.get_var("log-level","debug"))
 	_set_time_format(Config.get_var("use-isotime", "false"))
 
 
 func _set_loglevel(level:String):
-	logger("setting log level",{"level":level},LogLevel.INFO)
+	#logger("setting log level",{"level":level},LogLevel.INFO)
 	match level.to_lower():
 		"debug":
 			CURRENT_LOG_LEVEL = LogLevel.DEBUG
@@ -57,7 +59,7 @@ func _set_loglevel(level:String):
 
 
 func _set_time_format(level:String):
-	logger("setting iso format",{"level":level},LogLevel.INFO)
+	#logger("setting iso format",{"level":level},LogLevel.INFO)
 	match level.to_lower():
 		"true":
 			USE_ISOTIME = true
@@ -68,9 +70,8 @@ func _set_time_format(level:String):
 func with(prefix:String="",args:Dictionary={}) ->Log :
 	var l = Log.new()
 	l.CURRENT_LOG_LEVEL = self.CURRENT_LOG_LEVEL
-	l._prefix = " %s |" % prefix
-	for k in args:
-		l._default_args[k] = args[k]
+	l._prefix = "%s" % prefix
+	l._default_args.merge(args)
 	return l
 
 
@@ -93,7 +94,7 @@ func logger(message:String,values,log_level=LogLevel.INFO):
 func _get_format_massage(message: String, log_level) -> String:
 	var msg = LOG_FORMAT.format(
 		{
-			"prefix":_prefix,
+			"prefix": " [color={title}]%s[/color] | ".format(COLORS) % _prefix,
 			"message":message,
 			"time": _get_time(),
 			"level": LogLevel.keys()[log_level].rpad(5, " ")
@@ -116,6 +117,7 @@ func _get_time(file_format := false) -> String:
 
 
 func _add_values(msg, values):
+	msg += "[color={value}]".format(COLORS)
 	match typeof(values):
 		TYPE_ARRAY:
 			if values.size() > 0:
@@ -148,26 +150,27 @@ func _add_values(msg, values):
 			msg += JSON.stringify(null)
 		_:
 			msg += JSON.stringify(values)
+	msg += "[/color]"
 	return msg
 
 
 func _print_msg(log_level, msg: String):
 	match log_level:
 		LogLevel.DEBUG:
-			print_rich("[color={debug}]%s[/color]".format(COLORS) % [msg])
+			print_rich("[color={debug}]%s".format(COLORS) % [msg])
 			if printing_stack: print_stack()
 		
 		LogLevel.INFO:
-			print_rich("[color={info}]%s[/color]".format(COLORS) % [msg])
+			print_rich("[color={info}]%s".format(COLORS) % [msg])
 		
 		LogLevel.WARN:
-			print_rich("[color={warn}]%s[/color]".format(COLORS) % [msg])
+			print_rich("[color={warn}]%s".format(COLORS) % [msg])
 			push_warning(msg)
 			print_stack()
 		
 		LogLevel.ERROR:
 			push_error(msg)
-			print_rich("[color={error}]%s[/color]".format(COLORS) % [msg])
+			print_rich("[color={error}]%s".format(COLORS) % [msg])
 			print_stack()
 			print_tree()
 		
@@ -202,9 +205,14 @@ func fatal(message:String,values={}):
 	call_thread_safe("logger",message,values,LogLevel.FATAL)
 
 
+static func get_global_logger() -> Log:
+	if not Engine.has_singleton("GodotLogger"): 
+		Engine.register_singleton("GodotLogger", Log.new())
+	return Engine.get_singleton("GodotLogger")
+
 func _write_logs(message:String, log_level):
 	if not _file:
-		var global_logger = _get_global_logger()
+		var global_logger = get_global_logger()
 		if not global_logger: return
 		if not global_logger._file:
 			global_logger._load_file()
@@ -230,12 +238,6 @@ func _get_log_path():
 	if Engine.is_editor_hint(): 
 		return  "%s_editor_%s.%s" % [path_array[0], time, path_array[1]]
 	return "%s_%s.%s" % [path_array[0], time, path_array[1]]
-
-
-func _get_global_logger():
-	if not Engine.has_singleton("GodotLogger"): 
-		Engine.register_singleton("GodotLogger", GodotLogger)
-	return Engine.get_singleton("GodotLogger")
 
 
 func _load_file():

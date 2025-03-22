@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="SurviveAlone"
-run/main_scene="res://bootstrap/bootstrap.tscn"
+run/main_scene="res://game/game.tscn"
 run/print_header=false
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 game/size/world=Vector2i(70, 35)
 game/size/chunk=50
-game/size/tile=30
+game/size/tile=32
 game/version/major=0
 game/version/minor=0
 game/version/patch=0
@@ -27,36 +27,121 @@ game/version/string="dev"
 
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
-GodotLogger="*res://addons/logger/logger.gd"
+Injector="*res://addons/godot-di/Injector.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
-GameTime="*res://script/singletone/game_time.gd"
-PlayerProperty="*res://script/singletone/player_property.gd"
-InventoriesController="*res://script/singletone/inventories_controller.gd"
-QuantitySelecter="*res://scenes/ui/displayes/quantity_selecter.tscn"
+GodotLogger="*res://addons/logger/logger.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/initial_position_type=4
+window/size/initial_position=Vector2i(-135, 0)
+window/size/always_on_top=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/vsync/vsync_mode=0
+
+[dotnet]
+
+project/assembly_name="SurviveAlone"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://feature/": "purple",
+"res://feature/character/": "orange",
+"res://feature/character_location/": "orange",
+"res://feature/character_properties_bar/": "orange",
+"res://feature/execute_keeper/": "yellow",
+"res://feature/game_event/": "teal",
+"res://feature/game_time/": "blue",
+"res://feature/inventory/": "yellow",
+"res://feature/inventory_character/": "yellow",
+"res://feature/inventory_location/": "yellow",
+"res://feature/item_action/": "yellow",
+"res://feature/items/": "yellow",
+"res://feature/items_grid/": "yellow",
+"res://game/": "red",
+"res://resources/": "blue"
+}
 
 [gui]
 
 theme/custom="res://assets/themes/main.tres"
+theme/custom_font="res://assets/themes/fonts/yaginya/Yaginya.otf"
+
+[importer_defaults]
+
+font_data_dynamic={
+"Compress": null,
+"Fallbacks": null,
+"Rendering": null,
+"allow_system_fallback": true,
+"antialiasing": 1,
+"compress": true,
+"disable_embedded_bitmaps": true,
+"fallbacks": [],
+"force_autohinter": false,
+"generate_mipmaps": false,
+"hinting": 1,
+"language_support": {},
+"msdf_pixel_range": 8,
+"msdf_size": 48,
+"multichannel_signed_distance_field": false,
+"opentype_features": {},
+"oversampling": 0.0,
+"preload": [{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}],
+"script_support": {},
+"subpixel_positioning": 1
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://localization/localizations.de.translation", "res://localization/localizations.en.translation", "res://localization/localizations.ru.translation")
+locale/translations=PackedStringArray("res://localization/localizations.en.translation", "res://localization/localizations.ru.translation", "res://localization/localizations.de.translation")
+locale/language_filter=["en", "ru"]
+locale/country_filter=["RU", "US"]
+locale/locale_filter_mode=1
+
+[layer_names]
+
+2d_render/layer_1="Defualt"
+2d_render/layer_2="Enveroment"
+2d_render/layer_3="Buildings"
+2d_render/layer_4="Character"
+2d_render/layer_5="Tiles"
+2d_physics/layer_1="Default"
+2d_physics/layer_2="Bioms"
+2d_physics/layer_3="BiomsBlock"
+2d_physics/layer_4="Structure"
+2d_physics/layer_5="Events"
+
+[localization_editor]
+
+locales_path_to_file="res://localization/localizations.csv"
+translations_save_auth=false
 
 [rendering]
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_2d=1
+
+[resource_databases]
+
+main_base_path="res://content/database.gddb"

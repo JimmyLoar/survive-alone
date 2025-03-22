@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjhy00q8mvwrs"]
+
+[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/ui_content_menu/content_containers/content_container_root.tscn" id="1_bv0e0"]
+[ext_resource type="Script" uid="uid://b6a5v02gbec8v" path="res://feature/inventory_location/inventory_location.gd" id="2_g7boo"]
+[ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory.tscn" id="2_o8nlk"]
+[ext_resource type="PackedScene" uid="uid://djj8lftj7w8hq" path="res://feature/inventory_location/internal/location_panel.tscn" id="3_15qhe"]
+[ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="3_sakew"]
+
+[node name="CC-Location" instance=ExtResource("1_bv0e0")]
+script = ExtResource("2_g7boo")
+
+[node name="_ReferenceRect" parent="." index="0"]
+mouse_filter = 1
+
+[node name="Inventory" parent="_MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("2_o8nlk")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+
+[node name="SubContainer" parent="_MarginContainer/HBoxContainer" index="1"]
+custom_minimum_size = Vector2(380, 0)
+current_tab = 0
+
+[node name="LocationPanel" parent="_MarginContainer/HBoxContainer/SubContainer" index="1" instance=ExtResource("3_15qhe")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ItemInformationPanel" parent="_MarginContainer/HBoxContainer/SubContainer" index="2" instance=ExtResource("3_sakew")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="CloseButton" parent="_MarginContainer" index="1"]
+mouse_filter = 1

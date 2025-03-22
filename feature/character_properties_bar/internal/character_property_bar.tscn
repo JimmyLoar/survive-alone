@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ildsba35mng"]
+
+[ext_resource type="Script" uid="uid://cxcm4enueev3p" path="res://feature/character_properties_bar/internal/character_property_bar.gd" id="1_w2ohq"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_5gmmj"]
+
+[node name="PropertyBar" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+theme_override_constants/separation = 2
+script = ExtResource("1_w2ohq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("2_5gmmj")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 23.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 2

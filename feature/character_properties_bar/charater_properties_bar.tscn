@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn7r5o20xaisj"]
+
+[ext_resource type="PackedScene" uid="uid://c8ildsba35mng" path="res://feature/character_properties_bar/internal/character_property_bar.tscn" id="1_y67cn"]
+
+[node name="CharaterPropertiesBar" type="HBoxContainer"]
+
+[node name="ExhaustionBar" parent="." instance=ExtResource("1_y67cn")]
+layout_mode = 2
+size_flags_horizontal = 3
+property_name = "exhaustion"
+
+[node name="HungerBar" parent="." instance=ExtResource("1_y67cn")]
+layout_mode = 2
+size_flags_horizontal = 3
+property_name = "hunger"
+
+[node name="ThirstBar" parent="." instance=ExtResource("1_y67cn")]
+layout_mode = 2
+size_flags_horizontal = 3
+property_name = "thirst"
+
+[node name="FatigueBar" parent="." instance=ExtResource("1_y67cn")]
+layout_mode = 2
+size_flags_horizontal = 3
+property_name = "fatigue"

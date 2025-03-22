@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0m0p02wuleun"]
 
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersKey.gd" id="1"]
+[ext_resource type="Script" uid="uid://cngmojk8klu6s" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersKey.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cnb7fnm4kvekf" path="res://addons/localization_editor/icons/Del.svg" id="2_gnca8"]
 
 [node name="MarginContainer" type="MarginContainer"]

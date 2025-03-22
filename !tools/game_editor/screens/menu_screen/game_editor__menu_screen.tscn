@@ -1,0 +1,163 @@
+[gd_scene load_steps=2 format=3 uid="uid://4k3m1ojdh13v"]
+
+[ext_resource type="Script" uid="uid://dfjbhq1ngywms" path="res://!tools/game_editor/screens/menu_screen/game_editor__menu_screen.gd" id="1_q4tpn"]
+
+[node name="MenuScreen" type="CanvasLayer"]
+script = ExtResource("1_q4tpn")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OpenGameDb" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 37.0
+offset_right = 214.0
+offset_bottom = 68.0
+text = "Open game database"
+
+[node name="CreateGameDb" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 104.0
+offset_right = 225.0
+offset_bottom = 135.0
+text = "Create empty game database"
+
+[node name="GenerateChessBiomesDb" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 35.0
+offset_right = 599.0
+offset_bottom = 66.0
+text = "Generate chess biomes database"
+
+[node name="ChessSquereSize" type="TextEdit" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 498.0
+offset_top = 79.0
+offset_right = 600.0
+offset_bottom = 110.0
+
+[node name="ChessSquereSizeLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 78.0
+offset_right = 480.0
+offset_bottom = 101.0
+text = "chess squere size"
+
+[node name="ChessMapWidth" type="TextEdit" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 501.0
+offset_top = 110.0
+offset_right = 598.0
+offset_bottom = 141.0
+
+[node name="ChessMapWidthLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 110.0
+offset_right = 481.0
+offset_bottom = 133.0
+text = "chess map width"
+
+[node name="ChessMapHeight" type="TextEdit" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 502.0
+offset_top = 144.0
+offset_right = 598.0
+offset_bottom = 173.0
+
+[node name="BigSizeOptimisations" type="CheckBox" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 552.0
+offset_top = 205.0
+offset_right = 576.0
+offset_bottom = 229.0
+
+[node name="ChessMapHeightLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 144.0
+offset_right = 479.0
+offset_bottom = 167.0
+text = "chess map height"
+
+[node name="ChessMapProgressLable2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 189.0
+offset_right = 517.0
+offset_bottom = 212.0
+text = "big size optimisations"
+
+[node name="ChessMapProgressLable2" type="Label" parent="Panel/ChessMapProgressLable2"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 25.0
+offset_right = 171.0
+offset_bottom = 48.0
+text = "dont use on producion!"
+
+[node name="ChessMapProgressLable" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 256.0
+offset_right = 487.0
+offset_bottom = 279.0
+text = "progress"
+
+[node name="ChessMapProgress" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 487.0
+offset_top = 261.0
+offset_right = 622.0
+offset_bottom = 284.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 78.0
+offset_right = 740.0
+offset_bottom = 109.0
+text = "Exp"
+
+[node name="OpenDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.sqlite3", "*.sqlite", "*.db")
+
+[node name="CreateDialog" type="FileDialog" parent="."]
+initial_position = 2
+size = Vector2i(600, 400)
+access = 2
+filters = PackedStringArray("*.sqlite3", "*.sqlite", "*.db")
+
+[node name="GenerateChessDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+initial_position = 2
+size = Vector2i(600, 400)
+access = 2
+filters = PackedStringArray("*.sqlite3", "*.sqlite", "*.db")
+
+[connection signal="pressed" from="Panel/OpenGameDb" to="." method="_on_open_game_db_pressed"]
+[connection signal="pressed" from="Panel/CreateGameDb" to="." method="_on_create_game_db_pressed"]
+[connection signal="pressed" from="Panel/GenerateChessBiomesDb" to="." method="_on_generate_chess_biomes_db_pressed"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="file_selected" from="OpenDialog" to="." method="_on_open_dialog_file_selected"]
+[connection signal="file_selected" from="CreateDialog" to="." method="_on_create_dialog_file_selected"]
+[connection signal="file_selected" from="GenerateChessDialog" to="." method="_on_generate_chess_dialog_file_selected"]

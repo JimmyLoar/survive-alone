@@ -45,8 +45,8 @@ func fetch_data(collection: StringName, id: Variant) -> Resource:
 ## [/codeblock]
 ## Pushes an error if the string is invalid.
 func fetch_data_string(string: String) -> Variant:
-	var valid_string_id := RegEx.create_from_string(r"[A-Za-z_][A-Za-z_0-9]*\/[A-Za-z_][A-Za-z_0-9]*").search(string) != null
-	var valid_category := RegEx.create_from_string(r"[A-Za-z_][A-Za-z_0-9]*:[A-Za-z_][A-Za-z_0-9]*").search(string) != null
+	var valid_string_id := RegEx.create_from_string(r"[A-Za-z_][A-Za-z_0-9]*\/[A-Za-z_0-9][A-Za-z_0-9]*").search(string) != null
+	var valid_category := RegEx.create_from_string(r"[A-Za-z_][A-Za-z_0-9]*:[A-Za-z_0-9][A-Za-z_0-9]*").search(string) != null
 	assert((valid_string_id or valid_category) and not (valid_string_id and valid_category), "[ResourceDatabase] Can't fetch data string, invalid format.")
 	var parts := string.split("/" if valid_string_id else ":", false)
 	assert(parts.size() == 2, "[ResourceDatabase] Can't fetch data string, invalid format.")
@@ -99,6 +99,11 @@ func get_data_categories(collection: StringName, id: Variant) -> Array[StringNam
 	for category: StringName in (_collections_data[collection][&"categories_to_ints"] as Dictionary):
 		if (_collections_data[collection][&"categories_to_ints"][category] as Dictionary).has(int_id):
 			result.append(category)
+	return result
+
+## Return an [class Array[StringName]]
+func get_data_string_ids(collection: StringName) -> Array:
+	var result: Array = _collections_data[collection][&"strings_to_ints"].keys()
 	return result
 #endregion
 

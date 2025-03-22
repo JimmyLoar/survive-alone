@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EventActionResource" load_steps=4 format=3 uid="uid://c66ptthr6m3wo"]
+
+[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="1_5uac7"]
+[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="3_4rmag"]
+
+[sub_resource type="Resource" id="Resource_lii0l"]
+script = ExtResource("1_5uac7")
+type = "effect"
+name = "activate event"
+"arg_0: event name" = "bs_defualt_event"
+
+[resource]
+script = ExtResource("3_4rmag")
+is_said = false
+next_stage = -1
+showing_result = false
+conditions = Array[ExtResource("1_5uac7")]([])
+effects = Array[ExtResource("1_5uac7")]([SubResource("Resource_lii0l")])
+context_show_properties_bar = false
+context_use_slider = false
+context_use_item_grid = true
+code_name = &"dots"
+visible_name = "EVENT_ACTION_DOTS_NAME"
+discription = "EVENT_ACTION_DOTS_DISCRIPTION"

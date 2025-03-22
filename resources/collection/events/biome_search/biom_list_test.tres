@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EventList" load_steps=5 format=3 uid="uid://dcgbiiy8tbv8b"]
+
+[ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="1_1nfj8"]
+[ext_resource type="Script" uid="uid://cnilw3s7buvfo" path="res://feature/game_event/source/events_list.gd" id="1_4lsjt"]
+[ext_resource type="Resource" uid="uid://4lsplaql8qte" path="res://resources/collection/events/biome_search/bs_animal_corpse.tres" id="3_dbch5"]
+[ext_resource type="Resource" uid="uid://dq2k6kcwcusov" path="res://resources/collection/events/biome_search/bs_wood_1.tres" id="4_2qlyx"]
+
+[resource]
+script = ExtResource("1_4lsjt")
+tags_list = {}
+events = Array[ExtResource("1_1nfj8")]([ExtResource("4_2qlyx"), ExtResource("3_dbch5")])

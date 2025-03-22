@@ -13,3 +13,12 @@ export_presets.cfg
 data_*/
 /android/
 *.tmp
+database/config.cfg
+
+#IDE
+.vscode/
+
+#folders
+addons/script_panel_plus/saves
+addons/godot-sqlite/bin/~libgdsqlite.windows.template_debug.x86_64.dll
+\!saves/execute_keeper.cfg

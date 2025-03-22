@@ -1,0 +1,2 @@
+class_name InventoryCharacterState
+extends InventoryState

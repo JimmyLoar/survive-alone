@@ -1,4 +1,4 @@
-# UI Extension Filter Dropdown Item : MIT License
+# UI Extension Filter Dropdown ItemEntity : MIT License
 # @author Vladimir Petrenko
 extends Object
 class_name DropdownItem
