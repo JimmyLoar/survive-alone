@@ -9,3 +9,4 @@ func _init(_new_node: EventNode) -> void:
 
 func activate_event(event: EventResource):
 	_node.display(event)
+	

@@ -10,6 +10,7 @@ script = ExtResource("1_udxo8")
 name = &"start"
 text = "EVENT_BS_WOOD_2_START"
 actions = Array[ExtResource("2_cix24")]([ExtResource("3_irxhc")])
+showing_action_hints = false
 
 [resource]
 script = ExtResource("1_08tpf")

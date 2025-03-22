@@ -10,6 +10,7 @@
 script = ExtResource("2_kolh1")
 is_said = false
 next_stage = 1
+showing_result = false
 conditions = Array[ExtResource("3_irgm2")]([])
 effects = Array[ExtResource("3_irgm2")]([])
 context_show_properties_bar = false
@@ -23,6 +24,7 @@ discription = "EVENT_ACTION_COLLECT_SOME_DISCRIPTION"
 script = ExtResource("2_kolh1")
 is_said = false
 next_stage = 2
+showing_result = false
 conditions = Array[ExtResource("3_irgm2")]([])
 effects = Array[ExtResource("3_irgm2")]([])
 context_show_properties_bar = false
@@ -37,6 +39,7 @@ script = ExtResource("1_dwlc2")
 name = &"start"
 text = "EVENT_BS_FLOWERS_START_TEXT"
 actions = Array[ExtResource("2_kolh1")]([SubResource("Resource_akc6v"), SubResource("Resource_1xb55")])
+showing_action_hints = false
 
 [sub_resource type="Resource" id="Resource_3optr"]
 script = ExtResource("1_dwlc2")
@@ -44,12 +47,14 @@ name = &"reward_1"
 text = "EVENT_BS_FLOWERS_REWARD_1
 "
 actions = Array[ExtResource("2_kolh1")]([ExtResource("4_jmmcq")])
+showing_action_hints = false
 
 [sub_resource type="Resource" id="Resource_fsfnc"]
 script = ExtResource("1_dwlc2")
 name = &"exit"
 text = "EVENT_BS_EXIT"
 actions = Array[ExtResource("2_kolh1")]([ExtResource("4_jmmcq")])
+showing_action_hints = false
 
 [resource]
 script = ExtResource("5_8axyp")

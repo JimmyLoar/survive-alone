@@ -22,10 +22,28 @@ name = "set property"
 "arg_1: value" = -15
 metadata/_custom_type_script = "uid://c33om3s7ld1l5"
 
+[sub_resource type="Resource" id="Resource_wmdre"]
+script = ExtResource("3_gnxgc")
+type = "effect"
+name = "set character property"
+arg_0 = "fatigue"
+arg_1 = -5
+metadata/_custom_type_script = "uid://c33om3s7ld1l5"
+
+[sub_resource type="Resource" id="Resource_82ly7"]
+script = ExtResource("3_gnxgc")
+type = "effect"
+name = "time skip"
+arg_0 = 30
+arg_1 = 0.5
+arg_2 = false
+metadata/_custom_type_script = "uid://c33om3s7ld1l5"
+
 [sub_resource type="Resource" id="Resource_scj74"]
 script = ExtResource("2_5w4a2")
 is_said = false
 next_stage = 1
+showing_result = true
 conditions = Array[ExtResource("3_gnxgc")]([])
 effects = Array[ExtResource("3_gnxgc")]([SubResource("Resource_0p4fc"), SubResource("Resource_wmdre")])
 context_show_properties_bar = false
@@ -39,6 +57,7 @@ discription = "EVENT_ACTION_COLLECT_SOME_DISCRIPTION"
 script = ExtResource("2_5w4a2")
 is_said = false
 next_stage = 2
+showing_result = false
 conditions = Array[ExtResource("3_gnxgc")]([])
 effects = Array[ExtResource("3_gnxgc")]([])
 context_show_properties_bar = false
@@ -53,12 +72,14 @@ script = ExtResource("1_3gspl")
 name = &"start"
 text = "EVENT_BS_WOOD_1_START"
 actions = Array[ExtResource("2_5w4a2")]([SubResource("Resource_scj74"), SubResource("Resource_ofn2r")])
+showing_action_hints = true
 
 [sub_resource type="Resource" id="Resource_qwlru"]
 script = ExtResource("1_3gspl")
 name = &"reward"
 text = "EVENT_BS_WOOD_1_REWARD"
 actions = Array[ExtResource("2_5w4a2")]([ExtResource("4_qq604")])
+showing_action_hints = false
 
 [sub_resource type="Resource" id="Resource_rgt6w"]
 script = ExtResource("1_3gspl")
@@ -66,6 +87,7 @@ name = &"exit"
 text = "EVENT_BS_EXIT
 "
 actions = Array[ExtResource("2_5w4a2")]([ExtResource("4_qq604")])
+showing_action_hints = false
 
 [resource]
 script = ExtResource("5_s5y4h")

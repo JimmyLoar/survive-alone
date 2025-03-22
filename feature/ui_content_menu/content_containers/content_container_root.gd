@@ -5,8 +5,8 @@ signal closed
 
 @export_range(0.1, 10.0, 0.1) var main_stretch_ratio := 2.4
 
-@onready var main_container: MarginContainer = $_MarginContainer/HBoxContainer/MainContainer
-@onready var sub_container: TabContainer = $_MarginContainer/HBoxContainer/SubContainer
+@onready var main_container: MarginContainer = %MainContainer
+@onready var sub_container: TabContainer = %SubContainer
 @onready var logger := Log.get_global_logger().with("ContentMenu (%s)" % name)
 
 

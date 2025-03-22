@@ -25,7 +25,7 @@ func _register_methods():
 		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
 		property.value += value
 		_character_state.set_property(property)
-		
+
 	execute_keeper.register(execute_keeper.TYPE_EFFECT, 
 		"set property", set_prop, 
 		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
