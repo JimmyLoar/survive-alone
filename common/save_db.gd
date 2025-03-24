@@ -59,6 +59,15 @@ CREATE TABLE IF NOT EXISTS "inventory" (
 	"items"	BLOB NOT NULL,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
+CREATE TABLE IF NOT EXISTS "world_object" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"x"	INTEGER NOT NULL,
+	"y"	INTEGER NOT NULL,
+	"end_x"	INTEGER NOT NULL,
+	"end_y"	INTEGER NOT NULL,
+	"uid"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
 """
 	if not connection.query(query):
 		return false

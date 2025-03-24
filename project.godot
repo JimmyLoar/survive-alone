@@ -28,6 +28,7 @@ game/version/string="dev"
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Injector="*res://addons/godot-di/Injector.gd"
+GodotLogger="*res://addons/logger/logger.gd"
 
 [display]
 
@@ -128,6 +129,11 @@ locale/locale_filter_mode=1
 2d_physics/layer_3="BiomsBlock"
 2d_physics/layer_4="Structure"
 2d_physics/layer_5="Events"
+
+[localization_editor]
+
+locales_path_to_file="res://localization/localizations.csv"
+translations_save_auth=false
 
 [rendering]
 

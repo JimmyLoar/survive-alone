@@ -17,13 +17,12 @@ signal visible_objects_changed(diff: VisibleObjectsDiff, value: Dictionary)
 var visible_objects:
 	get: return _visible_objects
 
-var _visible_rect: Rect2
-var visible_rect: Rect2:
-	get: return _visible_rect
-	set(value):
-		if _visible_rect != value:
-			_visible_rect = value
-			
+var visible_rect: Rect2
+
+func set_visible_rect(value: Rect2, force: bool = false):
+	if visible_rect != value or force:
+		visible_rect = value
+		
 		var intersected_objects = _world_object_repository.get_all_intersected(value)
 		var diff = VisibleObjectsDiff.new()
 		for object in intersected_objects:
@@ -38,9 +37,10 @@ var visible_rect: Rect2:
 		if not diff.is_empty:
 			visible_objects_changed.emit(diff, _visible_objects)
 
+
 func get_object_by_position_fast(pos: Vector2) -> WorldObjectEntity:
 	var intersect_polygon_with_pos = func (entity: WorldObjectEntity):
-		return Geometry2D.is_point_in_polygon(pos - entity.resource.collision_offset, entity.resource.collision_shape.points)
+		return Geometry2D.is_point_in_polygon(pos - entity.get_offset(), entity.resource.collision_shape.points)
 
 	var intersected_visible_world_objects = _visible_objects.values().filter(intersect_polygon_with_pos)
 
@@ -53,3 +53,6 @@ func get_object_by_position_fast(pos: Vector2) -> WorldObjectEntity:
 		return visible_world_objects[0]
 	
 	return null
+
+func request_rerender() -> void:
+	set_visible_rect(visible_rect, true)

@@ -1,28 +1,36 @@
 [gd_resource type="Resource" script_class="SearchDropResource" load_steps=6 format=3 uid="uid://cmj3q638n6mio"]
 
-[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://resources/collection/items/food/water_clear.tres" id="1_mi0yu"]
-[ext_resource type="Resource" uid="uid://chxbdcao06tc6" path="res://resources/collection/items/food/canned_food.tres" id="2_jt0ol"]
-[ext_resource type="Resource" uid="uid://cqvooygqbwtxj" path="res://resources/collection/items/resource/duct_tape.tres" id="3_boqxm"]
-[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/wood.tres" id="4_4dv1q"]
 [ext_resource type="Script" uid="uid://daiqkhjf0g3d3" path="res://resources/schema/search_drop.gd" id="5_wwbr7"]
+
+[sub_resource type="Resource" id="Resource_jbkda"]
+metadata/__load_path__ = "res://resources/collection/items/food/food_water_clear.tres"
+
+[sub_resource type="Resource" id="Resource_0ee3m"]
+metadata/__load_path__ = "res://resources/collection/items/food/food_canned_food.tres"
+
+[sub_resource type="Resource" id="Resource_nqcru"]
+metadata/__load_path__ = "res://resources/collection/items/resource/resource_duct_tape.tres"
+
+[sub_resource type="Resource" id="Resource_42m41"]
+metadata/__load_path__ = "res://resources/collection/items/resource/resource_wood.tres"
 
 [resource]
 script = ExtResource("5_wwbr7")
 items_count = 4
-_items = Array[Array]([[ExtResource("1_mi0yu"), 1.0, 0.3, 1.125], [ExtResource("2_jt0ol"), 1.12, 0.25, 1.125], [ExtResource("3_boqxm"), 1.0, 0.4, 1.125], [ExtResource("4_4dv1q"), 1.0, 0.7, 1.125]])
-item_01/data = ExtResource("1_mi0yu")
+_items = Array[Array]([[SubResource("Resource_jbkda"), 1.0, 0.3, 1.125], [SubResource("Resource_0ee3m"), 1.12, 0.25, 1.125], [SubResource("Resource_nqcru"), 1.0, 0.4, 1.125], [SubResource("Resource_42m41"), 1.0, 0.7, 1.125]])
+item_01/data = SubResource("Resource_jbkda")
 item_01/reward_count = 1.0
 item_01/chance_base = 0.3
 item_01/reduction_rate = 1.125
-item_02/data = ExtResource("2_jt0ol")
+item_02/data = SubResource("Resource_0ee3m")
 item_02/reward_count = 1.12
 item_02/chance_base = 0.25
 item_02/reduction_rate = 1.125
-item_03/data = ExtResource("3_boqxm")
+item_03/data = SubResource("Resource_nqcru")
 item_03/reward_count = 1.0
 item_03/chance_base = 0.4
 item_03/reduction_rate = 1.125
-item_04/data = ExtResource("4_4dv1q")
+item_04/data = SubResource("Resource_42m41")
 item_04/reward_count = 1.0
 item_04/chance_base = 0.7
 item_04/reduction_rate = 1.125

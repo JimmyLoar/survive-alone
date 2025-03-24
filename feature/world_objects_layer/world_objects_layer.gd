@@ -2,6 +2,7 @@ extends Node2D
 
 
 var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk", 16)
+var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)  
 
 var _state: WorldObjectsLayerState
 var _visible_object_nodes = Dictionary()
@@ -20,7 +21,8 @@ func _ready() -> void:
 
 
 func _on_virtual_chunks_rect_changed(rect: Rect2i):
-	_state.visible_rect = Rect2(rect.position * chunk_size, rect.size * chunk_size)
+	var chunk_size_in_pixels = chunk_size * tile_size
+	_state.set_visible_rect(Rect2(rect.position * chunk_size_in_pixels, rect.size * chunk_size_in_pixels))
 
 
 func _on_visible_objects_changed(diff: WorldObjectsLayerState.VisibleObjectsDiff, value: Dictionary):
@@ -48,4 +50,5 @@ func _load_object_node(entity: WorldObjectEntity):
 		var node_package = load("res://feature/world_objects_layer/internal/world_location_node.tscn")
 		var node: WorldLocationNode = node_package.instantiate()
 		node.resource = entity.resource
+		node.position = entity.get_offset()
 		return node
