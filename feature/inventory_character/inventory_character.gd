@@ -68,5 +68,9 @@ func _on_confirmed_drop_item(item: ItemEntity, count: int):
 	_inventory_repository.insert(_state.inventory_entity)
 	_inventory_repository.insert(location_inventory_state.inventory_entity)
 
-	world_objects_layer_state.request_rerender()
-	character_location_state.current_location = world_object_repository.get_by_id(location_inventory_state.inventory_entity.belongs_at.id)
+	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
+		world_objects_layer_state.request_rerender()
+		character_location_state.current_location = world_object_repository.get_by_id(location_inventory_state.inventory_entity.belongs_at.id)
+	else:
+		# request rerender location inventory
+		location_inventory_state.change_entity(location_inventory_state.inventory_entity)

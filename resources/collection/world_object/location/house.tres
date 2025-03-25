@@ -12,5 +12,5 @@ search_drop = ExtResource("3_tba6b")
 name = "Дом"
 collision_shape = ExtResource("1_i5hha")
 code_name = &"house_world_location"
-visible_name = "STRUCTURE_NAME_HOUSE_WORLD_LOCATION"
-discription = "STRUCTURE_DISCRIPTION_HOUSE_WORLD_LOCATION"
+visible_name = "STRUCTURE_HOUSE_WORLD_LOCATION_NAME"
+discription = "STRUCTURE_HOUSE_WORLD_LOCATION_DISCRIPTION"

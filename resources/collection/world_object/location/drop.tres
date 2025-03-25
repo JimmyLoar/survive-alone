@@ -10,5 +10,5 @@ texture = ExtResource("3_rra03")
 name = "Дроп"
 collision_shape = ExtResource("1_gm42n")
 code_name = &"drop_location"
-visible_name = "STRUCTURE_NAME_DROP_LOCATION"
-discription = "STRUCTURE_DISCRIPTION_DROP_LOCATION"
+visible_name = "STRUCTURE_DROP_LOCATION_NAME"
+discription = "STRUCTURE_DROP_LOCATION_DISCRIPTION"

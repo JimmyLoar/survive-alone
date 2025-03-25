@@ -12,5 +12,5 @@ search_drop = ExtResource("3_nuv16")
 name = "Перекресток"
 collision_shape = ExtResource("1_qhfta")
 code_name = &"crossroad_world_location"
-visible_name = "STRUCTURE_NAME_CROSSROAD_WORLD_LOCATION"
-discription = "STRUCTURE_DISCRIPTION_CROSSROAD_WORLD_LOCATION"
+visible_name = "STRUCTURE_CROSSROAD_WORLD_LOCATION_NAME"
+discription = "STRUCTURE_CROSSROAD_WORLD_LOCATION_DISCRIPTION"
