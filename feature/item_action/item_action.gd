@@ -21,7 +21,7 @@ var currect_action: ActionResource
 
 func display(action: ActionResource):
 	currect_action = action
-	button.text = action.code_name
+	button.text = action.visible_name
 	_update_action_types()
 
 

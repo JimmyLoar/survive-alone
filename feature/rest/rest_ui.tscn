@@ -1,11 +1,28 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbxwa4c3uxw1"]
 
 [ext_resource type="Script" uid="uid://cvg7piw0dj3m3" path="res://feature/rest/rest.gd" id="1_3hays"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="1_a40ga"]
-[ext_resource type="PackedScene" uid="uid://bju41818qf8k8" path="res://feature/rest/ui_elements/delta_lable.tscn" id="3_gknjw"]
+[ext_resource type="PackedScene" uid="uid://b4ga5glrmq6if" path="res://feature/rest/ui_elements/delta_display.tscn" id="2_f3qwg"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_hr66f"]
-font_size = 106
+[sub_resource type="LabelSettings" id="LabelSettings_s4cqd"]
+font_size = 160
+shadow_size = 6
+shadow_color = Color(0.196078, 0.196078, 0.196078, 0.87451)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="GDScript" id="GDScript_s4cqd"]
+script/source = "extends Label
+
+
+func display_time(time: int, new_time: int):
+	var tween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+	tween.tween_method(_update_text, time, new_time, 0.5)
+
+
+func _update_text(time):
+	var hours = int(time / 60)
+	var minutes = int(time % 60)
+	text = \"%02d:%02d\" % [hours, minutes]
+"
 
 [node name="RestUi" type="MarginContainer"]
 anchors_preset = 15
@@ -19,237 +36,101 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 script = ExtResource("1_3hays")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="PanelBG" type="Panel" parent="."]
+modulate = Color(0.279967, 0.279967, 0.279967, 1)
 layout_mode = 2
-color = Color(0.154876, 0.154876, 0.154876, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 300
 theme_override_constants/margin_bottom = 150
 
-[node name="ColorRect" type="ColorRect" parent="ColorRect2/MarginContainer"]
+[node name="WindowPanelBG" type="PanelContainer" parent="MarginContainer"]
+self_modulate = Color(1, 1, 0.713726, 1)
 layout_mode = 2
-color = Color(0.329158, 0.329158, 0.329158, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect2/MarginContainer/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/WindowPanelBG"]
+layout_mode = 2
+theme_override_constants/separation = 6
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer"]
+[node name="HBoxDeltaContainer" type="HBoxContainer" parent="MarginContainer/WindowPanelBG/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="DeltaBox" type="MarginContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HDelataBox" parent="MarginContainer/WindowPanelBG/VBoxContainer/HBoxDeltaContainer" instance=ExtResource("2_f3qwg")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HDelataBox" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox"]
-layout_mode = 2
-
-[node name="IconE" type="TextureRect" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox/HDelataBox"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("1_a40ga")
-expand_mode = 2
-
-[node name="DeltaExhausion" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox/HDelataBox" instance=ExtResource("3_gknjw")]
-unique_name_in_owner = true
-layout_mode = 2
-positive_color = Color(0.893816, 0.273483, 0.255351, 1)
-negative_color = Color(0.300434, 0.620362, 0.454389, 1)
-
-[node name="DeltaBox2" type="MarginContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HDelataBox2" parent="MarginContainer/WindowPanelBG/VBoxContainer/HBoxDeltaContainer" instance=ExtResource("2_f3qwg")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HDelataBox" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox2"]
-layout_mode = 2
-
-[node name="IconH" type="TextureRect" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox2/HDelataBox"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("1_a40ga")
-expand_mode = 2
-
-[node name="DeltaHunger" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox2/HDelataBox" instance=ExtResource("3_gknjw")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="DeltaBox3" type="MarginContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HDelataBox3" parent="MarginContainer/WindowPanelBG/VBoxContainer/HBoxDeltaContainer" instance=ExtResource("2_f3qwg")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HDelataBox" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox3"]
-layout_mode = 2
-
-[node name="IconT" type="TextureRect" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox3/HDelataBox"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("1_a40ga")
-expand_mode = 2
-
-[node name="DeltaThrist" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox3/HDelataBox" instance=ExtResource("3_gknjw")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="DeltaBox4" type="MarginContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HDelataBox4" parent="MarginContainer/WindowPanelBG/VBoxContainer/HBoxDeltaContainer" instance=ExtResource("2_f3qwg")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HDelataBox" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox4"]
-layout_mode = 2
-
-[node name="IconF" type="TextureRect" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox4/HDelataBox"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("1_a40ga")
-expand_mode = 2
-
-[node name="DeltaFatigue" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer/DeltaBox4/HDelataBox" instance=ExtResource("3_gknjw")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/WindowPanelBG/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-
-[node name="TimeSubtractButton" type="Button" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="TimeSubtractButton" type="Button" parent="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "-"
 
-[node name="Time" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.72
-
-[node name="TimerNumber1" type="Label" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/Time"]
+[node name="TimeLable" type="Label" parent="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "1"
-label_settings = SubResource("LabelSettings_hr66f")
+size_flags_stretch_ratio = 2.0
+text = "11:11"
+label_settings = SubResource("LabelSettings_s4cqd")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
+script = SubResource("GDScript_s4cqd")
 
-[node name="TimerNumber2" type="Label" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/Time"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "1"
-label_settings = SubResource("LabelSettings_hr66f")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label3" type="Label" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/Time"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.0
-text = ":"
-label_settings = SubResource("LabelSettings_hr66f")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TimerNumber3" type="Label" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/Time"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "1"
-label_settings = SubResource("LabelSettings_hr66f")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TimerNumber4" type="Label" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/Time"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "1"
-label_settings = SubResource("LabelSettings_hr66f")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TimeAddButton" type="Button" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="TimeAddButton" type="Button" parent="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "+"
 
-[node name="MarginContainer4" type="MarginContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer"]
+[node name="EffectivityLable" type="Label" parent="MarginContainer/WindowPanelBG/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "REST_EFFECTIVITY: %d%%"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/WindowPanelBG/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer4"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer4/HBoxContainer"]
-layout_mode = 2
-text = "REST_EFFECTIVITY:"
-
-[node name="Label2" type="Label" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer4/HBoxContainer"]
-layout_mode = 2
-text = "100%"
-
-[node name="MarginContainer3" type="MarginContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_top = 9
-theme_override_constants/margin_right = 9
-theme_override_constants/margin_bottom = 9
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3"]
-layout_mode = 2
 theme_override_constants/separation = 245
 
-[node name="ButtonCancelRest" type="Button" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer"]
+[node name="ButtonCancelRest" type="Button" parent="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CANCEL"
 
-[node name="ButtonAcceptRest" type="Button" parent="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer"]
+[node name="ButtonAcceptRest" type="Button" parent="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "REST"
 
-[connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/TimeSubtractButton" to="." method="_on_time_subtract_button_pressed"]
-[connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/VBoxContainer/TimeAddButton" to="." method="_on_time_add_button_pressed"]
-[connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer/ButtonCancelRest" to="." method="_on_button_accept_cancel_pressed"]
-[connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer/ButtonCancelRest" to="." method="_on_button_cancel_rest_pressed"]
-[connection signal="pressed" from="ColorRect2/MarginContainer/ColorRect/VBoxContainer/MarginContainer3/HBoxContainer/ButtonAcceptRest" to="." method="_on_button_accept_rest_pressed"]
+[connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer/TimeSubtractButton" to="." method="_on_time_subtract_button_pressed"]
+[connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer/TimeAddButton" to="." method="_on_time_add_button_pressed"]
+[connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer/ButtonCancelRest" to="." method="_on_button_accept_cancel_pressed"]
+[connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer/ButtonCancelRest" to="." method="_on_button_cancel_rest_pressed"]
+[connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer/ButtonAcceptRest" to="." method="_on_button_accept_rest_pressed"]

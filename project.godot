@@ -28,7 +28,6 @@ game/version/string="dev"
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Injector="*res://addons/godot-di/Injector.gd"
-GodotLogger="*res://addons/logger/logger.gd"
 
 [display]
 
@@ -48,7 +47,7 @@ project/assembly_name="SurviveAlone"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [file_customization]
 
@@ -112,7 +111,7 @@ pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://localization/localizations.de.translation", "res://localization/localizations.en.translation", "res://localization/localizations.ru.translation")
+locale/translations=PackedStringArray("res://localization/localizations.en.translation", "res://localization/localizations.ru.translation", "res://localization/localizations.de.translation")
 locale/language_filter=["en", "ru"]
 locale/country_filter=["RU", "US"]
 locale/locale_filter_mode=1
@@ -129,6 +128,11 @@ locale/locale_filter_mode=1
 2d_physics/layer_3="BiomsBlock"
 2d_physics/layer_4="Structure"
 2d_physics/layer_5="Events"
+
+[localization_editor]
+
+locales_path_to_file="res://localization/localizations.csv"
+translations_save_auth=false
 
 [rendering]
 

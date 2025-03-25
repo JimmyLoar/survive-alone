@@ -9,6 +9,7 @@ extends NamedResource
 @export_group("Context", "context")
 @export var context_show_properties_bar := false
 @export var context_use_slider := false
+@export var context_use_item_grid := false
 
 
 func _init(_name := "ACTION") -> void:

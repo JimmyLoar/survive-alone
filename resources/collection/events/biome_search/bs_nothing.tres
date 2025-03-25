@@ -8,12 +8,13 @@
 [sub_resource type="Resource" id="Resource_7e2gk"]
 script = ExtResource("1_tssby")
 name = &"start"
-text = "Через какоето время вы замечаете, что ходите кругами. Вам неудалось найти что то полезное..."
+text = "EVENT_BS_NOTHING_START"
 actions = Array[ExtResource("2_ybw5k")]([ExtResource("3_jassr")])
+showing_action_hints = false
 
 [resource]
 script = ExtResource("1_cdnyt")
 _stages = Array[ExtResource("1_tssby")]([SubResource("Resource_7e2gk")])
-code_name = &"nothing"
-visible_name = "EVENT_NAME_NOTHING"
-discription = "EVENT_DISCRIPTION_NOTHING"
+code_name = &"bs_nothing"
+visible_name = "EVENT_BS_NOTHING_NAME"
+discription = "EVENT_BS_NOTHING_DISCRIPTION"

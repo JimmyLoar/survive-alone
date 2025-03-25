@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://w30mnp2gmvuy"]
+
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_yvnmw"]
+[ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_3dlp7"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_e3uhg"]
+
+[resource]
+script = ExtResource("2_3dlp7")
+texture = ExtResource("3_e3uhg")
+rare = 1
+durability = 100
+is_pickable = true
+actions = Array[ExtResource("1_yvnmw")]([])
+code_name = &"tool_primus"
+visible_name = "ITEM_TOOL_PRIMUS_NAME"
+discription = "ITEM_TOOL_PRIMUS_DISCRIPTION"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=24 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
 [ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
 [ext_resource type="Script" uid="uid://bm3q6fg6x55mx" path="res://feature/actions/action_node.gd" id="20_vdqgx"]
+[ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
 
 [sub_resource type="GDScript" id="GDScript_7tx77"]
 script/source = "extends MarginContainer
@@ -61,6 +62,11 @@ layer = 10
 
 [node name="ScreenMouseEvents" parent="UI" instance=ExtResource("5_myumh")]
 theme = ExtResource("10_2w4h6")
+
+[node name="PointerSpace" parent="UI" instance=ExtResource("13_pqelk")]
+show_behind_parent = true
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_bottom = 80
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 anchors_preset = 15
@@ -121,15 +127,7 @@ script = ExtResource("15_bav1l")
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="TimeProgress" parent="UI/VBoxContainer/MarginContainer" instance=ExtResource("16_s66yn")]
-visible = false
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PointerSpace" parent="UI" instance=ExtResource("13_pqelk")]
-theme_override_constants/margin_top = 120
-theme_override_constants/margin_bottom = 80
+mouse_filter = 0
 
 [node name="EmptySpace" type="MarginContainer" parent="UI/VBoxContainer/MarginContainer"]
 visible = false
@@ -146,6 +144,11 @@ custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
+
+[node name="TimeProgress" parent="UI/VBoxContainer/MarginContainer" instance=ExtResource("16_s66yn")]
+visible = false
+layout_mode = 2
+mouse_filter = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("13_63jsv")
@@ -195,5 +198,7 @@ offset_bottom = 715.0
 [node name="ActionNode" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("20_vdqgx")
+
+[node name="QuantitySelecter" parent="." instance=ExtResource("22_scc3c")]
 
 [connection signal="pressed" from="UI/VBoxContainer/MarginContainer/!ButunRest" to="UI/VBoxContainer/MarginContainer/!ButunRest" method="_on_pressed"]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SearchDropResource" load_steps=4 format=3 uid="uid://byqa05n1ugvxn"]
 
-[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://resources/collection/items/food/water_clear.tres" id="1_mk24a"]
-[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/wood.tres" id="4_bmyky"]
+[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://resources/collection/items/food/food_water_clear.tres" id="1_mk24a"]
+[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/resource_wood.tres" id="4_bmyky"]
 [ext_resource type="Script" uid="uid://daiqkhjf0g3d3" path="res://resources/schema/search_drop.gd" id="5_6mpjo"]
 
 [resource]
@@ -17,5 +17,5 @@ item_02/reward_count = 1.0
 item_02/chance_base = 0.7
 item_02/reduction_rate = 1.125
 code_name = &"forest_biome"
-visible_name = "SEARCH_DROP_NAME_FOREST_BIOME"
-discription = "SEARCH_DROP_DISCRIPTION_FOREST_BIOME"
+visible_name = "SEARCH_DROP_FOREST_BIOME_NAME"
+discription = "SEARCH_DROP_FOREST_BIOME_DISCRIPTION"

@@ -43,32 +43,32 @@ func _create_new_save_if_not_exist(save_path: String):
 	character_property_repository.init(save_db)
 	
 
-	var character_props = _resource_db.connection.fetch_collection_data(&"properties").values()
+	var character_props_data = _resource_db.connection.fetch_collection_data(&"properties").values()
+	var character_props = character_props_data.map(func(data): return CharacterPropertyEntity.new(data))
 	var character_world_pos = Vector2(0, 0)
 	var character_inventory = InventoryEntity.new(
 		InventoryRepository.PLAYER_ID,
 		InventoryEntity.BelongsAtObject.new(-1, InventoryEntity.BelongsAtObject.Type.PLAYER),
 		[
 			ItemEntity.new(
-				load("res://resources/collection/items/food/canned_food.tres"),
+				load("res://resources/collection/items/food/food_canned_food.tres"),
 				5
 			),
 			ItemEntity.new(
-				load("res://resources/collection/items/food/water_clear.tres"),
+				load("res://resources/collection/items/food/food_water_clear.tres"),
 				25
 			),
 			ItemEntity.new(
-				load("res://resources/collection/items/food/fresh_meat.tres"),
+				load("res://resources/collection/items/food/food_fresh_meat.tres"),
 				10
 			),
 			ItemEntity.new(
-				load("res://resources/collection/items/resource/wood.tres"),
+				load("res://resources/collection/items/resource/resource_wood.tres"),
 				30
 			),
 		]
 	)
-
-
+	
 	character_repository.insert_world_position(character_world_pos)
 	character_property_repository.create_batch(character_props)
 	inventory_repository.create(character_inventory)

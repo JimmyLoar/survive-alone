@@ -1,38 +1,47 @@
 extends MarginContainer
 
-var _state: RestScreenState
+enum Props{
+	exhaustion,
+	hunger,
+	thirst,
+	fatigue,
+}
+
+const PROP_NAMES: Dictionary = {
+	Props.exhaustion: "exhaustion", 
+	Props.hunger: "hunger", 
+	Props.thirst: "thirst", 
+	Props.fatigue: "fatigue",
+}
+const MINUT_IN_HOUR = GameTimeEntity.MINUT_IN_HOUR
 
 @export_category("Rest characteristics")
 
-@export var fatigue_per_hour = 4
-@export var hunger_per_hour = 1
-@export var thirst_per_hour = 1
-@export var damage_per_hour = 2
-@export var heal_per_hour = 1
-@export var dubled_damage_per_hour = 8
+@export var selected_hours = 60
+@export var _per_hour := {
+	PROP_NAMES[Props.exhaustion]: 2.0, 
+	PROP_NAMES[Props.hunger]: -2.6, 
+	PROP_NAMES[Props.thirst]: -4.0, 
+	PROP_NAMES[Props.fatigue]: 7.2,
+	"rest_exhaustion": -0.75,
+}
+@export var _amount := Array()
 
-var selected_time = 60
-var visual_time = 60
+var rest_effectivity = 1.0
 
-var _t = 0
+var _state: RestScreenState
+
+@onready var delta_container: HBoxContainer = %HBoxDeltaContainer
+@onready var time_lable: Label = %TimeLable
+@onready var effectivity_lable: Label = %EffectivityLable
+
+@onready var character_state: CharacterState = Injector.inject(CharacterState, self)
+@onready var game_time: GameTimeState = Injector.inject(GameTimeState, self)
+@onready var button_accept_rest: Button = %ButtonAcceptRest
 
 
 func _enter_tree() -> void:
 	_state = Injector.provide(RestScreenState, RestScreenState.new(self), self, Injector.ContainerType.CLOSEST)
-
-
-@onready var visual_number_1 = %TimerNumber1
-@onready var visual_number_2 = %TimerNumber2
-@onready var visual_number_3 = %TimerNumber3
-@onready var visual_number_4 = %TimerNumber4
-
-@onready var visual_delta_e = %DeltaExhausion
-@onready var visual_delta_h = %DeltaHunger
-@onready var visual_delta_t = %DeltaThrist
-@onready var visual_delta_f = %DeltaFatigue
-
-@onready var character_state: CharacterState = Injector.inject(CharacterState, self)
-@onready var game_time: GameTimeState = Injector.inject(GameTimeState, self)
 
 
 func _ready():
@@ -40,28 +49,21 @@ func _ready():
 	update_sprite_visual.call_deferred()
 
 
-#
-# Открытие/Закрытие
-#
-
-
+#region Открытие/Закрытие
 func close() -> void:
 	visible = false
 
 
 func open() -> void:
-	_state._selected_time = 60
-	visual_time = 60
-	update_time_visual()
-	update_delta_stats()
+	selected_hours = 0
+	_amount.resize(4)
+	_amount.fill(0)
 	visible = true
+	change_selected_time(1)
 
 
-#
-# Отслеживание взаимодействия
-#
-
-
+#endregion
+#region Отслеживание взаимодействия
 func _on_button_accept_rest_pressed():
 	start_rest()
 
@@ -71,125 +73,100 @@ func _on_button_cancel_rest_pressed():
 
 
 func _on_time_add_button_pressed():
-	change_selected_time(60)
+	change_selected_time(1)
 
 
 func _on_time_subtract_button_pressed():
-	change_selected_time(-60)
+	change_selected_time(-1)
 
 
-#
-# Визуал
-#
-
-
+#endregion
+#region Визуал
 func update_sprite_visual() -> void:
-	var prop_names = ["exhaustion", "hunger", "thirst", "fatigue"]
-	var prop_icons = [%IconE, %IconH, %IconT, %IconF]
+	var prop_icons = delta_container.get_children()
 	
-	for i in range(0, prop_names.size()):
-		var icon = prop_icons[i]
-		var name = prop_names[i]
-		var prop = character_state.get_property(name)
+	for i in Props.values():
+		var icon = prop_icons[i].icon
+		var name = PROP_NAMES[i]
+		var prop = character_state.get_property_data(name)
 		
 		if prop != null:
 			icon.texture = prop.texture
 
 
-func update_time_visual() -> void:
-	var hours = int(visual_time / 60)
-	var minutes = int(visual_time % 60)
-
-	visual_number_1.text = str(hours / 10)
-	visual_number_2.text = str(hours % 10)
-	visual_number_3.text = str(minutes / 10)
-	visual_number_4.text = str(minutes % 10)
+func update_delta_visual(values: Array) -> void:
+	for i in Props.values():
+		var display = delta_container.get_child(i)
+		var value = values[i]
+		display.set_delta_number(value, i == Props.exhaustion)
 
 
-func update_delta_visual() -> void:
-	visual_delta_e.set_delta_number(_state._delta_exhaustion)
-	visual_delta_h.set_delta_number(_state._delta_hunger)
-	visual_delta_t.set_delta_number(_state._delta_thirst)
-	visual_delta_f.set_delta_number(_state._delta_fatigue)
+func update_effectivity_text():
+	effectivity_lable.text = "REST EFFECTIVITY: %d%%" % [rest_effectivity * 100]
 
 
-func _process(delta):
-	_t += delta
-	visual_time = int(lerp(visual_time, _state._selected_time, _t))
-	update_time_visual()
-	if _t >= 1:
-		set_process(false)
-
-
-func start_update_time_visual() -> void:
-	_t = 0
-	set_process(true)
-
-
-#
-# Расчеты времени и изменения харатеристик.
-#
-
-
+#endregion
+#region Расчеты времени и изменения харатеристик.
 func change_selected_time(delta) -> void:
-	if _state._selected_time + delta >= 60 and _state._selected_time + delta <= 60 * 24:
-		_state._selected_time += delta
-		start_update_time_visual()
-		update_delta_stats()
+	if selected_hours + delta >= 1 and selected_hours + delta <= 24:
+		time_lable.display_time(selected_hours * MINUT_IN_HOUR, (selected_hours + delta) * MINUT_IN_HOUR)
+		selected_hours += delta
+		var fatigue = character_state.get_property(PROP_NAMES[Props.fatigue])
+		rest_effectivity = 1.0 if fatigue.value <= fatigue.get_max_value() else 0.25
+		update_delta_stats(delta)
 
 
 func start_rest():
 	#Тут изменяются характеристики
-	var hunger = character_state.get_property("hunger")
-	hunger.default_value += _state._delta_hunger
-	character_state.set_property(hunger)
-	var thirst = character_state.get_property("thirst")
-	thirst.default_value += _state._delta_thirst
-	character_state.set_property(thirst)
-	var exhaustion = character_state.get_property("exhaustion")
-	exhaustion.default_value += _state._delta_exhaustion
-	character_state.set_property(exhaustion)
-	var fatigue = character_state.get_property("fatigue")
-	fatigue.default_value += _state._delta_fatigue
-	character_state.set_property(fatigue)
+	for i in Props.values():
+		_apply_property(i)
+	
 	#Изменение времени
-	game_time.timeskip(_state._selected_time, 3)
+	game_time.finished_skip.connect(_reset_delta_properties, CONNECT_ONE_SHOT)
+	game_time.timeskip(selected_hours * MINUT_IN_HOUR, 3)
 
 	#По идее тут нужна анимация сна или-что-то такое
 	close()
 
 
-func update_delta_stats() -> void:
+func _apply_property(key: Props):
+	var property: CharacterPropertyEntity = character_state.get_property(PROP_NAMES[key])
+	property.delta = _amount[key] / selected_hours / MINUT_IN_HOUR
+	character_state.set_property(property)
+
+
+func _reset_delta_properties(_value: int):
+	for key in Props.values(): 
+		var property: CharacterPropertyEntity = character_state.get_property(PROP_NAMES[key])
+		var property_data: CharacterPropertyResource = character_state.get_property_data(PROP_NAMES[key])
+		property.delta = property_data.default_delta_value
+		character_state.set_property(property)
+
+
+func update_delta_stats(delta: int) -> void:
 	# Расчет изменения характеристик
-	var selected_hours = int(_state._selected_time / 60)
+	var hunger = character_state.get_property(PROP_NAMES[Props.hunger])
+	var thirst = character_state.get_property(PROP_NAMES[Props.thirst])
+	var exhaustion = character_state.get_property(PROP_NAMES[Props.exhaustion])
+	var fatigue = character_state.get_property(PROP_NAMES[Props.fatigue])
+	
+	var _hunger_hours: int = abs(floor(hunger.value / _per_hour[PROP_NAMES[Props.hunger]]))
+	var _thirst_hours: int = abs(floor(thirst.value / _per_hour[PROP_NAMES[Props.thirst]]))
+	var _exhaustion_hours: int = abs(floor(exhaustion.value / _per_hour[PROP_NAMES[Props.exhaustion]]))
+	var _fatigue_hours: int = abs(floor((fatigue.get_max_value() - fatigue.value) / _per_hour[PROP_NAMES[Props.fatigue]]))
+	
+	_amount[Props.exhaustion] = abs(min(_hunger_hours - selected_hours, 0) + min(_thirst_hours - selected_hours, 0)) * _per_hour[PROP_NAMES[Props.fatigue]]
+	_amount[Props.hunger] = min(_hunger_hours, selected_hours) * _per_hour[PROP_NAMES[Props.hunger]]
+	_amount[Props.thirst] = min(_thirst_hours, selected_hours) * _per_hour[PROP_NAMES[Props.thirst]]
+	_amount[Props.fatigue] = max(min(_fatigue_hours, selected_hours), 0) * _per_hour[PROP_NAMES[Props.fatigue]] + max(selected_hours - _fatigue_hours, 0) * rest_effectivity
 
-	_state._delta_fatigue = selected_hours * fatigue_per_hour
+	if _amount[Props.exhaustion] == 0:
+		_amount[Props.exhaustion] = min(abs(_per_hour["rest_exhaustion"] * selected_hours), exhaustion.value) * -1
+	
+	rest_effectivity = 1.0 if fatigue.value + _amount[Props.fatigue] < fatigue.get_max_value() else 0.25
+	
+	update_effectivity_text()
+	update_delta_visual(_amount)
 
-	var hunger = character_state.get_property("hunger")
-	var thirst = character_state.get_property("thirst")
-	var exhaustion = character_state.get_property("exhaustion")
-	# Если хватает и воды и еды
-	if (
-		hunger.default_value >= selected_hours * hunger_per_hour
-		and thirst.default_value >= selected_hours * thirst_per_hour
-	):
-		_state._delta_thirst = -selected_hours * hunger_per_hour
-		_state._delta_hunger = -selected_hours * thirst_per_hour
-		_state._delta_exhaustion = -min(
-			selected_hours * heal_per_hour, exhaustion.default_delta_value
-		)
-	# Если не хватает и воды и еды
-	elif (
-		hunger.default_value < selected_hours * hunger_per_hour
-		and thirst.default_value < selected_hours * thirst_per_hour
-	):
-		_state._delta_thirst = -max(thirst.default_value, 0)
-		_state._delta_hunger = -max(hunger.default_value, 0)
-		_state._delta_exhaustion = selected_hours * dubled_damage_per_hour
-	# Если не хватает чего-то одного
-	else:
-		_state._delta_thirst = -max(min(thirst.default_value, selected_hours * thirst_per_hour), 0)
-		_state._delta_hunger = -max(min(hunger.default_value, selected_hours * hunger_per_hour), 0)
-		_state._delta_exhaustion = selected_hours * damage_per_hour
 
-	update_delta_visual()
+#endregion

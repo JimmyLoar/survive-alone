@@ -4,6 +4,9 @@ extends MarginContainer
 @onready var search_display: MarginContainer = %SearchDisplay
 @onready
 var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Search
+@onready var discription_label: RichTextLabel = %DiscriptionLabel
+
+
 
 @onready var _inventory_location_state: InventoryLocationState = Injector.inject(
 	InventoryLocationState, self
@@ -20,7 +23,17 @@ var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxCon
 func _ready() -> void:
 	_inventory_location_state.search_drop_changed.connect(_on_search_drop_changed)
 
-	Callable(func(): _rerender())
+	Callable(func(): 
+		_visual_randerer()
+		_rerender()
+	)
+
+
+func _visual_randerer():
+	name_label.text = _location.get_location_name()
+	discription_label.clear()
+	discription_label.append_text(_location.get_location_discription())
+	
 
 
 func _on_search_drop_changed(search_drop: SearchDropResource):

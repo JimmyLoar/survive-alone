@@ -14,12 +14,111 @@ var state: InventoryState
 
 
 func _ready() -> void:
+	_register_methods()
 	items_grid.item_pressed.connect(_on_items_grid_item_pressed)
 	items_grid.duble_pressed.connect(_on_items_grid_duble_pressed)
 	items_grid.reset_items_slots(page_size)
 	page_controller.set_page_size(page_size.x * page_size.y)
-	_register_methods()
 
+
+func _register_methods():
+	var database := Injector.inject(ResourceDb, self) as ResourceDb
+	var location_state  := Injector.inject(InventoryLocationState, self) as InventoryLocationState
+	var character_state := Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
+	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	var items_id = database.connection.get_data_string_ids("items")
+	
+	var get_item_amount = func (inventory: InventoryState, item_name: String) -> int:
+		var item = inventory.fetch_item(item_name)
+		if not item:
+			return 0
+		return item.get_total_amount()
+		
+	var get_item_durability = func (inventory: InventoryState, item_name: String) -> int:
+		var item = inventory.fetch_item(item_name)
+		if not item:
+			return 0
+		return item.get_total_dutability()
+	
+	var remove_item = func(item_name: String, amount: int):
+		var remove_amount = min(get_item_amount.call(character_state, item_name), amount)
+		remove_amount = character_state.remove_item(item_name, remove_amount)
+		remove_amount = location_state.remove_item(item_name, remove_amount)
+		return remove_amount
+	
+	execute_keeper.register(
+		execute_keeper.TYPE_EFFECT, "remove item", remove_item,
+		["enum/String/%s" % [",".join(items_id)], "int"], 
+		["item_name", "quantity"],
+		["", 1],
+	)
+	
+	var add_item = func(item: StringName, amount: int, inventory: InventoryState) -> ItemEntity:
+		var item_data: ItemResource = database.connection.fetch_data("items", item)
+		return inventory.add_item(item_data, amount)
+	
+	execute_keeper.register(
+		execute_keeper.TYPE_EFFECT, "add new item in character", 
+		add_item.bind(character_state),
+		["enum/String/%s" % [",".join(items_id)], "int"], 
+		["item_name", "quantity"],
+		["", 1],
+	)
+	
+	execute_keeper.register(
+		execute_keeper.TYPE_EFFECT, "add new item in location", 
+		add_item.bind(location_state),
+		["enum/String/%s" % [",".join(items_id)], "int"], 
+		["item_name", "quantity"],
+		["", 1],
+	)
+	
+	var add_used_items = func(item: StringName, used: Array[int], inventory: InventoryState):
+		var item_data: ItemResource = database.connection.fetch_data("items", item)
+		return inventory.add_item(item_data, 0, used)
+	
+	execute_keeper.register(
+		execute_keeper.TYPE_EFFECT, "add used item in character", 
+		add_used_items.bind(character_state),
+		["enum/String/%s" % [",".join(items_id)], "Array/int"], 
+		["item_name", "durabilities"],
+		["", [50]],
+	)
+	
+	execute_keeper.register(
+		execute_keeper.TYPE_EFFECT, "add used item in location", 
+		add_used_items.bind(location_state),
+		["enum/String/%s" % [",".join(items_id)], "Array/int"], 
+		["item_name", "durabilities"],
+		["", [50]],
+	)
+	
+	var has_amount = func(item_name: String, amount: int):
+		var total: int = 0
+		total += get_item_amount.call(character_state, item_name)
+		total += get_item_amount.call(location_state, item_name)
+		return total >= amount
+	
+	execute_keeper.register(
+		execute_keeper.TYPE_CONDITION, "has item total amount", has_amount,
+		["enum/String/%s" % [",".join(items_id)], "int"], 
+		["item_name", "quantity"],
+		["", 1],
+	)
+	
+	var has_durability = func(item_name: String, amount: int):
+		var total: int = 0
+		total += get_item_durability.call(character_state, item_name)
+		total += get_item_durability.call(location_state, item_name)
+		return total >= amount
+	
+	execute_keeper.register(
+		execute_keeper.TYPE_CONDITION, "has item durability", has_durability,
+		["enum/String/%s" % [",".join(items_id)], "int"], 
+		["item_name", "durability"],
+		["", 1],
+	)
+	return
 
 
 func update(entity: InventoryEntity):
@@ -44,74 +143,3 @@ func _on_items_grid_item_pressed(item_index: int) -> void:
 
 func _on_items_grid_duble_pressed(item_index: int) -> void:
 	double_pressed.emit(state.get_item(item_index))
-
-
-
-func _register_methods():
-	var database := Injector.inject(ResourceDb, self) as ResourceDb
-	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
-	var effect = func(item: String, amount: int):
-		var _state = Injector.inject(InventoryLocationState, self) as InventoryLocationState
-		var item_data: ItemResource = database.connection.fetch_data("items", StringName(item))
-		if not _state.has_item(item_data):
-			_state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
-		return _state.remove_item(item_data, abs(amount))
-	
-	var ids = database.connection.get_data_string_ids("items")
-	execute_keeper.register(
-		execute_keeper.TYPE_EFFECT, "remove item", effect,
-		["enum/String/%s" % [",".join(ids)], "int"], 
-		["", 1],
-	)
-	
-	effect = func(item: String, amount: int):
-		var _state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
-		var item_data: ItemResource = database.connection.fetch_data("items", StringName(item))
-		return _state.add_item(item_data, amount)
-	
-	execute_keeper.register(
-		execute_keeper.TYPE_EFFECT, "add new item", effect,
-		["enum/String/%s" % [",".join(ids)], "int"], 
-		["", 1],
-	)
-	effect = func(item: String, used: Array[int]):
-		var _state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
-		var item_data: ItemResource = database.connection.fetch_data("items", StringName(item))
-		return _state.add_item(item_data, 0, used)
-	
-	execute_keeper.register(
-		execute_keeper.TYPE_EFFECT, "add used item", effect,
-		["enum/String/%s" % [",".join(ids)], "Array/int"], 
-		["", [50]],
-	)
-	var condition = func(item: String, amount: int):
-		var _state = Injector.inject(InventoryLocationState, self) as InventoryLocationState
-		var total: int = 0
-		if _state.find_item(item) != -1:
-			total += _state.fetch_item(item).get_total_amount()
-		_state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
-		if _state.find_item(item) != -1:
-			total += _state.fetch_item(item).get_total_amount()
-		return total >= amount
-	
-	execute_keeper.register(
-		execute_keeper.TYPE_CONDITION, "has item total amount", condition,
-		["enum/String/%s" % [",".join(ids)], "int"], 
-		["", 1],
-	)
-	
-	condition = func(item: String, amount: int):
-		var _state = Injector.inject(InventoryLocationState, self) as InventoryLocationState
-		var total: int = 0
-		if _state.find_item(item) != -1:
-			total += _state.fetch_item(item).get_total_dutability()
-		_state = Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
-		if _state.find_item(item) != -1:
-			total += _state.fetch_item(item).get_total_dutability()
-		return total >= amount
-	
-	execute_keeper.register(
-		execute_keeper.TYPE_CONDITION, "has item durability", condition,
-		["enum/String/%s" % [",".join(ids)], "int"], 
-		["", 1],
-	)

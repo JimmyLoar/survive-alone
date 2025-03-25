@@ -7,5 +7,5 @@ script = ExtResource("1_5s56n")
 items_count = 0
 _items = Array[Array]([])
 code_name = &"none"
-visible_name = "SEARCH_DROP_NAME_NONE"
-discription = "SEARCH_DROP_DISCRIPTION_NONE"
+visible_name = "SEARCH_DROP_NONE_NAME"
+discription = "SEARCH_DROP_NONE_DISCRIPTION"

@@ -7,16 +7,18 @@
 script = ExtResource("1_5uac7")
 type = "effect"
 name = "activate event"
-arg_0 = "bs_defualt_event"
+"arg_0: event name" = "bs_defualt_event"
 
 [resource]
 script = ExtResource("3_4rmag")
 is_said = false
 next_stage = -1
+showing_result = false
 conditions = Array[ExtResource("1_5uac7")]([])
 effects = Array[ExtResource("1_5uac7")]([SubResource("Resource_lii0l")])
 context_show_properties_bar = false
 context_use_slider = false
-code_name = &"..."
-visible_name = ""
-discription = ""
+context_use_item_grid = true
+code_name = &"dots"
+visible_name = "EVENT_ACTION_DOTS_NAME"
+discription = "EVENT_ACTION_DOTS_DISCRIPTION"

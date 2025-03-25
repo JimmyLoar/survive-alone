@@ -10,47 +10,55 @@
 script = ExtResource("2_kolh1")
 is_said = false
 next_stage = 1
+showing_result = false
 conditions = Array[ExtResource("3_irgm2")]([])
 effects = Array[ExtResource("3_irgm2")]([])
 context_show_properties_bar = false
 context_use_slider = false
-code_name = &"Нарвать цветов"
-visible_name = ""
-discription = ""
+context_use_item_grid = false
+code_name = &"collect_some"
+visible_name = "EVENT_ACTION_COLLECT_SOME_NAME"
+discription = "EVENT_ACTION_COLLECT_SOME_DISCRIPTION"
 
 [sub_resource type="Resource" id="Resource_1xb55"]
 script = ExtResource("2_kolh1")
 is_said = false
 next_stage = 2
+showing_result = false
 conditions = Array[ExtResource("3_irgm2")]([])
 effects = Array[ExtResource("3_irgm2")]([])
 context_show_properties_bar = false
 context_use_slider = false
-code_name = &"Пройти мимо"
-visible_name = ""
-discription = ""
+context_use_item_grid = false
+code_name = &"pass_by"
+visible_name = "EVENT_ACTION_PASS_BY_NAME"
+discription = "EVENT_ACTION_PASS_BY_DISCRIPTION"
 
 [sub_resource type="Resource" id="Resource_ya2is"]
 script = ExtResource("1_dwlc2")
 name = &"start"
-text = "Вы вышли на поляну с цветами"
+text = "EVENT_BS_FLOWERS_START_TEXT"
 actions = Array[ExtResource("2_kolh1")]([SubResource("Resource_akc6v"), SubResource("Resource_1xb55")])
+showing_action_hints = false
 
 [sub_resource type="Resource" id="Resource_3optr"]
 script = ExtResource("1_dwlc2")
 name = &"reward_1"
-text = "Вы содрали несколько цветов:"
+text = "EVENT_BS_FLOWERS_REWARD_1
+"
 actions = Array[ExtResource("2_kolh1")]([ExtResource("4_jmmcq")])
+showing_action_hints = false
 
 [sub_resource type="Resource" id="Resource_fsfnc"]
 script = ExtResource("1_dwlc2")
 name = &"exit"
-text = "Вы решатие не тратить время на их сбор. Кто знает может вы сможите найти что то получше..."
+text = "EVENT_BS_EXIT"
 actions = Array[ExtResource("2_kolh1")]([ExtResource("4_jmmcq")])
+showing_action_hints = false
 
 [resource]
 script = ExtResource("5_8axyp")
 _stages = Array[ExtResource("1_dwlc2")]([SubResource("Resource_ya2is"), SubResource("Resource_3optr"), SubResource("Resource_fsfnc")])
-code_name = &"code_name"
-visible_name = "EVENT_NAME_CODE_NAME"
-discription = "EVENT_DISCRIPTION_CODE_NAME"
+code_name = &"bs_flowers"
+visible_name = "EVENT_BS_FLOWERS_NAME"
+discription = "EVENT_BS_FLOWERS_DISCRIPTION"
