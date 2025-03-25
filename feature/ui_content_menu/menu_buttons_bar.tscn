@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://os5qyr4xwmqx"]
+[gd_scene load_steps=5 format=3 uid="uid://os5qyr4xwmqx"]
 
 [ext_resource type="Script" uid="uid://b3okimvbdex1s" path="res://common/version_display.gd" id="1_g2con"]
 [ext_resource type="Script" uid="uid://73tevg3bmefe" path="res://feature/ui_content_menu/menu_buttons_bar.gd" id="1_rhtma"]
+[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/Sound/SFX/UI_SFX/ButtonSound.gd" id="2_xebjt"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_dbce0"]
 
@@ -27,6 +28,8 @@ button_group = SubResource("ButtonGroup_dbce0")
 text = "Allies"
 autowrap_mode = 3
 clip_text = true
+script = ExtResource("2_xebjt")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="Button1" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -37,6 +40,8 @@ button_group = SubResource("ButtonGroup_dbce0")
 text = "Health"
 autowrap_mode = 3
 clip_text = true
+script = ExtResource("2_xebjt")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -47,6 +52,8 @@ button_group = SubResource("ButtonGroup_dbce0")
 text = "..."
 autowrap_mode = 3
 clip_text = true
+script = ExtResource("2_xebjt")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -57,6 +64,8 @@ button_group = SubResource("ButtonGroup_dbce0")
 text = "Quests"
 autowrap_mode = 3
 clip_text = true
+script = ExtResource("2_xebjt")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="Space" type="ReferenceRect" parent="VBoxContainer"]
 layout_mode = 2
@@ -72,6 +81,8 @@ text = "Skills
 "
 autowrap_mode = 3
 clip_text = true
+script = ExtResource("2_xebjt")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="Button5" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -83,6 +94,8 @@ text = "Craft
 "
 autowrap_mode = 3
 clip_text = true
+script = ExtResource("2_xebjt")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="Button6" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -93,6 +106,8 @@ button_group = SubResource("ButtonGroup_dbce0")
 text = "Invetory"
 autowrap_mode = 3
 clip_text = true
+script = ExtResource("2_xebjt")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="Button7" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -103,6 +118,8 @@ button_group = SubResource("ButtonGroup_dbce0")
 text = "Location"
 autowrap_mode = 3
 clip_text = true
+script = ExtResource("2_xebjt")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="Control3" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)

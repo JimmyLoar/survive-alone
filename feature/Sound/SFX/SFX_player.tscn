@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhqgvsdigmgb2"]
+
+[ext_resource type="Script" uid="uid://dhr051lsey51n" path="res://feature/Sound/SFX/sfx_player.gd" id="1_lmk8c"]
+
+[node name="SfxPlayer" type="Node2D"]
+script = ExtResource("1_lmk8c")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
