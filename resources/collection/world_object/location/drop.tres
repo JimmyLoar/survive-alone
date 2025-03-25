@@ -2,11 +2,11 @@
 
 [ext_resource type="Shape2D" uid="uid://b24f3j7dwdw2m" path="res://resources/collection/world_object/location/drop_shape.tres" id="1_gm42n"]
 [ext_resource type="Script" uid="uid://c502la2j7briu" path="res://resources/schema/world_object/world_location.gd" id="2_2dvqp"]
-[ext_resource type="Texture2D" uid="uid://djh8y7tcvjq02" path="res://assets/sprite/placeholders/citybuilder-tileset/StraßeB_1111.png" id="4_15cqa"]
+[ext_resource type="Texture2D" uid="uid://cwjmv1ybu2uk0" path="res://assets/sprite/placeholders/Item11.png" id="3_rra03"]
 
 [resource]
 script = ExtResource("2_2dvqp")
-texture = ExtResource("4_15cqa")
+texture = ExtResource("3_rra03")
 name = "Дроп"
 collision_shape = ExtResource("1_gm42n")
 code_name = &"drop_location"

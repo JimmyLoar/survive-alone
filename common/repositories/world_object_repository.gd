@@ -85,8 +85,8 @@ WHERE
 		e.id = save_to_entity_id(e.id)
 		return e
 	)
-	entities.assign(game_entities)
-	entities.assign(save_entities)
+	entities.append_array(game_entities)
+	entities.append_array(save_entities)
 	return entities
 
 func has(id: int):
@@ -107,7 +107,7 @@ func has(id: int):
 
 	return rows.size() > 0
 
-func insert(entity: WorldObjectEntity, to_game_db: bool = false):
+func insert(entity: WorldObjectEntity, to_game_db: bool):
 	if has(entity.id): 
 		update(entity)
 	else:
@@ -129,7 +129,7 @@ func update(entity: WorldObjectEntity):
 	mapped_entity.id = mappedID
 	db.connection.update_rows("world_object", select_condition, _entity_to_row(mapped_entity))
 
-func create(entity: WorldObjectEntity, to_game_db: bool = false) -> int:
+func create(entity: WorldObjectEntity, to_game_db: bool) -> int:
 	var db;
 
 	if to_game_db:
@@ -138,7 +138,14 @@ func create(entity: WorldObjectEntity, to_game_db: bool = false) -> int:
 		db = _save_db
 
 	db.connection.insert_row("world_object", _entity_to_row(entity, true))
-	return db.connection.last_insert_rowid
+	var db_id = db.connection.last_insert_rowid
+	if to_game_db:
+		entity.id = game_db_to_entity_id(db_id)
+	else:
+		entity.id = save_to_entity_id(db_id)
+	
+	return entity.id
+	
 
 func delete(id: int):
 	var mappedID

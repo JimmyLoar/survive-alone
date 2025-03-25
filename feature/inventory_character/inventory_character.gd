@@ -59,7 +59,7 @@ func _on_confirmed_drop_item(item: ItemEntity, count: int):
 		boundary_rect.position += character_state.position
 		world_object.boundary_rect = boundary_rect
 
-		var world_object_id = world_object_repository.create(world_object)
+		var world_object_id = world_object_repository.create(world_object, false)
 
 		location_inventory_state.inventory_entity.belongs_at = InventoryEntity.BelongsAtObject.new(
 			world_object_id,

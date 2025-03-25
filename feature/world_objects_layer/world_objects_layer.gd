@@ -18,7 +18,7 @@ func _ready() -> void:
 	_state._world_object_repository = Injector.inject(WorldObjectRepository, self)
 	_virtual_chunks_state.visible_chunks_rect_changed.connect(_on_virtual_chunks_rect_changed)
 	_state.visible_objects_changed.connect(_on_visible_objects_changed)
-
+	
 
 func _on_virtual_chunks_rect_changed(rect: Rect2i):
 	var chunk_size_in_pixels = chunk_size * tile_size
