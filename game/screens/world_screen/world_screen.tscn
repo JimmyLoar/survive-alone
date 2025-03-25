@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=26 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://feature/character/character.tscn" id="5_g3jl3"]
 [ext_resource type="PackedScene" uid="uid://di5n7reysaxjj" path="res://feature/virtual_chunks_grid/virtual_chunks_grid.tscn" id="5_m4yp1"]
 [ext_resource type="PackedScene" uid="uid://bmx1kvsxqsfod" path="res://feature/screen_mouse_events/screen_mouse_events.tscn" id="5_myumh"]
+[ext_resource type="PackedScene" uid="uid://6nyuag0tgcow" path="res://feature/Sound/background_music/background_music.tscn" id="6_i1yfc"]
 [ext_resource type="PackedScene" uid="uid://c08a22asf3v80" path="res://feature/fps_display/fps_display.tscn" id="7_hexpw"]
+[ext_resource type="PackedScene" uid="uid://dhqgvsdigmgb2" path="res://feature/Sound/SFX/SFX_player.tscn" id="7_irxn0"]
 [ext_resource type="PackedScene" uid="uid://bn7r5o20xaisj" path="res://feature/character_properties_bar/charater_properties_bar.tscn" id="7_ksbsw"]
 [ext_resource type="Theme" uid="uid://cfhrwmys6lnl6" path="res://assets/themes/main.tres" id="10_2w4h6"]
 [ext_resource type="Script" uid="uid://xtum3t0baoax" path="res://feature/game_time/game_time_display.gd" id="11_fvjg5"]
@@ -47,6 +49,10 @@ script = ExtResource("1_nlrl3")
 [node name="CharacterLocation" parent="." instance=ExtResource("4_twwnk")]
 
 [node name="WorldObjectsLayer" parent="." instance=ExtResource("4_3odrv")]
+
+[node name="BackgroundMusic" parent="." instance=ExtResource("6_i1yfc")]
+
+[node name="SfxPlayer" parent="." instance=ExtResource("7_irxn0")]
 
 [node name="VirtualChunksGrid" parent="." instance=ExtResource("5_m4yp1")]
 visible = false
