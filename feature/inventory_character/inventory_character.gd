@@ -46,7 +46,7 @@ func on_drop_item(item: ItemEntity):
 func _on_confirmed_drop_item(item: ItemEntity, count: int):
 	var all_used = item.get_used()
 	var real_drop_count = min(item.get_total_amount(), count)
-	_state.remove_item(item.get_resource(), count)
+	_state.remove_item(item.get_resource().code_name, count)
 	var used = all_used.slice(0, min(all_used.size(), real_drop_count))
 	
 	location_inventory_state.add_item(item.get_resource(), real_drop_count, used)

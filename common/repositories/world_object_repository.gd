@@ -165,7 +165,7 @@ func _row_to_entity(row: Dictionary) -> WorldObjectEntity:
 	var entity = WorldObjectEntity.new()
 	entity.id = row.id
 	entity.boundary_rect = Rect2i(row.x, row.y, row.end_x - row.x, row.end_y - row.y)
-	entity.resource = load(ResourceUID.get_id_path(row.uid))
+	entity.resource = load(ResourceUID.get_id_path(ResourceUID.text_to_id(row.uid)))
 
 	return entity
 
@@ -177,6 +177,6 @@ func _entity_to_row(entity: WorldObjectEntity, without_id = false) -> Dictionary
 	row["y"] = entity.boundary_rect.position.y
 	row["end_x"] = entity.boundary_rect.end.x
 	row["end_y"] = entity.boundary_rect.end.y
-	row["uid"] = ResourceLoader.get_resource_uid(entity.resource.resource_path)
+	row["uid"] = ResourceUID.id_to_text(ResourceLoader.get_resource_uid(entity.resource.resource_path))
 	
 	return row
