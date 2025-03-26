@@ -34,6 +34,8 @@ func _ready() -> void:
 		for prop in props:
 			dict[prop.data_name] = prop
 		_state._properties = dict
+
+		_state.position_changed.emit(position)
 	).call_deferred()
 
 
