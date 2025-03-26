@@ -21,3 +21,6 @@ database/config.cfg
 #folders
 addons/script_panel_plus/saves
 addons/godot-sqlite/bin/~libgdsqlite.windows.template_debug.x86_64.dll
+
+\!saves
+feature/execute_keeper/execute_keeper.cfg
