@@ -92,7 +92,7 @@ func remove_used_amount(amount: int) -> int: # Returns the remainder of the valu
 func serialize() -> PackedByteArray:
 	var dict = {}
 
-	dict["resource_path"] = _resource.resource_path
+	dict["uid"] = ResourceUID.id_to_text(ResourceLoader.get_resource_uid(_resource.resource_path))
 	dict["not_used_amount"] = _not_used_amount
 	dict["used"] = _used
 
@@ -102,7 +102,7 @@ static func deserialize(bytes: PackedByteArray) -> ItemEntity:
 	var dict = bytes_to_var(bytes)
 	
 	var result = ItemEntity.new(
-		load(dict["resource_path"]),
+		load(ResourceUID.get_id_path(ResourceUID.text_to_id(dict["uid"]))),
 		dict["not_used_amount"],
 		dict["used"],
 	)
