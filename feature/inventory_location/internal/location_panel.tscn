@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://djj8lftj7w8hq"]
+[gd_scene load_steps=4 format=3 uid="uid://djj8lftj7w8hq"]
 
 [ext_resource type="Script" uid="uid://bh7jjovu0jc58" path="res://feature/inventory_location/internal/location_panel.gd" id="1_f25e6"]
 [ext_resource type="PackedScene" uid="uid://fabysmmsww7k" path="res://feature/inventory_location/internal/search_display.tscn" id="3_fp44n"]
+[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/Sound/SFX/UI_SFX/ButtonSound.gd" id="3_loygy"]
 
 [node name="LocationPanel" type="MarginContainer"]
 custom_minimum_size = Vector2(40, 40)
@@ -68,6 +69,8 @@ alignment = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "Search"
+script = ExtResource("3_loygy")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Search" to="." method="_on_search_pressed"]

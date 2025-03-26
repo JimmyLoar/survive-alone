@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbxwa4c3uxw1"]
+[gd_scene load_steps=6 format=3 uid="uid://dbxwa4c3uxw1"]
 
 [ext_resource type="Script" uid="uid://cvg7piw0dj3m3" path="res://feature/rest/rest.gd" id="1_3hays"]
 [ext_resource type="PackedScene" uid="uid://b4ga5glrmq6if" path="res://feature/rest/ui_elements/delta_display.tscn" id="2_f3qwg"]
+[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/Sound/SFX/UI_SFX/ButtonSound.gd" id="3_s4cqd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s4cqd"]
 font_size = 160
@@ -86,6 +87,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "-"
+script = ExtResource("3_s4cqd")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="TimeLable" type="Label" parent="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -104,6 +107,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "+"
+script = ExtResource("3_s4cqd")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="EffectivityLable" type="Label" parent="MarginContainer/WindowPanelBG/VBoxContainer"]
 unique_name_in_owner = true
@@ -122,12 +127,16 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CANCEL"
+script = ExtResource("3_s4cqd")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [node name="ButtonAcceptRest" type="Button" parent="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "REST"
+script = ExtResource("3_s4cqd")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer/TimeSubtractButton" to="." method="_on_time_subtract_button_pressed"]
 [connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer/TimeAddButton" to="." method="_on_time_add_button_pressed"]
