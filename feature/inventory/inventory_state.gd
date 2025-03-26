@@ -13,16 +13,12 @@ var _logger: Log
 func _init(new_name := "InventoryState") -> void:
 	name = new_name
 	_logger = Log.get_global_logger().with("Inventory%sState " % new_name)
-	changed_inventory_entity.connect(_recount_index_items)
 
 
 func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
 	var tmp = inventory_entity
-	inventory_entity = _new_entity
-	
-	var get_names: Callable = func(item: ItemEntity):
-		return item.get_resource().code_name 
-	
+	inventory_entity = _new_entity 
+	_update_stored_cache(_new_entity)
 	changed_inventory_entity.emit(_new_entity)
 	return tmp
 
@@ -137,7 +133,7 @@ func _on_changed_value(value: int, index: String):
 		_remove_from_storage_entity(find_item(index))
 
 
-func _recount_index_items(entity: InventoryEntity):
+func _update_stored_cache(entity: InventoryEntity):
 	for i in entity.items.size():
 		_stored_cache[entity.items[i].get_resource().code_name] = i
 
