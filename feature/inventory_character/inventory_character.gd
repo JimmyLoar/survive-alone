@@ -31,7 +31,8 @@ func _ready() -> void:
 	item_information_panel.set_bottom_actions([
 		{
 			"text": "KEY_BUTTON_DROP",
-			"on_pressed": on_drop_item
+			"on_pressed": on_drop_item,
+			"can_view": func(item: ItemEntity): return true
 		}
 	])
 	
@@ -54,7 +55,7 @@ func _on_confirmed_drop_item(item: ItemEntity, count: int):
 	var current_location = character_location_state.current_location
 	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
 		var world_object = WorldObjectEntity.new()
-		world_object.resource = load("res://resources/collection/world_object/location/drop.tres")
+		world_object.resource = load("res://resources/collection/world_object/location/camp.tres")
 		var boundary_rect = world_object.resource.collision_shape.get_rect()
 		boundary_rect.position += character_state.position
 		world_object.boundary_rect = boundary_rect

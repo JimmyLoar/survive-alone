@@ -27,6 +27,9 @@ func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
 	return tmp
 
 
+func is_empty() -> bool:
+	return inventory_entity.items.size() == 0
+
 func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 	var found_index = find_item(data.code_name)
 	if found_index != -1:

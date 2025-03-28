@@ -9,29 +9,21 @@
 script = ExtResource("3_8783l")
 type = "condition"
 name = "property greater than value"
-"arg_0: property_name" = "fatigue"
-"arg_1: value" = 10
 
 [sub_resource type="Resource" id="Resource_oljap"]
 script = ExtResource("3_8783l")
 type = "effect"
 name = "activate event from list"
-"arg_0: events list" = "biom_list_test"
 
 [sub_resource type="Resource" id="Resource_gtsvv"]
 script = ExtResource("3_8783l")
 type = "effect"
 name = "set property"
-"arg_0: property_name" = "fatigue"
-"arg_1: value" = -10
 
 [sub_resource type="Resource" id="Resource_a8v7q"]
 script = ExtResource("3_8783l")
 type = "effect"
 name = "time skip"
-"arg_0: time" = 35
-"arg_1: real_time" = 0.2
-"arg_2: using_progres_bar" = false
 metadata/_custom_type_script = "uid://c33om3s7ld1l5"
 
 [sub_resource type="Resource" id="Resource_c7eoe"]
@@ -52,7 +44,6 @@ discription = "EVENT_ACTION_SEARCH_DISCRIPTION"
 script = ExtResource("3_8783l")
 type = "effect"
 name = "activate event"
-"arg_0: event name" = ""
 
 [sub_resource type="Resource" id="Resource_xwweg"]
 script = ExtResource("2_ttjp6")

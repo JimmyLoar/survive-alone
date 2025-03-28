@@ -63,6 +63,9 @@ func update_player_inventory(entity: InventoryEntity) -> void:
 	assert(entity.id != PLAYER_ID, "update_player_inventory can used only with player inventory")
 	update(entity)
 
+func delete(id: int):
+	var select_condition = "id = %d" % id
+	_save_db.connection.delete_rows(TABLE_NAME, select_condition)
 
 func _entity_to_row(entity: InventoryEntity, without_id = false) -> Dictionary:
 	var result = {}
