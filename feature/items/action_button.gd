@@ -1,4 +1,4 @@
 class_name ActionButton
-extends Button
+extends ButtonSound
 
 var can_view: Callable

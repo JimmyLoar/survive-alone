@@ -69,8 +69,7 @@ func _update_display(item: ItemEntity):
 	bottom_actions.show()
 
 	for action_button: ActionButton in bottom_actions.get_children():
-		var s = action_button.can_view.call(item)
-		if s:
+		if action_button.can_view.call(item):
 			action_button.show()
 		else:
 			action_button.hide()
