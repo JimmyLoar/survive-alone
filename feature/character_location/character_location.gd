@@ -1,3 +1,4 @@
+class_name CharacterLocation
 extends Node
 
 @onready var _character_state: CharacterState = Injector.inject(CharacterState, self)
@@ -10,7 +11,7 @@ var _state: CharacterLocationState
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(CharacterLocationState, CharacterLocationState.new(), self, Injector.ContainerType.CLOSEST)
+	_state = Injector.provide(CharacterLocationState, CharacterLocationState.new(self), self, Injector.ContainerType.CLOSEST)
 
 
 func _ready() -> void:
@@ -45,3 +46,6 @@ func _on_character_position_changed(pos: Vector2):
 		if not _state.current_location.is_equal_biomes(new_location):
 			_state.current_location = new_location
 			return
+
+func reload():
+	_on_character_position_changed(_character_state.position)

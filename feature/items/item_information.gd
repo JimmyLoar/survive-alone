@@ -21,9 +21,10 @@ func set_bottom_actions(actions: Array):
 		old_action.queue_free()
 
 	for action in actions:
-		var button = Button.new()
+		var button = ActionButton.new()
 		button.text = action.text
 		button.connect("pressed", Callable(func(): action.on_pressed.callv([_last_item])))
+		button.can_view = action.can_view
 		bottom_actions.add_child(button)
 
 func update(item: ItemEntity = null):
@@ -66,7 +67,12 @@ func _update_display(item: ItemEntity):
 	get_parent().current_tab = get_index()
 	name_label.show()
 	bottom_actions.show()
-	#show()
+
+	for action_button: ActionButton in bottom_actions.get_children():
+		if action_button.can_view.call(item):
+			action_button.show()
+		else:
+			action_button.hide()
 
 
 func _update_durability_text(item: ItemEntity):
