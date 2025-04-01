@@ -9,12 +9,9 @@ var quest_editor_view: QuestEditorView
 
 
 func _enter_tree() -> void:
-	add_autoload_singleton("Questify", "quest_manager.gd")
-
-	QuestifySettings.init_settings()
-
+	#add_autoload_singleton("Questify", "quest_manager.gd")
+	#QuestifySettings.init_settings()
 	Engine.set_meta("QuestifyPlugin", self)
-
 	quest_editor_view = QuestEditorViewScene.instantiate() as QuestEditorView
 	EditorInterface.get_editor_main_screen().add_child(quest_editor_view)
 	_make_visible(false)
@@ -22,9 +19,7 @@ func _enter_tree() -> void:
 
 func _exit_tree() -> void:
 	Engine.remove_meta("QuestifyPlugin")
-
-	remove_autoload_singleton("Questify")
-
+	#remove_autoload_singleton("Questify")
 	if is_instance_valid(quest_editor_view):
 		quest_editor_view.queue_free()
 
