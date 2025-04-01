@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c321v1xyqc5q3"]
+[gd_scene load_steps=9 format=3 uid="uid://c321v1xyqc5q3"]
 
 [ext_resource type="Script" uid="uid://cgi8ilsbg70uq" path="res://!tools/game_editor/screens/editor_screen/game_editor__editor_screen.gd" id="1_3jvi6"]
+[ext_resource type="Theme" uid="uid://b7thgsf2s74gg" path="res://assets/themes/for_dev_tools.tres" id="2_ggukk"]
 [ext_resource type="PackedScene" uid="uid://bmx1kvsxqsfod" path="res://feature/screen_mouse_events/screen_mouse_events.tscn" id="3_musww"]
 [ext_resource type="PackedScene" uid="uid://7nvmy7ym0tb0" path="res://!tools/game_editor/screens/editor_screen/features/editor_selector/game_editor__menu_screen.tscn" id="3_tjxmy"]
 [ext_resource type="PackedScene" uid="uid://dyck7g6ogkopw" path="res://feature/main_camera/main_camera.tscn" id="4_7u1if"]
@@ -18,12 +19,14 @@ offset_left = 7.0
 offset_top = 689.0
 offset_right = 150.0
 offset_bottom = 712.0
+theme = ExtResource("2_ggukk")
 
 [node name="Panel" type="Panel" parent="UI"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 48.0
 grow_horizontal = 2
+theme = ExtResource("2_ggukk")
 
 [node name="ChooseToolEditor" parent="UI/Panel" instance=ExtResource("3_tjxmy")]
 layout_mode = 1
@@ -39,6 +42,7 @@ tab_count = 2
 script = null
 
 [node name="ScreenMouseEvents" parent="UI" instance=ExtResource("3_musww")]
+theme = ExtResource("2_ggukk")
 
 [node name="MainCamera" parent="." instance=ExtResource("4_7u1if")]
 

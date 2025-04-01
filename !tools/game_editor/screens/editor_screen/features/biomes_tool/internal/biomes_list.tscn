@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://eahcnuvi8twy"]
 
-[sub_resource type="Resource" id="Resource_wnusb"]
-metadata/__load_path__ = "res://game_editor/screens/editor_screen/features/biomes_tool/internal/biomes_list.gd"
+[ext_resource type="Theme" uid="uid://b7thgsf2s74gg" path="res://assets/themes/for_dev_tools.tres" id="1_d4rq8"]
 
 [node name="BiomesList" type="Panel"]
 anchors_preset = 3
@@ -13,7 +12,7 @@ offset_left = -300.0
 offset_top = -672.0
 grow_horizontal = 0
 grow_vertical = 0
-script = SubResource("Resource_wnusb")
+theme = ExtResource("1_d4rq8")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -125,6 +124,7 @@ offset_right = 266.0
 offset_bottom = 116.0
 item_count = 2
 popup/item_0/text = "Forest"
+popup/item_0/id = 0
 popup/item_1/text = "Grass"
 popup/item_1/id = 1
 

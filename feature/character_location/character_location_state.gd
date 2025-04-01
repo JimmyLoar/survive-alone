@@ -1,6 +1,9 @@
 class_name CharacterLocationState
 extends Injectable
 
+var _host_node: CharacterLocation
+func _init(host_node: CharacterLocation) -> void:
+	_host_node = host_node
 
 class BiomesLocation:
 	var biomes: Array
@@ -51,3 +54,7 @@ func get_location_discription():
 	if not biomes or biomes.is_empty():
 		return ""
 	return TranslationServer.translate("BIOME_%s_DISCRIPTION" % [biomes.front().name.to_upper()])
+
+
+func request_reload():
+	_host_node.reload()
