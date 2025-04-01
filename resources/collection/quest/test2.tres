@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://byvhlyfyh7fhn"]
+
+[ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_fajqk"]
+[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_4fs8p"]
+[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="3_dgirg"]
+[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_noj68"]
+[ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_4fs8p"]
+[ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="5_abex0"]
+[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="6_5p0pi"]
+
+[sub_resource type="Resource" id="Resource_4fs8p"]
+script = ExtResource("2_4fs8p")
+name = "test 2"
+description = "Дерево?
+"
+id = "OEtwG4pM1w"
+optional = false
+graph_editor_position = Vector2(-40, 60)
+graph_editor_size = Vector2(280, 463)
+
+[sub_resource type="Resource" id="Resource_dgirg"]
+script = ExtResource("3_dgirg")
+description = "fdsdfsdf"
+id = "PzC6xyqIo3"
+optional = false
+graph_editor_position = Vector2(360, 60)
+graph_editor_size = Vector2(468, 483)
+
+[sub_resource type="Resource" id="Resource_noj68"]
+script = ExtResource("1_fajqk")
+from = SubResource("Resource_4fs8p")
+to = SubResource("Resource_dgirg")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_abex0"]
+script = ExtResource("4_noj68")
+id = "VuXAtRURY2"
+optional = false
+graph_editor_position = Vector2(920, 60)
+graph_editor_size = Vector2(141, 78)
+
+[sub_resource type="Resource" id="Resource_5p0pi"]
+script = ExtResource("1_fajqk")
+from = SubResource("Resource_dgirg")
+to = SubResource("Resource_abex0")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_3x2ce"]
+script = ExtResource("5_4fs8p")
+type = "item"
+key = "resource_wood"
+id = "xcekkorrD8"
+optional = false
+graph_editor_position = Vector2(-140, 540)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 100.0
+
+[sub_resource type="Resource" id="Resource_qxodw"]
+script = ExtResource("1_fajqk")
+from = SubResource("Resource_3x2ce")
+to = SubResource("Resource_dgirg")
+edge_type = 1
+
+[resource]
+script = ExtResource("6_5p0pi")
+nodes = Array[ExtResource("5_abex0")]([SubResource("Resource_abex0"), SubResource("Resource_4fs8p"), SubResource("Resource_dgirg"), SubResource("Resource_3x2ce")])
+edges = Array[ExtResource("1_fajqk")]([SubResource("Resource_noj68"), SubResource("Resource_5p0pi"), SubResource("Resource_qxodw")])

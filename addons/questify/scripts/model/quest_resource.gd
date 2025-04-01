@@ -116,11 +116,13 @@ func request_query(type: String, key: String, value: Variant, requester: QuestCo
 func complete_objective(objective: QuestObjective) -> void:
 	Questify.quest_objective_completed.emit(self, objective)
 	_notify_active_objectives()
+	Questify._logger.debug("[color=yellow]%s[/color] | complete objective '%s'" % [name, objective.id])
 
 
 func complete_quest() -> void:
 	completed = true
 	Questify.quest_completed.emit(self)
+	Questify._logger.debug("[color=yellow]%s[/color] | complete quest" % [name])
 
 
 func serialize() -> Dictionary:

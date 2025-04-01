@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://lbc1s8ewa7uf"]
+
+[ext_resource type="Script" uid="uid://daritblgi57wa" path="res://feature/quest_viewer/internal/quest_list.gd" id="1_pnvwb"]
+[ext_resource type="Script" uid="uid://ic1xi3w0glvj" path="res://feature/quest_viewer/internal/list.gd" id="2_pnvwb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ih51p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pnvwb"]
+
+[node name="GuestList" type="PanelContainer"]
+self_modulate = Color(0.450648, 0.450648, 0.450648, 1)
+offset_right = 400.0
+offset_bottom = 316.0
+script = ExtResource("1_pnvwb")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Activing"
+horizontal_alignment = 1
+
+[node name="ActivateQuestList" type="ItemList" parent="ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/v_separation = 14
+theme_override_constants/line_separation = 2
+theme_override_constants/h_separation = 6
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ih51p")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pnvwb")
+auto_width = true
+auto_height = true
+script = ExtResource("2_pnvwb")
+
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Complited"
+horizontal_alignment = 1
+
+[node name="CompliteQuestList" type="ItemList" parent="ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/v_separation = 14
+theme_override_constants/line_separation = 2
+theme_override_constants/h_separation = 6
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ih51p")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pnvwb")
+auto_width = true
+auto_height = true
+script = ExtResource("2_pnvwb")
+_what_show = 1
+
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/ActivateQuestList" to="." method="_on_activate_quest_list_item_selected"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/CompliteQuestList" to="." method="_on_complite_quest_list_item_selected"]

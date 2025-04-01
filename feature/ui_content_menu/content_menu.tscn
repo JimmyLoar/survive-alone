@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://vh20fyeeneky" path="res://feature/ui_content_menu/content_menu.gd" id="1_c6v8d"]
 [ext_resource type="PackedScene" uid="uid://os5qyr4xwmqx" path="res://feature/ui_content_menu/menu_buttons_bar.tscn" id="2_xflwk"]
 [ext_resource type="PackedScene" uid="uid://bimu1uujo2qmv" path="res://feature/inventory_character/inventory_character.tscn" id="3_8i0qu"]
+[ext_resource type="PackedScene" uid="uid://dpk1c165dvts6" path="res://feature/quest_viewer/quest_viewer.tscn" id="3_bu55j"]
 [ext_resource type="PackedScene" uid="uid://cjhy00q8mvwrs" path="res://feature/inventory_location/inventory_location.tscn" id="4_c7uu5"]
 [ext_resource type="PackedScene" uid="uid://bl1d3c28xju2i" path="res://feature/craft/CC_Craft.tscn" id="5_bu55j"]
 
@@ -27,21 +28,25 @@ target_node = NodePath("../TabContainer")
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 0
+current_tab = 1
 clip_tabs = false
 tabs_visible = false
 deselect_enabled = true
 
+[node name="CC-Quests" parent="HBoxContainer/TabContainer" instance=ExtResource("3_bu55j")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
 [node name="CC-Inventory" parent="HBoxContainer/TabContainer" instance=ExtResource("3_8i0qu")]
 layout_mode = 2
 mouse_filter = 1
-main_stretch_ratio = null
-metadata/_tab_index = 0
+metadata/_tab_index = 1
 
 [node name="CC-Location" parent="HBoxContainer/TabContainer" instance=ExtResource("4_c7uu5")]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
 [node name="CC-Craft" parent="HBoxContainer/TabContainer" instance=ExtResource("5_bu55j")]
 visible = false
