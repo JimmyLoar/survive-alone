@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://bs2ncgfju7uqb"]
+
+[ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_wbx34"]
+[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_edvcw"]
+[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="3_lmytp"]
+[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_lshbb"]
+[ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_edvcw"]
+[ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="5_uqgyk"]
+[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="6_l737m"]
+
+[sub_resource type="Resource" id="Resource_edvcw"]
+script = ExtResource("2_edvcw")
+name = "test 3"
+description = "раз? "
+id = "OEtwG4pM1w"
+optional = false
+graph_editor_position = Vector2(-40, 60)
+graph_editor_size = Vector2(280, 463)
+
+[sub_resource type="Resource" id="Resource_lmytp"]
+script = ExtResource("3_lmytp")
+description = "fdsdfsdf"
+id = "PzC6xyqIo3"
+optional = false
+graph_editor_position = Vector2(380, 60)
+graph_editor_size = Vector2(468, 483)
+
+[sub_resource type="Resource" id="Resource_lshbb"]
+script = ExtResource("1_wbx34")
+from = SubResource("Resource_edvcw")
+to = SubResource("Resource_lmytp")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_uqgyk"]
+script = ExtResource("4_lshbb")
+id = "VuXAtRURY2"
+optional = false
+graph_editor_position = Vector2(920, 60)
+graph_editor_size = Vector2(141, 78)
+
+[sub_resource type="Resource" id="Resource_l737m"]
+script = ExtResource("1_wbx34")
+from = SubResource("Resource_lmytp")
+to = SubResource("Resource_uqgyk")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_6udn0"]
+script = ExtResource("5_edvcw")
+type = "property/>="
+key = "exhaustion"
+id = "diqFZx7s4i"
+optional = false
+graph_editor_position = Vector2(-140, 580)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 20.0
+
+[sub_resource type="Resource" id="Resource_f1ixx"]
+script = ExtResource("1_wbx34")
+from = SubResource("Resource_6udn0")
+to = SubResource("Resource_lmytp")
+edge_type = 1
+
+[resource]
+script = ExtResource("6_l737m")
+nodes = Array[ExtResource("5_uqgyk")]([SubResource("Resource_edvcw"), SubResource("Resource_uqgyk"), SubResource("Resource_lmytp"), SubResource("Resource_6udn0")])
+edges = Array[ExtResource("1_wbx34")]([SubResource("Resource_lshbb"), SubResource("Resource_l737m"), SubResource("Resource_f1ixx")])

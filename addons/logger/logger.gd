@@ -21,7 +21,7 @@ const COLORS = {
 	"error" : "red",
 }
 
-const LOG_FORMAT = "{level} [{time}]{prefix} {message} "
+const LOG_FORMAT = "{level} [{time}]{prefix}{message} "
 
 
 var CURRENT_LOG_LEVEL=LogLevel.DEBUG

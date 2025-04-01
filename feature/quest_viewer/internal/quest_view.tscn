@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://jf50aro5ep0h"]
+
+[ext_resource type="Script" uid="uid://cufsw151un4rt" path="res://feature/quest_viewer/internal/quest_view.gd" id="1_6o0wx"]
+
+[node name="QuestView" type="VBoxContainer"]
+offset_right = 1.0
+offset_bottom = 27.0
+script = ExtResource("1_6o0wx")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quest Name"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "Discription"
+fit_content = true
+scroll_following = true
