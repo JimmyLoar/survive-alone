@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://4k3m1ojdh13v"]
+[gd_scene load_steps=3 format=3 uid="uid://4k3m1ojdh13v"]
 
 [ext_resource type="Script" uid="uid://dfjbhq1ngywms" path="res://!tools/game_editor/screens/menu_screen/game_editor__menu_screen.gd" id="1_q4tpn"]
+[ext_resource type="Theme" uid="uid://b7thgsf2s74gg" path="res://assets/themes/for_dev_tools.tres" id="2_cn8vm"]
 
 [node name="MenuScreen" type="CanvasLayer"]
 script = ExtResource("1_q4tpn")
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_cn8vm")
 
 [node name="OpenGameDb" type="Button" parent="Panel"]
 layout_mode = 0
