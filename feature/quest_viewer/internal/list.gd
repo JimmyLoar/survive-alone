@@ -1,19 +1,36 @@
 extends ItemList
 
+signal quest_selected(quest: QuestResource)
 @export_enum("Activated:0", "Complited:1", "All:2") var _what_show := 0
+
+
+var _quests := []
+
+func _ready() -> void:
+	item_selected.connect(_on_pressed)
 
 
 func _update_elements():
 	clear()
-	var quest_list = _get_quests()
-	for i in quest_list.size():
-		var quest: QuestResource = quest_list[i]
-		add_item(quest.name)
+	_quests.clear()
+	_append_list("Activated", Questify.get_active_quests())
+	_append_list("Complited", Questify.get_completed_quests())
 
 
-func _get_quests() -> Array:
-	match _what_show:
-		0: return Questify.get_active_quests()
-		1: return Questify.get_completed_quests()
-		2: return Questify.get_quests()
-		_: return []
+func _append_list(title: String, list: Array):
+	if list.is_empty():
+		return
+	
+	var title_index := add_item(title, null, false)
+	set_item_disabled(title_index, true)
+	
+	_quests.append(title)
+	_quests.append_array(list)
+	
+	for i in list.size():
+		var quest: QuestResource = list[i]
+		var index := add_item(quest.name)
+
+
+func _on_pressed(index: int):
+	quest_selected.emit(_quests[index])

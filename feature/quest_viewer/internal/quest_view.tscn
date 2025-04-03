@@ -30,35 +30,6 @@ visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="QuestDiscription" type="RichTextLabel" parent="VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/default_color = Color(0.843137, 0.87451, 0.72549, 1)
-bbcode_enabled = true
-text = "Discription"
-fit_content = true
-scroll_following = true
-
-[node name="HSeparator" type="HSeparator" parent="VBox"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 54
-
-[node name="Label" type="Label" parent="VBox/HSeparator"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -18.5
-offset_top = -23.0
-offset_right = 18.5
-grow_horizontal = 2
-grow_vertical = 0
-text = "Task"
-horizontal_alignment = 1
-
 [node name="Discription" type="RichTextLabel" parent="VBox"]
 unique_name_in_owner = true
 layout_mode = 2
