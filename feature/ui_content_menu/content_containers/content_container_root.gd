@@ -4,11 +4,15 @@ extends PanelContainer
 signal closed
 
 @export_range(0.1, 10.0, 0.1) var main_stretch_ratio := 2.4
+@export var button_texture: Texture
 
 @onready var main_container: MarginContainer = %MainContainer
 @onready var sub_container: TabContainer = %SubContainer
 @onready var logger := Log.get_global_logger().with("ContentMenu (%s)" % name)
 
+
+func _ready() -> void:
+	pass
 
 
 func _on_close_button_pressed():

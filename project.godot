@@ -23,7 +23,7 @@ game/size/world=Vector2i(70, 35)
 game/size/chunk=50
 game/size/tile=32
 game/version/major=0
-game/version/minor=0
+game/version/minor=1
 game/version/patch=0
 game/version/string="dev"
 
@@ -74,6 +74,7 @@ folder_colors={
 "res://feature/item_action/": "yellow",
 "res://feature/items/": "yellow",
 "res://feature/items_grid/": "yellow",
+"res://feature/quest_viewer/": "red",
 "res://game/": "red",
 "res://resources/": "blue"
 }
@@ -121,6 +122,7 @@ pointing/emulate_mouse_from_touch=false
 [internationalization]
 
 locale/translations=PackedStringArray("res://localization/localizations.en.translation", "res://localization/localizations.ru.translation", "res://localization/localizations.de.translation")
+locale/translations_pot_files=PackedStringArray("res://resources/collection/quest/test.tres", "res://resources/collection/quest/test2.tres", "res://resources/collection/quest/test3.tres")
 locale/language_filter=["en", "ru"]
 locale/country_filter=["RU", "US"]
 locale/locale_filter_mode=1
@@ -146,8 +148,8 @@ translations_save_auth=false
 [questify]
 
 general/update_polling=true
-general/update_interval=0.5
-general/add_quests_to_pot_generation=false
+general/update_interval=3.0
+general/add_quests_to_pot_generation=true
 
 [rendering]
 
