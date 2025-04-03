@@ -2,4 +2,5 @@ extends Node2D
 
 
 func _ready():
-	$AudioStreamPlayer.play()
+	if not OS.is_debug_build():
+		$AudioStreamPlayer.play()

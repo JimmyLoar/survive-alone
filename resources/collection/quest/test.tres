@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://rt46wktltqjl"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=22 format=3 uid="uid://rt46wktltqjl"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_wo1o8"]
 [ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_1vvxr"]
@@ -9,23 +9,20 @@
 [ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="8_67y6s"]
 
 [sub_resource type="Resource" id="Resource_8c3fl"]
-script = ExtResource("2_1vvxr")
-name = "test"
-description = "есть мясо ([color=green]3[/color])? "
-id = "OEtwG4pM1w"
-optional = false
-graph_editor_position = Vector2(-120, 60)
-graph_editor_size = Vector2(300, 480)
-metadata/food_fry_meat = 3.0
-
-[sub_resource type="Resource" id="Resource_wo1o8"]
 script = ExtResource("3_pm03v")
 description = "Спасибо брат, прощай!
 "
 id = "zSXoZUx2v7"
 optional = false
-graph_editor_position = Vector2(280, 60)
+graph_editor_position = Vector2(900, 0)
 graph_editor_size = Vector2(468, 483)
+
+[sub_resource type="Resource" id="Resource_wo1o8"]
+script = ExtResource("4_r47bh")
+id = "uofRvU0NZB"
+optional = false
+graph_editor_position = Vector2(1660, 0)
+graph_editor_size = Vector2(141, 78)
 
 [sub_resource type="Resource" id="Resource_1vvxr"]
 script = ExtResource("1_wo1o8")
@@ -34,19 +31,6 @@ to = SubResource("Resource_wo1o8")
 edge_type = 0
 
 [sub_resource type="Resource" id="Resource_pm03v"]
-script = ExtResource("4_r47bh")
-id = "uofRvU0NZB"
-optional = false
-graph_editor_position = Vector2(780, 60)
-graph_editor_size = Vector2(141, 78)
-
-[sub_resource type="Resource" id="Resource_r47bh"]
-script = ExtResource("1_wo1o8")
-from = SubResource("Resource_wo1o8")
-to = SubResource("Resource_pm03v")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_uihlg"]
 script = ExtResource("5_8c3fl")
 type = "item"
 key = "food_fry_meat"
@@ -56,13 +40,83 @@ graph_editor_position = Vector2(-200, 580)
 graph_editor_size = Vector2(377, 309)
 metadata/value = 3.0
 
+[sub_resource type="Resource" id="Resource_r47bh"]
+script = ExtResource("3_pm03v")
+description = "Может дать ему мяса ([color=green]3[/color])? 
+
+[hint][i][img=20]uid://ckxyr3jv232mp[/img] Приготовте жаренное мясо 3шт. И поговорите с человеком.[/i]"
+id = "qgWthtruCS"
+optional = false
+graph_editor_position = Vector2(300, -20)
+graph_editor_size = Vector2(468, 483)
+metadata/value = " is true?"
+
+[sub_resource type="Resource" id="Resource_uihlg"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_pm03v")
+to = SubResource("Resource_r47bh")
+edge_type = 1
+
 [sub_resource type="Resource" id="Resource_76cjh"]
 script = ExtResource("1_wo1o8")
-from = SubResource("Resource_uihlg")
-to = SubResource("Resource_wo1o8")
+from = SubResource("Resource_r47bh")
+to = SubResource("Resource_8c3fl")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_pung5"]
+script = ExtResource("2_1vvxr")
+name = "test"
+description = " Я встрелил странного человека. Он просит меня накормить его. "
+id = "OEtwG4pM1w"
+optional = false
+graph_editor_position = Vector2(-120, 60)
+graph_editor_size = Vector2(300, 480)
+metadata/food_fry_meat = 3.0
+
+[sub_resource type="Resource" id="Resource_67y6s"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_pung5")
+to = SubResource("Resource_r47bh")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_em86a"]
+script = ExtResource("3_pm03v")
+description = "Мне еда самому нужнее!  
+
+[hint][i][img=20]uid://ckxyr3jv232mp[/img] Поговорите с человеком и откажите ему.[/i]"
+id = "KNqG-t09a_"
+optional = false
+graph_editor_position = Vector2(300, 540)
+graph_editor_size = Vector2(468, 483)
+
+[sub_resource type="Resource" id="Resource_stp3f"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_pung5")
+to = SubResource("Resource_em86a")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_kdkad"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_em86a")
+to = SubResource("Resource_8c3fl")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_kavog"]
+script = ExtResource("5_8c3fl")
+type = "event"
+key = ""
+id = "CETugbvYUG"
+optional = false
+graph_editor_position = Vector2(-200, 920)
+graph_editor_size = Vector2(377, 309)
+
+[sub_resource type="Resource" id="Resource_uqrmm"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_kavog")
+to = SubResource("Resource_em86a")
 edge_type = 1
 
 [resource]
 script = ExtResource("8_67y6s")
-nodes = Array[ExtResource("6_76cjh")]([SubResource("Resource_pm03v"), SubResource("Resource_8c3fl"), SubResource("Resource_wo1o8"), SubResource("Resource_uihlg")])
-edges = Array[ExtResource("1_wo1o8")]([SubResource("Resource_1vvxr"), SubResource("Resource_r47bh"), SubResource("Resource_76cjh")])
+nodes = Array[ExtResource("6_76cjh")]([SubResource("Resource_pung5"), SubResource("Resource_pm03v"), SubResource("Resource_8c3fl"), SubResource("Resource_wo1o8"), SubResource("Resource_kavog"), SubResource("Resource_r47bh"), SubResource("Resource_em86a")])
+edges = Array[ExtResource("1_wo1o8")]([SubResource("Resource_1vvxr"), SubResource("Resource_uihlg"), SubResource("Resource_76cjh"), SubResource("Resource_67y6s"), SubResource("Resource_stp3f"), SubResource("Resource_kdkad"), SubResource("Resource_uqrmm")])
