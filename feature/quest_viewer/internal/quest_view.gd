@@ -6,7 +6,7 @@ extends MarginContainer
 
 
 func _ready():
-	pass
+	Questify.quest_objective_completed.connect(_display)
 
 
 func _display(quest: QuestResource):
@@ -14,17 +14,37 @@ func _display(quest: QuestResource):
 	discription.clear()
 	discription.text = "[color=yellow]%s[/color]" % quest.description
 	discription.newline()
-	discription.append_text("-".repeat(discription.get_character_line(32)))
+	discription.append_text("=".repeat(71))
 	discription.newline()
 	
-	var objectives := quest.get_active_objectives()
+	var objectives = quest.get_active_objectives()
+	if objectives.is_empty():
+		quest.complete_quest()
+	
+	if quest.completed:
+		var end_index = quest.nodes.find_custom(func(node): return node is QuestEnd)
+		objectives = quest.get_previous_nodes(quest.nodes[end_index])
+	
+	_diplay_objective_text(objectives)
+	# TODO Сделать показ подсказок при нажатии на мета-ссылку
+
+
+func _diplay_objective_text(objectives: Array):
 	for i in objectives.size():
-		var objecte := objectives[i]
+		var objecte := objectives[i] as QuestObjective
 		discription.append_text("[p]%s" % [objecte.description])
 		discription.newline()
 		if objectives.size() > 1 and i < objectives.size() - 1:
 			discription.newline()
-			discription.append_text("[center]-----ИЛИ-----[/center]")
+			var string = TranslationServer.translate("KEY_CAPS_AND_WORD")
+			if objecte.next.any(func(node): return node is QuestExclusiveBranchConnector):
+				string = TranslationServer.translate("KEY_CAPS_OR_WORD")
+			var repeat_value = ceil((73 - string.length()) / 2.0)
+			discription.append_text("%s%s%s" % [
+				"-".repeat(repeat_value),
+				string,
+				"-".repeat(repeat_value)
+			])
 			discription.newline()
 
 

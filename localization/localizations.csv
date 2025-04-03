@@ -12,87 +12,89 @@ KEY_VALUE,Value:,Ценность:,Wert:
 KEY_APPLY,Apply,Применить,Anwenden
 KEY_PLACEHOLDER_AGE,I'm {{OLD}}  years old.,Мне {{OLD}} лет.,Ich bin {{OLD}} Jahre alt.
 KEY_PLACEHOLDER_AGE_NAME,"My name is {{NAME}}, and I'm {{OLD}}  years old.",Меня зовут {{NAME}} и мне {{OLD}} лет.,Mein Name ist {{NAME}} und ich bin {{OLD}} Jahre alt.
-ACTION_TEST_NAME,Action_NAME Test,Тестовое Действие,Testaktion
-ACTION_EAT_NAME,Eat,Съесть,Essen
-ACTION_DRINK_NAME,Drink,Выпить,Trinken
-ACTION_COOK_NAME,Cook,Готовить,Vorbereiten
-PROPERTY_EXHAUSTION_NAME,Exhaustion,Истощение,Erschöpfung
+KEY_CAPS_OR_WORD,OR,ИЛИ,
+KEY_CAPS_AND_WORD,AND,И,
+ACTION_TEST_NAME,Action_Test,Тестовое Действие,
+ACTION_EAT_NAME,Eat,Съесть,
+ACTION_DRINK_NAME,Drink,Выпить,
+ACTION_COOK_NAME,Cook,Готовить,
+PROPERTY_EXHAUSTION_NAME,,Истощение,
 PROPERTY_EXHAUSTION_DISCRIPTION,,,
-PROPERTY_FATIGUE_NAME,Vigor,Бодрость,Kraft
+PROPERTY_FATIGUE_NAME,,Бодрость,
 PROPERTY_FATIGUE_DISCRIPTION,,,
-PROPERTY_HUNGER_NAME,Satiety,Сытость,Sättigung
+PROPERTY_HUNGER_NAME,,Сытость,
 PROPERTY_HUNGER_DISCRIPTION,,,
-PROPERTY_NONE_PROPERTY_NAME,Nothing!,Ничего!,Nichts!
+PROPERTY_NONE_PROPERTY_NAME,,Ничего!,
 PROPERTY_NONE_PROPERTY_DISCRIPTION,,,
-PROPERTY_PSYCH_NAME,The psyche,Психика,Die Psyche
+PROPERTY_PSYCH_NAME,,Психика,
 PROPERTY_PSYCH_DISCRIPTION,,,
-PROPERTY_RADIATION_NAME,Radiation,Радиация,Strahlung
+PROPERTY_RADIATION_NAME,,Радиация,
 PROPERTY_RADIATION_DISCRIPTION,,,
-PROPERTY_THIRST_NAME,Thirst,Жажда,Durst
+PROPERTY_THIRST_NAME,,Жажда,
 PROPERTY_THIRST_DISCRIPTION,,,
 EVENT_ACTION_DOTS_NAME,…,…,…
 EVENT_ACTION_DOTS_DISCRIPTION,…,…,…
-EVENT_BS_DEFUALT_NAME,Go in search,Пойти на поиски,Gehen Sie auf die Suche
-EVENT_BS_DEFUALT_START,There are few vegetation around you.  Maybe you should look further?,Вокруг вас немного растительности. Может стоит поискать дальше?,Es gibt nur wenige Vegetation um dich herum.  Vielleicht solltest du weiter schauen?
-EVENT_ACTION_SEARCH_NAME,Search,Искать,Suchen
-EVENT_ACTION_FINISH_NAME,Return,Вернуться,Zurückkehren
-EVENT_BS_FLOWERS_NAME,,Цветочная поляна,Blumenwiese
-EVENT_BS_FLOWERS_START,You went to the clearing with flowers,Вы вышли на поляну с цветами,Sie gingen mit Blumen zur Lichtung
-EVENT_ACTION_COLLECT_SOME_NAME,Gather a little,Собрать немного,Ein wenig sammeln
-EVENT_ACTION_PASS_BY_NAME,Pass by,Пройти мимо,Vorbeikommen
-EVENT_BS_FLOWERS_REWARD_1,You have collected several colors: \ n,Вы собрали несколько цветов:\n,Sie haben mehrere Farben gesammelt: \ n
-EVENT_BS_EXIT,"You decide not to waste time collecting them.  Who knows, maybe you can find something better ...","Вы решаете не тратить время на их сбор. Кто знает, может вы сможете найти что то получше…","Sie beschließen, keine Zeit damit zu verschwenden, sie zu sammeln.  Wer weiß, vielleicht finden Sie etwas Besseres ..."
-EVENT_BS_NOTHING_NAME,Nothing!,Ничего!,Nichts!
-EVENT_BS_NOTHING_START,"After some time, you notice that you walk in circles.  You could not find something useful ...","Через какое то время вы замечаете, что ходите кругами. Вам не удалось найти что то полезное…","Nach einiger Zeit bemerken Sie, dass Sie im Kreis gehen.  Sie konnten nichts Nützliches finden ..."
-EVENT_BS_WOOD_1_NAME,Flying trees,Поваленые деревья,Fliegende Bäume
-EVENT_BS_WOOD_1_START,"Wandering around the district you notice, fallen trees","Бродя по округе вы замечаете, поваленные деревья","Durch den Bezirk, den Sie bemerken"
-EVENT_BS_WOOD_1_REWARD,You collected a little brushwood,Вы собрали немного хвороста,Sie haben ein kleines Pinselholz gesammelt
-EVENT_BS_WOOD_2_NAME,Apple,Яблоня,Apfel
+EVENT_BS_DEFUALT_NAME,,Пойти на поиски,
+EVENT_BS_DEFUALT_START,,Вокруг вас немного растительности. Может стоит поискать дальше?,
+EVENT_ACTION_SEARCH_NAME,,Искать,
+EVENT_ACTION_FINISH_NAME,,Вернуться,
+EVENT_BS_FLOWERS_NAME,,Цветочная поляна,
+EVENT_BS_FLOWERS_START,,Вы вышли на поляну с цветами,
+EVENT_ACTION_COLLECT_SOME_NAME,,Собрать немного,
+EVENT_ACTION_PASS_BY_NAME,,Пройти мимо,
+EVENT_BS_FLOWERS_REWARD_1,,Вы собрали несколько цветов:\n,
+EVENT_BS_EXIT,,"Вы решаете не тратить время на их сбор. Кто знает, может вы сможете найти что то получше…",
+EVENT_BS_NOTHING_NAME,,Ничего!,
+EVENT_BS_NOTHING_START,,"Через какое то время вы замечаете, что ходите кругами. Вам не удалось найти что то полезное…",
+EVENT_BS_WOOD_1_NAME,,Поваленые деревья,
+EVENT_BS_WOOD_1_START,,"Бродя по округе вы замечаете, поваленные деревья",
+EVENT_BS_WOOD_1_REWARD,,Вы собрали немного хвороста,
+EVENT_BS_WOOD_2_NAME,,Яблоня,
 EVENT_BS_WOOD_2_START,,,
-EVENT_BS_WOOD_3_NAME,Forest spring,Лесной родник,Waldfeder
+EVENT_BS_WOOD_3_NAME,,Лесной родник,
 EVENT_BS_WOOD_3_START, ,,
-EVENT_BS_WOOD_HOUSE_NAME,A tree hut,Древянная хижина,Eine Baumhütte
+EVENT_BS_WOOD_HOUSE_NAME,,Древянная хижина,
 EVENT_BS_WOOD_HOUSE_START,,,
-EVENT_BS_ANIMAL_CORPSE_NAME,Torn animal,Растерзанное животное,Zerrissenes Tier
+EVENT_BS_ANIMAL_CORPSE_NAME,,Растерзанное животное,
 EVENT_BS_ANIMAL_CORPSE_START,,,
-ITEM_BUILDING_BONFIRE_NAME,Caster,Кастер,Zaubernde
+ITEM_BUILDING_BONFIRE_NAME,,Кастер,
 ITEM_BUILDING_BONFIRE_DISCRIPTION,,,
-ITEM_FOOD_CANNED_FOOD_NAME,Conserva,Консерва,Conserva
+ITEM_FOOD_CANNED_FOOD_NAME,,Консерва,
 ITEM_FOOD_CANNED_FOOD_DISCRIPTION,,,
-ITEM_FOOD_FRESH_MEAT_NAME,Raw meat,Сырое мясо,Rohes Fleisch
+ITEM_FOOD_FRESH_MEAT_NAME,,Сырое мясо,
 ITEM_FOOD_FRESH_MEAT_DISCRIPTION,,,
-ITEM_FOOD_FRY_MEAT_NAME,Fried meat,Жаренное мясо,Gebratenes Fleisch
+ITEM_FOOD_FRY_MEAT_NAME,,Жаренное мясо,
 ITEM_FOOD_FRY_MEAT_DISCRIPTION,,,
-ITEM_FOOD_WATER_CLEAR_NAME,Pure water,Чистая вода,Reines Wasser
+ITEM_FOOD_WATER_CLEAR_NAME,,Чистая вода,
 ITEM_FOOD_WATER_CLEAR_DISCRIPTION,,,
-ITEM_RESOURCE_DUCT_TAPE_NAME,Insulating tape,Изолента,Isolierband
+ITEM_RESOURCE_DUCT_TAPE_NAME,,Изолента,
 ITEM_RESOURCE_DUCT_TAPE_DISCRIPTION,,,
-ITEM_RESOURCE_FLINT_NAME,Flint,Кремень,Feuerstein
+ITEM_RESOURCE_FLINT_NAME,,Кремень,
 ITEM_RESOURCE_FLINT_DISCRIPTION,,,
-ITEM_RESOURCE_STICK_NAME,Stick,Палка,Stock
+ITEM_RESOURCE_STICK_NAME,,Палка,
 ITEM_RESOURCE_STICK_DISCRIPTION,,,
-ITEM_RESOURCE_WOOD_NAME,Wood,Деревяшка,Holz
+ITEM_RESOURCE_WOOD_NAME,,Деревяшка,
 ITEM_RESOURCE_WOOD_DISCRIPTION,,,
-ITEM_TOOL_HOMEMADE_AXE_NAME,Homemade ax,Самодельный топор,Hausgemachte Axt
+ITEM_TOOL_HOMEMADE_AXE_NAME,,Самодельный топор,
 ITEM_TOOL_HOMEMADE_AXE_DISCRIPTION,,,
-ITEM_TOOL_HOMEMADE_KNIFE_NAME,Homemade knife,Самодельный нож,Hausgemachtes Messer
+ITEM_TOOL_HOMEMADE_KNIFE_NAME,,Самодельный нож,
 ITEM_TOOL_HOMEMADE_KNIFE_DISCRIPTION,,,
-ITEM_TOOL_PRIMUS_NAME,Primus,Примус,Primus
+ITEM_TOOL_PRIMUS_NAME,,Примус,
 ITEM_TOOL_PRIMUS_DISCRIPTION,,,
-ITEM_TOOL_SAUCEPAN_NAME,Pot,Кастрюля,Pot
+ITEM_TOOL_SAUCEPAN_NAME,,Кастрюля,
 ITEM_TOOL_SAUCEPAN_DISCRIPTION,,,
-SEARCH_DROP_NONE_NAME,Searked nothing,Поис ничего,Nichts gesetzt
-SEARCH_DROP_TEST_NAME,Search Test,Поиск Тест,Suchtest
-SEARCH_DROP_FOREST_BIOME_NAME,Search for forest,Поиск Лес,Suche nach Wald
-STRUCTURE_CROSSROAD_NAME,Transition,Переход,Übergang
-STRUCTURE_CROSSROAD_DISCRIPTION,It looks empty,Выглядит пустым,Es sieht leer aus
-STRUCTURE_HOUSE_NAME,House,Дом,Haus
-STRUCTURE_HOUSE_DISCRIPTION,An ordinary residential building,Обычный жилой дом,Ein gewöhnliches Wohngebäude
-INVENTORY_TITLE,Inventory,Инвентарь,Inventar
-LOCATION_TITLE,Location,Локация,Standort
-KEY_BUTTON_DROP,Drop,Бросить,Aufhören
-KEY_BUTTON_PICKUP,Pick up,Подобрать,Abholen
-BIOME_GRASS_NAME,Polyana,Поляна,Polyana
-BIOME_GRASS_DISCRIPTION,Just a cover of different herbs,Просто кавер из разных трав,Nur eine Abdeckung verschiedener Kräuter
-BIOME_FOREST_NAME,Forest,Лес,Wald
-BIOME_FOREST_DISCRIPTION,Thickets of trees,Заросли из деревьев,Dickicht von Bäumen
+SEARCH_DROP_NONE_NAME,,Поис ничего,
+SEARCH_DROP_TEST_NAME,,Поиск Тест,
+SEARCH_DROP_FOREST_BIOME_NAME,,Поиск Лес,
+STRUCTURE_CROSSROAD_NAME,,Переход,
+STRUCTURE_CROSSROAD_DISCRIPTION,,Выглядит пустым,
+STRUCTURE_HOUSE_NAME,,Дом,
+STRUCTURE_HOUSE_DISCRIPTION,,Обычный жилой дом,
+INVENTORY_TITLE,,Инвентарь,
+LOCATION_TITLE,,Локация,
+KEY_BUTTON_DROP,Drop,Бросить,
+KEY_BUTTON_PICKUP,Pick up,Подобрать,
+BIOME_GRASS_NAME,,Поляна,
+BIOME_GRASS_DISCRIPTION,,Просто кавер из разных трав,
+BIOME_FOREST_NAME,,Лес,
+BIOME_FOREST_DISCRIPTION,,Заросли из деревьев,
