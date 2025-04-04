@@ -1,0 +1,2 @@
+class_name StageEventNode
+extends EventNode
