@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("4_ifb0a")
 stages = []
-edge = []
+edges = []
 groups = Array[int]([])
 code_name = &"bs_defualt"
 visible_name = "EVENT_BS_DEFUALT_NAME"

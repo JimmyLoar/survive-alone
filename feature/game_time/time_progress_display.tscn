@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddfsnjx44w5ik"]
 
 [ext_resource type="Script" uid="uid://c3c4bh1b6qckd" path="res://feature/game_time/time_progress_display.gd" id="1_bgep0"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_m87sm"]
+[ext_resource type="Texture2D" uid="uid://dchq76sh87exs" path="res://icon.svg" id="2_m87sm"]
 
 [node name="TimeProgress" type="PanelContainer"]
 offset_right = 769.0

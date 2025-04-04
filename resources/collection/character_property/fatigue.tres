@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterPropertyResource" load_steps=3 format=3 uid="uid://b00p46pjqmbhn"]
 
 [ext_resource type="Script" uid="uid://circ63nhvigul" path="res://resources/schema/character_property.gd" id="2_wmjt0"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_espjw"]
+[ext_resource type="Texture2D" uid="uid://dchq76sh87exs" path="res://icon.svg" id="3_espjw"]
 
 [resource]
 script = ExtResource("2_wmjt0")
@@ -12,5 +12,5 @@ default_min_value = 0.0
 default_delta_value = -0.005
 modulate = Color(1, 1, 0, 1)
 code_name = &"fatigue"
-visible_name = "PROPERTY_NAME_FATIGUE"
-discription = "PROPERTY_DISCRIPTION_FATIGUE"
+visible_name = "PROPERTY_FATIGUE_NAME"
+discription = "PROPERTY_FATIGUE_DISCRIPTION"

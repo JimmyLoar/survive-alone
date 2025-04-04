@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkhtgmqtjt83l"]
 
-[ext_resource type="Script" uid="uid://dti1ae7gio4gu" path="res://!tool/event_editer/internal/start_graph_node.gd" id="1_07rkg"]
-[ext_resource type="Texture2D" uid="uid://bdtc56ln0sfgo" path="res://icon.svg" id="2_miv5v"]
+[ext_resource type="Script" uid="uid://dti1ae7gio4gu" path="res://!tools/event_editer/internal/start_graph_node.gd" id="1_07rkg"]
+[ext_resource type="Texture2D" uid="uid://dchq76sh87exs" path="res://icon.svg" id="2_miv5v"]
 
 [node name="StartNode" type="GraphNode"]
 anchors_preset = 15
