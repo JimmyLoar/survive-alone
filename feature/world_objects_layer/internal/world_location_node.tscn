@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b46qwc5ol2ev5"]
+[gd_scene load_steps=6 format=3 uid="uid://b46qwc5ol2ev5"]
 
 [ext_resource type="Script" uid="uid://diawc2xii47lk" path="res://feature/world_objects_layer/internal/world_location_node.gd" id="1_13pdk"]
+[ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="2_3akrv"]
 [ext_resource type="Texture2D" uid="uid://bxeih2e1uswj" path="res://assets/sprite/placeholders/citybuilder-tileset/HochhausA.png" id="2_cw2rs"]
+[ext_resource type="Script" uid="uid://ce5gr2ikn4rqd" path="res://feature/game_event/source/event_selecter.gd" id="3_crbtc"]
+
+[sub_resource type="Resource" id="Resource_fr1et"]
+script = ExtResource("3_crbtc")
+select_type = 1
+events_list = Array[ExtResource("2_3akrv")]([])
+chance_get_event = 1.0
+metadata/_custom_type_script = "uid://ce5gr2ikn4rqd"
 
 [node name="WorldLocationNode" type="Node2D"]
 script = ExtResource("1_13pdk")
 show_collision_shape = true
+events = SubResource("Resource_fr1et")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true

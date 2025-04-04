@@ -3,6 +3,8 @@ extends Node2D
 
 @export var resource: WorldLocationResource
 @export var show_collision_shape: bool
+@export var events: EventSelecter
+
 @onready var _sprite = %Sprite
 
 func _ready() -> void:

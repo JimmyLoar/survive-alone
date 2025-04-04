@@ -4,6 +4,7 @@ extends NamedResource
 
 enum Tags{
 	nothing, 		#ничего
+	quest,			#
 	trees, 			#деревья
 	water, 			#вода
 	flower,			#цветы
@@ -19,12 +20,15 @@ enum Tags{
 }
 
 @export var _stages: Array[EventStageResource] = []
+@export var groups: Array[Tags] = []
 var _ids: PackedStringArray = []
 
 
 func _init(_name: String = "", stages_count: int = 1) -> void:
 	super("EVENT")
 	code_name = _name
+	for i in stages_count:
+		add_stage("stage %d" % i)
 
 
 #region Stage
@@ -34,7 +38,7 @@ func add_stage(_name: String, text: String= "", texture: Texture2D = null) -> in
 	stage.text = text
 	stage.texture = texture
 	var action = ActionResource.new()
-	action.code_name = "..."
+	action.code_name = "dots"
 	stage.actions = [action]
 	return set_stage(stage)
 
