@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://beklh40jtnrqv"]
 
-[ext_resource type="Texture2D" uid="uid://dchq76sh87exs" path="res://icon.svg" id="1_bk31a"]
 [ext_resource type="Script" uid="uid://djrosrfcbjoep" path="res://!tools/event_editer/internal/stage_graph_node.gd" id="1_jd1b0"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
+bg_color = Color(0.739295, 9.8283e-05, 0.620089, 1)
+
 [node name="StageNode" type="GraphNode"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -506.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(300, 240)
+offset_right = 300.0
+offset_bottom = 240.0
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
+resizable = true
 title = "StageStart"
 slot/0/left_enabled = true
 slot/0/left_type = 0
@@ -21,8 +21,30 @@ slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
 script = ExtResource("1_jd1b0")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-texture = ExtResource("1_bk31a")
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "previous"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "next"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2

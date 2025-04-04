@@ -50,34 +50,34 @@ func get_child_nodes() -> Array:
 	return find_children("", "EventGraphNode", false, false)
 	
 	
-func _serialize_resource() -> QuestResource:
-	var start_nodes := find_children("", "QuestStartNode", false, false)
+func _serialize_resource() -> EventResource:
+	var start_nodes := find_children("", "StartEventGraphNode", false, false)
 	if start_nodes.size() != 1:
 		# TODO: add better error handling
-		printerr("Exactly one QuestStartNode is required in a graph")
+		printerr("Exactly one StartNode is required in a graph")
 		return null
 		
-	var end_nodes := find_children("", "QuestEndNode", false, false)
+	var end_nodes := find_children("", "EndEventGraphNode", false, false)
 	if end_nodes.size() != 1:
 		# TODO: add better error handling
-		printerr("Exactly one QuestEndNode is required in a graph")
+		printerr("Exactly one EndNode is required in a graph")
 		return null
 		
-	var objective_nodes := find_children("", "QuestObjectiveNode", false, false)
+	var objective_nodes := find_children("", "StageEventGraphNode", false, false)
 	if objective_nodes.size() == 0:
 		# TODO: add better error handling
-		printerr("One or more QuestObjectiveNodes are required in a graph")
+		printerr("One or more StageNode are required in a graph")
 		return null
 	
 	var connections := get_connection_list()
-	var resource := QuestResource.new()
-	var edges: Array[QuestEdge] = []
-	resource.nodes.assign(_get_nodes(connections, edges))
+	var resource := EventResource.new()
+	var edges: Array[EventEdge] = []
+	resource.stages.assign(_get_nodes(connections, edges))
 	resource.edges = edges
 	return resource
 	
 	
-func _get_nodes(connections: Array[Dictionary], edges: Array[QuestEdge]) -> Array[QuestNode]:
+func _get_nodes(connections: Array[Dictionary], edges: Array[EventEdge]) -> Array[EventNode]:
 	var created_nodes := {}
 	for graph_node: EventGraphNode in get_child_nodes():
 		created_nodes[graph_node.name] = graph_node.get_model()
@@ -88,7 +88,7 @@ func _get_nodes(connections: Array[Dictionary], edges: Array[QuestEdge]) -> Arra
 		edge.edge_type = connection.to_port as EventEdge.EdgeType
 		edges.append(edge)
 	
-	var result: Array[QuestNode] = []
+	var result: Array[EventNode] = []
 	result.assign(created_nodes.values())
 	return result
 
@@ -133,7 +133,7 @@ func _on_delete_nodes_request(nodes: Array[StringName]) -> void:
 			func(connection): return connection.from_node == node or connection.to_node == node
 		))
 		nodes_to_remove.append(get_node(NodePath(node)))
-	var undo_redo := (Engine.get_meta("QuestifyPlugin") as EditorPlugin).get_undo_redo()
+	var undo_redo := (Engine.get_meta("EventEditorPlugin") as EditorPlugin).get_undo_redo()
 	undo_redo.create_action("Delete Quest Nodes")
 	undo_redo.add_do_method(self, "_delete_nodes", nodes_to_remove, connections_to_remove)
 	undo_redo.add_undo_method(self, "_undo_delete_nodes", nodes_to_remove, connections_to_remove)
@@ -153,7 +153,7 @@ func _on_paste_nodes_request() -> void:
 			var new_node := node.duplicate(7) as EventGraphNode
 			new_node.set_meta("original_offset", node.position_offset)
 			nodes_to_copy.append(new_node)
-		var undo_redo := (Engine.get_meta("QuestifyPlugin") as EditorPlugin).get_undo_redo()
+		var undo_redo := (Engine.get_meta("EventEditorPlugin") as EditorPlugin).get_undo_redo()
 		undo_redo.create_action("Paste Quest Nodes")
 		undo_redo.add_do_method(self, "_paste_nodes", nodes_to_copy)
 		undo_redo.add_undo_method(self, "_undo_paste_nodes", nodes_to_copy)

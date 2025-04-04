@@ -8,6 +8,6 @@ enum EdgeType {
 }
 
 
-@export var from: QuestNode
-@export var to: QuestNode
+@export var from: EventNode
+@export var to: EventNode
 @export var edge_type: EdgeType
