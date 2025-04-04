@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnf6ipbnvyj65"]
+
+[ext_resource type="Script" uid="uid://dn83b35u0xpte" path="res://!tool/event_editer/internal/end_graph_node.gd" id="1_3sfho"]
+[ext_resource type="Texture2D" uid="uid://bdtc56ln0sfgo" path="res://icon.svg" id="1_bcado"]
+
+[node name="EndNode" type="GraphNode"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -506.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+title = "EndStart"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_3sfho")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_bcado")
