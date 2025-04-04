@@ -46,7 +46,6 @@ func save_file(path: String) -> void:
 	var error := graph_editor.save(path)
 	if error == OK:
 		current_file_path = path
-		EditorInterface.get_resource_filesystem().scan()
 		return
 	# TODO: better error handling
 	printerr(error)

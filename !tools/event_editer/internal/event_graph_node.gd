@@ -10,9 +10,8 @@ func _ready() -> void:
 	var delete_button: Button = Button.new()
 	var node_name_array: Array[StringName] = [name]
 	delete_button.icon = get_theme_icon("Close", "EditorIcons")
-	var parent = get_parent() as EventGraphEditor
-	if parent:
-		delete_button.pressed.connect(parent._on_delete_nodes_request.bind(node_name_array))
+	#var parent = get_parent() as EventGraphEditor
+	delete_button.pressed.connect(get_parent()._on_delete_nodes_request.bind(node_name_array))
 	delete_button.size_flags_horizontal = SIZE_SHRINK_END
 	get_titlebar_hbox().add_child(delete_button)
 
