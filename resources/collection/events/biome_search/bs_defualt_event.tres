@@ -78,6 +78,7 @@ showing_action_hints = false
 [resource]
 script = ExtResource("4_ifb0a")
 _stages = Array[ExtResource("1_jtjwl")]([SubResource("Resource_r1qr0")])
+groups = null
 code_name = &"bs_defualt"
 visible_name = "EVENT_BS_DEFUALT_NAME"
 discription = "EVENT_BS_DEFUALT_DISCRIPTION"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EventResource" load_steps=5 format=3 uid="uid://s6k078jwopre"]
+
+[ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_qr7nk"]
+[ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="2_hr02p"]
+[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_pfd8p"]
+
+[sub_resource type="Resource" id="Resource_p6r6f"]
+script = ExtResource("1_qr7nk")
+name = &"start"
+text = ""
+actions = Array[ExtResource("2_pfd8p")]([])
+showing_action_hints = false
+metadata/_custom_type_script = "uid://bj7nixdskuur4"
+
+[resource]
+script = ExtResource("2_hr02p")
+_stages = Array[ExtResource("1_qr7nk")]([SubResource("Resource_p6r6f")])
+groups = Array[int]([])
+code_name = &"hunger_man"
+visible_name = "EVENT_HUNGER_MAN_NAME"
+discription = "EVENT_HUNGER_MAN_DISCRIPTION"
+metadata/_custom_type_script = "uid://b1ks3ffqt462y"
