@@ -39,6 +39,7 @@ Questify="*res://addons/questify/quest_manager.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 PycoLog="*res://addons/pycolytics-godot/pyco_log.gd"
+SodaAudioManager="*res://addons/SodaAudioManager/Scenes/soda_audio_manager.scn"
 
 [display]
 
@@ -59,8 +60,6 @@ project/assembly_name="SurviveAlone"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/event_editor/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
-
-[file_customization]
 
 folder_colors={
 "res://feature/": "purple",
