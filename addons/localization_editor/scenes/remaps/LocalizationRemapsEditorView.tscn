@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvo140bdbfh1f"]
 
 [ext_resource type="Script" uid="uid://bsc2g65rgh7vt" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsEditorView.gd" id="1"]
-[ext_resource type="PackedScene" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeys.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c0w8t1fv2uie4" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeys.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://disbqw2ly6082" path="res://addons/localization_editor/scenes/remaps/LocalizationRemaps.tscn" id="3"]
 
 [node name="Remaps" type="HBoxContainer"]

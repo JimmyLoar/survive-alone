@@ -12,5 +12,5 @@ default_min_value = 0.0
 default_delta_value = -0.012
 modulate = Color(1, 0.235294, 0, 1)
 code_name = &"hunger"
-visible_name = "PROPERTY_NAME_HUNGER"
-discription = "PROPERTY_DISCRIPTION_HUNGER"
+visible_name = "PROPERTY_HUNGER_NAME"
+discription = "PROPERTY_HUNGER_DISCRIPTION"

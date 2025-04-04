@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("2_hr02p")
 stages = []
-edge = []
+edges = []
 groups = Array[int]([])
 code_name = &"hunger_man"
 visible_name = "EVENT_HUNGER_MAN_NAME"

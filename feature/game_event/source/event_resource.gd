@@ -20,7 +20,7 @@ enum Tags{
 }
 
 @export var stages: Array = []
-@export var edge: Array = []
+@export var edges: Array = []
 @export var groups: Array[Tags] = []
 var _ids: PackedStringArray = []
 

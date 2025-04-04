@@ -10,7 +10,6 @@ KEY_PLAY_VIDEO,Play video,Воспроизвести видео,Video abspielen
 KEY_PLACEHOLDER,Placeholder:,Заполнитель:,Platzhalter:
 KEY_VALUE,Value:,Ценность:,Wert:
 KEY_APPLY,Apply,Применить,Anwenden
-KEY_PLACEHOLDER,My_NAME name is {{NAME}}.,Меня зовут {{NAME}}.,Mein Name ist {{NAME}}.
 KEY_PLACEHOLDER_AGE,I'm {{OLD}}  years old.,Мне {{OLD}} лет.,Ich bin {{OLD}} Jahre alt.
 KEY_PLACEHOLDER_AGE_NAME,"My name is {{NAME}}, and I'm {{OLD}}  years old.",Меня зовут {{NAME}} и мне {{OLD}} лет.,Mein Name ist {{NAME}} und ich bin {{OLD}} Jahre alt.
 ACTION_TEST_NAME,Action_NAME Test,Тестовое Действие,Testaktion

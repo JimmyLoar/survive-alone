@@ -1,20 +1,12 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=6 format=3 uid="uid://bukhycp4s402r"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=2 format=3 uid="uid://bukhycp4s402r"]
 
-[ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_2r3yv"]
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="1_borl2"]
-[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_avtqg"]
-[ext_resource type="Resource" uid="uid://c66ptthr6m3wo" path="res://resources/collection/events/biome_search/actions/return_to_default.tres" id="3_ymyqt"]
-
-[sub_resource type="Resource" id="Resource_n068v"]
-script = ExtResource("1_2r3yv")
-name = &"start"
-text = "EVENT_BS_WOOD_HOUSE_START"
-actions = Array[ExtResource("2_avtqg")]([ExtResource("3_ymyqt")])
-showing_action_hints = false
 
 [resource]
 script = ExtResource("1_borl2")
-_stages = Array[ExtResource("1_2r3yv")]([SubResource("Resource_n068v")])
+stages = []
+edge = []
+groups = Array[int]([])
 code_name = &"bs_wood_house"
 visible_name = "EVENT_BS_WOOD_HOUSE_NAME"
 discription = "EVENT_BS_WOOD_HOUSE_DISCRIPTION"

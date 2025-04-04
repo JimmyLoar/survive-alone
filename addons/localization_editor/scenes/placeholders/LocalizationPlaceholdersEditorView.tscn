@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://f8rrrmn5oce0"]
 
 [ext_resource type="Script" uid="uid://dpyhokfkywkag" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersEditorView.gd" id="1"]
-[ext_resource type="PackedScene" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersKeys.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cp661eqvrr2ur" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersKeys.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cohhvoe4eip1h" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholders.tscn" id="3"]
 
 [node name="LocalizationPlaceholdersEditorView" type="VBoxContainer"]

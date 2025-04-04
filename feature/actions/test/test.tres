@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_7dpys"]
 script = ExtResource("1_yo2pm")
 type = "effect"
-name = ""
+name = "none"
 
 [resource]
 script = ExtResource("3_wd2s0")
@@ -14,6 +14,7 @@ conditions = Array[ExtResource("1_yo2pm")]([])
 effects = Array[ExtResource("1_yo2pm")]([SubResource("Resource_7dpys")])
 context_show_properties_bar = false
 context_use_slider = false
+context_use_item_grid = false
 code_name = &"code_name"
-visible_name = "ACTION_NAME_CODE_NAME"
-discription = "ACTION_DISCRIPTION_CODE_NAME"
+visible_name = "ACTION_CODE_NAME_NAME"
+discription = "ACTION_CODE_NAME_DISCRIPTION"
