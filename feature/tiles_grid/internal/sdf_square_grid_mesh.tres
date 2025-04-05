@@ -1,0 +1,4 @@
+[gd_resource type="QuadMesh" format=3 uid="uid://d2me8mgf2sp0g"]
+
+[resource]
+size = Vector2(100000, 100000)
