@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c321v1xyqc5q3"]
+[gd_scene load_steps=11 format=3 uid="uid://c321v1xyqc5q3"]
 
 [ext_resource type="Script" uid="uid://cgi8ilsbg70uq" path="res://!tools/game_editor/screens/editor_screen/game_editor__editor_screen.gd" id="1_3jvi6"]
 [ext_resource type="Theme" uid="uid://b7thgsf2s74gg" path="res://assets/themes/for_dev_tools.tres" id="2_ggukk"]
@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://skppxmtw5diw" path="res://feature/virtual_chunks/virtual_chunks.tscn" id="5_gbw6i"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="6_bgr3y"]
 [ext_resource type="PackedScene" uid="uid://bsousn3bw4sgu" path="res://!tools/game_editor/screens/editor_screen/features/biomes_tool/game_editor__biomes_tool.tscn" id="6_egicx"]
+[ext_resource type="PackedScene" uid="uid://sjivbom4jg1p" path="res://feature/tiles_grid/tiles_grid.tscn" id="9_1trex"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1trex"]
+radius = 2.0
+height = 4.0
 
 [node name="EditorScreen" type="Node2D"]
 script = ExtResource("1_3jvi6")
@@ -22,6 +27,7 @@ offset_bottom = 712.0
 theme = ExtResource("2_ggukk")
 
 [node name="Panel" type="Panel" parent="UI"]
+z_index = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 48.0
@@ -41,6 +47,8 @@ grow_horizontal = 1
 tab_count = 2
 script = null
 
+[node name="BiomesTool" parent="UI" instance=ExtResource("6_egicx")]
+
 [node name="ScreenMouseEvents" parent="UI" instance=ExtResource("3_musww")]
 theme = ExtResource("2_ggukk")
 
@@ -50,6 +58,9 @@ theme = ExtResource("2_ggukk")
 
 [node name="BiomesLayer" parent="." instance=ExtResource("6_bgr3y")]
 
-[node name="BiomesTool" parent="." instance=ExtResource("6_egicx")]
-visible = false
-script = null
+[node name="TilesGrid" parent="." instance=ExtResource("9_1trex")]
+
+[node name="CordinatesCenterMarker" type="MeshInstance2D" parent="."]
+z_index = 4096
+z_as_relative = false
+mesh = SubResource("SphereMesh_1trex")

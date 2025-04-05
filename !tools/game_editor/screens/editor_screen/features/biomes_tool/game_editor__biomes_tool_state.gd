@@ -4,7 +4,7 @@ extends Object
 var _biome_repository: BiomeRepository
 var _biome_layers_state: BiomesLayerState
 
-func _init(node: Node):
+func init(node: Node):
 	_biome_repository = Injector.inject(BiomeRepository, node)
 	_biome_layers_state = Injector.inject(BiomesLayerState, node)
 

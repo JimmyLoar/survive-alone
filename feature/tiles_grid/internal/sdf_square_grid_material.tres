@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b1wstudebvy54"]
+
+[ext_resource type="Shader" uid="uid://vdila7n65gy7" path="res://feature/tiles_grid/internal/sdf_square_grid.gdshader" id="1_0tcsp"]
+
+[resource]
+shader = ExtResource("1_0tcsp")
+shader_parameter/grid_offset = Vector2(0, 0)
+shader_parameter/square_size = 100.0
+shader_parameter/line_width = 1.0
+shader_parameter/zoom = 1.0

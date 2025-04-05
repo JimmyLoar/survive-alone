@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://sjivbom4jg1p"]
+
+[ext_resource type="Script" uid="uid://caxem3i8trctv" path="res://feature/tiles_grid/tiles_grid.gd" id="1_55ayk"]
+[ext_resource type="Material" uid="uid://b1wstudebvy54" path="res://feature/tiles_grid/internal/sdf_square_grid_material.tres" id="2_hft7i"]
+[ext_resource type="QuadMesh" uid="uid://d2me8mgf2sp0g" path="res://feature/tiles_grid/internal/sdf_square_grid_mesh.tres" id="3_x55nn"]
+
+[node name="TilesGrid" type="Node2D"]
+script = ExtResource("1_55ayk")
+
+[node name="SDFShaderSquareGrid" type="MeshInstance2D" parent="."]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+material = ExtResource("2_hft7i")
+mesh = ExtResource("3_x55nn")
