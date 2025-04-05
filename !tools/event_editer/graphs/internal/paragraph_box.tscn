@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bce0f8en4dlvx" path="res://!tools/event_editer/graphs/internal/paragraph_box.gd" id="1_bva8m"]
 
-[node name="ParagraphBox" type="VBoxContainer"]
+[node name="ParagraphBox" type="VBoxContainer" node_paths=PackedStringArray("character_selecter", "line_edit", "text_edit")]
 custom_minimum_size = Vector2(300, 0)
 offset_right = 194.0
 offset_bottom = 147.0
 script = ExtResource("1_bva8m")
+character_selecter = NodePath("HBoxContainer/CharacterSelecter")
+line_edit = NodePath("VBoxContainer/LineEdit")
+text_edit = NodePath("TextEdit")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

@@ -10,7 +10,7 @@ const CHARACTERS_LIST = [
 
 const PARAGRAPH_BOX = preload("res://!tools/event_editer/graphs/internal/paragraph_box.tscn")
 
-@onready var paragraphs: HFlowContainer = %Paragraphs
+@export var paragraphs: HFlowContainer
 
 
 func _get_model() -> EventNode:
@@ -18,17 +18,23 @@ func _get_model() -> EventNode:
 
 
 func _set_model_properties(node: EventNode) -> void:
-	node.dialoges.clear()
-	for paragraph: ParagrathBox in paragraphs:
-		node.dialoges.append(paragraph.get_data())
+	var data := Array()
+	for paragraph: ParagrathBox in paragraphs.get_children():
+		data.append(paragraph.get_data())
+	node.dialoges = data
+	
 
 
 func _get_model_properties(node: EventNode) -> void:
 	for i in node.dialoges.size():
-		var paragraph: ParagrathBox = paragraphs.get_child(i)
-		if not paragraph:
-			paragraph = _add_paragrath()
+		var paragraph: ParagrathBox = _get_paragraph(i)
 		paragraph.set_data(node.dialoges[i])
+
+
+func _get_paragraph(index: int):
+	if index <= paragraphs.get_child_count():
+		return paragraphs.get_child(index)
+	return _add_paragrath()
 
 
 func _add_paragrath():

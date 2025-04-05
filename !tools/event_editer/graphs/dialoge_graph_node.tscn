@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsqug"]
 bg_color = Color(7.21961e-07, 0.379959, 0.422661, 1)
 
-[node name="DialogeGraphNode" type="GraphNode"]
+[node name="DialogeGraphNode" type="GraphNode" node_paths=PackedStringArray("paragraphs")]
 custom_minimum_size = Vector2(300, 240)
 offset_left = 13.0
 offset_top = 19.0
@@ -53,6 +53,7 @@ slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
 script = ExtResource("1_dsqug")
+paragraphs = NodePath("Paragraphs")
 metadata/_custom_type_script = "uid://dwdq1drsx4pdf"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -73,7 +74,6 @@ horizontal_alignment = 2
 layout_mode = 2
 
 [node name="__AddButton" type="Button" parent="."]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -81,7 +81,6 @@ size_flags_vertical = 0
 text = "Add phrase"
 
 [node name="Paragraphs" type="HFlowContainer" parent="."]
-unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
