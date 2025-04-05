@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4hi273u00176"]
+
+[ext_resource type="Script" uid="uid://bce0f8en4dlvx" path="res://!tools/event_editer/graphs/internal/paragraph_box.gd" id="1_bva8m"]
+
+[node name="ParagraphBox" type="VBoxContainer"]
+script = ExtResource("1_bva8m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Who: "
+vertical_alignment = 1
+
+[node name="CharacterSelecter" type="OptionButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 3
+popup/item_0/text = "Man"
+popup/item_0/id = 0
+popup/item_1/text = "Man"
+popup/item_1/id = 1
+popup/item_2/text = "Man"
+popup/item_2/id = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "X"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "What:"
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextEdit" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Translate"
+editable = false
+minimap_draw = true

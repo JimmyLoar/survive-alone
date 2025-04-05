@@ -1,4 +1,4 @@
-class_name EventNode
+class_name EventDisplay
 extends PanelContainer
 
 @onready var texture_rect: TextureRect = %TextureRect
@@ -17,6 +17,7 @@ var currect_event: EventResource
 var currect_stage: int = -1
 var _result: Dictionary
 
+
 func _enter_tree() -> void:
 	_state = Injector.provide(EventState, EventState.new(self), self, Injector.ContainerType.CLOSEST)
 
@@ -27,7 +28,8 @@ func _ready() -> void:
 	action_list.action_state = action_state
 	%ResultContainer.hide()
 	%HintContainer.hide()
-	self.hide()
+	_state.start_event(preload("res://resources/collection/events/dialoge/hungry_man_0.tres").instantiate())
+	#self.hide()
 
 
 func _register_methods():
@@ -76,10 +78,10 @@ func _display_stage(stage_index: int):
 	if stage_index == -1:
 		return
 	
-	var stage: EventStageResource = currect_event.get_stage(stage_index)
-	texture_rect.texture = stage.texture
-	rich_text_label.text = TranslationServer.translate(stage.text)
-	action_list.update_actions(stage.actions)
+	#var stage: EventStageResource = currect_event.get(stage_index)
+	#texture_rect.texture = currect_event.
+	rich_text_label.text = currect_event.description
+	#action_list.update_actions(stage.actions)
 	_display_result(_result)
 
 

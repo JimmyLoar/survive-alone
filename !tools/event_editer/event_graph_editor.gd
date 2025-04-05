@@ -5,6 +5,7 @@ class_name EventGraphEditor extends GraphEdit
 const StartNodeScene = preload("../event_editer/internal/start_graph_node.tscn")
 const EndNodeScene = preload("../event_editer/internal/end_graph_node.tscn")
 const StageNodeScene = preload("../event_editer/internal/stage_graph_node.tscn")
+const DialogeNodeScene = preload("../event_editer/internal/dialoge_graph_node.tscn")
 
 
 var selected_nodes: Array[EventGraphNode] = []
@@ -113,6 +114,8 @@ func _get_graph_node(node: EventNode) -> EventGraphNode:
 		return StageNodeScene.instantiate()
 	elif node is EndEventNode:
 		return EndNodeScene.instantiate()
+	elif node is DialogeEventNode:
+		return DialogeNodeScene.instantiate()
 	return null
 	
 	

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://beklh40jtnrqv"]
 
-[ext_resource type="Script" uid="uid://djrosrfcbjoep" path="res://!tools/event_editer/internal/stage_graph_node.gd" id="1_jd1b0"]
+[ext_resource type="Script" uid="uid://djrosrfcbjoep" path="res://!tools/event_editer/graphs/stage_graph_node.gd" id="1_jd1b0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
 bg_color = Color(0.739295, 9.8283e-05, 0.620089, 1)
@@ -9,6 +9,7 @@ bg_color = Color(0.739295, 9.8283e-05, 0.620089, 1)
 custom_minimum_size = Vector2(300, 240)
 offset_right = 300.0
 offset_bottom = 240.0
+theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
 resizable = true
 title = "StageStart"
@@ -30,6 +31,15 @@ slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
 script = ExtResource("1_jd1b0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -48,3 +58,22 @@ horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Discription"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Key"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Translate"
+editable = false

@@ -16,14 +16,14 @@ func _get_model() -> EventNode:
 
 
 func _set_model_properties(node: EventNode) -> void:
-	node.name = event_name.trim_suffix("_name")
+	node.name_key = event_name.trim_suffix("_name")
 
 
 func _get_model_properties(node: EventNode) -> void:
-	name_text_edit.text = node.name
+	name_text_edit.text = node.name_key
 	breakpoint
-	event_name = "%s_name" % node.name
-	event_discription = "%s_discription" % node.name
+	event_name = "%s_name" % node.name_key
+	event_discription = "%s_discription" % node.name_key
 
 
 func _on_name_text_edit_text_changed(new_text: String) -> void:
