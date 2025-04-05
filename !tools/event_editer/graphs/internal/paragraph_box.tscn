@@ -3,7 +3,14 @@
 [ext_resource type="Script" uid="uid://bce0f8en4dlvx" path="res://!tools/event_editer/graphs/internal/paragraph_box.gd" id="1_bva8m"]
 
 [node name="ParagraphBox" type="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 194.0
+offset_bottom = 147.0
 script = ExtResource("1_bva8m")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Paragraph № 0"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -19,7 +26,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
 item_count = 3
-popup/item_0/text = "Man"
+popup/item_0/text = "Unknown"
 popup/item_0/id = 0
 popup/item_1/text = "Man"
 popup/item_1/id = 1
@@ -42,10 +49,15 @@ vertical_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "Dialoge Key"
 
 [node name="TextEdit" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 placeholder_text = "Translate"
 editable = false
-minimap_draw = true
+scroll_fit_content_height = true
+
+[connection signal="item_selected" from="HBoxContainer/CharacterSelecter" to="." method="_on_character_selecter_item_selected"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_remove_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
