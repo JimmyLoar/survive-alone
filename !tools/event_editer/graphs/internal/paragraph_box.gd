@@ -6,11 +6,11 @@ signal request_to_remove(paragraph: ParagrathBox)
 
 const CHARACTERS_LIST = DialogeEventGraphNode.CHARACTERS_LIST
 
-@onready var character_selecter: OptionButton = %CharacterSelecter
-@onready var line_edit: LineEdit = $VBoxContainer/LineEdit
-@onready var text_edit: TextEdit = $TextEdit
+@export var character_selecter: OptionButton 
+@export var line_edit: LineEdit 
+@export var text_edit: TextEdit
 
-var _who
+var _who:= CHARACTERS_LIST[0]
 
 func _ready() -> void:
 	update()
@@ -33,13 +33,13 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 
 func set_data(array: Array):
 	array.resize(2)
-	character_selecter.select(CHARACTERS_LIST.find(array[0]))
-	line_edit.text = array[1].trim_prefix("event_dialoge_")
+	character_selecter.select(int(CHARACTERS_LIST.find(array[0])))
+	line_edit.text = array[1]
+	_on_line_edit_text_changed(array[1])
 
 
 func get_data() -> Array:
-	var what = "event_dialoge_%s" % line_edit.text
-	return [_who, what.to_upper()]
+	return [_who, line_edit.text]
 
 
 func _on_character_selecter_item_selected(index: int) -> void:

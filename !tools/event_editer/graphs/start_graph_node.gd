@@ -21,7 +21,6 @@ func _set_model_properties(node: EventNode) -> void:
 
 func _get_model_properties(node: EventNode) -> void:
 	name_text_edit.text = node.name_key
-	breakpoint
 	event_name = "%s_name" % node.name_key
 	event_discription = "%s_discription" % node.name_key
 
