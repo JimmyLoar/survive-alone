@@ -2,10 +2,10 @@
 class_name EventGraphEditor extends GraphEdit
 
 
-const StartNodeScene = preload("../event_editer/internal/start_graph_node.tscn")
-const EndNodeScene = preload("../event_editer/internal/end_graph_node.tscn")
-const StageNodeScene = preload("../event_editer/internal/stage_graph_node.tscn")
-const DialogeNodeScene = preload("../event_editer/internal/dialoge_graph_node.tscn")
+const StartNodeScene = preload("../event_editer/graphs/start_graph_node.tscn")
+const EndNodeScene = preload("../event_editer/graphs/end_graph_node.tscn")
+const StageNodeScene = preload("../event_editer/graphs/stage_graph_node.tscn")
+const DialogeNodeScene = preload("../event_editer/graphs/dialoge_graph_node.tscn")
 
 
 var selected_nodes: Array[EventGraphNode] = []
