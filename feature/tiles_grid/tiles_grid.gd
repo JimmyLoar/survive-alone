@@ -1,14 +1,16 @@
 extends Node2D
 
+
+@export var line_width = 1
+@export var grid_offset = Vector2(0, 0)
+
 @onready var _mesh = %SDFShaderSquareGrid
 @onready var _camera_state: MainCameraState = Injector.inject(MainCameraState, self)
 var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk", 16) 
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)  
+var map_size_in_chunks:  Vector2 = ProjectSettings.get_setting("application/game/size/world",  Vector2i(70, 35))  
 
 func _ready() -> void:
-	var line_width = 1
-	var grid_offset = Vector2(0, 0)
-	var map_size_in_chunks = Vector2(136, 72) # Взять из конфига ?
 	var grid_size_in_tiles = map_size_in_chunks * chunk_size
 
 	var mesh = _mesh.mesh as QuadMesh
