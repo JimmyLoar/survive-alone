@@ -1,18 +1,13 @@
 class_name EventState
 extends Injectable
 
-var _node: EventNode
+var _node: EventDisplay
 
 
-
-
-func _init(_new_node: EventNode) -> void:
+func _init(_new_node: EventDisplay) -> void:
 	_node = _new_node
 
 
-func activate_event(event: EventResource):
+func start_event(event: EventResource):
 	_node.display(event)
-
-
-func  start_event(event: EventResource):
-	pass
+	

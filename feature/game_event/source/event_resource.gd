@@ -1,6 +1,6 @@
 @tool
 class_name EventResource
-extends NamedResource
+extends Resource
 
 enum Tags{
 	nothing, 		#ничего
@@ -25,16 +25,11 @@ enum Tags{
 var _ids: PackedStringArray = []
 
 
-func _init(_name: String = "", stages_count: int = 1) -> void:
-	super("EVENT")
-	code_name = _name
-
-
 var name: String:
-	get: return start_node.name
+	get: return start_node.get_event_name()
 
 var description: String:
-	get: return start_node.description
+	get: return start_node.get_event_discription()
 
 var start_node: StartEventNode
 
@@ -83,8 +78,6 @@ func start() -> void:
 		return
 	if not completed and not started:
 		start_node.active = true
-		Questify.quest_started.emit(self)
-		_notify_active_objectives()
 
 
 func update() -> void:
@@ -95,12 +88,12 @@ func update() -> void:
 		start_node.update()
 
 
-func get_active_objectives() -> Array[StageEventNode]:
-	var objectives: Array[StageEventNode] = []
+func get_active_stages() -> Array[StageEventNode]:
+	var active_stages: Array[StageEventNode] = []
 	for stage in stages:
 		if stage is StageEventNode and stage.get_active():
-			objectives.append(stage)
-	return objectives
+			active_stages.append(stage)
+	return active_stages
 
 
 func get_next_stages(stage: EventNode, edge_type: EventEdge.EdgeType = EventEdge.EdgeType.NORMAL) -> Array[EventNode]:
@@ -133,20 +126,6 @@ func get_resource_path() -> String:
 	return resource_path
 
 
-func request_query(type: String, key: String, value: Variant, requester: QuestCondition) -> void:
-	Questify.condition_query_requested.emit(type, key, value, requester)
-
-
-func complete_objective(objective: QuestObjective) -> void:
-	Questify.quest_objective_completed.emit(self, objective)
-	_notify_active_objectives()
-
-
-func complete_quest() -> void:
-	completed = true
-	Questify.quest_completed.emit(self)
-
-
 func serialize() -> Dictionary:
 	return {
 		completed = completed,
@@ -172,8 +151,3 @@ func _initialize() -> void:
 		stage.set_graph(self)
 		if stage is StartEventNode:
 			start_node = stage as StartEventNode
-
-
-func _notify_active_objectives() -> void:
-	for objective in get_active_objectives():
-		Questify.quest_objective_added.emit(self, objective)

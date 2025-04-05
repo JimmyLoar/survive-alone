@@ -7,6 +7,7 @@ const graph_nodes = [
 	{label = "Start Node", scene = EventGraphEditor.StartNodeScene},
 	{label = "End Node", scene = EventGraphEditor.EndNodeScene},
 	{label = "Stage Node", scene = EventGraphEditor.StageNodeScene},
+	{label = "Dialoge Node", scene = EventGraphEditor.DialogeNodeScene},
 ]
 
 
