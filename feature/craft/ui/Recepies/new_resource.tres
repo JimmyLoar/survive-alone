@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BasicRecipe" load_steps=6 format=3 uid="uid://pxbvidbaa863"]
+
+[ext_resource type="Script" uid="uid://df28n1j5yalbs" path="res://feature/craft/ItemNumberRecurse.gd" id="1_gxxkv"]
+[ext_resource type="Resource" uid="uid://chxbdcao06tc6" path="res://resources/collection/items/food/food_canned_food.tres" id="2_an2ds"]
+[ext_resource type="Script" uid="uid://jl8580apw3vx" path="res://feature/craft/BasicRecipeResurce.gd" id="2_kew2e"]
+
+[sub_resource type="Resource" id="Resource_3g160"]
+script = ExtResource("1_gxxkv")
+amount = 1
+item = ExtResource("2_an2ds")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[sub_resource type="Resource" id="Resource_42e2s"]
+script = ExtResource("1_gxxkv")
+amount = 2
+item = ExtResource("2_an2ds")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[resource]
+script = ExtResource("2_kew2e")
+ingredients = Array[ExtResource("1_gxxkv")]([SubResource("Resource_3g160")])
+results = Array[ExtResource("1_gxxkv")]([SubResource("Resource_42e2s")])
+craft_time = 33
+recipe_type = 0
+metadata/_custom_type_script = "uid://jl8580apw3vx"

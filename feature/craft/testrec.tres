@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="BasicRecipe" load_steps=11 format=3 uid="uid://bcge0nb1kyihk"]
+
+[ext_resource type="Script" uid="uid://df28n1j5yalbs" path="res://feature/craft/ItemNumberRecurse.gd" id="1_duf64"]
+[ext_resource type="Script" uid="uid://jl8580apw3vx" path="res://feature/craft/BasicRecipeResurce.gd" id="1_ijkfh"]
+[ext_resource type="Resource" uid="uid://chxbdcao06tc6" path="res://resources/collection/items/food/food_canned_food.tres" id="2_7nrg1"]
+[ext_resource type="Resource" uid="uid://csx1bauob5bnf" path="res://resources/collection/items/food/food_fresh_meat.tres" id="3_7nrg1"]
+[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/resource_wood.tres" id="3_56dg4"]
+[ext_resource type="Resource" uid="uid://ibrfm6mql4j7" path="res://resources/collection/items/food/food_fry_meat.tres" id="4_qlf58"]
+
+[sub_resource type="Resource" id="Resource_gke7t"]
+script = ExtResource("1_duf64")
+amount = 3
+item = ExtResource("2_7nrg1")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[sub_resource type="Resource" id="Resource_4ac14"]
+script = ExtResource("1_duf64")
+amount = 2
+item = ExtResource("3_56dg4")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[sub_resource type="Resource" id="Resource_7elgx"]
+script = ExtResource("1_duf64")
+amount = 4
+item = ExtResource("4_qlf58")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[sub_resource type="Resource" id="Resource_fl1mt"]
+script = ExtResource("1_duf64")
+amount = 6
+item = ExtResource("3_7nrg1")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[resource]
+script = ExtResource("1_ijkfh")
+ingredients = Array[ExtResource("1_duf64")]([SubResource("Resource_gke7t"), SubResource("Resource_4ac14"), SubResource("Resource_7elgx")])
+results = Array[ExtResource("1_duf64")]([SubResource("Resource_fl1mt")])
+craft_time = 120
+recipe_type = 0
+metadata/_custom_type_script = "uid://jl8580apw3vx"

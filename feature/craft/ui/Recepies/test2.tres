@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BasicRecipe" load_steps=9 format=3 uid="uid://di1t8oj34rnkh"]
+
+[ext_resource type="Script" uid="uid://df28n1j5yalbs" path="res://feature/craft/ItemNumberRecurse.gd" id="1_vhjw2"]
+[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/resource_wood.tres" id="2_3y0ji"]
+[ext_resource type="Script" uid="uid://jl8580apw3vx" path="res://feature/craft/BasicRecipeResurce.gd" id="2_lidee"]
+[ext_resource type="Resource" uid="uid://q60vk20s3cn8" path="res://resources/collection/items/resource/resource_stick.tres" id="3_3ret6"]
+[ext_resource type="Resource" uid="uid://ibrfm6mql4j7" path="res://resources/collection/items/food/food_fry_meat.tres" id="4_3ret6"]
+
+[sub_resource type="Resource" id="Resource_u64qi"]
+script = ExtResource("1_vhjw2")
+amount = 1
+item = ExtResource("2_3y0ji")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[sub_resource type="Resource" id="Resource_1ayv4"]
+script = ExtResource("1_vhjw2")
+amount = 2
+item = ExtResource("3_3ret6")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[sub_resource type="Resource" id="Resource_0q30j"]
+script = ExtResource("1_vhjw2")
+amount = 1
+item = ExtResource("4_3ret6")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"
+
+[resource]
+script = ExtResource("2_lidee")
+ingredients = Array[ExtResource("1_vhjw2")]([SubResource("Resource_u64qi")])
+results = Array[ExtResource("1_vhjw2")]([SubResource("Resource_1ayv4"), SubResource("Resource_0q30j")])
+craft_time = 100
+recipe_type = 0
+metadata/_custom_type_script = "uid://jl8580apw3vx"

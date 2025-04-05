@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://boss7rekp2t0v"]
+
+[ext_resource type="Script" uid="uid://bsj1yque5qdk" path="res://feature/craft/ui/recipe_view.gd" id="1_6oi1l"]
+[ext_resource type="Texture2D" uid="uid://bemmvoaajeca6" path="res://assets/kenney_ui-pack/Vector/Extra/icon_play_light.svg" id="2_ex854"]
+
+[node name="RecipeView" type="Control"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1050.0
+offset_bottom = -640.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_6oi1l")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ingr" type="HBoxContainer" parent="ScrollContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_ex854")
+stretch_mode = 5
+
+[node name="res" type="HBoxContainer" parent="ScrollContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemNumberTuple" load_steps=6 format=3 uid="uid://d0g2gr7hrs3uq"]
+
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_7lab0"]
+[ext_resource type="Script" uid="uid://df28n1j5yalbs" path="res://feature/craft/ItemNumberRecurse.gd" id="1_hc5hs"]
+[ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_qriu5"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_ku62j"]
+
+[sub_resource type="Resource" id="Resource_blne7"]
+script = ExtResource("2_qriu5")
+texture = ExtResource("3_ku62j")
+rare = 1
+durability = -1
+is_pickable = true
+actions = Array[ExtResource("1_7lab0")]([])
+code_name = &"code_name"
+visible_name = "ITEM_CODE_NAME_NAME"
+discription = "ITEM_CODE_NAME_DISCRIPTION"
+metadata/_custom_type_script = "uid://ckdrih1rxjnnb"
+
+[resource]
+script = ExtResource("1_hc5hs")
+amount = 2
+item = SubResource("Resource_blne7")
+metadata/_custom_type_script = "uid://df28n1j5yalbs"

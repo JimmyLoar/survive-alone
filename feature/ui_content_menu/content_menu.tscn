@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bksbtwk2euyms"]
+[gd_scene load_steps=6 format=3 uid="uid://bksbtwk2euyms"]
 
 [ext_resource type="Script" uid="uid://vh20fyeeneky" path="res://feature/ui_content_menu/content_menu.gd" id="1_c6v8d"]
 [ext_resource type="PackedScene" uid="uid://os5qyr4xwmqx" path="res://feature/ui_content_menu/menu_buttons_bar.tscn" id="2_xflwk"]
 [ext_resource type="PackedScene" uid="uid://bimu1uujo2qmv" path="res://feature/inventory_character/inventory_character.tscn" id="3_8i0qu"]
 [ext_resource type="PackedScene" uid="uid://cjhy00q8mvwrs" path="res://feature/inventory_location/inventory_location.tscn" id="4_c7uu5"]
+[ext_resource type="PackedScene" uid="uid://bl1d3c28xju2i" path="res://feature/craft/CC_Craft.tscn" id="5_bu55j"]
 
 [node name="ContentMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -41,6 +42,11 @@ metadata/_tab_index = 0
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="CC-Craft" parent="HBoxContainer/TabContainer" instance=ExtResource("5_bu55j")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 layout_mode = 2
