@@ -18,7 +18,7 @@ graph_editor_size = Vector2(300, 289)
 
 [sub_resource type="Resource" id="Resource_0nd72"]
 script = ExtResource("3_q5xqs")
-name = ""
+text = ""
 id = "ltQzz562yT"
 graph_editor_position = Vector2(120, 0)
 graph_editor_size = Vector2(340, 440)
@@ -31,10 +31,10 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_ehri6"]
 script = ExtResource("4_3wiuq")
-dialoges = [[ExtResource("4_q5xqs"), "ddd"], [ExtResource("4_q5xqs"), "fff"]]
+dialoges = [[ExtResource("4_q5xqs"), "222"], [ExtResource("4_q5xqs"), "33311"], [ExtResource("4_q5xqs"), "3334444"]]
 id = "-b7WZuJiF5"
 graph_editor_position = Vector2(540, 0)
-graph_editor_size = Vector2(336, 404)
+graph_editor_size = Vector2(321, 580)
 
 [sub_resource type="Resource" id="Resource_x6ao8"]
 script = ExtResource("1_oao3x")

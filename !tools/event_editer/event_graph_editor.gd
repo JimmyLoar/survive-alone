@@ -99,8 +99,8 @@ func _deserialize_resource(resource: EventResource) -> void:
 	var model_to_graph_node_map := {}
 	for node in resource.stages:
 		var graph_node := _get_graph_node(node)
-		graph_node.load_model(node)
 		add_node(graph_node, node.graph_editor_position)
+		graph_node.load_model(node)
 		model_to_graph_node_map[node] = graph_node
 	
 	for edge in resource.edges:
