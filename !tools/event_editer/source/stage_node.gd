@@ -1,4 +1,4 @@
 class_name StageEventNode
 extends EventNode
 
-@export var name: String
+@export var text: String

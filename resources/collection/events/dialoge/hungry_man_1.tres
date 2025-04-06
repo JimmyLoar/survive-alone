@@ -18,7 +18,7 @@ graph_editor_size = Vector2(300, 289)
 
 [sub_resource type="Resource" id="Resource_61gh3"]
 script = ExtResource("3_vjxi1")
-name = ""
+text = "oko"
 id = "EaFJzlRy9M"
 graph_editor_position = Vector2(560, -320)
 graph_editor_size = Vector2(300, 240)
@@ -43,7 +43,7 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_li26c"]
 script = ExtResource("8_61gh3")
-dialoges = [[ExtResource("7_vjxi1"), "qqq"]]
+dialoges = [[ExtResource("7_vjxi1"), "koo"]]
 id = "fla6Akr8Qn"
 graph_editor_position = Vector2(560, -660)
 graph_editor_size = Vector2(336, 306)
@@ -62,6 +62,6 @@ edge_type = 0
 
 [resource]
 script = ExtResource("2_ei7d3")
-stages = Array[ExtResource("6_wofwq")]([SubResource("Resource_71bbs"), SubResource("Resource_vjxi1"), SubResource("Resource_61gh3"), SubResource("Resource_li26c")])
+stages = Array[ExtResource("6_wofwq")]([SubResource("Resource_71bbs"), SubResource("Resource_vjxi1"), SubResource("Resource_li26c"), SubResource("Resource_61gh3")])
 edges = Array[ExtResource("1_485l4")]([SubResource("Resource_wofwq"), SubResource("Resource_8suym"), SubResource("Resource_7jn4x"), SubResource("Resource_jmbss")])
 groups = Array[int]([])

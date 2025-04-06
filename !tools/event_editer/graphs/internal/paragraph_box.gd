@@ -1,8 +1,8 @@
 @tool
-class_name ParagrathBox
+class_name ParagraphBox
 extends VBoxContainer
 
-signal request_to_remove(paragraph: ParagrathBox)
+signal request_to_remove(paragraph: ParagraphBox)
 
 const CHARACTERS_LIST = DialogeEventGraphNode.CHARACTERS_LIST
 
