@@ -31,7 +31,7 @@ var name: String:
 var description: String:
 	get: return start_node.get_event_discription()
 
-var start_node: StartEventNode
+var start_node: EventStart
 
 var started: bool:
 	get: return start_node.active
@@ -88,10 +88,10 @@ func update() -> void:
 		start_node.update()
 
 
-func get_active_stages() -> Array[StageEventNode]:
-	var active_stages: Array[StageEventNode] = []
+func get_active_stages() -> Array[EventMonologue]:
+	var active_stages: Array[EventMonologue] = []
 	for stage in stages:
-		if stage is StageEventNode and stage.get_active():
+		if stage is EventMonologue and stage.get_active():
 			active_stages.append(stage)
 	return active_stages
 
@@ -149,5 +149,5 @@ func deserialize(data: Dictionary) -> void:
 func _initialize() -> void:
 	for stage in stages:
 		stage.set_graph(self)
-		if stage is StartEventNode:
-			start_node = stage as StartEventNode
+		if stage is EventStart:
+			start_node = stage as EventStart

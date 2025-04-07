@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="EventResource" load_steps=16 format=3 uid="uid://s6k078jwopre"]
 
-[ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/event_edge.gd" id="1_oao3x"]
-[ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start_node.gd" id="2_3wiuq"]
+[ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_oao3x"]
+[ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="2_3wiuq"]
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="2_hr02p"]
-[ext_resource type="Script" uid="uid://d1a77ln5pvkq6" path="res://!tools/event_editer/source/stage_node.gd" id="3_q5xqs"]
-[ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end_node.gd" id="4_0nd72"]
-[ext_resource type="Script" uid="uid://bxhcjh6bignub" path="res://!tools/event_editer/source/dialoge_node.gd" id="4_3wiuq"]
+[ext_resource type="Script" uid="uid://d1a77ln5pvkq6" path="res://!tools/event_editer/source/monologue.gd" id="3_q5xqs"]
+[ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end.gd" id="4_0nd72"]
+[ext_resource type="Script" uid="uid://bxhcjh6bignub" path="res://!tools/event_editer/source/dialogue.gd" id="4_3wiuq"]
 [ext_resource type="Resource" uid="uid://blr1yfkg5pohd" path="res://resources/collection/dialoge_character/unknown.tres" id="4_q5xqs"]
-[ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/event_node.gd" id="6_5eqy7"]
+[ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="8_q5xqs"]
 
 [sub_resource type="Resource" id="Resource_q5xqs"]
 script = ExtResource("2_3wiuq")
@@ -56,6 +56,6 @@ edge_type = 0
 
 [resource]
 script = ExtResource("2_hr02p")
-stages = Array[ExtResource("6_5eqy7")]([SubResource("Resource_n5nny"), SubResource("Resource_0nd72"), SubResource("Resource_q5xqs"), SubResource("Resource_ehri6")])
+stages = Array[ExtResource("8_q5xqs")]([SubResource("Resource_n5nny"), SubResource("Resource_0nd72"), SubResource("Resource_q5xqs"), SubResource("Resource_ehri6")])
 edges = Array[ExtResource("1_oao3x")]([SubResource("Resource_5eqy7"), SubResource("Resource_x6ao8"), SubResource("Resource_x8oyh")])
 groups = Array[int]([])

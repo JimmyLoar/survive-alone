@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnf6ipbnvyj65"]
 
-[ext_resource type="Script" uid="uid://dn83b35u0xpte" path="res://!tools/event_editer/graphs/end_graph_node.gd" id="1_3sfho"]
+[ext_resource type="Script" uid="uid://dn83b35u0xpte" path="res://!tools/event_editer/graphs/_end.gd" id="1_s1t6h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8fmo"]
 bg_color = Color(0.261996, 0.367464, 1, 1)
@@ -30,7 +30,7 @@ slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
-script = ExtResource("1_3sfho")
+script = ExtResource("1_s1t6h")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

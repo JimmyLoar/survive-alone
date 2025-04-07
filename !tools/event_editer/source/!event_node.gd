@@ -34,7 +34,7 @@ func all_previous_nodes_completed() -> bool:
 
 func any_previous_nodes_completed() -> bool:
 	for node in previous:
-		if node.get_completed() or node.optional:
+		if node.get_completed():
 			return true
 	return false
 

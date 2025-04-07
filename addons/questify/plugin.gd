@@ -10,7 +10,7 @@ var quest_editor_view: QuestEditorView
 
 func _enter_tree() -> void:
 	#add_autoload_singleton("Questify", "quest_manager.gd")
-	#QuestifySettings.init_settings()
+	QuestifySettings.init_settings()
 	Engine.set_meta("QuestifyPlugin", self)
 	quest_editor_view = QuestEditorViewScene.instantiate() as QuestEditorView
 	EditorInterface.get_editor_main_screen().add_child(quest_editor_view)
