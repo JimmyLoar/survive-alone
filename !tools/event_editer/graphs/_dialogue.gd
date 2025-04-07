@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _get_model() -> EventNode:
-	return DialogeEventNode.new()
+	return EventDialogue.new()
 
 
 func _set_model_properties(node: EventNode) -> void:

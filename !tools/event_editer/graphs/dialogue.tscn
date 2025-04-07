@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmkc0dt0p36cv"]
 
-[ext_resource type="Script" uid="uid://bxw2q1ejv7jmo" path="res://!tools/event_editer/graphs/dialoge_graph_node.gd" id="1_dsqug"]
+[ext_resource type="Script" uid="uid://bxw2q1ejv7jmo" path="res://!tools/event_editer/graphs/_dialogue.gd" id="1_fk1ex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsqug"]
 bg_color = Color(7.21961e-07, 0.379959, 0.422661, 1)
@@ -51,7 +51,7 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
-script = ExtResource("1_dsqug")
+script = ExtResource("1_fk1ex")
 paragraphs = NodePath("Paragraphs")
 metadata/_custom_type_script = "uid://dwdq1drsx4pdf"
 

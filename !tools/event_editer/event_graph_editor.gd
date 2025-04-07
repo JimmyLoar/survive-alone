@@ -2,10 +2,10 @@
 class_name EventGraphEditor extends GraphEdit
 
 
-const StartNodeScene = preload("../event_editer/graphs/start_graph_node.tscn")
-const EndNodeScene = preload("../event_editer/graphs/end_graph_node.tscn")
-const StageNodeScene = preload("../event_editer/graphs/stage_graph_node.tscn")
-const DialogeNodeScene = preload("../event_editer/graphs/dialoge_graph_node.tscn")
+const StartNodeScene = preload("uid://dkhtgmqtjt83l")
+const EndNodeScene = preload("uid://bnf6ipbnvyj65")
+const MonologueNodeScene = preload("uid://beklh40jtnrqv")
+const DialogueNodeScene = preload("uid://cmkc0dt0p36cv")
 
 
 var selected_nodes: Array[EventGraphNode] = []
@@ -52,7 +52,7 @@ func get_child_nodes() -> Array:
 	
 	
 func _serialize_resource() -> EventResource:
-	var start_nodes := find_children("", "StartEventGraphNode", false, false)
+	var start_nodes := find_children("", "EventStartNode", false, false)
 	if start_nodes.size() != 1:
 		# TODO: add better error handling
 		printerr("Exactly one StartNode is required in a graph")
@@ -64,7 +64,7 @@ func _serialize_resource() -> EventResource:
 		printerr("Exactly one EndNode is required in a graph")
 		return null
 		
-	var objective_nodes := find_children("", "StageEventGraphNode", false, false)
+	var objective_nodes := find_children("", "EventMonologueNode", false, false)
 	if objective_nodes.size() == 0:
 		# TODO: add better error handling
 		printerr("One or more StageNode are required in a graph")
@@ -108,14 +108,14 @@ func _deserialize_resource(resource: EventResource) -> void:
 
 
 func _get_graph_node(node: EventNode) -> EventGraphNode:
-	if node is StartEventNode:
+	if node is EventStart:
 		return StartNodeScene.instantiate()
-	elif node is StageEventNode:
-		return StageNodeScene.instantiate()
-	elif node is EndEventNode:
+	elif node is EventMonologue:
+		return MonologueNodeScene.instantiate()
+	elif node is EventEnd:
 		return EndNodeScene.instantiate()
-	elif node is DialogeEventNode:
-		return DialogeNodeScene.instantiate()
+	elif node is EventDialogue:
+		return DialogueNodeScene.instantiate()
 	return null
 	
 	
@@ -136,7 +136,8 @@ func _on_delete_nodes_request(nodes: Array[StringName]) -> void:
 			func(connection): return connection.from_node == node or connection.to_node == node
 		))
 		nodes_to_remove.append(get_node(NodePath(node)))
-	var undo_redo := (Engine.get_meta("EventEditorPlugin") as EditorPlugin).get_undo_redo()
+	var plugin = (Engine.get_meta("EventEditorPlugin") as EditorPlugin)
+	var undo_redo := plugin.get_undo_redo()
 	undo_redo.create_action("Delete Quest Nodes")
 	undo_redo.add_do_method(self, "_delete_nodes", nodes_to_remove, connections_to_remove)
 	undo_redo.add_undo_method(self, "_undo_delete_nodes", nodes_to_remove, connections_to_remove)

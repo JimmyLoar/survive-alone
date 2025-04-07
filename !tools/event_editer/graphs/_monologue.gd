@@ -1,13 +1,14 @@
 @tool
-class_name StageEventGraphNode
+class_name EventMonologueNode
 extends EventGraphNode
+
 
 @export var line_edit: LineEdit
 @export var text_edit: TextEdit
 
 
 func _get_model() -> EventNode:
-	return StageEventNode.new()
+	return EventMonologue.new()
 
 
 func _set_model_properties(node: EventNode) -> void:

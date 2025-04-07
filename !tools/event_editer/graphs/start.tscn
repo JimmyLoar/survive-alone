@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkhtgmqtjt83l"]
 
-[ext_resource type="Script" uid="uid://dti1ae7gio4gu" path="res://!tools/event_editer/graphs/start_graph_node.gd" id="1_07rkg"]
+[ext_resource type="Script" uid="uid://dti1ae7gio4gu" path="res://!tools/event_editer/graphs/_start.gd" id="1_4vj23"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cmvk"]
 bg_color = Color(0.473709, 0.00302723, 0.913595, 1)
@@ -51,7 +51,7 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
-script = ExtResource("1_07rkg")
+script = ExtResource("1_4vj23")
 name_text_edit = NodePath("VBoxName/NameTextEdit")
 name_translated = NodePath("VBoxName/NameTranslated")
 discription_translated = NodePath("VBoxName/DiscriptionTranslated")

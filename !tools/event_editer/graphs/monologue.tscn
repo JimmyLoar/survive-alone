@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://beklh40jtnrqv"]
 
-[ext_resource type="Script" uid="uid://djrosrfcbjoep" path="res://!tools/event_editer/graphs/stage_graph_node.gd" id="1_jd1b0"]
+[ext_resource type="Script" uid="uid://djrosrfcbjoep" path="res://!tools/event_editer/graphs/_monologue.gd" id="1_jd1b0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
 bg_color = Color(0.739295, 9.8283e-05, 0.620089, 1)

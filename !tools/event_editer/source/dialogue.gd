@@ -1,4 +1,4 @@
-class_name DialogeEventNode
+class_name EventDialogue
 extends EventNode
 
 

@@ -9,7 +9,6 @@ var editor_view: EventEditorView
 
 func _enter_tree() -> void:
 	Engine.set_meta("EventEditorPlugin", self)
-	
 	editor_view = EditorViewScene.instantiate() as EventEditorView
 	EditorInterface.get_editor_main_screen().add_child(editor_view)
 	_make_visible(false)

@@ -1,5 +1,5 @@
 @tool
-class_name StartEventGraphNode 
+class_name EventStartNode 
 extends EventGraphNode
 
 
@@ -12,7 +12,7 @@ var event_discription: String
 
 
 func _get_model() -> EventNode:
-	return StartEventNode.new()
+	return EventStart.new()
 
 
 func _set_model_properties(node: EventNode) -> void:

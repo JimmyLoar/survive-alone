@@ -1,4 +1,4 @@
-class_name DialogeCharacter
+class_name EventDialogueCharacter
 extends Resource
 
 @export var name: String
