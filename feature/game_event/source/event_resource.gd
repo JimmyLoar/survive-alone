@@ -19,7 +19,7 @@ enum Tags{
 	location,		#локация
 }
 
-@export var stages: Array[EventNode] = []
+@export var nodes: Array[EventNode] = []
 @export var edges: Array[EventEdge] = []
 @export var groups: Array[Tags] = []
 var _ids: PackedStringArray = []
@@ -45,15 +45,15 @@ func instantiate() -> EventResource:
 		return self
 	var instance := duplicate(true) as EventResource
 
-	var duplicated_stages: Array[EventNode] = []
+	var duplicated_nodes: Array[EventNode] = []
 	var duplicated_edges: Array[EventEdge] = []
 
 	var node_map := {}
 	# Arrays cannot be duplicated in resources, so duplicate them manually
-	for stage in stages:
-		var new_node := stage.duplicate(true)
-		node_map[stage] = new_node
-		duplicated_stages.append(new_node)
+	for node in nodes:
+		var new_node := node.duplicate(true)
+		node_map[node] = new_node
+		duplicated_nodes.append(new_node)
 	for edge in edges:
 		var new_edge: EventEdge = edge.duplicate(true)
 		# assign new references for edges
@@ -63,7 +63,7 @@ func instantiate() -> EventResource:
 			new_edge.to = node_map[edge.to]
 		duplicated_edges.append(new_edge)
 
-	instance.stages = duplicated_stages
+	instance.nodes = duplicated_nodes
 	instance.edges = duplicated_edges
 
 	instance.is_instance = true
@@ -88,19 +88,19 @@ func update() -> void:
 		start_node.update()
 
 
-func get_active_stages() -> Array[EventMonologue]:
-	var active_stages: Array[EventMonologue] = []
-	for stage in stages:
-		if stage is EventMonologue and stage.get_active():
-			active_stages.append(stage)
-	return active_stages
+func get_active_nodes() -> Array[EventMonologue]:
+	var active_nodes: Array[EventMonologue] = []
+	for node in nodes:
+		if node is EventMonologue and node.get_active():
+			active_nodes.append(node)
+	return active_nodes
 
 
-func get_next_stages(stage: EventNode, edge_type: EventEdge.EdgeType = EventEdge.EdgeType.NORMAL) -> Array[EventNode]:
+func get_next_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEdge.EdgeType.NORMAL) -> Array[EventNode]:
 	var result: Array[EventNode] = []
 	result.assign(edges.filter(
 		func(edge: EventEdge):
-			return edge.from == stage and edge.edge_type == edge_type
+			return edge.from == node and edge.edge_type == edge_type
 	).map(
 		func(edge: EventEdge):
 			return edge.to
@@ -108,11 +108,19 @@ func get_next_stages(stage: EventNode, edge_type: EventEdge.EdgeType = EventEdge
 	return result
 
 
-func get_previous_stages(stage: EventNode, edge_type: EventEdge.EdgeType = EventEdge.EdgeType.NORMAL) -> Array[EventNode]:
+func get_next_actions(node: EventNode) -> Array[EventActionNode]:
+	var result: Array[EventActionNode] = []
+	for next_node: EventNode in get_next_nodes(node):
+		var action = get_previous_nodes(next_node, EventEdge.EdgeType.ACTION)
+		result.append(action)
+	return result
+
+
+func get_previous_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEdge.EdgeType.NORMAL) -> Array[EventNode]:
 	var result: Array[EventNode] = []
 	result.assign(edges.filter(
 		func(edge: EventEdge):
-			return edge.to == stage and edge.edge_type == edge_type
+			return edge.to == node and edge.edge_type == edge_type
 	).map(
 		func(edge: EventEdge):
 			return edge.from
@@ -129,7 +137,7 @@ func get_resource_path() -> String:
 func serialize() -> Dictionary:
 	return {
 		completed = completed,
-		stages = stages.map(func(stage: EventNode): return stage.serialize())
+		nodes = nodes.map(func(node: EventNode): return node.serialize())
 	}
 
 
@@ -139,15 +147,15 @@ func deserialize(data: Dictionary) -> void:
 		return
 	completed = data.completed
 	var node_map := {}
-	for stage in stages:
-		node_map[stage.id] = stage
-	for stage in data.stages:
-		if node_map.has(stage.id):
-			node_map[stage.id].deserialize(stage)
+	for node in nodes:
+		node_map[node.id] = node
+	for node in data.nodes:
+		if node_map.has(node.id):
+			node_map[node.id].deserialize(node)
 
 
 func _initialize() -> void:
-	for stage in stages:
-		stage.set_graph(self)
-		if stage is EventStart:
-			start_node = stage as EventStart
+	for node in nodes:
+		node.set_graph(self)
+		if node is EventStart:
+			start_node = node as EventStart

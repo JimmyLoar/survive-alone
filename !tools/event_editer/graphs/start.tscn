@@ -14,7 +14,7 @@ offset_bottom = 290.0
 theme_override_constants/separation = 8
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_6cmvk")
 resizable = true
-title = "StartNode"
+title = "Start"
 slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
@@ -55,6 +55,8 @@ script = ExtResource("1_4vj23")
 name_text_edit = NodePath("VBoxName/NameTextEdit")
 name_translated = NodePath("VBoxName/NameTranslated")
 discription_translated = NodePath("VBoxName/DiscriptionTranslated")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

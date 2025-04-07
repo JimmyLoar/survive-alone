@@ -4,7 +4,7 @@ extends VBoxContainer
 
 signal request_to_remove(paragraph: ParagraphBox)
 
-const CHARACTERS_LIST = DialogeEventGraphNode.CHARACTERS_LIST
+const CHARACTERS_LIST = EventDialogueNode.CHARACTERS_LIST
 
 @export var character_selecter: OptionButton 
 @export var line_edit: LineEdit 
