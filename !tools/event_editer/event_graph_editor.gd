@@ -6,6 +6,8 @@ const StartNodeScene = preload("uid://dkhtgmqtjt83l")
 const EndNodeScene = preload("uid://bnf6ipbnvyj65")
 const MonologueNodeScene = preload("uid://beklh40jtnrqv")
 const DialogueNodeScene = preload("uid://cmkc0dt0p36cv")
+const ActionsNodeScene = preload("uid://b8g6wavqx75ii")
+const AbortNodeScene = preload("uid://ddhmoxckqyrvv")
 
 
 var selected_nodes: Array[EventGraphNode] = []
@@ -55,25 +57,19 @@ func _serialize_resource() -> EventResource:
 	var start_nodes := find_children("", "EventStartNode", false, false)
 	if start_nodes.size() != 1:
 		# TODO: add better error handling
-		printerr("Exactly one StartNode is required in a graph")
+		printerr("Exactly one EventStartNode is required in a graph")
 		return null
 		
-	var end_nodes := find_children("", "EndEventGraphNode", false, false)
+	var end_nodes := find_children("", "EventEndNode", false, false)
 	if end_nodes.size() != 1:
 		# TODO: add better error handling
-		printerr("Exactly one EndNode is required in a graph")
-		return null
-		
-	var objective_nodes := find_children("", "EventMonologueNode", false, false)
-	if objective_nodes.size() == 0:
-		# TODO: add better error handling
-		printerr("One or more StageNode are required in a graph")
+		printerr("Exactly one EventEndNode is required in a graph")
 		return null
 	
 	var connections := get_connection_list()
 	var resource := EventResource.new()
 	var edges: Array[EventEdge] = []
-	resource.stages.assign(_get_nodes(connections, edges))
+	resource.nodes.assign(_get_nodes(connections, edges))
 	resource.edges = edges
 	return resource
 	
@@ -97,7 +93,7 @@ func _get_nodes(connections: Array[Dictionary], edges: Array[EventEdge]) -> Arra
 func _deserialize_resource(resource: EventResource) -> void:
 	clear()
 	var model_to_graph_node_map := {}
-	for node in resource.stages:
+	for node in resource.nodes:
 		var graph_node := _get_graph_node(node)
 		add_node(graph_node, node.graph_editor_position)
 		graph_node.load_model(node)
@@ -116,6 +112,10 @@ func _get_graph_node(node: EventNode) -> EventGraphNode:
 		return EndNodeScene.instantiate()
 	elif node is EventDialogue:
 		return DialogueNodeScene.instantiate()
+	elif node is EventAction:
+		return ActionsNodeScene.instantiate()
+	elif node is EventAbort:
+		return AbortNodeScene.instantiate()
 	return null
 	
 	

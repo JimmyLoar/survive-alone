@@ -1,14 +1,14 @@
 @tool
-class_name DialogeEventGraphNode 
+class_name EventDialogueNode 
 extends EventGraphNode 
 
 const CHARACTERS_LIST = [
+	preload("uid://k0vu08dr0tmb"),
 	preload("uid://blr1yfkg5pohd"),
-	preload("uid://b0cjwpa70higj"),
 	preload("uid://b0cjwpa70higj"),
 ]
 
-const PARAGRAPH_BOX = preload("res://!tools/event_editer/graphs/internal/paragraph_box.tscn")
+const PARAGRAPH_BOX = preload("uid://d4hi273u00176")
 
 @export var paragraphs: HFlowContainer
 
@@ -27,15 +27,13 @@ func _set_model_properties(node: EventNode) -> void:
 	var data := Array()
 	for paragraph: ParagraphBox in paragraphs.get_children():
 		data.append(paragraph.get_data())
-	node.dialoges = data
+	node.dialogues = data
 
 
 func _get_model_properties(node: EventNode) -> void:
-	var remiang = 0
-	for i in node.dialoges.size():
+	for i in node.dialogues.size():
 		var paragraph: ParagraphBox = _get_paragraph(i)
-		paragraph.set_data.call_deferred(node.dialoges[i])
-		remiang = paragraphs.get_child_count() - (i + 1)
+		paragraph.set_data.call_deferred(node.dialogues[i])
 
 
 func _get_paragraph(index: int):

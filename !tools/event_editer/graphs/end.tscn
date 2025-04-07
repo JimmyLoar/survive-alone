@@ -6,12 +6,11 @@
 bg_color = Color(0.261996, 0.367464, 1, 1)
 
 [node name="EndNode" type="GraphNode"]
-custom_minimum_size = Vector2(300, 240)
-offset_right = 300.0
-offset_bottom = 240.0
+custom_minimum_size = Vector2(120, 60)
+offset_right = 120.0
+offset_bottom = 70.0
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_p8fmo")
-resizable = true
-title = "EndStart"
+title = "End"
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
@@ -31,10 +30,13 @@ slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
 script = ExtResource("1_s1t6h")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "previous"
 
 [node name="HSeparator" type="HSeparator" parent="."]
+visible = false
 layout_mode = 2

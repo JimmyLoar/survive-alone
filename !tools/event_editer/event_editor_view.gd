@@ -4,10 +4,12 @@ extends Control
  
 
 const graph_nodes = [
-	{label = "Start Node", scene = EventGraphEditor.StartNodeScene},
-	{label = "End Node", scene = EventGraphEditor.EndNodeScene},
-	{label = "Stage Node", scene = EventGraphEditor.MonologueNodeScene},
-	{label = "Dialoge Node", scene = EventGraphEditor.DialogueNodeScene},
+	{label = "Start", scene = EventGraphEditor.StartNodeScene},
+	{label = "End", scene = EventGraphEditor.EndNodeScene},
+	{label = "Monologue", scene = EventGraphEditor.MonologueNodeScene},
+	{label = "Dialogue", scene = EventGraphEditor.DialogueNodeScene},
+	{label = "Actions", scene = EventGraphEditor.ActionsNodeScene},
+	{label = "Abort", scene = EventGraphEditor.AbortNodeScene},
 ]
 
 
@@ -34,7 +36,7 @@ func _ready() -> void:
 	add_node_popup_menu.clear()
 	for item in graph_nodes:
 		add_node_popup_menu.add_item(item.label)
-
+	
 	version_label.text = "v%s"
 
 

@@ -1,10 +1,10 @@
 @tool
-class_name EventEndNode
+class_name EventAbortNode
 extends EventGraphNode
 
 
 func _get_model() -> EventNode:
-	return EventEnd.new()
+	return EventAbort.new()
 
 
 func _set_model_properties(_node: EventNode) -> void:

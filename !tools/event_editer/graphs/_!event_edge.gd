@@ -3,8 +3,9 @@ class_name EventEdge
 extends Resource
 
 enum EdgeType {
-	NORMAL,
-	CONDITIONAL,
+	NORMAL = 0,
+	ACTION = 1,
+	CONDITIONAL = 2,
 }
 
 

@@ -7,6 +7,6 @@
 
 [resource]
 script = ExtResource("4_ifb0a")
-stages = Array[ExtResource("3_bletl")]([])
+nodes = Array[ExtResource("3_bletl")]([])
 edges = Array[ExtResource("1_bletl")]([])
 groups = Array[int]([])
