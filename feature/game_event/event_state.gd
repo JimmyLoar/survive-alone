@@ -1,31 +1,47 @@
-class_name _EventState
-extends Node
-
-signal started_event(event: EventResource)
-signal finished_stage(event_node: EventNode)
-signal finished_event(event: EventResource)
-
+class_name EventState
+extends Injectable
 
 var _node: EventDisplay
 var _events: Array[EventResource] = []
+var _global := EventsGlobal
 
 
 func _init(_new_node: EventDisplay = null) -> void:
 	_node = _new_node
 
 
-func start_event(event: EventResource):
-	event.start()
-	_node.display(event)
-	started_event.emit(event)
+func start_event(event_resource: EventResource) -> void:
+	_events.append(event_resource)
+	event_resource.start()
+	_node.display(event_resource)
+	EventsGlobal.started_event.emit(event_resource)
 
 
-func complite_stage(stage: EventStage):
-	pass
+func update_events():
+	for event in _events:
+		event.update()
 
 
-func clear():
+func clear() -> void:
 	_events.clear()
+
+
+func get_active_events() -> Array[EventResource]:
+	var result: Array[EventResource] = []
+	result.assign(_events.filter(
+		func(event: EventResource):
+			return event.started and not event.completed
+	))
+	return result
+
+
+func get_completed_events() -> Array[EventResource]:
+	var result: Array[EventResource] = []
+	result.assign(_events.filter(
+		func(event: EventResource):
+			return event.completed
+	))
+	return result
 
 
 func set_events(events: Array[EventResource]) -> void:

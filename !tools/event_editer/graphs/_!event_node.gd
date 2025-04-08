@@ -4,7 +4,6 @@ extends GraphNode
 
 var id: String
 var has_loaded_position := false
-
 var _base_name: String
 
 

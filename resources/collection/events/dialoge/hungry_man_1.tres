@@ -12,6 +12,7 @@
 script = ExtResource("2_na5g1")
 name_key = "HungerMan_01"
 id = "-b_OepTwf8"
+optional = false
 graph_editor_position = Vector2(180, -320)
 graph_editor_size = Vector2(300, 289)
 
@@ -19,6 +20,7 @@ graph_editor_size = Vector2(300, 289)
 script = ExtResource("3_vjxi1")
 text = "oko"
 id = "EaFJzlRy9M"
+optional = false
 graph_editor_position = Vector2(560, -320)
 graph_editor_size = Vector2(300, 240)
 
@@ -31,6 +33,7 @@ edge_type = 0
 [sub_resource type="Resource" id="Resource_71bbs"]
 script = ExtResource("4_61gh3")
 id = "hovbKNpA3n"
+optional = false
 graph_editor_position = Vector2(940, -320)
 graph_editor_size = Vector2(300, 240)
 
@@ -44,6 +47,7 @@ edge_type = 0
 script = ExtResource("8_61gh3")
 dialogues = []
 id = "fla6Akr8Qn"
+optional = false
 graph_editor_position = Vector2(560, -660)
 graph_editor_size = Vector2(336, 306)
 
