@@ -14,12 +14,14 @@ extends PanelContainer
 var _state: EventState
 
 var currect_event: EventResource
-var currect_stage: int = -1
+var currect_stage: EventNode
 var _result: Dictionary
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(EventState, EventState.new(self), self, Injector.ContainerType.CLOSEST)
+	#_state = Injector.provide(EventState, EventState.new(self), self, Injector.ContainerType.ROOT) as EventState
+	EventState._node = self
+	_state = EventState
 
 
 func _ready() -> void:
@@ -28,8 +30,8 @@ func _ready() -> void:
 	action_list.action_state = action_state
 	%ResultContainer.hide()
 	%HintContainer.hide()
-	_state.start_event(preload("res://resources/collection/events/dialoge/hungry_man_0.tres").instantiate())
-	#self.hide()
+	#_state.start_event(preload("res://resources/collection/events/dialoge/hungry_man_0.tres").instantiate())
+	self.hide()	
 
 
 func _register_methods():
@@ -62,27 +64,34 @@ func _register_methods():
 
 
 func display(event: EventResource):
-	if not event or currect_event == event:
-		currect_event = null
-		currect_stage = -1
-		self.hide()
-		return
-	
 	currect_event = event
-	currect_stage = 0
-	_display_stage(currect_stage)
+	for stage in currect_event.get_active_nodes():
+		_display_stage(stage)
 	self.show()
 
-
-func _display_stage(stage_index: int):
-	if stage_index == -1:
-		return
+var actions: Array[EventAction]
+func _display_stage(stage: EventNode):
+	print("displayed stage '%s'" % stage.id)
+	if stage is EventMonologue:
+		_update_monologue(stage)
 	
-	#var stage: EventStageResource = currect_event.get(stage_index)
-	#texture_rect.texture = currect_event.
-	rich_text_label.text = currect_event.description
-	#action_list.update_actions(stage.actions)
+	elif  stage is EventDialogue:
+		_update_dialogue(stage)
+	
+	else:
+		rich_text_label.text = currect_event.description
+	
+	actions = currect_event.get_next_actions(stage)
+	action_list.update_actions(actions)
 	_display_result(_result)
+
+
+func _update_monologue(stage: EventMonologue):
+	rich_text_label.text = TranslationServer.translate("EVENT_MONOLOGUE_" + stage.text.to_upper())
+	
+
+func _update_dialogue(stage: EventDialogue):
+	pass
 
 
 func _display_actions_hint(stage: EventStageResource):
@@ -91,15 +100,15 @@ func _display_actions_hint(stage: EventStageResource):
 
 
 func _on_action_pressed(pressed_index: int):
-	var action := currect_event.get_action(currect_stage, pressed_index) as EventActionResource
-	currect_stage = action.next_stage
+	var action := actions[pressed_index] as EventAction
+	currect_event.action_press(action)
+	var _next = currect_event.get_next_nodes(action, EventEdge.EdgeType.ACTION)
+	if _next.any(func(a): return a is EventAbort):
+		hide()
+		return
 	
-	if await action_state.can_execute(action) :
-		_result = action_state.execute(action)
-		if not action.showing_result:
-			_result = {}
-		
-		_display_stage(currect_stage)
+	print("pressed action '%s' (index %d)" % [action.id, pressed_index])
+	display(currect_event)
 
 
 func _display_result(result: Dictionary):

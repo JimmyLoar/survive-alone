@@ -1,5 +1,5 @@
-class_name EventState
-extends Injectable
+class_name _EventState
+extends Node
 
 signal started_event(event: EventResource)
 signal finished_stage(event_node: EventNode)
@@ -10,14 +10,18 @@ var _node: EventDisplay
 var _events: Array[EventResource] = []
 
 
-func _init(_new_node: EventDisplay) -> void:
+func _init(_new_node: EventDisplay = null) -> void:
 	_node = _new_node
 
 
 func start_event(event: EventResource):
-	_node.display(event)
 	event.start()
+	_node.display(event)
 	started_event.emit(event)
+
+
+func complite_stage(stage: EventStage):
+	pass
 
 
 func clear():

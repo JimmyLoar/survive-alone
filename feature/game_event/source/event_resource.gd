@@ -72,6 +72,12 @@ func instantiate() -> EventResource:
 	return instance
 
 
+
+func action_press(action: EventAction):
+	action.completed = true
+	update()
+
+
 func start() -> void:
 	if not is_instance:
 		printerr("Quest must be instantiated to be started. Use instantiate().")
@@ -88,11 +94,12 @@ func update() -> void:
 		start_node.update()
 
 
-func get_active_nodes() -> Array[EventMonologue]:
-	var active_nodes: Array[EventMonologue] = []
+func get_active_nodes() -> Array[EventNode]:
+	var active_nodes: Array[EventNode] = []
 	for node in nodes:
-		if node is EventMonologue and node.get_active():
+		if node is EventNode and node.get_active():
 			active_nodes.append(node)
+	printerr("Active: %s" % [active_nodes.map(func(a): return a.id)])
 	return active_nodes
 
 
@@ -108,11 +115,11 @@ func get_next_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEdge.E
 	return result
 
 
-func get_next_actions(node: EventNode) -> Array[EventActionNode]:
-	var result: Array[EventActionNode] = []
+func get_next_actions(node: EventNode) -> Array[EventAction]:
+	var result: Array[EventAction] = []
 	for next_node: EventNode in get_next_nodes(node):
 		var action = get_previous_nodes(next_node, EventEdge.EdgeType.ACTION)
-		result.append(action)
+		result.append_array(action)
 	return result
 
 
@@ -126,6 +133,14 @@ func get_previous_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEd
 			return edge.from
 	))
 	return result
+
+
+func complete_stage(stage: EventStage):
+	pass
+
+
+func complete_event():
+	pass
 
 
 func get_resource_path() -> String:
