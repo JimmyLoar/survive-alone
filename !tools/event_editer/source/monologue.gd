@@ -1,4 +1,4 @@
 class_name EventMonologue
-extends EventNode
+extends EventStage
 
 @export var text: String

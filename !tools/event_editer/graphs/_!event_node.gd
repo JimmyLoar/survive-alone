@@ -5,6 +5,8 @@ extends GraphNode
 var id: String
 var has_loaded_position := false
 
+var _base_name: String
+
 
 func _ready() -> void:
 	var delete_button: Button = Button.new()
@@ -13,6 +15,7 @@ func _ready() -> void:
 	delete_button.pressed.connect(get_parent()._on_delete_nodes_request.bind(node_name_array))
 	delete_button.size_flags_horizontal = SIZE_SHRINK_END
 	get_titlebar_hbox().add_child(delete_button)
+	_base_name = title
 
 
 func get_model() -> EventNode:
@@ -27,6 +30,7 @@ func get_model() -> EventNode:
 	
 func load_model(node: EventNode) -> void:
 	id = node.id
+	title += " (%s)" % id
 	position_offset = node.graph_editor_position
 	if not node.graph_editor_size.is_zero_approx():
 		size = node.graph_editor_size
