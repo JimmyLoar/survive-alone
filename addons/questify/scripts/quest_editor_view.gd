@@ -39,7 +39,7 @@ func _ready() -> void:
 	for item in graph_nodes:
 		add_node_popup_menu.add_item(item.label)
 
-	version_label.text = "v%s" % Engine.get_meta("QuestifyPlugin").get_version()
+	#version_label.text = "v%s" % Engine.get_meta("QuestifyPlugin").get_version()
 
 
 func apply_changes() -> void:

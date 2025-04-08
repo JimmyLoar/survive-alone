@@ -14,14 +14,12 @@ extends PanelContainer
 var _state: EventState
 
 var currect_event: EventResource
-var currect_stage: EventNode
+var currect_stages: Array[EventNode]
 var _result: Dictionary
 
 
 func _enter_tree() -> void:
-	#_state = Injector.provide(EventState, EventState.new(self), self, Injector.ContainerType.ROOT) as EventState
-	EventState._node = self
-	_state = EventState
+	_state = Injector.provide(EventState, EventState.new(self), get_tree().root, Injector.ContainerType.ROOT) as EventState
 
 
 func _ready() -> void:
@@ -30,7 +28,6 @@ func _ready() -> void:
 	action_list.action_state = action_state
 	%ResultContainer.hide()
 	%HintContainer.hide()
-	#_state.start_event(preload("res://resources/collection/events/dialoge/hungry_man_0.tres").instantiate())
 	self.hide()	
 
 
@@ -64,14 +61,20 @@ func _register_methods():
 
 
 func display(event: EventResource):
+	if event.completed:
+		hide()
+		return
+	
 	currect_event = event
-	for stage in currect_event.get_active_nodes():
+	currect_stages = currect_event.get_active_nodes()
+	for stage in currect_stages:
 		_display_stage(stage)
 	self.show()
 
+
 var actions: Array[EventAction]
 func _display_stage(stage: EventNode):
-	print("displayed stage '%s'" % stage.id)
+	#print("displayed stage '%s'" % stage.id)
 	if stage is EventMonologue:
 		_update_monologue(stage)
 	
@@ -91,7 +94,12 @@ func _update_monologue(stage: EventMonologue):
 	
 
 func _update_dialogue(stage: EventDialogue):
-	pass
+	var text = '[fill][table=2,top,bottom]'
+	for paragraph in stage.dialogues:
+		text += "[cell=0.1][b]DIALOGUE_CHARACTER_%s_NAME[/b]:[/cell]" % [paragraph[0].name.to_upper()]
+		text += "[cell=2.0]EVENT_DIALOGUE_%s[/cell]" % [paragraph[1].to_upper()]
+	text += "[/table]"
+	rich_text_label.text = text
 
 
 func _display_actions_hint(stage: EventStageResource):
@@ -105,9 +113,13 @@ func _on_action_pressed(pressed_index: int):
 	var _next = currect_event.get_next_nodes(action, EventEdge.EdgeType.ACTION)
 	if _next.any(func(a): return a is EventAbort):
 		hide()
+		EventsGlobal.aborted_event.emit(currect_event)
 		return
 	
-	print("pressed action '%s' (index %d)" % [action.id, pressed_index])
+	for stage in currect_stages:
+		if not stage is EventStage:
+			continue
+		currect_event.complete_stage(stage)
 	display(currect_event)
 
 

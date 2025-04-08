@@ -3,6 +3,7 @@ class_name EventDialogueNode
 extends EventGraphNode 
 
 const CHARACTERS_LIST = [
+	preload("uid://lo5lkul44sou"),
 	preload("uid://k0vu08dr0tmb"),
 	preload("uid://blr1yfkg5pohd"),
 	preload("uid://b0cjwpa70higj"),
@@ -28,6 +29,7 @@ func _set_model_properties(node: EventNode) -> void:
 	for paragraph: ParagraphBox in paragraphs.get_children():
 		data.append(paragraph.get_data())
 	node.dialogues = data
+	#printerr(data.map(func(arr): return arr[0].name))
 
 
 func _get_model_properties(node: EventNode) -> void:

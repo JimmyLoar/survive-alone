@@ -99,7 +99,7 @@ func get_active_nodes() -> Array[EventNode]:
 	for node in nodes:
 		if node is EventNode and node.get_active():
 			active_nodes.append(node)
-	printerr("Active: %s" % [active_nodes.map(func(a): return a.id)])
+	#printerr("Active: %s" % [active_nodes.map(func(a): return a.id)])
 	return active_nodes
 
 
@@ -136,11 +136,13 @@ func get_previous_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEd
 
 
 func complete_stage(stage: EventStage):
-	pass
+	stage.completed = true
+	EventsGlobal.completed_stage.emit(stage)
 
 
 func complete_event():
-	pass
+	completed = true
+	EventsGlobal.completed_event.emit(self)
 
 
 func get_resource_path() -> String:

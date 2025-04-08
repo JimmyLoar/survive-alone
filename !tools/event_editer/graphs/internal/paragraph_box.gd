@@ -28,19 +28,25 @@ func _on_remove_button_pressed() -> void:
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	text_edit.text = TranslationServer.translate(("event_dialoge_%s" % line_edit.text).to_upper())
+	text_edit.text = TranslationServer.translate(("event_dialogue_%s" % line_edit.text).to_upper())
 
 
 func set_data(array: Array):
 	array.resize(2)
-	character_selecter.select(int(CHARACTERS_LIST.find(array[0])))
+	var char_index = int(CHARACTERS_LIST.find_custom(
+		func(char: EventDialogueCharacter):
+			return char.name == array[0].name
+	))
+	character_selecter.select(char_index)
+	_who = CHARACTERS_LIST[char_index]
 	line_edit.text = array[1]
 	_on_line_edit_text_changed(array[1])
 
 
 func get_data() -> Array:
-	return [_who, line_edit.text]
+	return [_who, line_edit.text.to_lower()]
 
 
 func _on_character_selecter_item_selected(index: int) -> void:
 	_who = CHARACTERS_LIST[index]
+	#printerr("update_character on %s" % _who.name)

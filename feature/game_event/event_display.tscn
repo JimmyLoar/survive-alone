@@ -53,7 +53,11 @@ theme_override_font_sizes/italics_font_size = 28
 theme_override_font_sizes/mono_font_size = 28
 theme_override_font_sizes/normal_font_size = 28
 theme_override_font_sizes/bold_font_size = 28
-text = "Text"
+bbcode_enabled = true
+text = "
+[table=2][cell]sdaasd[/cell][cell]asdasdasd[/cell][cell]asdadaa[/cell][/table]
+[table={number},{valign},{alignment_row}]{cells}[/table]
+"
 fit_content = true
 script = ExtResource("3_ew800")
 
@@ -63,7 +67,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/ResultContainer"]
 layout_mode = 2
-text = "Результат:"
+text = "Результат:
+"
 
 [node name="ResultList" type="ItemList" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/ResultContainer"]
 unique_name_in_owner = true

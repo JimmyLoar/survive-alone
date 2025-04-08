@@ -11,9 +11,7 @@ var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxCon
 @onready var _inventory_location_state: InventoryLocationState = Injector.inject(
 	InventoryLocationState, self
 )
-@onready var _event_state: EventState = Injector.inject(
-	EventState, self
-)
+@onready var _event_state := EventsGlobal
 @onready var _location: CharacterLocationState = Injector.inject(
 	CharacterLocationState, self
 )
