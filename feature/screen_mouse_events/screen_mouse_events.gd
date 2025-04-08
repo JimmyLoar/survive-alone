@@ -15,12 +15,12 @@ func _enter_tree() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_process_left_button(event)
-		#_process_right_button(event)
+		_process_right_button(event)
 	elif event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_process_left_button(event)
-		#elif event.button_index == MOUSE_BUTTON_RIGHT:
-			#_process_right_button(event)
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			_process_right_button(event)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			_process_zoom(event)
 	elif event is InputEventPanGesture:

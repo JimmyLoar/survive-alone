@@ -4,7 +4,14 @@
 [ext_resource type="TileSet" uid="uid://by7a2apq6l0wn" path="res://feature/biomes_layer/internal/biome_stub_tile_set.tres" id="2_66q0y"]
 
 [node name="BiomesLayer" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_1gfdi")
+
+[node name="WaterLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_66q0y")
+
+[node name="GroundLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_66q0y")
 
 [node name="GrassLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("2_66q0y")

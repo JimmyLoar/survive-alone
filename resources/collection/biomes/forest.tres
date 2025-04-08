@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BiomeResource" load_steps=3 format=3 uid="uid://dn12ncdul2jqb"]
+
+[ext_resource type="Script" uid="uid://31rserfj5m2o" path="res://resources/schema/biome.gd" id="1_v3by1"]
+[ext_resource type="Resource" uid="uid://56f1qivn2r5c" path="res://resources/collection/search_drop/none.tres" id="2_i4scb"]
+
+[resource]
+script = ExtResource("1_v3by1")
+view_type = 0
+search_drop = ExtResource("2_i4scb")
+code_name = &"forest"
+visible_name = "BIOME_FOREST_NAME"
+discription = "BIOME_FOREST_DISCRIPTION"
+metadata/_custom_type_script = "uid://31rserfj5m2o"

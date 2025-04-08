@@ -14,5 +14,5 @@ func duplicate() -> BiomeRectEntity:
 	var result = BiomeRectEntity.new()
 	result.rect = rect
 	result.biome_id = biome_id
-	
+
 	return result

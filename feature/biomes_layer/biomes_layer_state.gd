@@ -42,9 +42,9 @@ var _visible_tiles_rect: Rect2i = Rect2i(0, 0, 0, 0)
 var visible_tiles_rect: Rect2i:
 	get:
 		return _visible_tiles_rect
-	set(value):
-		if _visible_tiles_rect == value:
-			return
+
+func set_visible_tiles_rect(value: Rect2i, force = false):
+	if force or _visible_tiles_rect != value:
 		var diff = VisibleTilesDiff.from_rect_diff(_visible_tiles_rect, value)
 		var _is_visible_biome_rects_changed = false
 		for visible_biome_rect_id in _visible_biome_rects.keys():
@@ -64,7 +64,6 @@ var visible_tiles_rect: Rect2i:
 		visible_tiles_rect_changed.emit(diff, _visible_tiles_rect)
 		if _is_visible_biome_rects_changed:
 			visible_biome_rects_chaged.emit(_visible_biome_rects)
-
 
 func _decrease_biome_counter(biome_id: int):
 	_visible_biomes_ref_count[biome_id] -= 1
@@ -115,3 +114,19 @@ func delete_biome_rect(id: int):
 		var diff = VisibleTilesDiff.new()
 		diff.updated.push_back(biome_rect.rect)
 		visible_tiles_rect_changed.emit(diff, _visible_tiles_rect)
+
+func refresh_visible_biome(biome_id: int):
+	if not _visible_biomes.has(biome_id):
+		return
+	
+	var new_biome = _biome_repository.get_by_id(biome_id)
+	
+	if new_biome == null:
+		return
+	
+	_visible_biomes[biome_id] = new_biome
+	visible_biome_rects_chaged.emit(_visible_biome_rects)
+	var diff = VisibleTilesDiff.new()
+	var updated_rects = visible_biome_rects.values().filter(func(biome_rect: BiomeRectEntity): return biome_rect.biome_id == new_biome.id).map(func(biome_rect: BiomeRectEntity): return biome_rect.rect)
+	diff.updated.append_array(updated_rects)
+	visible_tiles_rect_changed.emit(diff, _visible_tiles_rect)

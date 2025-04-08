@@ -92,126 +92,129 @@ func get_random_float(a: float, b: float) -> float:
 	return randf() * (b - a + 1) + a
 
 func _on_button_pressed() -> void:
-	var w = 70
-	var h = 35
-	var c = 50
-	
-	_db.db_connect("res://databases/rect_big_30_1_2_2_gen.sqlite3", true)
-	
-	var even_biome = BiomeEntity.new()
-	even_biome.name = "forest"
-	even_biome.type = BiomeEntity.FOREST_TYPE
-	even_biome.id = _biome_repository.create(even_biome)
-	
-	var odd_biome = BiomeEntity.new()
-	odd_biome.name = "grass"
-	odd_biome.type = BiomeEntity.GRASS_TYPE
-	odd_biome.id = _biome_repository.create(odd_biome)
-	
-	var target_area = ceili(w * h * c * c * 1.2)
-	
-	while target_area > 0:
-		var blot_center_rect = Rect2i(
-			get_random_int(0, w * c * c),
-			get_random_int(0, h * c * c),
-			get_random_int(8, 30),
-			get_random_int(8, 30)
-		)
-		var direction_rects = {
-			"top": blot_center_rect,
-			"right": blot_center_rect,
-			"bottom": blot_center_rect,
-			"left": blot_center_rect,
-		}
-		
-		while(
-			direction_rects["top"].size.x > 5 or
-			direction_rects["right"].size.y > 5 or
-			direction_rects["bottom"].size.x > 5 or
-			direction_rects["left"].size.y > 5
-		):
-			var biome_id = even_biome.id if randf() > 0.5 else odd_biome.id
-			
-			if direction_rects["top"].size.x > 5:
-				var rect = direction_rects["top"]
-				var left_shift = get_random_int(1, floor(min(8, rect.size.x / 2)) - 1)
-				var right_shift = get_random_int(1, floor(min(8, rect.size.x / 2)) - 1)
-				var height = ceil(get_random_float(0.8, 1) * rect.size.y / 4)
-				
-				var new_rect = Rect2i(
-					rect.position.x + left_shift,
-					rect.position.y - height,
-					rect.end.x - right_shift - (rect.position.x + left_shift),
-					height
-				)
-				var new_rect_biome = BiomeRectEntity.new()
-				new_rect_biome.rect = rect
-				new_rect_biome.biome_id = biome_id
-				
-				_biome_rect_repository.create(new_rect_biome)
-				target_area -= new_rect.get_area()
-				direction_rects["top"] = new_rect
-				
-			if direction_rects["bottom"].size.x > 5:
-				var rect = direction_rects["bottom"]
-				var left_shift = get_random_int(1, floor(min(8, rect.size.x / 2)) - 1)
-				var right_shift = get_random_int(1, floor(min(8, rect.size.x / 2)) - 1)
-				var height = ceil(get_random_float(0.8, 1) * rect.size.y / 4)
-				
-				var new_rect = Rect2i(
-					rect.position.x + left_shift,
-					rect.end.y,
-					rect.end.x - right_shift - (rect.position.x + left_shift),
-					height
-				)
-				var new_rect_biome = BiomeRectEntity.new()
-				new_rect_biome.rect = rect
-				new_rect_biome.biome_id = biome_id
-				
-				_biome_rect_repository.create(new_rect_biome)
-				target_area -= new_rect.get_area()
-				direction_rects["bottom"] = new_rect
-				
-			if direction_rects["left"].size.y > 5:
-				var rect = direction_rects["left"]
-				var top_shift = get_random_int(1, floor(min(8, rect.size.y / 2)) - 1)
-				var bottom_shift = get_random_int(1, floor(min(8, rect.size.y / 2)) - 1)
-				var width = ceil(get_random_float(0.8, 1) * rect.size.x / 4)
-				
-				var new_rect = Rect2i(
-					rect.position.x - width,
-					rect.position.y + top_shift,
-					width,
-					rect.end.y - bottom_shift - (rect.position.y + top_shift)
-				)
-				var new_rect_biome = BiomeRectEntity.new()
-				new_rect_biome.rect = rect
-				new_rect_biome.biome_id = biome_id
-				
-				_biome_rect_repository.create(new_rect_biome)
-				target_area -= new_rect.get_area()
-				direction_rects["left"] = new_rect
-				
-			if direction_rects["right"].size.y > 5:
-				var rect = direction_rects["right"]
-				var top_shift = get_random_int(1, floor(min(8, rect.size.y / 2)) - 1)
-				var bottom_shift = get_random_int(1, floor(min(8, rect.size.y / 2)) - 1)
-				var width = ceil(get_random_float(0.8, 1) * rect.size.x / 4)
-				
-				var new_rect = Rect2i(
-					rect.end.x,
-					rect.position.y + top_shift,
-					width,
-					rect.end.y - bottom_shift - (rect.position.y + top_shift)
-				)
-				var new_rect_biome = BiomeRectEntity.new()
-				new_rect_biome.rect = rect
-				new_rect_biome.biome_id = biome_id
-				
-				_biome_rect_repository.create(new_rect_biome)
-				target_area -= new_rect.get_area()
-				direction_rects["right"] = new_rect
-	_db.db_close()
+	pass
+	#var w = 70
+	#var h = 35
+	#var c = 50
+	#
+	#_db.db_connect("res://databases/rect_big_30_1_2_2_gen.sqlite3", true)
+	#
+	#var even_biome = BiomeEntity.new()
+	#even_biome.name = "forest"
+	#even_biome.type = BiomeEntity.FOREST_TYPE
+	#even_biome.search_drop = load("res://resources/collection/search_drop/none.tres")
+	#even_biome.id = _biome_repository.create(even_biome)
+	#
+	#var odd_biome = BiomeEntity.new()
+	#odd_biome.name = "grass"
+	#odd_biome.type = BiomeEntity.GRASS_TYPE
+	#odd_biome.search_drop = load("res://resources/collection/search_drop/none.tres")
+	#odd_biome.id = _biome_repository.create(odd_biome)
+	#
+	#var target_area = ceili(w * h * c * c * 1.2)
+	#
+	#while target_area > 0:
+		#var blot_center_rect = Rect2i(
+			#get_random_int(0, w * c * c),
+			#get_random_int(0, h * c * c),
+			#get_random_int(8, 30),
+			#get_random_int(8, 30)
+		#)
+		#var direction_rects = {
+			#"top": blot_center_rect,
+			#"right": blot_center_rect,
+			#"bottom": blot_center_rect,
+			#"left": blot_center_rect,
+		#}
+		#
+		#while(
+			#direction_rects["top"].size.x > 5 or
+			#direction_rects["right"].size.y > 5 or
+			#direction_rects["bottom"].size.x > 5 or
+			#direction_rects["left"].size.y > 5
+		#):
+			#var biome_id = even_biome.id if randf() > 0.5 else odd_biome.id
+			#
+			#if direction_rects["top"].size.x > 5:
+				#var rect = direction_rects["top"]
+				#var left_shift = get_random_int(1, floor(min(8, rect.size.x / 2)) - 1)
+				#var right_shift = get_random_int(1, floor(min(8, rect.size.x / 2)) - 1)
+				#var height = ceil(get_random_float(0.8, 1) * rect.size.y / 4)
+				#
+				#var new_rect = Rect2i(
+					#rect.position.x + left_shift,
+					#rect.position.y - height,
+					#rect.end.x - right_shift - (rect.position.x + left_shift),
+					#height
+				#)
+				#var new_rect_biome = BiomeRectEntity.new()
+				#new_rect_biome.rect = rect
+				#new_rect_biome.biome_id = biome_id
+				#
+				#_biome_rect_repository.create(new_rect_biome)
+				#target_area -= new_rect.get_area()
+				#direction_rects["top"] = new_rect
+				#
+			#if direction_rects["bottom"].size.x > 5:
+				#var rect = direction_rects["bottom"]
+				#var left_shift = get_random_int(1, floor(min(8, rect.size.x / 2)) - 1)
+				#var right_shift = get_random_int(1, floor(min(8, rect.size.x / 2)) - 1)
+				#var height = ceil(get_random_float(0.8, 1) * rect.size.y / 4)
+				#
+				#var new_rect = Rect2i(
+					#rect.position.x + left_shift,
+					#rect.end.y,
+					#rect.end.x - right_shift - (rect.position.x + left_shift),
+					#height
+				#)
+				#var new_rect_biome = BiomeRectEntity.new()
+				#new_rect_biome.rect = rect
+				#new_rect_biome.biome_id = biome_id
+				#
+				#_biome_rect_repository.create(new_rect_biome)
+				#target_area -= new_rect.get_area()
+				#direction_rects["bottom"] = new_rect
+				#
+			#if direction_rects["left"].size.y > 5:
+				#var rect = direction_rects["left"]
+				#var top_shift = get_random_int(1, floor(min(8, rect.size.y / 2)) - 1)
+				#var bottom_shift = get_random_int(1, floor(min(8, rect.size.y / 2)) - 1)
+				#var width = ceil(get_random_float(0.8, 1) * rect.size.x / 4)
+				#
+				#var new_rect = Rect2i(
+					#rect.position.x - width,
+					#rect.position.y + top_shift,
+					#width,
+					#rect.end.y - bottom_shift - (rect.position.y + top_shift)
+				#)
+				#var new_rect_biome = BiomeRectEntity.new()
+				#new_rect_biome.rect = rect
+				#new_rect_biome.biome_id = biome_id
+				#
+				#_biome_rect_repository.create(new_rect_biome)
+				#target_area -= new_rect.get_area()
+				#direction_rects["left"] = new_rect
+				#
+			#if direction_rects["right"].size.y > 5:
+				#var rect = direction_rects["right"]
+				#var top_shift = get_random_int(1, floor(min(8, rect.size.y / 2)) - 1)
+				#var bottom_shift = get_random_int(1, floor(min(8, rect.size.y / 2)) - 1)
+				#var width = ceil(get_random_float(0.8, 1) * rect.size.x / 4)
+				#
+				#var new_rect = Rect2i(
+					#rect.end.x,
+					#rect.position.y + top_shift,
+					#width,
+					#rect.end.y - bottom_shift - (rect.position.y + top_shift)
+				#)
+				#var new_rect_biome = BiomeRectEntity.new()
+				#new_rect_biome.rect = rect
+				#new_rect_biome.biome_id = biome_id
+				#
+				#_biome_rect_repository.create(new_rect_biome)
+				#target_area -= new_rect.get_area()
+				#direction_rects["right"] = new_rect
+	#_db.db_close()
 
 	#var folder = "res://databases/test/"
 	#var w = 70
