@@ -8,9 +8,13 @@ signal double_pressed(item: ItemEntity)
 @export var page_size := Vector2i(3, 3)
 
 var state: InventoryState
+var summed_inventory: SummedInventory
 
 @onready var items_grid: ItemsGrid = $VBoxContainer/ItemsGrid
 @onready var page_controller: PageController = $VBoxContainer/PageController
+
+func _enter_tree() -> void:
+	summed_inventory = Injector.provide(SummedInventory, SummedInventory.new(), self, Injector.ContainerType.ROOT)
 
 
 func _ready() -> void:
@@ -27,6 +31,8 @@ func _register_methods():
 	var character_state := Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
 	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
 	var items_id = database.connection.get_data_string_ids("items")
+	summed_inventory.add_inventory(location_state)
+	summed_inventory.add_inventory(character_state)
 	
 	var get_item_amount = func (inventory: InventoryState, item_name: String) -> int:
 		var item = inventory.fetch_item(item_name)
@@ -40,14 +46,8 @@ func _register_methods():
 			return 0
 		return item.get_total_dutability()
 	
-	var remove_item = func(item_name: String, amount: int):
-		var remove_amount = min(get_item_amount.call(character_state, item_name), amount)
-		remove_amount = character_state.remove_item(item_name, remove_amount)
-		remove_amount = location_state.remove_item(item_name, remove_amount)
-		return remove_amount
-	
 	execute_keeper.register(
-		execute_keeper.TYPE_EFFECT, "remove item", remove_item,
+		execute_keeper.TYPE_EFFECT, "remove item", summed_inventory.remove_item,
 		["enum/String/%s" % [",".join(items_id)], "int"], 
 		["item_name", "quantity"],
 		["", 1],
@@ -93,14 +93,8 @@ func _register_methods():
 		["", [50]],
 	)
 	
-	var has_amount = func(item_name: String, amount: int):
-		var total: int = 0
-		total += get_item_amount.call(character_state, item_name)
-		total += get_item_amount.call(location_state, item_name)
-		return total >= amount
-	
 	execute_keeper.register(
-		execute_keeper.TYPE_CONDITION, "has item total amount", has_amount,
+		execute_keeper.TYPE_CONDITION, "has item total amount", summed_inventory.has_item,
 		["enum/String/%s" % [",".join(items_id)], "int"], 
 		["item_name", "quantity"],
 		["", 1],
