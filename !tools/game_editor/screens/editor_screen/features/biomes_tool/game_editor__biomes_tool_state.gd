@@ -37,9 +37,6 @@ var biomes: Array[BiomeEntity]:
 func create_biome():
 	var biome = BiomeEntity.new()
 	
-	biome.name = "new biome"
-	biome.type = BiomeEntity.GRASS_TYPE
-	
 	var id = _biome_repository.create(biome)
 	reload_all_biomes()
 	selected_biome_id = id
@@ -135,3 +132,4 @@ func _place_biome_rect():
 		_biome_layers_state.create_biome_rect(biome_rect)
 		paint_state.state = paint_state.State.PlaceRectPosition
 		paint_state_changed.emit(paint_state)
+		

@@ -11,7 +11,7 @@ func _init(host_node: Node) -> void:
 func get_by_id(id: int) -> BiomeEntity:
 	var select_condition = "id = %d" % id
 	var row = _db.connection.select_rows(
-		"biome", select_condition, ["id", "name", "type", "search_drop_uid"]
+		"biome", select_condition, ["id", "name", "resource"]
 	)
 	if row.size() == 0:
 		return null
@@ -63,8 +63,7 @@ func _row_to_entity(row: Dictionary) -> BiomeEntity:
 
 	entity.id = row["id"]
 	entity.name = row["name"]
-	entity.type = row["type"]
-	entity.search_drop = load(ResourceUID.get_id_path(row["search_drop_uid"]))
+	entity.resource = load(ResourceUID.get_id_path(ResourceUID.text_to_id(row["resource"])))
 
 	return entity
 
@@ -74,7 +73,6 @@ func _entity_to_row(entity: BiomeEntity, without_id: bool = false) -> Dictionary
 	if not without_id:
 		row["id"] = entity.id
 	row["name"] = entity.name
-	row["type"] = entity.type
-	row["search_drop_uid"] = ResourceLoader.get_resource_uid(entity.search_drop.resource_path)
+	row["resource"] = ResourceUID.id_to_text(ResourceLoader.get_resource_uid(entity.resource.resource_path))
 
 	return row

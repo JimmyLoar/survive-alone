@@ -134,7 +134,6 @@ offset_left = 783.0
 offset_top = 78.0
 offset_right = 830.0
 offset_bottom = 118.0
-disabled = true
 text = "Exp"
 
 [node name="OpenDialog" type="FileDialog" parent="."]
