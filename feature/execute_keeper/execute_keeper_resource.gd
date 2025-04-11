@@ -18,11 +18,16 @@ var args_data: Array = []
 var _args_types: Array = []
 
 
+func _init() -> void:
+	_args_types = ExecuteKeeperState._load_config().get_value(type, "none", ExecuteKeeperState.EMPTY_STRUCTURE)
+
+
 func set_method_name(new_name: String):
 	#printerr("new_name: " + new_name)
 	name = new_name if new_name != "" else ExecuteKeeperState.NONE_NAME
 	_args_types = ExecuteKeeperState.get_args(self.type, name)
 	args_data.resize(_args_types[0].size())
+	emit_changed.call_deferred()
 	_update_names()
 
 
@@ -116,6 +121,7 @@ func _set(property: StringName, value: Variant) -> bool:
 			if index >= args_data.size():
 				args_data.resize(index + 1)
 			args_data[index] = value
+			emit_changed()
 			return true
 	return false
 

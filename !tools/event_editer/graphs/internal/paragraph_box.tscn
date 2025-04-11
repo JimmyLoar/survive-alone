@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d4hi273u00176"]
 
-[ext_resource type="Script" uid="uid://bce0f8en4dlvx" path="res://!tools/event_editer/graphs/internal/paragraph_box.gd" id="1_bva8m"]
+[ext_resource type="Script" uid="uid://bce0f8en4dlvx" path="res://!tools/event_editer/graphs/internal/_paragraph_box.gd" id="1_bva8m"]
 
 [node name="ParagraphBox" type="VBoxContainer" node_paths=PackedStringArray("character_selecter", "line_edit", "text_edit")]
 custom_minimum_size = Vector2(300, 0)
