@@ -6,6 +6,7 @@ enum EdgeType {
 	NORMAL = 0,
 	ACTION = 1,
 	CONDITIONAL = 2,
+	EFFECT = 2,
 }
 
 

@@ -117,7 +117,7 @@ filters = PackedStringArray("*.tres ; Quest files")
 [node name="AddNodePopupMenu" type="PopupMenu" parent="."]
 title = "Add Node"
 hide_on_state_item_selection = true
-item_count = 6
+item_count = 8
 item_0/text = "Start"
 item_0/id = 0
 item_1/text = "End"
@@ -128,8 +128,12 @@ item_3/text = "Dialogue"
 item_3/id = 3
 item_4/text = "Actions"
 item_4/id = 4
-item_5/text = "Abort"
+item_5/text = "ActionConditions"
 item_5/id = 5
+item_6/text = "ActionEffects"
+item_6/id = 6
+item_7/text = "Abort"
+item_7/id = 7
 
 [connection signal="pressed" from="Content/MarginContainer/Toolbar/NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="Content/MarginContainer/Toolbar/OpenButton" to="." method="_on_open_button_pressed"]

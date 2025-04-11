@@ -7,6 +7,8 @@ const EndNodeScene = preload("uid://bnf6ipbnvyj65")
 const MonologueNodeScene = preload("uid://beklh40jtnrqv")
 const DialogueNodeScene = preload("uid://cmkc0dt0p36cv")
 const ActionsNodeScene = preload("uid://b8g6wavqx75ii")
+const ConditionNodeScene = preload("uid://glovskhe8pur")
+const EffectNodeScene = preload("uid://hudxb37p6u6c")
 const AbortNodeScene = preload("uid://ddhmoxckqyrvv")
 
 

@@ -26,9 +26,9 @@ slot/1/left_enabled = false
 slot/1/left_type = 0
 slot/1/left_color = Color(1, 1, 1, 1)
 slot/1/left_icon = null
-slot/1/right_enabled = false
-slot/1/right_type = 0
-slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_enabled = true
+slot/1/right_type = 3
+slot/1/right_color = Color(1, 0, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
 slot/2/left_enabled = false
@@ -58,6 +58,15 @@ slot/4/right_type = 0
 slot/4/right_color = Color(1, 1, 1, 1)
 slot/4/right_icon = null
 slot/4/draw_stylebox = true
+slot/5/left_enabled = false
+slot/5/left_type = 0
+slot/5/left_color = Color(1, 1, 1, 1)
+slot/5/left_icon = null
+slot/5/right_enabled = false
+slot/5/right_type = 0
+slot/5/right_color = Color(1, 1, 1, 1)
+slot/5/right_icon = null
+slot/5/draw_stylebox = true
 script = ExtResource("1_bk4ot")
 line_edit = NodePath("VBoxContainer/LineEdit")
 text_edit = NodePath("VBoxContainer/TextEdit")
@@ -76,6 +85,21 @@ text = "condition"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "node"
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "condition"
+
+[node name="Label2" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "effect"
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="."]
