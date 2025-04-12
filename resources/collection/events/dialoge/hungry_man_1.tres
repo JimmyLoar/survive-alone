@@ -5,66 +5,67 @@
 [ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="2_na5g1"]
 [ext_resource type="Script" uid="uid://d1a77ln5pvkq6" path="res://!tools/event_editer/source/monologue.gd" id="3_vjxi1"]
 [ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end.gd" id="4_61gh3"]
+[ext_resource type="Script" uid="uid://4vpt5ojf0bod" path="res://!tools/event_editer/source/actions.gd" id="5_na5g1"]
 [ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="6_wofwq"]
-[ext_resource type="Script" uid="uid://bxhcjh6bignub" path="res://!tools/event_editer/source/dialogue.gd" id="8_61gh3"]
+
+[sub_resource type="Resource" id="Resource_na5g1"]
+script = ExtResource("3_vjxi1")
+text = ""
+id = "xCscO4azfJ"
+optional = false
+graph_editor_position = Vector2(440, -980)
+graph_editor_size = Vector2(300, 240)
 
 [sub_resource type="Resource" id="Resource_vjxi1"]
-script = ExtResource("2_na5g1")
-name_key = "HungerMan_01"
-id = "-b_OepTwf8"
+script = ExtResource("4_61gh3")
+id = "O2TCTTIA18"
 optional = false
-graph_editor_position = Vector2(180, -320)
-graph_editor_size = Vector2(300, 289)
+graph_editor_position = Vector2(900, -900)
+graph_editor_size = Vector2(120, 70)
 
 [sub_resource type="Resource" id="Resource_61gh3"]
-script = ExtResource("3_vjxi1")
-text = "oko"
-id = "EaFJzlRy9M"
-optional = false
-graph_editor_position = Vector2(560, -320)
-graph_editor_size = Vector2(300, 240)
+script = ExtResource("1_485l4")
+from = SubResource("Resource_na5g1")
+to = SubResource("Resource_vjxi1")
+edge_type = 0
 
 [sub_resource type="Resource" id="Resource_wofwq"]
-script = ExtResource("1_485l4")
-from = SubResource("Resource_vjxi1")
-to = SubResource("Resource_61gh3")
-edge_type = 0
+script = ExtResource("2_na5g1")
+name_key = ""
+id = "p5S7kiUZDa"
+optional = false
+graph_editor_position = Vector2(-40, -960)
+graph_editor_size = Vector2(300, 289)
 
 [sub_resource type="Resource" id="Resource_71bbs"]
-script = ExtResource("4_61gh3")
-id = "hovbKNpA3n"
-optional = false
-graph_editor_position = Vector2(940, -320)
-graph_editor_size = Vector2(300, 240)
-
-[sub_resource type="Resource" id="Resource_8suym"]
 script = ExtResource("1_485l4")
-from = SubResource("Resource_61gh3")
-to = SubResource("Resource_71bbs")
+from = SubResource("Resource_wofwq")
+to = SubResource("Resource_na5g1")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_li26c"]
-script = ExtResource("8_61gh3")
-dialogues = []
-id = "fla6Akr8Qn"
+[sub_resource type="Resource" id="Resource_8suym"]
+script = ExtResource("5_na5g1")
+text_key = "next"
+is_said = false
+id = "hZi0yx0okw"
 optional = false
-graph_editor_position = Vector2(560, -660)
-graph_editor_size = Vector2(336, 306)
+graph_editor_position = Vector2(60, -580)
+graph_editor_size = Vector2(300, 240)
+
+[sub_resource type="Resource" id="Resource_li26c"]
+script = ExtResource("1_485l4")
+from = SubResource("Resource_8suym")
+to = SubResource("Resource_na5g1")
+edge_type = 1
 
 [sub_resource type="Resource" id="Resource_7jn4x"]
 script = ExtResource("1_485l4")
-from = SubResource("Resource_vjxi1")
-to = SubResource("Resource_li26c")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_jmbss"]
-script = ExtResource("1_485l4")
-from = SubResource("Resource_li26c")
-to = SubResource("Resource_71bbs")
-edge_type = 0
+from = SubResource("Resource_8suym")
+to = SubResource("Resource_vjxi1")
+edge_type = 1
 
 [resource]
 script = ExtResource("2_ei7d3")
-nodes = Array[ExtResource("6_wofwq")]([])
-edges = Array[ExtResource("1_485l4")]([SubResource("Resource_wofwq"), SubResource("Resource_8suym"), SubResource("Resource_7jn4x"), SubResource("Resource_jmbss")])
+nodes = Array[ExtResource("6_wofwq")]([SubResource("Resource_wofwq"), SubResource("Resource_na5g1"), SubResource("Resource_8suym"), SubResource("Resource_vjxi1")])
+edges = Array[ExtResource("1_485l4")]([SubResource("Resource_61gh3"), SubResource("Resource_71bbs"), SubResource("Resource_li26c"), SubResource("Resource_7jn4x")])
 groups = Array[int]([])

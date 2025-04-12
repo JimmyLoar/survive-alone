@@ -116,6 +116,10 @@ func _get_graph_node(node: EventNode) -> EventGraphNode:
 		return DialogueNodeScene.instantiate()
 	elif node is EventAction:
 		return ActionsNodeScene.instantiate()
+	elif node is EventCondition:
+		return ConditionNodeScene.instantiate()
+	elif node is EventEffect:
+		return EffectNodeScene.instantiate()
 	elif node is EventAbort:
 		return AbortNodeScene.instantiate()
 	return null

@@ -9,7 +9,7 @@ bg_color = Color(0.581898, 0.347422, 0, 1)
 [node name="Effect" type="GraphNode" node_paths=PackedStringArray("container", "add_button")]
 custom_minimum_size = Vector2(300, 120)
 offset_right = 336.0
-offset_bottom = 132.0
+offset_bottom = 172.0
 theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_emgko")
 resizable = true

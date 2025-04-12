@@ -1,9 +1,7 @@
 @tool
 class_name Condition
-extends VBoxContainer
+extends GraphBoxItem
 
-
-signal request_to_remove
 
 var resource: ExecuteKeeperResource
 
@@ -23,8 +21,8 @@ func update():
 		update_text()
 
 
-func _set_data(new_resource: ExecuteKeeperResource):
-	resource = new_resource
+func _set_data(new_resource):
+	resource = new_resource as ExecuteKeeperResource
 
 
 func _get_data():
