@@ -1,6 +1,6 @@
 @tool
 class_name EventDialogueNode 
-extends EventGraphNode 
+extends EventGraphBox 
 
 const CHARACTERS_LIST = [
 	preload("uid://lo5lkul44sou"),
@@ -9,15 +9,11 @@ const CHARACTERS_LIST = [
 	preload("uid://b0cjwpa70higj"),
 ]
 
-const PARAGRAPH_BOX = preload("uid://d4hi273u00176")
-
-@export var paragraphs: HFlowContainer
-
 
 func _ready() -> void:
 	super()
-	if not paragraphs.get_child_count():
-		_add_paragrath()
+	if not container.get_child_count():
+		_add_item()
 
 
 func _get_model() -> EventNode:
@@ -26,35 +22,20 @@ func _get_model() -> EventNode:
 
 func _set_model_properties(node: EventNode) -> void:
 	var data := Array()
-	for paragraph: ParagraphBox in paragraphs.get_children():
-		data.append(paragraph.get_data())
+	for paragraph: ParagraphBox in container.get_children():
+		data.append(paragraph._get_data())
 	node.dialogues = data
 	#printerr(data.map(func(arr): return arr[0].name))
 
 
 func _get_model_properties(node: EventNode) -> void:
 	for i in node.dialogues.size():
-		var paragraph: ParagraphBox = _get_paragraph(i)
-		paragraph.set_data.call_deferred(node.dialogues[i])
-
-
-func _get_paragraph(index: int):
-	if index < paragraphs.get_child_count():
-		return paragraphs.get_child(index)
-	return _add_paragrath()
-
-
-func _add_paragrath():
-	var new_paragraph: ParagraphBox = PARAGRAPH_BOX.instantiate()
-	paragraphs.add_child(new_paragraph)
-	new_paragraph.request_to_remove.connect(_remove_paragrath, ConnectFlags.CONNECT_ONE_SHOT)
-	return new_paragraph
+		var paragraph: ParagraphBox = _get_item(i)
+		paragraph._set_data.call_deferred(node.dialogues[i])
 
 
 func _remove_paragrath(_paragraph: ParagraphBox):
 	remove_child(_paragraph)
 	_paragraph.queue_free()
 	
-	for paragraph in paragraphs:
-		paragraph.update()
 	

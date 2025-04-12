@@ -6,8 +6,10 @@ extends VBoxContainer
 signal request_to_remove
 
 var resource: ExecuteKeeperResource
+
 @export var label: RichTextLabel
 @export var remove_button: Button
+
 
 func _ready() -> void:
 	update()
@@ -21,11 +23,11 @@ func update():
 		update_text()
 
 
-func set_data(new_resource: ExecuteKeeperResource):
+func _set_data(new_resource: ExecuteKeeperResource):
 	resource = new_resource
 
 
-func get_data():
+func _get_data():
 	return resource
 
 

@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://glovskhe8pur"]
+[gd_scene load_steps=4 format=3 uid="uid://glovskhe8pur"]
 
 [ext_resource type="Script" uid="uid://dr4oe1f8vw72m" path="res://!tools/event_editer/graphs/_condition.gd" id="1_806kn"]
+[ext_resource type="PackedScene" uid="uid://cogm42f2tx5jn" path="res://!tools/event_editer/graphs/internal/condition_box.tscn" id="2_xcup0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsqug"]
 bg_color = Color(0.062884, 0, 0.987919, 1)
 
-[node name="Condition" type="GraphNode" node_paths=PackedStringArray("condition_box")]
-custom_minimum_size = Vector2(300, 240)
+[node name="Condition" type="GraphNode" node_paths=PackedStringArray("condition_box", "container", "add_button")]
+custom_minimum_size = Vector2(300, 120)
 offset_right = 336.0
-offset_bottom = 337.0
+offset_bottom = 132.0
 theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_dsqug")
 resizable = true
@@ -51,6 +52,9 @@ slot/3/right_icon = null
 slot/3/draw_stylebox = true
 script = ExtResource("1_806kn")
 condition_box = NodePath("ConditionBox")
+container = NodePath("ConditionBox")
+add_button = NodePath("__AddButton")
+item_scene = ExtResource("2_xcup0")
 metadata/_custom_type_script = "uid://dwdq1drsx4pdf"
 
 [node name="Label" type="Label" parent="."]
@@ -70,5 +74,3 @@ text = "Add phrase"
 
 [node name="ConditionBox" type="VBoxContainer" parent="."]
 layout_mode = 2
-
-[connection signal="pressed" from="__AddButton" to="." method="_on_add_button_pressed"]
