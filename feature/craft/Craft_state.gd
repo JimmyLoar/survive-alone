@@ -10,6 +10,8 @@ var known_recipes: Array[BasicRecipe] = [
 	load("res://feature/craft/testrec.tres"),
 	load("res://feature/craft/ui/Recepies/test2.tres"),
 	load("res://feature/craft/ui/Recepies/new_resource.tres"),
+	load("res://feature/craft/ui/Recepies/new_resource.tres"),
+	load("res://feature/craft/ui/Recepies/new_resource.tres"),
 	]
 
 func _init(node, gts: GameTimeState) -> void:
@@ -33,7 +35,7 @@ func craft_from_recipe(recipe: BasicRecipe):
 		
 
 
-func _fulfill(recipe):
+func _fulfill(recipe: BasicRecipe):
 	_time_state.finished_skip.disconnect(_lambda)
 	for tuple in recipe.ingredients:
 		_inventory_state.remove_item(tuple.item.code_name, tuple.amount)
@@ -49,3 +51,7 @@ func recipe_can_be_crafted(recipe: BasicRecipe) -> bool:
 		if !_inventory_state.has_item_amount(tuple.item.code_name, tuple.amount):
 			return false
 	return true
+
+func add_recipe(recipe: BasicRecipe):
+	if recipe not in known_recipes:
+		known_recipes.append(recipe)
