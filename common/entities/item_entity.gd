@@ -38,7 +38,7 @@ func get_total_amount() -> int:
 	return _used.size() + _not_used_amount
 
 
-func increase_total_amount(delta_value: int):
+func increase_not_used(delta_value: int):
 	_not_used_amount += delta_value
 	changed_amount.emit(get_total_amount())
 	return _not_used_amount
@@ -47,7 +47,7 @@ func increase_total_amount(delta_value: int):
 func decrease_total_amount(value: int) -> int:
 	value = abs(value)
 	value = remove_used_amount(value)
-	value = increase_total_amount(value * -1)
+	value = increase_not_used(value * -1)
 	changed_amount.emit(get_total_amount())
 	return min(value, 0) * -1  
 
