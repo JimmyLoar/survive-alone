@@ -1,3 +1,3 @@
 @tool
-class_name  EventEffectNode
-extends EventConditionNode
+class_name EventEffectNode
+extends EventGraphBox

@@ -34,9 +34,6 @@ ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Injector="*res://addons/godot-di/Injector.gd"
 Questify="*res://addons/questify/quest_manager.gd"
 EventsGlobal="*res://feature/game_event/event_global.gd"
-LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
-GodotLogger="*res://addons/logger/logger.gd"
-PycoLog="*res://addons/pycolytics-godot/pyco_log.gd"
 
 [display]
 
