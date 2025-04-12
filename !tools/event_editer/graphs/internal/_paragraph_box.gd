@@ -24,10 +24,10 @@ func update():
 
 
 func _on_remove_button_pressed() -> void:
-	request_to_remove.emit(self)
+	request_to_remove.emit()
 
 
-func _set_data(array: Array):
+func _set_data(array):
 	array.resize(2)
 	var char_index = int(CHARACTERS_LIST.find_custom(
 		func(char: EventDialogueCharacter):
@@ -39,7 +39,7 @@ func _set_data(array: Array):
 	_on_line_edit_text_changed(array[1])
 
 
-func _get_data() -> Array:
+func _get_data():
 	return [_who, line_edit.text.to_lower()]
 
 

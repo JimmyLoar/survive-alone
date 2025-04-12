@@ -6,10 +6,10 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsqug"]
 bg_color = Color(0.062884, 0, 0.987919, 1)
 
-[node name="Condition" type="GraphNode" node_paths=PackedStringArray("condition_box", "container", "add_button")]
+[node name="Condition" type="GraphNode" node_paths=PackedStringArray("container", "add_button")]
 custom_minimum_size = Vector2(300, 120)
 offset_right = 336.0
-offset_bottom = 132.0
+offset_bottom = 172.0
 theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_dsqug")
 resizable = true
@@ -51,7 +51,6 @@ slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
 script = ExtResource("1_806kn")
-condition_box = NodePath("ConditionBox")
 container = NodePath("ConditionBox")
 add_button = NodePath("__AddButton")
 item_scene = ExtResource("2_xcup0")

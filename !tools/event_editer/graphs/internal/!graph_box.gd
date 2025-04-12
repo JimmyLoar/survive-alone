@@ -17,7 +17,8 @@ func _ready() -> void:
 func _add_item():
 	var new_item = item_scene.instantiate()
 	container.add_child(new_item)
-	new_item.request_to_remove.connect(_remove_item.bind(new_item))
+	if new_item.has_signal("request_to_remove"):
+		new_item.request_to_remove.connect(_remove_item.bind(new_item))
 	return new_item
 
 

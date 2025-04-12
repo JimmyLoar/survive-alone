@@ -12,8 +12,7 @@ const CHARACTERS_LIST = [
 
 func _ready() -> void:
 	super()
-	if not container.get_child_count():
-		_add_item()
+	_add_item()
 
 
 func _get_model() -> EventNode:
@@ -22,7 +21,7 @@ func _get_model() -> EventNode:
 
 func _set_model_properties(node: EventNode) -> void:
 	var data := Array()
-	for paragraph: ParagraphBox in container.get_children():
+	for paragraph in container.get_children():
 		data.append(paragraph._get_data())
 	node.dialogues = data
 	#printerr(data.map(func(arr): return arr[0].name))
@@ -30,12 +29,8 @@ func _set_model_properties(node: EventNode) -> void:
 
 func _get_model_properties(node: EventNode) -> void:
 	for i in node.dialogues.size():
-		var paragraph: ParagraphBox = _get_item(i)
+		var paragraph = _get_item(i)
 		paragraph._set_data.call_deferred(node.dialogues[i])
 
-
-func _remove_paragrath(_paragraph: ParagraphBox):
-	remove_child(_paragraph)
-	_paragraph.queue_free()
 	
 	
