@@ -23,6 +23,8 @@ func _init(node, gts: GameTimeState) -> void:
 func _init_dependencies():
 	_inventory_state = Injector.inject(InventoryCharacterState, _node)
 	_time_state = Injector.inject(GameTimeState, _node)
+	_inventory_state.item_added.connect(_on_inventory_change)
+	_inventory_state.item_removed.connect(_on_inventory_change)
 
 func craft_from_recipe(recipe: BasicRecipe):
 	if recipe_can_be_crafted(recipe):
@@ -44,7 +46,7 @@ func _fulfill(recipe: BasicRecipe):
 	
 
 func recipe_can_be_crafted(recipe: BasicRecipe) -> bool:
-	if recipe not in known_recipes:
+	if not is_recipe_known(recipe):
 		return false
 	
 	for tuple in recipe.ingredients:
@@ -52,6 +54,18 @@ func recipe_can_be_crafted(recipe: BasicRecipe) -> bool:
 			return false
 	return true
 
+
+func is_recipe_known(recipe: BasicRecipe) -> bool:
+	return recipe in known_recipes
+	
+
 func add_recipe(recipe: BasicRecipe):
 	if recipe not in known_recipes:
 		known_recipes.append(recipe)
+
+
+signal material_changed(material_name: String)
+
+
+func _on_inventory_change(item_name):
+	material_changed.emit(item_name)
