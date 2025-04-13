@@ -1,31 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://tjbpyxj4etes"]
+[gd_scene load_steps=4 format=3 uid="uid://tjbpyxj4etes"]
 
 [ext_resource type="Script" uid="uid://cqgnif4xhth8" path="res://feature/craft/ui/craft_plane_view.gd" id="1_prgi4"]
+[ext_resource type="Texture2D" uid="uid://d1d0xrnl5vxpl" path="res://assets/sprite/for vfx/lins.png" id="2_prgi4"]
 
-[node name="CraftPlaneView" type="PanelContainer"]
+[sub_resource type="LabelSettings" id="LabelSettings_5og6x"]
+font_size = 34
+
+[node name="CraftPlaneView" type="HBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+theme_override_constants/separation = -1
 script = ExtResource("1_prgi4")
 
-[node name="PanelContainer" type="MarginContainer" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("2_prgi4")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="HBoxContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
@@ -33,8 +50,29 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
-[node name="Craft_button" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "TIME_TO_CRAFT: "
+label_settings = SubResource("LabelSettings_5og6x")
+
+[node name="Time" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "123"
+label_settings = SubResource("LabelSettings_5og6x")
+
+[node name="Craft_button" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "CRAFT_BUTTON"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer2/Craft_button" to="." method="_on_craft_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/Craft_button" to="." method="_on_craft_button_pressed"]

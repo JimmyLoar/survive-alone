@@ -6,13 +6,8 @@
 [node name="RecipeView" type="Control"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1050.0
-offset_bottom = -640.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_6oi1l")
@@ -28,8 +23,7 @@ vertical_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/separation = 20
 
 [node name="ingr" type="HBoxContainer" parent="ScrollContainer/HBoxContainer"]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-extends PanelContainer
+extends HBoxContainer
 class_name CraftPanelView
 
 var recipe: BasicRecipe
@@ -8,7 +8,8 @@ var recipe: BasicRecipe
 func _ready():
 	var recipe_view = load("res://feature/craft/ui/RecipeView.tscn").instantiate()
 	recipe_view.setup(recipe)
-	$PanelContainer/VBoxContainer/MarginContainer.add_child(recipe_view)
+	$HBoxContainer/PanelContainer/VBoxContainer/MarginContainer.add_child(recipe_view)
+	%Time.text = str(recipe.craft_time)
 
 
 func _on_craft_button_pressed():

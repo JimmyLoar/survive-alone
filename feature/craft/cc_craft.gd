@@ -8,4 +8,4 @@ func _enter_tree() -> void:
 	_state = Injector.provide(CraftState, CraftState.new(self, game_time), self, Injector.ContainerType.CLOSEST)
 
 func _ready():
-	$_MarginContainer/HBoxContainer/SubContainer/RecipesMenu.update_recipe_list()
+	$_MarginContainer/HBoxContainer/MainContainer/RecipesMenu.update_recipe_list()
