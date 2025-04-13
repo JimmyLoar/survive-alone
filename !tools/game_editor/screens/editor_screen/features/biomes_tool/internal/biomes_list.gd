@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 @onready var _inspector: Control = %Inspector
 @onready var _biomes_list: ItemList = %BiomesList

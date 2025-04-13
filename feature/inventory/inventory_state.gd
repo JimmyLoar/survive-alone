@@ -19,19 +19,19 @@ func _init(new_name := "InventoryState") -> void:
 func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
 	var tmp = inventory_entity
 	inventory_entity = _new_entity
-	
-	var get_names: Callable = func(item: ItemEntity):
-		return item.get_resource().code_name 
-	
 	changed_inventory_entity.emit(_new_entity)
 	return tmp
+
+
+func is_empty() -> bool:
+	return inventory_entity.items.size() == 0
 
 
 func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 	var found_index = find_item(data.code_name)
 	if found_index != -1:
 		var item = get_item(found_index)
-		item.increase_total_amount(value)
+		item.increase_not_used(value)
 		item.append_used(used)
 		_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in exist item with index [color=green]%d[/color]" % 
 			[value, used.size(), data.code_name, found_index])
