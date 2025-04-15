@@ -242,4 +242,4 @@ edge_type = 0
 script = ExtResource("2_hr02p")
 nodes = Array[ExtResource("8_q5xqs")]([SubResource("Resource_x6ao8"), SubResource("Resource_r4p4g"), SubResource("Resource_n5nny"), SubResource("Resource_sr7nb"), SubResource("Resource_kndmj"), SubResource("Resource_wei23"), SubResource("Resource_8v2sr"), SubResource("Resource_1l8wp"), SubResource("Resource_fm5l8"), SubResource("Resource_fs17t"), SubResource("Resource_dcrtb"), SubResource("Resource_imnxy"), SubResource("Resource_h66ou"), SubResource("Resource_0r0tc")])
 edges = Array[ExtResource("1_oao3x")]([SubResource("Resource_x8oyh"), SubResource("Resource_4q6bf"), SubResource("Resource_3q22d"), SubResource("Resource_714nl"), SubResource("Resource_dqvwb"), SubResource("Resource_cqoc6"), SubResource("Resource_hygcc"), SubResource("Resource_icwb0"), SubResource("Resource_0nih1"), SubResource("Resource_odl0g"), SubResource("Resource_w7lq1"), SubResource("Resource_2o8vm"), SubResource("Resource_ls7w3"), SubResource("Resource_84b6j"), SubResource("Resource_3wwgo")])
-groups = Array[int]([])
+
