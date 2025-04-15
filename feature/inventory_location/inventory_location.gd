@@ -85,7 +85,7 @@ func _on_location_changed(location: Variant):
 				)
 			))
 
-		_state.search_drop = location.resource.search_drop
+		_state.search_drop = location._get_node().search_drop
 		return
 
 	if is_instance_of(location, CharacterLocationState.BiomesLocation):

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cysi464ejtu1w"]
+
+[ext_resource type="Script" uid="uid://dtcdgf60nvjy0" path="res://common/world_objects/world_location.gd" id="1_4foup"]
+[ext_resource type="Resource" uid="uid://56f1qivn2r5c" path="res://resources/collection/search_drop/none.tres" id="2_f4e0k"]
+[ext_resource type="Texture2D" uid="uid://coi4ncn6o7que" path="res://feature/biomes_layer/internal/money-bag-icon.png" id="3_y66vt"]
+
+[node name="CampLocation" type="Node2D"]
+script = ExtResource("1_4foup")
+search_drop = ExtResource("2_f4e0k")
+show_collision_shape = null
+
+[node name="Texture" type="Sprite2D" parent="."]
+position = Vector2(0, -1.49012e-08)
+scale = Vector2(0.0028222, 0.00239877)
+texture = ExtResource("3_y66vt")
+
+[node name="CollisionShape" type="Polygon2D" parent="."]
+visible = false
+position = Vector2(177, 96)
+color = Color(0.588235, 0, 0, 0)
+polygon = PackedVector2Array(-185.417, -87.5835, -168.583, -87.5835, -168.583, -104.417, -185.417, -104.417)

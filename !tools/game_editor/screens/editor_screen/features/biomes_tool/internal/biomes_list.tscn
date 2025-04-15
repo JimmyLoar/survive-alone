@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://eahcnuvi8twy"]
+[gd_scene load_steps=3 format=3 uid="uid://eahcnuvi8twy"]
 
+[ext_resource type="Theme" uid="uid://b7thgsf2s74gg" path="res://assets/themes/for_dev_tools.tres" id="1_15um3"]
 [ext_resource type="Script" uid="uid://7bjbdru7po66" path="res://!tools/game_editor/screens/editor_screen/features/biomes_tool/internal/biomes_list.gd" id="1_d4rq8"]
 
 [node name="BiomesList" type="Panel"]
@@ -12,6 +13,7 @@ offset_left = -300.0
 offset_top = -672.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("1_15um3")
 script = ExtResource("1_d4rq8")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -146,9 +148,16 @@ root_subfolder = "E:/projects/godot/survive-alone/resources/collection/biomes/"
 layout_mode = 0
 offset_left = 245.0
 offset_top = 79.0
-offset_right = 271.0
+offset_right = 282.0
 offset_bottom = 119.0
-text = "R"
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/Inspector/RefreshResource"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 35.0
+offset_bottom = 41.0
+text = "🗘"
 
 [connection signal="item_selected" from="MarginContainer/VSplitContainer/Control/VScrollBar/BiomesList" to="." method="_on_biomes_list_item_selected"]
 [connection signal="pressed" from="MarginContainer/VSplitContainer/Control/MarginContainer/CreateBiome" to="." method="_on_create_biome_pressed"]

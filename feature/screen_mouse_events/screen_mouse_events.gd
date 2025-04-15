@@ -106,7 +106,7 @@ func _process_right_button(event: InputEvent):
 	# check threshold and start drag
 	elif event is InputEventMouseMotion and _state.right_button  is ScreenMouseEventsState.InitialPress:
 		var local_mouse_pos = get_local_mouse_position()
-		if local_mouse_pos.distance_to(_state.right_button.mouse_pos) > drag_threshold:
+		if local_mouse_pos.distance_to(_state.right_button.local_mouse_pos) > drag_threshold:
 			var new_right_button = ScreenMouseEventsState.DragStart.new()
 			new_right_button.input_event = event
 			new_right_button.initial_press = _state.right_button
