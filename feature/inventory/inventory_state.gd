@@ -27,6 +27,8 @@ func is_empty() -> bool:
 	return inventory_entity.items.size() == 0
 
 
+
+
 func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 	var found_index = find_item(data.code_name)
 	if found_index != -1:
@@ -40,6 +42,7 @@ func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 	_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in new item, with index [color=green]%s[/color]" % 
 		[value, used.size(), data.code_name, inventory_entity.items.size()])
 	return _add_in_storage_entity(ItemEntity.new(data, value, used))
+
 
 
 func remove_item(name: String, _amount := 1):
@@ -60,6 +63,7 @@ func remove_item(name: String, _amount := 1):
 	if item.get_total_amount() <= 0:
 		_remove_from_storage_entity(index)
 	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items [color=green]%s (%d)[/color]" % [_amount, remaining, name, item.get_total_amount()])
+	
 	return remaining
 
 

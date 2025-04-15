@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://4xmlo71q4jpr"]
+
+[ext_resource type="Script" uid="uid://cyitdfsddwv0w" path="res://feature/craft/ui/item_number_tuple_view.gd" id="1_uvye7"]
+[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="3_ga6cv"]
+
+[node name="ItemNumberTupleView" type="TextureRect"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("3_ga6cv")
+expand_mode = 2
+stretch_mode = 4
+script = ExtResource("1_uvye7")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "x2"

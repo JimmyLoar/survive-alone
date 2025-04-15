@@ -6,6 +6,7 @@ var _state: CharacterState
 @export var time_unit = 1 # times per one _physics_process
 @export var move_speed = 50 # pixels per time_unit
 @onready var _moving_line = %MovingLine
+@onready var _line_cross = %Cross
 @onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
 @onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
 @onready var _character_repositoty: CharacterRepository = Injector.inject(CharacterRepository, self)
@@ -63,7 +64,8 @@ func _process_moving(delta: float):
 		time_unit = max(time_unit * (distance / move_step), 1)
 		_game_time.do_step(time_unit)
 		
-	_moving_line.points[1] = _state.target_position - position
+	_moving_line.points[0] = _state.target_position - position
+	_line_cross.position = _state.target_position - position
 	_moving_line.show()
 	_update_props_by_time_spend(time_unit)
 

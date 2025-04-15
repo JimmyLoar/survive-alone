@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpkdoaq7tk0b8"]
+[gd_scene load_steps=9 format=3 uid="uid://bpkdoaq7tk0b8"]
 
 [ext_resource type="Script" uid="uid://cpyers3ikip6v" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_7q31a"]
 [ext_resource type="Script" uid="uid://dd7wpi5fc85n4" path="res://feature/character/character.gd" id="1_p76ae"]
+[ext_resource type="Texture2D" uid="uid://mrk2g63yuhh4" path="res://assets/sprite/for vfx/dotline_test.png" id="2_o4l87"]
 [ext_resource type="Script" uid="uid://cstrxukhnpb1h" path="res://addons/shape_texture_2d/drawable_ellipse.gd" id="2_qnd3l"]
+[ext_resource type="Texture2D" uid="uid://b74eu0h2dp518" path="res://assets/sprite/for vfx/cross.png" id="3_7nmth"]
 
 [sub_resource type="Resource" id="Resource_hqprc"]
 script = ExtResource("2_qnd3l")
@@ -37,8 +39,18 @@ script = ExtResource("1_p76ae")
 
 [node name="MovingLine" type="Line2D" parent="."]
 unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)
-default_color = Color(0.668378, 0.000351354, 0.672042, 1)
+width = 64.0
+texture = ExtResource("2_o4l87")
+texture_mode = 1
+antialiased = true
+
+[node name="Cross" type="Sprite2D" parent="MovingLine"]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_7nmth")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("Texture2D_lcb6a")

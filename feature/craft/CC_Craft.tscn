@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl1d3c28xju2i"]
+
+[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/ui_content_menu/content_containers/content_container_root.tscn" id="1_n38os"]
+[ext_resource type="Script" uid="uid://d3o3ruk73p5vg" path="res://feature/craft/cc_craft.gd" id="2_1uoms"]
+[ext_resource type="PackedScene" uid="uid://4x16d5hmo000" path="res://feature/craft/recipes_menu.tscn" id="3_e65og"]
+
+[node name="ContentContainer" instance=ExtResource("1_n38os")]
+script = ExtResource("2_1uoms")
+
+[node name="RecipesMenu" parent="_MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("3_e65og")]
+layout_mode = 2
+
+[node name="SubContainer" parent="_MarginContainer/HBoxContainer" index="1"]
+current_tab = 0
+
+[node name="Control" type="Control" parent="_MarginContainer/HBoxContainer/SubContainer" index="1"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Control" type="HBoxContainer" parent="_MarginContainer/HBoxContainer/SubContainer/Control" index="0"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="NameLabel" type="Label" parent="_MarginContainer/HBoxContainer/SubContainer/Control/Control" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "rec"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CloseSpace" type="Control" parent="_MarginContainer/HBoxContainer/SubContainer/Control/Control" index="1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
