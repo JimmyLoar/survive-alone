@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="3_bletl"]
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="4_ifb0a"]
 
-
 [resource]
 script = ExtResource("4_ifb0a")
 nodes = Array[ExtResource("3_bletl")]([])
