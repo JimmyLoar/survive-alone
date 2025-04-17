@@ -13,4 +13,4 @@ func update_actions(actions: Array[EventAction]):
 			#action.icon,
 		)
 		#var is_disable = not await(action_state.can_execute(action))
-		#self.set_item_disabled(index, is_disable)
+		self.set_item_disabled(index, action.get_meta("disabled"))

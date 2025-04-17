@@ -16,9 +16,10 @@ func has_item(name: String, value: int):
 
 func remove_item(name: String, value: int):
 	assert(not _inventories.is_empty(), "inventories is empty")
+	var _tmp = value
 	for inv in _inventories:
 		value = inv.remove_item(name, value)
-	return value
+	return value - _tmp
 
 
 func get_items_amount(name: String):

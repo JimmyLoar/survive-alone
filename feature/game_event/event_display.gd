@@ -12,6 +12,7 @@ extends PanelContainer
 
 
 var _state: EventState
+var _execute_keeper: ExecuteKeeperState
 
 var currect_event: EventResource
 var currect_stages: Array[EventNode]
@@ -20,6 +21,7 @@ var _result: Dictionary
 
 func _enter_tree() -> void:
 	_state = Injector.provide(EventState, EventState.new(self), get_tree().root, Injector.ContainerType.ROOT) as EventState
+	_execute_keeper = Injector.inject(ExecuteKeeperState, self)
 
 
 func _ready() -> void:
@@ -32,7 +34,6 @@ func _ready() -> void:
 
 
 func _register_methods():
-	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
 	var db_resource := Injector.inject(ResourceDb, self) as ResourceDb
 	if not db_resource:
 		return
@@ -41,7 +42,7 @@ func _register_methods():
 		var event: EventResource = db_resource.connection.fetch_data("event", StringName(event_name))
 		_state.activate_event(event)
 	
-	execute_keeper.register(
+	_execute_keeper.register(
 		ExecuteKeeperState.TYPE_EFFECT, "activate event", _activate_event,
 		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event"))]], 
 		["event name"],
@@ -53,7 +54,7 @@ func _register_methods():
 		var event: EventResource = list.get_event()
 		_state.activate_event(event)
 	
-	execute_keeper.register(
+	_execute_keeper.register(
 		ExecuteKeeperState.TYPE_EFFECT, "activate event from list", _activate_event_list,
 		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event_list"))]],
 		["events list"],
@@ -69,8 +70,7 @@ func display(event: EventResource):
 	
 	currect_event = event
 	currect_stages = currect_event.get_active_nodes()
-	for stage in currect_stages:
-		_display_stage(stage)
+	_display_stage(currect_stages.back())
 	self.show()
 
 
@@ -87,8 +87,29 @@ func _display_stage(stage: EventNode):
 		rich_text_label.text = currect_event.description
 	
 	actions = currect_event.get_next_actions(stage)
-	action_list.update_actions(actions)
+	action_list.update_actions(_validate_action(actions))
 	_display_result(_result)
+
+
+func _validate_action(actions: Array[EventAction]) -> Array[EventAction]:
+	var new_actions: Array[EventAction] = []
+	for action in actions:
+		var _p = action.previous
+		var condition = action.previous.filter(func(e): return e is EventCondition)
+		var _valide = _valide_conditions(condition)
+		action.set_meta("disabled", not _valide)
+		if not (action.is_hidden and not _valide):
+			new_actions.append(action)
+	return new_actions
+
+
+func _valide_conditions(array: Array) -> bool:
+	var result = true
+	for x: EventCondition in array:
+		for xx in x.conditions:
+			var _r = _execute_keeper.execute(xx)
+			result = result && _r
+	return result
 
 
 func _update_monologue(stage: EventMonologue):
@@ -103,14 +124,13 @@ func _update_dialogue(stage: EventDialogue):
 	rich_text_label.text = text
 
 
-func _display_actions_hint(stage: EventStageResource):
-	for i in stage.actions.size():
-		var action := stage.actions[i] as EventActionResource
-
-
 func _on_action_pressed(pressed_index: int):
 	var action := actions[pressed_index] as EventAction
 	currect_event.action_press(action)
+	
+	var effects = action._graph.get_previous_nodes(action, 1).filter(func(e): return e is EventEffect)
+	_result = _apply_effect(effects)
+	
 	var _next = currect_event.get_next_nodes(action, EventEdge.EdgeType.ACTION)
 	if _next.any(func(a): return a is EventAbort):
 		hide()
@@ -122,6 +142,14 @@ func _on_action_pressed(pressed_index: int):
 			continue
 		currect_event.complete_stage(stage)
 	display(currect_event)
+
+
+func _apply_effect(array: Array) -> Dictionary:
+	var result = {}
+	for effect: EventEffect in array:
+		for eff: ExecuteKeeperResource in effect.effects:
+			result[eff] = _execute_keeper.execute(eff)
+	return result
 
 
 func _display_result(result: Dictionary):
@@ -143,7 +171,8 @@ func _display_result(result: Dictionary):
 		
 		var _name: String = "%d" % data.args_data[1]
 		var icon: Texture2D = resource_db.connection.fetch_data(collection, StringName(data.args_data[0])).texture
-		%ResultList.add_item(_name, icon)
+		var index = %ResultList.add_item("%s" % result[data], icon)
+		%ResultList.set_item_tooltip(index, data.args_data[0])
 	
 	%ResultContainer.show()
 

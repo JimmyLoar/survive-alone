@@ -162,6 +162,7 @@ func deserialize(data: Dictionary) -> void:
 	if not is_instance:
 		printerr("Quest must be instantiated to be deserialized. Use instantiate().")
 		return
+	
 	completed = data.completed
 	var node_map := {}
 	for node in nodes:
