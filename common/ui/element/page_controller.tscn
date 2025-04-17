@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cka4psk0x8fb2"]
 
 [ext_resource type="Script" uid="uid://d11u3u5m4oul4" path="res://common/ui/element/page_controller.gd" id="1_bm02y"]
-[ext_resource type="Texture2D" uid="uid://dchq76sh87exs" path="res://icon.svg" id="1_sun83"]
+[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="1_sun83"]
 
 [node name="PageController" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 60)

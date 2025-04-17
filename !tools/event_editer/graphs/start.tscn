@@ -13,7 +13,6 @@ offset_right = 301.0
 offset_bottom = 290.0
 theme_override_constants/separation = 8
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_6cmvk")
-resizable = true
 title = "Start"
 slot/0/left_enabled = false
 slot/0/left_type = 0

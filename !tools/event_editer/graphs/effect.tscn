@@ -14,13 +14,13 @@ theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_emgko")
 resizable = true
 title = "Effects"
-slot/0/left_enabled = true
+slot/0/left_enabled = false
 slot/0/left_type = 3
 slot/0/left_color = Color(1, 0, 1, 1)
 slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 2
-slot/0/right_color = Color(0, 0, 1, 1)
+slot/0/right_enabled = true
+slot/0/right_type = 3
+slot/0/right_color = Color(1, 0, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
 slot/1/left_enabled = false
@@ -50,6 +50,15 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("2_emgko")
 container = NodePath("Box")
 add_button = NodePath("__AddButton")
@@ -59,6 +68,7 @@ metadata/_custom_type_script = "uid://dwdq1drsx4pdf"
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "action"
+horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
@@ -72,6 +82,9 @@ text = "Add effect
 "
 
 [node name="Box" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2
 
 [connection signal="pressed" from="__AddButton" to="." method="_on_add_button_pressed"]

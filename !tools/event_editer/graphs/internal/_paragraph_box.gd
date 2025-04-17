@@ -31,7 +31,7 @@ func _set_data(array):
 	array.resize(2)
 	var char_index = int(CHARACTERS_LIST.find_custom(
 		func(char: EventDialogueCharacter):
-			return char.name == array[0].name
+			return not array[0] or char.name == array[0].name 
 	))
 	character_selecter.select(char_index)
 	_who = CHARACTERS_LIST[char_index]

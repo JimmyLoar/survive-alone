@@ -11,7 +11,6 @@ offset_right = 300.0
 offset_bottom = 240.0
 theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
-resizable = true
 title = "Action"
 slot/0/left_enabled = true
 slot/0/left_type = 2
@@ -22,11 +21,11 @@ slot/0/right_type = 1
 slot/0/right_color = Color(0, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
-slot/1/left_enabled = false
-slot/1/left_type = 0
-slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_enabled = true
+slot/1/left_type = 3
+slot/1/left_color = Color(1, 0, 1, 1)
 slot/1/left_icon = null
-slot/1/right_enabled = true
+slot/1/right_enabled = false
 slot/1/right_type = 3
 slot/1/right_color = Color(1, 0, 1, 1)
 slot/1/right_icon = null
@@ -87,20 +86,10 @@ size_flags_horizontal = 3
 text = "node"
 horizontal_alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer2"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-text = "condition"
-
-[node name="Label2" type="Label" parent="HBoxContainer2"]
+[node name="Label2" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "effect"
-horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2

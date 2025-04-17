@@ -9,7 +9,7 @@ bg_color = Color(0.062884, 0, 0.987919, 1)
 [node name="Condition" type="GraphNode" node_paths=PackedStringArray("container", "add_button")]
 custom_minimum_size = Vector2(300, 120)
 offset_right = 336.0
-offset_bottom = 172.0
+offset_bottom = 182.0
 theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_dsqug")
 resizable = true
@@ -22,16 +22,16 @@ slot/0/right_enabled = true
 slot/0/right_type = 2
 slot/0/right_color = Color(0, 0, 1, 1)
 slot/0/right_icon = null
-slot/0/draw_stylebox = true
+slot/0/draw_stylebox = false
 slot/1/left_enabled = false
 slot/1/left_type = 1
 slot/1/left_color = Color(0, 1, 1, 1)
 slot/1/left_icon = null
 slot/1/right_enabled = false
 slot/1/right_type = 0
-slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_color = Color(0, 0, 1, 1)
 slot/1/right_icon = null
-slot/1/draw_stylebox = true
+slot/1/draw_stylebox = false
 slot/2/left_enabled = false
 slot/2/left_type = 0
 slot/2/left_color = Color(1, 1, 1, 1)
@@ -50,6 +50,15 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_806kn")
 container = NodePath("ConditionBox")
 add_button = NodePath("__AddButton")
@@ -72,4 +81,7 @@ size_flags_vertical = 0
 text = "Add phrase"
 
 [node name="ConditionBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2

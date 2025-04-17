@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://3ayeuwl67kot" path="res://feature/item_action/item_action.gd" id="1_thsb4"]
 [ext_resource type="PackedScene" uid="uid://ccyeuduk7vphu" path="res://feature/item_action/internal/character_property_value.tscn" id="2_2yibf"]
 [ext_resource type="Script" uid="uid://bt6x5481dd855" path="res://feature/items_grid/items_grid.gd" id="3_0ahuu"]
-[ext_resource type="Texture2D" uid="uid://dchq76sh87exs" path="res://icon.svg" id="4_k0ap7"]
+[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="4_k0ap7"]
 [ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/Sound/SFX/UI_SFX/ButtonSound.gd" id="5_glfl2"]
 
 [node name="ItemAction" type="PanelContainer"]

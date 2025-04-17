@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4ga5glrmq6if"]
 
-[ext_resource type="Texture2D" uid="uid://dchq76sh87exs" path="res://icon.svg" id="1_oucva"]
+[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="1_oucva"]
 [ext_resource type="Script" uid="uid://xl4yhju3l2s3" path="res://feature/rest/ui_elements/delta_display.gd" id="1_rfwyg"]
 
 [node name="HDelataBox" type="HBoxContainer"]

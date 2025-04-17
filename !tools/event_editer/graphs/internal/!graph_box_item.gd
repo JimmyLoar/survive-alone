@@ -18,4 +18,4 @@ func _set_data(array: Variant):
 
 
 func _get_data() -> Variant:
-	return []
+	return null

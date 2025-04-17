@@ -23,6 +23,7 @@ func update():
 
 func _set_data(new_resource):
 	resource = new_resource as ExecuteKeeperResource
+	update_text()
 
 
 func _get_data():

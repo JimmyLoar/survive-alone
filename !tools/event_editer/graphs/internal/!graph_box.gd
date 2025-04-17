@@ -19,14 +19,18 @@ func _add_item():
 	container.add_child(new_item)
 	if new_item.has_signal("request_to_remove"):
 		new_item.request_to_remove.connect(_remove_item.bind(new_item))
+	_update_all()
 	return new_item
 
 
 func _remove_item(_item: Container):
 	container.remove_child(_item)
 	_item.queue_free()
-	
-	for item in container:
+	_update_all()
+
+
+func _update_all():
+	for item in container.get_children():
 		item.update()
 
 

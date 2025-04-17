@@ -15,6 +15,12 @@ func _ready() -> void:
 	_add_item()
 
 
+func get_edge_type(next_node: EventGraphNode) -> EventEdge.EdgeType:
+	if next_node is EventActionNode:
+		return EventEdge.EdgeType.ACTION
+	return EventEdge.EdgeType.NORMAL
+
+
 func _get_model() -> EventNode:
 	return EventDialogue.new()
 
@@ -24,13 +30,9 @@ func _set_model_properties(node: EventNode) -> void:
 	for paragraph in container.get_children():
 		data.append(paragraph._get_data())
 	node.dialogues = data
-	#printerr(data.map(func(arr): return arr[0].name))
 
 
 func _get_model_properties(node: EventNode) -> void:
 	for i in node.dialogues.size():
 		var paragraph = _get_item(i)
 		paragraph._set_data.call_deferred(node.dialogues[i])
-
-	
-	

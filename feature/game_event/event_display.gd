@@ -34,6 +34,8 @@ func _ready() -> void:
 func _register_methods():
 	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
 	var db_resource := Injector.inject(ResourceDb, self) as ResourceDb
+	if not db_resource:
+		return
 	
 	var _activate_event = func(event_name: String):
 		var event: EventResource = db_resource.connection.fetch_data("event", StringName(event_name))

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://1a1ip2k7trg1"]
 
 [ext_resource type="Script" uid="uid://bcxfehir5j1k4" path="res://feature/items/item_display.gd" id="1_evm55"]
-[ext_resource type="Texture2D" uid="uid://dchq76sh87exs" path="res://icon.svg" id="2_5a5hl"]
+[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="2_5a5hl"]
 
 [sub_resource type="Gradient" id="Gradient_r1ine"]
 interpolation_mode = 2

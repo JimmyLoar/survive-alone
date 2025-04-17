@@ -1,71 +1,11 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=16 format=3 uid="uid://odru6ioyr7g5"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=4 format=3 uid="uid://odru6ioyr7g5"]
 
 [ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_485l4"]
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="2_ei7d3"]
-[ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="2_na5g1"]
-[ext_resource type="Script" uid="uid://d1a77ln5pvkq6" path="res://!tools/event_editer/source/monologue.gd" id="3_vjxi1"]
-[ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end.gd" id="4_61gh3"]
-[ext_resource type="Script" uid="uid://4vpt5ojf0bod" path="res://!tools/event_editer/source/actions.gd" id="5_na5g1"]
 [ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="6_wofwq"]
-
-[sub_resource type="Resource" id="Resource_na5g1"]
-script = ExtResource("3_vjxi1")
-text = ""
-id = "xCscO4azfJ"
-optional = false
-graph_editor_position = Vector2(440, -980)
-graph_editor_size = Vector2(300, 240)
-
-[sub_resource type="Resource" id="Resource_vjxi1"]
-script = ExtResource("4_61gh3")
-id = "O2TCTTIA18"
-optional = false
-graph_editor_position = Vector2(900, -900)
-graph_editor_size = Vector2(120, 70)
-
-[sub_resource type="Resource" id="Resource_61gh3"]
-script = ExtResource("1_485l4")
-from = SubResource("Resource_na5g1")
-to = SubResource("Resource_vjxi1")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_wofwq"]
-script = ExtResource("2_na5g1")
-name_key = ""
-id = "p5S7kiUZDa"
-optional = false
-graph_editor_position = Vector2(-40, -960)
-graph_editor_size = Vector2(300, 289)
-
-[sub_resource type="Resource" id="Resource_71bbs"]
-script = ExtResource("1_485l4")
-from = SubResource("Resource_wofwq")
-to = SubResource("Resource_na5g1")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_8suym"]
-script = ExtResource("5_na5g1")
-text_key = "next"
-is_said = false
-id = "hZi0yx0okw"
-optional = false
-graph_editor_position = Vector2(60, -580)
-graph_editor_size = Vector2(300, 240)
-
-[sub_resource type="Resource" id="Resource_li26c"]
-script = ExtResource("1_485l4")
-from = SubResource("Resource_8suym")
-to = SubResource("Resource_na5g1")
-edge_type = 1
-
-[sub_resource type="Resource" id="Resource_7jn4x"]
-script = ExtResource("1_485l4")
-from = SubResource("Resource_8suym")
-to = SubResource("Resource_vjxi1")
-edge_type = 1
 
 [resource]
 script = ExtResource("2_ei7d3")
-nodes = Array[ExtResource("6_wofwq")]([SubResource("Resource_wofwq"), SubResource("Resource_na5g1"), SubResource("Resource_8suym"), SubResource("Resource_vjxi1")])
-edges = Array[ExtResource("1_485l4")]([SubResource("Resource_61gh3"), SubResource("Resource_71bbs"), SubResource("Resource_li26c"), SubResource("Resource_7jn4x")])
+nodes = Array[ExtResource("6_wofwq")]([])
+edges = Array[ExtResource("1_485l4")]([])
 groups = Array[int]([])
