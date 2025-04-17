@@ -10,11 +10,11 @@ func _enter_tree() -> void:
 	Log.get_global_logger().debug("init base servece")
 
 
-func _init_state(property: Object, state: GDScript, _signal: Signal, values: Array = []) -> Object:
+func _init_state(property: Variant, state: GDScript, _signal: Signal, values: Array = []) -> Object:
 	if not property:
 		property = state.new.callv(values)
 		_signal.emit(property)
-		Log.get_global_logger().debug("init state '[color=red]%s[/color]'\n" % state.get_global_name(), values)
+		Log.get_global_logger().debug("init state '[color=red]%s[/color] %s'\n" % [state.get_global_name(), property], values)
 	return property 
 
 
@@ -71,7 +71,8 @@ var _character: CharacterState
 
 
 func init_character(_node) -> CharacterState:
-	return _init_state(_character, CharacterState, ready_character, [_node])
+	_character = _init_state(_character, CharacterState, ready_character, [_node])
+	return _character
 
 
 func get_character() -> CharacterState:
@@ -85,7 +86,8 @@ var _game_time: GameTimeState
 
 
 func init_game_time(_node) -> GameTimeState:
-	return _init_state(_game_time, GameTimeState, ready_game_time, [_node])
+	_game_time = _init_state(_game_time, GameTimeState, ready_game_time, [_node])
+	return _game_time
 
 
 func get_game_time() -> GameTimeState:
@@ -98,8 +100,9 @@ signal ready_world_screen(state: WorldScreenState)
 var _world_screen: WorldScreenState
 
 
-func init_world_screen(_node) -> void:
-	return _init_state(_world_screen, WorldScreenState, ready_world_screen, [_node])
+func init_world_screen(_node) -> WorldScreenState:
+	_world_screen = _init_state(_world_screen, WorldScreenState, ready_world_screen, [_node])
+	return _world_screen
 
 
 func get_world_screen() -> WorldScreenState:
@@ -112,8 +115,9 @@ signal ready_action_state(state: ActionState)
 var _action_state: ActionState
 
 
-func init_action_state(_node) -> void:
-	return _init_state(_action_state, ActionState, ready_action_state, [_node])
+func init_action_state(_node) -> ActionState:
+	_action_state = _init_state(_action_state, ActionState, ready_action_state, [_node])
+	return _action_state
 
 
 func get_action_state() -> ActionState:
@@ -127,7 +131,8 @@ var _main_camera: MainCameraState
 
 
 func init_main_camera(_node) -> MainCameraState:
-	return _init_state(_main_camera, MainCameraState, ready_main_camera, [_node])
+	_main_camera = _init_state(_main_camera, MainCameraState, ready_main_camera, [_node])
+	return _main_camera
 
 
 func get_main_camera() -> MainCameraState:
@@ -140,8 +145,9 @@ signal ready_inventory_character(state: InventoryCharacterState)
 var _inventory_char: InventoryCharacterState
 
 
-func init_inventory_character(_node) -> void:
-	return _init_state(_inventory_char, InventoryCharacterState, ready_inventory_character, [_node])
+func init_inventory_character(_node) -> InventoryCharacterState:
+	_inventory_char = _init_state(_inventory_char, InventoryCharacterState, ready_inventory_character, [_node])
+	return _inventory_char
 
 
 func get_inventory_character() -> InventoryCharacterState:
@@ -154,8 +160,9 @@ signal ready_inventory_location(state: InventoryLocationState)
 var _inventory_local: InventoryLocationState
 
 
-func init_inventory_location(_node) -> void:
-	return _init_state(_inventory_local, InventoryLocationState, ready_inventory_location, [_node])
+func init_inventory_location(_node) -> InventoryLocationState:
+	_inventory_local = _init_state(_inventory_local, InventoryLocationState, ready_inventory_location, [_node])
+	return _inventory_local
 
 
 func get_inventory_location() -> InventoryLocationState:
@@ -168,8 +175,9 @@ signal ready_event_state(state: EventState)
 var _event_state: EventState
 
 
-func init_event_state(_node) -> void:
-	return _init_state(_event_state, EventState, ready_event_state, [_node])
+func init_event_state(_node) -> EventState:
+	_event_state = _init_state(_event_state, EventState, ready_event_state, [_node])
+	return _event_state
 
 
 func get_event_state() -> EventState:

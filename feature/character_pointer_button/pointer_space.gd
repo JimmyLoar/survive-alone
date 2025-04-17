@@ -2,9 +2,8 @@ extends MarginContainer
 
 var rect: Rect2
 var center: Vector2
-
+@onready var camera_state: MainCameraState = await Locator.get_main_camera()
 @onready var character_state: CharacterState = Injector.inject(CharacterState, self)
-@onready var camera_state: MainCameraState = Injector.inject(MainCameraState, self)
 
 
 func _ready():
@@ -22,6 +21,9 @@ func calculate_rect_params():
 
 
 func calculate_local_vector_to_player():
+	if not camera_state:
+		return
+	
 	var g_center_pos = camera_state.viewport_rect.position + center / camera_state.zoom.x
 	var vector_to_player = (character_state.global_position - g_center_pos) * camera_state.zoom.x
 	var half_size = rect.size * 0.5

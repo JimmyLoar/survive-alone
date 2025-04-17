@@ -3,24 +3,38 @@ extends Control
 @onready var _game_editor__biomes_tool_state: GameEditor__BiomesToolState = Injector.inject(GameEditor__BiomesToolState, self)
 @onready var _screen_state: GameEditor__EditorScreenState = Injector.inject(GameEditor__EditorScreenState, self)
 @onready var _biome_layer_state: BiomesLayerState = Injector.inject(BiomesLayerState, self)
-@onready var _main_camera_sate: MainCameraState = Injector.inject(MainCameraState, self)
 @onready var _screen_mouse_events_state: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
 @onready var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)
+
+var _main_camera_state: MainCameraState
+
+
+func _enter_tree() -> void:
+	if Locator.get_main_camera():
+		_on_ready_main_camera(Locator.get_main_camera())
+		return 
+	
+	Locator.ready_main_camera.connect(_on_ready_main_camera, CONNECT_ONE_SHOT)
+
 
 func _ready() -> void:
 	_game_editor__biomes_tool_state.paint_state_changed.connect(func(value): queue_redraw())
 	_screen_state.hovered_biome_tile_pos_changed.connect(func(value): queue_redraw())
 	
-	_main_camera_sate.viewport_rect_changed.connect(func(value): queue_redraw())
-
 	_screen_mouse_events_state.left_button_changed.connect(_on_left_mouse_button_click)
 	_screen_mouse_events_state.right_button_changed.connect(_on_right_mouse_button_click)
+
+
+func _on_ready_main_camera(camera):
+	_main_camera_state = camera
+	_main_camera_state.viewport_rect_changed.connect(func(value): queue_redraw())
 
 
 func _on_right_mouse_button_click(value: Variant):
 	if _screen_state.current_tool != _screen_state.ToolType.Biome:
 		return
 	_game_editor__biomes_tool_state.paint_state = null
+
 
 func _on_left_mouse_button_click(value: Variant):
 	if _screen_state.current_tool != _screen_state.ToolType.Biome:
@@ -29,6 +43,7 @@ func _on_left_mouse_button_click(value: Variant):
 		var paint_state = _game_editor__biomes_tool_state.paint_state
 		if is_instance_of(paint_state, GameEditor__BiomesToolState.CreateBiomeRectPaintState):
 			_create_rect_input(paint_state)
+
 
 func _create_rect_input(paint_state: GameEditor__BiomesToolState.CreateBiomeRectPaintState):
 	if paint_state.state == paint_state.State.PlaceRectPosition:
@@ -50,10 +65,12 @@ func _draw() -> void:
 	if is_instance_of(paint_state, GameEditor__BiomesToolState.CreateBiomeRectPaintState):
 		_draw_create_rect(paint_state)
 
-func _set_draw_transform():
-	var camera_pos = _main_camera_sate.viewport_rect.position
-	var scale = _main_camera_sate.zoom
+
+func _set_draw_transform(): 
+	var camera_pos = _main_camera_state.viewport_rect.position
+	var scale = _main_camera_state.zoom
 	draw_set_transform(camera_pos * -scale, 0, scale)
+
 
 func _draw_create_rect(paint_state: GameEditor__BiomesToolState.CreateBiomeRectPaintState):
 	if paint_state.state == paint_state.State.PlaceRectPosition:
