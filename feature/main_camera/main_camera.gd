@@ -8,12 +8,8 @@ extends Camera2D
 var _state: MainCameraState
 
 
-
-func _enter_tree() -> void:
-	_state = Injector.provide(MainCameraState, MainCameraState.new(self), self, Injector.ContainerType.CLOSEST)
-
-
 func _ready() -> void:
+	_state = Locator.init_main_camera(self)
 	_screen_mouse_event_state.left_button_changed.connect(Callable(self, "_on_screen_left_mouse_button_changed"))
 	_screen_mouse_event_state.zoom_changed.connect(Callable(self, "_on_screen_zoom_changed"))
 	_state.mode_changed.connect(Callable(self, "mode_changed"))
