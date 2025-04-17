@@ -96,11 +96,10 @@ func _update_monologue(stage: EventMonologue):
 	
 
 func _update_dialogue(stage: EventDialogue):
-	var text = '[fill][table=2,top,bottom]'
+	var text = ''
 	for paragraph in stage.dialogues:
-		text += "[cell=0.1][b]DIALOGUE_CHARACTER_%s_NAME[/b]:[/cell]" % [paragraph[0].name.to_upper()]
-		text += "[cell=2.0]EVENT_DIALOGUE_%s[/cell]" % [paragraph[1].to_upper()]
-	text += "[/table]"
+		text += "[b]DIALOGUE_CHARACTER_%s_NAME[/b]:\n" % [paragraph[0].name.to_upper()]
+		text += "EVENT_DIALOGUE_%s\n\n" % [paragraph[1].to_upper()]
 	rich_text_label.text = text
 
 

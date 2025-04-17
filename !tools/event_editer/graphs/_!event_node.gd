@@ -37,10 +37,6 @@ func load_model(node: EventNode) -> void:
 	_get_model_properties(node)
 
 
-func get_edge_type(next_node: EventGraphNode) -> EventEdge.EdgeType:
-	return EventEdge.EdgeType.NORMAL
-
-
 func _get_model() -> EventNode:
 	return null
 	

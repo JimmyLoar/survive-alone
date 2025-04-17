@@ -55,8 +55,11 @@ theme_override_font_sizes/normal_font_size = 28
 theme_override_font_sizes/bold_font_size = 28
 bbcode_enabled = true
 text = "
-[table=2][cell]sdaasd[/cell][cell]asdasdasd[/cell][cell]asdadaa[/cell][/table]
+[table=2][cell]sda
+asd[/cell][cell]asdasdasd[/cell][cell]asd
+adaa[/cell][/table]
 [table={number},{valign},{alignment_row}]{cells}[/table]
+[]asdasd[/tab]
 "
 fit_content = true
 script = ExtResource("3_ew800")

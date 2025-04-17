@@ -11,10 +11,6 @@ var event_discription: String
 @export var discription_translated: TextEdit
 
 
-func get_edge_type(next_node: EventGraphNode) -> EventEdge.EdgeType:
-	return EventEdge.EdgeType.NORMAL
-
-
 func _get_model() -> EventNode:
 	return EventStart.new()
 

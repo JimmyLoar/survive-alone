@@ -3,10 +3,6 @@ class_name EventConditionNode
 extends EventGraphBox
 
 
-func get_edge_type(next_node: EventGraphNode) -> EventEdge.EdgeType:
-	return EventEdge.EdgeType.CONDITIONAL
-
-
 func _get_model() -> EventNode:
 	return EventCondition.new()
 

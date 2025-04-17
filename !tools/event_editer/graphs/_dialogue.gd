@@ -15,12 +15,6 @@ func _ready() -> void:
 	_add_item()
 
 
-func get_edge_type(next_node: EventGraphNode) -> EventEdge.EdgeType:
-	if next_node is EventActionNode:
-		return EventEdge.EdgeType.ACTION
-	return EventEdge.EdgeType.NORMAL
-
-
 func _get_model() -> EventNode:
 	return EventDialogue.new()
 

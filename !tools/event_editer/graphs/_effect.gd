@@ -3,10 +3,6 @@ class_name EventEffectNode
 extends EventGraphBox
 
 
-func get_edge_type(next_node: EventGraphNode) -> EventEdge.EdgeType:
-	return EventEdge.EdgeType.EFFECT
-
-
 func _get_model() -> EventNode:
 	return EventEffect.new()
 
