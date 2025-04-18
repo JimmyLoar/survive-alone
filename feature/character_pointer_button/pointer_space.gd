@@ -3,7 +3,7 @@ extends MarginContainer
 var rect: Rect2
 var center: Vector2
 @onready var camera_state: MainCameraState = await Locator.get_main_camera()
-@onready var character_state: CharacterState = Injector.inject(CharacterState, self)
+@onready var character_state: CharacterState = Locator.get_service(CharacterState)
 
 
 func _ready():

@@ -35,7 +35,7 @@ var _state: RestScreenState
 @onready var time_lable: Label = %TimeLable
 @onready var effectivity_lable: Label = %EffectivityLable
 
-@onready var character_state: CharacterState = Injector.inject(CharacterState, self)
+@onready var character_state: CharacterState = Locator.get_service(CharacterState)
 @onready var game_time: GameTimeState = Injector.inject(GameTimeState, self)
 @onready var button_accept_rest: Button = %ButtonAcceptRest
 

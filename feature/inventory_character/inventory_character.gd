@@ -10,7 +10,7 @@ var _state := InventoryCharacterState.new("Character")
 @onready var quantity_selector_state: QuantitySelectorState = Injector.inject(QuantitySelectorState, self)
 @onready var location_inventory_state: InventoryLocationState = Injector.inject(InventoryLocationState, self)
 @onready var character_location_state: CharacterLocationState = Injector.inject(CharacterLocationState, self)
-@onready var character_state: CharacterState = Injector.inject(CharacterState, self)
+@onready var character_state: CharacterState = Locator.get_service(CharacterState)
 @onready var world_object_repository: WorldObjectRepository = Injector.inject(WorldObjectRepository, self)
 @onready var world_objects_layer_state: WorldObjectsLayerState = Injector.inject(WorldObjectsLayerState, self)
 

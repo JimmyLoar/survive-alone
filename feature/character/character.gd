@@ -16,8 +16,10 @@ var _character_properties_repository: CharacterPropertyRepository
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(CharacterState, CharacterState.new(self), self, Injector.ContainerType.CLOSEST)
+	_state = Locator.initialize_service(CharacterState, [self])
+	#Injector.provide(CharacterState, CharacterState.new(self), self, Injector.ContainerType.CLOSEST)
 	_character_properties_repository = Injector.provide(CharacterPropertyRepository, CharacterPropertyRepository.new(), self, Injector.ContainerType.CLOSEST)
+
 
 func _ready() -> void:
 	_screen_mouse_events.left_button_changed.connect(_on_screen_left_button)

@@ -1,7 +1,7 @@
 class_name CharacterLocation
 extends Node
 
-@onready var _character_state: CharacterState = Injector.inject(CharacterState, self)
+@onready var _character_state: CharacterState = Locator.get_service(CharacterState)
 @onready var _biomes_layer_state: BiomesLayerState = Injector.inject(BiomesLayerState, self)
 @onready var _world_objects_layer_state: WorldObjectsLayerState = Injector.inject(
 	WorldObjectsLayerState, self

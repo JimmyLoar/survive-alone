@@ -7,7 +7,8 @@ signal button_pressed(index: int)
 
 @onready var buttons_container: VBoxContainer = $VBoxContainer
 @onready var version_display: VersionDisplay = $VBoxContainer/Control3/VersionDisplay
-@onready var character_state: CharacterState = Injector.inject(CharacterState, self)
+@onready var character_state: CharacterState = Locator.get_service(CharacterState)
+
 
 func _ready() -> void:
 	version_display.visible = showing_version
