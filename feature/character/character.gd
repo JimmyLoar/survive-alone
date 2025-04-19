@@ -16,11 +16,9 @@ var _character_properties_repository: CharacterPropertyRepository
 @onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
 
 
-
 func _enter_tree() -> void:
 	_state = Locator.initialize_service(CharacterState, [self])
 	_character_properties_repository = Locator.initialize_service(CharacterPropertyRepository)
-
 
 
 func _ready() -> void:

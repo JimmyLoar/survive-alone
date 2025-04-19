@@ -23,6 +23,30 @@
 [ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
 
+
+[sub_resource type="GDScript" id="GDScript_6gqlo"]
+script/source = "extends Area2D
+
+
+var event = preload(\"res://resources/collection/events/dialoge/hungry_man_0.tres\").instantiate()
+
+
+var _state: EventState
+
+
+func _ready() -> void:
+	_state = Locator.get_service(EventState) as EventState
+
+
+func _on_body_entered(_body: Node2D) -> void:
+	_state.start_event(event)
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udhtu"]
+size = Vector2(120, 119)
+
+
 [node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_nlrl3")
 metadata/_edit_vertical_guides_ = [-128.0]
