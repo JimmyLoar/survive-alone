@@ -4,6 +4,9 @@ extends Injectable
 var _world_object_repository: WorldObjectRepository
 var _host_node: Node
 
+func _init(host_node: Node):
+	_host_node = host_node
+
 class VisibleObjectsDiff:
 	var removed: Array[int] # Array of ids
 	var added: Array[int]
@@ -40,19 +43,17 @@ func set_visible_rect(value: Rect2, force: bool = false):
 
 func get_object_by_position_fast(pos: Vector2) -> WorldObjectEntity:
 	var intersect_polygon_with_pos = func (entity: WorldObjectEntity):
-		return Geometry2D.is_point_in_polygon(pos - entity.get_offset(), entity.resource.collision_shape.points)
+		return Geometry2D.is_point_in_polygon(pos, entity.get_collision_shape_in_global_coords().segments)
 
 	var intersected_visible_world_objects = _visible_objects.values().filter(intersect_polygon_with_pos)
 
 	if intersected_visible_world_objects.size() > 0:
 		return intersected_visible_world_objects[0]
 	
-	var visible_world_objects = _world_object_repository.get_all_intersected(Rect2(pos, Vector2.ZERO))
-
-	if visible_world_objects.size() > 0:
-		return visible_world_objects[0]
-	
 	return null
 
 func request_rerender() -> void:
+	_visible_objects = {}
+	(_host_node as  WorldObjectsLayer).reset()
 	set_visible_rect(visible_rect, true)
+	

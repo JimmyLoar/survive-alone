@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvfk363x2sjog"]
+
+[ext_resource type="Script" uid="uid://dtcdgf60nvjy0" path="res://common/world_objects/world_location.gd" id="1_vfxnt"]
+[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/search_drop/test_1.tres" id="2_vfxnt"]
+[ext_resource type="Texture2D" uid="uid://doejxjjp3fxgd" path="res://assets/sprite/placeholders/citybuilder-tileset/Hochhaus.1.png" id="3_vfxnt"]
+
+[node name="CrossroadLocation" type="Node2D"]
+script = ExtResource("1_vfxnt")
+search_drop = ExtResource("2_vfxnt")
+show_collision_shape = null
+
+[node name="Texture" type="Sprite2D" parent="."]
+position = Vector2(0, -1.49012e-08)
+texture = ExtResource("3_vfxnt")
+
+[node name="CollisionShape" type="Polygon2D" parent="."]
+visible = false
+position = Vector2(177, 96)
+color = Color(0.588235, 0, 0, 0)
+polygon = PackedVector2Array(-257, -96, -177, -137, -97, -97, -177, -56)
