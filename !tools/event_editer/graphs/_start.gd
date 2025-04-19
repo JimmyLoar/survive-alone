@@ -16,7 +16,7 @@ func _get_model() -> EventNode:
 
 
 func _set_model_properties(node: EventNode) -> void:
-	node.name_key = event_name.trim_suffix("_name")
+	node.name_key = event_name
 
 
 func _get_model_properties(node: EventNode) -> void:
@@ -25,7 +25,7 @@ func _get_model_properties(node: EventNode) -> void:
 
 
 func _on_name_text_edit_text_changed(new_text: String) -> void:
-	event_name = "%s_name" % new_text
-	event_discription = "%s_discription" % new_text
-	name_translated.text = TranslationServer.translate(("event_%s" % event_name).to_upper())
-	discription_translated.text = TranslationServer.translate(("event_%s" % event_discription).to_upper())
+	event_name = new_text.to_lower()
+	name_translated.text = TranslationServer.translate(("%s_name" % event_name).to_upper())
+	discription_translated.text = TranslationServer.translate(("%s_discription" % event_name).to_upper())
+	EventsGlobal.event_name = event_name

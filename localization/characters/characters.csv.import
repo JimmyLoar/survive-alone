@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cwylq4r8b8cgw"
+
+[deps]
+
+files=["res://localization/characters/characters.en.translation", "res://localization/characters/characters.ru.translation", "res://localization/characters/characters.de.translation"]
+
+source_file="res://localization/characters/characters.csv"
+dest_files=["res://localization/characters/characters.en.translation", "res://localization/characters/characters.ru.translation", "res://localization/characters/characters.de.translation"]
+
+[params]
+
+compress=true
+delimiter=0

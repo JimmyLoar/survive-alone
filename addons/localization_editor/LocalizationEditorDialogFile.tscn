@@ -1,4 +1,8 @@
 [gd_scene format=3 uid="uid://l64ntjbhhj6t"]
 
 [node name="LocalizationEditorDialogFile" type="FileDialog"]
+title = "Open a File"
+visible = true
+ok_button_text = "Open"
+file_mode = 0
 filters = PackedStringArray("*.csv")

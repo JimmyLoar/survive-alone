@@ -23,7 +23,7 @@ game/size/world=Vector2i(70, 35)
 game/size/chunk=50
 game/size/tile=32
 game/version/major=0
-game/version/minor=0
+game/version/minor=1
 game/version/patch=0
 game/version/string="dev"
 
@@ -32,8 +32,8 @@ game/version/string="dev"
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Injector="*res://addons/godot-di/Injector.gd"
-Questify="*res://addons/questify/quest_manager.gd"
 EventsGlobal="*res://feature/game_event/event_global.gd"
+Questify="*res://addons/questify/quest_manager.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 PycoLog="*res://addons/pycolytics-godot/pyco_log.gd"
@@ -56,7 +56,7 @@ project/assembly_name="SurviveAlone"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/event_editor/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/event_editor/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [file_customization]
 
@@ -74,6 +74,7 @@ folder_colors={
 "res://feature/item_action/": "yellow",
 "res://feature/items/": "yellow",
 "res://feature/items_grid/": "yellow",
+"res://feature/quest_viewer/": "red",
 "res://game/": "red",
 "res://resources/": "blue"
 }
@@ -120,7 +121,7 @@ pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://localization/localizations.en.translation", "res://localization/localizations.ru.translation", "res://localization/localizations.de.translation")
+locale/translations=PackedStringArray("res://localization/interface/interface.en.translation", "res://localization/interface/interface.ru.translation", "res://localization/interface/interface.de.translation", "res://localization/characters/characters.de.translation", "res://localization/characters/characters.en.translation", "res://localization/characters/characters.ru.translation", "res://localization/events/events.de.translation", "res://localization/events/events.en.translation", "res://localization/events/events.ru.translation", "res://localization/quests/quests.de.translation", "res://localization/quests/quests.en.translation", "res://localization/quests/quests.ru.translation")
 locale/language_filter=["en", "ru"]
 locale/country_filter=["RU", "US"]
 locale/locale_filter_mode=1
@@ -140,14 +141,15 @@ locale/locale_filter_mode=1
 
 [localization_editor]
 
-locales_path_to_file="res://localization/localizations.csv"
+locales_path_to_file="res://localization/interface/interface.csv"
 translations_save_auth=false
+locales_visibility=[]
 
 [questify]
 
 general/update_polling=true
-general/update_interval=0.5
-general/add_quests_to_pot_generation=false
+general/update_interval=3.0
+general/add_quests_to_pot_generation=true
 
 [rendering]
 

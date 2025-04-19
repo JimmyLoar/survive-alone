@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://b3xe3vw6y5fv7"]
+
+[ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_nnww4"]
+[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_bq2dx"]
+[ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="2_etvjh"]
+[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="3_47eok"]
+[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="3_yfy8a"]
+[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_6ndsh"]
+[ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_yfy8a"]
+
+[sub_resource type="Resource" id="Resource_yfy8a"]
+script = ExtResource("2_bq2dx")
+name = ""
+description = ""
+id = "Q1V9BZUBfB"
+optional = false
+graph_editor_position = Vector2(-220, -240)
+graph_editor_size = Vector2(280, 463)
+
+[sub_resource type="Resource" id="Resource_6ndsh"]
+script = ExtResource("3_yfy8a")
+description = ""
+id = "ErKsMIN_HU"
+optional = false
+graph_editor_position = Vector2(320, -80)
+graph_editor_size = Vector2(468, 483)
+
+[sub_resource type="Resource" id="Resource_kr0po"]
+script = ExtResource("1_nnww4")
+from = SubResource("Resource_yfy8a")
+to = SubResource("Resource_6ndsh")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_e7cgm"]
+script = ExtResource("4_6ndsh")
+id = "J8i1qfqgua"
+optional = false
+graph_editor_position = Vector2(1040, -180)
+graph_editor_size = Vector2(141, 78)
+
+[sub_resource type="Resource" id="Resource_o6lgy"]
+script = ExtResource("1_nnww4")
+from = SubResource("Resource_6ndsh")
+to = SubResource("Resource_e7cgm")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_ivo1k"]
+script = ExtResource("5_yfy8a")
+type = "event"
+key = ""
+id = "ya8OnICjuT"
+optional = false
+graph_editor_position = Vector2(-220, 240)
+graph_editor_size = Vector2(377, 309)
+
+[sub_resource type="Resource" id="Resource_uvosr"]
+script = ExtResource("1_nnww4")
+from = SubResource("Resource_ivo1k")
+to = SubResource("Resource_6ndsh")
+edge_type = 1
+
+[resource]
+script = ExtResource("3_47eok")
+nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_e7cgm"), SubResource("Resource_yfy8a"), SubResource("Resource_6ndsh"), SubResource("Resource_ivo1k")])
+edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_kr0po"), SubResource("Resource_o6lgy"), SubResource("Resource_uvosr")])

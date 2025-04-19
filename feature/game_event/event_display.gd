@@ -25,12 +25,17 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	Questify.condition_query_requested.connect(_on_condition_query_requested)
 	_register_methods()
 	action_list.item_selected.connect(_on_action_pressed)
 	action_list.action_state = action_state
 	%ResultContainer.hide()
 	%HintContainer.hide()
-	self.hide()	
+	if true: ## TODO Change on condition "new_game"
+		_state.start_event(preload("res://resources/collection/events/prologue/event_prologue_1.tres").instantiate())
+	
+	else:
+		self.hide()	
 
 
 func _register_methods():
@@ -177,6 +182,15 @@ func _display_result(result: Dictionary):
 	%ResultContainer.show()
 
 
-
-
+func _on_condition_query_requested(type: String, key: String, value: Variant, requester: QuestCondition):
+	if type != "event":
+		return
 	
+	var result = false
+	match key:
+		"finished": 
+			var _value = _state.get_completed_events().find_custom(
+				func(event: EventResource): return event.name == value
+			)
+			result = _value != -1
+	requester.set_completed(result)

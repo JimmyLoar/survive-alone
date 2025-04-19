@@ -1,49 +1,157 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=12 format=3 uid="uid://yhfg6qtfp25d"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=28 format=3 uid="uid://rt46wktltqjl"]
 
-[ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_7rajh"]
-[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_3om4g"]
-[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="3_tu16a"]
-[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_v0p13"]
-[ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="5_h1krv"]
-[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="6_kuj84"]
+[ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_wo1o8"]
+[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_1vvxr"]
+[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="3_pm03v"]
+[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_r47bh"]
+[ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_8c3fl"]
+[ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="6_76cjh"]
+[ext_resource type="Script" uid="uid://dwfvxsugm1h2n" path="res://addons/questify/scripts/model/quest_exclusive_branch_connector.gd" id="6_wo1o8"]
+[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="8_67y6s"]
 
-[sub_resource type="Resource" id="Resource_7rajh"]
-script = ExtResource("2_3om4g")
-name = ""
-description = ""
-id = "Lj2SI7BdDB"
+[sub_resource type="Resource" id="Resource_wo1o8"]
+script = ExtResource("5_8c3fl")
+type = "item"
+key = "food_fry_meat"
+id = "K6-hduwvwL"
 optional = false
-graph_editor_position = Vector2(-33, -177)
-graph_editor_size = Vector2(280, 463)
+graph_editor_position = Vector2(-120, 640)
+graph_editor_size = Vector2(377, 309)
+metadata/value = 3.0
 
-[sub_resource type="Resource" id="Resource_3om4g"]
-script = ExtResource("3_tu16a")
-description = ""
-id = "3VQtTeeB_e"
+[sub_resource type="Resource" id="Resource_1vvxr"]
+script = ExtResource("3_pm03v")
+description = "Может дать ему мяса ([color=green]3[/color])? 
+
+[hint][i][img=20]uid://ckxyr3jv232mp[/img] Приготовте жаренное мясо 3шт. И поговорите с человеком.[/i]"
+id = "qgWthtruCS"
 optional = false
-graph_editor_position = Vector2(340, -180)
+graph_editor_position = Vector2(360, 40)
+graph_editor_size = Vector2(468, 483)
+metadata/value = " is true?"
+
+[sub_resource type="Resource" id="Resource_pm03v"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_wo1o8")
+to = SubResource("Resource_1vvxr")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_r47bh"]
+script = ExtResource("2_1vvxr")
+name = "test"
+description = " Я встрелил странного человека. Он просит меня накормить его. "
+id = "OEtwG4pM1w"
+optional = false
+graph_editor_position = Vector2(-120, 60)
+graph_editor_size = Vector2(300, 480)
+metadata/food_fry_meat = 3.0
+
+[sub_resource type="Resource" id="Resource_uihlg"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_r47bh")
+to = SubResource("Resource_1vvxr")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_76cjh"]
+script = ExtResource("3_pm03v")
+description = "Мне еда самому нужнее!  
+
+[hint][i][img=20]uid://ckxyr3jv232mp[/img] Поговорите с человеком и откажите ему.[/i]"
+id = "KNqG-t09a_"
+optional = false
+graph_editor_position = Vector2(360, 1000)
 graph_editor_size = Vector2(468, 483)
 
-[sub_resource type="Resource" id="Resource_tu16a"]
-script = ExtResource("1_7rajh")
-from = SubResource("Resource_7rajh")
-to = SubResource("Resource_3om4g")
+[sub_resource type="Resource" id="Resource_pung5"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_r47bh")
+to = SubResource("Resource_76cjh")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_v0p13"]
-script = ExtResource("4_v0p13")
-id = "3tOi-7n0ji"
+[sub_resource type="Resource" id="Resource_67y6s"]
+script = ExtResource("5_8c3fl")
+type = "event"
+key = ""
+id = "CETugbvYUG"
 optional = false
-graph_editor_position = Vector2(900, -180)
+graph_editor_position = Vector2(-120, 1040)
+graph_editor_size = Vector2(377, 309)
+metadata/value = false
+
+[sub_resource type="Resource" id="Resource_em86a"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_67y6s")
+to = SubResource("Resource_76cjh")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_stp3f"]
+script = ExtResource("6_wo1o8")
+id = "Hez5IZRpFa"
+optional = false
+graph_editor_position = Vector2(1040, 1000)
+graph_editor_size = Vector2(207, 78)
+
+[sub_resource type="Resource" id="Resource_kdkad"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_76cjh")
+to = SubResource("Resource_stp3f")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_kavog"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_1vvxr")
+to = SubResource("Resource_stp3f")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_uqrmm"]
+script = ExtResource("3_pm03v")
+description = "Поблогадорив, человек ушёл."
+id = "zSXoZUx2v7"
+optional = true
+graph_editor_position = Vector2(1160, 60)
+graph_editor_size = Vector2(468, 483)
+
+[sub_resource type="Resource" id="Resource_bm07n"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_1vvxr")
+to = SubResource("Resource_uqrmm")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_22hoe"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_76cjh")
+to = SubResource("Resource_uqrmm")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_ch6q7"]
+script = ExtResource("4_r47bh")
+id = "9HwHNdYELx"
+optional = false
+graph_editor_position = Vector2(1740, 60)
 graph_editor_size = Vector2(141, 78)
 
-[sub_resource type="Resource" id="Resource_h1krv"]
-script = ExtResource("1_7rajh")
-from = SubResource("Resource_3om4g")
-to = SubResource("Resource_v0p13")
+[sub_resource type="Resource" id="Resource_4jc7c"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_uqrmm")
+to = SubResource("Resource_ch6q7")
 edge_type = 0
 
+[sub_resource type="Resource" id="Resource_ubx5b"]
+script = ExtResource("5_8c3fl")
+type = ""
+key = ""
+id = "G800h45S8l"
+optional = false
+graph_editor_position = Vector2(800, -300)
+graph_editor_size = Vector2(377, 309)
+
+[sub_resource type="Resource" id="Resource_hsh2d"]
+script = ExtResource("1_wo1o8")
+from = SubResource("Resource_ubx5b")
+to = SubResource("Resource_uqrmm")
+edge_type = 1
+
 [resource]
-script = ExtResource("6_kuj84")
-nodes = Array[ExtResource("5_h1krv")]([SubResource("Resource_v0p13"), SubResource("Resource_7rajh"), SubResource("Resource_3om4g")])
-edges = Array[ExtResource("1_7rajh")]([SubResource("Resource_tu16a"), SubResource("Resource_h1krv")])
+script = ExtResource("8_67y6s")
+nodes = Array[ExtResource("6_76cjh")]([SubResource("Resource_r47bh"), SubResource("Resource_wo1o8"), SubResource("Resource_67y6s"), SubResource("Resource_1vvxr"), SubResource("Resource_76cjh"), SubResource("Resource_stp3f"), SubResource("Resource_uqrmm"), SubResource("Resource_ch6q7"), SubResource("Resource_ubx5b")])
+edges = Array[ExtResource("1_wo1o8")]([SubResource("Resource_pm03v"), SubResource("Resource_uihlg"), SubResource("Resource_pung5"), SubResource("Resource_em86a"), SubResource("Resource_kdkad"), SubResource("Resource_kavog"), SubResource("Resource_bm07n"), SubResource("Resource_22hoe"), SubResource("Resource_4jc7c"), SubResource("Resource_hsh2d")])

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EventDialogueCharacter" load_steps=2 format=3 uid="uid://k5xol2e8fp78"]
+
+[ext_resource type="Script" uid="uid://ct0c2em08dbfv" path="res://!tools/event_editer/source/dialoge_character.gd" id="1_bfxqb"]
+
+[resource]
+script = ExtResource("1_bfxqb")
+name = "grandpa"
+avatars = Dictionary[String, Texture2D]({
+"defualt": null
+})
+name_modulate = Color(0.000283298, 0.209089, 0.6912, 1)
+metadata/_custom_type_script = "uid://ct0c2em08dbfv"

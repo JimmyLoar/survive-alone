@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c6lw0ddthxiej"
+
+[deps]
+
+files=["res://localization/quests/quests.en.translation", "res://localization/quests/quests.ru.translation", "res://localization/quests/quests.de.translation"]
+
+source_file="res://localization/quests/quests.csv"
+dest_files=["res://localization/quests/quests.en.translation", "res://localization/quests/quests.ru.translation", "res://localization/quests/quests.de.translation"]
+
+[params]
+
+compress=true
+delimiter=0

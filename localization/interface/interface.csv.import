@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bipi3u812oyb1"
+
+[deps]
+
+files=["res://localization/interface/interface.en.translation", "res://localization/interface/interface.ru.translation", "res://localization/interface/interface.de.translation"]
+
+source_file="res://localization/interface/interface.csv"
+dest_files=["res://localization/interface/interface.en.translation", "res://localization/interface/interface.ru.translation", "res://localization/interface/interface.de.translation"]
+
+[params]
+
+compress=true
+delimiter=0

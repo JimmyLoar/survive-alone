@@ -19,6 +19,10 @@ var next: Array[EventNode]:
 var _graph: EventResource
 
 
+func get_event_name() -> String:
+	return _graph.start_node.name_key
+
+
 func get_completed() -> bool:
 	return completed
 

@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://jf50aro5ep0h"]
+
+[ext_resource type="Script" uid="uid://cufsw151un4rt" path="res://feature/quest_viewer/internal/quest_view.gd" id="1_6o0wx"]
+[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/Sound/SFX/UI_SFX/ButtonSound.gd" id="2_m88l4"]
+
+[node name="QuestView" type="MarginContainer"]
+offset_right = 186.0
+offset_bottom = 84.0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+script = ExtResource("1_6o0wx")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.845098, 0.874719, 0.725378, 1)
+theme_override_font_sizes/font_size = 32
+text = "Quest Name"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="VBox"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Discription" type="RichTextLabel" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Discription
+dsasda[p]dasda
+[url={\"key\": 0}]text[/url]
+"
+fit_content = true
+scroll_following = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox"]
+visible = false
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonSound" type="Button" parent="VBox/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "<="
+script = ExtResource("2_m88l4")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
+
+[node name="Label" type="Label" parent="VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="ButtonSound2" type="Button" parent="VBox/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "=>"
+script = ExtResource("2_m88l4")
+metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
+
+[node name="Control2" type="Control" parent="VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="meta_clicked" from="VBox/Discription" to="." method="_on_objective_discription_meta_clicked"]
+[connection signal="meta_hover_started" from="VBox/Discription" to="." method="_on_objective_discription_meta_hover_started"]

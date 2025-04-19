@@ -21,4 +21,4 @@ func _get_model_properties(node: EventNode) -> void:
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	text_edit.text = TranslationServer.translate(("event_monologue_%s" % new_text).to_upper())
+	text_edit.text = TranslationServer.translate(("%s_monologue_%s" % [EventsGlobal.event_name, new_text]).to_upper())
