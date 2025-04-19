@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4hi273u00176"]
+
+[ext_resource type="Script" uid="uid://bce0f8en4dlvx" path="res://!tools/event_editer/graphs/internal/_paragraph_box.gd" id="1_bva8m"]
+
+[node name="ParagraphBox" type="VBoxContainer" node_paths=PackedStringArray("character_selecter", "line_edit", "text_edit")]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 194.0
+offset_bottom = 147.0
+script = ExtResource("1_bva8m")
+character_selecter = NodePath("HBoxContainer/CharacterSelecter")
+line_edit = NodePath("VBoxContainer/LineEdit")
+text_edit = NodePath("TextEdit")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Paragraph № 0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Who: "
+vertical_alignment = 1
+
+[node name="CharacterSelecter" type="OptionButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 4
+popup/item_0/text = "narrator"
+popup/item_0/id = 0
+popup/item_1/text = "player"
+popup/item_1/id = 1
+popup/item_2/text = "Unknown"
+popup/item_2/id = 2
+popup/item_3/text = "Man"
+popup/item_3/id = 3
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "X"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "What:"
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Dialoge Key"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Translate"
+editable = false
+scroll_fit_content_height = true
+
+[connection signal="item_selected" from="HBoxContainer/CharacterSelecter" to="." method="_on_character_selecter_item_selected"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_remove_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]

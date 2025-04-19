@@ -1,70 +1,11 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=12 format=3 uid="uid://4lsplaql8qte"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=4 format=3 uid="uid://4lsplaql8qte"]
 
-[ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_p32d4"]
-[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_8wpcp"]
-[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="3_8wpcp"]
-[ext_resource type="Resource" uid="uid://c66ptthr6m3wo" path="res://resources/collection/events/biome_search/actions/return_to_default.tres" id="3_uxojo"]
+[ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_1440y"]
+[ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="2_p32d4"]
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="4_j1hu6"]
-
-[sub_resource type="Resource" id="Resource_j1hu6"]
-script = ExtResource("3_8wpcp")
-type = "effect"
-name = "add new item in location"
-"arg_0: item_name" = "food_fresh_meat"
-"arg_1: quantity" = 4
-metadata/_custom_type_script = "uid://c33om3s7ld1l5"
-
-[sub_resource type="Resource" id="Resource_uxojo"]
-script = ExtResource("3_8wpcp")
-type = "effect"
-name = "set property"
-"arg_0: property_name" = "fatigue"
-"arg_1: value" = -7
-metadata/_custom_type_script = "uid://c33om3s7ld1l5"
-
-[sub_resource type="Resource" id="Resource_8wpcp"]
-script = ExtResource("3_8wpcp")
-type = "effect"
-name = "time skip"
-"arg_0: time" = 45
-"arg_1: real_time" = 0.5
-"arg_2: using_progres_bar" = false
-metadata/_custom_type_script = "uid://c33om3s7ld1l5"
-
-[sub_resource type="Resource" id="Resource_7n0ur"]
-script = ExtResource("2_8wpcp")
-is_said = false
-next_stage = 1
-showing_result = true
-conditions = Array[ExtResource("3_8wpcp")]([])
-effects = Array[ExtResource("3_8wpcp")]([SubResource("Resource_j1hu6"), SubResource("Resource_uxojo"), SubResource("Resource_8wpcp")])
-context_show_properties_bar = false
-context_use_slider = false
-context_use_item_grid = false
-code_name = &"collect_some"
-visible_name = "EVENT_ACTION_COLLECT_SOME_NAME"
-discription = "EVENT_ACTION_COLLECT_SOME_DISCRIPTION"
-metadata/_custom_type_script = "uid://cfjb5dbiuiquw"
-
-[sub_resource type="Resource" id="Resource_rjo40"]
-script = ExtResource("1_p32d4")
-name = &"start"
-text = "EVENT_BS_ANIMAL_CORPSE_START"
-actions = Array[ExtResource("2_8wpcp")]([SubResource("Resource_7n0ur"), ExtResource("3_uxojo")])
-showing_action_hints = false
-metadata/_custom_type_script = "uid://bj7nixdskuur4"
-
-[sub_resource type="Resource" id="Resource_wkwmi"]
-script = ExtResource("1_p32d4")
-name = &"reward"
-text = "Exit"
-actions = Array[ExtResource("2_8wpcp")]([ExtResource("3_uxojo")])
-showing_action_hints = false
-metadata/_custom_type_script = "uid://bj7nixdskuur4"
 
 [resource]
 script = ExtResource("4_j1hu6")
-_stages = Array[ExtResource("1_p32d4")]([SubResource("Resource_rjo40"), SubResource("Resource_wkwmi")])
-code_name = &"bs_animal_corpse"
-visible_name = "EVENT_BS_ANIMAL_CORPSE_NAME"
-discription = "EVENT_BS_ANIMAL_CORPSE_DISCRIPTION"
+nodes = Array[ExtResource("2_p32d4")]([])
+edges = Array[ExtResource("1_1440y")]([])
+groups = Array[int]([])

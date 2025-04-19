@@ -1,4 +1,4 @@
-class_name EventNode
+class_name EventDisplay
 extends PanelContainer
 
 @onready var texture_rect: TextureRect = %TextureRect
@@ -12,13 +12,16 @@ extends PanelContainer
 
 
 var _state: EventState
+var _execute_keeper: ExecuteKeeperState
 
 var currect_event: EventResource
-var currect_stage: int = -1
+var currect_stages: Array[EventNode]
 var _result: Dictionary
 
+
 func _enter_tree() -> void:
-	_state = Injector.provide(EventState, EventState.new(self), self, Injector.ContainerType.CLOSEST)
+	_state = Injector.provide(EventState, EventState.new(self), get_tree().root, Injector.ContainerType.ROOT) as EventState
+	_execute_keeper = Injector.inject(ExecuteKeeperState, self)
 
 
 func _ready() -> void:
@@ -27,18 +30,19 @@ func _ready() -> void:
 	action_list.action_state = action_state
 	%ResultContainer.hide()
 	%HintContainer.hide()
-	self.hide()
+	self.hide()	
 
 
 func _register_methods():
-	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
 	var db_resource := Injector.inject(ResourceDb, self) as ResourceDb
+	if not db_resource:
+		return
 	
 	var _activate_event = func(event_name: String):
 		var event: EventResource = db_resource.connection.fetch_data("event", StringName(event_name))
 		_state.activate_event(event)
 	
-	execute_keeper.register(
+	_execute_keeper.register(
 		ExecuteKeeperState.TYPE_EFFECT, "activate event", _activate_event,
 		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event"))]], 
 		["event name"],
@@ -50,7 +54,7 @@ func _register_methods():
 		var event: EventResource = list.get_event()
 		_state.activate_event(event)
 	
-	execute_keeper.register(
+	_execute_keeper.register(
 		ExecuteKeeperState.TYPE_EFFECT, "activate event from list", _activate_event_list,
 		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event_list"))]],
 		["events list"],
@@ -60,44 +64,92 @@ func _register_methods():
 
 
 func display(event: EventResource):
-	if not event or currect_event == event:
-		currect_event = null
-		currect_stage = -1
-		self.hide()
+	if event.completed:
+		hide()
 		return
 	
 	currect_event = event
-	currect_stage = 0
-	_display_stage(currect_stage)
+	currect_stages = currect_event.get_active_nodes()
+	_display_stage(currect_stages.back())
 	self.show()
 
 
-func _display_stage(stage_index: int):
-	if stage_index == -1:
-		return
+var actions: Array[EventAction]
+func _display_stage(stage: EventNode):
+	#print("displayed stage '%s'" % stage.id)
+	if stage is EventMonologue:
+		_update_monologue(stage)
 	
-	var stage: EventStageResource = currect_event.get_stage(stage_index)
-	texture_rect.texture = stage.texture
-	rich_text_label.text = TranslationServer.translate(stage.text)
-	action_list.update_actions(stage.actions)
+	elif  stage is EventDialogue:
+		_update_dialogue(stage)
+	
+	else:
+		rich_text_label.text = currect_event.description
+	
+	actions = currect_event.get_next_actions(stage)
+	action_list.update_actions(_validate_action(actions))
 	_display_result(_result)
 
 
-func _display_actions_hint(stage: EventStageResource):
-	for i in stage.actions.size():
-		var action := stage.actions[i] as EventActionResource
+func _validate_action(actions: Array[EventAction]) -> Array[EventAction]:
+	var new_actions: Array[EventAction] = []
+	for action in actions:
+		var _p = action.previous
+		var condition = action.previous.filter(func(e): return e is EventCondition)
+		var _valide = _valide_conditions(condition)
+		action.set_meta("disabled", not _valide)
+		if not (action.is_hidden and not _valide):
+			new_actions.append(action)
+	return new_actions
+
+
+func _valide_conditions(array: Array) -> bool:
+	var result = true
+	for x: EventCondition in array:
+		for xx in x.conditions:
+			var _r = _execute_keeper.execute(xx)
+			result = result && _r
+	return result
+
+
+func _update_monologue(stage: EventMonologue):
+	rich_text_label.text = TranslationServer.translate("EVENT_MONOLOGUE_" + stage.text.to_upper())
+	
+
+func _update_dialogue(stage: EventDialogue):
+	var text = ''
+	for paragraph in stage.dialogues:
+		text += "[b]DIALOGUE_CHARACTER_%s_NAME[/b]:\n" % [paragraph[0].name.to_upper()]
+		text += "EVENT_DIALOGUE_%s\n\n" % [paragraph[1].to_upper()]
+	rich_text_label.text = text
 
 
 func _on_action_pressed(pressed_index: int):
-	var action := currect_event.get_action(currect_stage, pressed_index) as EventActionResource
-	currect_stage = action.next_stage
+	var action := actions[pressed_index] as EventAction
+	currect_event.action_press(action)
 	
-	if await action_state.can_execute(action) :
-		_result = action_state.execute(action)
-		if not action.showing_result:
-			_result = {}
-		
-		_display_stage(currect_stage)
+	var effects = action._graph.get_previous_nodes(action, 1).filter(func(e): return e is EventEffect)
+	_result = _apply_effect(effects)
+	
+	var _next = currect_event.get_next_nodes(action, EventEdge.EdgeType.ACTION)
+	if _next.any(func(a): return a is EventAbort):
+		hide()
+		EventsGlobal.aborted_event.emit(currect_event)
+		return
+	
+	for stage in currect_stages:
+		if not stage is EventStage:
+			continue
+		currect_event.complete_stage(stage)
+	display(currect_event)
+
+
+func _apply_effect(array: Array) -> Dictionary:
+	var result = {}
+	for effect: EventEffect in array:
+		for eff: ExecuteKeeperResource in effect.effects:
+			result[eff] = _execute_keeper.execute(eff)
+	return result
 
 
 func _display_result(result: Dictionary):
@@ -119,7 +171,8 @@ func _display_result(result: Dictionary):
 		
 		var _name: String = "%d" % data.args_data[1]
 		var icon: Texture2D = resource_db.connection.fetch_data(collection, StringName(data.args_data[0])).texture
-		%ResultList.add_item(_name, icon)
+		var index = %ResultList.add_item("%s" % result[data], icon)
+		%ResultList.set_item_tooltip(index, data.args_data[0])
 	
 	%ResultContainer.show()
 

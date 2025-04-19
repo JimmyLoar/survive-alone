@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkhtgmqtjt83l"]
+
+[ext_resource type="Script" uid="uid://dti1ae7gio4gu" path="res://!tools/event_editer/graphs/_start.gd" id="1_4vj23"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cmvk"]
+bg_color = Color(0.473709, 0.00302723, 0.913595, 1)
+
+[node name="StartNode" type="GraphNode" node_paths=PackedStringArray("name_text_edit", "name_translated", "discription_translated")]
+custom_minimum_size = Vector2(300, 240)
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 301.0
+offset_bottom = 290.0
+theme_override_constants/separation = 8
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_6cmvk")
+title = "Start"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+slot/3/left_enabled = false
+slot/3/left_type = 0
+slot/3/left_color = Color(1, 1, 1, 1)
+slot/3/left_icon = null
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color(1, 1, 1, 1)
+slot/3/right_icon = null
+slot/3/draw_stylebox = true
+script = ExtResource("1_4vj23")
+name_text_edit = NodePath("VBoxName/NameTextEdit")
+name_translated = NodePath("VBoxName/NameTranslated")
+discription_translated = NodePath("VBoxName/DiscriptionTranslated")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "next"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="VBoxName" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxName"]
+layout_mode = 2
+text = "Name"
+
+[node name="NameTextEdit" type="LineEdit" parent="VBoxName"]
+layout_mode = 2
+placeholder_text = "EventName"
+
+[node name="NameTranslated" type="TextEdit" parent="VBoxName"]
+layout_mode = 2
+placeholder_text = "NameTranslate"
+editable = false
+scroll_fit_content_height = true
+
+[node name="DiscriptionTranslated" type="TextEdit" parent="VBoxName"]
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 2
+placeholder_text = "DiscriptionTranslate"
+editable = false
+scroll_fit_content_height = true
+
+[node name="VBoxDiscription" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxDiscription"]
+layout_mode = 2
+text = "Discription"
+
+[node name="DiscriptionTextEdit" type="TextEdit" parent="VBoxDiscription"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "EventDiscription"
+scroll_fit_content_height = true
+
+[connection signal="text_changed" from="VBoxName/NameTextEdit" to="." method="_on_name_text_edit_text_changed"]

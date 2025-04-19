@@ -12,5 +12,5 @@ durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_eu6rx")]([])
 code_name = &"resource_duct_tape"
-visible_name = "ITEM_NAME_RESOURCE_DUCT_TAPE"
-discription = "ITEM_DISCRIPTION_RESOURCE_DUCT_TAPE"
+visible_name = "ITEM_RESOURCE_DUCT_TAPE_NAME"
+discription = "ITEM_RESOURCE_DUCT_TAPE_DISCRIPTION"

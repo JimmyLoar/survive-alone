@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EventDialogueCharacter" load_steps=3 format=3 uid="uid://k0vu08dr0tmb"]
+
+[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="1_ftiqw"]
+[ext_resource type="Script" uid="uid://ct0c2em08dbfv" path="res://!tools/event_editer/source/dialoge_character.gd" id="2_fc86w"]
+
+[resource]
+script = ExtResource("2_fc86w")
+name = "player"
+avatars = Dictionary[String, Texture2D]({
+"defualt": ExtResource("1_ftiqw")
+})
+name_modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://ct0c2em08dbfv"

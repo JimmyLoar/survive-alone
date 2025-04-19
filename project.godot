@@ -33,6 +33,7 @@ ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Injector="*res://addons/godot-di/Injector.gd"
 Questify="*res://addons/questify/quest_manager.gd"
+EventsGlobal="*res://feature/game_event/event_global.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 PycoLog="*res://addons/pycolytics-godot/pyco_log.gd"
@@ -55,7 +56,7 @@ project/assembly_name="SurviveAlone"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/event_editor/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [file_customization]
 

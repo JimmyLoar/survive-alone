@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_iwslv"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="1_wc4sl"]
-[ext_resource type="Texture2D" uid="uid://bmccnd514bgbc" path="res://icon.svg" id="2_sve4q"]
+[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="2_sve4q"]
 
 [resource]
 script = ExtResource("1_wc4sl")
@@ -12,5 +12,5 @@ durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_iwslv")]([])
 code_name = &"resource_flint"
-visible_name = "ITEM_NAME_RESOURCE_FLINT"
-discription = "ITEM_DISCRIPTION_RESOURCE_FLINT"
+visible_name = "ITEM_RESOURCE_FLINT_NAME"
+discription = "ITEM_RESOURCE_FLINT_DISCRIPTION"

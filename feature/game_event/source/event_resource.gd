@@ -1,9 +1,10 @@
 @tool
 class_name EventResource
-extends NamedResource
+extends Resource
 
 enum Tags{
 	nothing, 		#ничего
+	quest,			#
 	trees, 			#деревья
 	water, 			#вода
 	flower,			#цветы
@@ -18,168 +19,161 @@ enum Tags{
 	location,		#локация
 }
 
-@export var _stages: Array[EventStageResource] = []
+@export var nodes: Array[EventNode] = []
+@export var edges: Array[EventEdge] = []
+@export var groups: Array[Tags] = []
 var _ids: PackedStringArray = []
 
 
-func _init(_name: String = "", stages_count: int = 1) -> void:
-	super("EVENT")
-	code_name = _name
+var name: String:
+	get: return start_node.get_event_name()
+
+var description: String:
+	get: return start_node.get_event_discription()
+
+var start_node: EventStart
+
+var started: bool:
+	get: return start_node.active
+
+var completed: bool = false
+var is_instance := false
 
 
-#region Stage
-func add_stage(_name: String, text: String= "", texture: Texture2D = null) -> int:
-	var stage := EventStageResource.new()
-	stage.name = _name
-	stage.text = text
-	stage.texture = texture
-	var action = ActionResource.new()
-	action.code_name = "..."
-	stage.actions = [action]
-	return set_stage(stage)
+func instantiate() -> EventResource:
+	if is_instance:
+		return self
+	var instance := duplicate(true) as EventResource
+
+	var duplicated_nodes: Array[EventNode] = []
+	var duplicated_edges: Array[EventEdge] = []
+
+	var node_map := {}
+	# Arrays cannot be duplicated in resources, so duplicate them manually
+	for node in nodes:
+		var new_node := node.duplicate(true)
+		node_map[node] = new_node
+		duplicated_nodes.append(new_node)
+	for edge in edges:
+		var new_edge: EventEdge = edge.duplicate(true)
+		# assign new references for edges
+		if edge.from != null:
+			new_edge.from = node_map[edge.from]
+		if edge.to != null:
+			new_edge.to = node_map[edge.to]
+		duplicated_edges.append(new_edge)
+
+	instance.nodes = duplicated_nodes
+	instance.edges = duplicated_edges
+
+	instance.is_instance = true
+	instance.set_meta("resource_path", resource_path)
+	instance._initialize()
+	return instance
 
 
-func set_stage(stage_data: EventStageResource, stage_id: int = -1) -> int:
-	if stage_id == -1:
-		stage_id = _stages.size()
-		_stages.append(stage_data)
-		_ids.append(stage_data.name)
-	else:
-		_stages[stage_id] = stage_data
-		_ids[stage_id] = stage_data.name
-	return stage_id
+
+func action_press(action: EventAction):
+	action.completed = true
+	update()
 
 
-func get_stage(stage_id: int):
-	stage_id = clamp(stage_id, 0, _stages.size() - 1)
-	return _stages[stage_id]
+func start() -> void:
+	if not is_instance:
+		printerr("Quest must be instantiated to be started. Use instantiate().")
+		return
+	if not completed and not started:
+		start_node.active = true
 
 
-func found_stage(stage_name: String):
-	return _ids.find(stage_name)
+func update() -> void:
+	if not is_instance:
+		printerr("Quest must be instantiated to be updated. Use instantiate().")
+		return
+	if not completed:
+		start_node.update()
 
 
-func get_full_data() -> Array[EventActionResource]:
-	return _stages.duplicate()
+func get_active_nodes() -> Array[EventNode]:
+	var active_nodes: Array[EventNode] = []
+	for node in nodes:
+		if node is EventNode and node.get_active():
+			active_nodes.append(node)
+	#printerr("Active: %s" % [active_nodes.map(func(a): return a.id)])
+	return active_nodes
 
 
-func _get_new_stage() -> EventActionResource:
-	return EventActionResource.new()
+func get_next_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEdge.EdgeType.NORMAL) -> Array[EventNode]:
+	var result: Array[EventNode] = []
+	result.assign(edges.filter(
+		func(edge: EventEdge):
+			return edge.from == node and edge.edge_type == edge_type
+	).map(
+		func(edge: EventEdge):
+			return edge.to
+	))
+	return result
 
 
-#endregion
+func get_next_actions(node: EventNode) -> Array[EventAction]:
+	var result: Array[EventAction] = []
+	for next_node: EventNode in get_next_nodes(node):
+		var action = get_previous_nodes(next_node, EventEdge.EdgeType.ACTION)
+		result.append_array(action)
+	return result
 
 
-func set_stage_name(new_name: String, stage_index: int) -> String:
-	if _ids.has(new_name):
-		new_name = "%s_%d" % [new_name, new_name.to_int() + 1]
-	var old_name = _stages[stage_index].name
-	_stages[stage_index].name = new_name
-	_ids[stage_index] = new_name
-	return old_name
+func get_previous_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEdge.EdgeType.NORMAL) -> Array[EventNode]:
+	var result: Array[EventNode] = []
+	result.assign(edges.filter(
+		func(edge: EventEdge):
+			return edge.to == node and edge.edge_type == edge_type
+	).map(
+		func(edge: EventEdge):
+			return edge.from
+	))
+	return result
 
 
-func get_stage_name(stage_index: int) -> String:
-	return _stages[stage_index].name
+func complete_stage(stage: EventStage):
+	stage.completed = true
+	EventsGlobal.completed_stage.emit(stage)
 
 
-func set_stage_text(new_text: String, stage_index: int) -> void:
-	_stages[stage_index].text = new_text
+func complete_event():
+	completed = true
+	EventsGlobal.completed_event.emit(self)
 
 
-func get_stage_text(stage_index: int) -> String:
-	return _stages[stage_index].text
+func get_resource_path() -> String:
+	if is_instance:
+		return get_meta("resource_path")
+	return resource_path
 
 
-func set_stage_texture(new_texture: Texture2D, stage_index: int) -> void:
-	_stages[stage_index].texture = new_texture
+func serialize() -> Dictionary:
+	return {
+		completed = completed,
+		nodes = nodes.map(func(node: EventNode): return node.serialize())
+	}
 
 
-func get_stage_texture(stage_index: int) -> Texture2D:
-	return _stages[stage_index].texture
+func deserialize(data: Dictionary) -> void:
+	if not is_instance:
+		printerr("Quest must be instantiated to be deserialized. Use instantiate().")
+		return
+	
+	completed = data.completed
+	var node_map := {}
+	for node in nodes:
+		node_map[node.id] = node
+	for node in data.nodes:
+		if node_map.has(node.id):
+			node_map[node.id].deserialize(node)
 
 
-func set_stage_actions(new_actions: Array[EventActionResource], stage_index: int) -> void:
-	_stages[stage_index].actions = new_actions
-
-
-func get_stage_actions(stage_index: int) -> Array[Dictionary]:
-	return _stages[stage_index].actions.duplicate()
-
-
-func add_action(stage_index: int, text: String, next_stage: int, is_said: bool = false, icon: Texture2D = null, 
-	conditions: Array[ExecuteKeeperResource] = [], effects: Array[ExecuteKeeperResource] = []):
-	var new_action := EventActionResource.new()
-	new_action.code_name = text
-	new_action.is_said = is_said
-	new_action.icon = icon
-	new_action.next_stage = next_stage
-	new_action.set_conditions(conditions)
-	new_action.set_effects(effects)
-	return set_action(new_action, stage_index)
-
-
-func set_action(action: EventActionResource, stage_index: int, action_index: int = -1):
-	var stage = get_stage(stage_index)
-	if action_index == -1:
-		action_index = stage.actions.size()
-		stage.actions.append(action)
-	else:
-		stage.actions[action_index] = action
-	return action_index
-
-
-func get_action(stage_index: int, action_index: int) -> EventActionResource:
-	return _stages[stage_index].actions[action_index]
-
-
-func get_actions_count(stage: int):
-	return get_stage(stage).actions.size()
-
-
-func set_action_text(value: String, stage_index: int, action_index: int):
-	get_action(stage_index, action_index).text = value
-
-
-func get_action_text(stage_index: int, action_index: int) -> String:
-	return get_action(stage_index, action_index).text
-
-
-func set_action_is_said(value: bool, stage_index: int, action_index: int):
-	get_action(stage_index, action_index).is_said = value
-
-
-func get_action_is_said(stage_index: int, action_index: int) -> bool:
-	return get_action(stage_index, action_index).is_said
-
-
-func set_action_icon(value: Texture2D, stage_index: int, action_index: int):
-	get_action(stage_index, action_index).icon = value
-
-
-func get_action_icon(stage_index: int, action_index: int) -> Texture2D:
-	return get_action(stage_index, action_index).icon
-
-
-func set_action_conditions(value: Array, stage_index: int, action_index: int):
-	get_action(stage_index, action_index).conditions = value
-
-
-func get_action_conditions(stage_index: int, action_index: int) -> Array:
-	return get_action(stage_index, action_index).conditions
-
-
-func set_action_next_stage(value: int, stage_index: int, action_index: int):
-	get_action(stage_index, action_index).next_stage = value
-
-
-func get_action_next_stage(stage_index: int, action_index: int) -> int:
-	return get_action(stage_index, action_index).next_stage
-
-
-func set_action_resource(value: ActionResource, stage_index: int, action_index: int):
-	get_action(stage_index, action_index).action_resource = value
-
-
-func get_action_resource(stage_index: int, action_index: int) -> ActionResource:
-	return get_action(stage_index, action_index).action_resource
+func _initialize() -> void:
+	for node in nodes:
+		node.set_graph(self)
+		if node is EventStart:
+			start_node = node as EventStart

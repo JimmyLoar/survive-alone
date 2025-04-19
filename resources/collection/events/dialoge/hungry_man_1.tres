@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EventResource" load_steps=4 format=3 uid="uid://odru6ioyr7g5"]
+
+[ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_485l4"]
+[ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="2_ei7d3"]
+[ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="6_wofwq"]
+
+[resource]
+script = ExtResource("2_ei7d3")
+nodes = Array[ExtResource("6_wofwq")]([])
+edges = Array[ExtResource("1_485l4")]([])
+groups = Array[int]([])

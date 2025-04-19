@@ -6,6 +6,4 @@
 script = ExtResource("1_yn50l")
 type = "effect"
 name = "add used item"
-arg_0 = ""
-arg_1 = [50]
 metadata/_custom_type_script = "uid://btwg7e67cuvhv"

@@ -12,5 +12,5 @@ default_min_value = 0.0
 default_delta_value = 0.0
 modulate = Color(0.913725, 0.588235, 0.478431, 1)
 code_name = &"radiation"
-visible_name = "PROPERTY_NAME_RADIATION"
-discription = "PROPERTY_DISCRIPTION_RADIATION"
+visible_name = "PROPERTY_RADIATION_NAME"
+discription = "PROPERTY_RADIATION_DISCRIPTION"

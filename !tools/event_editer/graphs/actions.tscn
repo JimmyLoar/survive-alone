@@ -1,0 +1,132 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8g6wavqx75ii"]
+
+[ext_resource type="Script" uid="uid://bul4wam67h8fx" path="res://!tools/event_editer/graphs/_actions.gd" id="1_bk4ot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
+bg_color = Color(7.21961e-08, 0.517794, 0.341272, 1)
+
+[node name="ActionNode" type="GraphNode" node_paths=PackedStringArray("line_edit", "text_edit")]
+custom_minimum_size = Vector2(300, 240)
+offset_right = 300.0
+offset_bottom = 240.0
+theme_override_constants/separation = 6
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
+title = "Action"
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(0, 0, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color(0, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = true
+slot/1/left_type = 3
+slot/1/left_color = Color(1, 0, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 3
+slot/1/right_color = Color(1, 0, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+slot/3/left_enabled = false
+slot/3/left_type = 0
+slot/3/left_color = Color(1, 1, 1, 1)
+slot/3/left_icon = null
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color(1, 1, 1, 1)
+slot/3/right_icon = null
+slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
+slot/5/left_enabled = false
+slot/5/left_type = 0
+slot/5/left_color = Color(1, 1, 1, 1)
+slot/5/left_icon = null
+slot/5/right_enabled = false
+slot/5/right_type = 0
+slot/5/right_color = Color(1, 1, 1, 1)
+slot/5/right_icon = null
+slot/5/draw_stylebox = true
+script = ExtResource("1_bk4ot")
+line_edit = NodePath("VBoxContainer/LineEdit")
+text_edit = NodePath("VBoxContainer/TextEdit")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "condition"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "node"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "effect"
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Button text"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Key"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Translate"
+editable = false
+scroll_fit_content_height = true
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CheckBox2" type="CheckBox" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hide if condition equals False"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "it's a phrase"
+
+[connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]

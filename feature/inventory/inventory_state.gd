@@ -56,13 +56,14 @@ func remove_item(name: String, _amount := 1):
 		return remaining
 	
 	var item := get_item(index) as ItemEntity
+	var _tmp = item.get_total_amount()
 	remaining = item.remove_used_amount(_amount)
 	item.decrease_total_amount(remaining)
-	remaining = max(remaining - item.get_total_amount(), 0)
+	remaining = max(remaining - _tmp, 0)
 	
 	if item.get_total_amount() <= 0:
 		_remove_from_storage_entity(index)
-	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items [color=green]%s (%d)[/color]" % [_amount, remaining, name, item.get_total_amount()])
+	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items | [color=green]%s (%d)[/color]" % [_amount, remaining, name, item.get_total_amount()])
 	
 	return remaining
 

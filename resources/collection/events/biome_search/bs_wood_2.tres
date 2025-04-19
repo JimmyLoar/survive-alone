@@ -1,20 +1,11 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=6 format=3 uid="uid://dqfvlh61m6pyf"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=4 format=3 uid="uid://dqfvlh61m6pyf"]
 
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="1_08tpf"]
-[ext_resource type="Script" uid="uid://bj7nixdskuur4" path="res://feature/game_event/source/event_stage.gd" id="1_udxo8"]
-[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="2_cix24"]
-[ext_resource type="Resource" uid="uid://c66ptthr6m3wo" path="res://resources/collection/events/biome_search/actions/return_to_default.tres" id="3_irxhc"]
-
-[sub_resource type="Resource" id="Resource_85jx0"]
-script = ExtResource("1_udxo8")
-name = &"start"
-text = "EVENT_BS_WOOD_2_START"
-actions = Array[ExtResource("2_cix24")]([ExtResource("3_irxhc")])
-showing_action_hints = false
+[ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_hkab6"]
+[ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="2_o6gb1"]
 
 [resource]
 script = ExtResource("1_08tpf")
-_stages = Array[ExtResource("1_udxo8")]([SubResource("Resource_85jx0")])
-code_name = &"bs_wood_2"
-visible_name = "EVENT_BS_WOOD_2_NAME"
-discription = "EVENT_BS_WOOD_2_DISCRIPTION"
+nodes = Array[ExtResource("2_o6gb1")]([])
+edges = Array[ExtResource("1_hkab6")]([])
+groups = Array[int]([])
