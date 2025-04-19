@@ -7,7 +7,6 @@
 [node name="CampLocation" type="Node2D"]
 script = ExtResource("1_4foup")
 search_drop = ExtResource("2_f4e0k")
-loaction_description = null
 show_collision_shape = null
 
 [node name="Texture" type="Sprite2D" parent="."]

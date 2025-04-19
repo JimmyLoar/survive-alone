@@ -48,7 +48,7 @@ func get_location_name():
 
 func get_location_discription():
 	if is_instance_of(current_location, WorldObjectEntity) and is_instance_of(current_location._get_node(), WorldLocation):
-		return current_location._get_node().loaction_secription
+		return current_location._get_node().loaction_description
 	
 	var biomes := current_location.biomes as Array
 	if not biomes or biomes.is_empty():

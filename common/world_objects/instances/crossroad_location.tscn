@@ -7,7 +7,6 @@
 [node name="CrossroadLocation" type="Node2D"]
 script = ExtResource("1_l7g58")
 search_drop = ExtResource("2_2nelk")
-loaction_decription = null
 show_collision_shape = null
 
 [node name="Texture" type="Sprite2D" parent="."]
