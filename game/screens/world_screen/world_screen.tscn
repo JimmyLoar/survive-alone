@@ -1,5 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bsq170wia7k5p"]
-[gd_scene load_steps=24 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=26 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="2_irxn0"]

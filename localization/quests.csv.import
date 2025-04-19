@@ -2,12 +2,12 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://blijryre176yo"
+uid="uid://c6lw0ddthxiej"
 valid=false
 
 [deps]
 
-source_file="res://localization/localizations.csv"
+source_file="res://localization/quests.csv"
 
 [params]
 
