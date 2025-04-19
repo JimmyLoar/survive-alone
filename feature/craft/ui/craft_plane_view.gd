@@ -7,7 +7,7 @@ var recipe: BasicRecipe
 var names = []
 
 
-var disabled: bool = true:
+var disabled: bool = false:
 	set(value):
 		_disable_change(value)
 
