@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=23 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_irxn0"]
@@ -46,19 +46,10 @@ func _on_body_entered(_body: Node2D) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udhtu"]
 size = Vector2(120, 119)
 
+
 [node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_nlrl3")
-
-[node name="TestEvent" type="Area2D" parent="."]
-position = Vector2(-191, 179)
-script = SubResource("GDScript_6gqlo")
-
-[node name="Sprite2D" type="Sprite2D" parent="TestEvent"]
-texture = ExtResource("2_irxn0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEvent"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_udhtu")
+metadata/_edit_vertical_guides_ = [-128.0]
 
 [node name="BiomesLayer" parent="." instance=ExtResource("2_pbygt")]
 
@@ -209,5 +200,4 @@ offset_bottom = 715.0
 
 [node name="QuantitySelecter" parent="." instance=ExtResource("22_scc3c")]
 
-[connection signal="body_entered" from="TestEvent" to="TestEvent" method="_on_body_entered"]
 [connection signal="pressed" from="UI/VBoxContainer/MarginContainer/!ButunRest" to="UI/VBoxContainer/MarginContainer/!ButunRest" method="_on_pressed"]
