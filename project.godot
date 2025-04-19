@@ -32,8 +32,8 @@ game/version/string="dev"
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Injector="*res://addons/godot-di/Injector.gd"
-Questify="*res://addons/questify/quest_manager.gd"
 EventsGlobal="*res://feature/game_event/event_global.gd"
+Questify="*res://addons/questify/quest_manager.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 PycoLog="*res://addons/pycolytics-godot/pyco_log.gd"
@@ -56,7 +56,7 @@ project/assembly_name="SurviveAlone"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/event_editor/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/event_editor/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [file_customization]
 
@@ -121,8 +121,8 @@ pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://localization/localizations.en.translation", "res://localization/localizations.ru.translation", "res://localization/localizations.de.translation")
-locale/translations_pot_files=PackedStringArray("res://resources/collection/quest/test.tres", "res://resources/collection/quest/test2.tres", "res://resources/collection/quest/test3.tres")
+locale/translations=PackedStringArray("res://localization/quests.en.translation", "res://localization/quests.ru.translation", "res://localization/quests.de.translation")
+locale/translations_pot_files=PackedStringArray("res://resources/collection/quest/test.tres", "res://resources/collection/quest/test2.tres", "res://resources/collection/quest/test3.tres", "res://resources/collection/quest/prologue_00.tres", "res://resources/collection/quest/prologue.tres")
 locale/language_filter=["en", "ru"]
 locale/country_filter=["RU", "US"]
 locale/locale_filter_mode=1
@@ -142,8 +142,9 @@ locale/locale_filter_mode=1
 
 [localization_editor]
 
-locales_path_to_file="res://localization/localizations.csv"
+locales_path_to_file="res://localization/quests.csv"
 translations_save_auth=false
+locales_visibility=[]
 
 [questify]
 
