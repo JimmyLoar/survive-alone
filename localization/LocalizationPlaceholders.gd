@@ -3,10 +3,7 @@
 @tool
 class_name LocalizationPlaceholders
 
-const OLD = "{{OLD}}"
-const NAME = "{{NAME}}"
 
 const PLACEHOLDERS = [
- "OLD",
- "NAME"
+
 ]

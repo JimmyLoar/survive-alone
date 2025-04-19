@@ -44,7 +44,7 @@ func _get_data():
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	text_edit.text = TranslationServer.translate(("event_dialogue_%s" % line_edit.text).to_upper())
+	text_edit.text = TranslationServer.translate(("%s_dialogue_%s" % [EventsGlobal.event_name, new_text]).to_upper())
 
 
 func _on_character_selecter_item_selected(index: int) -> void:

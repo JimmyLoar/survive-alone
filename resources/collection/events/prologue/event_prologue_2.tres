@@ -1,12 +1,66 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=4 format=3 uid="uid://c6ltxc0vmykcj"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=15 format=3 uid="uid://c6ltxc0vmykcj"]
 
 [ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_3xlh8"]
 [ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="2_snryx"]
+[ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end.gd" id="3_ecprm"]
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="3_shhhj"]
+[ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="4_xic1v"]
+[ext_resource type="Script" uid="uid://d1a77ln5pvkq6" path="res://!tools/event_editer/source/monologue.gd" id="5_vysu5"]
+[ext_resource type="Script" uid="uid://4vpt5ojf0bod" path="res://!tools/event_editer/source/actions.gd" id="5_xic1v"]
+
+[sub_resource type="Resource" id="Resource_xic1v"]
+script = ExtResource("4_xic1v")
+name_key = "prologue"
+id = "2tRAIvCTQp"
+optional = false
+graph_editor_position = Vector2(-220, 20)
+graph_editor_size = Vector2(300, 289)
+
+[sub_resource type="Resource" id="Resource_vysu5"]
+script = ExtResource("5_vysu5")
+text = "2"
+id = "xPA44v0YBh"
+optional = false
+graph_editor_position = Vector2(120, 40)
+graph_editor_size = Vector2(300, 240)
+
+[sub_resource type="Resource" id="Resource_ih2bh"]
+script = ExtResource("1_3xlh8")
+from = SubResource("Resource_xic1v")
+to = SubResource("Resource_vysu5")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_yrk3b"]
+script = ExtResource("3_ecprm")
+id = "Kdl_4f7BG6"
+optional = false
+graph_editor_position = Vector2(489.664, 72.1953)
+graph_editor_size = Vector2(120, 70)
+
+[sub_resource type="Resource" id="Resource_037c3"]
+script = ExtResource("1_3xlh8")
+from = SubResource("Resource_vysu5")
+to = SubResource("Resource_yrk3b")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_5bxaq"]
+script = ExtResource("5_xic1v")
+text_key = "next"
+is_said = false
+is_hidden = false
+id = "K3S3a5MkC7"
+optional = false
+graph_editor_position = Vector2(120, 320)
+graph_editor_size = Vector2(300, 240)
+
+[sub_resource type="Resource" id="Resource_wra61"]
+script = ExtResource("1_3xlh8")
+from = SubResource("Resource_5bxaq")
+to = SubResource("Resource_yrk3b")
+edge_type = 1
 
 [resource]
 script = ExtResource("3_shhhj")
-nodes = Array[ExtResource("2_snryx")]([])
-edges = Array[ExtResource("1_3xlh8")]([])
+nodes = Array[ExtResource("2_snryx")]([SubResource("Resource_yrk3b"), SubResource("Resource_xic1v"), SubResource("Resource_vysu5"), SubResource("Resource_5bxaq")])
+edges = Array[ExtResource("1_3xlh8")]([SubResource("Resource_ih2bh"), SubResource("Resource_037c3"), SubResource("Resource_wra61")])
 groups = Array[int]([])
-metadata/_custom_type_script = "uid://b1ks3ffqt462y"
