@@ -121,8 +121,7 @@ pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://localization/interface/interface.en.translation", "res://localization/interface/interface.ru.translation", "res://localization/interface/interface.de.translation")
-locale/translations_pot_files=PackedStringArray("res://resources/collection/quest/test.tres", "res://resources/collection/quest/test2.tres", "res://resources/collection/quest/test3.tres", "res://resources/collection/quest/prologue_00.tres", "res://resources/collection/quest/prologue.tres")
+locale/translations=PackedStringArray("res://localization/interface/interface.en.translation", "res://localization/interface/interface.ru.translation", "res://localization/interface/interface.de.translation", "res://localization/characters/characters.de.translation", "res://localization/characters/characters.en.translation", "res://localization/characters/characters.ru.translation", "res://localization/events/events.de.translation", "res://localization/events/events.en.translation", "res://localization/events/events.ru.translation", "res://localization/quests/quests.de.translation", "res://localization/quests/quests.en.translation", "res://localization/quests/quests.ru.translation")
 locale/language_filter=["en", "ru"]
 locale/country_filter=["RU", "US"]
 locale/locale_filter_mode=1
