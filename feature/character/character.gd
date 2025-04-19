@@ -21,6 +21,7 @@ func _enter_tree() -> void:
 	_character_properties_repository = Locator.initialize_service(CharacterPropertyRepository)
 
 
+
 func _ready() -> void:
 	
 	_screen_mouse_events.left_button_changed.connect(_on_screen_left_button)
