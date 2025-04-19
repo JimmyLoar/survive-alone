@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS "biome" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"name"	TEXT NOT NULL,
 	"type"	INTEGER NOT NULL,
-	"search_drop_uid"	INTEGER NOT NULL,
+	"resource"	TEXT NOT NULL,
 	PRIMARY KEY("id" AUTOINCREMENT)
 ) ;
 CREATE TABLE IF NOT EXISTS "biome_rect" (

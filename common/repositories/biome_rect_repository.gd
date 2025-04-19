@@ -23,11 +23,11 @@ func get_all_intersected(rect: Rect2i) -> Array[BiomeRectEntity]:
 	var select_condition = """
 SELECT *
 FROM biome_rect rect
-WHERE NOT
-	(rect.x < %d OR
-	rect.end_x > %d OR
-	rect.y < %d OR
-	rect.end_y > %d);
+WHERE 
+	end_x > %d
+	AND x < %d
+	AND end_y > %d
+	AND y < %d;
 """ % [x, end_x, y, end_y]
 	_db.connection.query(select_condition)
 	var rows = _db.connection.query_result
@@ -37,6 +37,10 @@ WHERE NOT
 	var entities: Array[BiomeRectEntity]
 	entities.assign(rows.map(Callable(self, "_row_to_entity")))
 	return entities
+
+func get_all_by_tile_pos(pos: Vector2i) -> Array[BiomeRectEntity]:
+	var rect = Rect2i(pos, Vector2i.ONE)
+	return get_all_intersected(rect)
 
 func has(id: int):
 	if id < 0:

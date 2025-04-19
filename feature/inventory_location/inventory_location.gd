@@ -85,13 +85,13 @@ func _on_location_changed(location: Variant):
 				)
 			))
 
-		_state.search_drop = location.resource.search_drop
+		_state.search_drop = location._get_node().search_drop
 		return
 
 	if is_instance_of(location, CharacterLocationState.BiomesLocation):
 		_state.change_entity(InventoryEntity.new())
 		_state.search_drop = SearchDropResource.merge(
-			location.biomes.map(func(biome): return biome.search_drop)
+			location.biomes.map(func(biome): return biome.resource.search_drop)
 		)
 		return
 

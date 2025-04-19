@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://c321v1xyqc5q3"]
+[gd_scene load_steps=12 format=3 uid="uid://c321v1xyqc5q3"]
 
 [ext_resource type="Script" uid="uid://cgi8ilsbg70uq" path="res://!tools/game_editor/screens/editor_screen/game_editor__editor_screen.gd" id="1_3jvi6"]
 [ext_resource type="Theme" uid="uid://b7thgsf2s74gg" path="res://assets/themes/for_dev_tools.tres" id="2_ggukk"]
+[ext_resource type="PackedScene" uid="uid://bsousn3bw4sgu" path="res://!tools/game_editor/screens/editor_screen/features/biomes_tool/game_editor__biomes_tool.tscn" id="3_1trex"]
 [ext_resource type="PackedScene" uid="uid://bmx1kvsxqsfod" path="res://feature/screen_mouse_events/screen_mouse_events.tscn" id="3_musww"]
-[ext_resource type="PackedScene" uid="uid://7nvmy7ym0tb0" path="res://!tools/game_editor/screens/editor_screen/features/editor_selector/game_editor__menu_screen.tscn" id="3_tjxmy"]
+[ext_resource type="PackedScene" uid="uid://dy3p16vjkeowm" path="res://!tools/game_editor/screens/editor_screen/features/structures_tool/game_editor__structures_tool.tscn" id="4_2dbmv"]
 [ext_resource type="PackedScene" uid="uid://dyck7g6ogkopw" path="res://feature/main_camera/main_camera.tscn" id="4_7u1if"]
 [ext_resource type="PackedScene" uid="uid://skppxmtw5diw" path="res://feature/virtual_chunks/virtual_chunks.tscn" id="5_gbw6i"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="6_bgr3y"]
-[ext_resource type="PackedScene" uid="uid://bsousn3bw4sgu" path="res://!tools/game_editor/screens/editor_screen/features/biomes_tool/game_editor__biomes_tool.tscn" id="6_egicx"]
 [ext_resource type="PackedScene" uid="uid://sjivbom4jg1p" path="res://feature/tiles_grid/tiles_grid.tscn" id="9_1trex"]
+[ext_resource type="PackedScene" uid="uid://d3tltb1ssxrye" path="res://feature/world_objects_layer/world_objects_layer.tscn" id="9_2dbmv"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1trex"]
 radius = 2.0
@@ -26,31 +27,52 @@ offset_right = 150.0
 offset_bottom = 712.0
 theme = ExtResource("2_ggukk")
 
+[node name="MapHoveredCatcher" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
 [node name="Panel" type="Panel" parent="UI"]
-z_index = 1
+z_index = 10
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 48.0
 grow_horizontal = 2
 theme = ExtResource("2_ggukk")
 
-[node name="ChooseToolEditor" parent="UI/Panel" instance=ExtResource("3_tjxmy")]
-layout_mode = 1
-anchors_preset = 0
-anchor_left = 0.0
-anchor_right = 0.0
-offset_left = 842.0
-offset_top = 16.0
-offset_right = 1262.0
-offset_bottom = 48.0
-grow_horizontal = 1
-tab_count = 2
-script = null
+[node name="HoveredTilePos" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_left = 6.0
+offset_top = 685.0
+offset_right = 46.0
+offset_bottom = 708.0
+text = "Unhovered"
 
-[node name="BiomesTool" parent="UI" instance=ExtResource("6_egicx")]
+[node name="BiomesTool" parent="UI" instance=ExtResource("3_1trex")]
+unique_name_in_owner = true
+
+[node name="StructuresTool" parent="UI" instance=ExtResource("4_2dbmv")]
+unique_name_in_owner = true
+visible = false
 
 [node name="ScreenMouseEvents" parent="UI" instance=ExtResource("3_musww")]
 theme = ExtResource("2_ggukk")
+
+[node name="ChooseToolEditor" type="TabBar" parent="UI"]
+offset_left = 1076.0
+offset_top = 3.0
+offset_right = 1276.0
+offset_bottom = 43.0
+current_tab = 0
+tab_alignment = 2
+tab_count = 2
+tab_0/title = "Biomes"
+tab_1/title = "Structures"
 
 [node name="MainCamera" parent="." instance=ExtResource("4_7u1if")]
 
@@ -58,9 +80,16 @@ theme = ExtResource("2_ggukk")
 
 [node name="BiomesLayer" parent="." instance=ExtResource("6_bgr3y")]
 
+[node name="WorldObjectsLayer" parent="." instance=ExtResource("9_2dbmv")]
+show_collision_shapes = true
+
 [node name="TilesGrid" parent="." instance=ExtResource("9_1trex")]
 
 [node name="CordinatesCenterMarker" type="MeshInstance2D" parent="."]
 z_index = 4096
 z_as_relative = false
 mesh = SubResource("SphereMesh_1trex")
+
+[connection signal="mouse_entered" from="UI/MapHoveredCatcher" to="." method="_on_map_hovered_catcher_mouse_entered"]
+[connection signal="mouse_exited" from="UI/MapHoveredCatcher" to="." method="_on_map_hovered_catcher_mouse_exited"]
+[connection signal="tab_changed" from="UI/ChooseToolEditor" to="." method="_on_choose_tool_editor_tab_changed"]

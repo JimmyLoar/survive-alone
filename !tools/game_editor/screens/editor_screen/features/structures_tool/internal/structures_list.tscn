@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctpoyegobpa73"]
+
+[ext_resource type="Theme" uid="uid://b7thgsf2s74gg" path="res://assets/themes/for_dev_tools.tres" id="1_4v62y"]
+[ext_resource type="Script" uid="uid://c0g3nxm2qxs7y" path="res://!tools/game_editor/screens/editor_screen/features/structures_tool/internal/structures_list.gd" id="1_dhcyb"]
+
+[node name="StructuresList" type="Panel"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -672.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_4v62y")
+script = ExtResource("1_dhcyb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Control" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Control"]
+layout_mode = 2
+
+[node name="Refresh" type="Button" parent="MarginContainer/Control/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "   "
+
+[node name="Label" type="Label" parent="MarginContainer/Control/MarginContainer2/Refresh"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 33.0
+text = "🗘"
+
+[node name="Label" type="Label" parent="MarginContainer/Control/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Structures"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="SearchInput" type="TextEdit" parent="MarginContainer/Control/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Поиск"
+
+[node name="ApplySearch" type="Button" parent="MarginContainer/Control/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "   "
+
+[node name="Label" type="Label" parent="MarginContainer/Control/MarginContainer/HBoxContainer/ApplySearch"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 43.0
+offset_bottom = 33.0
+text = "⌕"
+
+[node name="VScrollBar" type="ScrollContainer" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ObjectsList" type="ItemList" parent="MarginContainer/Control/VScrollBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+auto_height = true
+text_overrun_behavior = 4
+
+[node name="Inspector" type="MarginContainer" parent="MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/Control/MarginContainer2/Refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/MarginContainer/HBoxContainer/ApplySearch" to="." method="_on_apply_search_pressed"]
+[connection signal="item_selected" from="MarginContainer/Control/VScrollBar/ObjectsList" to="." method="_on_objects_list_item_selected"]
