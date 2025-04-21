@@ -1,6 +1,6 @@
 extends TabBar
 
-@onready var _game_editor_state: GameEditor__EditorScreenState = Locator.get_service(GameEditor__EditorScreenState, self)
+@onready var _game_editor_state: GameEditor__EditorScreenState = Locator.get_service(GameEditor__EditorScreenState)
 
 
 func _on_tab_changed(tab: int) -> void:

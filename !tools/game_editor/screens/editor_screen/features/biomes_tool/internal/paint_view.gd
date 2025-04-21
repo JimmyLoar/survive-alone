@@ -1,19 +1,15 @@
 extends Control
 
-@onready var _game_editor__biomes_tool_state: GameEditor__BiomesToolState = Locator.get_service(GameEditor__BiomesToolState, self)
-@onready var _biome_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState, self)
-@onready var _screen_mouse_events_state: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState, self)
+@onready var _game_editor__biomes_tool_state: GameEditor__BiomesToolState = Locator.get_service(GameEditor__BiomesToolState)
+@onready var _biome_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
+@onready var _screen_mouse_events_state: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState)
 @onready var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)
 
 var _main_camera_state: MainCameraState
 
 
 func _enter_tree() -> void:
-	if Locator.get_main_camera():
-		_on_ready_main_camera(Locator.get_main_camera())
-		return 
-	
-	Locator.ready_main_camera.connect(_on_ready_main_camera, CONNECT_ONE_SHOT)
+	_main_camera_state = Locator.get_service(MainCameraState, _on_ready_main_camera)
 
 
 func _ready() -> void:

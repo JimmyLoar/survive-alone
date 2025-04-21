@@ -1,12 +1,13 @@
 extends Control
 
-@onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState, self)
+@onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
 @onready var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)
-@onready var _main_camera_sate: MainCameraState = Locator.get_service(MainCameraState, self)
+@onready var _main_camera_sate: MainCameraState = Locator.get_service(MainCameraState)
 
 func _ready() -> void:
 	_biomes_layer_state.visible_biome_rects_chaged.connect(func(rects): queue_redraw())
-	_main_camera_sate.viewport_rect_changed.connect(func(value): queue_redraw())
+	Locator.get_service(MainCameraState).viewport_rect_changed.connect(func(value): queue_redraw())
+
 
 func _draw() -> void:
 	_set_draw_transform()

@@ -8,8 +8,11 @@ extends Camera2D
 var _state: MainCameraState
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	_state = Locator.initialize_service(MainCameraState, [self])
+
+
+func _ready() -> void:
 	_screen_mouse_event_state.left_button_changed.connect(Callable(self, "_on_screen_left_mouse_button_changed"))
 	_screen_mouse_event_state.zoom_changed.connect(Callable(self, "_on_screen_zoom_changed"))
 	_state.mode_changed.connect(Callable(self, "mode_changed"))

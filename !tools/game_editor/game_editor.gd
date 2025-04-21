@@ -3,7 +3,7 @@ extends Node2D
 var _state: GameEditorState
 
 func _enter_tree() -> void:
-	_state = Locator.initialize_service(GameEditorState, GameEditorState.new())
+	_state = Locator.initialize_service(GameEditorState)
 
 func _ready() -> void:
 	_state.current_screen_changed.connect(Callable(self, "_on_screen_changed"))

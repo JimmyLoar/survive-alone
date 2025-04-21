@@ -11,7 +11,7 @@ var map_size_in_chunks:  Vector2 = ProjectSettings.get_setting("application/game
 
 
 func _ready() -> void:
-	var _camera_state: MainCameraState = Locator.get_main_camera()
+	var _camera_state: MainCameraState = Locator.get_service(MainCameraState)
 	var grid_size_in_tiles = map_size_in_chunks * chunk_size
 
 	var mesh = _mesh.mesh as QuadMesh
@@ -30,4 +30,4 @@ func _ready() -> void:
 
 func on_camera_zoom_changed(__):
 	var material = _mesh.material as ShaderMaterial
-	material.set_shader_parameter("zoom", Locator.get_main_camera().zoom.x)
+	material.set_shader_parameter("zoom", Locator.get_service(MainCameraState).zoom.x)

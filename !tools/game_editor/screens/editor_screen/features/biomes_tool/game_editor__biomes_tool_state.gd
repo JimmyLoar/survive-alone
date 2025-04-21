@@ -5,8 +5,8 @@ var _biome_repository: BiomeRepository
 var _biome_layers_state: BiomesLayerState
 
 func init(node: Node):
-	_biome_repository = Locator.get_service(BiomeRepository, node)
-	_biome_layers_state = Locator.get_service(BiomesLayerState, node)
+	_biome_repository = Locator.get_service(BiomeRepository)
+	_biome_layers_state = Locator.get_service(BiomesLayerState)
 
 #
 # Biomes list

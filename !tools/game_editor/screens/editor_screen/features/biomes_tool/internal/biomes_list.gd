@@ -6,7 +6,7 @@ extends Control
 @onready var _name_input: TextEdit = %NameInput
 @onready var _type_option: OptionButton = %TypeOption
 
-@onready var _state: GameEditor__BiomesToolState = Locator.get_service(GameEditor__BiomesToolState, self)
+@onready var _state: GameEditor__BiomesToolState = Locator.get_service(GameEditor__BiomesToolState)
 
 func _ready() -> void:
 	_state.biomes_changed.connect(_biomes_list_changed)
