@@ -4,6 +4,7 @@ extends Node
 var _storage: Dictionary = {}
 var _logger: Log = Log.get_global_logger().with("Locator")
 
+
 func _init() -> void:
 	initialize_service(GameDb)
 	initialize_service(SaveDb)
@@ -55,7 +56,7 @@ func get_service(script: Script, emit_callable: Callable = func(o): pass) -> Obj
 		connect(signal_name, _request_to_remove_signal, CONNECT_ONE_SHOT)
 	
 	connect(signal_name, emit_callable, CONNECT_ONE_SHOT)
-	_logger.info("A signal will be emitted connected to '[color=lightblue]%s[/color]' when service '[color=orangered]%s[/color] is initialized.'" % 
+	_logger.info("A signal '[color=lightblue]%s[/color]' will be emitted when service '[color=orangered]%s[/color] is initialized.'" % 
 		[signal_name, script.get_global_name()])
 	return null
 
