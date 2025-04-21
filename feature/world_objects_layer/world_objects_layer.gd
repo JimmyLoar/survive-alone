@@ -1,6 +1,8 @@
+class_name WorldObjectsLayer
 extends Node2D
 
 
+@export var show_collision_shapes: bool
 var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk", 16)
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)  
 
@@ -46,9 +48,12 @@ func _add_visible_object_node(object_id: int):
 
 
 func _load_object_node(entity: WorldObjectEntity):
-	if entity.resource is WorldLocationResource:
-		var node_package = load("res://feature/world_objects_layer/internal/world_location_node.tscn")
-		var node: WorldLocationNode = node_package.instantiate()
-		node.resource = entity.resource
-		node.position = entity.get_offset()
-		return node
+	var node = entity.packed_scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
+	node.position = entity.get_offset()
+	node.show_collision_shape = show_collision_shapes
+	return node
+
+func reset():
+	for child in get_children():
+		remove_child(child)
+	_visible_object_nodes.clear()

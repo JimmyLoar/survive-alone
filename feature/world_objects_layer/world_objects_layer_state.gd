@@ -2,9 +2,9 @@ class_name WorldObjectsLayerState
  
 
 var _world_object_repository: WorldObjectRepository
-var _host_node: Node
+var _host_node: WorldObjectsLayer
 
-func _init(host_node: Node):
+func _init(host_node: WorldObjectsLayer):
 	_host_node = host_node
 
 class VisibleObjectsDiff:

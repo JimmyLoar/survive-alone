@@ -4,6 +4,8 @@ extends Node2D
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16) 
 @onready var _forest_layer: TileMapLayer = $"ForestLayer"
 @onready var _grass_layer: TileMapLayer = $"GrassLayer"
+@onready var _water_layer: TileMapLayer = $"WaterLayer"
+@onready var _ground_layer: TileMapLayer = $"GroundLayer"
 @onready var _virtual_chunks_state: VirtualChunksState = Locator.get_service(VirtualChunksState)
 
 var _state: BiomesLayerState
@@ -37,6 +39,8 @@ func _clear_rect(rect: Rect2i):
 func _clear_tile(pos: Vector2i):
 	_forest_layer.erase_cell(pos)
 	_grass_layer.erase_cell(pos)
+	_water_layer.erase_cell(pos)
+	_ground_layer.erase_cell(pos)
 
 func _rerender_rect(rect: Rect2i):
 	for x in range(rect.position.x, rect.end.x):
@@ -49,7 +53,11 @@ func _rerender_tile(pos: Vector2i):
 	
 	for biome: BiomeEntity in tile_biomes:
 		match biome.type:
-			BiomeEntity.FOREST_TYPE:
+			BiomeResource.BiomeViewType.Forest:
 							_forest_layer.set_cell(pos, 1, Vector2i(2, 0))
-			BiomeEntity.GRASS_TYPE:
-							_forest_layer.set_cell(pos, 1, Vector2i(3, 0))
+			BiomeResource.BiomeViewType.Ground:
+							_ground_layer.set_cell(pos, 1, Vector2i(3, 0))
+			BiomeResource.BiomeViewType.Water:
+							_water_layer.set_cell(pos, 1, Vector2i(4, 0))
+			BiomeResource.BiomeViewType.Ground:
+							_grass_layer.set_cell(pos, 1, Vector2i(3, 0))
