@@ -1,6 +1,9 @@
 extends Node
 
 
+var _storage: Dictionary = {}
+var _logger: Log = Log.get_global_logger().with("Locator")
+
 func _init() -> void:
 	initialize_service(GameDb)
 	initialize_service(SaveDb)
@@ -9,19 +12,22 @@ func _init() -> void:
 	initialize_service(ExecuteKeeperState)
 
 
-var _storage: Dictionary = {}
-
-
 func add_initialized_service(service: Object) -> void:
 	var _name = service.get_script().get_global_name()
+	if _storage.has(_name):
+		return
+	
 	_storage[_name] = service
-	Log.get_global_logger().debug("added initialized service '[color=red]%s[/color]'" % [_name])
+	_logger.info("added initialized service '[color=red]%s[/color]'" % [_name])
 
 
 func initialize_service(script: GDScript, values: Array = []):
 	var _name = script.get_global_name()
+	if _storage.has(_name):
+		return
+	
 	var property = script.new.callv(values)
-	Log.get_global_logger().debug("finished initialize service '[color=red]%s[/color]'.
+	_logger.info("finished initialize service '[color=red]%s[/color]'.
 		[color=yellow]Initialize values[/color]: " % [_name], values)
 	_storage[_name] = property
 	
@@ -35,7 +41,7 @@ func get_service(script: Script, emit_callable: Callable = func(o): pass) -> Obj
 	if _storage.has(script.get_global_name()):
 		return _storage[script.get_global_name()]
 	
-	Log.get_global_logger().debug("Failed to get service an '[color=red]%s[/color]' because it wasn't initialized!\n" % 
+	_logger.warn("Failed to get service an '[color=red]%s[/color]' because it wasn't initialized!\n" % 
 		[script.get_global_name()], get_stack())
 	
 	if not emit_callable:
@@ -47,15 +53,6 @@ func get_service(script: Script, emit_callable: Callable = func(o): pass) -> Obj
 		connect(signal_name, remove_user_signal, CONNECT_ONE_SHOT)
 	
 	connect(signal_name, emit_callable, CONNECT_ONE_SHOT)
-	Log.get_global_logger().debug("A signal will be emitted connected to '[color=lightblue]%s[/color]' when server '[color=red]%s[/color] is initialized.' \n" % 
+	_logger.info("A signal will be emitted connected to '[color=lightblue]%s[/color]' when server '[color=red]%s[/color] is initialized.'" % 
 		[script.get_global_name()])
 	return null
-
-
-
-func _init_state(property: Variant, state: GDScript, _signal: Signal, values: Array = []) -> Object:
-	if not property:
-		property = state.new.callv(values)
-		_signal.emit(property)
-		Log.get_global_logger().debug("init state '[color=red]%s[/color] %s'\n" % [state.get_global_name(), property], values)
-	return property 
