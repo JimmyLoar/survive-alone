@@ -8,7 +8,7 @@ var click_to_cansel := false
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(GameTimeState, GameTimeState.new(self), self, Injector.ContainerType.CLOSEST)
+	_state = Locator.initialize_service(GameTimeState, [self])
 
 
 func _ready() -> void:
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _register_methods():
-	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	var execute_keeper := Locator.get_service(ExecuteKeeperState) as ExecuteKeeperState
 	var _use_time := func(time:int, real_time: float, use_progress_bar: bool):
 		_state.timeskip(time, real_time, use_progress_bar)
 		await _state.finished_skip

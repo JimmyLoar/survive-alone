@@ -4,16 +4,14 @@ var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk",
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)  
 
 var _state: VirtualChunksState
-var _main_camera_state: MainCameraState
 
 func _enter_tree() -> void:
-	_state = Injector.provide(VirtualChunksState, VirtualChunksState.new(), self, Injector.ContainerType.CLOSEST)
-	Locator.ready_main_camera.connect(_on_ready_main_camera, CONNECT_ONE_SHOT)
+	_state = Locator.initialize_service(VirtualChunksState)
+	Locator.get_service(MainCameraState, _on_ready_main_camera)
 
 
 func _on_ready_main_camera(camera: MainCameraState):
-	_main_camera_state = camera
-	_main_camera_state.viewport_rect_changed.connect(Callable(self, "_on_main_camera_viewport_changed"))
+	camera.viewport_rect_changed.connect(Callable(self, "_on_main_camera_viewport_changed"))
 
 
 func _on_main_camera_viewport_changed(viewport: Rect2):

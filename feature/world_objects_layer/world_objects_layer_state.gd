@@ -52,6 +52,7 @@ func get_object_by_position_fast(pos: Vector2) -> WorldObjectEntity:
 	
 	return null
 
+
 func request_rerender() -> void:
 	_visible_objects = {}
 	(_host_node as  WorldObjectsLayer).reset()

@@ -10,16 +10,16 @@ extends CanvasLayer
 @onready var _chess_big_optim: CheckBox = %BigSizeOptimisations
 @onready var _chess_progress: Label = %ChessMapProgress
 
-@onready var _game_editor_state: GameEditorState = Injector.inject(GameEditorState, self)
+@onready var _game_editor_state: GameEditorState = Locator.get_service(GameEditorState, self)
 
 var _db: GameDb
 var _biome_repository: BiomeRepository
 var _biome_rect_repository: BiomeRectRepository
 
 func _enter_tree() -> void:
-	_db = Injector.provide(GameDb, GameDb.new(), self)
-	_biome_repository = Injector.provide(BiomeRepository, BiomeRepository.new(self), self)
-	_biome_rect_repository = Injector.provide(BiomeRectRepository, BiomeRectRepository.new(self), self)
+	_db = Locator.initialize_service(GameDb, GameDb.new())
+	_biome_repository = Locator.initialize_service(BiomeRepository, BiomeRepository.new(self))
+	_biome_rect_repository = Locator.initialize_service(BiomeRectRepository, BiomeRectRepository.new(self))
 
 func _on_open_dialog_file_selected(path: String) -> void:
 	_game_editor_state.open_editor_screen(path)

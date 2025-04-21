@@ -8,8 +8,8 @@ var _host_node: BiomesLayer
 
 func _init(host_node: BiomesLayer) -> void:
 	_host_node = host_node
-	_biome_rect_repository = Injector.inject(BiomeRectRepository, host_node)
-	_biome_repository = Injector.inject(BiomeRepository, host_node)
+	_biome_rect_repository = Locator.get_service(BiomeRectRepository)
+	_biome_repository = Locator.get_service(BiomeRepository)
 
 
 func global_to_map(global: Vector2) -> Vector2i:

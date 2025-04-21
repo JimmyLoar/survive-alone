@@ -2,7 +2,7 @@ extends MarginContainer
 
 var rect: Rect2
 var center: Vector2
-@onready var camera_state: MainCameraState = await Locator.get_main_camera()
+@onready var camera_state: MainCameraState = Locator.get_service(MainCameraState)
 @onready var character_state: CharacterState = Locator.get_service(CharacterState)
 
 

@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func _register_methods():
-	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	var execute_keeper := Locator.get_service(ExecuteKeeperState) as ExecuteKeeperState
 	
 	var set_prop = func (prop_name: String, value: int):
 		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity

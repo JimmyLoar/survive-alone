@@ -7,18 +7,17 @@ var _state: CharacterState
 @export var move_speed = 50 # pixels per time_unit
 @onready var _moving_line = %MovingLine
 @onready var _line_cross = %Cross
-@onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
-@onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
-@onready var _character_repositoty: CharacterRepository = Injector.inject(CharacterRepository, self)
-@onready var _save_db: SaveDb = Injector.inject(SaveDb, self)
-@onready var _resource_db: ResourceDb = Injector.inject(ResourceDb, self)
+@onready var _screen_mouse_events: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState)
+@onready var _game_time: GameTimeState = Locator.get_service(GameTimeState)
+@onready var _character_repositoty: CharacterRepository = Locator.get_service(CharacterRepository)
+@onready var _save_db: SaveDb = Locator.get_service(SaveDb)
+@onready var _resource_db: ResourceDb = Locator.get_service(ResourceDb)
 var _character_properties_repository: CharacterPropertyRepository
 
 
 func _enter_tree() -> void:
 	_state = Locator.initialize_service(CharacterState, [self])
-	#Injector.provide(CharacterState, CharacterState.new(self), self, Injector.ContainerType.CLOSEST)
-	_character_properties_repository = Injector.provide(CharacterPropertyRepository, CharacterPropertyRepository.new(), self, Injector.ContainerType.CLOSEST)
+	_character_properties_repository = Locator.initialize_service(CharacterPropertyRepository)
 
 
 func _ready() -> void:

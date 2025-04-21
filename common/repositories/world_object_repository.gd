@@ -4,30 +4,45 @@ extends Injectable
 var _game_db: GameDb
 var _save_db: SaveDb
 
-func _init(host_node: Node) -> void:
-	_game_db = Injector.inject(GameDb, host_node)
-	_save_db = Injector.inject(SaveDb, host_node)
+
+func _init() -> void:
+	_game_db = Locator.get_service(GameDb, _set_db)
+	_save_db = Locator.get_service(SaveDb, _set_db)
+
+
+func _set_db(db):
+	if db is GameDb:
+		_game_db = db
+	if db is SaveDb:
+		_save_db = db
+
 
 func is_save_id(id: int) -> bool:
 	return id % 2 == 0
 
+
 func entity_to_game_db_id(id: int) -> int:
 	return floor(id / 2.)
+
 
 func entity_to_save_db_id(id: int) -> int:
 	return ceil(id / 2.)
 
+
 func game_db_to_entity_id(id: int) -> int:
 	return id * 2 + 1
 
+
 func save_to_entity_id(id: int) -> int:
 	return id * 2
+
 
 func get_by_id(id: int) -> WorldObjectEntity:
 	if is_save_id(id):
 		return get_by_id_from_save(id)
 	else:
 		return get_by_id_from_game_db(id)
+
 
 func get_by_id_from_game_db(id: int) -> WorldObjectEntity:
 	var select_condition = "id = %d" % entity_to_game_db_id(id)
@@ -41,6 +56,7 @@ func get_by_id_from_game_db(id: int) -> WorldObjectEntity:
 	entity.id = game_db_to_entity_id(entity.id)
 	return entity
 
+
 func get_by_id_from_save(id: int) -> WorldObjectEntity:
 	var select_condition = "id = %d" % entity_to_save_db_id(id)
 	
@@ -52,6 +68,7 @@ func get_by_id_from_save(id: int) -> WorldObjectEntity:
 	var entity = _row_to_entity(rows[0])
 	entity.id = save_to_entity_id(entity.id)
 	return entity
+
 
 func get_all_intersected(rect: Rect2i) -> Array[WorldObjectEntity]:
 	var x = rect.position.x
@@ -89,6 +106,7 @@ WHERE
 	entities.append_array(save_entities)
 	return entities
 
+
 func has(id: int):
 	var mappedID
 	var db;
@@ -107,11 +125,13 @@ func has(id: int):
 
 	return rows.size() > 0
 
+
 func insert(entity: WorldObjectEntity, to_game_db: bool):
 	if has(entity.id): 
 		update(entity)
 	else:
 		create(entity, to_game_db)
+
 
 func update(entity: WorldObjectEntity):
 	var mappedID
@@ -129,6 +149,7 @@ func update(entity: WorldObjectEntity):
 	mapped_entity.id = mappedID
 	db.connection.update_rows("world_object", select_condition, _entity_to_row(mapped_entity))
 
+
 func create(entity: WorldObjectEntity, to_game_db: bool) -> int:
 	var db;
 
@@ -145,7 +166,7 @@ func create(entity: WorldObjectEntity, to_game_db: bool) -> int:
 		entity.id = save_to_entity_id(db_id)
 	
 	return entity.id
-	
+
 
 func delete(id: int):
 	var mappedID
@@ -161,6 +182,7 @@ func delete(id: int):
 	var select_condition = "id = %d" % mappedID
 	db.connection.delete_rows("world_object", select_condition)
 
+
 func _row_to_entity(row: Dictionary) -> WorldObjectEntity:
 	var entity = WorldObjectEntity.new()
 	entity.id = row.id
@@ -168,6 +190,7 @@ func _row_to_entity(row: Dictionary) -> WorldObjectEntity:
 	entity.packed_scene = load(ResourceUID.get_id_path(ResourceUID.text_to_id(row.uid)))
 
 	return entity
+
 
 func _entity_to_row(entity: WorldObjectEntity, without_id = false) -> Dictionary:
 	var row = {}

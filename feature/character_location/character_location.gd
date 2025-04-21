@@ -2,16 +2,14 @@ class_name CharacterLocation
 extends Node
 
 @onready var _character_state: CharacterState = Locator.get_service(CharacterState)
-@onready var _biomes_layer_state: BiomesLayerState = Injector.inject(BiomesLayerState, self)
-@onready var _world_objects_layer_state: WorldObjectsLayerState = Injector.inject(
-	WorldObjectsLayerState, self
-)
+@onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
+@onready var _world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 
 var _state: CharacterLocationState
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(CharacterLocationState, CharacterLocationState.new(self), self, Injector.ContainerType.CLOSEST)
+	_state = Locator.initialize_service(CharacterLocationState, [self])
 
 
 func _ready() -> void:

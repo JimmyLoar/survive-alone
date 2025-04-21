@@ -8,8 +8,8 @@ script/source = "extends MarginContainer
 signal finished
 
 @onready var grid_container: GridContainer = $GridContainer
-@onready var _inventory_location_state: InventoryLocationState = Injector.inject(InventoryLocationState, self)
-@onready var _inventory_repository: InventoryRepository = Injector.inject(InventoryRepository, self)
+@onready var _inventory_location_state: InventoryLocationState = Locator.get_service(InventoryLocationState)
+@onready var _inventory_repository: InventoryRepository = Locator.get_service(InventoryRepository)
 
 func update(drop: SearchDropResource):
 	if not drop: 

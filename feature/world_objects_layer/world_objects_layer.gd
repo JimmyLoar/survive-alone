@@ -1,22 +1,21 @@
-class_name WorldObjectsLayer
 extends Node2D
 
-@export var show_collision_shapes: bool
+
 var chunk_size: int = ProjectSettings.get_setting("application/game/size/chunk", 16)
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)  
 
 var _state: WorldObjectsLayerState
 var _visible_object_nodes = Dictionary()
 
-@onready var _virtual_chunks_state: VirtualChunksState = Injector.inject(VirtualChunksState, self)
+@onready var _virtual_chunks_state: VirtualChunksState = Locator.get_service(VirtualChunksState)
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(WorldObjectsLayerState, WorldObjectsLayerState.new(self), self, Injector.ContainerType.CLOSEST)
+	_state = Locator.initialize_service(WorldObjectsLayerState)
 
 
 func _ready() -> void:
-	_state._world_object_repository = Injector.inject(WorldObjectRepository, self)
+	_state._world_object_repository = Locator.get_service(WorldObjectRepository)
 	_virtual_chunks_state.visible_chunks_rect_changed.connect(_on_virtual_chunks_rect_changed)
 	_state.visible_objects_changed.connect(_on_visible_objects_changed)
 	
@@ -47,13 +46,9 @@ func _add_visible_object_node(object_id: int):
 
 
 func _load_object_node(entity: WorldObjectEntity):
-	var node = entity.packed_scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
-	node.position = entity.get_offset()
-	node.show_collision_shape = show_collision_shapes
-	return node
-
-func reset():
-	for child in get_children():
-		remove_child(child)
-	_visible_object_nodes.clear()
-	
+	if entity.resource is WorldLocationResource:
+		var node_package = load("res://feature/world_objects_layer/internal/world_location_node.tscn")
+		var node: WorldLocationNode = node_package.instantiate()
+		node.resource = entity.resource
+		node.position = entity.get_offset()
+		return node

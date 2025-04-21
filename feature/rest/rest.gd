@@ -36,12 +36,12 @@ var _state: RestScreenState
 @onready var effectivity_lable: Label = %EffectivityLable
 
 @onready var character_state: CharacterState = Locator.get_service(CharacterState)
-@onready var game_time: GameTimeState = Injector.inject(GameTimeState, self)
+@onready var game_time: GameTimeState = Locator.get_service(GameTimeState)
 @onready var button_accept_rest: Button = %ButtonAcceptRest
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(RestScreenState, RestScreenState.new(self), self, Injector.ContainerType.CLOSEST)
+	_state = Locator.initialize_service(RestScreenState, [self])
 
 
 func _ready():

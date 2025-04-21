@@ -4,7 +4,7 @@ class_name Injectable extends Resource
 
 ## The reference to the node that this injectable is provided by.
 ## The second argument is the ref.
-## Example: [Injector.provide('xxx', 'root')] making [node_ref = 'root']
+## Example: [Locator.initialize_service('xxx', 'root')] making [node_ref = 'root']
 var node_ref: Node
 ## Where this injectable will be provided.
 static var provided_in: Variant = null

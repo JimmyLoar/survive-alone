@@ -3,8 +3,10 @@ extends Injectable
 
 var _db: GameDb
 
-func _init(host_node: Node) -> void:
-	_db = Injector.inject(GameDb, host_node)
+
+func _init() -> void:
+	_db = Locator.get_service(GameDb)
+
 
 func get_by_id(id: int) -> BiomeRectEntity:
 	var select_condition = "SELECT 1 FROM biome_rect WHERE id = %d" % id
@@ -15,6 +17,7 @@ func get_by_id(id: int) -> BiomeRectEntity:
 	
 	return _row_to_entity(rows[0])
 
+
 func get_all_intersected(rect: Rect2i) -> Array[BiomeRectEntity]:
 	var x = rect.position.x
 	var y = rect.position.y
@@ -23,11 +26,11 @@ func get_all_intersected(rect: Rect2i) -> Array[BiomeRectEntity]:
 	var select_condition = """
 SELECT *
 FROM biome_rect rect
-WHERE 
-	end_x > %d
-	AND x < %d
-	AND end_y > %d
-	AND y < %d;
+WHERE NOT
+	(rect.x < %d OR
+	rect.end_x > %d OR
+	rect.y < %d OR
+	rect.end_y > %d);
 """ % [x, end_x, y, end_y]
 	_db.connection.query(select_condition)
 	var rows = _db.connection.query_result
@@ -38,9 +41,6 @@ WHERE
 	entities.assign(rows.map(Callable(self, "_row_to_entity")))
 	return entities
 
-func get_all_by_tile_pos(pos: Vector2i) -> Array[BiomeRectEntity]:
-	var rect = Rect2i(pos, Vector2i.ONE)
-	return get_all_intersected(rect)
 
 func has(id: int):
 	if id < 0:
@@ -50,23 +50,28 @@ func has(id: int):
 
 	return rows.size() > 0
 
+
 func insert(entity: BiomeRectEntity):
 	if has(entity.id): 
 		update(entity)
 	else:
 		create(entity)
 
+
 func update(entity: BiomeRectEntity):
 	var select_condition = "id = %d" % entity.id
 	_db.connection.update_rows("biome_rect", select_condition, _entity_to_row(entity))
+
 
 func create(entity: BiomeRectEntity) -> int:
 	_db.connection.insert_row("biome_rect", _entity_to_row(entity, true))
 	return _db.connection.last_insert_rowid
 
+
 func delete(id: int):
 	var select_condition = "id = %d" % id
 	_db.connection.delete_rows("biome_rect", select_condition)
+
 
 func _row_to_entity(row: Dictionary) -> BiomeRectEntity:
 	var entity = BiomeRectEntity.new()
@@ -75,6 +80,7 @@ func _row_to_entity(row: Dictionary) -> BiomeRectEntity:
 	entity.biome_id = row.biome_id
 
 	return entity
+
 
 func _entity_to_row(entity: BiomeRectEntity, without_id = false) -> Dictionary:
 	var row = {}

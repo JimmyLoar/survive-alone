@@ -5,10 +5,9 @@ var _resource_db: ResourceDb
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(GameState, GameState.new(), self)
-	_resource_db = Injector.provide(ResourceDb,  ResourceDb.new(), self)
+	_state = Locator.get_service(GameState)
+	_resource_db = Locator.get_service(ResourceDb)
 	_resource_db.db_connect("res://resources/database.gddb")
-	Injector.provide(ExecuteKeeperState, ExecuteKeeperState.new(), self)
 
 
 func _ready() -> void:

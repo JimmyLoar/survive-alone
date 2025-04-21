@@ -4,12 +4,12 @@ extends Camera2D
 @export var max_zoom = 2.0
 @export var min_zoom = 0.5
 
-@onready var _screen_mouse_event_state: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
+@onready var _screen_mouse_event_state: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState)
 var _state: MainCameraState
 
 
 func _ready() -> void:
-	_state = Locator.init_main_camera(self)
+	_state = Locator.initialize_service(MainCameraState, [self])
 	_screen_mouse_event_state.left_button_changed.connect(Callable(self, "_on_screen_left_mouse_button_changed"))
 	_screen_mouse_event_state.zoom_changed.connect(Callable(self, "_on_screen_zoom_changed"))
 	_state.mode_changed.connect(Callable(self, "mode_changed"))

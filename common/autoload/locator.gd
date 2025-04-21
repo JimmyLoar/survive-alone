@@ -18,31 +18,33 @@ func add_initialized_service(service: Object) -> void:
 		return
 	
 	_storage[_name] = service
-	_logger.info("added initialized service '[color=red]%s[/color]'" % [_name])
+	_logger.info("added initialized service '[color=orangered]%s[/color]'" % [_name])
 
 
 func initialize_service(script: GDScript, values: Array = []):
 	var _name = script.get_global_name()
 	if _storage.has(_name):
-		return
+		return _storage[script.get_global_name()]
 	
-	var property = script.new.callv(values)
-	_logger.info("finished initialize service '[color=red]%s[/color]'.
-		[color=yellow]Initialize values[/color]: " % [_name], values)
-	_storage[_name] = property
+	var service = script.new.callv(values)
+	if not service:
+		_logger.warn("FAILED initialize service '[color=orangered]%s[/color]', return Nil!" % [_name], values)
+	else:
+		_logger.info("finished initialize service '[color=orangered]%s[/color]'." % [_name], values)
+	_storage[_name] = service
 	
 	var signal_name = "ready_%s" % script.get_global_name()
 	if has_user_signal(signal_name):
-		emit_signal(signal_name)
-	return property
+		emit_signal(signal_name, service)
+	return service
 
 
 func get_service(script: Script, emit_callable: Callable = func(o): pass) -> Object:
 	if _storage.has(script.get_global_name()):
 		return _storage[script.get_global_name()]
 	
-	_logger.warn("Failed to get service an '[color=red]%s[/color]' because it wasn't initialized!\n" % 
-		[script.get_global_name()], get_stack())
+	_logger.warn("Failed to get service an '[color=orangered]%s[/color]' because it wasn't initialized!" % 
+		[script.get_global_name()])
 	
 	if not emit_callable:
 		return null
@@ -50,9 +52,13 @@ func get_service(script: Script, emit_callable: Callable = func(o): pass) -> Obj
 	var signal_name = "ready_%s" % script.get_global_name()
 	if not has_user_signal(signal_name):
 		add_user_signal(signal_name, [{"name": "service", "type": TYPE_OBJECT}])
-		connect(signal_name, remove_user_signal, CONNECT_ONE_SHOT)
+		connect(signal_name, _request_to_remove_signal, CONNECT_ONE_SHOT)
 	
 	connect(signal_name, emit_callable, CONNECT_ONE_SHOT)
-	_logger.info("A signal will be emitted connected to '[color=lightblue]%s[/color]' when server '[color=red]%s[/color] is initialized.'" % 
-		[script.get_global_name()])
+	_logger.info("A signal will be emitted connected to '[color=lightblue]%s[/color]' when service '[color=orangered]%s[/color] is initialized.'" % 
+		[signal_name, script.get_global_name()])
 	return null
+
+
+func _request_to_remove_signal(_object: Object):
+	remove_user_signal("ready_%s" % _object.get_script().get_global_name())
