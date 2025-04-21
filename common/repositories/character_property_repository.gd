@@ -1,5 +1,5 @@
 class_name CharacterPropertyRepository
-extends Injectable
+ 
 
 var TABLE_NAME = "character_prop"
 var _save_db: SaveDb

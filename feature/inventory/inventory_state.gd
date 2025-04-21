@@ -1,5 +1,5 @@
 class_name InventoryState
-extends Injectable
+ 
 
 signal changed_inventory_entity(new_entity: InventoryEntity)
 

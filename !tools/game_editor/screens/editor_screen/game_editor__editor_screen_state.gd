@@ -1,5 +1,5 @@
 class_name GameEditor__EditorScreenState
-extends Injectable
+ 
 
 var _host_node: Node
 

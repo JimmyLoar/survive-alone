@@ -1,5 +1,5 @@
 class_name ScreenMouseEventsState
-extends Injectable
+ 
 
 class MouseButton:
 	pass

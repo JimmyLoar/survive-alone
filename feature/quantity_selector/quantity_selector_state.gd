@@ -1,5 +1,5 @@
 class_name QuantitySelectorState
-extends Injectable
+ 
 
 var node: QuantitySelector
 

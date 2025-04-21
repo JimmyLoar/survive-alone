@@ -1,5 +1,5 @@
 class_name SfxPlayerState
-extends Injectable
+ 
 
 var _node
 

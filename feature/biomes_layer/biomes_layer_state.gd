@@ -1,5 +1,5 @@
 class_name BiomesLayerState
-extends Injectable
+ 
 
 var _biome_rect_repository: BiomeRectRepository
 var _biome_repository: BiomeRepository

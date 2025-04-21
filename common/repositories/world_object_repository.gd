@@ -1,5 +1,5 @@
 class_name WorldObjectRepository
-extends Injectable
+ 
 
 var _game_db: GameDb
 var _save_db: SaveDb

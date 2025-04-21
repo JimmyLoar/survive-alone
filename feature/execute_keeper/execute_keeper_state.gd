@@ -1,6 +1,6 @@
 @tool
 class_name ExecuteKeeperState
-extends Injectable
+ 
 
 ## Путь сохранения конфиг файла
 const PATH = "res://feature/execute_keeper/execute_keeper.cfg"

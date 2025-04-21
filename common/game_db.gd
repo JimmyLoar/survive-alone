@@ -1,5 +1,4 @@
 class_name GameDb
-extends Injectable
 
 var is_connection_opened: bool:
 	get:

@@ -1,5 +1,5 @@
 class_name ActionState
-extends Injectable
+ 
 
 
 var last_item: ItemEntity

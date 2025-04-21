@@ -1,5 +1,5 @@
 class_name EventState
-extends Injectable
+ 
 
 var _node: EventDisplay
 var _events: Array[EventResource] = []

@@ -1,5 +1,5 @@
 class_name WorldObjectsLayerState
-extends Injectable
+ 
 
 var _world_object_repository: WorldObjectRepository
 var _host_node: Node

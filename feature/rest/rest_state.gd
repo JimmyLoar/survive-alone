@@ -1,5 +1,5 @@
 class_name RestScreenState
-extends Injectable
+ 
 
 
 var _node

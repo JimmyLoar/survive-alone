@@ -1,5 +1,5 @@
 class_name BiomeRepository
-extends Injectable
+ 
 
 var _db: GameDb
 

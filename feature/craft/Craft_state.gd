@@ -1,4 +1,4 @@
-extends Injectable
+ 
 class_name CraftState
 
 var _lambda: Callable

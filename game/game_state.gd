@@ -1,5 +1,5 @@
 class_name GameState
-extends Injectable
+ 
 
 signal current_screen_changed(prev_screen: Node, current_screen: Node)
 var current_screen: Node:

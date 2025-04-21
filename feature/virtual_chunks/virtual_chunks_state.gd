@@ -1,7 +1,7 @@
 # Not visible chunks. Just chunk rects to render
 # used to render objects only in viewport and closest
 class_name VirtualChunksState
-extends Injectable
+ 
 
 var _visible_chunks_rect: Rect2i:
 	set(value):
