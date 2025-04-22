@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 func _on_visible_chunks_rect_changed(chunks_rect: Rect2i):
 	var tiles_rect = Rect2i(chunks_rect.position * tile_size, chunks_rect.size * tile_size)
-	_state.visible_tiles_rect = tiles_rect
+	_state.set_visible_tiles_rect(tiles_rect)
 
 func _on_visible_tiles_rect_changed(diff: VisibleTilesDiff, _visible_rect: Rect2i):
 	for rect in diff.removed:
@@ -52,12 +52,12 @@ func _rerender_tile(pos: Vector2i):
 	var tile_biomes = _state.get_visible_tile_biomes_fast(pos)
 	
 	for biome: BiomeEntity in tile_biomes:
-		match biome.type:
-			BiomeResource.BiomeViewType.Forest:
-							_forest_layer.set_cell(pos, 1, Vector2i(2, 0))
-			BiomeResource.BiomeViewType.Ground:
-							_ground_layer.set_cell(pos, 1, Vector2i(3, 0))
+		match biome.resource.view_type:
 			BiomeResource.BiomeViewType.Water:
-							_water_layer.set_cell(pos, 1, Vector2i(4, 0))
+							_water_layer.set_cell(pos, 0, Vector2i(0, 0))
 			BiomeResource.BiomeViewType.Ground:
-							_grass_layer.set_cell(pos, 1, Vector2i(3, 0))
+							_ground_layer.set_cell(pos, 0, Vector2i(1, 0))
+			BiomeResource.BiomeViewType.Forest:
+							_forest_layer.set_cell(pos, 0, Vector2i(2, 0))
+			BiomeResource.BiomeViewType.Grass:
+							_grass_layer.set_cell(pos, 0, Vector2i(3, 0))
