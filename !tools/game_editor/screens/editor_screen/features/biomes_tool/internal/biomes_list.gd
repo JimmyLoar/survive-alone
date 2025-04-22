@@ -4,9 +4,11 @@ extends Control
 @onready var _biomes_list: ItemList = %BiomesList
 @onready var _id_label: Label = %IdLabel
 @onready var _name_input: TextEdit = %NameInput
-@onready var _type_option: OptionButton = %TypeOption
+@onready var _resource_button: Button = %ResourceButton
+@onready var _choose_resource_dialog: FileDialog = %ChooseResourceDialog
 
 @onready var _state: GameEditor__BiomesToolState = Locator.get_service(GameEditor__BiomesToolState)
+@onready var _biomes_layer: BiomesLayerState = Locator.get_service(BiomesLayerState)
 
 func _ready() -> void:
 	_state.biomes_changed.connect(_biomes_list_changed)
@@ -47,17 +49,9 @@ func _selected_biome_id_changed(id: int):
 	var biome = _state.biomes[index]
 	_id_label.text = "%d" % biome.id
 	_name_input.text = biome.name
-	_type_option.selected = biome.type
+	_resource_button.text = biome.resource.resource_path.get_file()
 	
 	_inspector.show()
-
-func _on_type_option_item_selected(type: int) -> void:
-	var index = Utils.find_index(_state.biomes, func(biome): return biome.id == _state.selected_biome_id)
-	var biome: BiomeEntity = _state.biomes[index]
-	
-	biome.type = type
-	
-	_state.update_selected_biome(biome)
 
 
 func _on_name_input_text_changed() -> void:
@@ -78,3 +72,32 @@ func _on_create_biome_pressed() -> void:
 
 func _on_remove_biome_pressed() -> void:
 	_state.remove_selected_biome()
+
+
+func _on_resource_button_pressed() -> void:
+	_choose_resource_dialog.show()
+
+
+
+func _on_choose_resource_dialog_file_selected(path: String) -> void:
+	var resource: BiomeResource = load(path)
+	
+	var index = Utils.find_index(_state.biomes, func(biome): return biome.id == _state.selected_biome_id)
+	var biome: BiomeEntity = _state.biomes[index]
+	
+	biome.resource = resource
+	_state.update_selected_biome(biome)
+	_resource_button.text = biome.resource.resource_path.get_file()
+	_biomes_layer.refresh_visible_biome(biome.id)
+
+
+func _on_refresh_resource_pressed() -> void:
+	var index = Utils.find_index(_state.biomes, func(biome): return biome.id == _state.selected_biome_id)
+	var biome: BiomeEntity = _state.biomes[index]
+	var path = biome.resource.resource_path
+	var resource: BiomeResource = load(path)
+	
+	biome.resource = resource
+	_state.update_selected_biome(biome)
+	_resource_button.text = biome.resource.resource_path.get_file()
+	_biomes_layer.refresh_visible_biome(biome.id)

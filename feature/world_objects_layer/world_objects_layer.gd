@@ -17,7 +17,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	_state._world_object_repository = Locator.get_service(WorldObjectRepository)
+	_state._world_object_repository = Locator.initialize_service(WorldObjectRepository)
 	_virtual_chunks_state.visible_chunks_rect_changed.connect(_on_virtual_chunks_rect_changed)
 	_state.visible_objects_changed.connect(_on_visible_objects_changed)
 	

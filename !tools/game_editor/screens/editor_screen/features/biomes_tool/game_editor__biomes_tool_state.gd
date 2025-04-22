@@ -38,7 +38,7 @@ func create_biome():
 	var biome = BiomeEntity.new()
 	
 	biome.name = "new biome"
-	biome.type = BiomeEntity.GRASS_TYPE
+	biome.type = BiomeResource.BiomeViewType.Ground
 	
 	var id = _biome_repository.create(biome)
 	reload_all_biomes()

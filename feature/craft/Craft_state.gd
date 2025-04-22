@@ -1,22 +1,24 @@
- 
 class_name CraftState
 
 var _lambda: Callable
 var _inventory_state: InventoryCharacterState
 var _time_state: GameTimeState
 
+
 var known_recipes: Array[BasicRecipe] = [
+	load("res://feature/craft/testrec.tres"),
+	load("res://feature/craft/ui/Recepies/test2.tres")
+	]
+
+var recipes: Array[BasicRecipe] = [
 	load("res://feature/craft/testrec.tres"),
 	load("res://feature/craft/ui/Recepies/test2.tres"),
 	load("res://feature/craft/ui/Recepies/new_resource.tres"),
-	load("res://feature/craft/ui/Recepies/new_resource.tres"),
-	load("res://feature/craft/ui/Recepies/new_resource.tres"),
 	]
 
+
 func _init() -> void:
-	Callable(func():
-		_init_dependencies()
-	).call_deferred()
+	_init_dependencies.call_deferred()
 
 
 func _init_dependencies():
@@ -55,11 +57,15 @@ func recipe_can_be_crafted(recipe: BasicRecipe) -> bool:
 
 func is_recipe_known(recipe: BasicRecipe) -> bool:
 	return recipe in known_recipes
-	
+
+
+signal recipe_added(recipe: BasicRecipe)
+
 
 func add_recipe(recipe: BasicRecipe):
 	if recipe not in known_recipes:
 		known_recipes.append(recipe)
+		recipe_added.emit(recipe)
 
 
 signal material_changed(material_name: String)

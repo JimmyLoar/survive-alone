@@ -40,14 +40,14 @@ func initialize_service(script: GDScript, values: Array = []):
 	return service
 
 
-func get_service(script: Script, emit_callable: Callable = func(o): pass) -> Object:
+func get_service(script: Script, emit_callable := Callable()) -> Object:
 	if _storage.has(script.get_global_name()):
 		return _storage[script.get_global_name()]
 	
 	_logger.warn("Failed to get service an '[color=orangered]%s[/color]' because it wasn't initialized!" % 
 		[script.get_global_name()])
 	
-	if not emit_callable:
+	if emit_callable.is_null():
 		return null
 	
 	var signal_name = "ready_%s" % script.get_global_name()

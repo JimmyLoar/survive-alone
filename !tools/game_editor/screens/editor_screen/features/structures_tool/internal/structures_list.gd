@@ -5,7 +5,7 @@ const WORLD_OBJECT_FOLDER_PATH = "res://common/world_objects/instances/"
 @onready var _objects_list: ItemList = %ObjectsList
 @onready var _search_input: TextEdit = %SearchInput
 @onready var _inspector: Node = %Inspector
-@onready var _state: GameEditor__StructuresToolState = Injector.inject(GameEditor__StructuresToolState, self)
+@onready var _state: GameEditor__StructuresToolState = Locator.get_service(GameEditor__StructuresToolState)
 
 func _ready() -> void:
 	_state.world_objects_changed.connect(_on_world_objects_changed)

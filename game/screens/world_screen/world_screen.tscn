@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
-[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="2_irxn0"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_irxn0"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
 [ext_resource type="PackedScene" uid="uid://skppxmtw5diw" path="res://feature/virtual_chunks/virtual_chunks.tscn" id="3_6pu03"]
 [ext_resource type="PackedScene" uid="uid://d3tltb1ssxrye" path="res://feature/world_objects_layer/world_objects_layer.tscn" id="4_3odrv"]
@@ -35,7 +35,7 @@ var _state: EventState
 
 
 func _ready() -> void:
-	_state = Injector.inject(EventState, get_tree().root) as EventState
+	_state = Locator.get_service(EventState) as EventState
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -88,8 +88,6 @@ layer = 10
 
 [node name="PointerSpace" parent="UI" instance=ExtResource("13_pqelk")]
 show_behind_parent = true
-theme_override_constants/margin_top = 120
-theme_override_constants/margin_bottom = 80
 theme_override_constants/margin_top = 120
 theme_override_constants/margin_bottom = 80
 
