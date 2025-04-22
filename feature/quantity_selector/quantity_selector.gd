@@ -8,8 +8,9 @@ var on_cancel: Callable = func():;
 @onready var value_label: Label = $Panel/MarginContainer/VBoxContainer/QuantityContainer/ValueLabel
 @onready var slider: HSlider = $Panel/MarginContainer/VBoxContainer/HSlider
 
+
 func _enter_tree() -> void:
-	Injector.provide(QuantitySelectorState, QuantitySelectorState.new(self), self, Injector.ContainerType.CLOSEST)
+	Locator.initialize_service(QuantitySelectorState, [self])
 
 
 func open(max_value: int, _title: String, _on_confirm: Callable, _on_cancel: Callable):

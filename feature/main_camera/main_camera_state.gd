@@ -1,5 +1,5 @@
 class_name MainCameraState
-extends Injectable
+ 
 
 var _node: Camera2D
 func _init(node: Camera2D) -> void:

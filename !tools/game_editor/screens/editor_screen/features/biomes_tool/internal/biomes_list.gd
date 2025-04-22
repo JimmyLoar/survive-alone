@@ -7,8 +7,8 @@ extends Control
 @onready var _resource_button: Button = %ResourceButton
 @onready var _choose_resource_dialog: FileDialog = %ChooseResourceDialog
 
-@onready var _state: GameEditor__BiomesToolState = Injector.inject(GameEditor__BiomesToolState, self)
-@onready var _biomes_layer: BiomesLayerState = Injector.inject(BiomesLayerState, self)
+@onready var _state: GameEditor__BiomesToolState = Locator.get_service(GameEditor__BiomesToolState)
+@onready var _biomes_layer: BiomesLayerState = Locator.get_service(BiomesLayerState)
 
 func _ready() -> void:
 	_state.biomes_changed.connect(_biomes_list_changed)

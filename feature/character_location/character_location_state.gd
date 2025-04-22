@@ -1,5 +1,5 @@
 class_name CharacterLocationState
-extends Injectable
+ 
 
 var _host_node: CharacterLocation
 func _init(host_node: CharacterLocation) -> void:

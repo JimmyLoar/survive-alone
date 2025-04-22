@@ -1,6 +1,6 @@
 extends Control
 
-@onready var _state = Injector.inject(CraftState, self)
+@onready var _state = Locator.get_service(CraftState)
 
 func update_recipe_list():
 	for recipe in _state.recipes:

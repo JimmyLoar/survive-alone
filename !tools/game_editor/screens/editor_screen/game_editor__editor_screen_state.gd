@@ -1,12 +1,6 @@
 class_name GameEditor__EditorScreenState
-extends Injectable
 
-var _host_node: Node
 
-func _init(node: Node):
-	_host_node = node
-	
-	
 enum ToolType {
 	Biome = 0,
 	Structure = 1
@@ -33,7 +27,7 @@ var hovered_biome_tile_pos: Vector2i:
 			hovered_biome_tile_pos_changed.emit(value)
 
 func change_hovered_biome_tile_pos(global_mouse_pos: Vector2):
-	var _biome_layers_state = Injector.inject(BiomesLayerState, _host_node)
+	var _biome_layers_state = Locator.get_service(BiomesLayerState)
 	hovered_biome_tile_pos = _biome_layers_state.global_to_map(global_mouse_pos)
 	
 func unhover_biome_tile_pos():

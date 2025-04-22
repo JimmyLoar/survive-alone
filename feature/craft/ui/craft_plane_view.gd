@@ -2,7 +2,7 @@ extends Control
 class_name CraftPanelView
 
 var recipe: BasicRecipe
-@onready var _state = Injector.inject(CraftState, self)
+@onready var _state = Locator.get_service(CraftState)
 
 var names = []
 

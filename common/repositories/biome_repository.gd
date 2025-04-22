@@ -1,11 +1,11 @@
 class_name BiomeRepository
-extends Injectable
+ 
 
 var _db: GameDb
 
 
-func _init(host_node: Node) -> void:
-	_db = Injector.inject(GameDb, host_node)
+func _init() -> void:
+	_db = Locator.get_service(GameDb)
 
 
 func get_by_id(id: int) -> BiomeEntity:

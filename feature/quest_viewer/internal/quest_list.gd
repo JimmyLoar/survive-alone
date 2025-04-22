@@ -4,7 +4,7 @@ signal quest_selected(quest: QuestResource)
 
 @onready var quest_list: ItemList = %QuestList
 
-@onready var inventory: InventoryCharacterState = Injector.inject(InventoryCharacterState, self)
+@onready var inventory: InventoryCharacterState = Locator.get_service(InventoryCharacterState)
 
 var _last_index := 0
 

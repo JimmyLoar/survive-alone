@@ -9,7 +9,7 @@ extends HBoxContainer
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var label: Label = $ProgressBar/Label
-@onready var _character_state: CharacterState = Injector.inject(CharacterState, self)
+@onready var _character_state: CharacterState = Locator.get_service(CharacterState)
 
 
 func _ready() -> void:
@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func _register_methods():
-	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	var execute_keeper := Locator.get_service(ExecuteKeeperState) as ExecuteKeeperState
 	
 	var set_prop = func (prop_name: String, value: int):
 		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity

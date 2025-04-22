@@ -7,8 +7,8 @@ extends PanelContainer
 @onready var result_list: ItemList = %ResultList
 @onready var hint_container: VBoxContainer = %HintContainer
 
-@onready var action_state := Injector.inject(ActionState, self) as ActionState
-@onready var resource_db := Injector.inject(ResourceDb, self) as ResourceDb
+@onready var action_state := Locator.get_service(ActionState) as ActionState
+@onready var resource_db := Locator.get_service(ResourceDb) as ResourceDb
 
 
 var _state: EventState
@@ -20,8 +20,8 @@ var _result: Dictionary
 
 
 func _enter_tree() -> void:
-	_state = Injector.provide(EventState, EventState.new(self), get_tree().root, Injector.ContainerType.ROOT) as EventState
-	_execute_keeper = Injector.inject(ExecuteKeeperState, self)
+	_state = Locator.initialize_service(EventState, [self]) as EventState
+	_execute_keeper = Locator.get_service(ExecuteKeeperState)
 
 
 func _ready() -> void:
@@ -39,7 +39,7 @@ func _ready() -> void:
 
 
 func _register_methods():
-	var db_resource := Injector.inject(ResourceDb, self) as ResourceDb
+	var db_resource := Locator.get_service(ResourceDb) as ResourceDb
 	if not db_resource:
 		return
 	

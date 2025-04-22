@@ -1,5 +1,5 @@
 class_name CharacterState
-extends Injectable
+ 
 
 var _node: Node2D
 

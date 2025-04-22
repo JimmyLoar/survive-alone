@@ -13,8 +13,9 @@ var summed_inventory: SummedInventory
 @onready var items_grid: ItemsGrid = $VBoxContainer/ItemsGrid
 @onready var page_controller: PageController = $VBoxContainer/PageController
 
+
 func _enter_tree() -> void:
-	summed_inventory = Injector.provide(SummedInventory, SummedInventory.new(), self, Injector.ContainerType.ROOT)
+	summed_inventory = Locator.initialize_service(SummedInventory)
 
 
 func _ready() -> void:
@@ -26,10 +27,10 @@ func _ready() -> void:
 
 
 func _register_methods():
-	var database := Injector.inject(ResourceDb, self) as ResourceDb
-	var location_state  := Injector.inject(InventoryLocationState, self) as InventoryLocationState
-	var character_state := Injector.inject(InventoryCharacterState, self) as InventoryCharacterState
-	var execute_keeper := Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	var database := Locator.get_service(ResourceDb) as ResourceDb
+	var location_state  := Locator.get_service(InventoryLocationState) as InventoryLocationState
+	var character_state := Locator.get_service(InventoryCharacterState) as InventoryCharacterState
+	var execute_keeper := Locator.get_service(ExecuteKeeperState) as ExecuteKeeperState
 	var items_id = database.connection.get_data_string_ids("items")
 	summed_inventory.add_inventory(location_state)
 	summed_inventory.add_inventory(character_state)

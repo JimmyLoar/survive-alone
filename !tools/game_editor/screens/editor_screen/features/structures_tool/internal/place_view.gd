@@ -1,20 +1,24 @@
 extends Control
 
-@onready var _state: GameEditor__StructuresToolState = Injector.inject(GameEditor__StructuresToolState, self)
-@onready var _biome_layer_state: BiomesLayerState = Injector.inject(BiomesLayerState, self)
-@onready var _main_camera_sate: MainCameraState = Injector.inject(MainCameraState, self)
-@onready var _screen_mouse_events_state: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
+@onready var _state: GameEditor__StructuresToolState = Locator.get_service(GameEditor__StructuresToolState)
+@onready var _biome_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
+@onready var _main_camera_sate: MainCameraState = Locator.get_service(MainCameraState, _on_ready_main_camera)
+@onready var _screen_mouse_events_state: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState)
 @onready var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)
-@onready var _screen_state: GameEditor__EditorScreenState = Injector.inject(GameEditor__EditorScreenState, self)
+@onready var _screen_state: GameEditor__EditorScreenState = Locator.get_service(GameEditor__EditorScreenState)
 
 func _ready() -> void:
 	_state.mode_changed.connect(func(value): queue_redraw())
 	_screen_state.hovered_biome_tile_pos_changed.connect(func(value): queue_redraw())
 	
-	_main_camera_sate.viewport_rect_changed.connect(func(value): queue_redraw())
-
 	_screen_mouse_events_state.left_button_changed.connect(_on_left_mouse_button_click)
 	_screen_mouse_events_state.right_button_changed.connect(_on_right_mouse_button_click)
+
+
+func _on_ready_main_camera(camera: MainCameraState):
+	assert(not camera, "not init main camera")
+	_main_camera_sate = camera
+	_main_camera_sate.viewport_rect_changed.connect(func(value): queue_redraw())
 
 
 func _on_right_mouse_button_click(value: Variant):

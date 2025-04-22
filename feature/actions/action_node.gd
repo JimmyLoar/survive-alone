@@ -6,8 +6,8 @@ var _state: ActionState
 
 
 func _ready() -> void:
-	_state = Injector.provide(ActionState, ActionState.new(self), self, Injector.ContainerType.CLOSEST)
-	execute_keeper = Injector.inject(ExecuteKeeperState, self) as ExecuteKeeperState
+	_state = Locator.initialize_service(ActionState, [self])
+	execute_keeper = Locator.get_service(ExecuteKeeperState) as ExecuteKeeperState
 
 
 func execute(action: ActionResource) -> Dictionary:

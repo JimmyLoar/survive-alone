@@ -1,5 +1,5 @@
 class_name ResourceDb
-extends Injectable
+ 
 
 var is_connection_opened: bool:
 	get:

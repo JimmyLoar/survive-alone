@@ -1,5 +1,5 @@
 class_name InventoryRepository
-extends Injectable
+ 
 
 var _save_db: SaveDb
 var TABLE_NAME = "inventory"

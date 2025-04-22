@@ -4,14 +4,16 @@ extends Node2D
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16) 
 @onready var _forest_layer: TileMapLayer = $"ForestLayer"
 @onready var _grass_layer: TileMapLayer = $"GrassLayer"
-@onready var _ground_layer: TileMapLayer = $"GroundLayer"
 @onready var _water_layer: TileMapLayer = $"WaterLayer"
-@onready var _virtual_chunks_state: VirtualChunksState = Injector.inject(VirtualChunksState, self)
+@onready var _ground_layer: TileMapLayer = $"GroundLayer"
+@onready var _virtual_chunks_state: VirtualChunksState = Locator.get_service(VirtualChunksState)
 
 var _state: BiomesLayerState
 
+
 func _enter_tree() -> void:
-	_state = Injector.provide(BiomesLayerState, BiomesLayerState.new(self), self, Injector.ContainerType.CLOSEST)
+	_state = Locator.initialize_service(BiomesLayerState, [self])
+
 
 func _ready() -> void:
 	_virtual_chunks_state.visible_chunks_rect_changed.connect(Callable(self, "_on_visible_chunks_rect_changed"))
@@ -37,8 +39,8 @@ func _clear_rect(rect: Rect2i):
 func _clear_tile(pos: Vector2i):
 	_forest_layer.erase_cell(pos)
 	_grass_layer.erase_cell(pos)
-	_ground_layer.erase_cell(pos)
 	_water_layer.erase_cell(pos)
+	_ground_layer.erase_cell(pos)
 
 func _rerender_rect(rect: Rect2i):
 	for x in range(rect.position.x, rect.end.x):
@@ -50,13 +52,12 @@ func _rerender_tile(pos: Vector2i):
 	var tile_biomes = _state.get_visible_tile_biomes_fast(pos)
 	
 	for biome: BiomeEntity in tile_biomes:
-		var biome_resource = biome.resource
-		match biome_resource.view_type:
-			BiomeResource.BiomeViewType.Forest:
-				_forest_layer.set_cell(pos, 0, Vector2i(2, 0))
-			BiomeResource.BiomeViewType.Grass:
-				_grass_layer.set_cell(pos, 0, Vector2i(3, 0))
+		match biome.resource.view_type:
 			BiomeResource.BiomeViewType.Water:
-				_water_layer.set_cell(pos, 0, Vector2i(0, 0))
+							_water_layer.set_cell(pos, 0, Vector2i(0, 0))
 			BiomeResource.BiomeViewType.Ground:
-				_ground_layer.set_cell(pos, 0, Vector2i(1, 0))
+							_ground_layer.set_cell(pos, 0, Vector2i(1, 0))
+			BiomeResource.BiomeViewType.Forest:
+							_forest_layer.set_cell(pos, 0, Vector2i(2, 0))
+			BiomeResource.BiomeViewType.Grass:
+							_grass_layer.set_cell(pos, 0, Vector2i(3, 0))

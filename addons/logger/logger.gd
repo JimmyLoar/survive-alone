@@ -77,7 +77,8 @@ func with(prefix:String="",args:Dictionary={}) ->Log :
 
 func logger(message:String,values,log_level=LogLevel.INFO):
 	var msg := _get_format_massage(message, log_level)
-	msg = _add_values(msg, values)
+	if values:
+		msg = _add_values(msg, values)
 	
 	if CURRENT_LOG_LEVEL <= log_level:
 		if OS.get_main_thread_id() != OS.get_thread_caller_id() and log_level == LogLevel.DEBUG:
@@ -117,7 +118,7 @@ func _get_time(file_format := false) -> String:
 
 
 func _add_values(msg, values):
-	msg += "[color={value}]".format(COLORS)
+	msg += "\n        [color={value}]Values: ".format(COLORS)
 	match typeof(values):
 		TYPE_ARRAY:
 			if values.size() > 0:
@@ -166,23 +167,30 @@ func _print_msg(log_level, msg: String):
 		LogLevel.WARN:
 			print_rich("[color={warn}]%s".format(COLORS) % [msg])
 			push_warning(msg)
-			print_stack()
+			_print_stack()
 		
 		LogLevel.ERROR:
 			push_error(msg)
 			print_rich("[color={error}]%s".format(COLORS) % [msg])
-			print_stack()
+			_print_stack()
 			print_tree()
 		
 		LogLevel.FATAL:
 			push_error(msg)
 			printerr(msg)
-			print_stack()
+			_print_stack()
 			print_tree()
 			get_tree().quit()
 		
 		_:
 			print_rich(msg)
+
+
+func _print_stack():
+	var stack = get_stack().slice(4)
+	for i in stack.size():
+		stack[i].function = stack[i].function.rpad(48, " ")
+		print("%d) {function} %d) [{source}]:{line}".format(stack[i]) % [i, i])
 
 
 func debug(message:String,values={}):

@@ -1,16 +1,17 @@
 class_name InventoryLocation
 extends ContentContainer
 
-@onready var _inventory_repository: InventoryRepository = Injector.inject(InventoryRepository, self)
-
-@onready var _character_location: CharacterLocationState = Injector.inject(CharacterLocationState, self)
-@onready var _inventory_character_state: InventoryCharacterState = Injector.inject(InventoryCharacterState, self) 
 var _state := InventoryLocationState.new("Location")
-@onready var world_object_repository: WorldObjectRepository = Injector.inject(WorldObjectRepository, self)
-@onready var world_objects_layer_state: WorldObjectsLayerState = Injector.inject(WorldObjectsLayerState, self)
-@onready var quantity_selector_state: QuantitySelectorState = Injector.inject(QuantitySelectorState, self)
-@onready var inventory_repository: InventoryRepository = Injector.inject(InventoryRepository, self)
-@onready var character_location_state: CharacterLocationState = Injector.inject(CharacterLocationState, self)
+
+@onready var _inventory_repository: InventoryRepository = Locator.get_service(InventoryRepository)
+
+@onready var _character_location: CharacterLocationState = Locator.get_service(CharacterLocationState)
+@onready var _inventory_character_state: InventoryCharacterState = Locator.get_service(InventoryCharacterState) 
+@onready var world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
+@onready var world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
+@onready var quantity_selector_state: QuantitySelectorState = Locator.get_service(QuantitySelectorState)
+@onready var inventory_repository: InventoryRepository = Locator.get_service(InventoryRepository)
+@onready var character_location_state: CharacterLocationState = Locator.get_service(CharacterLocationState)
 
 @onready var inventory: InventoryDisplay = %Inventory
 @onready var location_panel: MarginContainer = %LocationPanel
@@ -18,7 +19,7 @@ var _state := InventoryLocationState.new("Location")
 
 
 func _enter_tree() -> void:
-	Injector.provide(InventoryLocationState, _state, self, Injector.ContainerType.CLOSEST)
+	Locator.add_initialized_service(_state)
 
 
 func _ready() -> void:

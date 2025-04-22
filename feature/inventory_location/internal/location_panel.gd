@@ -6,16 +6,9 @@ extends MarginContainer
 var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Search
 @onready var discription_label: RichTextLabel = %DiscriptionLabel
 
-
-
-@onready var _inventory_location_state: InventoryLocationState = Injector.inject(
-	InventoryLocationState, self
-)
-@onready var _event_state := EventsGlobal
-@onready var _location: CharacterLocationState = Injector.inject(
-	CharacterLocationState, self
-)
-
+@onready var _inventory_location_state: InventoryLocationState = Locator.get_service(InventoryLocationState)
+@onready var _event_state: EventState = Locator.get_service(EventState)
+@onready var _location: CharacterLocationState = Locator.get_service(CharacterLocationState)
 
 
 func _ready() -> void:
