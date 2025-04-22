@@ -56,8 +56,8 @@ func get_service(script: Script, emit_callable := Callable()) -> Object:
 		connect(signal_name, _request_to_remove_signal, CONNECT_ONE_SHOT)
 	
 	connect(signal_name, emit_callable, CONNECT_ONE_SHOT)
-	_logger.info("A signal '[color=lightblue]%s[/color]' will be emitted when service '[color=orangered]%s[/color] is initialized.'" % 
-		[signal_name, script.get_global_name()])
+	_logger.info("A signal '[color=lightblue]%s[/color]' will be emitted when service '[color=orangered]%s[/color] is initialized.
+		Connected to '[color=lightblue]%s[/color]' method." %  [signal_name, script.get_global_name(), emit_callable.get_method()])
 	return null
 
 
