@@ -123,10 +123,9 @@ static func convent_to_range_string(property_dict: Dictionary, hint_string: Stri
 	return property_dict
 
 
-static func convert_to_enum(property: Dictionary, enum_string: String, is_int_value := true) -> Dictionary:
+static func convert_to_enum(property: Dictionary, enum_string: String, is_suggest := false) -> Dictionary:
 	property.merge({
-		type = TYPE_INT if is_int_value else TYPE_STRING,
-		hint = PROPERTY_HINT_ENUM if is_int_value else PROPERTY_HINT_ENUM_SUGGESTION,
+		hint = PROPERTY_HINT_ENUM_SUGGESTION if is_suggest else PROPERTY_HINT_ENUM,
 		hint_string = enum_string,
 	}, true)
 	return property
