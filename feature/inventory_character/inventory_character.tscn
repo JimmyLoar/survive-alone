@@ -18,6 +18,7 @@ mouse_filter = 1
 
 [node name="SubContainer" parent="_MarginContainer/HBoxContainer" index="1"]
 custom_minimum_size = Vector2(380, 0)
+mouse_filter = 0
 current_tab = 0
 
 [node name="ItemInformationPanel" parent="_MarginContainer/HBoxContainer/SubContainer" index="1" instance=ExtResource("4_f0gnu")]

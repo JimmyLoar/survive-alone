@@ -6,14 +6,14 @@ var _time_state: GameTimeState
 
 
 var known_recipes: Array[BasicRecipe] = [
-	load("res://feature/craft/testrec.tres"),
-	load("res://feature/craft/ui/Recepies/test2.tres")
+	load("res://resources/collection/recipes/new_resource.tres"),
+	load("res://resources/collection/recipes/test2.tres")
 	]
 
 var recipes: Array[BasicRecipe] = [
-	load("res://feature/craft/testrec.tres"),
-	load("res://feature/craft/ui/Recepies/test2.tres"),
-	load("res://feature/craft/ui/Recepies/new_resource.tres"),
+	load("res://resources/collection/recipes/new_resource.tres"),
+	load("res://resources/collection/recipes/test2.tres"),
+	load("res://resources/collection/recipes/testrec.tres"),
 	]
 
 
