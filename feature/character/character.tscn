@@ -39,7 +39,6 @@ radius = 8.0
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_p76ae")
-biome_check_gap = 50.0
 
 [node name="MovingLine" type="Line2D" parent="."]
 unique_name_in_owner = true

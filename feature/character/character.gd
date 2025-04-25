@@ -5,20 +5,20 @@ var _state: CharacterState
 
 @export var time_unit = 1 # times per one _physics_process
 @export var move_speed = 50 # pixels per time_unit
-@export var biome_check_gap = 0.1
-@onready var _screen_mouse_events: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
-@onready var _game_time: GameTimeState = Injector.inject(GameTimeState, self)
-@onready var _character_repositoty: CharacterRepository = Injector.inject(CharacterRepository, self)
-@onready var _save_db: SaveDb = Injector.inject(SaveDb, self)
-@onready var _resource_db: ResourceDb = Injector.inject(ResourceDb, self)
+@export var biome_check_gap = 20
+@onready var _screen_mouse_events: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState)
+@onready var _game_time: GameTimeState = Locator.get_service(GameTimeState)
+@onready var _character_repositoty: CharacterRepository = Locator.get_service(CharacterRepository)
+@onready var _save_db: SaveDb = Locator.get_service(SaveDb)
+@onready var _resource_db: ResourceDb = Locator.get_service(ResourceDb)
 var _character_properties_repository: CharacterPropertyRepository
-@onready var _biomes_layer_state: BiomesLayerState = Injector.inject(
-	BiomesLayerState, self
-)
+@onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
+
+
 
 func _enter_tree() -> void:
-	_state = Injector.provide(CharacterState, CharacterState.new(self), self, Injector.ContainerType.CLOSEST)
-	_character_properties_repository = Injector.provide(CharacterPropertyRepository, CharacterPropertyRepository.new(), self, Injector.ContainerType.CLOSEST)
+	_state = Locator.initialize_service(CharacterState, [self])
+	_character_properties_repository = Locator.initialize_service(CharacterPropertyRepository)
 
 func _ready() -> void:
 	
@@ -46,8 +46,8 @@ var passability = {'water': 0}
 
 func _on_screen_left_button(value):
 	if value is ScreenMouseEventsState.Click:
-		for biome in _biomes_layer_state.get_visible_tile_biomes_fast(_biomes_layer_state.global_to_map(_state.target_position)):
-			print(biome.name)
+		
+		for biome in _biomes_layer_state.get_visible_tile_biomes_fast(_biomes_layer_state.global_to_map(get_global_mouse_position())):
 			if biome.name in passability.keys():
 				if passability.get(biome.name) == 0:
 					return

@@ -13,15 +13,15 @@ func update(delta: float):
 	var move_speed = _character.move_speed
 	var position = _character.position
 	var target_position = _character._state.target_position
-	var position_with_gap = position + (target_position - position).normalized() * _character.biome_check_gap
+	var position_with_gap = position + ((target_position - position).normalized() * _character.biome_check_gap) 
 	var biom_passability = 1
-	$"../../Marker2D".target_position = target_position
+	$"../../Marker2D".target_position = -position + position_with_gap
+	
 	for biome in _character._biomes_layer_state.get_visible_tile_biomes_fast(_character._biomes_layer_state.global_to_map(position_with_gap)):
 		if biome.name in passability.keys():
-			
 			biom_passability = min(biom_passability, passability.get(biome.name))
+			
 	move_speed = move_speed * biom_passability
-	
 	
 	var time_unit = _character.time_unit
 	var move_step = delta * move_speed
