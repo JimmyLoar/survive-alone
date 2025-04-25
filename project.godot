@@ -15,9 +15,11 @@ pycolytics/hash_salt="c3e63a49"
 [application]
 
 config/name="SurviveAlone"
+config/tags=PackedStringArray("android")
 run/main_scene="res://game/game.tscn"
 run/print_header=false
 config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 game/size/world=Vector2i(70, 35)
 game/size/chunk=50
@@ -31,7 +33,7 @@ game/version/string="dev"
 
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
-Injector="*res://addons/godot-di/Injector.gd"
+Locator="*res://common/autoload/locator.gd"
 EventsGlobal="*res://feature/game_event/event_global.gd"
 Questify="*res://addons/questify/quest_manager.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
@@ -156,6 +158,7 @@ general/add_quests_to_pot_generation=true
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_2d=1
+environment/defaults/default_clear_color=Color(0.79752, 4.86121e-06, 4.81307e-07, 1)
 
 [resource_databases]
 

@@ -1,5 +1,5 @@
 class_name CharacterRepository
-extends Injectable
+ 
 
 const WORLD_POS_ROW_ID = 1
 

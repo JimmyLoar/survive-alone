@@ -3,12 +3,10 @@ extends Object
 
 var _biome_repository: BiomeRepository
 var _biome_layers_state: BiomesLayerState
-var _screen_state: GameEditor__EditorScreenState
 
 func init(node: Node):
-	_biome_repository = Injector.inject(BiomeRepository, node)
-	_biome_layers_state = Injector.inject(BiomesLayerState, node)
-	_screen_state = Injector.inject(GameEditor__EditorScreenState, node)
+	_biome_repository = Locator.get_service(BiomeRepository)
+	_biome_layers_state = Locator.get_service(BiomesLayerState)
 
 #
 # Biomes list
@@ -38,6 +36,9 @@ var biomes: Array[BiomeEntity]:
 
 func create_biome():
 	var biome = BiomeEntity.new()
+	
+	biome.name = "new biome"
+	biome.type = BiomeResource.BiomeViewType.Ground
 	
 	var id = _biome_repository.create(biome)
 	reload_all_biomes()
@@ -69,7 +70,27 @@ func update_selected_biome(biome: BiomeEntity):
 	reload_all_biomes()
 
 #
-# Placing biome rects
+# Hovered Tile
+#
+
+const UNHOVERED_BIOME_TILE_POS = Vector2i.MIN # use not attainable value as a flag
+signal hovered_biome_tile_pos_changed(value: Vector2i)
+var _hovered_biome_tile_pos: Vector2i
+var hovered_biome_tile_pos: Vector2i:
+	get: return _hovered_biome_tile_pos
+	set(value):
+		if (_hovered_biome_tile_pos != value):
+			_hovered_biome_tile_pos = value
+			hovered_biome_tile_pos_changed.emit(value)
+
+func change_hovered_biome_tile_pos(global_mouse_pos: Vector2):
+	hovered_biome_tile_pos = _biome_layers_state.global_to_map(global_mouse_pos)
+	
+func unhover_biome_tile_pos():
+	hovered_biome_tile_pos = UNHOVERED_BIOME_TILE_POS
+
+#
+# Painting biome rects
 #
 
 class CreateBiomeRectPaintState:
@@ -96,11 +117,7 @@ func _place_biome_rect():
 		if selected_biome_id == null:
 			return
 		var position = paint_state.position
-		var end = _screen_state.hovered_biome_tile_pos
-		
-		if end == _screen_state.UNHOVERED_BIOME_TILE_POS:
-			_paint_state = null
-			return
+		var end = hovered_biome_tile_pos
 		
 		if position.x > end.x:
 			var temp = position.x
@@ -118,4 +135,3 @@ func _place_biome_rect():
 		_biome_layers_state.create_biome_rect(biome_rect)
 		paint_state.state = paint_state.State.PlaceRectPosition
 		paint_state_changed.emit(paint_state)
-		

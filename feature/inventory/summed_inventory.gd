@@ -1,5 +1,5 @@
 class_name SummedInventory
-extends Injectable
+ 
 
 
 var _inventories: Array[InventoryState] = []

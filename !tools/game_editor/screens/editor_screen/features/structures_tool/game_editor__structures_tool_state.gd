@@ -1,5 +1,4 @@
 class_name GameEditor__StructuresToolState
-extends Injectable
 
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)
 var _host_node: Node
@@ -42,9 +41,9 @@ var mode: Variant = null:
 		mode_changed.emit(value)
 		
 func place_object():
-	var _screen_state: GameEditor__EditorScreenState = Injector.inject(GameEditor__EditorScreenState, _host_node)
-	var _world_object_repository: WorldObjectRepository = Injector.inject(WorldObjectRepository, _host_node)
-	var _world_object_layer: WorldObjectsLayerState = Injector.inject(WorldObjectsLayerState, _host_node)
+	var _screen_state: GameEditor__EditorScreenState = Locator.get_service(GameEditor__EditorScreenState)
+	var _world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
+	var _world_object_layer: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 	
 	var tile_pos = _screen_state.hovered_biome_tile_pos
 	
@@ -63,9 +62,9 @@ func place_object():
 	_world_object_layer.request_rerender()
 	
 func move_object():
-	var _screen_state: GameEditor__EditorScreenState = Injector.inject(GameEditor__EditorScreenState, _host_node)
-	var _world_object_repository: WorldObjectRepository = Injector.inject(WorldObjectRepository, _host_node)
-	var _world_object_layer: WorldObjectsLayerState = Injector.inject(WorldObjectsLayerState, _host_node)
+	var _screen_state: GameEditor__EditorScreenState = Locator.get_service(GameEditor__EditorScreenState)
+	var _world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
+	var _world_object_layer: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 	
 	var tile_pos = _screen_state.hovered_biome_tile_pos
 	
@@ -81,8 +80,8 @@ func move_object():
 func remove_object():
 	if not is_instance_of(mode, EditObjectMode):
 		return
-	var _world_object_repository: WorldObjectRepository = Injector.inject(WorldObjectRepository, _host_node)
-	var _world_object_layer: WorldObjectsLayerState = Injector.inject(WorldObjectsLayerState, _host_node)
+	var _world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
+	var _world_object_layer: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 	
 	_world_object_repository.delete(mode.object.id)
 	_world_object_layer.request_rerender()

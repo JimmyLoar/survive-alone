@@ -15,7 +15,7 @@ var currect_action: ActionResource
 @onready var items_container: VBoxContainer = $MarginContainer/VBoxContainer/ItemsContainer
 
 @onready var button: Button = $MarginContainer/VBoxContainer/Button
-@onready var action_state: ActionState = Injector.inject(ActionState, self)
+@onready var action_state: ActionState = Locator.get_service(ActionState)
 
 
 
@@ -61,7 +61,7 @@ func _display_reward_items_grids(items: Dictionary):
 
 
 # TODO найти более подходящие место для функции ниже
-@onready var resource_db := Injector.inject(ResourceDb, self) as ResourceDb
+@onready var resource_db := Locator.get_service(ResourceDb) as ResourceDb
 func _get_item_entities(items: Dictionary) -> Array[ItemEntity]:
 	var database: Database = resource_db.connection
 	var array: Array[ItemEntity] = []

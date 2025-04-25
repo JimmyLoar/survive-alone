@@ -4,13 +4,12 @@ extends Camera2D
 @export var max_zoom = 2.0
 @export var min_zoom = 0.5
 
-@onready var _screen_mouse_event_state: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
+@onready var _screen_mouse_event_state: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState)
 var _state: MainCameraState
 
 
-
 func _enter_tree() -> void:
-	_state = Injector.provide(MainCameraState, MainCameraState.new(self), self, Injector.ContainerType.CLOSEST)
+	_state = Locator.initialize_service(MainCameraState, [self])
 
 
 func _ready() -> void:

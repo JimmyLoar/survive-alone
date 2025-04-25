@@ -3,7 +3,7 @@ extends HBoxContainer
 
 @onready var label: Label = $Label
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var character_state : CharacterState = Injector.inject(CharacterState, self)
+@onready var character_state: CharacterState = Locator.get_service(CharacterState)
 
 
 func update_data(_name: StringName):

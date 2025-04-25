@@ -4,19 +4,19 @@ extends ContentContainer
 
 var _state := InventoryCharacterState.new("Character")
 
-@onready var _inventory_repository: InventoryRepository = Injector.inject(InventoryRepository, self)
+@onready var _inventory_repository: InventoryRepository = Locator.get_service(InventoryRepository)
 @onready var inventory: InventoryDisplay = %Inventory
 @onready var item_information_panel: ItemInfoPanel = %ItemInformationPanel
-@onready var quantity_selector_state: QuantitySelectorState = Injector.inject(QuantitySelectorState, self)
-@onready var location_inventory_state: InventoryLocationState = Injector.inject(InventoryLocationState, self)
-@onready var character_location_state: CharacterLocationState = Injector.inject(CharacterLocationState, self)
-@onready var character_state: CharacterState = Injector.inject(CharacterState, self)
-@onready var world_object_repository: WorldObjectRepository = Injector.inject(WorldObjectRepository, self)
-@onready var world_objects_layer_state: WorldObjectsLayerState = Injector.inject(WorldObjectsLayerState, self)
+@onready var quantity_selector_state: QuantitySelectorState = Locator.get_service(QuantitySelectorState)
+@onready var location_inventory_state: InventoryLocationState = Locator.get_service(InventoryLocationState)
+@onready var character_location_state: CharacterLocationState = Locator.get_service(CharacterLocationState)
+@onready var character_state: CharacterState = Locator.get_service(CharacterState)
+@onready var world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
+@onready var world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 
 
 func _enter_tree() -> void:
-	Injector.provide(InventoryCharacterState, _state, self, Injector.ContainerType.CLOSEST)
+	Locator.add_initialized_service(_state)
 
 
 func _ready() -> void:

@@ -1,14 +1,15 @@
 extends Control
 
 var _state: GameEditor__StructuresToolState
-@onready var _screen_mouse_events_state: ScreenMouseEventsState = Injector.inject(ScreenMouseEventsState, self)
-@onready var _screen_state: GameEditor__EditorScreenState = Injector.inject(GameEditor__EditorScreenState, self)
-@onready var _world_object_state: WorldObjectsLayerState = Injector.inject(WorldObjectsLayerState, self)
-@onready var _camera_state: MainCameraState = Injector.inject(MainCameraState, self)
+@onready var _screen_mouse_events_state: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState)
+@onready var _screen_state: GameEditor__EditorScreenState = Locator.get_service(GameEditor__EditorScreenState)
+@onready var _world_object_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
+@onready var _camera_state: MainCameraState = Locator.get_service(MainCameraState)
 @onready var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16)
 
 func _enter_tree() -> void:
-	_state = Injector.provide(GameEditor__StructuresToolState, GameEditor__StructuresToolState.new(self), self, Injector.ContainerType.SOURCE)
+	_state = Locator.initialize_service(GameEditor__StructuresToolState, [self])
+
 
 func _ready() -> void:
 	_screen_mouse_events_state.left_button_changed.connect(_on_left_button_click)

@@ -1,11 +1,9 @@
 class_name WorldObjectsLayerState
-extends Injectable
+ 
 
 var _world_object_repository: WorldObjectRepository
-var _host_node: Node
+var _host_node: WorldObjectsLayer
 
-func _init(host_node: Node):
-	_host_node = host_node
 
 class VisibleObjectsDiff:
 	var removed: Array[int] # Array of ids
@@ -51,6 +49,7 @@ func get_object_by_position_fast(pos: Vector2) -> WorldObjectEntity:
 		return intersected_visible_world_objects[0]
 	
 	return null
+
 
 func request_rerender() -> void:
 	_visible_objects = {}
