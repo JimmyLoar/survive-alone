@@ -85,9 +85,9 @@ func event_start(event_name: String):
 	Locator.get_service(EventState).activate_event(event)
 
 
-func event_start_from_list(list_name: String):
+func event_start_from_list(eventpack_name: String):
 	var db_resource = Locator.get_service(GameDb)
-	var list: EventList = db_resource.connection.fetch_data("event_list", StringName(list_name))
+	var list: EventList = db_resource.connection.fetch_data("event_list", StringName(eventpack_name))
 	var event: EventResource = list.get_event()
 	Locator.get_service(EventState).activate_event(event)
 
