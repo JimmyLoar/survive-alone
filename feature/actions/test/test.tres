@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("3_wd2s0")
-_method_name = "property_add_value"
-arg_0_name = &"test"
-arg_1_value = &"test"
+_method_name = "time_is_used"
+arg_0_game_time = 0
+arg_1_for_real_sec = 0.0
+arg_2_with_progress_screen = &"InventoryCharacterState"
