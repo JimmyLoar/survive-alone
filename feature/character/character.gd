@@ -11,6 +11,7 @@ var _state: CharacterState
 @onready var _character_repositoty: CharacterRepository = Locator.get_service(CharacterRepository)
 @onready var _save_db: SaveDb = Locator.get_service(SaveDb)
 @onready var _resource_db: ResourceDb = Locator.get_service(ResourceDb)
+@onready var _camera_state: MainCameraState = Locator.get_service(MainCameraState)
 var _character_properties_repository: CharacterPropertyRepository
 @onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
 
@@ -28,6 +29,7 @@ func _ready() -> void:
 
 	_character_properties_repository.init(_save_db)
 	
+	_camera_state.mode = _camera_state.TargetMode.new(self)
 	
 	Callable(func():
 		position = _character_repositoty.get_world_position()
