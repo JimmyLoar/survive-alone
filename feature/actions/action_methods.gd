@@ -56,12 +56,12 @@ func inventory_add_used_item(item: StringName, used: Array[int], _inventory: Str
 	return inventory.add_item(item_data, 0, used)
 
 
-func inventories_remove_item(item: String, value: int):
-	return Locator.get_service(SummedInventory).remove_item(item, value)
+func inventories_remove_item(item: String, amount: int):
+	return Locator.get_service(SummedInventory).remove_item(item, amount)
 
 
-func inventories_has_item(item: String, value: int):
-	return Locator.get_service(SummedInventory).has_item(item, value)
+func inventories_has_item(item: String, amount: int):
+	return Locator.get_service(SummedInventory).has_item(item, amount)
 
 
 #endregion

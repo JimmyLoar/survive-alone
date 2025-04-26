@@ -1,5 +1,5 @@
 @tool
-class_name Action
+class_name ActionResource
 extends Resource
 
 var _action_methods := ActionMethods.get_instantiate()
@@ -26,7 +26,7 @@ func _get_property_list() -> Array[Dictionary]:
 	return properties
 
 
-func _property_methods():
+func _property_methods() -> Dictionary:
 	var property = PropertyGenerater.take_string("_method_name")
 	var _methods = _action_methods.get_script().get_script_method_list().filter(
 		func(elm):
@@ -45,13 +45,13 @@ func _property_args() -> Array:
 	var args = methods[method_id].args as Array
 	var _index = 0
 	for elm in args:
-		elm.usage = PROPERTY_USAGE_DEFAULT
 		elm.name = "arg_%d_%s" % [_index, elm.name]
 		_index += 1
-	return args.map(_property_modification)
+	return args.map(_property_modification) 
 
 
 func _property_modification(prop: Dictionary):
+	prop.usage = PROPERTY_USAGE_DEFAULT
 	if prop.name.contains("property"):
 		return _modification_character_property(prop)
 	elif prop.name.contains("item"):
