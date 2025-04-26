@@ -2,7 +2,7 @@
 class_name Action
 extends Resource
 
-var _action_methods := preload("res://feature/actions/custom_methods.gd").new()
+var _action_methods := ActionMethods.get_instantiate()
 
 
 var _method_name: String = '':
@@ -21,24 +21,25 @@ func execute() -> Variant:
 
 func _get_property_list() -> Array[Dictionary]:
 	var properties: Array[Dictionary] = []
-	properties.append(_service_methods())
-	properties.append_array(_service_args())
+	properties.append(_property_methods())
+	properties.append_array(_property_args())
 	return properties
 
 
-func _service_methods():
+func _property_methods():
 	var property = PropertyGenerater.take_string("_method_name")
 	var _methods = _action_methods.get_script().get_script_method_list().filter(
 		func(elm):
 			return not (elm.name.begins_with("_") 
 				or elm.name.begins_with("@")
+				or elm.name == "get_instantiate"
 			)
 	)
 	_methods = _methods.map(func(elm): return elm.name)
 	return PropertyGenerater.convert_to_enum(property, ",".join(_methods))
 
 
-func _service_args() -> Array:
+func _property_args() -> Array:
 	var methods = _action_methods.get_script().get_script_method_list() as Array
 	var method_id = methods.find_custom(func(elm): return elm.name == _method_name)
 	var args = methods[method_id].args

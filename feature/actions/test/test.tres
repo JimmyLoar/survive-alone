@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("3_wd2s0")
-_method_name = "add_property_value"
-arg_0_name = "asda"
-arg_1_value = "asda"
+_method_name = "property_add_value"
+arg_0_name = &"test"
+arg_1_value = &"test"

@@ -26,7 +26,6 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	Questify.condition_query_requested.connect(_on_condition_query_requested)
-	_register_methods()
 	action_list.item_selected.connect(_on_action_pressed)
 	action_list.action_state = action_state
 	%ResultContainer.hide()
@@ -38,34 +37,6 @@ func _ready() -> void:
 		self.hide()	
 
 
-func _register_methods():
-	var db_resource := Locator.get_service(ResourceDb) as ResourceDb
-	if not db_resource:
-		return
-	
-	var _activate_event = func(event_name: String):
-		var event: EventResource = db_resource.connection.fetch_data("event", StringName(event_name))
-		_state.activate_event(event)
-	
-	_execute_keeper.register(
-		ExecuteKeeperState.TYPE_EFFECT, "activate event", _activate_event,
-		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event"))]], 
-		["event name"],
-		[""],
-	)
-	
-	var _activate_event_list = func(list_name: String):
-		var list: EventList = db_resource.connection.fetch_data("event_list", StringName(list_name))
-		var event: EventResource = list.get_event()
-		_state.activate_event(event)
-	
-	_execute_keeper.register(
-		ExecuteKeeperState.TYPE_EFFECT, "activate event from list", _activate_event_list,
-		["enum/String/%s" % [",".join(db_resource.connection.get_data_string_ids("event_list"))]],
-		["events list"],
-		[""]
-	)
-	return
 
 
 func display(event: EventResource):
