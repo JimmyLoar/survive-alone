@@ -15,10 +15,10 @@ func _init() -> void:
 
 
 #region Properties
-func property_add_value(property_name: StringName, value: int) -> void:
+func property_add_value(property_name: StringName, property_value: int) -> void:
 	var state = Locator.get_service(CharacterState) as CharacterState
 	var property := state.get_property(property_name) 
-	property.value += value
+	property.value += property_value
 	state.set_property(property)
 
 
@@ -42,26 +42,26 @@ var _INVENTORY = {
 }
 
 
-func inventory_add_new_items(item: StringName, amount: int, _inventory: StringName) -> ItemEntity:
+func inventory_add_new_items(item_name: StringName, amount: int, _inventory: StringName) -> ItemEntity:
 	var database = Locator.get_service(GameDb)
 	var inventory = Locator.get_service(_INVENTORY[_inventory])
-	var item_data: ItemResource = database.connection.fetch_data("items", item)
+	var item_data: ItemResource = database.connection.fetch_data("items", item_name)
 	return inventory.add_item(item_data, amount)
 
 
-func inventory_add_used_item(item: StringName, used: Array[int], _inventory: StringName) -> ItemEntity:
+func inventory_add_used_item(item_name: StringName, used_array: Array[int], _inventory: StringName) -> ItemEntity:
 	var database = Locator.get_service(GameDb)
 	var inventory = Locator.get_service(_INVENTORY[_inventory])
-	var item_data: ItemResource = database.connection.fetch_data("items", item)
-	return inventory.add_item(item_data, 0, used)
+	var item_data: ItemResource = database.connection.fetch_data("items", item_name)
+	return inventory.add_item(item_data, 0, used_array)
 
 
-func inventories_remove_item(item: String, amount: int):
-	return Locator.get_service(SummedInventory).remove_item(item, amount)
+func inventories_remove_item(item_name: String, amount: int):
+	return Locator.get_service(SummedInventory).remove_item(item_name, amount)
 
 
-func inventories_has_item(item: String, amount: int):
-	return Locator.get_service(SummedInventory).has_item(item, amount)
+func inventories_has_item(item_name: String, amount: int):
+	return Locator.get_service(SummedInventory).has_item(item_name, amount)
 
 
 #endregion
