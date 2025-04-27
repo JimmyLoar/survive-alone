@@ -25,5 +25,13 @@ func get_action_name() -> String:
 	return "action"
 
 
-func has_method_begin_with(string: String):
-	return false
+func get_arguments_to_method(method) -> Array:
+	return []
+
+
+func get_methods_names() -> Array[String]:
+	return []
+
+
+func get_argument_names(method) -> Array:
+	return []

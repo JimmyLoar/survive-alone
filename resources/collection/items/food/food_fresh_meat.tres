@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=8 format=3 uid="uid://csx1bauob5bnf"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://csx1bauob5bnf"]
 
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_vfxuf"]
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="2_vfxuf"]
@@ -13,6 +13,12 @@ _method_name = "property_add_value"
 "arg_1: property_value" = 5
 metadata/_custom_type_script = "uid://xbfp6rfvxe47"
 
+[sub_resource type="Resource" id="Resource_vfxuf"]
+script = ExtResource("2_vfxuf")
+_method_name = "property_less_than_max"
+"arg_0: property_name" = "exhaustion"
+metadata/_custom_type_script = "uid://xbfp6rfvxe47"
+
 [sub_resource type="Resource" id="Resource_ojq0o"]
 script = ExtResource("3_8sw87")
 _cache_updated_args = ["property_value", "item_name", "game_time"]
@@ -20,6 +26,7 @@ _special = "eat"
 "override: property_value" = 25
 "override: item_name" = "food_fresh_meat"
 "override: game_time" = 5
+addational_condition = Array[ExtResource("2_vfxuf")]([SubResource("Resource_vfxuf")])
 addational_actions = Array[ExtResource("2_vfxuf")]([SubResource("Resource_4m21k")])
 metadata/_custom_type_script = "uid://chu0ji5mcq1wt"
 

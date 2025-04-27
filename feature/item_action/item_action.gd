@@ -25,21 +25,29 @@ func display(action: ActionAggregate):
 
 
 func _update_action_types():
-	if currect_action.has_method_begin_with("property"):
-		_display_properties()
-	else:
-		for i in range(6):
-			properties_container.get_child(i).hide()
+	_display_properties()
 	self.show()
 
 
 func _display_properties():
 	var _properties_index: int = 0
-	#for i in currect_action.effects.size():
-		#var effect: ExecuteKeeperResource = currect_action.effects[i] 
-		#if effect.name.contains("property"):
-			#_display_property_bar(_properties_index, effect.args_data[0], effect.args_data[1])
-			#_properties_index += 1
+	var _action_resources: Array = []
+	if currect_action is ActionSpecial:
+		for _name in currect_action.get_methods_names():
+			if _name == "property_add_value":
+				var args := currect_action.get_arguments_to_method(_name)
+				_display_property_bar(_properties_index, args[0], args[1])
+				_properties_index += 1
+			_action_resources = currect_action.addational_actions
+	
+	elif currect_action is ActionList:
+		_action_resources = currect_action.actions
+	
+	for action: ActionResource in _action_resources:
+		if action._method_name == "property_add_value":
+			var args = action.get_arguments()
+			_display_property_bar(_properties_index, args[0], args[1])
+			_properties_index += 1
 	
 	for i in range(_properties_index, 6):
 		properties_container.get_child(i).hide()

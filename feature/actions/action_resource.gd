@@ -12,11 +12,20 @@ var _method_name: String = '':
 		notify_property_list_changed()
 
 
-var _args : Array = []
+var _args : Array = []:
+	get = get_arguments
 
 
 func execute() -> Variant:
 	return _action_methods.callv(_method_name, _args)
+
+
+func get_argument_names() -> Array:
+	return _get_args().map(func(elm): elm.name)
+
+
+func get_arguments():
+	return _args
 
 
 func _get_property_list() -> Array[Dictionary]:
@@ -54,10 +63,6 @@ func _get_args() -> Array[Dictionary]:
 	var methods = _action_methods.get_script().get_script_method_list() as Array
 	var method_id = methods.find_custom(func(elm): return elm.name == _method_name)
 	return methods[method_id].args
-
-
-func get_argument_names() -> Array:
-	return _get_args().map(func(elm): elm.name)
 
 
 static func _property_modification(prop: Dictionary):

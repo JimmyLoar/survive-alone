@@ -46,7 +46,7 @@ var _special_args: Dictionary = {}
 func is_meet_conditions() -> bool:
 	var result := true
 	for _name in _all_specials[_special][CONDISION]:
-		var _args = get_arguments_to_methods(_name)
+		var _args = get_arguments_to_method(_name)
 		result = result && _action_methods.callv(_name, _args)
 	
 	for action in addational_condition:
@@ -62,7 +62,7 @@ func execute() -> Array:
 	
 	var result: Array = []
 	for _name in _all_specials[_special][ACTION]:
-		result.append(_action_methods.callv(_name, get_arguments_to_methods(_name)))
+		result.append(_action_methods.callv(_name, get_arguments_to_method(_name)))
 	
 	for action in addational_actions:
 		result.append(action.execute())
@@ -75,7 +75,7 @@ func get_action_name():
 	return _special
 
 
-func get_arguments_to_methods(method_name: String) -> Array:
+func get_arguments_to_method(method_name) -> Array:
 	var constants = _all_specials[_special][CONSTANT]
 	var args := Array()
 	for _name in get_argument_names(method_name):
@@ -86,11 +86,11 @@ func get_arguments_to_methods(method_name: String) -> Array:
 	return args
 
 
-func get_methods_names() -> Array[String]:
-	return _action_methods.get_script().get_script_method_list().map(func(elm): return elm.name)
+func get_methods_names() -> Array:
+	return get_used_methods_names()
 
 
-func get_argument_names(method_name: String) -> Array:
+func get_argument_names(method_name) -> Array:
 	var args = Array()
 	for arg in _get_method_args(method_name):
 		if args.has(arg.name):
@@ -104,6 +104,7 @@ func _get_property_list() -> Array[Dictionary]:
 	_cache_updated_args = []
 	properties.append(_property_specials())
 	properties.append_array(_property_special_args())
+	properties.append(PropertyGenerater.take_array("addational_condition", TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE, "ActionResource"))
 	properties.append(PropertyGenerater.take_array("addational_actions", TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE, "ActionResource"))
 	return properties
 
@@ -114,7 +115,7 @@ func _property_specials():
 	return PropertyGenerater.convert_to_enum(propperty, _enum)
 
 
-func get_used_methods_names():
+func get_used_methods_names() -> Array:
 	var _used_methods = []
 	_used_methods.assign(_all_specials[_special][CONDISION])
 	_used_methods.append_array(_all_specials[_special][ACTION])
