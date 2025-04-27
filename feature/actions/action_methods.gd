@@ -9,11 +9,6 @@ static func get_instantiate() -> ActionMethods:
 	return _instantiate
 
 
-func _init() -> void:
-	pass
-
-
-
 #region Properties
 func property_add_value(property_name: StringName, property_value: int) -> void:
 	var state = Locator.get_service(CharacterState) as CharacterState

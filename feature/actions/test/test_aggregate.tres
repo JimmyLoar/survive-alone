@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ActionAggregate" load_steps=2 format=3 uid="uid://k7c4c46ko18c"]
+
+[ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="2_verg6"]
+
+[resource]
+script = ExtResource("2_verg6")
+metadata/_custom_type_script = "uid://bsym8hlejwoaw"

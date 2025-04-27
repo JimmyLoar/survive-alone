@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Action" load_steps=2 format=3 uid="uid://4ruhoeddk4os"]
+[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://4ruhoeddk4os"]
 
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="3_wd2s0"]
 
 [resource]
 script = ExtResource("3_wd2s0")
-_method_name = "time_is_used"
-arg_0_game_time = 0
-arg_1_for_real_sec = 0.0
-arg_2_with_progress_screen = &"InventoryCharacterState"
+_method_name = "time_use"
+"arg_0: game_time" = 60.0
+"arg_1: for_real_time" = 60.0
+"arg_2: with_progress_screen" = false

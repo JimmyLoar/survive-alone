@@ -7,7 +7,6 @@ extends PanelContainer
 @onready var result_list: ItemList = %ResultList
 @onready var hint_container: VBoxContainer = %HintContainer
 
-@onready var action_state := Locator.get_service(ActionState) as ActionState
 @onready var resource_db := Locator.get_service(ResourceDb) as ResourceDb
 
 
@@ -27,7 +26,6 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Questify.condition_query_requested.connect(_on_condition_query_requested)
 	action_list.item_selected.connect(_on_action_pressed)
-	action_list.action_state = action_state
 	%ResultContainer.hide()
 	%HintContainer.hide()
 	if true: ## TODO Change on condition "new_game"

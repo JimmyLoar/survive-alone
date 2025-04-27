@@ -1,7 +1,7 @@
 class_name ActionList
 extends ActionAggregate
 
-
+@export var _action_name: String = 'action'
 @export var _conditions: Array[ActionResource] = []
 @export var _actions: Array[ActionResource] = []
 
@@ -20,3 +20,7 @@ func execute() -> Array:
 	for resource in _actions:
 		result.append(resource.execute())
 	return result
+
+
+func get_action_name():
+	return _action_name

@@ -34,34 +34,51 @@ const _all_specials: Dictionary = {
 	],
 }
 
+var addational_condition: Array[ActionResource] = []
+var addational_actions: Array[ActionResource] = []
+
 var _action_methods := ActionMethods.get_instantiate()
 
-var _special: String:
+var _special: String = _all_specials.keys().front():
 	set(value):
 		_special = value
 		notify_property_list_changed()
 
 var _special_args: Dictionary = {}
-var _cache_updated_args = []
+@export_storage var _cache_updated_args = []
 
 
 func is_meet_conditions() -> bool:
 	var result := true
 	for _name in _all_specials[_special][CONDISION]:
-		result = result && _action_methods.call(_name, get_args_to_methods(_name))
+		result = result && _action_methods.callv(_name, get_args_to_methods(_name))
+	
+	for action in addational_condition:
+		result = result && action.execute()
+	
+	#_logger.debug("'%s' is meet conditions?" % [get_action_name()], result)
 	return result
 
 
 func execute() -> Array:
 	if not is_meet_conditions():
 		return []
+	
 	var result: Array = []
-	for _name in _all_specials[_special][CONDISION]:
-		result.append(_action_methods.call(_name, get_args_to_methods(_name)))
+	for _name in _all_specials[_special][ACTION]:
+		result.append(_action_methods.callv(_name, get_args_to_methods(_name)))
+	
+	for action in addational_actions:
+		result.append(action.execute())
+	
+	_logger.debug("'%s' executed" % [get_action_name()], result)
 	return result
 
 
 func get_args_to_methods(method_name: String) -> Array:
+	if not methods or methods.is_empty():
+		methods = _action_methods.get_script().get_script_method_list()
+	
 	var method_id = methods.find_custom(func(elm): return elm.name == method_name)
 	var _args_name = methods[method_id].args.map(func(elm): return elm.name)
 	var constants = _all_specials[_special][CONSTANT]
@@ -72,9 +89,19 @@ func get_args_to_methods(method_name: String) -> Array:
 			args.append(constants[_name])
 			continue
 		args.append(_special_args[_name])
-	
-	print_debug(args)
 	return args
+
+
+func has_method_begin_with(string: String):
+	var array = []
+	array.append_array(_cache_updated_args)
+	array.append_array(_all_specials[_special][CONSTANT].keys())
+	printerr(array)
+	return array.any(func(elm: String): return elm.begins_with(string))
+
+
+func get_action_name():
+	return _special
 
 
 func _get_property_list() -> Array[Dictionary]:
@@ -82,6 +109,7 @@ func _get_property_list() -> Array[Dictionary]:
 	_cache_updated_args = []
 	properties.append(_property_specials())
 	properties.append_array(_property_special_args())
+	properties.append(PropertyGenerater.take_array("addational_actions", TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE, "ActionResource"))
 	return properties
 
 
@@ -91,7 +119,7 @@ func _property_specials():
 	return PropertyGenerater.convert_to_enum(propperty, _enum)
 
 
-var methods: Array
+static var methods: Array
 func _property_special_args():
 	if not _cache_updated_args:
 		_cache_updated_args = []
@@ -128,7 +156,7 @@ func _set(property: StringName, value: Variant) -> bool:
 	if property.begins_with("override"):
 		var key = property.get_slice(": ", 1) as StringName
 		_special_args.set(key, value)
-		print_debug("set %s == %s\n%s\n" % [property, value, _special_args])
+		#print_debug("set %s == %s\n%s\n" % [property, value, _special_args])
 		return true
 	return false
 

@@ -2,7 +2,7 @@ class_name ItemAction
 extends Control
 
 
-var currect_action: ActionResource
+var currect_action: ActionAggregate
 
 
 @onready var properties_container: HBoxContainer = $MarginContainer/VBoxContainer/PropertiesContainer
@@ -15,18 +15,17 @@ var currect_action: ActionResource
 @onready var items_container: VBoxContainer = $MarginContainer/VBoxContainer/ItemsContainer
 
 @onready var button: Button = $MarginContainer/VBoxContainer/Button
-@onready var action_state: ActionState = Locator.get_service(ActionState)
 
 
 
-func display(action: ActionResource):
+func display(action: ActionAggregate):
 	currect_action = action
-	button.text = action.visible_name
+	button.text = action.get_action_name()
 	_update_action_types()
 
 
 func _update_action_types():
-	if currect_action.context_show_properties_bar:
+	if currect_action.has_method_begin_with("property"):
 		_display_properties()
 	else:
 		for i in range(6):
@@ -36,11 +35,11 @@ func _update_action_types():
 
 func _display_properties():
 	var _properties_index: int = 0
-	for i in currect_action.effects.size():
-		var effect: ExecuteKeeperResource = currect_action.effects[i] 
-		if effect.name.contains("property"):
-			_display_property_bar(_properties_index, effect.args_data[0], effect.args_data[1])
-			_properties_index += 1
+	#for i in currect_action.effects.size():
+		#var effect: ExecuteKeeperResource = currect_action.effects[i] 
+		#if effect.name.contains("property"):
+			#_display_property_bar(_properties_index, effect.args_data[0], effect.args_data[1])
+			#_properties_index += 1
 	
 	for i in range(_properties_index, 6):
 		properties_container.get_child(i).hide()
@@ -81,5 +80,4 @@ func _display_property_bar(index: int, property_name: String, value: int):
 
 
 func _on_button_pressed() -> void:
-	if await action_state.can_execute(currect_action):
-		action_state.execute(currect_action)
+	currect_action.execute()

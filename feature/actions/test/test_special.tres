@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ActionSpecial" load_steps=4 format=3 uid="uid://ddfthp8tl2inn"]
+
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_kpghv"]
+[ext_resource type="Script" uid="uid://chu0ji5mcq1wt" path="res://feature/actions/action_special.gd" id="1_pqd01"]
+
+[sub_resource type="Resource" id="Resource_ocl3s"]
+script = ExtResource("1_kpghv")
+_method_name = "property_add_value"
+"arg_0: property_name" = &"exhaustion"
+"arg_1: property_value" = -5
+metadata/_custom_type_script = "uid://xbfp6rfvxe47"
+
+[resource]
+script = ExtResource("1_pqd01")
+_cache_updated_args = ["property_value", "item_name", "game_time"]
+_special = "eat"
+"override: property_value" = 12
+"override: item_name" = "food_canned_food"
+"override: game_time" = 5
+addational_actions = Array[ExtResource("1_kpghv")]([SubResource("Resource_ocl3s")])
+metadata/_custom_type_script = "uid://chu0ji5mcq1wt"

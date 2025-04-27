@@ -1,48 +1,20 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=10 format=3 uid="uid://ibrfm6mql4j7"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://ibrfm6mql4j7"]
 
-[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_3em0h"]
-[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="2_n3mrf"]
+[ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_3em0h"]
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="2_eenr8"]
+[ext_resource type="Script" uid="uid://chu0ji5mcq1wt" path="res://feature/actions/action_special.gd" id="2_n3mrf"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="3_eenr8"]
 [ext_resource type="Texture2D" uid="uid://c8fhrq2g1ci2g" path="res://assets/sprite/items/food-fry_meat.png" id="4_j42tv"]
 
-[sub_resource type="Resource" id="Resource_mba5r"]
+[sub_resource type="Resource" id="Resource_eenr8"]
 script = ExtResource("2_n3mrf")
-type = "condition"
-name = "property less than max value"
-"arg_0: property_name" = "hunger"
-
-[sub_resource type="Resource" id="Resource_abxia"]
-script = ExtResource("2_n3mrf")
-type = "effect"
-name = "set property"
-"arg_0: property_name" = "hunger"
-"arg_1: value" = 40
-
-[sub_resource type="Resource" id="Resource_inque"]
-script = ExtResource("2_n3mrf")
-type = "effect"
-name = "time skip"
-"arg_0: time" = 20
-"arg_1: real_time" = 0.2
-"arg_2: using_progres_bar" = false
-
-[sub_resource type="Resource" id="Resource_y2i6s"]
-script = ExtResource("2_n3mrf")
-type = "effect"
-name = "remove item"
-"arg_0: item_name" = "food_fry_meat"
-"arg_1: quantity" = 1
-
-[sub_resource type="Resource" id="Resource_2deu3"]
-script = ExtResource("1_3em0h")
-conditions = Array[ExtResource("2_n3mrf")]([SubResource("Resource_mba5r")])
-effects = Array[ExtResource("2_n3mrf")]([SubResource("Resource_abxia"), SubResource("Resource_inque"), SubResource("Resource_y2i6s")])
-context_show_properties_bar = true
-context_use_slider = false
-context_use_item_grid = false
-code_name = &"eat"
-visible_name = "ACTION_EAT_NAME"
-discription = "ACTION_EAT_DISCRIPTION"
+_cache_updated_args = ["property_value", "item_name", "game_time"]
+_special = "eat"
+"override: property_value" = 30
+"override: item_name" = "food_fry_meat"
+"override: game_time" = 30.0
+addational_actions = Array[ExtResource("2_eenr8")]([])
+metadata/_custom_type_script = "uid://chu0ji5mcq1wt"
 
 [resource]
 script = ExtResource("3_eenr8")
@@ -50,7 +22,7 @@ texture = ExtResource("4_j42tv")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_3em0h")]([SubResource("Resource_2deu3")])
+actions = Array[ExtResource("1_3em0h")]([SubResource("Resource_eenr8")])
 code_name = &"food_fry_meat"
 visible_name = "ITEM_FOOD_FRY_MEAT_NAME"
 discription = "ITEM_FOOD_FRY_MEAT_DISCRIPTION"
