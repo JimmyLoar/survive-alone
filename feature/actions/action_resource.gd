@@ -40,16 +40,24 @@ func _property_methods() -> Dictionary:
 
 
 func _property_args() -> Array:
-	var methods = _action_methods.get_script().get_script_method_list() as Array
-	var method_id = methods.find_custom(func(elm): return elm.name == _method_name)
 	var _index = 0
 	var args = []
-	for elm in methods[method_id].args:
+	for elm in _get_args():
 		var _arg = _property_modification(elm)
 		_arg.name = "arg_%d: %s" % [_index, elm.name]
 		_index += 1
 		args.append(_arg)
 	return args
+
+
+func _get_args() -> Array[Dictionary]:
+	var methods = _action_methods.get_script().get_script_method_list() as Array
+	var method_id = methods.find_custom(func(elm): return elm.name == _method_name)
+	return methods[method_id].args
+
+
+func get_argument_names() -> Array:
+	return _get_args().map(func(elm): elm.name)
 
 
 static func _property_modification(prop: Dictionary):
