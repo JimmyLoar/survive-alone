@@ -107,7 +107,6 @@ func _property_special_args():
 	for _method_name in _used_methods:
 		var method_id = methods.find_custom(func(elm): return elm.name == _method_name)
 		args.append_array(_get_method_args(method_id))
-	
 	return args
 
 
@@ -122,16 +121,7 @@ func _get_method_args(method_id: int) -> Array:
 		var _arg = ActionResource._property_modification(arg.duplicate())
 		_arg.name = "override: %s" % [arg.name]
 		_currect.append(_arg)
-	
 	return _currect
-
-
-func _property_methods() -> Dictionary:
-	return {"name": "_method_name", "type": TYPE_NIL, "usage": PROPERTY_USAGE_NO_EDITOR}
-
-
-func _property_args() -> Array:
-	return []
 
 
 func _set(property: StringName, value: Variant) -> bool:
@@ -140,7 +130,6 @@ func _set(property: StringName, value: Variant) -> bool:
 		_special_args.set(key, value)
 		print_debug("set %s == %s\n%s\n" % [property, value, _special_args])
 		return true
-	
 	return false
 
 
@@ -148,7 +137,6 @@ func _get(property: StringName) -> Variant:
 	if property.begins_with("override"):
 		var key = property.get_slice(": ", 1)
 		return _special_args[key] 
-	
 	return
 
 
