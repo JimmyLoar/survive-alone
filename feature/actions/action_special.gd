@@ -45,6 +45,38 @@ var _special_args: Dictionary = {}
 var _cache_updated_args = []
 
 
+func is_meet_conditions() -> bool:
+	var result := true
+	for _name in _all_specials[_special][CONDISION]:
+		result = result && _action_methods.call(_name, get_args_to_methods(_name))
+	return result
+
+
+func execute() -> Array:
+	if not is_meet_conditions():
+		return []
+	var result: Array = []
+	for _name in _all_specials[_special][CONDISION]:
+		result.append(_action_methods.call(_name, get_args_to_methods(_name)))
+	return result
+
+
+func get_args_to_methods(method_name: String) -> Array:
+	var method_id = methods.find_custom(func(elm): return elm.name == method_name)
+	var _args_name = methods[method_id].args.map(func(elm): return elm.name)
+	var constants = _all_specials[_special][CONSTANT]
+	
+	var args := Array()
+	for _name in _args_name:
+		if constants.has(_name):
+			args.append(constants[_name])
+			continue
+		args.append(_special_args[_name])
+	
+	print_debug(args)
+	return args
+
+
 func _get_property_list() -> Array[Dictionary]:
 	var properties: Array[Dictionary] = []
 	_cache_updated_args = []
