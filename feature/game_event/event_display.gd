@@ -11,7 +11,6 @@ extends PanelContainer
 
 
 var _state: EventState
-var _execute_keeper: ExecuteKeeperState
 
 var currect_event: EventResource
 var currect_stages: Array[EventNode]
@@ -20,7 +19,6 @@ var _result: Dictionary
 
 func _enter_tree() -> void:
 	_state = Locator.initialize_service(EventState, [self]) as EventState
-	_execute_keeper = Locator.get_service(ExecuteKeeperState)
 
 
 func _ready() -> void:
@@ -33,8 +31,6 @@ func _ready() -> void:
 	
 	else:
 		self.hide()	
-
-
 
 
 func display(event: EventResource):
@@ -80,9 +76,8 @@ func _validate_action(actions: Array[EventAction]) -> Array[EventAction]:
 func _valide_conditions(array: Array) -> bool:
 	var result = true
 	for x: EventCondition in array:
-		for xx in x.conditions:
-			var _r = _execute_keeper.execute(xx)
-			result = result && _r
+		for condition in x.conditions:
+			result = result && condition.execute()
 	return result
 
 
@@ -120,9 +115,9 @@ func _on_action_pressed(pressed_index: int):
 
 func _apply_effect(array: Array) -> Dictionary:
 	var result = {}
-	for effect: EventEffect in array:
-		for eff: ExecuteKeeperResource in effect.effects:
-			result[eff] = _execute_keeper.execute(eff)
+	for effect_node: EventEffect in array:
+		for effect in effect_node.effects:
+			result[effect] = effect.execute()
 	return result
 
 
@@ -131,22 +126,23 @@ func _display_result(result: Dictionary):
 		%ResultContainer.hide()
 		return
 	
+	#TODO переделать отображение наград
 	%ResultList.clear()
-	for data: ExecuteKeeperResource in result.keys():
-		var collection := ""
-		if data.name.contains("item"):
-			collection = "items"
-		
-		elif  data.name.contains("property"):
-			collection = "properties"
-		
-		else:
-			continue
-		
-		var _name: String = "%d" % data.args_data[1]
-		var icon: Texture2D = resource_db.connection.fetch_data(collection, StringName(data.args_data[0])).texture
-		var index = %ResultList.add_item("%s" % result[data], icon)
-		%ResultList.set_item_tooltip(index, data.args_data[0])
+	#for data: String in result.keys():
+		#var collection := ""
+		#if data.name.contains("item"):
+			#collection = "items"
+		#
+		#elif  data.name.contains("property"):
+			#collection = "properties"
+		#
+		#else:
+			#continue
+		#
+		#var _name: String = "%d" % data.args_data[1]
+		#var icon: Texture2D = resource_db.connection.fetch_data(collection, StringName(data.args_data[0])).texture
+		#var index = %ResultList.add_item("%s" % result[data], icon)
+		#%ResultList.set_item_tooltip(index, data.args_data[0])
 	
 	%ResultContainer.show()
 
