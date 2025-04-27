@@ -1,7 +1,12 @@
-[gd_resource type="Resource" script_class="ActionAggregate" load_steps=2 format=3 uid="uid://k7c4c46ko18c"]
+[gd_resource type="Resource" script_class="ActionAggregate" load_steps=3 format=3 uid="uid://k7c4c46ko18c"]
 
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_r77p0"]
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="2_verg6"]
 
 [resource]
 script = ExtResource("2_verg6")
+_cache_updated_args = []
+_special = "none"
+addational_condition = Array[ExtResource("1_r77p0")]([])
+addational_actions = Array[ExtResource("1_r77p0")]([])
 metadata/_custom_type_script = "uid://bsym8hlejwoaw"

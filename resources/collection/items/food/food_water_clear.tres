@@ -1,13 +1,12 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://t6dvd3ikteh5"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://t6dvd3ikteh5"]
 
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_afgeb"]
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_dl01d"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="3_hv5sd"]
-[ext_resource type="Script" uid="uid://chu0ji5mcq1wt" path="res://feature/actions/action_special.gd" id="3_v0r3i"]
 [ext_resource type="Texture2D" uid="uid://bxm7us5xmnn1j" path="res://assets/sprite/items/food-clear_water.png" id="4_v0r3i"]
 
 [sub_resource type="Resource" id="Resource_8idfp"]
-script = ExtResource("3_v0r3i")
+script = ExtResource("1_dl01d")
 _cache_updated_args = ["property_value", "item_name", "game_time"]
 _special = "drink"
 "override: property_value" = 22

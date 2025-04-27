@@ -32,18 +32,13 @@ func _update_action_types():
 func _display_properties():
 	var _properties_index: int = 0
 	var _action_resources: Array = []
-	if currect_action is ActionSpecial:
-		for _name in currect_action.get_methods_names():
-			if _name == "property_add_value":
-				var args := currect_action.get_arguments_to_method(_name)
-				_display_property_bar(_properties_index, args[0], args[1])
-				_properties_index += 1
-			_action_resources = currect_action.addational_actions
+	for _name in currect_action.get_methods_names():
+		if _name == "property_add_value":
+			var args := currect_action.get_arguments_to_method(_name)
+			_display_property_bar(_properties_index, args[0], args[1])
+			_properties_index += 1
 	
-	elif currect_action is ActionList:
-		_action_resources = currect_action.actions
-	
-	for action: ActionResource in _action_resources:
+	for action: ActionResource in currect_action.addational_actions:
 		if action._method_name == "property_add_value":
 			var args = action.get_arguments()
 			_display_property_bar(_properties_index, args[0], args[1])

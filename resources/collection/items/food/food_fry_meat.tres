@@ -1,18 +1,18 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://ibrfm6mql4j7"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://ibrfm6mql4j7"]
 
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_3em0h"]
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="2_eenr8"]
-[ext_resource type="Script" uid="uid://chu0ji5mcq1wt" path="res://feature/actions/action_special.gd" id="2_n3mrf"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="3_eenr8"]
 [ext_resource type="Texture2D" uid="uid://c8fhrq2g1ci2g" path="res://assets/sprite/items/food-fry_meat.png" id="4_j42tv"]
 
 [sub_resource type="Resource" id="Resource_eenr8"]
-script = ExtResource("2_n3mrf")
+script = ExtResource("1_3em0h")
 _cache_updated_args = ["property_value", "item_name", "game_time"]
 _special = "eat"
 "override: property_value" = 30
 "override: item_name" = "food_fry_meat"
 "override: game_time" = 30.0
+addational_condition = Array[ExtResource("2_eenr8")]([])
 addational_actions = Array[ExtResource("2_eenr8")]([])
 metadata/_custom_type_script = "uid://chu0ji5mcq1wt"
 
