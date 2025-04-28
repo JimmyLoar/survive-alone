@@ -1,18 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8g6wavqx75ii"]
+[gd_scene load_steps=6 format=3 uid="uid://b8g6wavqx75ii"]
 
 [ext_resource type="Script" uid="uid://bul4wam67h8fx" path="res://!tools/event_editer/graphs/_actions.gd" id="1_bk4ot"]
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="2_bjcly"]
+[ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="3_ndqgv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
 bg_color = Color(7.21961e-08, 0.517794, 0.341272, 1)
 
-[node name="ActionNode" type="GraphNode" node_paths=PackedStringArray("line_edit", "text_edit")]
-custom_minimum_size = Vector2(300, 240)
-offset_right = 300.0
-offset_bottom = 240.0
+[sub_resource type="Resource" id="Resource_c0ngs"]
+script = ExtResource("3_ndqgv")
+special = "none"
+addational_condition = Array[ExtResource("2_bjcly")]([])
+addational_actions = Array[ExtResource("2_bjcly")]([])
+
+[node name="ActionNode" type="GraphNode" node_paths=PackedStringArray("line_edit", "text_edit", "edit_button")]
+custom_minimum_size = Vector2(300, 200)
+offset_right = 316.0
+offset_bottom = 308.0
 theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
+resizable = true
 title = "Action"
-slot/0/left_enabled = true
+slot/0/left_enabled = false
 slot/0/left_type = 2
 slot/0/left_color = Color(0, 0, 1, 1)
 slot/0/left_icon = null
@@ -21,7 +30,7 @@ slot/0/right_type = 1
 slot/0/right_color = Color(0, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
-slot/1/left_enabled = true
+slot/1/left_enabled = false
 slot/1/left_type = 3
 slot/1/left_color = Color(1, 0, 1, 1)
 slot/1/left_icon = null
@@ -29,7 +38,7 @@ slot/1/right_enabled = false
 slot/1/right_type = 3
 slot/1/right_color = Color(1, 0, 1, 1)
 slot/1/right_icon = null
-slot/1/draw_stylebox = true
+slot/1/draw_stylebox = false
 slot/2/left_enabled = false
 slot/2/left_type = 0
 slot/2/left_color = Color(1, 1, 1, 1)
@@ -66,16 +75,36 @@ slot/5/right_type = 0
 slot/5/right_color = Color(1, 1, 1, 1)
 slot/5/right_icon = null
 slot/5/draw_stylebox = true
+slot/6/left_enabled = false
+slot/6/left_type = 0
+slot/6/left_color = Color(1, 1, 1, 1)
+slot/6/left_icon = null
+slot/6/right_enabled = false
+slot/6/right_type = 0
+slot/6/right_color = Color(1, 1, 1, 1)
+slot/6/right_icon = null
+slot/6/draw_stylebox = true
+slot/7/left_enabled = false
+slot/7/left_type = 0
+slot/7/left_color = Color(1, 1, 1, 1)
+slot/7/left_icon = null
+slot/7/right_enabled = false
+slot/7/right_type = 0
+slot/7/right_color = Color(1, 1, 1, 1)
+slot/7/right_icon = null
+slot/7/draw_stylebox = true
 script = ExtResource("1_bk4ot")
 line_edit = NodePath("VBoxContainer/LineEdit")
 text_edit = NodePath("VBoxContainer/TextEdit")
-metadata/_edit_lock_ = true
+edit_button = NodePath("ButtonEditActionAggregate")
+_resource = SubResource("Resource_c0ngs")
 metadata/_edit_group_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "condition"
@@ -87,6 +116,7 @@ text = "node"
 horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "effect"
@@ -128,5 +158,14 @@ text = "Hide if condition equals False"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "it's a phrase"
+
+[node name="ButtonEditActionAggregate" type="Button" parent="."]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Edit"
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+layout_mode = 2
 
 [connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]

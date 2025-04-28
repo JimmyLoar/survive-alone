@@ -80,11 +80,6 @@ folder_colors={
 "res://resources/": "blue"
 }
 
-[gui]
-
-theme/custom="res://assets/themes/main.tres"
-theme/custom_font="res://assets/themes/fonts/yaginya/Yaginya.otf"
-
 [importer_defaults]
 
 font_data_dynamic={

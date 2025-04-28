@@ -5,8 +5,10 @@
 
 [resource]
 script = ExtResource("2_verg6")
-_cache_updated_args = []
-_special = "none"
+special = "eat"
+"override: property_value" = null
+"override: item_name" = "food_water_clear"
+"override: game_time" = null
 addational_condition = Array[ExtResource("1_r77p0")]([])
 addational_actions = Array[ExtResource("1_r77p0")]([])
 metadata/_custom_type_script = "uid://bsym8hlejwoaw"

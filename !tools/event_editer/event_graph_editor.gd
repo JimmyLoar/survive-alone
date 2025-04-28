@@ -7,8 +7,6 @@ const EndNodeScene = preload("uid://bnf6ipbnvyj65")
 const MonologueNodeScene = preload("uid://beklh40jtnrqv")
 const DialogueNodeScene = preload("uid://cmkc0dt0p36cv")
 const ActionsNodeScene = preload("uid://b8g6wavqx75ii")
-const ConditionNodeScene = preload("uid://glovskhe8pur")
-const EffectNodeScene = preload("uid://hudxb37p6u6c")
 const AbortNodeScene = preload("uid://ddhmoxckqyrvv")
 
 
@@ -116,10 +114,6 @@ func _get_graph_node(node: EventNode) -> EventGraphNode:
 		return DialogueNodeScene.instantiate()
 	elif node is EventAction:
 		return ActionsNodeScene.instantiate()
-	elif node is EventCondition:
-		return ConditionNodeScene.instantiate()
-	elif node is EventEffect:
-		return EffectNodeScene.instantiate()
 	elif node is EventAbort:
 		return AbortNodeScene.instantiate()
 	return null

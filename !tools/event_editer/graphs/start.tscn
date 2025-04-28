@@ -10,7 +10,7 @@ custom_minimum_size = Vector2(300, 240)
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 301.0
-offset_bottom = 290.0
+offset_bottom = 281.0
 theme_override_constants/separation = 8
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_6cmvk")
 title = "Start"
@@ -55,7 +55,6 @@ name_text_edit = NodePath("VBoxName/NameTextEdit")
 name_translated = NodePath("VBoxName/NameTranslated")
 discription_translated = NodePath("VBoxName/DiscriptionTranslated")
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

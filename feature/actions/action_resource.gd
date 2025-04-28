@@ -56,6 +56,8 @@ func _property_args() -> Array:
 		_arg.name = "arg_%d: %s" % [_index, elm.name]
 		_index += 1
 		args.append(_arg)
+	
+	_args.resize(args.size())
 	return args
 
 

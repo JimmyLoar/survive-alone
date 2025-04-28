@@ -32,14 +32,14 @@ const _all_specials: Dictionary = {
 
 var addational_condition: Array[ActionResource] = []
 var addational_actions: Array[ActionResource] = []
-
-@export_storage var _cache_updated_args = []
-
-var _action_methods := ActionMethods.get_instantiate()
-var _special: String = _all_specials.keys().front():
+var special: String = _all_specials.keys().front():
 	set(value):
-		_special = value
+		special = value
+		emit_changed()
 		notify_property_list_changed()
+
+var _cache_updated_args: Array[String] = []
+var _action_methods := ActionMethods.get_instantiate()
 var _special_args: Dictionary = {}
 
 var _logger := Log.get_global_logger().with("ActionAggregate")
@@ -47,7 +47,7 @@ var _logger := Log.get_global_logger().with("ActionAggregate")
 
 func is_meet_conditions() -> bool:
 	var result := true
-	for _name in _all_specials[_special][CONDISION]:
+	for _name in _all_specials[special][CONDISION]:
 		var _args = get_arguments_to_method(_name)
 		result = result && _action_methods.callv(_name, _args)
 	
@@ -63,7 +63,7 @@ func execute() -> Array:
 		return []
 	
 	var result: Array = []
-	for _name in _all_specials[_special][ACTION]:
+	for _name in _all_specials[special][ACTION]:
 		result.append(_action_methods.callv(_name, get_arguments_to_method(_name)))
 	
 	for action in addational_actions:
@@ -74,11 +74,11 @@ func execute() -> Array:
 
 
 func get_action_name():
-	return _special
+	return special
 
 
 func get_arguments_to_method(method_name) -> Array:
-	var constants = _all_specials[_special][CONSTANT]
+	var constants = _all_specials[special][CONSTANT]
 	var args := Array()
 	for _name in get_argument_names(method_name):
 		if constants.has(_name):
@@ -89,7 +89,7 @@ func get_arguments_to_method(method_name) -> Array:
 
 
 func get_methods_names() -> Array:
-	return get_used_methods_names()
+	return get_special_methods_names()
 
 
 func get_argument_names(method_name) -> Array:
@@ -101,9 +101,22 @@ func get_argument_names(method_name) -> Array:
 	return args
 
 
+func get_override_argument_names() -> Array:
+	var args = _property_special_args()
+	args = args.map(func(elm): return elm.name.trim_prefix("override: "))
+	return args
+
+
+func get_special_methods_names() -> Array[String]:
+	var _used_methods: Array[String] = []
+	_used_methods.assign(_all_specials[special][CONDISION])
+	_used_methods.append_array(_all_specials[special][ACTION])
+	return _used_methods
+
+
 func _get_property_list() -> Array[Dictionary]:
+	_cache_updated_args = [] 
 	var properties: Array[Dictionary] = []
-	_cache_updated_args = []
 	properties.append(_property_specials())
 	properties.append_array(_property_special_args())
 	properties.append(PropertyGenerater.take_array("addational_condition", TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE, "ActionResource"))
@@ -113,21 +126,14 @@ func _get_property_list() -> Array[Dictionary]:
 
 func _property_specials():
 	var _enum = ','.join(_all_specials.keys())
-	var propperty := PropertyGenerater.take_string("_special")
+	var propperty := PropertyGenerater.take_string("special")
 	return PropertyGenerater.convert_to_enum(propperty, _enum)
 
 
-func get_used_methods_names() -> Array:
-	var _used_methods = []
-	_used_methods.assign(_all_specials[_special][CONDISION])
-	_used_methods.append_array(_all_specials[_special][ACTION])
-	return _used_methods
-
-
 static var methods: Array
-func _property_special_args():
-	var args = []
-	for method_name in get_used_methods_names():
+func _property_special_args() -> Array:
+	var args: Array = []
+	for method_name in get_special_methods_names():
 		args.append_array(_extrude_args(_get_method_args(method_name)))
 	return args
 
@@ -139,17 +145,17 @@ func _get_method_args(_method_name: String) -> Array[Dictionary]:
 	return methods[method_id].args
 
 
-func _extrude_args(args) -> Array:
-	if not _cache_updated_args:
-		_cache_updated_args = []
-	
-	var _currect = []
+func _extrude_args(args: Array[Dictionary]) -> Array[Dictionary]:
+	var _currect: Array[Dictionary] = []
 	for arg: Dictionary in args:
 		if (_cache_updated_args.has(arg.name)
-			or _all_specials[_special][CONSTANT].has(arg.name)):
+			or _all_specials[special][CONSTANT].has(arg.name)):
 			continue
 		
 		_cache_updated_args.append(arg.name)
+		if not _special_args.has(arg.name):
+			_special_args[arg.name] = null
+		
 		var _arg = ActionResource._property_modification(arg.duplicate())
 		_arg.name = "override: %s" % [arg.name]
 		_currect.append(_arg)
@@ -160,7 +166,7 @@ func _set(property: StringName, value: Variant) -> bool:
 	if property.begins_with("override"):
 		var key = property.get_slice(": ", 1) as StringName
 		_special_args.set(key, value)
-		#print_debug("set %s == %s\n%s\n" % [property, value, _special_args])
+		emit_changed()
 		return true
 	return false
 
