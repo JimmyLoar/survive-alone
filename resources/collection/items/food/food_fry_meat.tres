@@ -7,8 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_eenr8"]
 script = ExtResource("1_3em0h")
-_cache_updated_args = ["property_value", "item_name", "game_time"]
-_special = "eat"
+special = "eat"
 "override: property_value" = 30
 "override: item_name" = "food_fry_meat"
 "override: game_time" = 30.0

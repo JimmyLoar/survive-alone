@@ -20,8 +20,7 @@ metadata/_custom_type_script = "uid://xbfp6rfvxe47"
 
 [sub_resource type="Resource" id="Resource_ojq0o"]
 script = ExtResource("1_vfxuf")
-_cache_updated_args = ["property_value", "item_name", "game_time"]
-_special = "eat"
+special = "eat"
 "override: property_value" = 25
 "override: item_name" = "food_fresh_meat"
 "override: game_time" = 5

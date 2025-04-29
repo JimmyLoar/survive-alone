@@ -32,9 +32,9 @@ const _all_specials: Dictionary = {
 
 var addational_condition: Array[ActionResource] = []
 var addational_actions: Array[ActionResource] = []
-var special: String = _all_specials.keys().front():
+var special: String = "":
 	set(value):
-		special = value
+		special = _all_specials.keys().front() if not value or value.is_empty() else value
 		emit_changed()
 		notify_property_list_changed()
 
