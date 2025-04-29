@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="ExecuteKeeperResource" load_steps=2 format=3 uid="uid://b5t8d7rqwns0m"]
-
-[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="1_yn50l"]
-
-[resource]
-script = ExtResource("1_yn50l")
-type = "effect"
-name = "add used item"
-metadata/_custom_type_script = "uid://btwg7e67cuvhv"

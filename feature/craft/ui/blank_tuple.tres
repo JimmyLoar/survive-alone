@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_7lab0"]
 [ext_resource type="Script" uid="uid://df28n1j5yalbs" path="res://feature/craft/ItemNumberRecurse.gd" id="1_hc5hs"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_qriu5"]
-[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="3_ku62j"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="3_ku62j"]
 
 [sub_resource type="Resource" id="Resource_blne7"]
 script = ExtResource("2_qriu5")

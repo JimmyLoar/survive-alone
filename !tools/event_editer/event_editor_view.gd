@@ -9,8 +9,6 @@ const graph_nodes = [
 	{label = "Monologue", scene = EventGraphEditor.MonologueNodeScene},
 	{label = "Dialogue", scene = EventGraphEditor.DialogueNodeScene},
 	{label = "Actions", scene = EventGraphEditor.ActionsNodeScene},
-	{label = "ActionConditions", scene = EventGraphEditor.ConditionNodeScene},
-	{label = "ActionEffects", scene = EventGraphEditor.EffectNodeScene},
 	{label = "Abort", scene = EventGraphEditor.AbortNodeScene},
 ]
 
