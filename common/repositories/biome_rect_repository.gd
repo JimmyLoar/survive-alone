@@ -26,12 +26,12 @@ func get_all_intersected(rect: Rect2i) -> Array[BiomeRectEntity]:
 	var select_condition = """
 SELECT *
 FROM biome_rect rect
-WHERE NOT
-	(rect.x < %d OR
-	rect.end_x > %d OR
-	rect.y < %d OR
-	rect.end_y > %d);
-""" % [x, end_x, y, end_y]
+WHERE
+	rect.x <= %d AND
+	rect.end_x >= %d AND
+	rect.y <= %d AND
+	rect.end_y >= %d;
+""" % [end_x, x, end_y, y]
 	_db.connection.query(select_condition)
 	var rows = _db.connection.query_result
 	# Shitty gdscript static typing
@@ -40,7 +40,6 @@ WHERE NOT
 	var entities: Array[BiomeRectEntity]
 	entities.assign(rows.map(Callable(self, "_row_to_entity")))
 	return entities
-
 
 func has(id: int):
 	if id < 0:
