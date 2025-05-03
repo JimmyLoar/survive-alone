@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://deweoka8ravkd"]
 
-[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_iwslv"]
+[ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_03uaq"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="1_wc4sl"]
 [ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_sve4q"]
 
@@ -10,7 +10,8 @@ texture = ExtResource("2_sve4q")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_iwslv")]([])
+actions = Array[ExtResource("1_03uaq")]([])
+categories = Array[int]([0])
 code_name = &"resource_flint"
 visible_name = "ITEM_RESOURCE_FLINT_NAME"
 discription = "ITEM_RESOURCE_FLINT_DISCRIPTION"

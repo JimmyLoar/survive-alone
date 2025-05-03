@@ -1,7 +1,8 @@
 extends ItemList
 
 signal quest_selected(quest: QuestResource)
-@export_enum("Activated:0", "Complited:1", "All:2") var _what_show := 0
+
+@export_enum("Activated:0", "Complited:1", "All:2") var what_show := 0
 
 
 var _quests := []
@@ -29,6 +30,7 @@ func _append_list(title: String, list: Array):
 	
 	for i in list.size():
 		var quest: QuestResource = list[i]
+		@warning_ignore_start('unused_variable')
 		var index := add_item(quest.name)
 
 

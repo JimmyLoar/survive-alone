@@ -89,9 +89,9 @@ static func from_rect_diff(previous: Rect2i, current: Rect2i) -> VisibleTilesDif
 
 	return diff
 
-static  func from_updated(updated: Rect2i, current: Rect2i) -> VisibleTilesDiff:
+static  func from_updated(_updated: Rect2i, current: Rect2i) -> VisibleTilesDiff:
 	var diff = VisibleTilesDiff.new()
-	var intersection = updated.intersection(current)
+	var intersection = _updated.intersection(current)
 	
 	if intersection.size != Vector2i.ZERO:
 		diff.updated.push_back(intersection)

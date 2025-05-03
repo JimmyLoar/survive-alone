@@ -38,7 +38,7 @@ func _ready() -> void:
 	_state = Locator.get_service(EventState) as EventState
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	_state.start_event(event)
 	
 "
@@ -162,7 +162,6 @@ size_flags_vertical = 1
 [node name="TimeProgress" parent="UI/VBoxContainer/MarginContainer" instance=ExtResource("16_s66yn")]
 visible = false
 layout_mode = 2
-mouse_filter = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 

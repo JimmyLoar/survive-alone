@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://4xmlo71q4jpr"]
 
 [ext_resource type="Script" uid="uid://cyitdfsddwv0w" path="res://feature/craft/ui/item_number_tuple_view.gd" id="1_uvye7"]
-[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="3_ga6cv"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="3_ga6cv"]
 
 [node name="ItemNumberTupleView" type="TextureRect"]
 custom_minimum_size = Vector2(64, 64)

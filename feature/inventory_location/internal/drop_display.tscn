@@ -7,6 +7,7 @@
 [sub_resource type="GDScript" id="GDScript_c4g7g"]
 script/source = "extends HBoxContainer
 
+@warning_ignore('unused_signal')
 signal finished
 
 
@@ -32,7 +33,7 @@ func _show_step(tween: Tween, time: float,  value: float):
 
 
 func _count_time(step: int = 0, max_step: int = 1, time: float = 1.0, ):
-	var offset: int = min(floori(max_step / 2), 5)
+	var offset: int = min(floori(max_step / 2.), 5)
 	if step < offset:
 		return time - ((time - MIN_TIME) / offset) * step
 	

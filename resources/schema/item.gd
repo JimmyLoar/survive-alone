@@ -10,6 +10,7 @@ extends NamedResource
 
 @export var actions: Array[ActionAggregate] = [] 
 
+@export var categories: Array[Category] = []
 
 func _init() -> void:
 	super("Item")
@@ -24,6 +25,14 @@ enum Rare{
 	LEGAND,  #
 	MYTH,    #
 	RARITY,  #
+}
+
+enum Category{
+	MATERIAL,
+	TOOL,
+	FOOD,
+	MEDICINE,
+	BUILDING,
 }
 
 const RARE_COLOR = {
@@ -45,3 +54,6 @@ func get_color():
 func _get_property_list() -> Array[Dictionary]:
 	var properties: Array[Dictionary] = []
 	return properties
+	
+func _get_icon() -> Texture2D:
+	return texture

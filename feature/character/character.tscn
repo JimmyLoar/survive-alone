@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpkdoaq7tk0b8"]
+[gd_scene load_steps=12 format=3 uid="uid://bpkdoaq7tk0b8"]
 
 [ext_resource type="Script" uid="uid://cpyers3ikip6v" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_7q31a"]
 [ext_resource type="Script" uid="uid://dd7wpi5fc85n4" path="res://feature/character/character.gd" id="1_p76ae"]
 [ext_resource type="Texture2D" uid="uid://mrk2g63yuhh4" path="res://assets/sprite/for vfx/dotline_test.png" id="2_o4l87"]
 [ext_resource type="Script" uid="uid://cstrxukhnpb1h" path="res://addons/shape_texture_2d/drawable_ellipse.gd" id="2_qnd3l"]
 [ext_resource type="Texture2D" uid="uid://b74eu0h2dp518" path="res://assets/sprite/for vfx/cross.png" id="3_7nmth"]
+[ext_resource type="Script" uid="uid://begejqexkj7yf" path="res://common/StateMachina/StateMachina.gd" id="6_yyxt3"]
+[ext_resource type="Script" uid="uid://om0dhmib7xpd" path="res://feature/character/SMStates/idle.gd" id="7_x8p0b"]
+[ext_resource type="Script" uid="uid://hqgdp8vjvdca" path="res://feature/character/SMStates/move.gd" id="8_g5h2o"]
 
 [sub_resource type="Resource" id="Resource_hqprc"]
 script = ExtResource("2_qnd3l")
@@ -39,6 +42,7 @@ script = ExtResource("1_p76ae")
 
 [node name="MovingLine" type="Line2D" parent="."]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)
@@ -58,16 +62,21 @@ texture = SubResource("Texture2D_lcb6a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_l4ehk")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_l4ehk")
-
-[node name="Inventar" type="Node2D" parent="."]
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CharacterStateMachina" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_yyxt3")
+
+[node name="Idle" type="Node" parent="CharacterStateMachina"]
+unique_name_in_owner = true
+script = ExtResource("7_x8p0b")
+
+[node name="Move" type="Node" parent="CharacterStateMachina"]
+unique_name_in_owner = true
+script = ExtResource("8_g5h2o")
+
+[node name="Marker2D" type="RayCast2D" parent="."]
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

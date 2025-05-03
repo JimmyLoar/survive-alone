@@ -36,7 +36,7 @@ func get_date() -> Dictionary:
 		"minut": 	str(get_minut()).lpad(2, "0"),
 	}
 
-
+@warning_ignore_start('narrowing_conversion')
 static func time_to_minut(time: int) -> int:
 	return fmod(time, MINUT_IN_HOUR)
 static func time_to_hour(time: int) -> int:
@@ -67,3 +67,4 @@ static func date_to_time(date: Dictionary) -> int:
 	_time += hour_to_time(int(date.hour))
 	_time += int(date.minut)
 	return _time
+@warning_ignore_restore('narrowing_conversion')

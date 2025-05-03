@@ -21,5 +21,4 @@ script = ExtResource("2_kew2e")
 ingredients = Array[ExtResource("1_gxxkv")]([SubResource("Resource_3g160")])
 results = Array[ExtResource("1_gxxkv")]([SubResource("Resource_42e2s")])
 craft_time = 33
-recipe_type = 0
 metadata/_custom_type_script = "uid://jl8580apw3vx"

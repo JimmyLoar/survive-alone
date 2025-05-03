@@ -29,5 +29,4 @@ script = ExtResource("2_lidee")
 ingredients = Array[ExtResource("1_vhjw2")]([SubResource("Resource_u64qi")])
 results = Array[ExtResource("1_vhjw2")]([SubResource("Resource_1ayv4"), SubResource("Resource_0q30j")])
 craft_time = 100
-recipe_type = 0
 metadata/_custom_type_script = "uid://jl8580apw3vx"

@@ -23,7 +23,7 @@ func rotate_arrow():
 	$"Sprite-0003-export".rotation = (dir_vector).angle() - PI / 2
 
 
-func _process(delta):
+func _process(_delta):
 	rotate_arrow()
 
 

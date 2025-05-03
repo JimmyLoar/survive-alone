@@ -21,8 +21,7 @@ func execute() -> Variant:
 
 
 func get_argument_names() -> Array:
-	return _get_args().map(func(elm): elm.name)
-
+	return _get_args().map(func(elm): return elm.name)
 
 func get_arguments():
 	return _args

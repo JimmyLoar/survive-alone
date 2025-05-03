@@ -6,6 +6,6 @@ func _ready() -> void:
 	set("theme_override_colors/font_shadow_color", Color.BLACK)
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	text = "FPS: %d" % Engine.get_frames_per_second()
 	text = text.rpad(9, " ")

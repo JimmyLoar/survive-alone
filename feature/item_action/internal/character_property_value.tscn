@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccyeuduk7vphu"]
 
 [ext_resource type="Script" uid="uid://nl3jswkxi7wl" path="res://feature/item_action/internal/character_property_value.gd" id="1_esi2a"]
-[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="2_nigdk"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_nigdk"]
 
 [node name="PropertyBar" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 28)

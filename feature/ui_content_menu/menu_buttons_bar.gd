@@ -1,5 +1,5 @@
 extends PanelContainer
-
+@warning_ignore('unused_signal')
 signal button_pressed(index: int)
 
 @export var target_node: TabContainer

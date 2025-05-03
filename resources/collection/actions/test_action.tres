@@ -1,15 +1,8 @@
-[gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://cyejt07t5u1ej"]
+[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://cyejt07t5u1ej"]
 
-[ext_resource type="Script" uid="uid://c33om3s7ld1l5" path="res://feature/execute_keeper/execute_keeper_resource.gd" id="1_0u700"]
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_ara7v"]
 
 [resource]
 script = ExtResource("1_ara7v")
-conditions = Array[ExtResource("1_0u700")]([])
-effects = Array[ExtResource("1_0u700")]([])
-context_show_properties_bar = false
-context_use_slider = false
-context_use_item_grid = false
-code_name = &"test"
-visible_name = "ACTION_TEST_NAME"
-discription = "ACTION_TEST_DISCRIPTION"
+_method_name = ""
+"arg_0: eventpack_name" = null

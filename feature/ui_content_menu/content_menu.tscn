@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bksbtwk2euyms"]
+[gd_scene load_steps=7 format=3 uid="uid://bksbtwk2euyms"]
 
 [ext_resource type="Script" uid="uid://vh20fyeeneky" path="res://feature/ui_content_menu/content_menu.gd" id="1_c6v8d"]
 [ext_resource type="PackedScene" uid="uid://os5qyr4xwmqx" path="res://feature/ui_content_menu/menu_buttons_bar.tscn" id="2_xflwk"]
@@ -51,7 +51,7 @@ metadata/_tab_index = 2
 [node name="CC-Craft" parent="HBoxContainer/TabContainer" instance=ExtResource("5_bu55j")]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 layout_mode = 2

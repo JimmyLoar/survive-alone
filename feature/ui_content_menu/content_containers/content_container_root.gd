@@ -1,6 +1,6 @@
 class_name ContentContainer
 extends PanelContainer
-
+@warning_ignore('unused_signal')
 signal closed
 
 @export_range(0.1, 10.0, 0.1) var main_stretch_ratio := 2.4

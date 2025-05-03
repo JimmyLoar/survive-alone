@@ -45,12 +45,12 @@ func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
 
 
 
-func remove_item(name: String, _amount := 1):
+func remove_item(_name: String, _amount := 1):
 	if _amount <= 0: 
 		return 0
 	
 	var remaining = _amount
-	var index := find_item(name)
+	var index := find_item(_name)
 	if index == -1:
 		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [name, remaining])
 		return remaining
@@ -68,13 +68,13 @@ func remove_item(name: String, _amount := 1):
 	return remaining
 
 
-func has_data(name: String):
-	return find_item(name) != -1
+func has_data(_name: String):
+	return find_item(_name) != -1
 
 
-func has_item_amount(name: String, amount: int = 1) -> bool:
+func has_item_amount(_name: String, amount: int = 1) -> bool:
 	amount = abs(amount)
-	var index := find_item(name)
+	var index := find_item(_name)
 	if index != -1:
 		return get_item(index).get_total_amount() >= amount
 	return false #возвращается если предмета нет в инветоре

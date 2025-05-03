@@ -6,20 +6,21 @@ var _time_state: GameTimeState
 
 
 var known_recipes: Array[BasicRecipe] = [
-	load("res://feature/craft/testrec.tres"),
-	load("res://feature/craft/ui/Recepies/test2.tres")
 	]
 
 var recipes: Array[BasicRecipe] = [
-	load("res://feature/craft/testrec.tres"),
-	load("res://feature/craft/ui/Recepies/test2.tres"),
-	load("res://feature/craft/ui/Recepies/new_resource.tres"),
+	load("res://resources/collection/recipes/new_resource.tres"),
+	load("res://resources/collection/recipes/test2.tres"),
+	load("res://resources/collection/recipes/tools/tool_homemade_axe.tres"),
+	load("res://resources/collection/recipes/testrec.tres"),
 	]
 
 
 func _init() -> void:
 	_init_dependencies.call_deferred()
-
+	add_recipe(load("res://resources/collection/recipes/test2.tres"))
+	add_recipe(load("res://resources/collection/recipes/tools/tool_homemade_axe.tres"))
+	add_recipe(load("res://resources/collection/recipes/new_resource.tres"))
 
 func _init_dependencies():
 	_inventory_state = Locator.get_service(InventoryCharacterState)

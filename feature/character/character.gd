@@ -5,28 +5,32 @@ var _state: CharacterState
 
 @export var time_unit = 1 # times per one _physics_process
 @export var move_speed = 50 # pixels per time_unit
-@onready var _moving_line = %MovingLine
-@onready var _line_cross = %Cross
+@export var biome_check_gap = 20
 @onready var _screen_mouse_events: ScreenMouseEventsState = Locator.get_service(ScreenMouseEventsState)
 @onready var _game_time: GameTimeState = Locator.get_service(GameTimeState)
 @onready var _character_repositoty: CharacterRepository = Locator.get_service(CharacterRepository)
 @onready var _save_db: SaveDb = Locator.get_service(SaveDb)
+@warning_ignore('unused_private_class_variable')
 @onready var _resource_db: ResourceDb = Locator.get_service(ResourceDb)
+@onready var _camera_state: MainCameraState = Locator.get_service(MainCameraState)
 var _character_properties_repository: CharacterPropertyRepository
+@onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
+
 
 
 func _enter_tree() -> void:
 	_state = Locator.initialize_service(CharacterState, [self])
 	_character_properties_repository = Locator.initialize_service(CharacterPropertyRepository)
 
-
 func _ready() -> void:
+	
 	_screen_mouse_events.left_button_changed.connect(_on_screen_left_button)
 	_game_time.finished_step.connect(_update_props_by_time_spend)
 	_game_time.started_skip.connect(_state.reset_target, CONNECT_DEFERRED)
 
 	_character_properties_repository.init(_save_db)
 	
+	_camera_state.mode = _camera_state.TargetMode.new(self)
 	
 	Callable(func():
 		position = _character_repositoty.get_world_position()
@@ -41,38 +45,18 @@ func _ready() -> void:
 	).call_deferred()
 
 
+var passability = {'water': 0}
+
 func _on_screen_left_button(value):
 	if value is ScreenMouseEventsState.Click:
+		
+		for biome in _biomes_layer_state.get_visible_tile_biomes_fast(_biomes_layer_state.global_to_map(get_global_mouse_position())):
+			if biome.name in passability.keys():
+				if passability.get(biome.name) == 0:
+					return
+				
 		_state.target_position = get_global_mouse_position()
-
-
-func _physics_process(delta: float) -> void:
-	if _state.is_moving:
-		_process_moving(delta)
-	else:
-		_process_idle()
-
-func _process_moving(delta: float):
-	var move_step = delta * move_speed
-	var distance = position.distance_to(_state.target_position)
-
-	if distance > move_step:
-		update_position(position.move_toward(_state.target_position, move_step))
-		_game_time.do_step(time_unit)
-		
-	else:
-		update_position(_state.target_position)
-		time_unit = max(time_unit * (distance / move_step), 1)
-		_game_time.do_step(time_unit)
-		
-	_moving_line.points[0] = _state.target_position - position
-	_line_cross.position = _state.target_position - position
-	_moving_line.show()
-	_update_props_by_time_spend(time_unit)
-
-
-func _process_idle():
-	_moving_line.hide()
+		%CharacterStateMachina.change_state(%Move)
 
 
 func _update_props_by_time_spend(_delta: int):
@@ -83,13 +67,7 @@ func _update_props_by_time_spend(_delta: int):
 			prop.value += prop_value_delta * _delta
 			_state.set_property(prop)
 
-
-func update_position(pos: Vector2):
-	position = pos
-	_state.position_changed.emit(pos)
-	_save_position_debounce.emit()
-
-
+@warning_ignore('unused_private_class_variable')
 var _save_position_debounce = Debounce.new(_save_position, 0.2)
 func _save_position():
 	_character_repositoty.set_world_position(position)
@@ -102,7 +80,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	_state.player_enter_on_screen.emit()
 
-
+@warning_ignore('unused_private_class_variable')
 var _save_properties_debounce = Debounce.new(_save_properties, 0.2)
 func _save_properties():
 	_character_properties_repository.update_batch(_state._properties.values())

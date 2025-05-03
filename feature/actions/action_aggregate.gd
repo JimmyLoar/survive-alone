@@ -42,7 +42,7 @@ var _cache_updated_args: Array[String] = []
 var _action_methods := ActionMethods.get_instantiate()
 var _special_args: Dictionary = {}
 
-var _logger := Log.get_global_logger().with("ActionAggregate")
+#var _logger := Log.get_global_logger().with("ActionAggregate")
 
 
 func is_meet_conditions() -> bool:

@@ -14,6 +14,7 @@ position = Vector2(0, -1.49012e-08)
 texture = ExtResource("3_iivo0")
 
 [node name="CollisionShape" type="Polygon2D" parent="."]
+visible = false
 position = Vector2(177, 96)
 color = Color(0.588235, 0, 0, 0)
 polygon = PackedVector2Array(-257, -96, -177, -137, -97, -97, -177, -56)

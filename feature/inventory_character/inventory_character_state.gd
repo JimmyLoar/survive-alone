@@ -4,8 +4,8 @@ extends InventoryState
 signal item_removed(item_name: String)
 signal item_added(item_name: String)
 
-func remove_item(name: String, _amount := 1):
-	var res = super(name, _amount)
+func remove_item(_name: String, _amount := 1):
+	var res = super(_name, _amount)
 	item_removed.emit(name)
 	return res
 	

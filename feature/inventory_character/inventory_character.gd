@@ -32,7 +32,7 @@ func _ready() -> void:
 		{
 			"text": "KEY_BUTTON_DROP",
 			"on_pressed": on_drop_item,
-			"can_view": func(item: ItemEntity): return true
+			"can_view": func(_item: ItemEntity): return true
 		}
 	])
 	
