@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=50 format=3 uid="uid://s6k078jwopre"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=44 format=3 uid="uid://s6k078jwopre"]
 
 [ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_oao3x"]
 [ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="2_3wiuq"]
@@ -92,60 +92,55 @@ from = SubResource("Resource_1l8wp")
 to = SubResource("Resource_fs17t")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_kndmj"]
+[sub_resource type="Resource" id="Resource_8v2sr"]
 script = ExtResource("9_4q6bf")
-_method_name = "time_use"
-"arg_0: game_time" = 14.3
-"arg_1: for_real_time" = 7.6
-"arg_2: with_progress_screen" = true
+_method_name = "inventories_remove_item"
+"arg_0: item_name" = "food_fry_meat"
+"arg_1: amount" = 3
 metadata/_custom_type_script = "uid://xbfp6rfvxe47"
 
-[sub_resource type="Resource" id="Resource_0nih1"]
-script = ExtResource("10_1l8wp")
-special = "eat"
-"override: property_value" = null
-"override: item_name" = null
-"override: game_time" = null
-addational_condition = Array[ExtResource("9_4q6bf")]([])
-addational_actions = Array[ExtResource("9_4q6bf")]([SubResource("Resource_kndmj")])
+[sub_resource type="Resource" id="Resource_kndmj"]
+script = ExtResource("9_4q6bf")
+_method_name = "inventories_has_item"
+"arg_0: item_name" = "food_fry_meat"
+"arg_1: amount" = 3
+metadata/_custom_type_script = "uid://xbfp6rfvxe47"
 
 [sub_resource type="Resource" id="Resource_hygcc"]
+script = ExtResource("10_1l8wp")
+special = "none"
+addational_condition = Array[ExtResource("9_4q6bf")]([SubResource("Resource_kndmj")])
+addational_actions = Array[ExtResource("9_4q6bf")]([SubResource("Resource_8v2sr")])
+
+[sub_resource type="Resource" id="Resource_icwb0"]
 script = ExtResource("2_5eqy7")
 text_key = "yes"
 is_said = false
 is_hidden = false
-action = SubResource("Resource_0nih1")
+action = SubResource("Resource_hygcc")
 id = "or4m-Z1loC"
 optional = false
 graph_editor_position = Vector2(740, -740)
 graph_editor_size = Vector2(316, 263)
 
-[sub_resource type="Resource" id="Resource_icwb0"]
+[sub_resource type="Resource" id="Resource_imnxy"]
 script = ExtResource("1_oao3x")
-from = SubResource("Resource_hygcc")
+from = SubResource("Resource_icwb0")
 to = SubResource("Resource_fm5l8")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_imnxy"]
-script = ExtResource("9_4q6bf")
-_method_name = "inventory_add_new_items"
-"arg_0: item_name" = &"food_fry_meat"
-"arg_1: amount" = 123
-"arg_2: _inventory" = &"InventoryCharacterState"
-metadata/_custom_type_script = "uid://xbfp6rfvxe47"
-
-[sub_resource type="Resource" id="Resource_8v2sr"]
+[sub_resource type="Resource" id="Resource_0nih1"]
 script = ExtResource("10_1l8wp")
 special = "none"
 addational_condition = Array[ExtResource("9_4q6bf")]([])
-addational_actions = Array[ExtResource("9_4q6bf")]([SubResource("Resource_imnxy")])
+addational_actions = Array[ExtResource("9_4q6bf")]([])
 
 [sub_resource type="Resource" id="Resource_odl0g"]
 script = ExtResource("2_5eqy7")
 text_key = "no"
 is_said = false
 is_hidden = false
-action = SubResource("Resource_8v2sr")
+action = SubResource("Resource_0nih1")
 id = "ivH8Ug4vGu"
 optional = false
 graph_editor_position = Vector2(740, -1160)
@@ -164,116 +159,72 @@ optional = false
 graph_editor_position = Vector2(1940, -380)
 graph_editor_size = Vector2(122, 78)
 
-[sub_resource type="Resource" id="Resource_bq0yk"]
+[sub_resource type="Resource" id="Resource_vu13o"]
 script = ExtResource("1_oao3x")
 from = SubResource("Resource_fm5l8")
 to = SubResource("Resource_sr7nb")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_0r0tc"]
+[sub_resource type="Resource" id="Resource_2o8vm"]
 script = ExtResource("1_oao3x")
 from = SubResource("Resource_dcrtb")
 to = SubResource("Resource_sr7nb")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_3wwgo"]
-script = ExtResource("9_4q6bf")
-_method_name = ""
-"arg_0: eventpack_name" = null
-metadata/_custom_type_script = "uid://xbfp6rfvxe47"
-
-[sub_resource type="Resource" id="Resource_2o8vm"]
-script = ExtResource("9_4q6bf")
-_method_name = "property_greater_than_value"
-"arg_0: property_name" = "hunger"
-"arg_1: check_value" = 20
-metadata/_custom_type_script = "uid://xbfp6rfvxe47"
-
-[sub_resource type="Resource" id="Resource_wei23"]
-script = ExtResource("9_4q6bf")
-_method_name = "property_add_value"
-"arg_0: property_name" = &"hunger"
-"arg_1: property_value" = 6
-metadata/_custom_type_script = "uid://xbfp6rfvxe47"
-
-[sub_resource type="Resource" id="Resource_vu13o"]
+[sub_resource type="Resource" id="Resource_bq0yk"]
 script = ExtResource("10_1l8wp")
 special = "none"
-addational_condition = Array[ExtResource("9_4q6bf")]([SubResource("Resource_2o8vm"), SubResource("Resource_wei23")])
-addational_actions = Array[ExtResource("9_4q6bf")]([SubResource("Resource_3wwgo")])
+addational_condition = Array[ExtResource("9_4q6bf")]([])
+addational_actions = Array[ExtResource("9_4q6bf")]([])
 
-[sub_resource type="Resource" id="Resource_0se4w"]
+[sub_resource type="Resource" id="Resource_wei23"]
 script = ExtResource("2_5eqy7")
 text_key = "exit"
 is_said = false
 is_hidden = false
-action = SubResource("Resource_vu13o")
+action = SubResource("Resource_bq0yk")
 id = "hqDaq6mXzG"
 optional = false
 graph_editor_position = Vector2(1040, 60)
 graph_editor_size = Vector2(316, 263)
 
-[sub_resource type="Resource" id="Resource_3vttv"]
+[sub_resource type="Resource" id="Resource_ls7w3"]
 script = ExtResource("1_oao3x")
-from = SubResource("Resource_0se4w")
+from = SubResource("Resource_wei23")
 to = SubResource("Resource_fs17t")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_ehn11"]
+[sub_resource type="Resource" id="Resource_h66ou"]
 script = ExtResource("1_oao3x")
-from = SubResource("Resource_0se4w")
+from = SubResource("Resource_wei23")
 to = SubResource("Resource_sr7nb")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_84b6j"]
-script = ExtResource("9_4q6bf")
-_method_name = "time_use"
-"arg_0: game_time" = 5.0
-"arg_1: for_real_time" = 10.0
-"arg_2: with_progress_screen" = null
-metadata/_custom_type_script = "uid://xbfp6rfvxe47"
-
-[sub_resource type="Resource" id="Resource_h66ou"]
-script = ExtResource("9_4q6bf")
-_method_name = "property_less_than_max"
-"arg_0: property_name" = "fatigue"
-metadata/_custom_type_script = "uid://xbfp6rfvxe47"
-
-[sub_resource type="Resource" id="Resource_rc2hs"]
-script = ExtResource("9_4q6bf")
-_method_name = "property_add_value"
-"arg_0: property_name" = &"fatigue"
-"arg_1: property_value" = 5
-metadata/_custom_type_script = "uid://xbfp6rfvxe47"
-
-[sub_resource type="Resource" id="Resource_ls7w3"]
+[sub_resource type="Resource" id="Resource_0r0tc"]
 script = ExtResource("10_1l8wp")
-special = "eat"
-"override: property_value" = null
-"override: item_name" = null
-"override: game_time" = null
-addational_condition = Array[ExtResource("9_4q6bf")]([SubResource("Resource_h66ou"), SubResource("Resource_rc2hs")])
-addational_actions = Array[ExtResource("9_4q6bf")]([SubResource("Resource_84b6j")])
+special = "none"
+addational_condition = Array[ExtResource("9_4q6bf")]([])
+addational_actions = Array[ExtResource("9_4q6bf")]([])
 
-[sub_resource type="Resource" id="Resource_leb4e"]
+[sub_resource type="Resource" id="Resource_84b6j"]
 script = ExtResource("2_5eqy7")
 text_key = "next"
 is_said = false
 is_hidden = false
-action = SubResource("Resource_ls7w3")
+action = SubResource("Resource_0r0tc")
 id = "v3PWKp3f0l"
 optional = false
 graph_editor_position = Vector2(-160, 20)
 graph_editor_size = Vector2(316, 263)
 
-[sub_resource type="Resource" id="Resource_68vp4"]
+[sub_resource type="Resource" id="Resource_rc2hs"]
 script = ExtResource("1_oao3x")
-from = SubResource("Resource_leb4e")
+from = SubResource("Resource_84b6j")
 to = SubResource("Resource_1l8wp")
 edge_type = 1
 
 [resource]
 script = ExtResource("2_hr02p")
-nodes = Array[ExtResource("8_q5xqs")]([SubResource("Resource_x8oyh"), SubResource("Resource_1l8wp"), SubResource("Resource_sr7nb"), SubResource("Resource_dcrtb"), SubResource("Resource_fs17t"), SubResource("Resource_r4p4g"), SubResource("Resource_0se4w"), SubResource("Resource_fm5l8"), SubResource("Resource_hygcc"), SubResource("Resource_odl0g"), SubResource("Resource_leb4e")])
-edges = Array[ExtResource("1_oao3x")]([SubResource("Resource_4q6bf"), SubResource("Resource_3q22d"), SubResource("Resource_714nl"), SubResource("Resource_dqvwb"), SubResource("Resource_cqoc6"), SubResource("Resource_icwb0"), SubResource("Resource_w7lq1"), SubResource("Resource_bq0yk"), SubResource("Resource_0r0tc"), SubResource("Resource_3vttv"), SubResource("Resource_ehn11"), SubResource("Resource_68vp4")])
+nodes = Array[ExtResource("8_q5xqs")]([SubResource("Resource_x8oyh"), SubResource("Resource_1l8wp"), SubResource("Resource_sr7nb"), SubResource("Resource_dcrtb"), SubResource("Resource_fs17t"), SubResource("Resource_r4p4g"), SubResource("Resource_wei23"), SubResource("Resource_fm5l8"), SubResource("Resource_icwb0"), SubResource("Resource_odl0g"), SubResource("Resource_84b6j")])
+edges = Array[ExtResource("1_oao3x")]([SubResource("Resource_4q6bf"), SubResource("Resource_3q22d"), SubResource("Resource_714nl"), SubResource("Resource_dqvwb"), SubResource("Resource_cqoc6"), SubResource("Resource_imnxy"), SubResource("Resource_w7lq1"), SubResource("Resource_vu13o"), SubResource("Resource_2o8vm"), SubResource("Resource_ls7w3"), SubResource("Resource_h66ou"), SubResource("Resource_rc2hs")])
 groups = Array[int]([])

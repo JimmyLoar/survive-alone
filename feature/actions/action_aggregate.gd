@@ -28,6 +28,11 @@ const _all_specials: Dictionary = {
 			"with_progress_screen": false,
 		},
 	],
+	"start_biome_search": [
+		[], 
+		["event_start"], 
+		{"event_name": "bs_defualt_event"},
+	],
 }
 
 var addational_condition: Array[ActionResource] = []
@@ -42,8 +47,6 @@ var _cache_updated_args: Array[String] = []
 var _action_methods := ActionMethods.get_instantiate()
 var _special_args: Dictionary = {}
 
-#var _logger := Log.get_global_logger().with("ActionAggregate")
-
 
 func is_meet_conditions() -> bool:
 	var result := true
@@ -54,7 +57,6 @@ func is_meet_conditions() -> bool:
 	for action in addational_condition:
 		result = result && action.execute()
 	
-	#_logger.debug("'%s' is meet conditions?" % [get_action_name()], result)
 	return result
 
 
@@ -64,10 +66,11 @@ func execute() -> Array:
 	
 	var result: Array = []
 	for _name in _all_specials[special][ACTION]:
-		result.append(_action_methods.callv(_name, get_arguments_to_method(_name)))
+		var args = get_arguments_to_method(_name)
+		result.append([_name, _action_methods.callv(_name, args), args])
 	
 	for action in addational_actions:
-		result.append(action.execute())
+		result.append([action, action.execute()])
 	
 	#_logger.debug("'%s' executed" % [get_action_name()], result)
 	return result

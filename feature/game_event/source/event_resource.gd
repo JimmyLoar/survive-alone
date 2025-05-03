@@ -71,12 +71,6 @@ func instantiate() -> EventResource:
 	return instance
 
 
-
-func action_press(action: EventAction):
-	action.completed = true
-	update()
-
-
 func start() -> void:
 	if not is_instance:
 		printerr("Quest must be instantiated to be started. Use instantiate().")
@@ -96,7 +90,7 @@ func update() -> void:
 func get_active_nodes() -> Array[EventNode]:
 	var active_nodes: Array[EventNode] = []
 	for node in nodes:
-		if node is EventNode and node.get_active():
+		if node is EventNode and node.get_active() and node is not EventStart:
 			active_nodes.append(node)
 	#printerr("Active: %s" % [active_nodes.map(func(a): return a.id)])
 	return active_nodes
@@ -142,6 +136,19 @@ func complete_stage(stage: EventStage):
 func complete_event():
 	completed = true
 	EventsGlobal.completed_event.emit(self)
+
+
+func action_press(action: EventAction) -> Array:
+	var _result = []
+	if action.action:
+		_result = action.action.execute()
+		action.completed = not _result.is_empty()
+	
+	else:
+		action.completed = true
+	
+	update()
+	return _result
 
 
 func get_resource_path() -> String:

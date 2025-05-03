@@ -20,8 +20,6 @@ extends EventGraphNode
 
 func _ready() -> void:
 	super()
-	if not _resource:
-		_resource = ActionAggregate.new()
 	edit_button.pressed.connect(_on_button_pressed)
 
 
@@ -36,7 +34,10 @@ func _set_model_properties(_node: EventNode) -> void:
 
 func _get_model_properties(_node: EventNode) -> void:
 	line_edit.text = _node.text_key
-	_resource = _node.action
+	if _node.action:
+		_resource = _node.action.duplicate(true)
+	else:
+		_resource = ActionAggregate.new()
 	_on_line_edit_text_changed(_node.text_key)
 
 

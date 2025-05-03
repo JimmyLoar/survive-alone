@@ -26,7 +26,6 @@ var global_position: Vector2:
 
 #
 # Target position where the character moves
-#
 var _target_postion: Vector2
 signal target_position_changed(value: Vector2)
 var target_position: Vector2:

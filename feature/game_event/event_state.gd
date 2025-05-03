@@ -11,9 +11,9 @@ func _init(_new_node: EventDisplay = null) -> void:
 
 
 func start_event(event_resource: EventResource) -> void:
-	_events.append(event_resource)
 	event_resource.start()
-	_node.display(event_resource)
+	_events.append(event_resource)
+	_node.display.call_deferred(event_resource)
 	EventsGlobal.started_event.emit(event_resource)
 
 

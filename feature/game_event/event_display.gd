@@ -35,18 +35,26 @@ func _ready() -> void:
 
 func display(event: EventResource):
 	if event.completed:
-		hide()
+		close()
 		return
 	
 	currect_event = event
-	currect_stages = currect_event.get_active_nodes()
-	_display_stage(currect_stages.back())
+	currect_stages = currect_event.get_active_nodes().filter(
+		func(node: EventNode):
+			return node is not EventStart 
+	)
+	_display_stage(currect_stages.front())
 	self.show()
+
+
+func close():
+	currect_event = null
+	currect_stages = []
+	hide()
 
 
 var actions: Array[EventAction]
 func _display_stage(stage: EventNode):
-	#print("displayed stage '%s'" % stage.id)
 	if stage is EventMonologue:
 		_update_monologue(stage)
 	
@@ -63,22 +71,15 @@ func _display_stage(stage: EventNode):
 
 func _validate_action(_actions: Array[EventAction]) -> Array[EventAction]:
 	var new_actions: Array[EventAction] = []
-	for action in _actions:
-		var _p = action.previous
-		var condition = action.previous.filter(func(e): return e is EventCondition)
-		var _valide = _valide_conditions(condition)
-		action.set_meta("disabled", not _valide)
-		if not (action.is_hidden and not _valide):
+	for action: EventAction in actions:
+		var _visible = true
+		if action.action:
+			_visible = action.action.is_meet_conditions()
+		
+		action.set_meta("disabled", not _visible)
+		if not (action.is_hidden and not _visible):
 			new_actions.append(action)
 	return new_actions
-
-
-func _valide_conditions(array: Array) -> bool:
-	var result = true
-	for x: EventCondition in array:
-		for condition in x.conditions:
-			result = result && condition.execute()
-	return result
 
 
 func _update_monologue(stage: EventMonologue):
@@ -97,13 +98,10 @@ func _on_action_pressed(pressed_index: int):
 	var action := actions[pressed_index] as EventAction
 	currect_event.action_press(action)
 	
-	var effects = action._graph.get_previous_nodes(action, EventEdge.EdgeType.ACTION).filter(func(e): return e is EventEffect)
-	_result = _apply_effect(effects)
-	
 	var _next = currect_event.get_next_nodes(action, EventEdge.EdgeType.ACTION)
-	if _next.any(func(a): return a is EventAbort):
-		hide()
-		EventsGlobal.aborted_event.emit(currect_event)
+	if _next.any(func(a): return a is EventAbort or a is EventEnd):
+		close()
+		#EventsGlobal.aborted_event.emit(currect_event)
 		return
 	
 	for stage in currect_stages:
@@ -112,13 +110,6 @@ func _on_action_pressed(pressed_index: int):
 		currect_event.complete_stage(stage)
 	display(currect_event)
 
-
-func _apply_effect(array: Array) -> Dictionary:
-	var result = {}
-	for effect_node: EventEffect in array:
-		for effect in effect_node.effects:
-			result[effect] = effect.execute()
-	return result
 
 
 func _display_result(result: Dictionary):
