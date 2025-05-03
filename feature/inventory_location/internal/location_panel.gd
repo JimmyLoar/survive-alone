@@ -51,7 +51,7 @@ func _on_search_pressed() -> void:
 		search_button.hide()
 		search_display.start_search(searcher.search(_inventory_location_state.search_drop))
 	elif is_instance_of(_location.current_location, CharacterLocationState.BiomesLocation):
-		_event_state.activate_event(preload("res://resources/collection/events/biome_search/bs_defualt_event.tres"))
+		_event_state.start_event(preload("res://resources/collection/events/biome_search/bs_defualt_event.tres").instantiate())
 	
 	else:
 		print_debug("location none")

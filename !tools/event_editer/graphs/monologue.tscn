@@ -49,11 +49,19 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_jd1b0")
 line_edit = NodePath("VBoxContainer/LineEdit")
 text_edit = NodePath("VBoxContainer/TextEdit")
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -78,6 +86,7 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -95,5 +104,8 @@ size_flags_vertical = 3
 placeholder_text = "Translate"
 editable = false
 scroll_fit_content_height = true
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
 
 [connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]

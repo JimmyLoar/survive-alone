@@ -5,6 +5,7 @@ extends EventNode
 @export var text_key: String
 @export var is_said := false
 @export var is_hidden := false
+@export var action: ActionAggregate
 
 
 func get_text():

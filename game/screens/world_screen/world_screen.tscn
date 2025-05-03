@@ -18,10 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://bksbtwk2euyms" path="res://feature/ui_content_menu/content_menu.tscn" id="12_yoyd0"]
 [ext_resource type="PackedScene" uid="uid://bpr2e0l6fxmwj" path="res://feature/character_pointer_button/pointer_space.tscn" id="13_pqelk"]
 [ext_resource type="PackedScene" uid="uid://dbxwa4c3uxw1" path="res://feature/rest/rest_ui.tscn" id="14_453vv"]
+[ext_resource type="Theme" uid="uid://cfhrwmys6lnl6" path="res://assets/themes/main.tres" id="14_vou35"]
 [ext_resource type="Script" uid="uid://b757n4axwnkdp" path="res://feature/rest/ui_elements/!button_rest.gd" id="15_bav1l"]
 [ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
 [ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
-[ext_resource type="Script" uid="uid://bm3q6fg6x55mx" path="res://feature/actions/action_node.gd" id="20_vdqgx"]
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
 
 [sub_resource type="GDScript" id="GDScript_6gqlo"]
@@ -97,6 +97,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("14_vou35")
 theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer"]
@@ -205,10 +206,6 @@ offset_left = 1277.0
 offset_top = -27.0
 offset_right = 1287.0
 offset_bottom = 715.0
-
-[node name="ActionNode" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("20_vdqgx")
 
 [node name="QuantitySelecter" parent="." instance=ExtResource("22_scc3c")]
 

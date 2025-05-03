@@ -15,6 +15,5 @@ func _enter_tree() -> void:
 	Locator.initialize_service(WorldObjectRepository)
 	Locator.initialize_service(WorldScreenState)
 	Locator.initialize_service(CharacterRepository, [save_db])
-	Locator.initialize_service(ActionState, [%ActionNode])
 	
 	Locator.get_service(GameDb).db_connect(game_db_path)

@@ -13,48 +13,9 @@ extends HBoxContainer
 
 
 func _ready() -> void:
-	_register_methods()
 	_character_state.property_changed.connect(_on_property_changed)
 	render(_character_state.get_property_data(property_name))
 
-
-func _register_methods():
-	var execute_keeper := Locator.get_service(ExecuteKeeperState) as ExecuteKeeperState
-	
-	var set_prop = func (prop_name: String, value: int):
-		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
-		property.value += value
-		_character_state.set_property(property)
-
-	execute_keeper.register(execute_keeper.TYPE_EFFECT, 
-		"set property", set_prop, 
-		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
-		["property_name", "value"],
-		["exhaustion", 0]
-	)
-	
-	var greater_than_value = func(prop_name: String, check_value: int) -> bool: 
-		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
-		return property.value >= check_value
-	
-	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
-		"property greater than value", greater_than_value, 
-		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst", "int"], 
-		["property_name", "value"],
-		["exhaustion", 0]
-	)
-	
-	var less_than_max = func(prop_name: String) -> bool: 
-		var property := _character_state.get_property(prop_name) as CharacterPropertyEntity
-		return property.value < property.get_max_value()
-	
-	execute_keeper.register(execute_keeper.TYPE_CONDITION, 
-		"property less than max value", less_than_max, 
-		["enum/String/exhaustion,fatigue,hunger,psych,radiation,thirst"], 
-		["property_name"],
-		["exhaustion"]
-	)
-	return
 
 
 func _on_property_changed(prop: CharacterPropertyEntity):

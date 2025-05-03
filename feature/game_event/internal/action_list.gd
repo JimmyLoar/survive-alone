@@ -1,6 +1,5 @@
 extends ItemList
 
-@onready var action_state: ActionState
 
 func update_actions(actions: Array[EventAction]):
 	self.clear()
