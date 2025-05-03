@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_t4nhi"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_eliah"]
-[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="3_skuua"]
+[ext_resource type="Texture2D" uid="uid://bfw7ik6lig6ha" path="res://assets/sprite/items/placeholdersbyGPT/StoneAxe.png" id="3_t4nhi"]
 
 [resource]
 script = ExtResource("2_eliah")
-texture = ExtResource("3_skuua")
+texture = ExtResource("3_t4nhi")
 rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_t4nhi")]([])
+categories = Array[int]([1])
 code_name = &"tool_homemade_axe"
 visible_name = "ITEM_TOOL_HOMEMADE_AXE_NAME"
 discription = "ITEM_TOOL_HOMEMADE_AXE_DISCRIPTION"

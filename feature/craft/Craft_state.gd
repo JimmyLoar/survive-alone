@@ -6,19 +6,20 @@ var _time_state: GameTimeState
 
 
 var known_recipes: Array[BasicRecipe] = [
-	load("res://resources/collection/recipes/new_resource.tres"),
-	load("res://resources/collection/recipes/test2.tres")
+	load("res://resources/collection/recipes/tools/tool_homemade_axe.tres"),
 	]
 
 var recipes: Array[BasicRecipe] = [
 	load("res://resources/collection/recipes/new_resource.tres"),
 	load("res://resources/collection/recipes/test2.tres"),
+	load("res://resources/collection/recipes/tools/tool_homemade_axe.tres"),
 	load("res://resources/collection/recipes/testrec.tres"),
 	]
 
 
 func _init() -> void:
 	_init_dependencies.call_deferred()
+	add_recipe(load("res://resources/collection/recipes/testrec.tres"))
 
 
 func _init_dependencies():
@@ -65,6 +66,7 @@ signal recipe_added(recipe: BasicRecipe)
 func add_recipe(recipe: BasicRecipe):
 	if recipe not in known_recipes:
 		known_recipes.append(recipe)
+		recipes.sort_custom(func(x, y): y in known_recipes or x in known_recipes)
 		recipe_added.emit(recipe)
 
 

@@ -10,7 +10,9 @@ var names = []
 var disabled: bool = false:
 	set(value):
 		_disable_change(value)
-
+func setup(_recipe: BasicRecipe):
+	recipe = _recipe
+	
 func _ready():
 	var recipe_view = load("res://feature/craft/ui/RecipeView.tscn").instantiate()
 	recipe_view.setup(recipe)

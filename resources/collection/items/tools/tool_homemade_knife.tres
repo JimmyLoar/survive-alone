@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_o07ln"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_4iv0w"]
-[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="3_80y4q"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="3_80y4q"]
 
 [resource]
 script = ExtResource("2_4iv0w")
@@ -11,6 +11,7 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_o07ln")]([])
+categories = Array[int]([1])
 code_name = &"tool_homemade_knife"
 visible_name = "ITEM_TOOL_HOMEMADE_KNIFE_NAME"
 discription = "ITEM_TOOL_HOMEMADE_KNIFE_DISCRIPTION"

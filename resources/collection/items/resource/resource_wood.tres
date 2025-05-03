@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="1_gwmyx"]
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_mp8wm"]
-[ext_resource type="Texture2D" uid="uid://d4m467lqoigs0" path="res://assets/sprite/placeholders/Item18.png" id="2_o2wty"]
+[ext_resource type="Texture2D" uid="uid://cgaycolwvlev" path="res://assets/sprite/items/placeholdersbyGPT/Wood.png" id="3_1m886"]
 
 [resource]
 script = ExtResource("1_gwmyx")
-texture = ExtResource("2_o2wty")
+texture = ExtResource("3_1m886")
 rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_mp8wm")]([])
+categories = Array[int]([0])
 code_name = &"resource_wood"
 visible_name = "ITEM_RESOURCE_WOOD_NAME"
 discription = "ITEM_RESOURCE_WOOD_DISCRIPTION"

@@ -51,6 +51,7 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_afgeb")]([SubResource("Resource_oidti")])
+categories = Array[int]([2])
 code_name = &"food_water_clear"
 visible_name = "ITEM_FOOD_WATER_CLEAR_NAME"
 discription = "ITEM_FOOD_WATER_CLEAR_DISCRIPTION"

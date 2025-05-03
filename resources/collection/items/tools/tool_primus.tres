@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_yvnmw"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_3dlp7"]
-[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="3_e3uhg"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="3_e3uhg"]
 
 [resource]
 script = ExtResource("2_3dlp7")
@@ -11,6 +11,7 @@ rare = 1
 durability = 100
 is_pickable = true
 actions = Array[ExtResource("1_yvnmw")]([])
+categories = Array[int]([1])
 code_name = &"tool_primus"
 visible_name = "ITEM_TOOL_PRIMUS_NAME"
 discription = "ITEM_TOOL_PRIMUS_DISCRIPTION"

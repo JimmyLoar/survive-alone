@@ -23,3 +23,4 @@ func play_sound(sound: AudioStream):
 		if not stream.playing:
 			stream.stream = sound
 			stream.play()
+			return

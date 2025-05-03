@@ -106,6 +106,7 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_ojq0o")]([SubResource("Resource_a4345"), SubResource("Resource_uydly")])
+categories = Array[int]([2])
 code_name = &"food_fresh_meat"
 visible_name = "ITEM_FOOD_FRESH_MEAT_NAME"
 discription = "ITEM_FOOD_FRESH_MEAT_DISCRIPTION"
