@@ -3,11 +3,11 @@ class_name Searcher
 var rng := RandomNumberGenerator.new()
 
 
-func _init(seed := -1) -> void:
-	if seed == -1:
+func _init(_seed := -1) -> void:
+	if _seed == -1:
 		rng.randomize()
 	else:
-		rng.seed = seed
+		rng.seed = _seed
 
 
 func search(drop: SearchDropResource) -> Array[Dictionary]:

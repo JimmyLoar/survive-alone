@@ -28,7 +28,7 @@ func _init(node: Node) -> void:
 	_node = node
 
 
-func timeskip(skipped_time: int, for_real_sec: float = 1.0, with_progress_screen := false, callback: Callable = func():pass):
+func timeskip(skipped_time: int, for_real_sec: float = 1.0, with_progress_screen := false, _callback: Callable = func():pass):
 	decrease_by_step = ceil(float(skipped_time) / Engine.physics_ticks_per_second / for_real_sec)
 	if with_progress_screen:
 		_node.open()

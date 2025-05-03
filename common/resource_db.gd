@@ -18,7 +18,7 @@ func db_connect(connect_path: String):
 	
 	# FIXME await принемает сигнал для срабатывания
 	# ResourceLoader.load_threaded_request возвращает интовую (int) константу ошибки
-	await ResourceLoader.load_threaded_request(connect_path)
+	ResourceLoader.load_threaded_request(connect_path)
 	connection = ResourceLoader.load_threaded_get(connect_path)
 	_path = connect_path
 	

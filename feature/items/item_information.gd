@@ -1,9 +1,12 @@
 class_name ItemInfoPanel
 extends MarginContainer
 
-signal remove_items(item_list: Array)
-signal add_items(item_list: Array)
-signal transfered_items(item: ItemEntity, count: int)
+
+#signal remove_items(item_list: Array)
+#signal add_items(item_list: Array)
+#signal transfered_items(item: ItemEntity, count: int)
+
+
 
 @onready var name_label: Label = %NameLabel
 @onready var text_label: RichTextLabel = %RichTextDiscription

@@ -5,7 +5,9 @@ class_name SummedInventory
 var _inventories: Array[InventoryState] = []
 var _state := InventoryState.new("Summary")
 
-
+func _init():
+	Locator.add_initialized_service(_state)
+	
 func add_inventory(inv: InventoryState) -> void:
 	_inventories.append(inv)
 

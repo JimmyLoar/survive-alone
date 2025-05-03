@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemNumberTuple" load_steps=6 format=3 uid="uid://d0g2gr7hrs3uq"]
 
-[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_7lab0"]
+[ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_7lab0"]
 [ext_resource type="Script" uid="uid://df28n1j5yalbs" path="res://feature/craft/ItemNumberRecurse.gd" id="1_hc5hs"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_qriu5"]
 [ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="3_ku62j"]
@@ -12,6 +12,7 @@ rare = 1
 durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_7lab0")]([])
+categories = Array[int]([])
 code_name = &"code_name"
 visible_name = "ITEM_CODE_NAME_NAME"
 discription = "ITEM_CODE_NAME_DISCRIPTION"

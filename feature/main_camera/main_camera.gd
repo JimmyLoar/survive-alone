@@ -64,7 +64,7 @@ func _on_mode_changed(mode):
 	if mode is MainCameraState.TargetMode:
 		pass
 		
-func _process(delta):
+func _process(_delta):
 	if _state.mode is MainCameraState.TargetMode:
 		position = _state.mode.target.position
 	

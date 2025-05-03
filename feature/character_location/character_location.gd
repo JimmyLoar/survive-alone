@@ -3,7 +3,7 @@ extends Node
 
 @onready var _character_state: CharacterState = Locator.get_service(CharacterState)
 @onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
-@onready var _world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
+#@onready var _world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 
 var _state: CharacterLocationState
 

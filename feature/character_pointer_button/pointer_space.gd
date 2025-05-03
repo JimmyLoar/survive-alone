@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	calculate_local_vector_to_player()
 
 
@@ -30,8 +30,8 @@ func calculate_local_vector_to_player():
 	if not (abs(vector_to_player.x) <= half_size.x and abs(vector_to_player.y) <= half_size.y):
 		var scale_x = half_size.x / abs(vector_to_player.x) if vector_to_player.x != 0 else INF
 		var scale_y = half_size.y / abs(vector_to_player.y) if vector_to_player.y != 0 else INF
-		var scale = min(scale_x, scale_y)  # Берём минимальный масштаб, чтобы не выйти за границы
-		vector_to_player *= scale
+		var _scale = min(scale_x, scale_y)  # Берём минимальный масштаб, чтобы не выйти за границы
+		vector_to_player *= _scale
 
 	$Pointer.position = vector_to_player + center
 	$Pointer.dir_vector = vector_to_player

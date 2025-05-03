@@ -10,6 +10,7 @@ var _state: CharacterState
 @onready var _game_time: GameTimeState = Locator.get_service(GameTimeState)
 @onready var _character_repositoty: CharacterRepository = Locator.get_service(CharacterRepository)
 @onready var _save_db: SaveDb = Locator.get_service(SaveDb)
+@warning_ignore('unused_private_class_variable')
 @onready var _resource_db: ResourceDb = Locator.get_service(ResourceDb)
 @onready var _camera_state: MainCameraState = Locator.get_service(MainCameraState)
 var _character_properties_repository: CharacterPropertyRepository
@@ -66,7 +67,7 @@ func _update_props_by_time_spend(_delta: int):
 			prop.value += prop_value_delta * _delta
 			_state.set_property(prop)
 
-
+@warning_ignore('unused_private_class_variable')
 var _save_position_debounce = Debounce.new(_save_position, 0.2)
 func _save_position():
 	_character_repositoty.set_world_position(position)
@@ -79,7 +80,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	_state.player_enter_on_screen.emit()
 
-
+@warning_ignore('unused_private_class_variable')
 var _save_properties_debounce = Debounce.new(_save_properties, 0.2)
 func _save_properties():
 	_character_properties_repository.update_batch(_state._properties.values())

@@ -4,7 +4,7 @@ extends SMachinaState
 @onready var _line_cross = %Cross
 @onready var _character = $"../.."
 
-func enter(previous_state: SMachinaState):
+func enter(_previous_state: SMachinaState):
 	_moving_line.show()
 
 var passability = {'water': 0, 'grass': 0.5}

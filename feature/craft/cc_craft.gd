@@ -102,5 +102,5 @@ func _update_view_by_serch():
 				if not _serch_node.text in view.recipe.as_string():
 					view.visible = false
 
-func _on_line_edit_text_changed(new_text):
+func _on_line_edit_text_changed(_new_text):
 	_update_view_()

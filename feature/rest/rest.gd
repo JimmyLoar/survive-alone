@@ -87,8 +87,8 @@ func update_sprite_visual() -> void:
 	
 	for i in Props.values():
 		var icon = prop_icons[i].icon
-		var name = PROP_NAMES[i]
-		var prop = character_state.get_property_data(name)
+		var _name = PROP_NAMES[i]
+		var prop = character_state.get_property_data(_name)
 		
 		if prop != null:
 			icon.texture = prop.texture
@@ -143,7 +143,7 @@ func _reset_delta_properties(_value: int):
 		character_state.set_property(property)
 
 
-func update_delta_stats(delta: int) -> void:
+func update_delta_stats(_delta: int) -> void:
 	# Расчет изменения характеристик
 	var hunger = character_state.get_property(PROP_NAMES[Props.hunger])
 	var thirst = character_state.get_property(PROP_NAMES[Props.thirst])

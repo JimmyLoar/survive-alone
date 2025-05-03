@@ -66,7 +66,6 @@ signal recipe_added(recipe: BasicRecipe)
 func add_recipe(recipe: BasicRecipe):
 	if recipe not in known_recipes:
 		known_recipes.append(recipe)
-		recipes.sort_custom(func(x, y): y in known_recipes or x in known_recipes)
 		recipe_added.emit(recipe)
 
 

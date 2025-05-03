@@ -27,7 +27,7 @@ func _on_virtual_chunks_rect_changed(rect: Rect2i):
 	_state.set_visible_rect(Rect2(rect.position * chunk_size_in_pixels, rect.size * chunk_size_in_pixels))
 
 
-func _on_visible_objects_changed(diff: WorldObjectsLayerState.VisibleObjectsDiff, value: Dictionary):
+func _on_visible_objects_changed(diff: WorldObjectsLayerState.VisibleObjectsDiff, _value: Dictionary):
 	for object_id in diff.removed:
 		_remove_visible_object_node(object_id)
 	for object_id in diff.added:

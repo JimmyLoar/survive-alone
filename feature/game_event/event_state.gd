@@ -3,7 +3,7 @@ class_name EventState
 
 var _node: EventDisplay
 var _events: Array[EventResource] = []
-var _global := EventsGlobal
+var global := EventsGlobal
 
 
 func _init(_new_node: EventDisplay = null) -> void:
@@ -46,7 +46,7 @@ func get_completed_events() -> Array[EventResource]:
 
 func set_events(events: Array[EventResource]) -> void:
 	clear()
-	_events.assign(_events)
+	_events.assign(events)
 
 
 func get_events() -> Array[EventResource]:

@@ -8,8 +8,8 @@ var rng := RandomNumberGenerator.new() as RandomNumberGenerator
 @export var events: Array[EventResource] = []: set = set_events
 
 
-var _weights: PackedInt32Array
-var _amount_weight := 0
+#var _weights: PackedInt32Array
+#var _amount_weight := 0
 
 
 func set_events(value):

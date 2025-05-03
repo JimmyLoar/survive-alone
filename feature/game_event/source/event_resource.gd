@@ -22,7 +22,6 @@ enum Tags{
 @export var nodes: Array[EventNode] = []
 @export var edges: Array[EventEdge] = []
 @export var groups: Array[Tags] = []
-var _ids: PackedStringArray = []
 
 
 var name: String:

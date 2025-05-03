@@ -61,9 +61,9 @@ func _display_stage(stage: EventNode):
 	_display_result(_result)
 
 
-func _validate_action(actions: Array[EventAction]) -> Array[EventAction]:
+func _validate_action(_actions: Array[EventAction]) -> Array[EventAction]:
 	var new_actions: Array[EventAction] = []
-	for action in actions:
+	for action in _actions:
 		var _p = action.previous
 		var condition = action.previous.filter(func(e): return e is EventCondition)
 		var _valide = _valide_conditions(condition)
@@ -97,7 +97,7 @@ func _on_action_pressed(pressed_index: int):
 	var action := actions[pressed_index] as EventAction
 	currect_event.action_press(action)
 	
-	var effects = action._graph.get_previous_nodes(action, 1).filter(func(e): return e is EventEffect)
+	var effects = action._graph.get_previous_nodes(action, EventEdge.EdgeType.ACTION).filter(func(e): return e is EventEffect)
 	_result = _apply_effect(effects)
 	
 	var _next = currect_event.get_next_nodes(action, EventEdge.EdgeType.ACTION)

@@ -2,11 +2,11 @@ extends Node
 class_name SMachinaState
 
 
-func enter(previous_state: SMachinaState):
+func enter(_previous_state: SMachinaState):
 	pass
 
 
-func update(delta: float):
+func update(_delta: float):
 	pass
 
 

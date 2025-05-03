@@ -28,7 +28,7 @@ func set_inventory_size(value):
 
 
 func update_max_page():
-	max_page = ceili(inventory_size / page_size / 1.0)
+	max_page = ceili(float(inventory_size) / float(page_size))
 
 
 func set_page(new_page: int):

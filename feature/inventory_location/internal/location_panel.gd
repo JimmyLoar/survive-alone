@@ -27,7 +27,7 @@ func _visual_randerer():
 	
 
 
-func _on_search_drop_changed(search_drop: SearchDropResource):
+func _on_search_drop_changed(_search_drop: SearchDropResource):
 	_rerender()
 
 

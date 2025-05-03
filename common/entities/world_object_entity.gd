@@ -31,8 +31,8 @@ func is_in_save() -> bool:
 
 
 func clone() -> WorldObjectEntity:
-	var clone = WorldObjectEntity.new()
-	clone.id = id
-	clone.boundary_rect = boundary_rect
-	clone.packed_scene = packed_scene
-	return clone
+	var _clone = WorldObjectEntity.new()
+	_clone.id = id
+	_clone.boundary_rect = boundary_rect
+	_clone.packed_scene = packed_scene
+	return _clone

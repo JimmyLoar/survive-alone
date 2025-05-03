@@ -48,9 +48,9 @@ func _diplay_objective_text(objectives: Array):
 			discription.newline()
 
 
-func _on_objective_discription_meta_clicked(meta: Variant) -> void:
-	print(meta)
+func _on_objective_discription_meta_clicked(_meta: Variant) -> void:
+	print(_meta)
 
 
-func _on_objective_discription_meta_hover_started(meta: Variant) -> void:
+func _on_objective_discription_meta_hover_started(_meta: Variant) -> void:
 	pass # Replace with function body.

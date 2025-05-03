@@ -1,17 +1,20 @@
+
 class_name CharacterState
- 
+
 
 var _node: Node2D
 
 func _init(node: Node2D):
 	_node = node
 
-
+@warning_ignore("unused_signal")
 signal player_exited_from_screen()
+@warning_ignore("unused_signal")
 signal player_enter_on_screen()
 #
 # Character world position
 #
+@warning_ignore("unused_signal")
 signal position_changed(value: Vector2)
 var position: Vector2:
 	get:

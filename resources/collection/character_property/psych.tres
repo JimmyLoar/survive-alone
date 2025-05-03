@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterPropertyResource" load_steps=3 format=3 uid="uid://pbgbhwc5vroa"]
 
 [ext_resource type="Script" uid="uid://circ63nhvigul" path="res://resources/schema/character_property.gd" id="2_4kwjn"]
-[ext_resource type="Texture2D" uid="uid://ueefhaj6v7bc" path="res://icon.svg" id="3_qdtqh"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="3_qdtqh"]
 
 [resource]
 script = ExtResource("2_4kwjn")
