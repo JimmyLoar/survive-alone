@@ -36,5 +36,4 @@ script = ExtResource("2_vrbl8")
 ingredients = Array[ExtResource("1_b8sia")]([SubResource("Resource_b8sia"), SubResource("Resource_vrbl8"), SubResource("Resource_y2da7")])
 results = Array[ExtResource("1_b8sia")]([SubResource("Resource_5nxtv")])
 craft_time = 10
-recipe_type = 0
 metadata/_custom_type_script = "uid://jl8580apw3vx"

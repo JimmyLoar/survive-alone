@@ -6,7 +6,6 @@ var _time_state: GameTimeState
 
 
 var known_recipes: Array[BasicRecipe] = [
-	load("res://resources/collection/recipes/tools/tool_homemade_axe.tres"),
 	]
 
 var recipes: Array[BasicRecipe] = [
@@ -19,8 +18,9 @@ var recipes: Array[BasicRecipe] = [
 
 func _init() -> void:
 	_init_dependencies.call_deferred()
-	add_recipe(load("res://resources/collection/recipes/testrec.tres"))
-
+	add_recipe(load("res://resources/collection/recipes/test2.tres"))
+	add_recipe(load("res://resources/collection/recipes/tools/tool_homemade_axe.tres"))
+	add_recipe(load("res://resources/collection/recipes/new_resource.tres"))
 
 func _init_dependencies():
 	_inventory_state = Locator.get_service(InventoryCharacterState)
