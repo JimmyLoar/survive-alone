@@ -83,14 +83,19 @@ func _validate_action(_actions: Array[EventAction]) -> Array[EventAction]:
 
 
 func _update_monologue(stage: EventMonologue):
-	rich_text_label.text = TranslationServer.translate("EVENT_MONOLOGUE_" + stage.text.to_upper())
-	
+	rich_text_label.text = TranslationServer.translate(
+		("%s_MONOLOGUE_%s" % [currect_event.name_key.to_upper(), stage.text]).to_upper()
+	)
 
 func _update_dialogue(stage: EventDialogue):
 	var text = ''
 	for paragraph in stage.dialogues:
-		text += "[b]DIALOGUE_CHARACTER_%s_NAME[/b]:\n" % [paragraph[0].name.to_upper()]
-		text += "EVENT_DIALOGUE_%s\n\n" % [paragraph[1].to_upper()]
+		text += "[b]%s[/b]:\n" % [
+			TranslationServer.translate("DIALOGUE_CHARACTER_%s_NAME" % [paragraph[0].name.to_upper()])
+		]
+		text += "%s\n\n" % [
+			TranslationServer.translate("%s_DIALOGUE_%s" % [currect_event.name_key.to_upper(), paragraph[1].to_upper()])
+		]
 	rich_text_label.text = text
 
 

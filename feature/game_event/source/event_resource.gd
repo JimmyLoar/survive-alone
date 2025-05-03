@@ -24,6 +24,9 @@ enum Tags{
 @export var groups: Array[Tags] = []
 
 
+var name_key: String:
+	get: return start_node.name_key
+
 var name: String:
 	get: return start_node.get_event_name()
 

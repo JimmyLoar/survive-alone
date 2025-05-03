@@ -123,13 +123,13 @@ optional = false
 graph_editor_position = Vector2(740, -740)
 graph_editor_size = Vector2(316, 263)
 
-[sub_resource type="Resource" id="Resource_imnxy"]
+[sub_resource type="Resource" id="Resource_0nih1"]
 script = ExtResource("1_oao3x")
 from = SubResource("Resource_icwb0")
 to = SubResource("Resource_fm5l8")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_0nih1"]
+[sub_resource type="Resource" id="Resource_imnxy"]
 script = ExtResource("10_1l8wp")
 special = "none"
 addational_condition = Array[ExtResource("9_4q6bf")]([])
@@ -140,7 +140,7 @@ script = ExtResource("2_5eqy7")
 text_key = "no"
 is_said = false
 is_hidden = false
-action = SubResource("Resource_0nih1")
+action = SubResource("Resource_imnxy")
 id = "ivH8Ug4vGu"
 optional = false
 graph_editor_position = Vector2(740, -1160)
@@ -171,60 +171,60 @@ from = SubResource("Resource_dcrtb")
 to = SubResource("Resource_sr7nb")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_bq0yk"]
+[sub_resource type="Resource" id="Resource_wei23"]
 script = ExtResource("10_1l8wp")
 special = "none"
 addational_condition = Array[ExtResource("9_4q6bf")]([])
 addational_actions = Array[ExtResource("9_4q6bf")]([])
 
-[sub_resource type="Resource" id="Resource_wei23"]
+[sub_resource type="Resource" id="Resource_ls7w3"]
 script = ExtResource("2_5eqy7")
 text_key = "exit"
 is_said = false
 is_hidden = false
-action = SubResource("Resource_bq0yk")
+action = SubResource("Resource_wei23")
 id = "hqDaq6mXzG"
 optional = false
 graph_editor_position = Vector2(1040, 60)
 graph_editor_size = Vector2(316, 263)
 
-[sub_resource type="Resource" id="Resource_ls7w3"]
+[sub_resource type="Resource" id="Resource_bq0yk"]
 script = ExtResource("1_oao3x")
-from = SubResource("Resource_wei23")
+from = SubResource("Resource_ls7w3")
 to = SubResource("Resource_fs17t")
 edge_type = 1
 
 [sub_resource type="Resource" id="Resource_h66ou"]
 script = ExtResource("1_oao3x")
-from = SubResource("Resource_wei23")
+from = SubResource("Resource_ls7w3")
 to = SubResource("Resource_sr7nb")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_0r0tc"]
+[sub_resource type="Resource" id="Resource_84b6j"]
 script = ExtResource("10_1l8wp")
 special = "none"
 addational_condition = Array[ExtResource("9_4q6bf")]([])
 addational_actions = Array[ExtResource("9_4q6bf")]([])
 
-[sub_resource type="Resource" id="Resource_84b6j"]
+[sub_resource type="Resource" id="Resource_rc2hs"]
 script = ExtResource("2_5eqy7")
 text_key = "next"
 is_said = false
 is_hidden = false
-action = SubResource("Resource_0r0tc")
+action = SubResource("Resource_84b6j")
 id = "v3PWKp3f0l"
 optional = false
 graph_editor_position = Vector2(-160, 20)
 graph_editor_size = Vector2(316, 263)
 
-[sub_resource type="Resource" id="Resource_rc2hs"]
+[sub_resource type="Resource" id="Resource_0r0tc"]
 script = ExtResource("1_oao3x")
-from = SubResource("Resource_84b6j")
+from = SubResource("Resource_rc2hs")
 to = SubResource("Resource_1l8wp")
 edge_type = 1
 
 [resource]
 script = ExtResource("2_hr02p")
-nodes = Array[ExtResource("8_q5xqs")]([SubResource("Resource_x8oyh"), SubResource("Resource_1l8wp"), SubResource("Resource_sr7nb"), SubResource("Resource_dcrtb"), SubResource("Resource_fs17t"), SubResource("Resource_r4p4g"), SubResource("Resource_wei23"), SubResource("Resource_fm5l8"), SubResource("Resource_icwb0"), SubResource("Resource_odl0g"), SubResource("Resource_84b6j")])
-edges = Array[ExtResource("1_oao3x")]([SubResource("Resource_4q6bf"), SubResource("Resource_3q22d"), SubResource("Resource_714nl"), SubResource("Resource_dqvwb"), SubResource("Resource_cqoc6"), SubResource("Resource_imnxy"), SubResource("Resource_w7lq1"), SubResource("Resource_vu13o"), SubResource("Resource_2o8vm"), SubResource("Resource_ls7w3"), SubResource("Resource_h66ou"), SubResource("Resource_rc2hs")])
+nodes = Array[ExtResource("8_q5xqs")]([SubResource("Resource_x8oyh"), SubResource("Resource_1l8wp"), SubResource("Resource_sr7nb"), SubResource("Resource_dcrtb"), SubResource("Resource_fs17t"), SubResource("Resource_r4p4g"), SubResource("Resource_ls7w3"), SubResource("Resource_fm5l8"), SubResource("Resource_icwb0"), SubResource("Resource_odl0g"), SubResource("Resource_rc2hs")])
+edges = Array[ExtResource("1_oao3x")]([SubResource("Resource_4q6bf"), SubResource("Resource_3q22d"), SubResource("Resource_714nl"), SubResource("Resource_dqvwb"), SubResource("Resource_cqoc6"), SubResource("Resource_0nih1"), SubResource("Resource_w7lq1"), SubResource("Resource_vu13o"), SubResource("Resource_2o8vm"), SubResource("Resource_bq0yk"), SubResource("Resource_h66ou"), SubResource("Resource_0r0tc")])
 groups = Array[int]([])
