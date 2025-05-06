@@ -3,7 +3,11 @@ class_name ActionAggregate
 extends Resource
 
 
-enum {CONDISION, ACTION, CONSTANT}
+enum {
+	CONDISION = 0, 
+	ACTION = 1, 
+	CONSTANT = 2,
+}
 
 const _all_specials: Dictionary = {
 	# key: [[condition_names], [action_names], {constant_key: constant_value}],
