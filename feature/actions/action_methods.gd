@@ -38,14 +38,14 @@ var _INVENTORY = {
 
 
 func inventory_add_new_items(item_name: StringName, amount: int, _inventory: StringName) -> ItemEntity:
-	var database = Locator.get_service(GameDb)
+	var database = Locator.get_service(ResourceDb)
 	var inventory = Locator.get_service(_INVENTORY[_inventory])
 	var item_data: ItemResource = database.connection.fetch_data("items", item_name)
 	return inventory.add_item(item_data, amount)
 
 
 func inventory_add_used_item(item_name: StringName, used_array: Array[int], _inventory: StringName) -> ItemEntity:
-	var database = Locator.get_service(GameDb)
+	var database = Locator.get_service(ResourceDb)
 	var inventory = Locator.get_service(_INVENTORY[_inventory])
 	var item_data: ItemResource = database.connection.fetch_data("items", item_name)
 	return inventory.add_item(item_data, 0, used_array)
@@ -75,16 +75,16 @@ func time_use(game_time: int, for_real_time: float = 1.0, with_progress_screen :
 
 #region Events
 func event_start(event_name: String):
-	var db_resource = Locator.get_service(GameDb)
+	var db_resource = Locator.get_service(ResourceDb)
 	var event: EventResource = db_resource.connection.fetch_data("event", StringName(event_name))
-	Locator.get_service(EventState).activate_event(event)
+	Locator.get_service(EventState).start_event(event.instantiate())
 
 
 func event_start_from_list(eventpack_name: String):
-	var db_resource = Locator.get_service(GameDb)
+	var db_resource = Locator.get_service(ResourceDb)
 	var list: EventList = db_resource.connection.fetch_data("event_list", StringName(eventpack_name))
 	var event: EventResource = list.get_event()
-	Locator.get_service(EventState).activate_event(event)
+	Locator.get_service(EventState).start_event(event.instantiate())
 
 
 #endregion

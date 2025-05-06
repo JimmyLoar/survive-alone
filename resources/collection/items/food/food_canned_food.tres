@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="3_5vtio"]
 [ext_resource type="Texture2D" uid="uid://cym6bcrooer8i" path="res://assets/sprite/items/food-canned_beef.png" id="4_h2fds"]
 
-[sub_resource type="Resource" id="Resource_ucmrk"]
+[sub_resource type="Resource" id="Resource_m2gqs"]
 script = ExtResource("1_m2gqs")
 _method_name = "property_add_value"
 "arg_0: property_name" = &"thirst"
@@ -15,17 +15,17 @@ metadata/_custom_type_script = "uid://xbfp6rfvxe47"
 [sub_resource type="Resource" id="Resource_1dax6"]
 script = ExtResource("1_m2gqs")
 _method_name = "property_less_than_max"
-"arg_0: property_name" = "exhaustion"
+"arg_0: property_name" = "thirst"
 metadata/_custom_type_script = "uid://xbfp6rfvxe47"
 
-[sub_resource type="Resource" id="Resource_6gc53"]
+[sub_resource type="Resource" id="Resource_5vtio"]
 script = ExtResource("1_1dax6")
 special = "eat"
 "override: property_value" = 40
 "override: item_name" = "food_canned_food"
 "override: game_time" = 22.0
 addational_condition = Array[ExtResource("1_m2gqs")]([SubResource("Resource_1dax6")])
-addational_actions = Array[ExtResource("1_m2gqs")]([SubResource("Resource_ucmrk")])
+addational_actions = Array[ExtResource("1_m2gqs")]([SubResource("Resource_m2gqs")])
 metadata/_custom_type_script = "uid://chu0ji5mcq1wt"
 
 [resource]
@@ -34,7 +34,7 @@ texture = ExtResource("4_h2fds")
 rare = 1
 durability = -1
 is_pickable = true
-actions = Array[ExtResource("1_1dax6")]([SubResource("Resource_6gc53")])
+actions = Array[ExtResource("1_1dax6")]([SubResource("Resource_5vtio")])
 categories = Array[int]([2])
 code_name = &"food_canned_food"
 visible_name = "ITEM_FOOD_CANNED_FOOD_NAME"

@@ -1,11 +1,83 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=4 format=3 uid="uid://4lsplaql8qte"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=19 format=3 uid="uid://4lsplaql8qte"]
 
 [ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_1440y"]
 [ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="2_p32d4"]
+[ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="2_rjo40"]
+[ext_resource type="Script" uid="uid://d1a77ln5pvkq6" path="res://!tools/event_editer/source/monologue.gd" id="3_wkwmi"]
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="4_j1hu6"]
+[ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end.gd" id="4_yocuh"]
+[ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="5_bsjfk"]
+[ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="6_btb2h"]
+[ext_resource type="Script" uid="uid://4vpt5ojf0bod" path="res://!tools/event_editer/source/actions.gd" id="7_kt8i3"]
+
+[sub_resource type="Resource" id="Resource_rjo40"]
+script = ExtResource("2_rjo40")
+name_key = "bs_animal"
+id = "xnyqTynEAb"
+optional = false
+graph_editor_position = Vector2(-40, 240)
+graph_editor_size = Vector2(300, 280)
+
+[sub_resource type="Resource" id="Resource_wkwmi"]
+script = ExtResource("3_wkwmi")
+text = "aaa"
+id = "dN7-aULy-Z"
+optional = false
+graph_editor_position = Vector2(340, 240)
+graph_editor_size = Vector2(300, 240)
+
+[sub_resource type="Resource" id="Resource_yocuh"]
+script = ExtResource("1_1440y")
+from = SubResource("Resource_rjo40")
+to = SubResource("Resource_wkwmi")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_bsjfk"]
+script = ExtResource("4_yocuh")
+id = "4TPfFn_J1G"
+optional = false
+graph_editor_position = Vector2(720, 240)
+graph_editor_size = Vector2(120, 70)
+
+[sub_resource type="Resource" id="Resource_btb2h"]
+script = ExtResource("1_1440y")
+from = SubResource("Resource_wkwmi")
+to = SubResource("Resource_bsjfk")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_kt8i3"]
+script = ExtResource("5_bsjfk")
+_method_name = "inventory_add_new_items"
+"arg_0: item_name" = &"food_fry_meat"
+"arg_1: amount" = 4
+"arg_2: _inventory" = &"InventoryLocationState"
+metadata/_custom_type_script = "uid://xbfp6rfvxe47"
+
+[sub_resource type="Resource" id="Resource_4k3wr"]
+script = ExtResource("6_btb2h")
+special = "start_biome_search"
+addational_condition = Array[ExtResource("5_bsjfk")]([])
+addational_actions = Array[ExtResource("5_bsjfk")]([SubResource("Resource_kt8i3")])
+
+[sub_resource type="Resource" id="Resource_772as"]
+script = ExtResource("7_kt8i3")
+text_key = "exit"
+is_said = false
+is_hidden = false
+action = SubResource("Resource_4k3wr")
+id = "MUq_HWrtEa"
+optional = false
+graph_editor_position = Vector2(320, 540)
+graph_editor_size = Vector2(316, 308)
+
+[sub_resource type="Resource" id="Resource_b2o7k"]
+script = ExtResource("1_1440y")
+from = SubResource("Resource_772as")
+to = SubResource("Resource_bsjfk")
+edge_type = 1
 
 [resource]
 script = ExtResource("4_j1hu6")
-nodes = Array[ExtResource("2_p32d4")]([])
-edges = Array[ExtResource("1_1440y")]([])
+nodes = Array[ExtResource("2_p32d4")]([SubResource("Resource_rjo40"), SubResource("Resource_wkwmi"), SubResource("Resource_bsjfk"), SubResource("Resource_772as")])
+edges = Array[ExtResource("1_1440y")]([SubResource("Resource_yocuh"), SubResource("Resource_btb2h"), SubResource("Resource_b2o7k")])
 groups = Array[int]([])
