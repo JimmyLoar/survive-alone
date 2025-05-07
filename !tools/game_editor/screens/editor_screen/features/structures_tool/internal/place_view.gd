@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _on_ready_main_camera(camera: MainCameraState):
-	assert(not camera, "not init main camera")
+	assert(camera is MainCameraState, "not init main camera")
 	_main_camera_sate = camera
 	_main_camera_sate.viewport_rect_changed.connect(func(value): queue_redraw())
 
