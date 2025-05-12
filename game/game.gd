@@ -39,7 +39,7 @@ func _create_new_save_if_not_exist(save_path: String):
 	character_property_repository.init(save_db)
 	
 	
-	var character_props_data = ResourceCollector.get_all(ResourceCollector.Collection.CHARACTER_PROPERTY)
+	var character_props_data = ResourceCollector.find_all(ResourceCollector.Collection.CHARACTER_PROPERTY)
 	var character_props = character_props_data.map(func(data): return CharacterPropertyEntity.new(data))
 	var character_world_pos = Vector2(0, 0)
 	var character_inventory = InventoryEntity.new(
