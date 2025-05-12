@@ -15,11 +15,25 @@ extends Object
 # КОЛЛЕКЦИИ РЕСУРСОВ                                                 #
 #######################################################################
 
+const quests = {
+	"prologue_00": "uid://b3xe3vw6y5fv7",
+	"prologue": "uid://dseeelh8xcs4c",
+	"test2": "uid://byvhlyfyh7fhn",
+	"test3": "uid://bs2ncgfju7uqb",
+	"test": "uid://rt46wktltqjl",
+}
+
 const biomes = {
 	"forest": "uid://dn12ncdul2jqb",
 	"grass": "uid://cmt1u58b84x8p",
 	"ground": "uid://dpeuc3gy13evg",
 	"water": "uid://b4vownqfi8d5f",
+}
+
+const drops = {
+	"forest_biome": "uid://byqa05n1ugvxn",
+	"none": "uid://56f1qivn2r5c",
+	"test_1": "uid://cmj3q638n6mio",
 }
 
 const items = {
@@ -39,17 +53,12 @@ const items = {
 	"tool_saucepan": "uid://c2dl3xfx8wogm",
 }
 
-const quest = {
-	"prologue_00": "uid://b3xe3vw6y5fv7",
-	"prologue": "uid://dseeelh8xcs4c",
-	"test2": "uid://byvhlyfyh7fhn",
-	"test3": "uid://bs2ncgfju7uqb",
-	"test": "uid://rt46wktltqjl",
+const events_list = {
+	"biom_list_test": "uid://dcgbiiy8tbv8b",
 }
 
 const events = {
 	"return_to_default": "uid://c66ptthr6m3wo",
-	"biom_list_test": "uid://dcgbiiy8tbv8b",
 	"bs_animal_corpse": "uid://4lsplaql8qte",
 	"bs_defualt_event": "uid://dw6j3yeanfdqt",
 	"bs_flowers": "uid://cy7t5tb2khs88",
@@ -67,12 +76,6 @@ const events = {
 
 const actions = {
 	"test_action": "uid://cyejt07t5u1ej",
-}
-
-const search_drop = {
-	"forest_biome": "uid://byqa05n1ugvxn",
-	"none": "uid://56f1qivn2r5c",
-	"test_1": "uid://cmj3q638n6mio",
 }
 
 const character_property = {
@@ -106,12 +109,13 @@ const dialoge_character = {
 #######################################################################
 
 enum Collection {
+	QUESTS,
 	BIOMES,
+	DROPS,
 	ITEMS,
-	QUEST,
+	EVENTS_LIST,
 	EVENTS,
 	ACTIONS,
-	SEARCH_DROP,
 	CHARACTER_PROPERTY,
 	RECIPES,
 	DIALOGE_CHARACTER,
@@ -125,18 +129,20 @@ enum Collection {
 static func uid(collection: Collection, key: String) -> String:
 	"""Возвращает UID ресурса или пустую строку если не найден"""
 	match collection:
+		Collection.QUESTS:
+			return quests.get(key, "")
 		Collection.BIOMES:
 			return biomes.get(key, "")
+		Collection.DROPS:
+			return drops.get(key, "")
 		Collection.ITEMS:
 			return items.get(key, "")
-		Collection.QUEST:
-			return quest.get(key, "")
+		Collection.EVENTS_LIST:
+			return events_list.get(key, "")
 		Collection.EVENTS:
 			return events.get(key, "")
 		Collection.ACTIONS:
 			return actions.get(key, "")
-		Collection.SEARCH_DROP:
-			return search_drop.get(key, "")
 		Collection.CHARACTER_PROPERTY:
 			return character_property.get(key, "")
 		Collection.RECIPES:
@@ -171,18 +177,20 @@ static func get_all(collection: Collection) -> Array[Resource]:
 static func keys(collection: Collection) -> Array[String]:
 	"""Возвращает все ключи указанной коллекции"""
 	match collection:
+		Collection.QUESTS:
+			return quests.keys()
 		Collection.BIOMES:
 			return biomes.keys()
+		Collection.DROPS:
+			return drops.keys()
 		Collection.ITEMS:
 			return items.keys()
-		Collection.QUEST:
-			return quest.keys()
+		Collection.EVENTS_LIST:
+			return events_list.keys()
 		Collection.EVENTS:
 			return events.keys()
 		Collection.ACTIONS:
 			return actions.keys()
-		Collection.SEARCH_DROP:
-			return search_drop.keys()
 		Collection.CHARACTER_PROPERTY:
 			return character_property.keys()
 		Collection.RECIPES:
