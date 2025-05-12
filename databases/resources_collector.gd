@@ -156,7 +156,7 @@ static func find(collection: Collection, key: String) -> Resource:
 	var resource_uid := uid(collection, key)
 	return ResourceLoader.load(resource_uid) if resource_uid else null
 
-static func find_multiple(collection: Collection, keys: Array[String]) -> Array[Resource]:
+static func find_multiple(collection: Collection, keys: Array[String]) -> Array:
 	"""Загружает и возвращает массив ресурсов по массиву ключей"""
 	var result: Array[Resource] = []
 	for key in keys:
@@ -165,7 +165,7 @@ static func find_multiple(collection: Collection, keys: Array[String]) -> Array[
 			result.append(res)
 	return result
 
-static func get_all(collection: Collection) -> Array[Resource]:
+static func get_all(collection: Collection) -> Array:
 	"""Возвращает все ресурсы указанной коллекции"""
 	var result: Array[Resource] = []
 	for key in keys(collection):
@@ -174,7 +174,7 @@ static func get_all(collection: Collection) -> Array[Resource]:
 			result.append(res)
 	return result
 
-static func keys(collection: Collection) -> Array[String]:
+static func keys(collection: Collection) -> Array:
 	"""Возвращает все ключи указанной коллекции"""
 	match collection:
 		Collection.QUESTS:

@@ -109,7 +109,7 @@ static func _modification_time(prop: Dictionary):
 
 
 static func _modification_items(prop: Dictionary):
-	var _item_names = preload("res://resources/database.gddb").get_data_string_ids("items")
+	var _item_names = ResourceCollector.keys(ResourceCollector.Collection.ITEMS)
 	return PropertyGenerater.convert_to_enum(prop, ",".join(_item_names))
 
 
@@ -118,12 +118,12 @@ static func _modification_amount(prop: Dictionary):
 
 
 static func _modification_event(prop: Dictionary):
-	var _item_names = preload("res://resources/database.gddb").get_data_string_ids("event")
+	var _item_names = ResourceCollector.keys(ResourceCollector.Collection.EVENTS)
 	return PropertyGenerater.convert_to_enum(prop, ",".join(_item_names))
 
 
 static func _modification_eventpack(prop: Dictionary):
-	var _item_names = preload("res://resources/database.gddb").get_data_string_ids("event_list")
+	var _item_names = ResourceCollector.keys(ResourceCollector.Collection.EVENTS_LIST)
 	return PropertyGenerater.convert_to_enum(prop, ",".join(_item_names))
 
 

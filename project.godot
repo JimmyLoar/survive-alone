@@ -58,8 +58,7 @@ project/assembly_name="SurviveAlone"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/event_editor/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
-
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/event_editor/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/pycolytics-godot/plugin.cfg", "res://addons/questify/plugin.cfg")
 folder_colors={
 "res://feature/": "purple",
 "res://feature/character/": "orange",
@@ -76,6 +75,12 @@ folder_colors={
 "res://feature/quest_viewer/": "red",
 "res://game/": "red",
 "res://resources/": "blue"
+}
+
+[file_customization]
+
+folder_colors={
+"res://resources/collection/": "blue"
 }
 
 [importer_defaults]

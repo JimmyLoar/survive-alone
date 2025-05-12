@@ -7,8 +7,6 @@ extends PanelContainer
 @onready var result_list: ItemList = %ResultList
 @onready var hint_container: VBoxContainer = %HintContainer
 
-@onready var resource_db := Locator.get_service(ResourceDb) as ResourceDb
-
 
 var _state: EventState
 

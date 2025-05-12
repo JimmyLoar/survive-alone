@@ -11,7 +11,6 @@ var _state: CharacterState
 @onready var _character_repositoty: CharacterRepository = Locator.get_service(CharacterRepository)
 @onready var _save_db: SaveDb = Locator.get_service(SaveDb)
 @warning_ignore('unused_private_class_variable')
-@onready var _resource_db: ResourceDb = Locator.get_service(ResourceDb)
 @onready var _camera_state: MainCameraState = Locator.get_service(MainCameraState)
 var _character_properties_repository: CharacterPropertyRepository
 @onready var _biomes_layer_state: BiomesLayerState = Locator.get_service(BiomesLayerState)
