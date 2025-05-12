@@ -117,7 +117,7 @@ static func find_multiple(collection: Collection, keys: Array[String]) -> Array:
             result.append(res)
     return result
 
-static func get_all(collection: Collection) -> Array:
+static func find_all(collection: Collection) -> Array:
     """Возвращает все ресурсы указанной коллекции"""
     var result: Array[Resource] = []
     for key in keys(collection):
