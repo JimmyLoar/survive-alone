@@ -3,11 +3,19 @@ res_path="/mnt/nvme0/MyProjects/Godot/survive-alone/resources/collection"
 script="/mnt/nvme0/MyProjects/Godot/survive-alone/databases/resources_collector.gd"
 uid=""
 
-# Заголовок файла
+# Заголовок файла с большим предупреждением
 cat > "$script" <<EOL
 class_name ResourceCollector
+extends Object
 
-#NOTE Автоматически сгенерированный файл - не редактировать вручную
+#######################################################################
+#                                                                     #
+# WARNING: АВТОМАТИЧЕСКИ СГЕНЕРИРОВАННЫЙ ФАЙЛ!                       #
+# НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ!                                          #
+# ЛЮБЫЕ ИЗМЕНЕНИЯ БУДУТ ПЕРЕЗАПИСАНЫ ПРИ ОЧЕРЕДНОЙ ГЕНЕРАЦИИ!        #
+#                                                                     #
+#######################################################################
+
 
 EOL
 
@@ -48,12 +56,22 @@ function scan_directory {
 echo "Generating ResourceCollector..."
 scan_directory "$res_path"
 
+# Разделитель перед коллекциями
+echo -e "\n#######################################################################" >> "$script"
+echo -e "# КОЛЛЕКЦИИ РЕСУРСОВ                                                 #" >> "$script"
+echo -e "#######################################################################\n" >> "$script"
+
 # Запись коллекций
 for collection_name in "${!collections[@]}"; do
     content=$(echo -e "${collections[$collection_name]}" | sed '$s/,\s*$//')
     echo -e "${content}\n}" >> "$script"
     echo >> "$script"
 done
+
+# Разделитель перед enum
+echo -e "\n#######################################################################" >> "$script"
+echo -e "# ТИПЫ КОЛЛЕКЦИЙ                                                     #" >> "$script"
+echo -e "#######################################################################\n" >> "$script"
 
 # Enum для типов коллекций
 echo "enum Collection {" >> "$script"
@@ -63,10 +81,15 @@ for collection_name in "${!collections[@]}"; do
 done
 echo "}" >> "$script"
 
+# Разделитель перед методами
+echo -e "\n#######################################################################" >> "$script"
+echo -e "# МЕТОДЫ ДЛЯ РАБОТЫ С РЕСУРСАМИ                                      #" >> "$script"
+echo -e "#######################################################################\n" >> "$script"
+
 # Основные методы
 cat >> "$script" <<EOL
 
-static func get_uid(collection: Collection, key: String) -> String:
+static func uid(collection: Collection, key: String) -> String:
     """Возвращает UID ресурса или пустую строку если не найден"""
     match collection:
 EOL
@@ -80,10 +103,28 @@ echo "        _: return \"\"" >> "$script"
 
 cat >> "$script" <<EOL
 
-static func get_resource(collection: Collection, key: String) -> Resource:
-    """Непосредственно загружает и возвращает ресурс"""
+static func find(collection: Collection, key: String) -> Resource:
+    """Загружает и возвращает один ресурс"""
     var resource_uid := uid(collection, key)
     return ResourceLoader.load(resource_uid) if resource_uid else null
+
+static func find_multiple(collection: Collection, keys: Array[String]) -> Array[Resource]:
+    """Загружает и возвращает массив ресурсов по массиву ключей"""
+    var result: Array[Resource] = []
+    for key in keys:
+        var res := find(collection, key)
+        if res:
+            result.append(res)
+    return result
+
+static func get_all(collection: Collection) -> Array[Resource]:
+    """Возвращает все ресурсы указанной коллекции"""
+    var result: Array[Resource] = []
+    for key in keys(collection):
+        var res := find(collection, key)
+        if res:
+            result.append(res)
+    return result
 
 static func keys(collection: Collection) -> Array[String]:
     """Возвращает все ключи указанной коллекции"""
@@ -96,5 +137,10 @@ for collection_name in "${!collections[@]}"; do
     echo "            return ${collection_name}.keys()" >> "$script"
 done
 echo "        _: return []" >> "$script"
+
+# Финальное предупреждение
+echo -e "\n#######################################################################" >> "$script"
+echo -e "# КОНЕЦ АВТОМАТИЧЕСКИ СГЕНЕРИРОВАННОГО ФАЙЛА                        #" >> "$script"
+echo -e "#######################################################################" >> "$script"
 
 echo "ResourceCollector generation complete!"
