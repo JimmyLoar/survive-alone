@@ -80,6 +80,7 @@ folder_colors={
 [file_customization]
 
 folder_colors={
+"res://feature/": "red",
 "res://resources/collection/": "blue"
 }
 
