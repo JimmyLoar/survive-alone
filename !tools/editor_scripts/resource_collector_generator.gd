@@ -44,7 +44,7 @@ func scan_resources_directory() -> Dictionary:
 func process_subdirectory(dir_path: String, collections: Dictionary):
 	var dir = DirAccess.open(dir_path)
 	if not dir:
-		print("Ошибка: %s" % [error_string(dir.get_open_error())])
+		printerr("Ошибка: %s" % [error_string(dir.get_open_error())])
 		return
 	 
 	var collection_name = dir_path.get_file()
