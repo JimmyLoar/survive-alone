@@ -1,7 +1,27 @@
-[gd_resource type="Resource" script_class="ActionAggregate" load_steps=3 format=3 uid="uid://k7c4c46ko18c"]
+[gd_resource type="Resource" script_class="ActionAggregate" load_steps=6 format=3 uid="uid://k7c4c46ko18c"]
 
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="1_r77p0"]
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="2_verg6"]
+
+[sub_resource type="Resource" id="Resource_r77p0"]
+script = ExtResource("1_r77p0")
+_method_name = "inventory_add_new_items"
+"arg_0: item_name" = &"resource_stick"
+"arg_1: amount" = null
+"arg_2: _inventory" = &"InventoryCharacterState"
+metadata/_custom_type_script = "uid://xbfp6rfvxe47"
+
+[sub_resource type="Resource" id="Resource_verg6"]
+script = ExtResource("1_r77p0")
+_method_name = "event_start"
+"arg_0: event_name" = null
+metadata/_custom_type_script = "uid://xbfp6rfvxe47"
+
+[sub_resource type="Resource" id="Resource_2qv7m"]
+script = ExtResource("1_r77p0")
+_method_name = "event_start_from_list"
+"arg_0: eventpack_name" = "biom_list_test"
+metadata/_custom_type_script = "uid://xbfp6rfvxe47"
 
 [resource]
 script = ExtResource("2_verg6")
@@ -9,6 +29,6 @@ special = "eat"
 "override: property_value" = null
 "override: item_name" = "food_water_clear"
 "override: game_time" = null
-addational_condition = Array[ExtResource("1_r77p0")]([])
+addational_condition = Array[ExtResource("1_r77p0")]([SubResource("Resource_r77p0"), SubResource("Resource_verg6"), SubResource("Resource_2qv7m")])
 addational_actions = Array[ExtResource("1_r77p0")]([])
 metadata/_custom_type_script = "uid://bsym8hlejwoaw"

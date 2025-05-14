@@ -74,5 +74,4 @@ func get_property(name: String) -> CharacterPropertyEntity:
 
 
 func get_property_data(name: StringName) -> CharacterPropertyResource:
-	var database := _node._resource_db.connection as Database
-	return database.fetch_data("properties", name)
+	return ResourceCollector.find(ResourceCollector.Collection.CHARACTER_PROPERTY, name)

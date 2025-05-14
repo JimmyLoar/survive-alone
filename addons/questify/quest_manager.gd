@@ -9,9 +9,9 @@ signal quest_completed(quest: QuestResource)
 
 
 var _quests: Array[QuestResource] = [
-	preload("res://resources/collection/quest/test.tres").instantiate(),
-	preload("res://resources/collection/quest/test2.tres").instantiate(), 
-	preload("res://resources/collection/quest/test3.tres").instantiate(), 
+	preload("res://resources/collection/quests/test.tres").instantiate(),
+	preload("res://resources/collection/quests/test2.tres").instantiate(), 
+	preload("res://resources/collection/quests/test3.tres").instantiate(), 
 ]
 var _quest_update_timer: Timer
 var _logger := Log.get_global_logger().with("Questify")

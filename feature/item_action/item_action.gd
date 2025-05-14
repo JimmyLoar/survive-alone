@@ -62,15 +62,12 @@ func _display_reward_items_grids(items: Dictionary):
 	reward_slot_cotroller.update_items_list(entity)
 
 
-# TODO найти более подходящие место для функции ниже
-@onready var resource_db := Locator.get_service(ResourceDb) as ResourceDb
 func _get_item_entities(items: Dictionary) -> Array[ItemEntity]:
-	var database: Database = resource_db.connection
 	var array: Array[ItemEntity] = []
 	for _name in items:
 		if items[_name] == 0:
 			continue
-		var item_resource: ItemResource = database.fetch_data(&"items", StringName(_name))
+		var item_resource: ItemResource = ResourceCollector.find(ResourceCollector.Collection.ITEMS, _name)
 		array.append(ItemEntity.new(item_resource, items[_name]))
 	return array
 

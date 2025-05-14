@@ -20,6 +20,8 @@ func remove_item(name: String, value: int) -> int:
 	assert(not _inventories.is_empty(), "inventories is empty")
 	var _tmp = value
 	for inv in _inventories:
+		if value <= 0: 
+			break
 		value = inv.remove_item(name, value)
 	return value - _tmp
 

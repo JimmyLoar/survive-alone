@@ -1,13 +1,10 @@
 extends Node2D
 
 var _state: GameState
-var _resource_db: ResourceDb
 
 
 func _enter_tree() -> void:
 	_state = Locator.get_service(GameState)
-	_resource_db = Locator.get_service(ResourceDb)
-	_resource_db.db_connect("res://resources/database.gddb")
 
 
 func _ready() -> void:
@@ -41,8 +38,8 @@ func _create_new_save_if_not_exist(save_path: String):
 	save_db.db_connect(save_path)
 	character_property_repository.init(save_db)
 	
-
-	var character_props_data = _resource_db.connection.fetch_collection_data(&"properties").values()
+	
+	var character_props_data = ResourceCollector.find_all(ResourceCollector.Collection.CHARACTER_PROPERTY)
 	var character_props = character_props_data.map(func(data): return CharacterPropertyEntity.new(data))
 	var character_world_pos = Vector2(0, 0)
 	var character_inventory = InventoryEntity.new(

@@ -9,7 +9,6 @@ func _init() -> void:
 	initialize_service(GameDb)
 	initialize_service(SaveDb)
 	initialize_service(GameState)
-	initialize_service(ResourceDb)
 
 
 func add_initialized_service(service: Object) -> void:
