@@ -157,7 +157,7 @@ func generate_find_method() -> PackedStringArray:
 
 func generate_find_multiple_method() -> PackedStringArray:
 	var method := PackedStringArray()
-	method.append("static func find_multiple(collection: Collection, keys: Array[String]) -> Array[Resource]:")
+	method.append("static func find_multiple(collection: Collection, keys: Array) -> Array:")
 	method.append('    """Загружает и возвращает массив ресурсов по массиву ключей"""')
 	method.append("    var result: Array[Resource] = []")
 	method.append("    for key in keys:")
@@ -170,7 +170,7 @@ func generate_find_multiple_method() -> PackedStringArray:
 
 func generate_find_all_method() -> PackedStringArray:
 	var method := PackedStringArray()
-	method.append("static func find_all(collection: Collection) -> Array[Resource]:")
+	method.append("static func find_all(collection: Collection) -> Array:")
 	method.append('    """Возвращает все ресурсы указанной коллекции"""')
 	method.append("    var result: Array[Resource] = []")
 	method.append("    for key in keys(collection):")
@@ -183,7 +183,7 @@ func generate_find_all_method() -> PackedStringArray:
 
 func generate_keys_method(collections: Dictionary) -> PackedStringArray:
 	var method := PackedStringArray()
-	method.append("static func keys(collection: Collection) -> Array[String]:")
+	method.append("static func keys(collection: Collection) -> Array:")
 	method.append('    """Возвращает все ключи указанной коллекции"""')
 	method.append("    match collection:")
 	for collection_name in collections:
