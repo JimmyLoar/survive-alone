@@ -17,8 +17,8 @@ func db_connect(connect_path: String, big_size_opt = false):
 	if connection != null:
 		connection.close_db()
 
-	connection = SQLite.new()
-	connection.path = connect_path
+	connection = load("res://databases/db_config.gd").new().restore_database()
+	#connection.pasth = connect_path
 	# _db.verbosity_level = SQLite.VERBOSE # only for debug db errors
 	connection.verbosity_level = SQLite.QUIET  # for production - without any db errors
 	var is_opened = connection.open_db()
