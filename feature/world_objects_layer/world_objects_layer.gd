@@ -14,10 +14,9 @@ var _visible_object_nodes = Dictionary()
 
 func _enter_tree() -> void:
 	_state = Locator.initialize_service(WorldObjectsLayerState)
-
+	_state._host_node = self
 
 func _ready() -> void:
-	_state._world_object_repository = Locator.initialize_service(WorldObjectRepository)
 	_virtual_chunks_state.visible_chunks_rect_changed.connect(_on_virtual_chunks_rect_changed)
 	_state.visible_objects_changed.connect(_on_visible_objects_changed)
 	
