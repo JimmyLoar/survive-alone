@@ -1,6 +1,5 @@
 extends Node
 
-
 var _storage: Dictionary = {}
 var _logger: Log = Log.get_global_logger().with("Locator")
 
@@ -38,25 +37,28 @@ func initialize_service(script: GDScript, values: Array = []):
 	return service
 
 
-func get_service(script: Script, emit_callable := Callable()) -> Object:
+func get_service(script: Script, emit_callable: Callable = _empty_callable) -> Object:
 	if _storage.has(script.get_global_name()):
-		return _storage[script.get_global_name()]
+		var service = _storage[script.get_global_name()]
+		emit_callable.call(service)
+		return service
 	
 	_logger.warn("Failed to get service an '[color=orangered]%s[/color]' because it wasn't initialized!" % 
 		[script.get_global_name()])
 	
-	if emit_callable.is_null():
-		return null
-	
 	var signal_name = "ready_%s" % script.get_global_name()
 	if not has_user_signal(signal_name):
 		add_user_signal(signal_name, [{"name": "service", "type": TYPE_OBJECT}])
-		connect(signal_name, _request_to_remove_signal, CONNECT_ONE_SHOT)
+		connect(signal_name, _request_to_remove_signal, CONNECT_ONE_SHOT + CONNECT_DEFERRED)
 	
 	connect(signal_name, emit_callable, CONNECT_ONE_SHOT)
 	_logger.info("A signal '[color=lightblue]%s[/color]' will be emitted when service '[color=orangered]%s[/color] is initialized.
 		Connected to '[color=lightblue]%s[/color]' method." %  [signal_name, script.get_global_name(), emit_callable.get_method()])
 	return null
+
+
+func _empty_callable(service: Variant):
+	pass
 
 
 func _request_to_remove_signal(_object: Object):

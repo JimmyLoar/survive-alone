@@ -56,6 +56,9 @@ func insert(entity: BiomeRectEntity):
 	else:
 		create(entity)
 
+func get_all_by_tile_pos(pos: Vector2i) -> Array[BiomeRectEntity]:
+	var rect = Rect2i(pos, Vector2i.ONE)
+	return get_all_intersected(rect)
 
 func update(entity: BiomeRectEntity):
 	var select_condition = "id = %d" % entity.id

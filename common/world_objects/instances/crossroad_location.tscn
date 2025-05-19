@@ -1,12 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://bi7nxq3q0gvwi"]
 
 [ext_resource type="Script" uid="uid://dtcdgf60nvjy0" path="res://common/world_objects/world_location.gd" id="1_l7g58"]
-[ext_resource type="Resource" uid="uid://56f1qivn2r5c" path="res://resources/collection/search_drop/none.tres" id="2_2nelk"]
+[ext_resource type="Resource" uid="uid://56f1qivn2r5c" path="res://resources/collection/drops/none.tres" id="2_cis87"]
 [ext_resource type="Texture2D" uid="uid://djh8y7tcvjq02" path="res://assets/sprite/placeholders/citybuilder-tileset/StraßeB_1111.png" id="3_iivo0"]
 
 [node name="CrossroadLocation" type="Node2D"]
 script = ExtResource("1_l7g58")
-search_drop = ExtResource("2_2nelk")
+search_drop = ExtResource("2_cis87")
+location_name = "crossroad"
+loaction_description = "crossroad desc"
 show_collision_shape = null
 
 [node name="Texture" type="Sprite2D" parent="."]

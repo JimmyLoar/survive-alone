@@ -1,12 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvfk363x2sjog"]
 
 [ext_resource type="Script" uid="uid://dtcdgf60nvjy0" path="res://common/world_objects/world_location.gd" id="1_vfxnt"]
-[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/search_drop/test_1.tres" id="2_vfxnt"]
+[ext_resource type="Resource" uid="uid://cmj3q638n6mio" path="res://resources/collection/drops/test_1.tres" id="2_brk7q"]
 [ext_resource type="Texture2D" uid="uid://doejxjjp3fxgd" path="res://assets/sprite/placeholders/citybuilder-tileset/Hochhaus.1.png" id="3_vfxnt"]
 
 [node name="CrossroadLocation" type="Node2D"]
 script = ExtResource("1_vfxnt")
-search_drop = ExtResource("2_vfxnt")
+search_drop = ExtResource("2_brk7q")
+location_name = "hose"
+loaction_description = "house desc"
 show_collision_shape = null
 
 [node name="Texture" type="Sprite2D" parent="."]

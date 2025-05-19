@@ -1,7 +1,6 @@
 class_name WorldObjectsLayerState
  
 
-var _world_object_repository: WorldObjectRepository
 var _host_node: WorldObjectsLayer
 
 
@@ -21,10 +20,11 @@ var visible_objects:
 var visible_rect: Rect2
 
 func set_visible_rect(value: Rect2, force: bool = false):
+	var world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
 	if visible_rect != value or force:
 		visible_rect = value
 		
-		var intersected_objects = _world_object_repository.get_all_intersected(value)
+		var intersected_objects = world_object_repository.get_all_intersected(value)
 		var diff = VisibleObjectsDiff.new()
 		for object in intersected_objects:
 			if not _visible_objects.has(object.id):
