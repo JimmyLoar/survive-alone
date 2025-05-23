@@ -7,3 +7,7 @@ signal completed_stage(event_node: EventNode)
 signal completed_event(event: EventResource)
 @warning_ignore_restore('unused_signal')
 var event_name: String = ''
+
+
+func start_event(event: EventResource):
+	Locator.get_service(EventState).start_event(event)

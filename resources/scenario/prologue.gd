@@ -1,23 +1,26 @@
-var quests = {
-	"prologue_0": ["event", ""],
-	"prologue_1": ["event", ""],
-	"prologue_2": ["event", ""],
+static var quests = {
+	"prologue_0": [["event", "event_prologue_2"]],
+	"prologue_1": [["event", ""]],
+	"prologue_2": [["event", ""]],
 }
 
-var events = {
-	"event_prologue_1": ["event", ""],
-	"event_prologue_2": ["event", ""],
-	"event_prologue_3": ["event", ""],
+static var events = {
+	"prologue_0": [["quest", "prologue_0"]],
+	"prologue_1": [["quest", ""]],
+	"prologue_2": [["quest", ""]],
 }
 
 
-func has_quest(quest_name: String):
+static func has_quest(quest_name: String):
 	return quests.has(quest_name)
 
 
-func has_event(event_name: String):
+static func has_event(event_name: String):
 	return events.has(event_name)
 
 
-func get_next():
-	pass
+static func get_next(type: String, name: String) -> Array:
+	match type:
+		"event": return events[name]
+		"quest": return quests[name]
+	return []
