@@ -31,10 +31,9 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(738, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.4
+size_flags_stretch_ratio = 1.2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -139,5 +138,5 @@ item_1/icon = ExtResource("2_h1y6y")
 item_2/text = "Action 3"
 item_2/disabled = true
 item_3/text = "asddasda"
-item_4/text = "asdasafasfasfasf \\n fdgdf fgdfg gdfg dfg dfg dfg dfg dfg dfg fd fg df gd dgd"
+item_4/text = "asdasafasfasfasf "
 script = ExtResource("3_dria2")

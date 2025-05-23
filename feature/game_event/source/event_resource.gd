@@ -131,7 +131,7 @@ func get_previous_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEd
 	return result
 
 
-func complete_stage(stage: EventText):
+func complete_stage(stage: EventNode):
 	stage.completed = true
 	EventsGlobal.completed_stage.emit(stage)
 
