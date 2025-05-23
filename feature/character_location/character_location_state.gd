@@ -33,6 +33,7 @@ var current_location: Variant: # WorldObjectEntity или BiomesLocation
 	set(value):
 		if value != current_location:
 			current_location = value
+			print_debug("Changed Location")
 			current_location_changed.emit(value)
 
 var current_tile_pos = Vector2i.MAX

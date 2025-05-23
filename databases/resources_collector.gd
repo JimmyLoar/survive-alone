@@ -125,10 +125,10 @@ const actions = {
 }
 
 const quests = {
-	"prologue_00": "uid://b3xe3vw6y5fv7",
-	"prologue": "uid://dseeelh8xcs4c",
+	"prologue_1": "uid://b3xe3vw6y5fv7",
 	"test3": "uid://bs2ncgfju7uqb",
 	"test": "uid://rt46wktltqjl",
+	"prologue_0": "uid://dseeelh8xcs4c",
 	"test2": "uid://byvhlyfyh7fhn",
 }
 
