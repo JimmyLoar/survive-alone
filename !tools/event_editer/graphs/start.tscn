@@ -6,10 +6,10 @@
 bg_color = Color(0.473709, 0.00302723, 0.913595, 1)
 
 [node name="StartNode" type="GraphNode" node_paths=PackedStringArray("name_text_edit", "name_translated", "discription_translated")]
-custom_minimum_size = Vector2(300, 240)
+custom_minimum_size = Vector2(240, 240)
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 301.0
+offset_right = 241.0
 offset_bottom = 281.0
 theme_override_constants/separation = 8
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_6cmvk")

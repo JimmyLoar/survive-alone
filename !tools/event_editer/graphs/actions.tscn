@@ -14,8 +14,8 @@ addational_condition = Array[ExtResource("2_bjcly")]([])
 addational_actions = Array[ExtResource("2_bjcly")]([])
 
 [node name="ActionNode" type="GraphNode" node_paths=PackedStringArray("line_edit", "text_edit", "edit_button")]
-custom_minimum_size = Vector2(300, 200)
-offset_right = 316.0
+custom_minimum_size = Vector2(240, 200)
+offset_right = 290.0
 offset_bottom = 308.0
 theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
@@ -160,7 +160,7 @@ size_flags_horizontal = 3
 text = "it's a phrase"
 
 [node name="ButtonEditActionAggregate" type="Button" parent="."]
-custom_minimum_size = Vector2(280, 0)
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Edit"

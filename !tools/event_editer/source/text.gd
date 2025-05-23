@@ -1,6 +1,7 @@
-class_name EventStage
+class_name EventText
 extends EventNode
 
+@export var text: Array
 
 var actions: Array[EventAction]:
 	get:
