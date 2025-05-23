@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp4d103yot38v"]
+
+[ext_resource type="Script" uid="uid://pl43a5m1tc18" path="res://!tools/event_editer/graphs/_clear_text.gd" id="1_ufl8m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eccww"]
+bg_color = Color(0, 0.401801, 0.893705, 1)
+
+[node name="TextNode" type="GraphNode"]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 200.0
+offset_bottom = 70.0
+theme_override_constants/separation = 6
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_eccww")
+title = "Clear Text"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_ufl8m")
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "previous"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "next"
+horizontal_alignment = 2

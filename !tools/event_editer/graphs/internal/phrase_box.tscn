@@ -1,19 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4hi273u00176"]
+[gd_scene load_steps=2 format=3 uid="uid://cda731i3vlkum"]
 
-[ext_resource type="Script" uid="uid://bce0f8en4dlvx" path="res://!tools/event_editer/graphs/internal/_paragraph_box.gd" id="1_bva8m"]
+[ext_resource type="Script" uid="uid://cb6vph21nda0v" path="res://!tools/event_editer/graphs/internal/phrase_box.gd" id="1_tk38f"]
 
-[node name="ParagraphBox" type="VBoxContainer" node_paths=PackedStringArray("character_selecter", "line_edit", "text_edit")]
-custom_minimum_size = Vector2(300, 0)
-offset_right = 194.0
-offset_bottom = 147.0
-script = ExtResource("1_bva8m")
+[node name="PhraseBox" type="VBoxContainer" node_paths=PackedStringArray("character_selecter", "line_edit", "text_edit")]
+offset_right = 163.0
+offset_bottom = 157.0
+script = ExtResource("1_tk38f")
 character_selecter = NodePath("HBoxContainer/CharacterSelecter")
 line_edit = NodePath("VBoxContainer/LineEdit")
 text_edit = NodePath("TextEdit")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-text = "Paragraph № 0"
+text = "Display phrase:"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -28,20 +27,17 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
-item_count = 4
-popup/item_0/text = "narrator"
+item_count = 5
+popup/item_0/text = "discription"
 popup/item_0/id = 0
-popup/item_1/text = "player"
+popup/item_1/text = "narrator"
 popup/item_1/id = 1
-popup/item_2/text = "Unknown"
+popup/item_2/text = "player"
 popup/item_2/id = 2
-popup/item_3/text = "Man"
+popup/item_3/text = "Unknown"
 popup/item_3/id = 3
-
-[node name="Button" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-text = "X"
+popup/item_4/text = "Man"
+popup/item_4/id = 4
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -64,5 +60,4 @@ editable = false
 scroll_fit_content_height = true
 
 [connection signal="item_selected" from="HBoxContainer/CharacterSelecter" to="." method="_on_character_selecter_item_selected"]
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_remove_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]

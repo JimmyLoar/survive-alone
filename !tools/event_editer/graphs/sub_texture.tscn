@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfk7mfh1i4yhp"]
+
+[ext_resource type="Script" uid="uid://bqinqkvyn7b1" path="res://!tools/event_editer/graphs/_sub_texture.gd" id="1_jam4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jam4k"]
+bg_color = Color(0.782573, 0.549424, 0, 1)
+
+[node name="SubTextureNode" type="GraphNode" node_paths=PackedStringArray("texture_rect", "path_label")]
+custom_minimum_size = Vector2(240, 120)
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 241.0
+offset_bottom = 126.0
+theme_override_constants/separation = 8
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_jam4k")
+title = "SubTexture"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+script = ExtResource("1_jam4k")
+texture_rect = NodePath("VBoxContainer/TextureRect")
+path_label = NodePath("VBoxContainer/HBoxContainer/Label")
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "previous"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "next"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Path: "
+editable = false
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "change"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+expand_mode = 5
+
+[node name="Panel" type="Panel" parent="VBoxContainer/TextureRect"]
+show_behind_parent = true
+layout_mode = 2
+offset_top = 4.0
+offset_right = 424.0
+offset_bottom = 4.0
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

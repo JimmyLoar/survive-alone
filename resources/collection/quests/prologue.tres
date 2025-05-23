@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_6ndsh"]
 [ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_puigy"]
 
-[sub_resource type="Resource" id="Resource_puigy"]
+[sub_resource type="Resource" id="Resource_hspat"]
 script = ExtResource("2_bq2dx")
 name = ""
 description = ""
@@ -17,7 +17,7 @@ optional = false
 graph_editor_position = Vector2(-60, -160)
 graph_editor_size = Vector2(280, 463)
 
-[sub_resource type="Resource" id="Resource_huhyn"]
+[sub_resource type="Resource" id="Resource_ey4y6"]
 script = ExtResource("3_yfy8a")
 description = ""
 id = "ErKsMIN_HU"
@@ -25,26 +25,26 @@ optional = false
 graph_editor_position = Vector2(400, 60)
 graph_editor_size = Vector2(468, 483)
 
-[sub_resource type="Resource" id="Resource_lqsfq"]
+[sub_resource type="Resource" id="Resource_2njro"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_puigy")
-to = SubResource("Resource_huhyn")
+from = SubResource("Resource_hspat")
+to = SubResource("Resource_ey4y6")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_hkmeu"]
+[sub_resource type="Resource" id="Resource_gwwtl"]
 script = ExtResource("4_6ndsh")
 id = "J8i1qfqgua"
 optional = false
 graph_editor_position = Vector2(900, -80)
 graph_editor_size = Vector2(141, 78)
 
-[sub_resource type="Resource" id="Resource_wro5i"]
+[sub_resource type="Resource" id="Resource_q0hqo"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_huhyn")
-to = SubResource("Resource_hkmeu")
+from = SubResource("Resource_ey4y6")
+to = SubResource("Resource_gwwtl")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_kasau"]
+[sub_resource type="Resource" id="Resource_fm67a"]
 script = ExtResource("5_puigy")
 type = "event"
 key = "finihed"
@@ -54,13 +54,13 @@ graph_editor_position = Vector2(-160, 340)
 graph_editor_size = Vector2(377, 309)
 metadata/value = "PROLOGUE_1"
 
-[sub_resource type="Resource" id="Resource_xvft3"]
+[sub_resource type="Resource" id="Resource_iylkr"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_kasau")
-to = SubResource("Resource_huhyn")
+from = SubResource("Resource_fm67a")
+to = SubResource("Resource_ey4y6")
 edge_type = 1
 
 [resource]
 script = ExtResource("3_47eok")
-nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_hkmeu"), SubResource("Resource_puigy"), SubResource("Resource_huhyn"), SubResource("Resource_kasau")])
-edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_lqsfq"), SubResource("Resource_wro5i"), SubResource("Resource_xvft3")])
+nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_gwwtl"), SubResource("Resource_hspat"), SubResource("Resource_ey4y6"), SubResource("Resource_fm67a")])
+edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_2njro"), SubResource("Resource_q0hqo"), SubResource("Resource_iylkr")])

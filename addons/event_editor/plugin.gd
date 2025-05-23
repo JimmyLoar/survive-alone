@@ -7,7 +7,7 @@ const EditorViewScene = preload("res://!tools/event_editer/event_editor_view.tsc
 var editor_view: EventEditorView
 
 
-func _enter_tree() -> void:
+func _enter_tree():	
 	Engine.set_meta("EventEditorPlugin", self)
 	editor_view = EditorViewScene.instantiate() as EventEditorView
 	EditorInterface.get_editor_main_screen().add_child(editor_view)
