@@ -8,12 +8,12 @@ extends EventGraphNode
 var file_dialog := EditorFileDialog.new()
 var _path: String
 
+
 func _ready() -> void:
 	add_child(file_dialog)
 	file_dialog.file_mode = EditorFileDialog.FILE_MODE_OPEN_FILE
 	file_dialog.filters = ["*.png", "*.svg", "*.jpg", "*.jpeg", "*.webp", "*.tga", "*.bmp"]
 	file_dialog.file_selected.connect(_update_texture)
-	
 
 
 func _get_model() -> EventNode:

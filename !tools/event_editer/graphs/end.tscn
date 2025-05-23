@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dn83b35u0xpte" path="res://!tools/event_editer/graphs/_end.gd" id="1_s1t6h"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8fmo"]
-bg_color = Color(0.261996, 0.367464, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1t6h"]
+bg_color = Color(0.473709, 0.00302723, 0.913595, 1)
 
 [node name="EndNode" type="GraphNode"]
 custom_minimum_size = Vector2(120, 60)
 offset_right = 120.0
 offset_bottom = 70.0
-theme_override_styles/titlebar = SubResource("StyleBoxFlat_p8fmo")
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_s1t6h")
 title = "End"
 slot/0/left_enabled = true
 slot/0/left_type = 0
