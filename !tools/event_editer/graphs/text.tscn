@@ -115,7 +115,11 @@ layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Translate"
 editable = false
+emoji_menu_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
 scroll_fit_content_height = true
+scroll_fit_content_width = true
 
 [node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2
