@@ -118,7 +118,6 @@ edge_type = 1
 [sub_resource type="Resource" id="Resource_icwb0"]
 script = ExtResource("12_x8oyh")
 texture = "res://icon.svg"
-text = []
 id = "sPtrbaYUFO"
 optional = false
 graph_editor_position = Vector2(980, 140)
