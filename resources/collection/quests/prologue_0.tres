@@ -8,59 +8,59 @@
 [ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_6ndsh"]
 [ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_puigy"]
 
-[sub_resource type="Resource" id="Resource_tbbpu"]
+[sub_resource type="Resource" id="Resource_hspat"]
 script = ExtResource("2_bq2dx")
-name = "Prologue0"
+name = ""
 description = ""
 id = "Q1V9BZUBfB"
 optional = false
 graph_editor_position = Vector2(-60, -160)
 graph_editor_size = Vector2(280, 463)
 
-[sub_resource type="Resource" id="Resource_f31q3"]
+[sub_resource type="Resource" id="Resource_ey4y6"]
 script = ExtResource("3_yfy8a")
-description = "exit from bunker "
+description = ""
 id = "ErKsMIN_HU"
 optional = false
-graph_editor_position = Vector2(380, 0)
+graph_editor_position = Vector2(400, 60)
 graph_editor_size = Vector2(468, 483)
 
-[sub_resource type="Resource" id="Resource_efu3g"]
+[sub_resource type="Resource" id="Resource_2njro"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_tbbpu")
-to = SubResource("Resource_f31q3")
+from = SubResource("Resource_hspat")
+to = SubResource("Resource_ey4y6")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_3r3la"]
+[sub_resource type="Resource" id="Resource_gwwtl"]
 script = ExtResource("4_6ndsh")
 id = "J8i1qfqgua"
 optional = false
 graph_editor_position = Vector2(900, -80)
 graph_editor_size = Vector2(141, 78)
 
-[sub_resource type="Resource" id="Resource_c734n"]
+[sub_resource type="Resource" id="Resource_q0hqo"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_f31q3")
-to = SubResource("Resource_3r3la")
+from = SubResource("Resource_ey4y6")
+to = SubResource("Resource_gwwtl")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_7f6g5"]
+[sub_resource type="Resource" id="Resource_fm67a"]
 script = ExtResource("5_puigy")
-type = "change_location"
-key = "any "
+type = "event"
+key = "finihed"
 id = "pGZcRej1DQ"
 optional = false
 graph_editor_position = Vector2(-160, 340)
 graph_editor_size = Vector2(377, 309)
-metadata/value = 19.0
+metadata/value = "PROLOGUE_1"
 
-[sub_resource type="Resource" id="Resource_1uyv4"]
+[sub_resource type="Resource" id="Resource_iylkr"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_7f6g5")
-to = SubResource("Resource_f31q3")
+from = SubResource("Resource_fm67a")
+to = SubResource("Resource_ey4y6")
 edge_type = 1
 
 [resource]
 script = ExtResource("3_47eok")
-nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_3r3la"), SubResource("Resource_tbbpu"), SubResource("Resource_f31q3"), SubResource("Resource_7f6g5")])
-edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_efu3g"), SubResource("Resource_c734n"), SubResource("Resource_1uyv4")])
+nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_gwwtl"), SubResource("Resource_hspat"), SubResource("Resource_ey4y6"), SubResource("Resource_fm67a")])
+edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_2njro"), SubResource("Resource_q0hqo"), SubResource("Resource_iylkr")])
