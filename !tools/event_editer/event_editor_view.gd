@@ -7,7 +7,6 @@ const graph_nodes = [
 	{label = "Start", scene = EventGraphEditor.StartNodeScene},
 	{label = "End", scene = EventGraphEditor.EndNodeScene},
 	{label = "Text", scene = EventGraphEditor.TextNodeScene},
-	#{label = "New Scene", scene = EventGraphEditor.NewSceneNodeScene},
 	{label = "Actions", scene = EventGraphEditor.ActionsNodeScene},
 	{label = "Main Texture", scene = EventGraphEditor.MainTextureNodeScene},
 	{label = "Sub Texture", scene = EventGraphEditor.SubTextureNodeScene},

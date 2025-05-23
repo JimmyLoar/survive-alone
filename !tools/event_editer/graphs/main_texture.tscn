@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b3083utmk40k2" path="res://!tools/event_editer/graphs/_main_texture.gd" id="1_xrexh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxui2"]
-bg_color = Color(0.913685, 0.451607, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cmvk"]
+bg_color = Color(0.473709, 0.00302723, 0.913595, 1)
 
 [node name="MainTextureNode" type="GraphNode" node_paths=PackedStringArray("texture_rect", "path_label")]
 custom_minimum_size = Vector2(240, 120)
@@ -12,7 +12,7 @@ offset_top = 1.0
 offset_right = 241.0
 offset_bottom = 126.0
 theme_override_constants/separation = 8
-theme_override_styles/titlebar = SubResource("StyleBoxFlat_sxui2")
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_6cmvk")
 title = "MainTexture"
 slot/0/left_enabled = true
 slot/0/left_type = 0

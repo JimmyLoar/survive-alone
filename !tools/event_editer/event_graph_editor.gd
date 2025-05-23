@@ -9,7 +9,6 @@ const EndNodeScene = preload("uid://bnf6ipbnvyj65")
 const ActionsNodeScene = preload("uid://b8g6wavqx75ii")
 const MainTextureNodeScene = preload("uid://bqnf6dvvd6n7")
 const SubTextureNodeScene = preload("uid://dfk7mfh1i4yhp")
-const ClearTextNodeScene = preload("uid://cp4d103yot38v")
 const AbortNodeScene = preload("uid://ddhmoxckqyrvv")
 
 

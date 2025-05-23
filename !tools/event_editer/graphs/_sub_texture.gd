@@ -36,4 +36,3 @@ func _update_texture(path: String):
 	_path = path
 	texture_rect.texture = load(path)
 	path_label.text = path.get_file()
-	

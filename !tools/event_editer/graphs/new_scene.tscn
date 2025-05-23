@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
 bg_color = Color(0.81697, 0, 0.161552, 1)
 
-[node name="NewSceneNode" type="GraphNode" node_paths=PackedStringArray("texture_rect", "path_label", "phrase_box")]
+[node name="NewSceneNode" type="GraphNode"]
 custom_minimum_size = Vector2(24, 120)
 offset_right = 336.0
 offset_bottom = 323.0
@@ -68,9 +68,6 @@ slot/5/right_color = Color(1, 1, 1, 1)
 slot/5/right_icon = null
 slot/5/draw_stylebox = true
 script = ExtResource("1_ulrb4")
-texture_rect = NodePath("TextureContainer/TextureRect")
-path_label = NodePath("TextureContainer/HBoxContainer/Label")
-phrase_box = NodePath("PhraseBox")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -102,17 +99,14 @@ layout_mode = 2
 [node name="TextureContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureContainer"]
 layout_mode = 2
 
-[node name="Label" type="LineEdit" parent="TextureContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="TextureContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "File Name"
-editable = false
-expand_to_text_length = true
+text = "Path: "
 
 [node name="Button" type="Button" parent="TextureContainer/HBoxContainer"]
 layout_mode = 2
@@ -124,9 +118,7 @@ expand_mode = 5
 
 [node name="Panel" type="Panel" parent="TextureContainer/TextureRect"]
 show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+offset_top = 4.0
+offset_right = 424.0
+offset_bottom = 4.0

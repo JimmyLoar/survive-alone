@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://ddxmtr8x5sk7l" path="res://!tools/event_editer/graphs/_text.gd" id="1_eccww"]
 [ext_resource type="PackedScene" uid="uid://cda731i3vlkum" path="res://!tools/event_editer/graphs/internal/phrase_box.tscn" id="2_eccww"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eccww"]
-bg_color = Color(0, 0.401801, 0.893705, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
+bg_color = Color(0.739295, 9.8283e-05, 0.620089, 1)
 
 [node name="TextNode" type="GraphNode" node_paths=PackedStringArray("text_box")]
 custom_minimum_size = Vector2(240, 280)
 offset_right = 240.0
 offset_bottom = 282.0
 theme_override_constants/separation = 6
-theme_override_styles/titlebar = SubResource("StyleBoxFlat_eccww")
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
 title = "Text"
 slot/0/left_enabled = true
 slot/0/left_type = 0
@@ -115,11 +115,7 @@ layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Translate"
 editable = false
-emoji_menu_enabled = false
-drag_and_drop_selection_enabled = false
-virtual_keyboard_enabled = false
 scroll_fit_content_height = true
-scroll_fit_content_width = true
 
 [node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2
