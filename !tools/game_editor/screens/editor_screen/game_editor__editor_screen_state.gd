@@ -1,6 +1,11 @@
 class_name GameEditor__EditorScreenState
 
+var _host_node: Node
 
+func _init(node: Node):
+	_host_node = node
+	
+	
 enum ToolType {
 	Biome = 0,
 	Structure = 1
