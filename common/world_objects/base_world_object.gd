@@ -3,11 +3,12 @@ extends Node2D
 class_name BaseWorldObject
 
 @export var show_collision_shape = false
+var world_object_id = 0
 
 const COLLISION_POLYGON_NODE_PATH = "CollisionShape"
 const COLLISION_POLYGON_NODE_FOUND_ERROR = "Не определен шейп колизии (Polygon2D с именем '%s')" % COLLISION_POLYGON_NODE_PATH
-const COLLISION_POLYGON_NODE_TYPE_ERROR = "Нода шейпа колизии ('%s') дожна иметь тип Polygon2D" % COLLISION_POLYGON_NODE_PATH
-const COLLISION_POLYGON_NODE_HIDDEN_ERROR = "Нода шейпа колизии ('%s') дожна по умолчанию быть скрыта" % COLLISION_POLYGON_NODE_PATH
+const COLLISION_POLYGON_NODE_TYPE_ERROR = "Нода шейпа колизии ('%s') должна иметь тип Polygon2D" % COLLISION_POLYGON_NODE_PATH
+const COLLISION_POLYGON_NODE_HIDDEN_ERROR = "Нода шейпа колизии ('%s') должна по умолчанию быть скрыта" % COLLISION_POLYGON_NODE_PATH
 
 func _ready() -> void:
 	if OS.has_feature("debug") and show_collision_shape:
@@ -21,6 +22,10 @@ func _ready() -> void:
 		line.width = 2
 		line.default_color = Color.RED
 		add_child(line)
+
+		var id_label = Label.new()
+		id_label.text = str(world_object_id)
+		add_child(id_label)
 
 var _collision_shape_cache: ConcavePolygonShape2D = null
 func get_collision_shape() -> ConcavePolygonShape2D:
