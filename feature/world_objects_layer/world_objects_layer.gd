@@ -50,6 +50,7 @@ func _load_object_node(entity: WorldObjectEntity):
 	var node = entity.packed_scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 	node.position = entity.get_offset()
 	node.show_collision_shape = show_collision_shapes
+	node.world_object_id = entity.id
 	return node
 
 func reset():
