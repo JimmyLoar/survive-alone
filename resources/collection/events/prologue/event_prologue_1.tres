@@ -22,10 +22,12 @@ graph_editor_size = Vector2(240, 282)
 
 [sub_resource type="Resource" id="Resource_icki6"]
 script = ExtResource("4_fnr1b")
+next_type = 1
+next_name = "prologue_0"
 id = "o76ORauTm7"
 optional = false
 graph_editor_position = Vector2(820, -180)
-graph_editor_size = Vector2(170, 72)
+graph_editor_size = Vector2(231, 161)
 
 [sub_resource type="Resource" id="Resource_xpush"]
 script = ExtResource("1_b3a27")
@@ -86,6 +88,6 @@ edge_type = 1
 
 [resource]
 script = ExtResource("3_hhevl")
-nodes = Array[ExtResource("2_1f5q7")]([SubResource("Resource_ydb68"), SubResource("Resource_icki6"), SubResource("Resource_6duyk"), SubResource("Resource_w0qly"), SubResource("Resource_sgrge")])
+nodes = Array[ExtResource("2_1f5q7")]([SubResource("Resource_ydb68"), SubResource("Resource_6duyk"), SubResource("Resource_w0qly"), SubResource("Resource_sgrge"), SubResource("Resource_icki6")])
 edges = Array[ExtResource("1_b3a27")]([SubResource("Resource_xpush"), SubResource("Resource_1fyww"), SubResource("Resource_5fgxu"), SubResource("Resource_2rm58")])
 groups = Array[int]([])

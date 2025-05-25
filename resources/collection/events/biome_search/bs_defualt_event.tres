@@ -12,6 +12,8 @@
 
 [sub_resource type="Resource" id="Resource_fd4v2"]
 script = ExtResource("4_otybw")
+next_type = 1
+next_name = ""
 id = "VueJxdOFTj"
 optional = false
 graph_editor_position = Vector2(1000, 340)

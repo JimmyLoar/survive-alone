@@ -6,11 +6,14 @@ class_name QuestResource extends Resource
 @export var edges: Array[QuestEdge] = []
 
 
+var name_key: String:
+	get: return start_node.name_key
+
 var name: String:
-	get: return start_node.name
+	get: return start_node.get_display_name()
 
 var description: String:
-	get: return start_node.description
+	get: return start_node.get_display_discription()
 
 var start_node: QuestStart
 

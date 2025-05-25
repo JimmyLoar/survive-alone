@@ -47,7 +47,6 @@ func _on_condition_query_requested(type: String, key: String, value: Variant, re
 
 
 func _on_changed_location(location, key: String, value: Variant, requester: QuestCondition):
-	breakpoint
 	var result := true
 	match key:
 		"any": result = true
