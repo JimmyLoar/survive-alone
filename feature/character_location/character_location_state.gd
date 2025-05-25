@@ -38,7 +38,7 @@ var current_location: Variant: # WorldObjectEntity или BiomesLocation
 
 var current_tile_pos = Vector2i.MAX
 
-var world_objects_cache = {}
+var world_objects_cache = []
 var biomes_cache = {}
 
 func update_cache(tile_pos: Vector2i):
@@ -50,18 +50,13 @@ func update_cache(tile_pos: Vector2i):
 	var biomes_rect_repository: BiomeRectRepository = Locator.get_service(BiomeRectRepository)
 	var biomes_repository: BiomeRepository = Locator.get_service(BiomeRepository)
 
-	var world_objects = world_objects_repository.get_all_intersected(rect)
 	var biome_rects = biomes_rect_repository.get_all_intersected(tiles_rect)
-	
-	world_objects_cache = {}
+
+	world_objects_cache = world_objects_repository.get_all_intersected(rect)
 	biomes_cache = {}
 	for x in range(from_tile.x, to_tile.x):
 		for y in range(from_tile.y, to_tile.y):
 			var pos = Vector2i(x, y)
-			
-			for world_object in world_objects:
-				if world_object.boundary_rect.intersects(Rect2i(tile_size * pos, Vector2i(tile_size, tile_size))):
-					world_objects_cache[pos] = world_object
 
 			for biome_rect in biome_rects:
 				if biome_rect.rect.intersects(Rect2i(pos, Vector2i.ONE)):
@@ -71,8 +66,12 @@ func update_cache(tile_pos: Vector2i):
 						var biome = biomes_repository.get_by_id(biome_rect.biome_id)
 						biomes_cache[pos].push_back(biome)
 
-func get_world_object(pos: Vector2i):
-	return world_objects_cache.get(pos)
+
+func get_world_object(pos: Vector2):
+	for world_object in world_objects_cache:
+		if Geometry2D.is_point_in_polygon(pos, world_object.get_collision_polygon_points_in_global_coords()):
+			return world_object
+	return null
 
 func get_biomes(pos: Vector2i):
 	return biomes_cache.get(pos, [])
