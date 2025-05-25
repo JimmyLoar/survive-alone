@@ -12,9 +12,19 @@ func get_collision_shape_in_global_coords() -> ConcavePolygonShape2D:
 	var polygon = ConcavePolygonShape2D.new()
 	var segments = []
 	for i in range(shape.segments.size()):
-		segments .append(shape.segments[i] + offset)
+		segments.append(shape.segments[i] + offset)
 	polygon.segments = segments
 	return polygon
+
+func get_collision_polygon_points_in_global_coords() -> PackedVector2Array:
+	var shape = _get_node().get_collision_shape()
+	var offset = get_offset()
+	var polygon = ConcavePolygonShape2D.new()
+	var points = []
+	for i in range(shape.segments.size()):
+		if i % 2 == 0:
+			points.append(shape.segments[i] + offset)
+	return PackedVector2Array(points)
 
 func _get_node() -> BaseWorldObject:
 	if _node_cache == null:
