@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="8_icki6"]
 [ext_resource type="Script" uid="uid://4vpt5ojf0bod" path="res://!tools/event_editer/source/actions.gd" id="9_xpush"]
 
-[sub_resource type="Resource" id="Resource_w0qly"]
+[sub_resource type="Resource" id="Resource_tvmbm"]
 script = ExtResource("2_fnr1b")
 text = [ExtResource("3_fnr1b"), "1"]
 id = "bjoqj371fa"
@@ -20,7 +20,7 @@ optional = false
 graph_editor_position = Vector2(540, -180)
 graph_editor_size = Vector2(240, 282)
 
-[sub_resource type="Resource" id="Resource_icki6"]
+[sub_resource type="Resource" id="Resource_85ubh"]
 script = ExtResource("4_fnr1b")
 next_type = 1
 next_name = "prologue_0"
@@ -29,13 +29,13 @@ optional = false
 graph_editor_position = Vector2(820, -180)
 graph_editor_size = Vector2(231, 161)
 
-[sub_resource type="Resource" id="Resource_xpush"]
+[sub_resource type="Resource" id="Resource_mx52a"]
 script = ExtResource("1_b3a27")
-from = SubResource("Resource_w0qly")
-to = SubResource("Resource_icki6")
+from = SubResource("Resource_tvmbm")
+to = SubResource("Resource_85ubh")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_ydb68"]
+[sub_resource type="Resource" id="Resource_erwon"]
 script = ExtResource("3_rmusu")
 name_key = "prologue_0"
 id = "wCV8fQEu6F"
@@ -43,7 +43,7 @@ optional = false
 graph_editor_position = Vector2(-100, -180)
 graph_editor_size = Vector2(240, 280)
 
-[sub_resource type="Resource" id="Resource_6duyk"]
+[sub_resource type="Resource" id="Resource_c7k4v"]
 script = ExtResource("6_16uau")
 texture = "res://assets/sprite/illustrations/end_of_supply (filter).png"
 id = "e4iSKOCtlf"
@@ -51,43 +51,43 @@ optional = false
 graph_editor_position = Vector2(200, -180)
 graph_editor_size = Vector2(292, 374)
 
-[sub_resource type="Resource" id="Resource_1fyww"]
+[sub_resource type="Resource" id="Resource_7yd4e"]
 script = ExtResource("1_b3a27")
-from = SubResource("Resource_ydb68")
-to = SubResource("Resource_6duyk")
+from = SubResource("Resource_erwon")
+to = SubResource("Resource_c7k4v")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_5fgxu"]
+[sub_resource type="Resource" id="Resource_ygdan"]
 script = ExtResource("1_b3a27")
-from = SubResource("Resource_6duyk")
-to = SubResource("Resource_w0qly")
+from = SubResource("Resource_c7k4v")
+to = SubResource("Resource_tvmbm")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_wqbbr"]
+[sub_resource type="Resource" id="Resource_dr2nv"]
 script = ExtResource("8_icki6")
 special = "none"
 addational_condition = Array[ExtResource("7_w0qly")]([])
 addational_actions = Array[ExtResource("7_w0qly")]([])
 
-[sub_resource type="Resource" id="Resource_sgrge"]
+[sub_resource type="Resource" id="Resource_tasog"]
 script = ExtResource("9_xpush")
 text_key = "exit_from_bunker"
 is_said = false
 is_hidden = false
-action = SubResource("Resource_wqbbr")
+action = SubResource("Resource_dr2nv")
 id = "ICym7V4ruk"
 optional = false
-graph_editor_position = Vector2(520, 140)
+graph_editor_position = Vector2(200, 220)
 graph_editor_size = Vector2(290, 308)
 
-[sub_resource type="Resource" id="Resource_2rm58"]
+[sub_resource type="Resource" id="Resource_umv73"]
 script = ExtResource("1_b3a27")
-from = SubResource("Resource_sgrge")
-to = SubResource("Resource_icki6")
+from = SubResource("Resource_tasog")
+to = SubResource("Resource_85ubh")
 edge_type = 1
 
 [resource]
 script = ExtResource("3_hhevl")
-nodes = Array[ExtResource("2_1f5q7")]([SubResource("Resource_ydb68"), SubResource("Resource_6duyk"), SubResource("Resource_w0qly"), SubResource("Resource_sgrge"), SubResource("Resource_icki6")])
-edges = Array[ExtResource("1_b3a27")]([SubResource("Resource_xpush"), SubResource("Resource_1fyww"), SubResource("Resource_5fgxu"), SubResource("Resource_2rm58")])
+nodes = Array[ExtResource("2_1f5q7")]([SubResource("Resource_erwon"), SubResource("Resource_c7k4v"), SubResource("Resource_tvmbm"), SubResource("Resource_tasog"), SubResource("Resource_85ubh")])
+edges = Array[ExtResource("1_b3a27")]([SubResource("Resource_mx52a"), SubResource("Resource_7yd4e"), SubResource("Resource_ygdan"), SubResource("Resource_umv73")])
 groups = Array[int]([])

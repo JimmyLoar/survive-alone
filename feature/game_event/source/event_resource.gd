@@ -160,6 +160,11 @@ func get_resource_path() -> String:
 	return resource_path
 
 
+func get_next() -> Array:
+	var end = nodes.filter(func(edge: EventNode): return edge is EventEnd).front()
+	return [end.next_type, end.next_name]
+
+
 func serialize() -> Dictionary:
 	return {
 		completed = completed,

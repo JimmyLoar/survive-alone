@@ -25,7 +25,7 @@ func _ready() -> void:
 	%ResultContainer.hide()
 	%HintContainer.hide()
 	if true: ## TODO Change on condition "new_game"
-		_state.start_event(preload("res://resources/collection/events/prologue/event_prologue_1.tres").instantiate())
+		_state.start_event(preload("res://resources/collection/events/prologue/prologue_1.tres").instantiate())
 	
 	else:
 		self.hide()	

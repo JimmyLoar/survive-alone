@@ -22,7 +22,7 @@ description = "exit from bunker "
 id = "ErKsMIN_HU"
 optional = false
 graph_editor_position = Vector2(380, 0)
-graph_editor_size = Vector2(468, 483)
+graph_editor_size = Vector2(260, 461)
 
 [sub_resource type="Resource" id="Resource_efu3g"]
 script = ExtResource("1_nnww4")
@@ -32,10 +32,12 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_3r3la"]
 script = ExtResource("4_6ndsh")
+next_type = 2
+next_name = ""
 id = "J8i1qfqgua"
 optional = false
-graph_editor_position = Vector2(900, -80)
-graph_editor_size = Vector2(141, 78)
+graph_editor_position = Vector2(700, 0)
+graph_editor_size = Vector2(141, 92)
 
 [sub_resource type="Resource" id="Resource_c734n"]
 script = ExtResource("1_nnww4")
@@ -61,5 +63,5 @@ edge_type = 1
 
 [resource]
 script = ExtResource("3_47eok")
-nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_3r3la"), SubResource("Resource_tbbpu"), SubResource("Resource_f31q3"), SubResource("Resource_7f6g5")])
+nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_tbbpu"), SubResource("Resource_f31q3"), SubResource("Resource_7f6g5"), SubResource("Resource_3r3la")])
 edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_efu3g"), SubResource("Resource_c734n"), SubResource("Resource_1uyv4")])

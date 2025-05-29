@@ -128,6 +128,11 @@ func complete_quest() -> void:
 	Questify._logger.debug("[color=yellow]%s[/color] | complete quest" % [name])
 
 
+func get_next() -> Array:
+	var end = nodes.filter(func(edge: QuestNode): return edge is QuestEnd).front()
+	return [end.next_type, end.next_name]
+
+
 func serialize() -> Dictionary:
 	return {
 		completed = completed,
