@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://q6pviau7s0d1" path="res://!tools/event_editer/graphs/_abort.gd" id="1_g86ch"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
-bg_color = Color(0.81697, 0, 0.161552, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g86ch"]
+bg_color = Color(0.353353, 0.00149196, 0.750251, 1)
 
 [node name="AbortNode" type="GraphNode"]
 offset_right = 103.0
 offset_bottom = 99.0
 theme_override_constants/separation = 6
-theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_g86ch")
 title = "Abort"
 slot/0/left_enabled = true
 slot/0/left_type = 0

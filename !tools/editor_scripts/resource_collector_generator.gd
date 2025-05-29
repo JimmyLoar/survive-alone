@@ -35,13 +35,13 @@ func scan_resources_directory() -> Dictionary:
 	while file_name != "":
 		var full_path = RESOURCES_PATH.path_join(file_name)
 		if dir.current_is_dir():
-			process_subdirectory(full_path, collections)
+			process_collection_directory(full_path, collections)
 		file_name = dir.get_next()
 	
 	return collections
 
 
-func process_subdirectory(dir_path: String, collections: Dictionary):
+func process_collection_directory(dir_path: String, collections: Dictionary):
 	var dir = DirAccess.open(dir_path)
 	if not dir:
 		printerr("Ошибка: %s" % [error_string(dir.get_open_error())])
@@ -50,15 +50,26 @@ func process_subdirectory(dir_path: String, collections: Dictionary):
 	var collection_name = dir_path.get_file()
 	collections[collection_name] = {}
 	
-	print("	Сканирование %s..." % dir_path)
+	print("	Сканирование коллекции %s..." % collection_name)
+	scan_directory_recursive(dir_path, collections[collection_name])
+
+
+func scan_directory_recursive(current_path: String, collection: Dictionary):
+	var dir = DirAccess.open(current_path)
+	if not dir:
+		return
+	
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	while file_name != "":
-		if not dir.current_is_dir() and file_name.get_extension() == "tres":
-			var uid = get_uid_from_file(dir_path.path_join(file_name))
+		var full_path = current_path.path_join(file_name)
+		if dir.current_is_dir():
+			scan_directory_recursive(full_path, collection)
+		elif not dir.current_is_dir() and file_name.get_extension() == "tres":
+			var uid = get_uid_from_file(full_path)
 			if not uid.is_empty():
 				var item_name = file_name.get_basename()
-				collections[collection_name][item_name] = uid
+				collection[item_name] = uid
 		file_name = dir.get_next()
 
 
@@ -104,6 +115,9 @@ func generate_output_file_content(collections: Dictionary) -> String:
 	for collection_name in collections:
 		output.append("    %s," % collection_name.to_upper())
 	output.append("}")
+	output.append("")
+	for collection_name in collections:
+		output.append("const %s = Collection.%s" % [collection_name.to_pascal_case(), collection_name.to_upper()])
 	output.append("")
 	
 	# Коллекции ресурсов

@@ -131,7 +131,7 @@ func get_previous_nodes(node: EventNode, edge_type: EventEdge.EdgeType = EventEd
 	return result
 
 
-func complete_stage(stage: EventStage):
+func complete_stage(stage: EventNode):
 	stage.completed = true
 	EventsGlobal.completed_stage.emit(stage)
 
@@ -158,6 +158,11 @@ func get_resource_path() -> String:
 	if is_instance:
 		return get_meta("resource_path")
 	return resource_path
+
+
+func get_next() -> Array:
+	var end = nodes.filter(func(edge: EventNode): return edge is EventEnd).front()
+	return [end.next_type, end.next_name]
 
 
 func serialize() -> Dictionary:

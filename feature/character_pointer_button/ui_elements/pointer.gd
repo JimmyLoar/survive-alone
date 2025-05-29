@@ -7,7 +7,7 @@ var character_state: CharacterState
 
 func _ready():
 	visible = false
-	_on_ready_character_state(Locator.get_service(CharacterState, _on_ready_character_state))
+	Locator.get_service(CharacterState, _on_ready_character_state)
 
 
 func _on_ready_character_state(state: CharacterState):

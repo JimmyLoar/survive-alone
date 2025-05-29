@@ -1,18 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://beklh40jtnrqv"]
+[gd_scene load_steps=4 format=3 uid="uid://oxgje7b8st3c"]
 
-[ext_resource type="Script" uid="uid://djrosrfcbjoep" path="res://!tools/event_editer/graphs/_monologue.gd" id="1_jd1b0"]
+[ext_resource type="Script" uid="uid://bi8wpwvjhs5er" path="res://!tools/event_editer/graphs/_new_scene.gd" id="1_ulrb4"]
+[ext_resource type="PackedScene" uid="uid://cda731i3vlkum" path="res://!tools/event_editer/graphs/internal/phrase_box.tscn" id="2_fw4su"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdfid"]
-bg_color = Color(0.739295, 9.8283e-05, 0.620089, 1)
+bg_color = Color(0.81697, 0, 0.161552, 1)
 
-[node name="MonologueNode" type="GraphNode" node_paths=PackedStringArray("line_edit", "text_edit")]
-custom_minimum_size = Vector2(300, 240)
-offset_right = 300.0
-offset_bottom = 240.0
+[node name="NewSceneNode" type="GraphNode" node_paths=PackedStringArray("texture_rect", "path_label", "phrase_box")]
+custom_minimum_size = Vector2(24, 120)
+offset_right = 336.0
+offset_bottom = 323.0
 theme_override_constants/separation = 6
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdfid")
-resizable = true
-title = "Monologue"
+title = "NewScene"
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
@@ -58,10 +58,19 @@ slot/4/right_type = 0
 slot/4/right_color = Color(1, 1, 1, 1)
 slot/4/right_icon = null
 slot/4/draw_stylebox = true
-script = ExtResource("1_jd1b0")
-line_edit = NodePath("VBoxContainer/LineEdit")
-text_edit = NodePath("VBoxContainer/TextEdit")
-metadata/_edit_group_ = true
+slot/5/left_enabled = false
+slot/5/left_type = 0
+slot/5/left_color = Color(1, 1, 1, 1)
+slot/5/left_icon = null
+slot/5/right_enabled = false
+slot/5/right_type = 0
+slot/5/right_color = Color(1, 1, 1, 1)
+slot/5/right_icon = null
+slot/5/draw_stylebox = true
+script = ExtResource("1_ulrb4")
+texture_rect = NodePath("TextureContainer/TextureRect")
+path_label = NodePath("TextureContainer/HBoxContainer/Label")
+phrase_box = NodePath("PhraseBox")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -84,28 +93,40 @@ text = "action"
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PhraseBox" parent="." instance=ExtResource("2_fw4su")]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 2
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Discription"
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Key"
-
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-size_flags_vertical = 3
-placeholder_text = "Translate"
-editable = false
-scroll_fit_content_height = true
 
 [node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2
 
-[connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[node name="TextureContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureContainer"]
+layout_mode = 2
+
+[node name="Label" type="LineEdit" parent="TextureContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "File Name"
+editable = false
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="TextureContainer/HBoxContainer"]
+layout_mode = 2
+text = "change"
+
+[node name="TextureRect" type="TextureRect" parent="TextureContainer"]
+layout_mode = 2
+expand_mode = 5
+
+[node name="Panel" type="Panel" parent="TextureContainer/TextureRect"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

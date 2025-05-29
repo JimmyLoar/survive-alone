@@ -25,9 +25,9 @@ func deserialize(data: Dictionary) -> void:
 	active = data.active
 
 
-func get_event_name():
+func get_display_name():
 	return TranslationServer.translate(("event_%s_name" % name_key).to_upper())
 
 
-func get_event_discription():
+func get_display_discription():
 	return TranslationServer.translate(("event_%s_discription" % name_key).to_upper())

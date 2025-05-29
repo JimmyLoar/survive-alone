@@ -3,10 +3,13 @@ class_name EventGraphEditor extends GraphEdit
 
 
 const StartNodeScene = preload("uid://dkhtgmqtjt83l")
+const TextNodeScene = preload("uid://m6ledbbrs2q4")
+const NewSceneNodeScene = preload("uid://oxgje7b8st3c")
 const EndNodeScene = preload("uid://bnf6ipbnvyj65")
-const MonologueNodeScene = preload("uid://beklh40jtnrqv")
-const DialogueNodeScene = preload("uid://cmkc0dt0p36cv")
 const ActionsNodeScene = preload("uid://b8g6wavqx75ii")
+const MainTextureNodeScene = preload("uid://bqnf6dvvd6n7")
+const SubTextureNodeScene = preload("uid://dfk7mfh1i4yhp")
+const ClearTextNodeScene = preload("uid://cp4d103yot38v")
 const AbortNodeScene = preload("uid://ddhmoxckqyrvv")
 
 
@@ -106,14 +109,18 @@ func _deserialize_resource(resource: EventResource) -> void:
 func _get_graph_node(node: EventNode) -> EventGraphNode:
 	if node is EventStart:
 		return StartNodeScene.instantiate()
-	elif node is EventMonologue:
-		return MonologueNodeScene.instantiate()
+	elif node is EventText:
+		return TextNodeScene.instantiate()
+	elif node is EventNewStene:
+		return NewSceneNodeScene.instantiate()
 	elif node is EventEnd:
 		return EndNodeScene.instantiate()
-	elif node is EventDialogue:
-		return DialogueNodeScene.instantiate()
 	elif node is EventAction:
 		return ActionsNodeScene.instantiate()
+	elif node is EventMainTexture:
+		return MainTextureNodeScene.instantiate()
+	elif node is EventSubTexture:
+		return SubTextureNodeScene.instantiate()
 	elif node is EventAbort:
 		return AbortNodeScene.instantiate()
 	return null

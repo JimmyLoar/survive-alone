@@ -1,6 +1,11 @@
 class_name EventEnd
 extends EventNode
 
+enum Next{NONE, QUEST, EVENT}
+
+@export var next_type: Next = Next.EVENT
+@export var next_name: String
+
 
 func get_active() -> bool:
 	return all_previous_nodes_completed()
