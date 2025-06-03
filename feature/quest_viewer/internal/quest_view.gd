@@ -18,9 +18,6 @@ func _display(quest: QuestResource):
 	discription.newline()
 	
 	var objectives = quest.get_active_objectives()
-	if objectives.is_empty():
-		quest.complete_quest()
-	
 	if quest.completed:
 		var end_index = quest.nodes.find_custom(func(node): return node is QuestEnd)
 		objectives = quest.get_previous_nodes(quest.nodes[end_index])

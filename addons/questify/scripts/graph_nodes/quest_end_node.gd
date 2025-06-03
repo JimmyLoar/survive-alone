@@ -24,6 +24,7 @@ func _get_model_properties(_node: QuestNode) -> void:
 	var list: Dictionary = [{}, ResourceCollector.quests, ResourceCollector.events][type_option_button.selected]
 	var index = list.keys().find(_node.next_name)
 	name_option_button.select(index)
+	_on_type_option_button_item_selected(index)
 
 
 func _on_type_option_button_item_selected(index: int) -> void:

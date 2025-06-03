@@ -8,7 +8,17 @@ enum ValueType {
 }
 
 
-@export var type: String
+enum TypeVariants{
+	none,
+	change_location,
+	var_3,
+	var_4,
+	var_5,
+	
+}
+
+
+@export var type: TypeVariants
 @export var key: String
 
 

@@ -37,6 +37,7 @@ theme_override_constants/h_separation = 6
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ih51p")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pnvwb")
+max_text_lines = 2
 auto_width = true
 auto_height = true
 item_count = 1

@@ -23,6 +23,11 @@ func _ready() -> void:
 
 
 func start_quest(quest_resource: QuestResource) -> void:
+	if not _quests.filter(func(quest): 
+		return quest_resource.name_key == quest.name_key
+	).is_empty():
+		return
+	
 	_quests.append(quest_resource)
 	quest_resource.start()
 	_logger.debug("'%s' | started quest" % quest_resource.name)

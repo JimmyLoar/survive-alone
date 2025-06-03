@@ -29,10 +29,12 @@ func _start_next(type: EventEnd.Next, name: String):
 	var resource = null
 	match type:
 		EventEnd.Next.QUEST: 
-			resource = ResourceCollector.find(ResourceCollector.Collection.QUESTS, name)
-			Questify.start_quest(resource.instantiate())
+			resource = ResourceCollector.find(ResourceCollector.Collection.QUESTS, name).instantiate() as QuestResource
+			GodotLogger.debug("start new quest: ", resource.name_key)
+			Questify.start_quest(resource)
 			Questify.update_quests.call_deferred()
 		
 		EventEnd.Next.EVENT: 
-			resource = ResourceCollector.find(ResourceCollector.Collection.EVENTS, name)
-			self.start_event(resource.instantiate())
+			resource = ResourceCollector.find(ResourceCollector.Collection.EVENTS, name).instantiate() as EventResource
+			GodotLogger.debug("start new event: ", resource.name_key)
+			self.start_event(resource)

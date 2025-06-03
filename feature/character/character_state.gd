@@ -42,6 +42,7 @@ var is_moving: bool:
 func stop_moving():
 	reset_target(null)
 
+
 func reset_target(_delta):
 	target_position = position
 

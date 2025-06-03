@@ -32,6 +32,8 @@ func _ready() -> void:
 
 
 func display(event: EventResource):
+	Locator.get_service(CharacterState).stop_moving()
+	actions.clear()
 	if event.completed:
 		close()
 		return
@@ -40,7 +42,6 @@ func display(event: EventResource):
 	
 	var _loopbreak = 0
 	while actions.is_empty():
-		#breakpoint
 		currect_stages = currect_event.get_active_nodes().filter(
 			func(node: EventNode):
 				return node is not EventStart 
