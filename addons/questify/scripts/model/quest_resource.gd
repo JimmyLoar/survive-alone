@@ -6,11 +6,14 @@ class_name QuestResource extends Resource
 @export var edges: Array[QuestEdge] = []
 
 
+var name_key: String:
+	get: return start_node.name_key
+
 var name: String:
-	get: return start_node.name
+	get: return start_node.get_display_name()
 
 var description: String:
-	get: return start_node.description
+	get: return start_node.get_display_discription()
 
 var start_node: QuestStart
 
@@ -123,6 +126,11 @@ func complete_quest() -> void:
 	completed = true
 	Questify.quest_completed.emit(self)
 	Questify._logger.debug("[color=yellow]%s[/color] | complete quest" % [name])
+
+
+func get_next() -> Array:
+	var end = nodes.filter(func(edge: QuestNode): return edge is QuestEnd).front()
+	return [end.next_type, end.next_name]
 
 
 func serialize() -> Dictionary:

@@ -28,6 +28,8 @@ static func uid(collection: Collection, key: String) -> String:
 			return events_list.get(key, "")
 		Collection.ITEMS:
 			return items.get(key, "")
+		Collection.ACTION_TEMPLATES:
+			return action_templates.get(key, "")
 		Collection.CHARACTER_PROPERTY:
 			return character_property.get(key, "")
 		_: return ""
@@ -76,6 +78,8 @@ static func keys(collection: Collection) -> Array:
 			return events_list.keys()
 		Collection.ITEMS:
 			return items.keys()
+		Collection.ACTION_TEMPLATES:
+			return action_templates.keys()
 		Collection.CHARACTER_PROPERTY:
 			return character_property.keys()
 		_: return []
@@ -96,8 +100,21 @@ enum Collection {
 	BIOMES,
 	EVENTS_LIST,
 	ITEMS,
+	ACTION_TEMPLATES,
 	CHARACTER_PROPERTY,
 }
+
+const Drops = Collection.DROPS
+const DialogeCharacter = Collection.DIALOGE_CHARACTER
+const Actions = Collection.ACTIONS
+const Quests = Collection.QUESTS
+const Events = Collection.EVENTS
+const Recipes = Collection.RECIPES
+const Biomes = Collection.BIOMES
+const EventsList = Collection.EVENTS_LIST
+const Items = Collection.ITEMS
+const ActionTemplates = Collection.ACTION_TEMPLATES
+const CharacterProperty = Collection.CHARACTER_PROPERTY
 
 #######################################################################
 #                         КОЛЛЕКЦИИ РЕСУРСОВ                         #
@@ -125,17 +142,32 @@ const actions = {
 }
 
 const quests = {
-	"prologue_00": "uid://b3xe3vw6y5fv7",
-	"prologue": "uid://dseeelh8xcs4c",
+	"prologue_1": "uid://b3xe3vw6y5fv7",
 	"test3": "uid://bs2ncgfju7uqb",
 	"test": "uid://rt46wktltqjl",
+	"prologue_0": "uid://dseeelh8xcs4c",
 	"test2": "uid://byvhlyfyh7fhn",
 }
-
+#uid://dseeelh8xcs4c
 const events = {
+	"bs_wood_3": "uid://ctjrc4bmwqqyb",
+	"return_to_default": "uid://c66ptthr6m3wo",
+	"bs_wood_2": "uid://dqfvlh61m6pyf",
+	"bs_nothing": "uid://p87q2gu41esh",
+	"bs_wood_1": "uid://dq2k6kcwcusov",
+	"bs_wood_house": "uid://bukhycp4s402r",
+	"bs_flowers": "uid://cy7t5tb2khs88",
+	"bs_defualt_event": "uid://dw6j3yeanfdqt",
+	"bs_animal_corpse": "uid://4lsplaql8qte",
+	"prologue_1": "uid://3e3vcbgoiwi",
+	"prologue_3": "uid://ce3i74dxbybxq",
+	"prologue_2": "uid://c6ltxc0vmykcj",
+	"hungry_man_0": "uid://s6k078jwopre",
+	"hungry_man_1": "uid://odru6ioyr7g5",
 }
 
 const recipes = {
+	"tool_homemade_axe": "uid://cw8bywmaxpfun",
 	"testrec": "uid://bcge0nb1kyihk",
 	"new_resource": "uid://pxbvidbaa863",
 	"test2": "uid://di1t8oj34rnkh",
@@ -153,6 +185,23 @@ const events_list = {
 }
 
 const items = {
+	"tool_primus": "uid://w30mnp2gmvuy",
+	"tool_saucepan": "uid://c2dl3xfx8wogm",
+	"tool_homemade_axe": "uid://y4ljuqoxwvhc",
+	"tool_homemade_knife": "uid://pr76410n87uh",
+	"building_bonfire": "uid://dwbwer584xv32",
+	"resource_duct_tape": "uid://cqvooygqbwtxj",
+	"resource_stick": "uid://q60vk20s3cn8",
+	"resource_flint": "uid://deweoka8ravkd",
+	"resource_wood": "uid://b2yydvgka6dr0",
+	"food_canned_food": "uid://chxbdcao06tc6",
+	"food_water_clear": "uid://t6dvd3ikteh5",
+	"food_fresh_meat": "uid://csx1bauob5bnf",
+	"food_fry_meat": "uid://ibrfm6mql4j7",
+}
+
+const action_templates = {
+	"eat": "uid://c15r1ate8r8t0",
 }
 
 const character_property = {

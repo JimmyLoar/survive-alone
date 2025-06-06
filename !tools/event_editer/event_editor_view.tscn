@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://i6miwrb17jpc"]
+[gd_scene load_steps=7 format=3 uid="uid://i6miwrb17jpc"]
 
 [ext_resource type="Script" uid="uid://6cfbnp85qcny" path="res://!tools/event_editer/event_editor_view.gd" id="1_crl0h"]
 [ext_resource type="Script" uid="uid://7a2ve0bbfbe3" path="res://!tools/event_editer/event_graph_editor.gd" id="2_4r0nt"]
+
+[sub_resource type="SystemFont" id="SystemFont_mk6yc"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_mk6yc"]
+default_font = SubResource("SystemFont_mk6yc")
+default_font_size = 16
 
 [sub_resource type="Image" id="Image_mk6yc"]
 data = {
@@ -24,6 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = SubResource("Theme_mk6yc")
 script = ExtResource("1_crl0h")
 
 [node name="Content" type="VBoxContainer" parent="."]
@@ -117,19 +125,23 @@ filters = PackedStringArray("*.tres ; Quest files")
 [node name="AddNodePopupMenu" type="PopupMenu" parent="."]
 title = "Add Node"
 hide_on_state_item_selection = true
-item_count = 6
+item_count = 8
 item_0/text = "Start"
 item_0/id = 0
 item_1/text = "End"
 item_1/id = 1
-item_2/text = "Monologue"
+item_2/text = "Text"
 item_2/id = 2
-item_3/text = "Dialogue"
+item_3/text = "New Scene"
 item_3/id = 3
 item_4/text = "Actions"
 item_4/id = 4
-item_5/text = "Abort"
+item_5/text = "Main Texture"
 item_5/id = 5
+item_6/text = "Sub Texture"
+item_6/id = 6
+item_7/text = "Abort"
+item_7/id = 7
 
 [connection signal="pressed" from="Content/MarginContainer/Toolbar/NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="Content/MarginContainer/Toolbar/OpenButton" to="." method="_on_open_button_pressed"]

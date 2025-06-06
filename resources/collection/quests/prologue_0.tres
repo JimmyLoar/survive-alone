@@ -8,59 +8,60 @@
 [ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_6ndsh"]
 [ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_puigy"]
 
-[sub_resource type="Resource" id="Resource_puigy"]
+[sub_resource type="Resource" id="Resource_tbbpu"]
 script = ExtResource("2_bq2dx")
-name = ""
-description = ""
+name_key = "Prologue"
 id = "Q1V9BZUBfB"
 optional = false
 graph_editor_position = Vector2(-60, -160)
 graph_editor_size = Vector2(280, 463)
 
-[sub_resource type="Resource" id="Resource_huhyn"]
+[sub_resource type="Resource" id="Resource_f31q3"]
 script = ExtResource("3_yfy8a")
-description = ""
+description = "exit from bunker "
 id = "ErKsMIN_HU"
 optional = false
-graph_editor_position = Vector2(400, 60)
-graph_editor_size = Vector2(468, 483)
+graph_editor_position = Vector2(380, 0)
+graph_editor_size = Vector2(260, 461)
 
-[sub_resource type="Resource" id="Resource_lqsfq"]
+[sub_resource type="Resource" id="Resource_efu3g"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_puigy")
-to = SubResource("Resource_huhyn")
+from = SubResource("Resource_tbbpu")
+to = SubResource("Resource_f31q3")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_hkmeu"]
+[sub_resource type="Resource" id="Resource_3r3la"]
 script = ExtResource("4_6ndsh")
+next_type = 2
+next_name = "prologue_2"
 id = "J8i1qfqgua"
 optional = false
-graph_editor_position = Vector2(900, -80)
-graph_editor_size = Vector2(141, 78)
+graph_editor_position = Vector2(700, 0)
+graph_editor_size = Vector2(158, 118)
 
-[sub_resource type="Resource" id="Resource_wro5i"]
+[sub_resource type="Resource" id="Resource_c734n"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_huhyn")
-to = SubResource("Resource_hkmeu")
+from = SubResource("Resource_f31q3")
+to = SubResource("Resource_3r3la")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_kasau"]
+[sub_resource type="Resource" id="Resource_7f6g5"]
 script = ExtResource("5_puigy")
-type = "event"
-key = "finihed"
+type = 1
+key = "any "
 id = "pGZcRej1DQ"
 optional = false
 graph_editor_position = Vector2(-160, 340)
 graph_editor_size = Vector2(377, 309)
-metadata/value = "PROLOGUE_1"
+metadata/value = 19.0
 
-[sub_resource type="Resource" id="Resource_xvft3"]
+[sub_resource type="Resource" id="Resource_1uyv4"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_kasau")
-to = SubResource("Resource_huhyn")
+from = SubResource("Resource_7f6g5")
+to = SubResource("Resource_f31q3")
 edge_type = 1
 
 [resource]
 script = ExtResource("3_47eok")
-nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_hkmeu"), SubResource("Resource_puigy"), SubResource("Resource_huhyn"), SubResource("Resource_kasau")])
-edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_lqsfq"), SubResource("Resource_wro5i"), SubResource("Resource_xvft3")])
+nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_tbbpu"), SubResource("Resource_f31q3"), SubResource("Resource_3r3la"), SubResource("Resource_7f6g5")])
+edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_efu3g"), SubResource("Resource_c734n"), SubResource("Resource_1uyv4")])

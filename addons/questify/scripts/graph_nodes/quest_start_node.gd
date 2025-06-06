@@ -16,17 +16,16 @@ func _get_model() -> QuestNode:
 	
 	
 func _set_model_properties(node: QuestNode) -> void:
-	node.name = quest_name
-	node.description = quest_description
+	node.name_key = quest_name
 	for key in get_meta_list():
 		node.set_meta(key, get_meta(key))
 	
 	
 func _get_model_properties(node: QuestNode) -> void:
-	quest_name = node.name
-	name_text_edit.text = node.name
-	quest_description = node.description
-	description_text_edit.text = node.description
+	quest_name = node.name_key
+	name_text_edit.text = node.name_key
+	quest_description = node.name_key
+	description_text_edit.text = node.node.name_key
 	for key in node.get_meta_list():
 		set_meta(key, node.get_meta(key))
 	metadata_editor.update()

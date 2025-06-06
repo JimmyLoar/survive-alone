@@ -25,23 +25,33 @@ func _ready() -> void:
 	%ResultContainer.hide()
 	%HintContainer.hide()
 	if true: ## TODO Change on condition "new_game"
-		_state.start_event(preload("res://resources/collection/events/prologue/event_prologue_1.tres").instantiate())
+		_state.start_event(preload("res://resources/collection/events/prologue/prologue_1.tres").instantiate())
 	
 	else:
 		self.hide()	
 
 
 func display(event: EventResource):
+	Locator.get_service(CharacterState).stop_moving()
+	actions.clear()
 	if event.completed:
 		close()
 		return
 	
 	currect_event = event
-	currect_stages = currect_event.get_active_nodes().filter(
-		func(node: EventNode):
-			return node is not EventStart 
-	)
-	_display_stage(currect_stages.front())
+	
+	var _loopbreak = 0
+	while actions.is_empty():
+		currect_stages = currect_event.get_active_nodes().filter(
+			func(node: EventNode):
+				return node is not EventStart 
+		)
+		print("Active stages: %s" % [currect_stages.map(func(elm): return elm.id)])
+		_display_stage(currect_stages.front())
+		
+		_loopbreak += 1
+		if _loopbreak > 100:
+			breakpoint
 	self.show()
 
 
@@ -53,18 +63,54 @@ func close():
 
 var actions: Array[EventAction]
 func _display_stage(stage: EventNode):
-	if stage is EventMonologue:
-		_update_monologue(stage)
+	if stage is EventText:
+		_append_text(stage)
 	
-	elif  stage is EventDialogue:
-		_update_dialogue(stage)
+	elif  stage is EventSubTexture:
+		_append_texture(stage)
+	
+	elif  stage is EventMainTexture:
+		_change_texture(stage)
 	
 	else:
 		rich_text_label.text = currect_event.description
 	
+	currect_event.complete_stage(stage)
+	
 	actions = currect_event.get_next_actions(stage)
 	action_list.update_actions(_validate_action(actions))
 	_display_result(_result)
+	
+
+
+func _append_text(stage):
+	var who = stage.text[0] as EventDialogueCharacter
+	var what = stage.text[1]
+	var text = ""
+	var color = "white"
+	if who:
+		text = "%s: \n		" % TranslationServer.translate("CHARACTER_%s" % [who.name.to_upper()])
+		color = who.name_modulate.to_html()
+	
+	text += TranslationServer.translate("%s_TEXT_%s" % [currect_event.name_key.to_upper(), what.to_upper()])
+	rich_text_label.append_text("[color=%s]%s[/color]\n" % [color, text])
+	rich_text_label.newline()
+
+
+func _append_texture(stage):
+	var text = "[img=80]%s[/img]" % stage.texture
+	rich_text_label.append_text(text)
+	currect_event.complete_stage(stage)
+
+
+func _change_texture(stage: EventMainTexture):
+	_clear_text()
+	texture_rect.texture = load(stage.texture)
+	currect_event.complete_stage(stage)
+
+
+func _clear_text():
+	rich_text_label.clear()
 
 
 func _validate_action(_actions: Array[EventAction]) -> Array[EventAction]:
@@ -80,23 +126,6 @@ func _validate_action(_actions: Array[EventAction]) -> Array[EventAction]:
 	return new_actions
 
 
-func _update_monologue(stage: EventMonologue):
-	rich_text_label.text = TranslationServer.translate(
-		("%s_MONOLOGUE_%s" % [currect_event.name_key.to_upper(), stage.text]).to_upper()
-	)
-
-func _update_dialogue(stage: EventDialogue):
-	var text = ''
-	for paragraph in stage.dialogues:
-		text += "[b]%s[/b]:\n" % [
-			TranslationServer.translate("DIALOGUE_CHARACTER_%s_NAME" % [paragraph[0].name.to_upper()])
-		]
-		text += "%s\n\n" % [
-			TranslationServer.translate("%s_DIALOGUE_%s" % [currect_event.name_key.to_upper(), paragraph[1].to_upper()])
-		]
-	rich_text_label.text = text
-
-
 func _on_action_pressed(pressed_index: int):
 	var action := actions[pressed_index] as EventAction
 	currect_event.action_press(action)
@@ -108,7 +137,7 @@ func _on_action_pressed(pressed_index: int):
 		return
 	
 	for stage in currect_stages:
-		if not stage is EventStage:
+		if not stage is EventText:
 			continue
 		currect_event.complete_stage(stage)
 	display(currect_event)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=23 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
-[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_irxn0"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
 [ext_resource type="PackedScene" uid="uid://skppxmtw5diw" path="res://feature/virtual_chunks/virtual_chunks.tscn" id="3_6pu03"]
 [ext_resource type="PackedScene" uid="uid://d3tltb1ssxrye" path="res://feature/world_objects_layer/world_objects_layer.tscn" id="4_3odrv"]
@@ -24,41 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
 
-[sub_resource type="GDScript" id="GDScript_6gqlo"]
-script/source = "extends Area2D
-
-
-var event = preload(\"res://resources/collection/events/dialoge/hungry_man_0.tres\").instantiate()
-
-
-var _state: EventState
-
-
-func _ready() -> void:
-	_state = Locator.get_service(EventState) as EventState
-
-
-func _on_body_entered(_body: Node2D) -> void:
-	_state.start_event(event)
-	
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_udhtu"]
-size = Vector2(120, 119)
-
 [node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_nlrl3")
-
-[node name="TestEvent" type="Area2D" parent="."]
-position = Vector2(-191, 179)
-script = SubResource("GDScript_6gqlo")
-
-[node name="Sprite2D" type="Sprite2D" parent="TestEvent"]
-texture = ExtResource("2_irxn0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEvent"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_udhtu")
+metadata/_edit_vertical_guides_ = [-128.0]
 
 [node name="BiomesLayer" parent="." instance=ExtResource("2_pbygt")]
 
@@ -209,5 +176,4 @@ offset_bottom = 715.0
 
 [node name="QuantitySelecter" parent="." instance=ExtResource("22_scc3c")]
 
-[connection signal="body_entered" from="TestEvent" to="TestEvent" method="_on_body_entered"]
 [connection signal="pressed" from="UI/VBoxContainer/MarginContainer/!ButunRest" to="UI/VBoxContainer/MarginContainer/!ButunRest" method="_on_pressed"]

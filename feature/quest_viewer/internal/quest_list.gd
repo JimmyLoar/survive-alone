@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _on_activate_quest_list_item_selected(index: int) -> void:
-	quest_selected.emit(Questify.get_quests()[index])
+	_on_quest_list_quest_selected(Questify.get_quests()[index])
 	_last_index = index
 
 

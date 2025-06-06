@@ -9,6 +9,8 @@ var _state: CharacterLocationState
 
 func _enter_tree() -> void:
 	_state = Locator.initialize_service(CharacterLocationState, [self])
+	Questify.quest_objective_added.connect(_state._on_add_objective)
+	Questify.quest_started.connect(_state._on_quest_started)
 
 
 func _ready() -> void:
@@ -17,6 +19,7 @@ func _ready() -> void:
 	Callable(func():
 		_on_character_position_changed(_character_state.position)
 	).call_deferred()
+	
 
 
 func _on_character_position_changed(pos: Vector2):

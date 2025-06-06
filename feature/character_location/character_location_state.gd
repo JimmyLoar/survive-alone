@@ -1,5 +1,7 @@
 class_name CharacterLocationState
  
+var _logger := Log.get_global_logger().with("CharacterLocation")
+
 var tile_size: int = ProjectSettings.get_setting("application/game/size/tile", 16) 
 var _host_node: CharacterLocation
 func _init(host_node: CharacterLocation) -> void:
@@ -33,6 +35,7 @@ var current_location: Variant: # WorldObjectEntity или BiomesLocation
 	set(value):
 		if value != current_location:
 			current_location = value
+			_logger.debug("character change location, new '%s' (%s)" % [get_location_name(), current_location.get_script().get_global_name()])
 			current_location_changed.emit(value)
 
 var current_tile_pos = Vector2i.MAX
@@ -72,8 +75,10 @@ func get_world_object(pos: Vector2):
 			return world_object
 	return null
 
+
 func get_biomes(pos: Vector2i):
 	return biomes_cache.get(pos, [])
+
 
 func get_location_name():
 	if is_instance_of(current_location, WorldObjectEntity) and is_instance_of(current_location._get_node(), WorldLocation):
@@ -97,3 +102,31 @@ func get_location_discription():
 
 func request_reload():
 	_host_node.reload()
+
+
+func _on_quest_started(quest: QuestResource):
+	for objective in quest.get_active_objectives():
+		_on_add_objective(quest, objective)
+
+
+func _on_add_objective(quest: QuestResource, objective: QuestObjective):
+	for condition: QuestCondition in objective.conditions:
+		if condition.type != QuestCondition.TypeVariants.change_location or current_location_changed.is_connected(_on_changed_location.bind(quest, condition)):
+			continue
+		
+		current_location_changed.connect(_on_changed_location.bind(quest, condition))
+
+
+func _on_changed_location(location, quest: QuestResource, objective: QuestCondition):
+	if objective.completed:
+		return
+	
+	var result := true
+	if typeof(objective.value) == TYPE_INT:
+		result = location.id == int(objective.value)
+	
+	objective.set_completed(result)
+	if result:
+		quest.update()
+		current_location_changed.disconnect(_on_changed_location.bind(quest, objective))
+	
