@@ -1,7 +1,7 @@
 extends Node
 
 
-signal condition_query_requested(type: String, key: String, value: Variant, requester: QuestCondition)
+signal condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition)
 signal quest_started(quest: QuestResource)
 signal quest_objective_added(quest: QuestResource, objective: QuestObjective)
 signal quest_objective_completed(quest: QuestResource, objective: QuestObjective)
