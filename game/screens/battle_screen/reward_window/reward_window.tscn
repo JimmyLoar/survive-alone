@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=3 uid="uid://gyafq6bux566"]
+
+[ext_resource type="Script" uid="uid://cyjjftiwl74ie" path="res://game/screens/battle_screen/reward_window/reward_window.gd" id="1_6fkxw"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_rdlr1"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_qpqi0"]
+
+[node name="RewardWindow" type="Window"]
+disable_3d = true
+transparent_bg = true
+title = "Result"
+initial_position = 2
+size = Vector2i(426, 34)
+exclusive = true
+unresizable = true
+always_on_top = true
+transparent = true
+popup_window = true
+min_size = Vector2i(400, 0)
+max_size = Vector2i(1280, 720)
+script = ExtResource("1_6fkxw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+allow_search = false
+auto_width = true
+auto_height = true
+item_count = 6
+max_columns = 5
+icon_mode = 0
+fixed_icon_size = Vector2i(80, 80)
+item_0/text = "asdasd"
+item_0/icon = ExtResource("2_rdlr1")
+item_1/icon = ExtResource("2_rdlr1")
+item_2/icon = ExtResource("2_rdlr1")
+item_3/text = "asdd"
+item_3/icon = SubResource("PortableCompressedTexture2D_qpqi0")
+item_4/text = "asdasd"
+item_5/text = "asdasd"
+item_5/icon = ExtResource("2_rdlr1")
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/PanelContainer/ScrollContainer"]
+visible = false
+layout_mode = 2
+columns = 5
+
+[node name="Panel" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel4" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel5" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel6" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel7" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel8" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel9" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel10" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel11" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel12" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel13" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel14" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel15" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel16" type="Panel" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "ok"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -40,6 +40,11 @@ LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 PycoLog="*res://addons/pycolytics-godot/pyco_log.gd"
 
+[databases]
+
+game_database_path="res://databases/test_editor.sqlite3"
+save_database_path="res://!saves/test_save.db"
+
 [display]
 
 window/size/viewport_width=1280
@@ -158,7 +163,3 @@ renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_2d=1
 environment/defaults/default_clear_color=Color(0.79752, 4.86121e-06, 4.81307e-07, 1)
-
-[resource_databases]
-
-main_base_path="res://content/database.gddb"

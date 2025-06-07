@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3 uid="uid://k6plf838eui1"]
+
+[ext_resource type="Script" uid="uid://cnl3tig5dqyrq" path="res://resources/schema/enemy_resource.gd" id="1_vxg8h"]
+
+[resource]
+script = ExtResource("1_vxg8h")
+name_key = "stray_dog"
+metadata/_custom_type_script = "uid://cnl3tig5dqyrq"

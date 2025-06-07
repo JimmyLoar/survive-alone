@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://b473wtxpubu8w"]
+
+[ext_resource type="Script" uid="uid://cnnepbuvtckuw" path="res://game/screens/battle_screen/battle_screen.gd" id="1_3l54g"]
+[ext_resource type="PackedScene" uid="uid://gyafq6bux566" path="res://game/screens/battle_screen/reward_window/reward_window.tscn" id="2_b1wb0"]
+[ext_resource type="Script" uid="uid://c7r5bggetmp5x" path="res://game/screens/battle_screen/progress_window.gd" id="2_iek3r"]
+[ext_resource type="Texture2D" uid="uid://bm51ah8177y1g" path="res://!tools/event_editer/icon.svg" id="3_k8qw6"]
+
+[node name="BattleScreen" type="Node2D"]
+script = ExtResource("1_3l54g")
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="ProgressWindow" type="Window" parent="."]
+transparent_bg = true
+initial_position = 2
+size = Vector2i(426, 204)
+exclusive = true
+borderless = true
+transparent = true
+script = ExtResource("2_iek3r")
+
+[node name="PanelContainer" type="PanelContainer" parent="ProgressWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ProgressWindow/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ProgressWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Figth"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ProgressWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_k8qw6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ProgressWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Времянный экран.
+Идет бой, включи [rainbow freq=0.15 sat=0.8 val=1.0 speed=-3.6]фантазию[/rainbow]"
+fit_content = true
+
+[node name="ProgressBar" type="ProgressBar" parent="ProgressWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
+
+[node name="RewardWindow" parent="." instance=ExtResource("2_b1wb0")]
+visible = false
+
+[connection signal="finished" from="ProgressWindow" to="." method="_show_result"]
+[connection signal="close_requested" from="RewardWindow" to="." method="_on_reward_window_close_requested"]
