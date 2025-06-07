@@ -26,7 +26,6 @@ func open_world_screen(game_db_path: String, save_db_path: String):
 		screen = _cache["world"]
 	
 	current_screen = screen
-	breakpoint
 
 
 func open_battle_screen(enemies: String, weapons: Array):
