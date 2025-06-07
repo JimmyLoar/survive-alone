@@ -19,7 +19,7 @@ enum TypeVariants{
 
 
 @export var type: TypeVariants
-@export var key: String
+@export var key: String = ""
 
 
 var value: Variant:

@@ -14,6 +14,7 @@ func _ready() -> void:
 	file_dialog.file_mode = EditorFileDialog.FILE_MODE_OPEN_FILE
 	file_dialog.filters = ["*.png", "*.svg", "*.jpg", "*.jpeg", "*.webp", "*.tga", "*.bmp"]
 	file_dialog.file_selected.connect(_update_texture)
+	super()
 
 
 func _get_model() -> EventNode:

@@ -24,8 +24,10 @@ func _ready() -> void:
 	action_list.item_selected.connect(_on_action_pressed)
 	%ResultContainer.hide()
 	%HintContainer.hide()
-	if true: ## TODO Change on condition "new_game"
+	var game = Locator.get_service(GameState)
+	if game.is_new_game: ## TODO Change on condition "new_game"
 		_state.start_event(preload("res://resources/collection/events/prologue/prologue_1.tres").instantiate())
+		game.is_new_game = false
 	
 	else:
 		self.hide()	

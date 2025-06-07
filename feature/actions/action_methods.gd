@@ -58,6 +58,9 @@ func inventories_has_item(item_name: String, amount: int):
 
 
 #endregion
+
+
+#region Time
 func time_is_used(game_time:int, for_real_time: float, with_progress_screen: bool):
 	var _state = Locator.get_service(GameTimeState)
 	_state.timeskip(game_time, for_real_time, with_progress_screen)
@@ -68,6 +71,7 @@ func time_is_used(game_time:int, for_real_time: float, with_progress_screen: boo
 func time_use(game_time: int, for_real_time: float = 1.0, with_progress_screen := false):
 	var _state = Locator.get_service(GameTimeState)
 	_state.timeskip(game_time, for_real_time, with_progress_screen)
+#endregion
 
 
 
@@ -82,5 +86,16 @@ func event_start_from_list(eventpack_name: String):
 	var event: EventResource = list.get_event()
 	Locator.get_service(EventState).start_event(event.instantiate())
 
+
+#endregion
+
+
+#region Combat
+func start_battle(enemies: PackedStringArray, weapons: Array = []):
+	Locator.get_service(GameState).open_battle_screen(",".join(enemies), weapons)
+
+
+func is_win_in_last_battle() -> bool:
+	return Locator.get_service(GameState).is_win_last_battle
 
 #endregion
