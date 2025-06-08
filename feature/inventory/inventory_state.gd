@@ -29,19 +29,19 @@ func is_empty() -> bool:
 
 
 
-func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
+func add_item(uid: String, value: Variant = 0) -> ItemEntity:
+	var data = load(uid)
 	var found_index = find_item(data.code_name)
 	if found_index != -1:
 		var item = get_item(found_index)
 		item.increase_not_used(value)
-		item.append_used(used)
 		_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in exist item with index [color=green]%d[/color]" % 
-			[value, used.size(), data.code_name, found_index])
+			[value, data.code_name, found_index])
 		return item
 	
 	_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in new item, with index [color=green]%s[/color]" % 
-		[value, used.size(), data.code_name, inventory_entity.items.size()])
-	return _add_in_storage_entity(ItemEntity.new(data, value, used))
+		[value, data.code_name, inventory_entity.items.size()])
+	return _add_in_storage_entity(ItemEntity.new(uid, value))
 
 
 
@@ -111,10 +111,10 @@ func is_index_validate(index: int) -> bool:
 	return index >= 0 and index < inventory_entity.items.size()
 
 
-func get_or_create_item(data: ItemResource) -> ItemEntity:
-	var index = find_item(data.code_name)
+func get_or_create_item(uid: String) -> ItemEntity:
+	var index = find_item(load(uid).code_name)
 	if index == -1:
-		return _add_in_storage_entity(ItemEntity.new(data))
+		return _add_in_storage_entity(ItemEntity.new(uid))
 	return get_item(index)
 
 
