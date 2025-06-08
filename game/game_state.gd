@@ -38,6 +38,6 @@ func open_battle_screen(enemies: String, weapons: Array):
 	else:
 		screen = _cache["battle"]
 	
+	screen.set_enemies(enemies)
+	screen.set_weapons(weapons)
 	current_screen = screen
-	current_screen.set_enemies(enemies)
-	current_screen.set_weapons(weapons)

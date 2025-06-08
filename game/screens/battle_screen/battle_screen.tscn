@@ -5,8 +5,10 @@
 [ext_resource type="Script" uid="uid://c7r5bggetmp5x" path="res://game/screens/battle_screen/progress_window.gd" id="2_iek3r"]
 [ext_resource type="Texture2D" uid="uid://bm51ah8177y1g" path="res://!tools/event_editer/icon.svg" id="3_k8qw6"]
 
-[node name="BattleScreen" type="Node2D"]
+[node name="BattleScreen" type="Node2D" node_paths=PackedStringArray("_progress_window", "_reward_window")]
 script = ExtResource("1_3l54g")
+_progress_window = NodePath("ProgressWindow")
+_reward_window = NodePath("RewardWindow")
 
 [node name="Panel" type="Panel" parent="."]
 show_behind_parent = true

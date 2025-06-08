@@ -1,10 +1,8 @@
 class_name BattleScreen extends Node2D
 
 
-
-
-@onready var _progress_window: Window = $ProgressWindow
-@onready var _reward_window: RewardDialog = $RewardWindow
+@export var _progress_window: Window
+@export var _reward_window: RewardDialog
 
 var _enemies: Array
 var _weapons: Array
@@ -29,7 +27,7 @@ func set_enemies(enemies: String, group_name: String = "врагов"):
 func _show_result(is_win: bool = true):
 	_progress_window.hide()
 	_reward_window.set_items(_get_rewards_from_enemies())
-	_reward_window.show_result("win!" if is_win else "lose")
+	_reward_window.show_result("Победа! :)" if is_win else "Поражение :(")
 	Locator.get_service(GameState).is_win_last_battle = is_win
 
 

@@ -7,6 +7,7 @@ const FIGHT_TIME = 5.0
 var timer: SceneTreeTimer
 
 @onready var progress_bar: ProgressBar = $PanelContainer/VBoxContainer/ProgressBar
+@onready var label: Label = $PanelContainer/VBoxContainer/Label
 
 
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _ready() -> void:
 
 
 func start():
+	label.text = title
 	timer = get_tree().create_timer(FIGHT_TIME)
 	timer.timeout.connect(_finish)
 	set_process(true)
