@@ -27,8 +27,6 @@ func is_empty() -> bool:
 	return inventory_entity.items.size() == 0
 
 
-
-
 func add_item(uid: String, value: Variant = 0) -> ItemEntity:
 	var data = load(uid)
 	var found_index = find_item(data.code_name)
@@ -42,7 +40,6 @@ func add_item(uid: String, value: Variant = 0) -> ItemEntity:
 	_logger.debug("Added [color=green]%d [/color] items [color=green]%s[/color] in new item, with index [color=green]%s[/color]" % 
 		[value, data.code_name, inventory_entity.items.size()])
 	return _add_in_storage_entity(ItemEntity.new(uid, value))
-
 
 
 func remove_item(_name: String, _amount := 1):

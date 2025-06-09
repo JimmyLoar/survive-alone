@@ -1,7 +1,6 @@
 class_name ItemEntity
 extends RefCounted
 
-
 var _resource_uid: String
 var _resource: ItemResource
 
