@@ -7,7 +7,6 @@
 
 [node name="CC-Inventory" instance=ExtResource("1_jmd1g")]
 script = ExtResource("2_ehgjh")
-main_stretch_ratio = null
 
 [node name="_ReferenceRect" parent="." index="0"]
 mouse_filter = 1

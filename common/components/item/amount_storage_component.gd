@@ -1,33 +1,47 @@
 class_name AmountStorageComponent
 extends StorageComponent
 
+var _amount: int = 0:
+	set(value):
+		last_changed_quantity = value - _amount 
+		_amount = value
+		quantity_changed.emit(_amount)
+		if _amount <= 0:
+			request_to_delete.emit(owner)
+
 
 func apply(entity: ItemEntity) -> ItemEntity:
 	return super(entity)
 
 
 func get_amount() -> int:
-	return 0
+	return _amount
 
 
-func append(value):
-	pass
+func append(value: int):
+	_amount += value
 
 
-func has(value):
+func has(value: int):
 	return false
 
 
-func remove(value):
-	pass
+func remove(value: int) -> int:
+	_amount = max(_amount - value, 0)
+	return last_changed_quantity
 
 
 func serialize() -> Dictionary:
-	return {}
+	var data = super()
+	data.merge({
+		"amount": _amount,
+	}, true)
+	return data
 
 
 func deserialize(data: Dictionary) -> void:
-	pass
+	super(data)
+	_set_data(data, "_amount", "amount")
 
 
 func get_type_string() -> String:

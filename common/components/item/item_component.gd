@@ -9,11 +9,16 @@ func apply(entity: ItemEntity) -> ItemEntity:
 
 
 func serialize() -> Dictionary:
-	return {}
+	return {
+		"type": get_type(),
+		"resource": owner.get_resource_uid(),
+	}
 
 
 func deserialize(data: Dictionary) -> void:
-	pass
+	if get_type() != data.type:
+		printerr("Data: %s" % data)
+		push_error("Attempt setting wrong data!")
 
 
 func get_type() -> ItemResource.Components:
@@ -22,3 +27,8 @@ func get_type() -> ItemResource.Components:
 
 func get_type_string() -> String:
 	return "none"
+
+
+func _set_data(data, property_name, key):
+	if data.has(key):
+		set(property_name, data[key])

@@ -48,19 +48,19 @@ func _create_new_save_if_not_exist(save_path: String):
 		[
 			ItemEntity.new(
 				ResourceCollector.uid(ResourceCollector.Items, "food_canned_food"),
-				5
+				5,
 			),
 			ItemEntity.new(
 				ResourceCollector.uid(ResourceCollector.Items, "food_water_clear"),
-				25
+				25,
 			),
 			ItemEntity.new(
 				ResourceCollector.uid(ResourceCollector.Items, "food_fresh_meat"),
-				10
+				10,
 			),
 			ItemEntity.new(
 				ResourceCollector.uid(ResourceCollector.Items, "resource_wood"),
-				30
+				30,
 			),
 		]
 	)

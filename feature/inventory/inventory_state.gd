@@ -34,12 +34,12 @@ func add_item(uid: String, value: Variant = 0) -> ItemEntity:
 	var found_index = find_item(data.code_name)
 	if found_index != -1:
 		var item = get_item(found_index)
-		item.increase_not_used(value)
-		_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in exist item with index [color=green]%d[/color]" % 
+		item.get_storage().append(value)
+		_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in exist item with index [color=green]%d[/color]" % 
 			[value, data.code_name, found_index])
 		return item
 	
-	_logger.debug("Added [color=green]%d (used +%d)[/color] items [color=green]%s[/color] in new item, with index [color=green]%s[/color]" % 
+	_logger.debug("Added [color=green]%d [/color] items [color=green]%s[/color] in new item, with index [color=green]%s[/color]" % 
 		[value, data.code_name, inventory_entity.items.size()])
 	return _add_in_storage_entity(ItemEntity.new(uid, value))
 
@@ -54,16 +54,14 @@ func remove_item(_name: String, _amount := 1):
 	if index == -1:
 		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [name, remaining])
 		return remaining
-	
+	 
 	var item := get_item(index) as ItemEntity
-	var _tmp = item.get_total_amount()
-	remaining = item.remove_used_amount(_amount)
-	item.decrease_total_amount(remaining)
-	remaining = max(remaining - _tmp, 0)
+	var storage := item.get_storage()
+	remaining = _amount - abs(storage.remove(_amount))
 	
-	if item.get_total_amount() <= 0:
+	if storage.get_amount() <= 0:
 		_remove_from_storage_entity(index)
-	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items | [color=green]%s (%d)[/color]" % [_amount, remaining, name, item.get_total_amount()])
+	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items | [color=green]%s (%d)[/color]" % [_amount, remaining, name, storage.get_amount()])
 	
 	return remaining
 
@@ -76,7 +74,7 @@ func has_item_amount(_name: String, amount: int = 1) -> bool:
 	amount = abs(amount)
 	var index := find_item(_name)
 	if index != -1:
-		return get_item(index).get_total_amount() >= amount
+		return get_item(index).get_storage().get_amount() >= amount
 	return false #возвращается если предмета нет в инветоре
 
 
@@ -132,7 +130,7 @@ func _remove_from_storage_entity(index: int) -> ItemEntity:
 		var item: ItemEntity = inventory_entity.items.pop_at(index)
 		_stored_cache.erase(item.get_resource().code_name)
 		changed_inventory_entity.emit(inventory_entity)
-		item.changed_amount.disconnect(_on_changed_value)
+		item.get_storage().quantity_changed.disconnect(_on_changed_value)
 		return item
 	return null
 
