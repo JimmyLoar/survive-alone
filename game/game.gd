@@ -12,9 +12,9 @@ func _ready() -> void:
 
 	# called when all scenes ready
 	Callable(func():
-		var game_path = "res://databases/test_editor.sqlite3"
-		var save_path = "res://!saves/test_save.db"
-
+		var game_path = ProjectSettings.get_setting("databases/game_database_path")
+		var save_path = ProjectSettings.get_setting("databases/save_database_path")
+		
 		_create_new_save_if_not_exist(save_path)
 		
 		_state.open_world_screen(game_path, save_path)
@@ -28,6 +28,7 @@ func _on_screen_changed(prev_screen: Node, current_screen: Node):
 	
 func _create_new_save_if_not_exist(save_path: String):
 	if FileAccess.file_exists(save_path):
+		_state.is_new_game = false
 		return
 	
 	var save_db = SaveDb.new()

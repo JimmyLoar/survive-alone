@@ -16,6 +16,8 @@ static func uid(collection: Collection, key: String) -> String:
 			return dialoge_character.get(key, "")
 		Collection.ACTIONS:
 			return actions.get(key, "")
+		Collection.ENEMIES:
+			return enemies.get(key, "")
 		Collection.QUESTS:
 			return quests.get(key, "")
 		Collection.EVENTS:
@@ -66,6 +68,8 @@ static func keys(collection: Collection) -> Array:
 			return dialoge_character.keys()
 		Collection.ACTIONS:
 			return actions.keys()
+		Collection.ENEMIES:
+			return enemies.keys()
 		Collection.QUESTS:
 			return quests.keys()
 		Collection.EVENTS:
@@ -94,6 +98,7 @@ enum Collection {
 	DROPS,
 	DIALOGE_CHARACTER,
 	ACTIONS,
+	ENEMIES,
 	QUESTS,
 	EVENTS,
 	RECIPES,
@@ -107,6 +112,7 @@ enum Collection {
 const Drops = Collection.DROPS
 const DialogeCharacter = Collection.DIALOGE_CHARACTER
 const Actions = Collection.ACTIONS
+const Enemies = Collection.ENEMIES
 const Quests = Collection.QUESTS
 const Events = Collection.EVENTS
 const Recipes = Collection.RECIPES
@@ -141,6 +147,10 @@ const actions = {
 	"test_action": "uid://cyejt07t5u1ej",
 }
 
+const enemies = {
+	"stray_dog": "uid://k6plf838eui1",
+}
+
 const quests = {
 	"prologue_1": "uid://b3xe3vw6y5fv7",
 	"test3": "uid://bs2ncgfju7uqb",
@@ -148,7 +158,7 @@ const quests = {
 	"prologue_0": "uid://dseeelh8xcs4c",
 	"test2": "uid://byvhlyfyh7fhn",
 }
-#uid://dseeelh8xcs4c
+
 const events = {
 	"bs_wood_3": "uid://ctjrc4bmwqqyb",
 	"return_to_default": "uid://c66ptthr6m3wo",
