@@ -14,6 +14,24 @@ func _init(new_name := "InventoryState") -> void:
 	name = new_name
 	_logger = Log.get_global_logger().with("Inventory%sState " % new_name)
 	changed_inventory_entity.connect(_recount_index_items)
+	Questify.condition_query_requested.connect(_on_quest_condition_query_requested)
+
+
+func _on_quest_condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition):
+	if type != QuestCondition.TypeVariants.item:
+		return
+	var result = false
+	match key:
+		&"has": 
+			result = has_item_amount(value.get_slice(":", 0), value.get_slice(":", 1))
+	
+		&"take": 
+			pass
+	
+		&"remove": 
+			pass
+	
+	requester.set_completed(result)
 
 
 func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
@@ -25,8 +43,6 @@ func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
 
 func is_empty() -> bool:
 	return inventory_entity.items.size() == 0
-
-
 
 
 func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:

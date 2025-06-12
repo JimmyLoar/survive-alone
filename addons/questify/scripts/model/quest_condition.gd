@@ -11,11 +11,20 @@ enum ValueType {
 enum TypeVariants{
 	none,
 	change_location,
-	var_3,
-	var_4,
-	var_5,
-	
+	item,
+	battle,
+	property,
 }
+
+
+const KEYS = {
+	TypeVariants.none: [&"", &"", &""],
+	TypeVariants.change_location: [&"any", &"structure", &"biome"],
+	TypeVariants.item: [&"has", &"take", &"remove"],
+	TypeVariants.battle: [&"finish", &"win", &"lose"],
+	TypeVariants.property: [&"has", &"change",],
+}
+
 
 
 @export var type: TypeVariants
