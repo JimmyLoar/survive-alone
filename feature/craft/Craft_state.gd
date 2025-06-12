@@ -39,7 +39,8 @@ func craft_from_recipe(recipe: BasicRecipe):
 
 
 func _fulfill(recipe: BasicRecipe):
-	_time_state.finished_skip.disconnect(_lambda)
+	if _time_state.finished_skip.has_connections():
+		_time_state.finished_skip.disconnect(_lambda)
 	for tuple in recipe.ingredients:
 		_inventory_state.remove_item(tuple.item.code_name, tuple.amount)
 	for tuple in recipe.results:

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_03uaq"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="1_wc4sl"]
-[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_sve4q"]
+[ext_resource type="Texture2D" uid="uid://ofqmf8fwwfsl" path="res://assets/sprite/items/placeholdersbyGPT/Flint.png" id="3_03uaq"]
 
 [resource]
 script = ExtResource("1_wc4sl")
-texture = ExtResource("2_sve4q")
+texture = ExtResource("3_03uaq")
 rare = 1
 durability = -1
 is_pickable = true

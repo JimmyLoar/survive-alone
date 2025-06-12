@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_o07ln"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="2_4iv0w"]
-[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="3_80y4q"]
+[ext_resource type="Texture2D" uid="uid://b7o4uwyocdsqc" path="res://assets/sprite/items/placeholdersbyGPT/StoneKnife.png" id="3_o07ln"]
 
 [resource]
 script = ExtResource("2_4iv0w")
-texture = ExtResource("3_80y4q")
+texture = ExtResource("3_o07ln")
 rare = 1
 durability = -1
 is_pickable = true

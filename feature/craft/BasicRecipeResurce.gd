@@ -49,3 +49,6 @@ func as_string() -> String:
 		s += x.item.code_name+ ' '
 	_string_view = s
 	return  s
+
+func _init():
+	print(as_string())

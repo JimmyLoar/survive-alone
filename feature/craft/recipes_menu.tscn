@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://4x16d5hmo000"]
+[gd_scene load_steps=2 format=3 uid="uid://dslqcwv7mxbgu"]
 
-[ext_resource type="Script" uid="uid://6bkwuw3jouvc" path="res://feature/craft/ui/recipes_menu.gd" id="1_frmjl"]
+[sub_resource type="GDScript" id="GDScript_xctb7"]
+script/source = "extends Control
+
+@onready var _state = Locator.get_service(CraftState)
+
+func update_recipe_list():
+	for recipe in _state.recipes:
+		var new_plane = load(\"res://feature/craft/ui/CraftPlaneView.tscn\").instantiate()
+		new_plane.recipe = recipe
+		$VBoxContainer/ScrollContainer/VBoxContainer.add_child(new_plane)
+"
 
 [node name="RecipesMenu" type="Control"]
 layout_mode = 3
@@ -9,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_frmjl")
+script = SubResource("GDScript_xctb7")
 metadata/_tab_index = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
