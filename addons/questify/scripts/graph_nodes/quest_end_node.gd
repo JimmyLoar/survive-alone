@@ -16,15 +16,14 @@ func _get_model() -> QuestNode:
 func _set_model_properties(_node: QuestNode) -> void:
 	_node.next_type = type_option_button.selected
 	_node.next_name = name_option_button.get_item_text(name_option_button.selected)
-	
 
 
 func _get_model_properties(_node: QuestNode) -> void:
 	type_option_button.select(_node.next_type)
+	_on_type_option_button_item_selected(_node.next_type)
 	var list: Dictionary = [{}, ResourceCollector.quests, ResourceCollector.events][type_option_button.selected]
 	var index = list.keys().find(_node.next_name)
 	name_option_button.select(index)
-	_on_type_option_button_item_selected(index)
 
 
 func _on_type_option_button_item_selected(index: int) -> void:
