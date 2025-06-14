@@ -11,6 +11,7 @@ enum ValueType {
 enum TypeVariants{
 	none,
 	change_location,
+	inventory,
 	item,
 	battle,
 	property,
@@ -18,8 +19,9 @@ enum TypeVariants{
 
 
 const KEYS = {
-	TypeVariants.none: [&"", &"", &""],
+	TypeVariants.none: [],
 	TypeVariants.change_location: [&"any", &"structure", &"biome"],
+	TypeVariants.inventory: [&"add_item", &"has_item", &"remove_item"],
 	TypeVariants.item: [&"has", &"take", &"remove"],
 	TypeVariants.battle: [&"finish", &"win", &"lose"],
 	TypeVariants.property: [&"has", &"change",],

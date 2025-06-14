@@ -20,6 +20,8 @@ func _ready() -> void:
 	
 	for quest in _quests:
 		quest.start()
+	
+	condition_query_requested.connect(_on_condition_query_requested)
 
 
 func start_quest(quest_resource: QuestResource) -> void:
@@ -98,3 +100,8 @@ func _add_timer() -> void:
 	_quest_update_timer.autostart = true
 	_quest_update_timer.wait_time = QuestifySettings.polling_interval
 	add_child(_quest_update_timer)
+
+
+func _on_condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition):
+	if type == QuestCondition.TypeVariants.none:
+		requester.set_completed(true)

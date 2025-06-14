@@ -9,6 +9,7 @@ var value: Variant
 
 @export var type_option: OptionButton
 @export var key_input: LineEdit
+@export var key_option: OptionButton
 @export var meta_input: VariantInput
 
 
@@ -27,7 +28,7 @@ func _set_model_properties(node: QuestNode) -> void:
 
 
 func _get_model_properties(node: QuestNode) -> void:
-	type = node.type
+	_on_option_button_item_selected(node.type)
 	type_option.select(node.type)
 	key = node.key
 	key_input.text = node.key
@@ -46,9 +47,18 @@ func _on_metadata_input_value_changed(new_value: Variant) -> void:
 
 func _on_option_button_item_selected(index: int) -> void:
 	type = index
+	$Key.visible = type != QuestCondition.TypeVariants.none
+	$Value.visible = type != QuestCondition.TypeVariants.none
+	key_option.clear()
+	for i in QuestCondition.KEYS[type]:
+		key_option.add_item(i) 
 
 
 func _update_types():
 	type_option.clear()
 	for i in QuestCondition.TypeVariants.keys():
 		type_option.add_item(i, QuestCondition.TypeVariants.get(i))
+
+
+func _on_key_option_button_item_selected(index: int) -> void:
+	pass
