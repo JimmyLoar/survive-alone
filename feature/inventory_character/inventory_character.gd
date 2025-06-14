@@ -38,19 +38,15 @@ func _ready() -> void:
 	
 func on_drop_item(item: ItemEntity):
 	quantity_selector_state.open(
-		item.get_total_amount(),
+		item.get_storage().get_amount(),
 		"Drop",
 		func(count: int): _on_confirmed_drop_item(item, count)
 	)
 
 
 func _on_confirmed_drop_item(item: ItemEntity, count: int):
-	var all_used = item.get_used()
-	var real_drop_count = min(item.get_total_amount(), count)
-	_state.remove_item(item.get_resource().code_name, count)
-	var used = all_used.slice(0, min(all_used.size(), real_drop_count))
-	
-	location_inventory_state.add_item(item.get_resource(), real_drop_count, used)
+	var removed_items = item.get_storage().remove(count)
+	location_inventory_state.add_item(item.get_resource_uid(), removed_items)
 	
 	var current_location = character_location_state.current_location
 	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):

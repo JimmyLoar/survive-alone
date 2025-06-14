@@ -47,13 +47,9 @@ func on_pick_up_item(item: ItemEntity):
 		func(count: int): _on_confirmed_pick_up_item(item, count)
 	)
 
-func _on_confirmed_pick_up_item(item: ItemEntity, count: int):
-	var all_used = item.get_used()
-	var real_count = min(item.get_total_amount(), count)
-	_state.remove_item(item.get_resource().code_name, count)
-	var used = all_used.slice(0, min(all_used.size(), real_count))
-	
-	_inventory_character_state.add_item(item.get_resource(), real_count, used)
+func _on_confirmed_pick_up_item(entity: ItemEntity, count: int):
+	var removed_items = entity.get_storage().remove(count)
+	character_location_state.add_item(entity.get_resource_uid(), removed_items)
 
 	var belong_at = _state.inventory_entity.belongs_at
 	if _state.is_empty() and belong_at.type == InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION:
@@ -66,6 +62,7 @@ func _on_confirmed_pick_up_item(item: ItemEntity, count: int):
 			world_objects_layer_state.request_rerender()
 			_state.inventory_entity = InventoryEntity.new()
 			character_location_state.request_reload()
+
 
 func _on_location_changed(location: Variant):
 	location_panel._visual_randerer()

@@ -8,10 +8,13 @@
 script = ExtResource("2_eliah")
 texture = ExtResource("3_t4nhi")
 rare = 1
-durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_t4nhi")]([])
 categories = Array[int]([1])
+storage_component = -2
+components = Array[int]([0, 1])
+durability_max = -1
+durability_mode = 0
 code_name = &"tool_homemade_axe"
 visible_name = "ITEM_TOOL_HOMEMADE_AXE_NAME"
 discription = "ITEM_TOOL_HOMEMADE_AXE_DISCRIPTION"

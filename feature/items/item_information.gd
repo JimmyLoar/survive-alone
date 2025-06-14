@@ -35,13 +35,13 @@ func update(item: ItemEntity = null):
 		_update_in_null()
 		return
 	
-	if not item.changed_durability.is_connected(_update_durability_text):
-		item.changed_durability.connect(_update_durability_text)
-		item.changed_amount.connect(_on_changed_value)
+	if not item.get_storage().quantity_changed.is_connected(_update_durability_text):
+		item.get_storage().quantity_changed.connect(_update_durability_text)
+		item.get_storage().quantity_changed.connect(_on_changed_value.bind(item.get_storage()))
 	
 	if _last_item:
-		_last_item.changed_durability.disconnect(_update_durability_text)
-		_last_item.changed_amount.disconnect(_on_changed_value)
+		_last_item.get_storage().quantity_changed.disconnect(_update_durability_text)
+		_last_item.get_storage().quantity_changed.disconnect(_on_changed_value.bind(_last_item.get_storage()))
 	
 	_last_item = item
 	_update_display(item)
@@ -57,8 +57,8 @@ func _update_in_null():
 	bottom_actions.hide()
 
 
-func _on_changed_value(value):
-	if value <= 0:
+func _on_changed_value(value, storage: StorageComponent):
+	if storage.get_amount() <= 0:
 		_update_in_null()
 
 
@@ -79,11 +79,12 @@ func _update_display(item: ItemEntity):
 
 
 func _update_durability_text(item: ItemEntity):
+	var data = item.get_storage().serialize()
+	if not data.has("array"):
+		return
+	
+	var value := data.array.front() as int
 	text_label.newline()
-	var value := item.get_resource().durability
-	if not item.get_used().is_empty(): 
-		value = item.get_used().front()
-	if value <= 0: return
 	text_label.append_text("Durability: %d" % value)
 
 

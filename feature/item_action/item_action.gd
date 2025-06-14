@@ -67,8 +67,8 @@ func _get_item_entities(items: Dictionary) -> Array[ItemEntity]:
 	for _name in items:
 		if items[_name] == 0:
 			continue
-		var item_resource: ItemResource = ResourceCollector.find(ResourceCollector.Collection.ITEMS, _name)
-		array.append(ItemEntity.new(item_resource, items[_name]))
+		var item_uid: String = ResourceCollector.uid(ResourceCollector.Collection.ITEMS, _name)
+		array.append(ItemEntity.new(item_uid, items[_name]))
 	return array
 
 
