@@ -43,7 +43,7 @@ func _fulfill(recipe: BasicRecipe):
 	for tuple in recipe.ingredients:
 		_inventory_state.remove_item(tuple.item.code_name, tuple.amount)
 	for tuple in recipe.results:
-		_inventory_state.add_item(tuple.item, tuple.amount)
+		_inventory_state.add_item(ResourceCollector.uid(ResourceCollector.Items, tuple.item.code_name), tuple.amount)
 	
 
 func recipe_can_be_crafted(recipe: BasicRecipe) -> bool:

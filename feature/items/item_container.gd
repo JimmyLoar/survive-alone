@@ -29,16 +29,16 @@ func _init() -> void:
 func update(item: ItemEntity):
 	if item != current_item:
 		if item:
-			item.changed_amount.connect(display.update_amount)
+			item.get_storage().quantity_changed.connect(display.update_amount.bind(item.get_storage()))
 		if current_item:
-			current_item.changed_amount.disconnect(display.update_amount)
+			current_item.get_storage().quantity_changed.disconnect(display.update_amount.bind(item.get_storage()))
 		current_item = item
 	
-	_display(item)
+	_display(current_item)
 
 
-func _display(item):
-	if not item or item.get_total_amount() == 0:
+func _display(item: ItemEntity):
+	if not item or item.get_storage().get_amount() == 0:
 		_display_empty()
 	
 	else:
@@ -54,5 +54,5 @@ func _display_empty():
 func _display_item(item: ItemEntity):
 	disabled = false
 	display.update_data(item.get_resource())
-	display.update_amount(item.get_total_amount())
+	display.update_amount(item.get_storage().get_amount())
 	display.show()

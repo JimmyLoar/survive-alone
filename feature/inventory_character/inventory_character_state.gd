@@ -11,7 +11,7 @@ func remove_item(_name: String, _amount := 1):
 	return res
 
 
-func add_item(data: ItemResource, value := 0, used: Array = []) -> ItemEntity:
-	var res = super(data, value, used)
-	item_added.emit(data.code_name)
+func add_item(uid: String, value: Variant = 0) -> ItemEntity:
+	var res = super(uid, value) as ItemEntity
+	item_added.emit(load(uid).code_name)
 	return res
