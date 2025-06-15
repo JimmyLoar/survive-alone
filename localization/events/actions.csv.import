@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://6dn2yu7k6a38"
+
+[deps]
+
+files=["res://localization/events/actions.en.translation", "res://localization/events/actions.ru.translation", "res://localization/events/actions.de.translation"]
+
+source_file="res://localization/events/actions.csv"
+dest_files=["res://localization/events/actions.en.translation", "res://localization/events/actions.ru.translation", "res://localization/events/actions.de.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -31,18 +31,11 @@ func is_empty() -> bool:
 
 
 func add_item(uid: String, value: Variant = 0) -> ItemEntity:
-	var data = load(uid) as ItemResource
-	var found_index = find_item(data.code_name)
-	if found_index != -1:
-		var item = get_item(found_index)
-		item.get_storage().append(value)
-		_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in exist item with index [color=green]%d[/color]" % 
-			[value, data.code_name, found_index])
-		return item
-	
-	_logger.debug("Added [color=green]%d [/color] items [color=green]%s[/color] in new item, with index [color=green]%s[/color]" % 
-		[value, data.code_name, inventory_entity.items.size()])
-	return _add_in_storage_entity(ItemEntity.new(uid, value))
+	var item = get_or_create_item(uid)
+	item.get_storage().append(value)
+	_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color]" % 
+		[value, load(uid).code_name])
+	return item
 
 
 func remove_item(_name: String, _amount := 1):
@@ -62,7 +55,6 @@ func remove_item(_name: String, _amount := 1):
 	if storage.get_amount() <= 0:
 		_remove_from_storage_entity(index)
 	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items | [color=green]%s (%d)[/color]" % [_amount, remaining, name, storage.get_amount()])
-	
 	return remaining
 
 

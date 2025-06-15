@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=19 format=3 uid="uid://b3xe3vw6y5fv7"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=17 format=3 uid="uid://b3xe3vw6y5fv7"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_nnww4"]
 [ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_bq2dx"]
@@ -20,8 +20,7 @@ graph_editor_size = Vector2(280, 463)
 script = ExtResource("3_yfy8a")
 description = "Нужно найти что полезное в соседних зданиях:
 Чистая вода: 5
-Консервы: 3
-Дрова: 5"
+Консервы: 3"
 id = "ErKsMIN_HU"
 optional = false
 graph_editor_position = Vector2(220, -240)
@@ -80,23 +79,7 @@ from = SubResource("Resource_8bk7q")
 to = SubResource("Resource_w4rre")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_cnqh8"]
-script = ExtResource("5_yfy8a")
-type = 4
-key = &"item_amount"
-id = "ZFxu5akgSb"
-optional = false
-graph_editor_position = Vector2(-620, 240)
-graph_editor_size = Vector2(377, 309)
-metadata/value = "resource_wood:5"
-
-[sub_resource type="Resource" id="Resource_vyyfh"]
-script = ExtResource("1_nnww4")
-from = SubResource("Resource_cnqh8")
-to = SubResource("Resource_w4rre")
-edge_type = 1
-
 [resource]
 script = ExtResource("3_47eok")
-nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_w4rre"), SubResource("Resource_qshdt"), SubResource("Resource_cp8q8"), SubResource("Resource_cnqh8"), SubResource("Resource_faidq"), SubResource("Resource_8bk7q")])
-edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_q73mr"), SubResource("Resource_mepxs"), SubResource("Resource_3t3mk"), SubResource("Resource_s0lum"), SubResource("Resource_vyyfh")])
+nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_w4rre"), SubResource("Resource_qshdt"), SubResource("Resource_cp8q8"), SubResource("Resource_faidq"), SubResource("Resource_8bk7q")])
+edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_q73mr"), SubResource("Resource_mepxs"), SubResource("Resource_3t3mk"), SubResource("Resource_s0lum")])
