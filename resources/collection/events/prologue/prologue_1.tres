@@ -26,7 +26,7 @@ next_type = 1
 next_name = "prologue_0"
 id = "o76ORauTm7"
 optional = false
-graph_editor_position = Vector2(820, -180)
+graph_editor_position = Vector2(840, -180)
 graph_editor_size = Vector2(231, 161)
 
 [sub_resource type="Resource" id="Resource_mx52a"]
@@ -37,7 +37,7 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_erwon"]
 script = ExtResource("3_rmusu")
-name_key = "prologue_0"
+name_key = "prologue"
 id = "wCV8fQEu6F"
 optional = false
 graph_editor_position = Vector2(-100, -180)
@@ -71,7 +71,7 @@ addational_actions = Array[ExtResource("7_w0qly")]([])
 
 [sub_resource type="Resource" id="Resource_tasog"]
 script = ExtResource("9_xpush")
-text_key = "exit_from_bunker"
+text_key = "exit"
 is_said = false
 is_hidden = false
 action = SubResource("Resource_dr2nv")

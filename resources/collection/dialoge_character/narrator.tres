@@ -9,5 +9,5 @@ name = "narrator"
 avatars = Dictionary[String, Texture2D]({
 "defualt": ExtResource("1_7b7mv")
 })
-name_modulate = Color(1, 0.929412, 0.631373, 1)
+name_modulate = Color(1, 0.868403, 0.255058, 1)
 metadata/_custom_type_script = "uid://ct0c2em08dbfv"

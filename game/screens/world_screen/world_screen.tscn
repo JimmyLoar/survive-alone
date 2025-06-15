@@ -34,6 +34,7 @@ metadata/_edit_vertical_guides_ = [-128.0]
 [node name="CharacterLocation" parent="." instance=ExtResource("4_twwnk")]
 
 [node name="WorldObjectsLayer" parent="." instance=ExtResource("4_3odrv")]
+y_sort_enabled = true
 
 [node name="BackgroundMusic" parent="." instance=ExtResource("6_i1yfc")]
 

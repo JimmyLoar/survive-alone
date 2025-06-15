@@ -25,7 +25,7 @@ func _get_model_properties(node: QuestNode) -> void:
 	quest_name = node.name_key
 	name_text_edit.text = node.name_key
 	quest_description = node.name_key
-	description_text_edit.text = node.node.name_key
+	description_text_edit.text = node.name_key
 	for key in node.get_meta_list():
 		set_meta(key, node.get_meta(key))
 	metadata_editor.update()

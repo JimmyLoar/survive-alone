@@ -8,10 +8,11 @@
 script = ExtResource("2_pdqej")
 texture = ExtResource("3_eu6rx")
 rare = 1
-durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_eu6rx")]([])
 categories = Array[int]([0])
+storage_component = -1
+components = Array[int]([])
 code_name = &"resource_duct_tape"
 visible_name = "ITEM_RESOURCE_DUCT_TAPE_NAME"
 discription = "ITEM_RESOURCE_DUCT_TAPE_DISCRIPTION"

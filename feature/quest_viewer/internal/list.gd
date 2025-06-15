@@ -15,7 +15,6 @@ func _update_elements():
 	clear()
 	_quests.clear()
 	_append_list("Activated", Questify.get_active_quests())
-	_append_list("Complited", Questify.get_completed_quests())
 
 
 func _append_list(title: String, list: Array):

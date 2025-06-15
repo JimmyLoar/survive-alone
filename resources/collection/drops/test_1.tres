@@ -1,28 +1,24 @@
-[gd_resource type="Resource" script_class="SearchDropResource" load_steps=6 format=3 uid="uid://cmj3q638n6mio"]
+[gd_resource type="Resource" script_class="SearchDropResource" load_steps=2 format=3 uid="uid://cmj3q638n6mio"]
 
-[ext_resource type="Resource" uid="uid://t6dvd3ikteh5" path="res://resources/collection/items/food/food_water_clear.tres" id="1_mi0yu"]
-[ext_resource type="Resource" uid="uid://chxbdcao06tc6" path="res://resources/collection/items/food/food_canned_food.tres" id="2_jt0ol"]
-[ext_resource type="Resource" uid="uid://cqvooygqbwtxj" path="res://resources/collection/items/resource/resource_duct_tape.tres" id="3_boqxm"]
-[ext_resource type="Resource" uid="uid://b2yydvgka6dr0" path="res://resources/collection/items/resource/resource_wood.tres" id="4_4dv1q"]
 [ext_resource type="Script" uid="uid://daiqkhjf0g3d3" path="res://resources/schema/search_drop.gd" id="5_wwbr7"]
 
 [resource]
 script = ExtResource("5_wwbr7")
 items_count = 4
-_items = Array[Array]([[ExtResource("1_mi0yu"), 1.0, 0.3, 1.125], [ExtResource("2_jt0ol"), 1.12, 0.25, 1.125], [ExtResource("3_boqxm"), 1.0, 0.4, 1.125], [ExtResource("4_4dv1q"), 1.0, 0.7, 1.125]])
-item_01/data = ExtResource("1_mi0yu")
+_items = Array[Array]([["food_canned_food", 1.0, 0.3, 1.125], ["food_water_clear", 1.12, 0.25, 1.125], ["resource_duct_tape", 1.0, 0.4, 1.125], ["resource_wood", 1.0, 0.7, 1.125]])
+item_01/data = "food_canned_food"
 item_01/reward_count = 1.0
 item_01/chance_base = 0.3
 item_01/reduction_rate = 1.125
-item_02/data = ExtResource("2_jt0ol")
+item_02/data = "food_water_clear"
 item_02/reward_count = 1.12
 item_02/chance_base = 0.25
 item_02/reduction_rate = 1.125
-item_03/data = ExtResource("3_boqxm")
+item_03/data = "resource_duct_tape"
 item_03/reward_count = 1.0
 item_03/chance_base = 0.4
 item_03/reduction_rate = 1.125
-item_04/data = ExtResource("4_4dv1q")
+item_04/data = "resource_wood"
 item_04/reward_count = 1.0
 item_04/chance_base = 0.7
 item_04/reduction_rate = 1.125

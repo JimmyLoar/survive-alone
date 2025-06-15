@@ -112,7 +112,7 @@ func get_resource_path() -> String:
 	return resource_path
 
 
-func request_query(type: String, key: String, value: Variant, requester: QuestCondition) -> void:
+func request_query(type: QuestCondition.TypeVariants, key: StringName, value: Variant, requester: QuestCondition) -> void:
 	Questify.condition_query_requested.emit(type, key, value, requester)
 
 

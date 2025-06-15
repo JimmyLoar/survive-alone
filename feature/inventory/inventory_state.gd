@@ -16,6 +16,9 @@ func _init(new_name := "InventoryState") -> void:
 	changed_inventory_entity.connect(_recount_index_items)
 
 
+
+
+
 func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
 	var tmp = inventory_entity
 	inventory_entity = _new_entity
@@ -28,18 +31,11 @@ func is_empty() -> bool:
 
 
 func add_item(uid: String, value: Variant = 0) -> ItemEntity:
-	var data = load(uid)
-	var found_index = find_item(data.code_name)
-	if found_index != -1:
-		var item = get_item(found_index)
-		item.get_storage().append(value)
-		_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color] in exist item with index [color=green]%d[/color]" % 
-			[value, data.code_name, found_index])
-		return item
-	
-	_logger.debug("Added [color=green]%d [/color] items [color=green]%s[/color] in new item, with index [color=green]%s[/color]" % 
-		[value, data.code_name, inventory_entity.items.size()])
-	return _add_in_storage_entity(ItemEntity.new(uid, value))
+	var item = get_or_create_item(uid)
+	item.get_storage().append(value)
+	_logger.debug("Added [color=green]%d[/color] items [color=green]%s[/color]" % 
+		[value, load(uid).code_name])
+	return item
 
 
 func remove_item(_name: String, _amount := 1):
@@ -48,18 +44,17 @@ func remove_item(_name: String, _amount := 1):
 	
 	var remaining = _amount
 	var index := find_item(_name)
-	if index == -1:
+	var item := get_item(index) as ItemEntity
+	if index == -1 or not item:
 		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [name, remaining])
 		return remaining
-	 
-	var item := get_item(index) as ItemEntity
+	
 	var storage := item.get_storage()
 	remaining = _amount - abs(storage.remove(_amount))
 	
 	if storage.get_amount() <= 0:
 		_remove_from_storage_entity(index)
 	_logger.debug("Removed [color=green]%d (remaing %d)[/color] items | [color=green]%s (%d)[/color]" % [_amount, remaining, name, storage.get_amount()])
-	
 	return remaining
 
 
@@ -85,7 +80,7 @@ func find_and_get_amount(item_name: String) -> int:
 	var index = find_item(item_name)
 	if index == -1:
 		return 0
-	return get_item(index).get_total_amount()
+	return get_item(index).get_storage().get_amount()
 
 
 func get_item(index: int) -> ItemEntity:
@@ -118,7 +113,7 @@ func _add_in_storage_entity(item: ItemEntity) -> ItemEntity:
 	inventory_entity.items.append(item)
 	changed_inventory_entity.emit(inventory_entity)
 	_stored_cache[item.get_resource().code_name] = _index
-	item.changed_amount.connect(_on_changed_value.bind(item.get_resource().code_name))
+	item.get_storage().quantity_changed.connect(_on_changed_value.bind(item.get_resource().code_name))
 	return item
 
 

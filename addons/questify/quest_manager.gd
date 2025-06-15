@@ -1,7 +1,7 @@
 extends Node
 
 
-signal condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition)
+signal condition_query_requested(type: QuestCondition.TypeVariants, key: StringName, value: Variant, requester: QuestCondition)
 signal quest_started(quest: QuestResource)
 signal quest_objective_added(quest: QuestResource, objective: QuestObjective)
 signal quest_objective_completed(quest: QuestResource, objective: QuestObjective)
@@ -20,6 +20,8 @@ func _ready() -> void:
 	
 	for quest in _quests:
 		quest.start()
+	
+	condition_query_requested.connect(_on_condition_query_requested)
 
 
 func start_quest(quest_resource: QuestResource) -> void:
@@ -30,6 +32,7 @@ func start_quest(quest_resource: QuestResource) -> void:
 	
 	_quests.append(quest_resource)
 	quest_resource.start()
+	quest_resource.update()
 	_logger.debug("'%s' | started quest" % quest_resource.name)
 
 
@@ -98,3 +101,8 @@ func _add_timer() -> void:
 	_quest_update_timer.autostart = true
 	_quest_update_timer.wait_time = QuestifySettings.polling_interval
 	add_child(_quest_update_timer)
+
+
+func _on_condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition):
+	if type == QuestCondition.TypeVariants.none:
+		requester.set_completed(true)
