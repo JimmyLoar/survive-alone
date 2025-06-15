@@ -39,8 +39,7 @@ var _INVENTORY = {
 
 func inventory_add_new_items(item_name: StringName, amount: int, _inventory: StringName) -> ItemEntity:
 	var inventory = Locator.get_service(_INVENTORY[_inventory])
-	var item_data: ItemResource = ResourceCollector.find(ResourceCollector.Collection.ITEMS, item_name)
-	return inventory.add_item(item_data, amount)
+	return inventory.add_item(item_name, amount)
 
 
 func inventory_add_used_item(item_name: StringName, used_array: Array[int], _inventory: StringName) -> ItemEntity:

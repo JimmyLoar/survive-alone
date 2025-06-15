@@ -88,7 +88,7 @@ func find_and_get_amount(item_name: String) -> int:
 	var index = find_item(item_name)
 	if index == -1:
 		return 0
-	return get_item(index).get_total_amount()
+	return get_item(index).get_storage().get_amount()
 
 
 func get_item(index: int) -> ItemEntity:
