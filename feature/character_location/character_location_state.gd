@@ -37,6 +37,7 @@ var current_location: Variant: # WorldObjectEntity или BiomesLocation
 			current_location = value
 			_logger.debug("character change location, new '%s' (%s)" % [get_location_name(), current_location.get_script().get_global_name()])
 			current_location_changed.emit(value)
+			
 
 var current_tile_pos = Vector2i.MAX
 
@@ -111,7 +112,7 @@ func _on_quest_started(quest: QuestResource):
 
 func _on_add_objective(quest: QuestResource, objective: QuestObjective):
 	for condition: QuestCondition in objective.conditions:
-		if condition.type != QuestCondition.TypeVariants.change_location or current_location_changed.is_connected(_on_changed_location.bind(quest, condition)):
+		if condition.type != QuestCondition.TypeVariants.location_change or current_location_changed.is_connected(_on_changed_location.bind(quest, condition)):
 			continue
 		
 		current_location_changed.connect(_on_changed_location.bind(quest, condition))

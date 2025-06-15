@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://b3xe3vw6y5fv7"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=17 format=3 uid="uid://b3xe3vw6y5fv7"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_nnww4"]
 [ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_bq2dx"]
@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_faidq"]
 script = ExtResource("2_bq2dx")
-name_key = ""
+name_key = "Prologue/1"
 id = "Q1V9BZUBfB"
 optional = false
 graph_editor_position = Vector2(-220, -240)
@@ -18,10 +18,12 @@ graph_editor_size = Vector2(280, 463)
 
 [sub_resource type="Resource" id="Resource_w4rre"]
 script = ExtResource("3_yfy8a")
-description = ""
+description = "Нужно найти что полезное в соседних зданиях:
+Чистая вода: 5
+Консервы: 3"
 id = "ErKsMIN_HU"
 optional = false
-graph_editor_position = Vector2(320, -80)
+graph_editor_position = Vector2(220, -240)
 graph_editor_size = Vector2(468, 483)
 
 [sub_resource type="Resource" id="Resource_q73mr"]
@@ -31,37 +33,53 @@ to = SubResource("Resource_w4rre")
 edge_type = 0
 
 [sub_resource type="Resource" id="Resource_cp8q8"]
-script = ExtResource("4_6ndsh")
-next_type = 2
-next_name = ""
-id = "J8i1qfqgua"
-optional = false
-graph_editor_position = Vector2(1040, -180)
-graph_editor_size = Vector2(141, 78)
-
-[sub_resource type="Resource" id="Resource_mepxs"]
-script = ExtResource("1_nnww4")
-from = SubResource("Resource_w4rre")
-to = SubResource("Resource_cp8q8")
-edge_type = 0
-
-[sub_resource type="Resource" id="Resource_qshdt"]
 script = ExtResource("5_yfy8a")
-type = 0
-key = ""
+type = 4
+key = &"item_amount"
 id = "ya8OnICjuT"
 optional = false
 graph_editor_position = Vector2(-220, 240)
 graph_editor_size = Vector2(377, 309)
-metadata/value = false
+metadata/value = "food_canned_food:3"
+
+[sub_resource type="Resource" id="Resource_mepxs"]
+script = ExtResource("1_nnww4")
+from = SubResource("Resource_cp8q8")
+to = SubResource("Resource_w4rre")
+edge_type = 1
+
+[sub_resource type="Resource" id="Resource_qshdt"]
+script = ExtResource("4_6ndsh")
+next_type = 2
+next_name = "prologue_3"
+id = "_jylYVxxYp"
+optional = false
+graph_editor_position = Vector2(760, -240)
+graph_editor_size = Vector2(158, 118)
 
 [sub_resource type="Resource" id="Resource_3t3mk"]
 script = ExtResource("1_nnww4")
-from = SubResource("Resource_qshdt")
+from = SubResource("Resource_w4rre")
+to = SubResource("Resource_qshdt")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_8bk7q"]
+script = ExtResource("5_yfy8a")
+type = 4
+key = &"item_amount"
+id = "1_5zmchz3x"
+optional = false
+graph_editor_position = Vector2(-220, 560)
+graph_editor_size = Vector2(377, 309)
+metadata/value = "food_water_clear:5"
+
+[sub_resource type="Resource" id="Resource_s0lum"]
+script = ExtResource("1_nnww4")
+from = SubResource("Resource_8bk7q")
 to = SubResource("Resource_w4rre")
 edge_type = 1
 
 [resource]
 script = ExtResource("3_47eok")
-nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_cp8q8"), SubResource("Resource_faidq"), SubResource("Resource_w4rre"), SubResource("Resource_qshdt")])
-edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_q73mr"), SubResource("Resource_mepxs"), SubResource("Resource_3t3mk")])
+nodes = Array[ExtResource("2_etvjh")]([SubResource("Resource_w4rre"), SubResource("Resource_qshdt"), SubResource("Resource_cp8q8"), SubResource("Resource_faidq"), SubResource("Resource_8bk7q")])
+edges = Array[ExtResource("1_nnww4")]([SubResource("Resource_q73mr"), SubResource("Resource_mepxs"), SubResource("Resource_3t3mk"), SubResource("Resource_s0lum")])

@@ -4,5 +4,7 @@
 
 [resource]
 script = ExtResource("1_vxg8h")
-name_key = "stray_dog"
+code_name = &"stray_dog"
+visible_name = ""
+discription = ""
 metadata/_custom_type_script = "uid://cnl3tig5dqyrq"

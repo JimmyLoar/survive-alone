@@ -90,7 +90,7 @@ func _append_text(stage):
 	var what = stage.text[1]
 	var text = ""
 	var color = "white"
-	if who:
+	if who and not who.name.is_empty() and who.name != "narrator":
 		text = "%s: \n		" % TranslationServer.translate("CHARACTER_%s" % [who.name.to_upper()])
 		color = who.name_modulate.to_html()
 	
@@ -130,12 +130,11 @@ func _validate_action(_actions: Array[EventAction]) -> Array[EventAction]:
 
 func _on_action_pressed(pressed_index: int):
 	var action := actions[pressed_index] as EventAction
-	currect_event.action_press(action)
+	currect_event.action_press.call_deferred(action)
 	
 	var _next = currect_event.get_next_nodes(action, EventEdge.EdgeType.ACTION)
 	if _next.any(func(a): return a is EventAbort or a is EventEnd):
 		close()
-		#EventsGlobal.aborted_event.emit(currect_event)
 		return
 	
 	for stage in currect_stages:
@@ -172,8 +171,8 @@ func _display_result(result: Dictionary):
 	%ResultContainer.show()
 
 
-func _on_condition_query_requested(type: String, key: String, value: Variant, requester: QuestCondition):
-	if type != "event":
+func _on_condition_query_requested(type: QuestCondition.TypeVariants, key: StringName, value: Variant, requester: QuestCondition):
+	if type != QuestCondition.TypeVariants.event_finished:
 		return
 	
 	var result = false

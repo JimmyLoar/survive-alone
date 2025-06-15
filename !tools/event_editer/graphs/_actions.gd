@@ -42,7 +42,7 @@ func _get_model_properties(_node: EventNode) -> void:
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	text_edit.text = TranslationServer.translate("ACTION_KEY_%s" % new_text.to_upper())
+	text_edit.text = TranslationServer.translate("ACTION_%s" % new_text.to_upper())
 
 
 func _on_button_pressed() -> void:
