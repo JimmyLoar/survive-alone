@@ -3,7 +3,7 @@ class_name QuestConditionNode extends QuestGraphNode
 
 
 var type: QuestCondition.TypeVariants
-var key: String
+var key: StringName
 var value: Variant
 
 
@@ -15,6 +15,7 @@ var value: Variant
 
 func _ready() -> void:
 	_update_types()
+	super()
 
 
 func _get_model() -> QuestNode:
@@ -28,13 +29,13 @@ func _set_model_properties(node: QuestNode) -> void:
 
 
 func _get_model_properties(node: QuestNode) -> void:
+	_update_types()
+	type_option.select.call_deferred(node.type)
 	_on_option_button_item_selected(node.type)
-	type_option.select(node.type)
 	key = node.key
-	key_input.text = node.key
+	key_option.select.call_deferred(QuestCondition.KEYS[type].find(node.key))
 	value = node.get_meta("value", false)
 	meta_input.set_value(value)
-
 
 
 func _on_key_text_changed(new_text: String) -> void:
@@ -61,4 +62,4 @@ func _update_types():
 
 
 func _on_key_option_button_item_selected(index: int) -> void:
-	pass
+	key = key_option.get_item_text(index)

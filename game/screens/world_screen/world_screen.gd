@@ -21,18 +21,8 @@ func _enter_tree() -> void:
 	Locator.get_service(GameDb).db_connect(game_db_path)
 
 
-func _on_condition_query_requested(type: String, key: String, value: Variant, requester: QuestCondition):
-	if type != "world":
-		return
-	
-	var result = false
-	match key:
-		"structure_change": 
-			var location = Locator.get_service(CharacterLocationState)
-			if not location.current_location_changed.is_connected(_on_changed_location.bind(requester, value.split("/"))):
-				location.current_location_changed.connect(_on_changed_location.bind(requester, value.split("/")))
-	
-	requester.set_completed(result)
+func _on_condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition):
+	pass
 
 
 func _on_changed_location(new_location, requester: QuestCondition, value: Array):

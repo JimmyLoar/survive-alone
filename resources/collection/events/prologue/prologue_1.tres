@@ -23,7 +23,7 @@ graph_editor_size = Vector2(240, 282)
 [sub_resource type="Resource" id="Resource_85ubh"]
 script = ExtResource("4_fnr1b")
 next_type = 1
-next_name = "prologue_1"
+next_name = "prologue_0"
 id = "o76ORauTm7"
 optional = false
 graph_editor_position = Vector2(840, -180)

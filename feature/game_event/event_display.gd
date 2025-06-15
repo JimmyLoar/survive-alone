@@ -172,8 +172,8 @@ func _display_result(result: Dictionary):
 	%ResultContainer.show()
 
 
-func _on_condition_query_requested(type: String, key: String, value: Variant, requester: QuestCondition):
-	if type != "event":
+func _on_condition_query_requested(type: QuestCondition.TypeVariants, key: StringName, value: Variant, requester: QuestCondition):
+	if type != QuestCondition.TypeVariants.event_finished:
 		return
 	
 	var result = false

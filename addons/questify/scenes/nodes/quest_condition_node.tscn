@@ -92,15 +92,15 @@ selected = 0
 item_count = 6
 popup/item_0/text = "none"
 popup/item_0/id = 0
-popup/item_1/text = "change_location"
+popup/item_1/text = "location_change"
 popup/item_1/id = 1
-popup/item_2/text = "inventory"
+popup/item_2/text = "search_finish"
 popup/item_2/id = 2
-popup/item_3/text = "item"
+popup/item_3/text = "battle_finish"
 popup/item_3/id = 3
-popup/item_4/text = "battle"
+popup/item_4/text = "inventory_has"
 popup/item_4/id = 4
-popup/item_5/text = "property"
+popup/item_5/text = "inventory_add"
 popup/item_5/id = 5
 
 [node name="Key" type="VBoxContainer" parent="."]

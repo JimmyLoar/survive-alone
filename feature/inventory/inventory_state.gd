@@ -18,20 +18,20 @@ func _init(new_name := "InventoryState") -> void:
 
 
 func _on_quest_condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition):
-	if type != QuestCondition.TypeVariants.item:
-		return
 	var result = false
-	match key:
-		&"has": 
-			result = has_item_amount(value.get_slice(":", 0), value.get_slice(":", 1))
+	if type == QuestCondition.TypeVariants.inventory_has:
+		match key:
+			&"item": 
+				result = find_item(value) != -1
+			
+			&"item_amount": 
+				result = has_item_amount(value.get_slice(":", 0), int(value.get_slice(":", 1)))
 	
-		&"take": 
-			pass
-	
-		&"remove": 
-			pass
+	elif type == QuestCondition.TypeVariants.inventory_add:
+		pass
 	
 	requester.set_completed(result)
+	return
 
 
 func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
@@ -46,7 +46,7 @@ func is_empty() -> bool:
 
 
 func add_item(uid: String, value: Variant = 0) -> ItemEntity:
-	var data = load(uid)
+	var data = load(uid) as ItemResource
 	var found_index = find_item(data.code_name)
 	if found_index != -1:
 		var item = get_item(found_index)
@@ -136,7 +136,7 @@ func _add_in_storage_entity(item: ItemEntity) -> ItemEntity:
 	inventory_entity.items.append(item)
 	changed_inventory_entity.emit(inventory_entity)
 	_stored_cache[item.get_resource().code_name] = _index
-	item.changed_amount.connect(_on_changed_value.bind(item.get_resource().code_name))
+	item.get_storage().quantity_changed.connect(_on_changed_value.bind(item.get_resource().code_name))
 	return item
 
 

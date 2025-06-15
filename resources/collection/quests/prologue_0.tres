@@ -33,7 +33,7 @@ edge_type = 0
 [sub_resource type="Resource" id="Resource_3r3la"]
 script = ExtResource("4_6ndsh")
 next_type = 2
-next_name = "bs_wood_3"
+next_name = "prologue_2"
 id = "J8i1qfqgua"
 optional = false
 graph_editor_position = Vector2(600, -160)
@@ -48,7 +48,7 @@ edge_type = 0
 [sub_resource type="Resource" id="Resource_7f6g5"]
 script = ExtResource("5_puigy")
 type = 1
-key = "any "
+key = &"any"
 id = "pGZcRej1DQ"
 optional = false
 graph_editor_position = Vector2(-160, 340)

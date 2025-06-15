@@ -17,7 +17,9 @@ func _init() -> void:
 
 
 func get_items() -> Array[Array]:
-	return _items.duplicate()
+	var items: Array[Array] = _items.duplicate()
+	items.resize(items_count)
+	return items
 
 
 enum Value { DATA, REWARD, CHANCE, REDUCTION }
@@ -37,7 +39,10 @@ func _get_property_list() -> Array[Dictionary]:
 func _get_item_properties(index: int):
 	var properties: Array[Dictionary] = []
 	properties.append(
-		PropertyGenerater.take_resource("item_%02d/data" % [index + 1], "ItemResource")
+		PropertyGenerater.convert_to_enum(
+			PropertyGenerater.take_string("item_%02d/data" % [index + 1]),
+			",".join(ResourceCollector.items.keys())
+		)
 	)
 
 	var _property := PropertyGenerater.take_float("item_%02d/reward_count" % [index + 1])

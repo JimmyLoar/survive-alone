@@ -10,27 +10,38 @@ enum ValueType {
 
 enum TypeVariants{
 	none,
-	change_location,
-	inventory,
-	item,
-	battle,
-	property,
+	location_change,
+	search_finish,
+	battle_finish,
+	inventory_has,
+	inventory_add,
+	event_finished,
 }
 
 
 const KEYS = {
 	TypeVariants.none: [],
-	TypeVariants.change_location: [&"any", &"structure", &"biome"],
-	TypeVariants.inventory: [&"add_item", &"has_item", &"remove_item"],
-	TypeVariants.item: [&"has", &"take", &"remove"],
-	TypeVariants.battle: [&"finish", &"win", &"lose"],
-	TypeVariants.property: [&"has", &"change",],
+	TypeVariants.location_change: [&"any", &"structure", &"biome"],
+	TypeVariants.search_finish: [&"finish", &"item", &"item_amount"],
+	TypeVariants.battle_finish: [&"win", &"lose", &""],
+	TypeVariants.inventory_has: [&"item", &"item_amount"],
+	TypeVariants.inventory_add: [&"item", &"item_amount"],
+	TypeVariants.event_finished: [&"event", &"event_list"],
+}
+
+const HINTS = {
+	TypeVariants.none: 				"""""",
+	TypeVariants.location_change:	"""""",
+	TypeVariants.search_finish:		"""""",
+	TypeVariants.battle_finish:		"""""",
+	TypeVariants.inventory_has:		"""""",
+	TypeVariants.inventory_add:		"""""",
+	TypeVariants.event_finished:	"""""",
 }
 
 
-
 @export var type: TypeVariants
-@export var key: String = ""
+@export var key: StringName = &""
 
 
 var value: Variant:

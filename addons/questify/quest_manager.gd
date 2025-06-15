@@ -1,7 +1,7 @@
 extends Node
 
 
-signal condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition)
+signal condition_query_requested(type: QuestCondition.TypeVariants, key: StringName, value: Variant, requester: QuestCondition)
 signal quest_started(quest: QuestResource)
 signal quest_objective_added(quest: QuestResource, objective: QuestObjective)
 signal quest_objective_completed(quest: QuestResource, objective: QuestObjective)
@@ -32,6 +32,7 @@ func start_quest(quest_resource: QuestResource) -> void:
 	
 	_quests.append(quest_resource)
 	quest_resource.start()
+	quest_resource.update()
 	_logger.debug("'%s' | started quest" % quest_resource.name)
 
 

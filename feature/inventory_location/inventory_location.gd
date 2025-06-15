@@ -42,14 +42,14 @@ func can_show_pick_up_button(item_entity: ItemEntity):
 
 func on_pick_up_item(item: ItemEntity):
 	quantity_selector_state.open(
-		item.get_total_amount(),
+		item.get_storage().get_amount(),
 		"Pick up",
 		func(count: int): _on_confirmed_pick_up_item(item, count)
 	)
 
 func _on_confirmed_pick_up_item(entity: ItemEntity, count: int):
 	var removed_items = entity.get_storage().remove(count)
-	character_location_state.add_item(entity.get_resource_uid(), removed_items)
+	Locator.get_service(InventoryCharacterState).add_item(entity.get_resource_uid(), removed_items)
 
 	var belong_at = _state.inventory_entity.belongs_at
 	if _state.is_empty() and belong_at.type == InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION:
