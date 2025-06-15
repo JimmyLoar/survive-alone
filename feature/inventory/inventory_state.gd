@@ -14,24 +14,9 @@ func _init(new_name := "InventoryState") -> void:
 	name = new_name
 	_logger = Log.get_global_logger().with("Inventory%sState " % new_name)
 	changed_inventory_entity.connect(_recount_index_items)
-	Questify.condition_query_requested.connect(_on_quest_condition_query_requested)
 
 
-func _on_quest_condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition):
-	var result = false
-	if type == QuestCondition.TypeVariants.inventory_has:
-		match key:
-			&"item": 
-				result = find_item(value) != -1
-			
-			&"item_amount": 
-				result = has_item_amount(value.get_slice(":", 0), int(value.get_slice(":", 1)))
-	
-	elif type == QuestCondition.TypeVariants.inventory_add:
-		pass
-	
-	requester.set_completed(result)
-	return
+
 
 
 func change_entity(_new_entity: InventoryEntity) -> InventoryEntity:
@@ -66,11 +51,11 @@ func remove_item(_name: String, _amount := 1):
 	
 	var remaining = _amount
 	var index := find_item(_name)
-	if index == -1:
+	var item := get_item(index) as ItemEntity
+	if index == -1 or not item:
 		_logger.warn("Failed remove data [color=green]%s (%d)[/color], become inventory have not this data!" % [name, remaining])
 		return remaining
-	 
-	var item := get_item(index) as ItemEntity
+	
 	var storage := item.get_storage()
 	remaining = _amount - abs(storage.remove(_amount))
 	
