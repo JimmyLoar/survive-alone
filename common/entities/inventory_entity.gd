@@ -1,9 +1,14 @@
 class_name InventoryEntity
 extends Node
 
+signal changed_list_items
+
 var id: int
 var belongs_at: BelongsAtObject
-var items: Array[ItemEntity]
+var items: Array[ItemEntity]:
+	set(value):
+		items = value
+		changed_list_items.emit()
 
 
 func _init(

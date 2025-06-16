@@ -12,6 +12,10 @@ func _init() -> void:
 
 
 func update_data(data: ItemResource):
+	if not data:
+		texture_rect.texture = null
+		return 
+	
 	rarety_rect.modulate = data.get_color()
 	texture_rect.texture = data.texture
 

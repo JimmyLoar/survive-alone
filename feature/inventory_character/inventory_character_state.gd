@@ -1,5 +1,5 @@
 class_name InventoryCharacterState
-extends InventoryState
+extends Inventory
 
 signal item_removed(item_name: String)
 signal item_added(item_name: String)

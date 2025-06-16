@@ -1,5 +1,5 @@
 class_name InventoryLocationState
-extends InventoryState
+extends Inventory
 
 signal search_drop_changed(value: SearchDropResource)
 var search_drop: SearchDropResource = null:

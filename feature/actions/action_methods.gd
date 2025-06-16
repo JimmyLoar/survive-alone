@@ -32,8 +32,8 @@ func property_less_than_max (property_name: String) -> bool:
 #endregion
 #region Inventory
 var _INVENTORY = {
-	"InventoryCharacterState": InventoryCharacterState,
-	"InventoryLocationState": InventoryLocationState,
+	"InventoryCharacter": InventoryCharacter,
+	"InventoryLocation": InventoryLocation,
 }
 
 

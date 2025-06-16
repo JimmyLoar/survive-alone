@@ -93,7 +93,7 @@ static func _modification_character_property(prop: Dictionary):
 
 
 static func _modification_inventory(prop: Dictionary):
-	var _enum = "InventoryCharacterState,InventoryLocationState"
+	var _enum = "InventoryCharacter,InventoryLocation"
 	return PropertyGenerater.convert_to_enum(prop, _enum)
 
 

@@ -1,14 +1,14 @@
 class_name SummedInventory
  
 
-var _inventories: Array[InventoryState] = []
+var _inventories: Array[Inventory] = []
 
 
 func _init():
 	Questify.condition_query_requested.connect(_on_quest_condition_query_requested)
 
 
-func add_inventory(inv: InventoryState) -> void:
+func add_inventory(inv: Inventory) -> void:
 	if _inventories.has(inv):
 		return
 	_inventories.append(inv)
