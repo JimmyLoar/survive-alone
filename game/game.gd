@@ -70,7 +70,15 @@ func _create_new_save_if_not_exist(save_path: String):
 			),
 			ItemEntity.new(
 				ResourceCollector.uid(ResourceCollector.Items, "food_water_clear"),
-				3,
+				30,
+			),
+			ItemEntity.new(
+				ResourceCollector.uid(ResourceCollector.Items, "resource_wood"),
+				10,
+			),
+			ItemEntity.new(
+				ResourceCollector.uid(ResourceCollector.Items, "food_fresh_meat"),
+				5,
 			),
 		]
 	)

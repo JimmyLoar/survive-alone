@@ -1,4 +1,4 @@
-class_name ItemInfoPanel
+class_name ItemInformation
 extends MarginContainer
 
 
@@ -50,7 +50,7 @@ func update(item: ItemEntity = null):
 
 
 func _update_in_null():
-	get_parent().current_tab = 0
+	#get_parent().current_tab = 0
 	_last_item = null
 	name_label.hide()
 	interactive_container.hide()
@@ -62,17 +62,16 @@ func _on_changed_value(value, storage: StorageComponent):
 		_update_in_null()
 
 
-func _update_display(item: ItemEntity):
-	var data: ItemResource = item.get_resource()
-	name_label.text = "%s" % data.visible_name
+func _update_display(entity: ItemEntity):
+	var data: ItemResource = entity.get_resource()
+	name_label.text = "%s" % [data.visible_name]
 	text_label.clear()
-	text_label.append_text("%s" % data.discription)
-	get_parent().current_tab = get_index()
+	text_label.append_text("%s: %d" % ["Количество", entity.get_storage().get_amount()])
 	name_label.show()
 	bottom_actions.show()
 
 	for action_button: ActionButton in bottom_actions.get_children():
-		if action_button.can_view.call(item):
+		if action_button.can_view.call(entity):
 			action_button.show()
 		else:
 			action_button.hide()

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8ildsba35mng"]
+[gd_scene load_steps=4 format=3 uid="uid://c8ildsba35mng"]
 
 [ext_resource type="Script" uid="uid://cxcm4enueev3p" path="res://feature/character_properties_bar/internal/character_property_bar.gd" id="1_w2ohq"]
 [ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_5gmmj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t2w2w"]
+font_size = 24
 
 [node name="PropertyBar" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
@@ -31,5 +34,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "0%"
+label_settings = SubResource("LabelSettings_t2w2w")
 horizontal_alignment = 1
 vertical_alignment = 2

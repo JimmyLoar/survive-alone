@@ -12,7 +12,6 @@ offset_bottom = 621.0
 script = ExtResource("1_rhtma")
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 show_behind_parent = true
 layout_mode = 2
 
