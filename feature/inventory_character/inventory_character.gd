@@ -1,6 +1,8 @@
 class_name InventoryCharacter
 extends InventoryBase
 
+@export var up_buttons: HButtonsContainer
+
 
 #
 #
@@ -16,6 +18,7 @@ extends InventoryBase
 #@onready var world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 #
 #
+
 func _enter_tree() -> void:
 	Locator.add_initialized_service(self)
 #
@@ -32,8 +35,23 @@ func _ready() -> void:
 		}
 	])
 	print("InventoryCharacter ready!")
+	up_buttons.create_buttons([
+		up_buttons.create_currect_dictionary(
+			(func(): _inventory._entity.items.sort()), "sort"
+		)
+	])
 
 
+func open():
+	if self.visible:
+		close()
+		return
+	
+	self.show()
+
+
+func close():
+	self.hide()
 
 
 func on_drop_item(item: ItemEntity):

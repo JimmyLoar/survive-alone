@@ -4,13 +4,14 @@
 [ext_resource type="Script" uid="uid://cmrfh0g4hccdr" path="res://feature/inventory_character/inventory_character.gd" id="1_kyeoh"]
 [ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="4_f0gnu"]
 
-[node name="Inventory" type="PanelContainer" node_paths=PackedStringArray("inventory_display", "item_information")]
+[node name="Inventory" type="PanelContainer" node_paths=PackedStringArray("up_buttons", "inventory_display", "item_information")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kyeoh")
+up_buttons = NodePath("SpliteContainer/InventoryPageDisplay/VBoxContainer/UpButtons")
 inventory_display = NodePath("SpliteContainer/InventoryPageDisplay")
 item_information = NodePath("SpliteContainer/ItemInformationPanel")
 
@@ -26,3 +27,5 @@ _page_size = Vector2i(3, 1)
 
 [node name="ItemInformationPanel" parent="SpliteContainer" instance=ExtResource("4_f0gnu")]
 layout_mode = 2
+
+[editable path="SpliteContainer/InventoryPageDisplay"]

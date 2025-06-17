@@ -15,6 +15,17 @@ func _ready() -> void:
 	print("InventoryLocation ready!")
 
 
+func open():
+	if self.visible:
+		close()
+		return
+	
+	self.show()
+
+
+func close():
+	self.hide()
+
 
 #var _state := InventoryLocationState.new("Location")
 #
