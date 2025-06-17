@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://27va2jwjyxqm"]
+[gd_scene load_steps=5 format=3 uid="uid://27va2jwjyxqm"]
 
 [ext_resource type="Script" uid="uid://dlef7gju0tg1x" path="res://feature/inventory/inventory_page_display.gd" id="1_gngur"]
+[ext_resource type="Script" uid="uid://b265e1k6i6nek" path="res://game/ui-elements/buttons/h_side_buttons.gd" id="2_esmba"]
 [ext_resource type="Script" uid="uid://bt6x5481dd855" path="res://feature/items_grid/items_grid.gd" id="2_nu0uk"]
 [ext_resource type="PackedScene" uid="uid://cka4psk0x8fb2" path="res://common/ui/element/page_controller.tscn" id="3_esmba"]
 
@@ -17,17 +18,16 @@ script = ExtResource("1_gngur")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 60)
+[node name="UpButtons" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-alignment = 1
-
-[node name="ItemList" type="ItemList" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
+alignment = 2
+script = ExtResource("2_esmba")
+button_size = Vector2i(90, 20)
+text_size = 20
+metadata/_custom_type_script = "uid://b265e1k6i6nek"
 
 [node name="ItemsGrid" type="GridContainer" parent="VBoxContainer"]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=28 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -19,17 +19,35 @@
 [ext_resource type="Theme" uid="uid://cfhrwmys6lnl6" path="res://assets/themes/main.tres" id="14_vou35"]
 [ext_resource type="Script" uid="uid://b757n4axwnkdp" path="res://feature/rest/ui_elements/!button_rest.gd" id="15_bav1l"]
 [ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
+[ext_resource type="Script" uid="uid://dtjfras4tgfan" path="res://game/ui-elements/buttons/v_side_buttons.gd" id="17_i1yfc"]
 [ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
 [ext_resource type="PackedScene" uid="uid://bimu1uujo2qmv" path="res://feature/inventory_character/inventory_character.tscn" id="18_i1yfc"]
 [ext_resource type="PackedScene" uid="uid://cjhy00q8mvwrs" path="res://feature/inventory_location/inventory_location.tscn" id="19_i1yfc"]
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
-[ext_resource type="Script" uid="uid://b265e1k6i6nek" path="res://game/ui-elements/buttons/side_buttons.gd" id="22_vou35"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i1yfc"]
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_irxn0"]
 font_size = 24
+
+[sub_resource type="GDScript" id="GDScript_i1yfc"]
+script/source = "extends HBoxContainer
+
+@onready var buttons: VButtonsContainer = $SideButtons/VButtonsContainer
+@onready var screens_container: TabContainer = $ScreensContainer
+
+
+func _ready() -> void:
+	var list = [] as Array[Dictionary]
+	for screen in screens_container.get_children():
+		list.append(buttons.create_currect_dictionary(
+			screen.open if screen.has_method(\"open\") else screen.show,
+			TranslationServer.translate(screen.name.to_upper())
+		))
+	
+	buttons.create_buttons(list)
+"
 
 [node name="WorldScreen" type="Node2D"]
 script = ExtResource("1_nlrl3")
@@ -112,16 +130,15 @@ vertical_alignment = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
+script = SubResource("GDScript_i1yfc")
 
 [node name="SideButtons" type="PanelContainer" parent="UI/MainForm/MiddleContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainForm/MiddleContainer/SideButtons" node_paths=PackedStringArray("screen_container")]
-custom_minimum_size = Vector2(120, 0)
+[node name="VButtonsContainer" type="VBoxContainer" parent="UI/MainForm/MiddleContainer/SideButtons"]
 layout_mode = 2
-script = ExtResource("22_vou35")
-max_buttons = 4
-screen_container = NodePath("../../ScreensContainer")
+script = ExtResource("17_i1yfc")
+metadata/_custom_type_script = "uid://dtjfras4tgfan"
 
 [node name="ScreensContainer" type="TabContainer" parent="UI/MainForm/MiddleContainer"]
 self_modulate = Color(1, 1, 1, 0)

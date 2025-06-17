@@ -12,5 +12,3 @@ var _inventory := Inventory.new()
 
 func _ready() -> void:
 	_inventory.changed_inventory_entity.connect(inventory_display.set_entity)
-
-	
