@@ -30,7 +30,7 @@ func _ensure_user_directory_exists(path: String) -> void:
 		if part != parts[-1]:
 			if part == "":
 				continue
-			current_path += "/" + part
+			current_path += part + "/"
 			if not DirAccess.dir_exists_absolute(current_path):
 				var err := DirAccess.make_dir_absolute(current_path)
 				if err != OK:
