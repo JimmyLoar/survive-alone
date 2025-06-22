@@ -30,11 +30,13 @@ func _ensure_user_directory_exists(path: String) -> void:
 		if part != parts[-1]:
 			if part == "":
 				continue
+
 			current_path += part + "/"
-			if not DirAccess.dir_exists_absolute(current_path):
-				var err := DirAccess.make_dir_absolute(current_path)
-				if err != OK:
-					push_error("Не удалось создать директорию: %s (код ошибки: %s)" % [current_path, err])
+			if DirAccess.dir_exists_absolute(current_path):
+				continue
+			
+			if DirAccess.make_dir_absolute(current_path) != OK:
+				push_error("Не удалось создать директорию: %s (код ошибки: %s)" % [current_path, err])
 
 func _on_screen_changed(prev_screen: Node, current_screen: Node):
 	if get_child_count() != 0:
