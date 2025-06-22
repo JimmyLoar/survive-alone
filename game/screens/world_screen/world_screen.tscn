@@ -47,6 +47,7 @@ func _ready() -> void:
 		))
 	
 	buttons.create_buttons(list)
+	$ScreensContainer.current_tab = -1
 "
 
 [node name="WorldScreen" type="Node2D"]

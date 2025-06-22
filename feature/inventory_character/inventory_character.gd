@@ -3,21 +3,13 @@ extends Inventory
 
 @export var up_buttons: HButtonsContainer
 
+@onready var quantity_selector_state: QuantitySelectorState = Locator.get_service(QuantitySelectorState)
+@onready var inventory_location: InventoryLocation = Locator.get_service(InventoryLocation)
+@onready var character_location_state: CharacterLocationState = Locator.get_service(CharacterLocationState)
+@onready var character_state: CharacterState = Locator.get_service(CharacterState)
+@onready var world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
+@onready var world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 
-#
-#
-#var _state := InventoryCharacterState.new("Character")
-#
-#@onready var inventory: InventoryPageDisplay = %Inventory
-#@onready var item_information_panel: ItemInfoPanel = %ItemInformationPanel
-#@onready var quantity_selector_state: QuantitySelectorState = Locator.get_service(QuantitySelectorState)
-#@onready var location_inventory_state: InventoryLocationState = Locator.get_service(InventoryLocationState)
-#@onready var character_location_state: CharacterLocationState = Locator.get_service(CharacterLocationState)
-#@onready var character_state: CharacterState = Locator.get_service(CharacterState)
-#@onready var world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
-#@onready var world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
-#
-#
 
 func _init() -> void:
 	super("InventoryCharacter")
@@ -29,6 +21,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	super()
+	character_location_state.current_location_changed.connect(change_entity)
 	change_entity.call_deferred(_inventory_repository.get_by_player_id())
 	inventory_display.item_pressed.connect(item_information.update)
 	item_information.set_bottom_actions([
@@ -51,6 +44,7 @@ func open():
 		close()
 		return
 	
+	inventory_display.update()
 	self.show()
 
 
@@ -59,41 +53,41 @@ func close():
 
 
 func on_drop_item(item: ItemEntity):
-	pass
-	#quantity_selector_state.open(
-		#item.get_storage().get_amount(),
-		#"Drop",
-		#func(count: int): _on_confirmed_drop_item(item, count)
-	#)
-#
-#
+	quantity_selector_state.open(
+		item.get_storage().get_amount(),
+		"Drop",
+		func(count: int): _on_confirmed_drop_item(item, count)
+	)
 
 
-
-#func _on_confirmed_drop_item(item: ItemEntity, count: int):
-	#var removed_items = item.get_storage().remove(count)
-	#location_inventory_state.add_item(item.get_resource_uid(), removed_items)
-	#
-	#var current_location = character_location_state.current_location
-	#if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
-		#var world_object = WorldObjectEntity.new()
-		#world_object.resource = load("res://resources/collection/world_object/location/camp.tres")
-		#var boundary_rect = world_object.resource.collision_shape.get_rect()
-		#boundary_rect.position += character_state.position
-		#world_object.boundary_rect = boundary_rect
-#
-		#var world_object_id = world_object_repository.create(world_object, false)
-#
-		#location_inventory_state.inventory_entity.belongs_at = InventoryEntity.BelongsAtObject.new(
-			#world_object_id,
-			#InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION
-		#)
-	#_inventory_repository.insert(_state.inventory_entity)
-	#_inventory_repository.insert(location_inventory_state.inventory_entity)
-#
-	#if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
-		#world_objects_layer_state.request_rerender()
-		#character_location_state.current_location = world_object_repository.get_by_id(location_inventory_state.inventory_entity.belongs_at.id)
-	#else:
-		## request rerender location inventory
-		#location_inventory_state.change_entity(location_inventory_state.inventory_entity)
+func _on_confirmed_drop_item(item: ItemEntity, count: int):
+	var removed_items = item.get_storage().remove(count)
+	inventory_location.add_item(item.get_resource_uid(), removed_items)
+	
+	# create camp location
+	var current_location = character_location_state.current_location
+	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
+		var world_object = WorldObjectEntity.new()
+		world_object.resource = load("res://resources/collection/world_object/location/camp.tres")
+		var boundary_rect = world_object.resource.collision_shape.get_rect()
+		boundary_rect.position += character_state.position
+		world_object.boundary_rect = boundary_rect
+		
+		var world_object_id = world_object_repository.create(world_object, false)
+		
+		inventory_location.inventory_entity.belongs_at = InventoryEntity.BelongsAtObject.new(
+			world_object_id,
+			InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION
+		)
+	
+	# save inventories
+	_inventory_repository.insert(_entity)
+	_inventory_repository.insert(inventory_location.get_entity())
+	
+	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
+		world_objects_layer_state.request_rerender()
+		character_location_state.current_location = world_object_repository.get_by_id(inventory_location.inventory_entity.belongs_at.id)
+	else:
+		# request rerender location inventory
+		inventory_location.inventory_display.update()
+	

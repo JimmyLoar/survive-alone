@@ -8,6 +8,10 @@ var _amount: int = 0:
 		quantity_changed.emit(_amount)
 		if _amount <= 0:
 			request_to_delete.emit(owner)
+		
+		print_stack()
+		print_debug("amount: %d" % _amount)
+		print()
 
 
 func apply(entity: ItemEntity) -> ItemEntity:
@@ -19,7 +23,7 @@ func get_amount() -> int:
 
 
 func append(value: int):
-	_amount += value
+	_amount += abs(value)
 
 
 func has(value: int):
@@ -27,7 +31,9 @@ func has(value: int):
 
 
 func remove(value: int) -> int:
-	_amount = max(_amount - value, 0)
+	_amount = max(_amount - abs(value), 0)
+	if _amount <= 0:
+		request_to_delete.emit(owner)
 	return last_changed_quantity
 
 

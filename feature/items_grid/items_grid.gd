@@ -4,7 +4,7 @@ extends GridContainer
 signal item_selected(index: int)
 
 
-var button_group := ButtonGroup.new()
+@export var button_group := ButtonGroup.new()
 var timer: SceneTreeTimer
 
 @onready var logger = Log.get_global_logger().with('ItemGrid')
@@ -30,6 +30,8 @@ func initialize_items(_columns: int, raws: int):
 
 
 func display_items(items: Array[ItemEntity]):
-	for i in items.size():
+	var i = 0
+	for item: ItemEntity in items:
 		var container = get_child(i) as ItemContainer
 		container.update(items[i])
+		i += 1

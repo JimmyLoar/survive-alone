@@ -16,14 +16,10 @@ var _entity: InventoryEntity
 
 
 func set_entity(new_entity: InventoryEntity):
-	if _entity:
-		_entity.changed_items_list.disconnect(_on_items_changed)
-	
-	if new_entity:
-		new_entity.changed_items_list.connect(_on_items_changed)
-	
-	_entity = new_entity
-	_page_controller.set_entity(new_entity)
+	if _entity != new_entity:
+		_entity = new_entity
+		_page_controller.set_entity(new_entity)
+	update()
 
 
 func _ready() -> void:
@@ -34,7 +30,7 @@ func _ready() -> void:
 	_page_controller.changed_page.connect(_on_change_page)
 
 
-func _on_items_changed():
+func update():
 	_page_controller.update_max_page()
 	_on_change_page(_page_controller.page)
 

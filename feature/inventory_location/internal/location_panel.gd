@@ -6,13 +6,13 @@ extends MarginContainer
 var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Search
 @onready var discription_label: RichTextLabel = %DiscriptionLabel
 
-@onready var _inventory_location_state: InventoryLocationState = Locator.get_service(InventoryLocationState)
+@onready var _inventory_location: InventoryLocation = Locator.get_service(InventoryLocation)
 @onready var _event_state: EventState = Locator.get_service(EventState)
 @onready var _location: CharacterLocationState = Locator.get_service(CharacterLocationState)
 
 
 func _ready() -> void:
-	_inventory_location_state.search_drop_changed.connect(_on_search_drop_changed)
+	_inventory_location.search_drop_changed.connect(_on_search_drop_changed)
 
 	Callable(func(): 
 		_visual_randerer()
@@ -34,22 +34,22 @@ func _on_search_drop_changed(_search_drop: SearchDropResource):
 func _rerender():
 	if is_instance_of(_location.current_location, WorldObjectEntity):
 		if (
-			_inventory_location_state.search_drop == null
-			or _inventory_location_state.search_drop.items_count == 0
+			_inventory_location.search_drop == null
+			or _inventory_location.search_drop.items_count == 0
 		):
 			search_button.hide()
 		else:
 			search_button.show()
 	else:
 		search_button.show()
-	search_display.update(_inventory_location_state.search_drop)
+	search_display.update(_inventory_location.search_drop)
 
 
 func _on_search_pressed() -> void:
 	if is_instance_of(_location.current_location, WorldObjectEntity):
 		var searcher := Searcher.new()
 		search_button.hide()
-		search_display.start_search(searcher.search(_inventory_location_state.search_drop))
+		search_display.start_search(searcher.search(_inventory_location.search_drop))
 	elif is_instance_of(_location.current_location, CharacterLocationState.BiomesLocation):
 		_event_state.start_event(preload("res://resources/collection/events/biome_search/bs_defualt_event.tres").instantiate())
 	

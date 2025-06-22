@@ -28,17 +28,21 @@ func _init() -> void:
 
 func update(item: ItemEntity):
 	if item != current_item:
+		var storage: StorageComponent
 		if item:
-			item.get_storage().quantity_changed.connect(display.update_amount.bind(item.get_storage()))
+			storage = item.get_storage()
+			storage.quantity_changed.connect(display.update_amount)
+		
 		if current_item:
-			current_item.get_storage().quantity_changed.disconnect(display.update_amount.bind(current_item.get_storage()))
+			storage = current_item.get_storage()
+			storage.quantity_changed.disconnect(display.update_amount)
+		
 		current_item = item
-	
 	_display(current_item)
 
 
 func _display(item: ItemEntity):
-	if not item or item.get_storage().get_amount() == 0:
+	if not item or item.get_storage().get_amount() <= 0:
 		_display_empty()
 	
 	else:

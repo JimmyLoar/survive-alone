@@ -13,7 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_kyeoh")
 up_buttons = NodePath("SpliteContainer/InventoryPageDisplay/VBoxContainer/UpButtons")
 inventory_display = NodePath("SpliteContainer/InventoryPageDisplay")
-item_information = NodePath("SpliteContainer/ItemInformationPanel")
+item_information = NodePath("SpliteContainer/TabContainer/ItemInformationPanel")
 
 [node name="SpliteContainer" type="HSplitContainer" parent="."]
 layout_mode = 2
@@ -25,7 +25,14 @@ split_offset = 240
 layout_mode = 2
 _page_size = Vector2i(6, 5)
 
-[node name="ItemInformationPanel" parent="SpliteContainer" instance=ExtResource("4_f0gnu")]
+[node name="TabContainer" type="TabContainer" parent="SpliteContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="ItemInformationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("4_f0gnu")]
+layout_mode = 2
+metadata/_tab_index = 0
 
 [editable path="SpliteContainer/InventoryPageDisplay"]

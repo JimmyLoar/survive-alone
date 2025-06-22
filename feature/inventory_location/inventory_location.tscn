@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjhy00q8mvwrs"]
+[gd_scene load_steps=5 format=3 uid="uid://cjhy00q8mvwrs"]
 
 [ext_resource type="Script" uid="uid://b6a5v02gbec8v" path="res://feature/inventory_location/inventory_location.gd" id="2_g7boo"]
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory_page_display.tscn" id="2_o8nlk"]
+[ext_resource type="PackedScene" uid="uid://djj8lftj7w8hq" path="res://feature/inventory_location/internal/location_panel.tscn" id="3_h642t"]
 [ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="3_sakew"]
 
 [node name="Location" type="PanelContainer" node_paths=PackedStringArray("inventory_display", "item_information")]
@@ -12,17 +13,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_g7boo")
 inventory_display = NodePath("SpliteContainer/InventoryPageDisplay")
-item_information = NodePath("SpliteContainer/ItemInformationPanel")
+item_information = NodePath("SpliteContainer/TabBar/ItemInformationPanel")
 
 [node name="SpliteContainer" type="HSplitContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 240
+drag_area_highlight_in_editor = true
 
 [node name="InventoryPageDisplay" parent="SpliteContainer" instance=ExtResource("2_o8nlk")]
 layout_mode = 2
 _page_size = Vector2i(5, 3)
 
-[node name="ItemInformationPanel" parent="SpliteContainer" instance=ExtResource("3_sakew")]
+[node name="TabBar" type="TabContainer" parent="SpliteContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 1
+tabs_visible = false
+
+[node name="ItemInformationPanel" parent="SpliteContainer/TabBar" instance=ExtResource("3_sakew")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="LocationPanel" parent="SpliteContainer/TabBar" instance=ExtResource("3_h642t")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 1
