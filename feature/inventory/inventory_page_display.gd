@@ -17,10 +17,10 @@ var _entity: InventoryEntity
 
 func set_entity(new_entity: InventoryEntity):
 	if _entity:
-		_entity.changed_list_items.disconnect(_on_items_changed)
+		_entity.changed_items_list.disconnect(_on_items_changed)
 	
 	if new_entity:
-		new_entity.changed_list_items.connect(_on_items_changed)
+		new_entity.changed_items_list.connect(_on_items_changed)
 	
 	_entity = new_entity
 	_page_controller.set_entity(new_entity)
@@ -32,7 +32,6 @@ func _ready() -> void:
 	
 	_page_controller.page_size = _page_size.x * _page_size.y
 	_page_controller.changed_page.connect(_on_change_page)
-	
 
 
 func _on_items_changed():

@@ -1,5 +1,5 @@
 class_name InventoryCharacter
-extends InventoryBase
+extends Inventory
 
 @export var up_buttons: HButtonsContainer
 
@@ -19,13 +19,17 @@ extends InventoryBase
 #
 #
 
+func _init() -> void:
+	super("InventoryCharacter")
+
+
 func _enter_tree() -> void:
 	Locator.add_initialized_service(self)
 #
 
 func _ready() -> void:
 	super()
-	_inventory.change_entity.call_deferred(_inventory_repository.get_by_player_id())
+	change_entity.call_deferred(_inventory_repository.get_by_player_id())
 	inventory_display.item_pressed.connect(item_information.update)
 	item_information.set_bottom_actions([
 		{
@@ -34,10 +38,10 @@ func _ready() -> void:
 			"can_view": func(_item: ItemEntity): return true
 		}
 	])
-	print("InventoryCharacter ready!")
 	up_buttons.create_buttons([
 		up_buttons.create_currect_dictionary(
-			(func(): _inventory._entity.items.sort()), "sort"
+			(func(): _entity.items.sort()), 
+			"sort",
 		)
 	])
 

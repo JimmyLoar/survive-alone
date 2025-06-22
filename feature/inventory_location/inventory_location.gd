@@ -1,18 +1,20 @@
 class_name InventoryLocation
-extends InventoryBase
+extends Inventory
 
 
-signal changed_inventory_entity(new_entity: InventoryEntity)
+#signal changed_entity(new_entity: InventoryEntity)
 
 
 func _enter_tree() -> void:
 	Locator.add_initialized_service(self)
 
 
+func _init() -> void:
+	super("InventoryLocation")
+
+
 func _ready() -> void:
 	super()
-	changed_inventory_entity.connect(_inventory.change_entity)
-	print("InventoryLocation ready!")
 
 
 func open():
@@ -49,7 +51,7 @@ func close():
 #
 #
 #func _ready() -> void:
-	#_state.changed_inventory_entity.connect(inventory.set_entity)
+	#_state.changed_entity.connect(inventory.set_entity)
 	#_character_location.current_location_changed.connect(_on_location_changed)
 #
 	#inventory.item_pressed.connect(item_information_panel.update)
