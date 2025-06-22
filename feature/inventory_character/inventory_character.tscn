@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bimu1uujo2qmv"]
+[gd_scene load_steps=5 format=3 uid="uid://bimu1uujo2qmv"]
 
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory_page_display.tscn" id="1_0e3ya"]
 [ext_resource type="Script" uid="uid://cmrfh0g4hccdr" path="res://feature/inventory_character/inventory_character.gd" id="1_kyeoh"]
 [ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="4_f0gnu"]
+[ext_resource type="Texture2D" uid="uid://ci4slq0smcgv2" path="res://assets/kenney_ui-pack/Vector/Blue/check_square_color_cross.svg" id="4_f8cos"]
 
 [node name="Inventory" type="PanelContainer" node_paths=PackedStringArray("up_buttons", "inventory_display", "item_information")]
 anchors_preset = 15
@@ -34,5 +35,14 @@ tabs_visible = false
 [node name="ItemInformationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("4_f0gnu")]
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="CloseButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("4_f8cos")
+ignore_texture_size = true
+stretch_mode = 5
 
 [editable path="SpliteContainer/InventoryPageDisplay"]
