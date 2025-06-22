@@ -3,9 +3,7 @@ extends Node
 
 var id: int
 var belongs_at: BelongsAtObject
-var items: Array[ItemEntity]:
-	set(value):
-		items = value
+var items: Array[ItemEntity]
 
 
 func _init(
