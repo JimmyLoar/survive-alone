@@ -15,11 +15,28 @@ func _ready() -> void:
 		var game_path = ProjectSettings.get_setting("databases/game_database_path")
 		var save_path = ProjectSettings.get_setting("databases/save_database_path")
 		
+		_ensure_user_directory_exists(save_path)
 		_create_new_save_if_not_exist(save_path)
 		
 		_state.open_world_screen(game_path, save_path)
 	).call_deferred()
 
+func _ensure_user_directory_exists(path: String) -> void:
+	var absolute_path = ProjectSettings.globalize_path(path)
+	var parts = absolute_path.split("/")
+	
+	var current_path := ""
+	for part in parts:
+		if part != parts[-1]:
+			if part == "":
+				continue
+
+			current_path += part + "/"
+			if DirAccess.dir_exists_absolute(current_path):
+				continue
+			
+			if DirAccess.make_dir_absolute(current_path) != OK:
+				push_error("Не удалось создать директорию: %s (код ошибки: %s)" % [current_path, err])
 
 func _on_screen_changed(prev_screen: Node, current_screen: Node):
 	if get_child_count() != 0:
