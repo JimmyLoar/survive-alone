@@ -8,10 +8,6 @@ var _amount: int = 0:
 		quantity_changed.emit(_amount)
 		if _amount <= 0:
 			request_to_delete.emit(owner)
-		
-		print_stack()
-		print_debug("amount: %d" % _amount)
-		print()
 
 
 func apply(entity: ItemEntity) -> ItemEntity:
