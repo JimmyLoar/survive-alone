@@ -1,6 +1,11 @@
 class_name InventoryCharacter
 extends Inventory
 
+
+signal item_removed(item_name: String)
+signal item_added(item_name: String)
+
+
 @export var up_buttons: HButtonsContainer
 
 @onready var quantity_selector_state: QuantitySelectorState = Locator.get_service(QuantitySelectorState)
@@ -55,6 +60,18 @@ func close():
 	self.hide()
 
 
+func remove_item(_name: String, _amount := 1):
+	var res = super(_name, _amount)
+	item_removed.emit(name)
+	return res
+
+
+func add_item(uid: String, value: Variant = 0) -> ItemEntity:
+	var res = super(uid, value) as ItemEntity
+	item_added.emit(load(uid).code_name)
+	return res
+
+
 func on_drop_item(item: ItemEntity):
 	quantity_selector_state.open(
 		item.get_storage().get_amount(),
@@ -71,7 +88,7 @@ func _on_confirmed_drop_item(item: ItemEntity, count: int):
 	var current_location = character_location_state.current_location
 	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
 		var world_object = WorldObjectEntity.new()
-		world_object.resource = load("res://resources/collection/world_object/location/camp.tres")
+		world_object.resource = load("res://resources/collection/world_object/location/camp.tres") as Resource
 		var boundary_rect = world_object.resource.collision_shape.get_rect()
 		boundary_rect.position += character_state.position
 		world_object.boundary_rect = boundary_rect

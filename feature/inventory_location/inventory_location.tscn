@@ -34,13 +34,12 @@ size_flags_horizontal = 3
 current_tab = 1
 tabs_visible = false
 
-[node name="ItemInformationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("3_sakew")]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 0
-
 [node name="LocationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("3_h642t")]
 unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ItemInformationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("3_sakew")]
 layout_mode = 2
 metadata/_tab_index = 1
 

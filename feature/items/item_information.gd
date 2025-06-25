@@ -2,12 +2,6 @@ class_name ItemInformation
 extends MarginContainer
 
 
-#signal remove_items(item_list: Array)
-#signal add_items(item_list: Array)
-#signal transfered_items(item: ItemEntity, count: int)
-
-
-
 @onready var name_label: Label = %NameLabel
 @onready var text_label: RichTextLabel = %RichTextDiscription
 @onready var interactive_container: VBoxContainer = $VBoxContainer/ScrollContainer/VBoxContainer
@@ -16,8 +10,10 @@ extends MarginContainer
 
 var _last_item: ItemEntity
 
+
 func _ready() -> void:
 	update()
+
 
 func set_bottom_actions(actions: Array):
 	for old_action in bottom_actions.get_children():
@@ -29,6 +25,7 @@ func set_bottom_actions(actions: Array):
 		button.connect("pressed", Callable(func(): action.on_pressed.callv([_last_item])))
 		button.can_view = action.can_view
 		bottom_actions.add_child(button)
+
 
 func update(item: ItemEntity = null):
 	if not item or _last_item == item:
@@ -50,7 +47,6 @@ func update(item: ItemEntity = null):
 
 
 func _update_in_null():
-	#get_parent().current_tab = 0
 	_last_item = null
 	name_label.hide()
 	interactive_container.hide()

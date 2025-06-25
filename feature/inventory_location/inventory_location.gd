@@ -20,7 +20,7 @@ var search_drop: SearchDropResource = null:
 
 @onready var location_panel: MarginContainer = %LocationPanel
 
-@onready var tab_container: TabContainer = $SpliteContainer/TabBar
+@onready var tab_container: TabContainer = $SpliteContainer/TabContainer
 
 
 func _init() -> void:
@@ -73,7 +73,7 @@ func on_pick_up_item(item: ItemEntity):
 
 func _on_confirmed_pick_up_item(entity: ItemEntity, count: int):
 	var removed_items = entity.get_storage().remove(count)
-	Locator.get_service(InventoryCharacterState).add_item(entity.get_resource_uid(), removed_items)
+	Locator.get_service(InventoryCharacter).add_item(entity.get_resource_uid(), removed_items)
 
 	var belong_at = _entity.belongs_at
 	if is_empty() and belong_at.type == InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION:
