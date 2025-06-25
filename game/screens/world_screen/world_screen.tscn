@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://bpr2e0l6fxmwj" path="res://feature/character_pointer_button/pointer_space.tscn" id="13_pqelk"]
 [ext_resource type="PackedScene" uid="uid://dbxwa4c3uxw1" path="res://feature/rest/rest_ui.tscn" id="14_453vv"]
 [ext_resource type="Theme" uid="uid://cfhrwmys6lnl6" path="res://assets/themes/main.tres" id="14_vou35"]
-[ext_resource type="Script" uid="uid://b757n4axwnkdp" path="res://feature/rest/ui_elements/!button_rest.gd" id="15_bav1l"]
 [ext_resource type="PackedScene" uid="uid://ddfsnjx44w5ik" path="res://feature/game_time/time_progress_display.tscn" id="16_s66yn"]
 [ext_resource type="Script" uid="uid://dtjfras4tgfan" path="res://game/ui-elements/buttons/v_side_buttons.gd" id="17_i1yfc"]
 [ext_resource type="PackedScene" uid="uid://dbkwdbwvqc3qy" path="res://feature/game_event/event_display.tscn" id="17_p8jes"]
@@ -26,6 +25,20 @@
 [ext_resource type="PackedScene" uid="uid://bl1d3c28xju2i" path="res://feature/craft/CC_Craft.tscn" id="20_irxn0"]
 [ext_resource type="PackedScene" uid="uid://dpk1c165dvts6" path="res://feature/quest_viewer/quest_viewer.tscn" id="21_6gqlo"]
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
+
+[sub_resource type="GDScript" id="GDScript_irxn0"]
+script/source = "extends VButtonsContainer
+
+
+func _ready() -> void:
+	var rest_state: RestScreenState = Locator.get_service(RestScreenState)
+	create_buttons([
+		create_currect_dictionary(
+			rest_state.open,
+			\"Rest\"
+		)
+	])
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_i1yfc"]
 font_size = 24
@@ -82,11 +95,42 @@ color = Color(0.749338, 0, 0.264808, 1)
 layer = 10
 
 [node name="ScreenMouseEvents" parent="UI" instance=ExtResource("5_myumh")]
+mouse_filter = 2
+theme = ExtResource("14_vou35")
 
 [node name="PointerSpace" parent="UI" instance=ExtResource("13_pqelk")]
 show_behind_parent = true
+theme = ExtResource("14_vou35")
 theme_override_constants/margin_top = 120
 theme_override_constants/margin_bottom = 80
+
+[node name="FreeCanvas" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 60.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("14_vou35")
+metadata/_edit_lock_ = true
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="UI/FreeCanvas"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+script = SubResource("GDScript_irxn0")
+metadata/_custom_type_script = "uid://dtjfras4tgfan"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="UI/FreeCanvas"]
+layout_mode = 2
+mouse_filter = 2
+border_color = Color(0.865637, 0.000553311, 0.857206, 1)
+border_width = 3.5
 
 [node name="MainForm" type="VBoxContainer" parent="UI"]
 anchors_preset = 15
@@ -94,25 +138,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("14_vou35")
 theme_override_constants/separation = 0
 
-[node name="UpContainer" type="PanelContainer" parent="UI/MainForm"]
+[node name="StatusBarContainer" type="PanelContainer" parent="UI/MainForm"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainForm/UpContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainForm/StatusBarContainer"]
 layout_mode = 2
 
-[node name="CharaterPropertiesBar" parent="UI/MainForm/UpContainer/HBoxContainer" instance=ExtResource("7_ksbsw")]
+[node name="CharaterPropertiesBar" parent="UI/MainForm/StatusBarContainer/HBoxContainer" instance=ExtResource("7_ksbsw")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
-[node name="Space" type="Control" parent="UI/MainForm/UpContainer/HBoxContainer"]
+[node name="Space" type="Control" parent="UI/MainForm/StatusBarContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.4
 
-[node name="GameTimeDisplay" type="Label" parent="UI/MainForm/UpContainer/HBoxContainer"]
+[node name="GameTimeDisplay" type="Label" parent="UI/MainForm/StatusBarContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -120,7 +165,7 @@ label_settings = SubResource("LabelSettings_i1yfc")
 vertical_alignment = 2
 script = ExtResource("11_fvjg5")
 
-[node name="FpsDisplay" parent="UI/MainForm/UpContainer/HBoxContainer" instance=ExtResource("7_hexpw")]
+[node name="FpsDisplay" parent="UI/MainForm/StatusBarContainer/HBoxContainer" instance=ExtResource("7_hexpw")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -129,130 +174,80 @@ text = "FPS  "
 label_settings = SubResource("LabelSettings_irxn0")
 vertical_alignment = 2
 
-[node name="MiddleContainer" type="HBoxContainer" parent="UI/MainForm"]
+[node name="ScreensContainer" type="MarginContainer" parent="UI/MainForm"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MainScreens" type="HBoxContainer" parent="UI/MainForm/ScreensContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/separation = 0
 script = SubResource("GDScript_i1yfc")
 
-[node name="SideButtons" type="PanelContainer" parent="UI/MainForm/MiddleContainer"]
+[node name="SideButtons" type="PanelContainer" parent="UI/MainForm/ScreensContainer/MainScreens"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="VButtonsContainer" type="VBoxContainer" parent="UI/MainForm/MiddleContainer/SideButtons"]
+[node name="VButtonsContainer" type="VBoxContainer" parent="UI/MainForm/ScreensContainer/MainScreens/SideButtons"]
 layout_mode = 2
+mouse_filter = 2
 script = ExtResource("17_i1yfc")
 metadata/_custom_type_script = "uid://dtjfras4tgfan"
 
-[node name="ScreensContainer" type="TabContainer" parent="UI/MainForm/MiddleContainer"]
+[node name="ScreensContainer" type="TabContainer" parent="UI/MainForm/ScreensContainer/MainScreens"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 tabs_visible = false
 deselect_enabled = true
 
-[node name="Inventory" parent="UI/MainForm/MiddleContainer/ScreensContainer" instance=ExtResource("18_i1yfc")]
+[node name="Inventory" parent="UI/MainForm/ScreensContainer/MainScreens/ScreensContainer" instance=ExtResource("18_i1yfc")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Location" parent="UI/MainForm/MiddleContainer/ScreensContainer" instance=ExtResource("19_i1yfc")]
+[node name="Location" parent="UI/MainForm/ScreensContainer/MainScreens/ScreensContainer" instance=ExtResource("19_i1yfc")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Craft" parent="UI/MainForm/MiddleContainer/ScreensContainer" instance=ExtResource("20_irxn0")]
+[node name="Craft" parent="UI/MainForm/ScreensContainer/MainScreens/ScreensContainer" instance=ExtResource("20_irxn0")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Quests" parent="UI/MainForm/MiddleContainer/ScreensContainer" instance=ExtResource("21_6gqlo")]
+[node name="Quests" parent="UI/MainForm/ScreensContainer/MainScreens/ScreensContainer" instance=ExtResource("21_6gqlo")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
-
-[node name="ForbidenImputZone" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -4.0
-offset_top = 4.0
-offset_right = 6.0
-offset_bottom = 725.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="ForbidenImputZone2" type="Control" parent="UI/ForbidenImputZone"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -9.0
-offset_top = 34.0
-offset_right = 1285.0
-offset_bottom = 38.0
-
-[node name="ForbidenImputZone5" type="Control" parent="UI/ForbidenImputZone"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -9.0
-offset_top = -6.0
-offset_right = 1285.0
-offset_bottom = -2.0
-
-[node name="ForbidenImputZone4" type="Control" parent="UI/ForbidenImputZone"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 2.0
-offset_top = 712.0
-offset_right = 1287.0
-offset_bottom = 721.0
-
-[node name="ForbidenImputZone3" type="Control" parent="UI/ForbidenImputZone"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1277.0
-offset_top = -27.0
-offset_right = 1287.0
-offset_bottom = 715.0
-
-[node name="OtherContainer" type="MarginContainer" parent="UI"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 46.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="!ButunRest" type="Button" parent="UI/OtherContainer"]
-visible = false
-show_behind_parent = true
-custom_minimum_size = Vector2(52.785, 56.95)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "rest"
-script = ExtResource("15_bav1l")
-
-[node name="RestUi" parent="UI/OtherContainer" instance=ExtResource("14_453vv")]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 0
-
-[node name="EventDisplay" parent="UI/OtherContainer" instance=ExtResource("17_p8jes")]
+[node name="EventDisplay" parent="UI/MainForm/ScreensContainer" instance=ExtResource("17_p8jes")]
 visible = false
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="TimeProgress" parent="UI/OtherContainer" instance=ExtResource("16_s66yn")]
+[node name="RestUi" parent="UI/MainForm/ScreensContainer" instance=ExtResource("14_453vv")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+
+[node name="TimeProgress" parent="UI/MainForm/ScreensContainer" instance=ExtResource("16_s66yn")]
 visible = false
 layout_mode = 2
 
-[node name="QuantitySelecter" parent="." instance=ExtResource("22_scc3c")]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 
-[connection signal="pressed" from="UI/OtherContainer/!ButunRest" to="UI/OtherContainer/!ButunRest" method="_on_pressed"]
+[node name="QuantitySelecter" parent="." instance=ExtResource("22_scc3c")]
