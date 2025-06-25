@@ -20,6 +20,7 @@ var search_drop: SearchDropResource = null:
 
 @onready var location_panel: MarginContainer = %LocationPanel
 
+@onready var tab_container: TabContainer = $SpliteContainer/TabBar
 
 
 func _init() -> void:
@@ -117,3 +118,10 @@ func _on_location_changed(location: Variant):
 		return
 
 	search_drop = null
+
+
+func _on_close_pressed() -> void:
+	if tab_container.current_tab <= 0:
+		self.close()
+	else:
+		tab_container.current_tab = 0

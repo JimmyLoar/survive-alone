@@ -204,12 +204,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+current_tab = 0
 tabs_visible = false
 deselect_enabled = true
 
 [node name="Inventory" parent="UI/MainForm/ScreensContainer/MainScreens/ScreensContainer" instance=ExtResource("18_i1yfc")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 

@@ -21,6 +21,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 240
+dragging_enabled = false
 
 [node name="InventoryPageDisplay" parent="SpliteContainer" instance=ExtResource("1_0e3ya")]
 layout_mode = 2
@@ -36,7 +37,7 @@ tabs_visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="CloseButton" type="TextureButton" parent="."]
+[node name="Close" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -44,5 +45,7 @@ size_flags_vertical = 0
 texture_normal = ExtResource("4_f8cos")
 ignore_texture_size = true
 stretch_mode = 5
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 
 [editable path="SpliteContainer/InventoryPageDisplay"]

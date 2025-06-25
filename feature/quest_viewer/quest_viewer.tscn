@@ -21,6 +21,7 @@ border_color = Color(0.957171, 0.558125, 1.15514e-06, 1)
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 layout_mode = 2
 split_offset = -245
+dragging_enabled = false
 
 [node name="GuestList" parent="HSplitContainer" instance=ExtResource("3_7bl67")]
 unique_name_in_owner = true

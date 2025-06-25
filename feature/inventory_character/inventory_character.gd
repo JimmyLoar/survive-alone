@@ -10,6 +10,9 @@ extends Inventory
 @onready var world_object_repository: WorldObjectRepository = Locator.get_service(WorldObjectRepository)
 @onready var world_objects_layer_state: WorldObjectsLayerState = Locator.get_service(WorldObjectsLayerState)
 
+@onready var tab_container: TabContainer = $SpliteContainer/TabContainer
+
+
 
 func _init() -> void:
 	super("InventoryCharacter")
@@ -90,4 +93,10 @@ func _on_confirmed_drop_item(item: ItemEntity, count: int):
 	else:
 		# request rerender location inventory
 		inventory_location.inventory_display.update()
-	
+
+
+func _on_close_pressed() -> void:
+	if tab_container.current_tab <= 0:
+		self.close()
+	else:
+		tab_container.current_tab = 0

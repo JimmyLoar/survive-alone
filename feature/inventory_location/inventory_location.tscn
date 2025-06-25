@@ -14,31 +14,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_g7boo")
 inventory_display = NodePath("SpliteContainer/InventoryPageDisplay")
-item_information = NodePath("SpliteContainer/TabBar/ItemInformationPanel")
+item_information = NodePath("SpliteContainer/TabContainer/ItemInformationPanel")
 
 [node name="SpliteContainer" type="HSplitContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 240
+dragging_enabled = false
 drag_area_highlight_in_editor = true
 
 [node name="InventoryPageDisplay" parent="SpliteContainer" instance=ExtResource("2_o8nlk")]
 layout_mode = 2
 _page_size = Vector2i(5, 3)
 
-[node name="TabBar" type="TabContainer" parent="SpliteContainer"]
+[node name="TabContainer" type="TabContainer" parent="SpliteContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 current_tab = 1
 tabs_visible = false
 
-[node name="ItemInformationPanel" parent="SpliteContainer/TabBar" instance=ExtResource("3_sakew")]
+[node name="ItemInformationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("3_sakew")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="LocationPanel" parent="SpliteContainer/TabBar" instance=ExtResource("3_h642t")]
+[node name="LocationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("3_h642t")]
 unique_name_in_owner = true
 layout_mode = 2
 metadata/_tab_index = 1
@@ -51,3 +52,5 @@ size_flags_vertical = 0
 texture_normal = ExtResource("5_u4v75")
 ignore_texture_size = true
 stretch_mode = 5
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
