@@ -1,30 +1,51 @@
 [gd_scene load_steps=5 format=3 uid="uid://bimu1uujo2qmv"]
 
-[ext_resource type="PackedScene" uid="uid://wq8eaeo5eftd" path="res://feature/ui_content_menu/content_containers/content_container_root.tscn" id="1_jmd1g"]
-[ext_resource type="Script" uid="uid://cmrfh0g4hccdr" path="res://feature/inventory_character/inventory_character.gd" id="2_ehgjh"]
-[ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory.tscn" id="3_dpr2j"]
+[ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory_page_display.tscn" id="1_0e3ya"]
+[ext_resource type="Script" uid="uid://cmrfh0g4hccdr" path="res://feature/inventory_character/inventory_character.gd" id="1_kyeoh"]
 [ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="4_f0gnu"]
+[ext_resource type="Texture2D" uid="uid://ci4slq0smcgv2" path="res://assets/kenney_ui-pack/Vector/Blue/check_square_color_cross.svg" id="4_f8cos"]
 
-[node name="CC-Inventory" instance=ExtResource("1_jmd1g")]
-script = ExtResource("2_ehgjh")
+[node name="Inventory" type="PanelContainer" node_paths=PackedStringArray("up_buttons", "inventory_display", "item_information")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kyeoh")
+up_buttons = NodePath("SpliteContainer/InventoryPageDisplay/VBoxContainer/UpButtons")
+inventory_display = NodePath("SpliteContainer/InventoryPageDisplay")
+item_information = NodePath("SpliteContainer/TabContainer/ItemInformationPanel")
 
-[node name="_ReferenceRect" parent="." index="0"]
-mouse_filter = 1
-
-[node name="Inventory" parent="_MarginContainer/HBoxContainer/MainContainer" index="0" instance=ExtResource("3_dpr2j")]
-unique_name_in_owner = true
+[node name="SpliteContainer" type="HSplitContainer" parent="."]
 layout_mode = 2
-mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 240
+dragging_enabled = false
 
-[node name="SubContainer" parent="_MarginContainer/HBoxContainer" index="1"]
-custom_minimum_size = Vector2(380, 0)
-mouse_filter = 0
+[node name="InventoryPageDisplay" parent="SpliteContainer" instance=ExtResource("1_0e3ya")]
+layout_mode = 2
+_page_size = Vector2i(6, 5)
+
+[node name="TabContainer" type="TabContainer" parent="SpliteContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 current_tab = 0
+tabs_visible = false
 
-[node name="ItemInformationPanel" parent="_MarginContainer/HBoxContainer/SubContainer" index="1" instance=ExtResource("4_f0gnu")]
-unique_name_in_owner = true
+[node name="ItemInformationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("4_f0gnu")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="CloseButton" parent="_MarginContainer" index="1"]
-mouse_filter = 1
+[node name="Close" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("4_f8cos")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+
+[editable path="SpliteContainer/InventoryPageDisplay"]

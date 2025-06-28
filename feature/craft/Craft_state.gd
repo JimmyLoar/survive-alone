@@ -1,7 +1,7 @@
 class_name CraftState
 
 var _lambda: Callable
-var _inventory_state: InventoryCharacterState
+var _inventory_state: InventoryCharacter
 var _time_state: GameTimeState
 
 
@@ -22,11 +22,10 @@ func _init() -> void:
 	add_recipe(load("res://resources/collection/recipes/tools/tool_homemade_axe.tres"))
 	add_recipe(load("res://resources/collection/recipes/new_resource.tres"))
 
+
 func _init_dependencies():
-	_inventory_state = Locator.get_service(InventoryCharacterState)
+	_inventory_state = Locator.get_service(InventoryCharacter)
 	_time_state = Locator.get_service(GameTimeState)
-	_inventory_state.item_added.connect(_on_inventory_change)
-	_inventory_state.item_removed.connect(_on_inventory_change)
 
 
 func craft_from_recipe(recipe: BasicRecipe):

@@ -1,14 +1,14 @@
 class_name SummedInventory
  
 
-var _inventories: Array[InventoryState] = []
+var _inventories: Array[Inventory] = []
 
 
 func _init():
 	Questify.condition_query_requested.connect(_on_quest_condition_query_requested)
 
 
-func add_inventory(inv: InventoryState) -> void:
+func add_inventory(inv: Inventory) -> void:
 	if _inventories.has(inv):
 		return
 	_inventories.append(inv)
@@ -21,7 +21,7 @@ func has_item(name: String, value: int) -> bool:
 func remove_item(name: String, value: int) -> int:
 	assert(not _inventories.is_empty(), "inventories is empty")
 	var _tmp = value
-	for inv in _inventories:
+	for inv: Inventory in _inventories:
 		if value <= 0: 
 			break
 		value = inv.remove_item(name, value)

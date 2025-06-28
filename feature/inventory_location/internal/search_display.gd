@@ -3,7 +3,7 @@ extends MarginContainer
 signal finished
 
 @onready var grid_container: GridContainer = $GridContainer
-@onready var _inventory_location_state: InventoryLocationState = Locator.get_service(InventoryLocationState)
+@onready var _inventory_location: InventoryLocation = Locator.get_service(InventoryLocation)
 @onready var _inventory_repository: InventoryRepository = Locator.get_service(InventoryRepository)
 
 
@@ -39,10 +39,10 @@ func _on_finished_search(_child_index: int, drop: Array[Dictionary]):
 	
 	for i in drop.size():
 		var loot = drop[i]
-		_inventory_location_state.add_item(ResourceCollector.uid(ResourceCollector.Items, loot.data), loot.amount)
+		_inventory_location.add_item(ResourceCollector.uid(ResourceCollector.Items, loot.data), loot.amount)
 	
 	if drop.size() > 0:
-		_inventory_repository.insert(_inventory_location_state.inventory_entity)
+		_inventory_repository.insert(_inventory_location.get_entity())
 	
 	Questify.update_quests()
 	emit_signal("finished")

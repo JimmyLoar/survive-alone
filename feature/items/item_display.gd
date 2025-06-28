@@ -12,13 +12,15 @@ func _init() -> void:
 
 
 func update_data(data: ItemResource):
+	if not data:
+		texture_rect.texture = null
+		return 
+	
 	rarety_rect.modulate = data.get_color()
 	texture_rect.texture = data.texture
 
 
-func update_amount(amount: int, storage: StorageComponent = null):
-	if storage:
-		amount = storage.get_amount()
+func update_amount(amount: int):
 	label_amount.visible = amount > 0
 	label_amount.text = "%d" % amount
 	

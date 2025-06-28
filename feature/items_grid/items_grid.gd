@@ -1,15 +1,10 @@
 class_name ItemsGrid
 extends GridContainer
 
-signal item_pressed(item_index: int)
-signal duble_pressed(item_index:int)
+signal item_selected(index: int)
 
-@export_enum("Display Only", "Interactive") var display_mode := 1
-@export var _init_size: Vector2i = Vector2i(6, 4): 
-	set(value): 
-		_init_size = value.max(Vector2i(1, 1))
 
-var button_group := ButtonGroup.new()
+@export var button_group := ButtonGroup.new()
 var timer: SceneTreeTimer
 
 @onready var logger = Log.get_global_logger().with('ItemGrid')
@@ -18,48 +13,25 @@ var timer: SceneTreeTimer
 func _init() -> void:
 	set("theme_override_constants/h_separation", 0)
 	set("theme_override_constants/v_separation", 0)
-	reset_items_slots(_init_size)
+	button_group.allow_unpress = true
 
 
-func reset_items_slots(_size: Vector2i):
-	#button_group.allow_unpress = true
-	_clear_items()
-	columns = _size.x
-	for i in _size.x * _size.y:
+func initialize_items(_columns: int, raws: int):
+	columns = _columns
+	for i in columns * raws:
 		var new_item := ItemContainer.new()
-		new_item.pressed.connect(_on_item_pressed.bind(i))
+		#new_item.pressed.connect(_on_item_pressed.bind(i))
 		new_item.button_group = button_group
 		new_item.toggle_mode = true
 		new_item.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		new_item.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		add_child(new_item)
+		new_item.pressed.connect.call_deferred(item_selected.emit.bind(new_item.get_index()))
 
 
-func update_items_list(list: Array[ItemEntity]):
-	list.resize(get_child_count())
-	for i in list.size():
-		var child = get_child(i) as ItemContainer
-		child.update(list[i])
-		child.disabled = display_mode == 0
-
-
-func _clear_items():
-	for child in get_children():
-		remove_child(child)
-		child.queue_free()
-
-
-func _on_item_pressed(item_index: int):
-	logger.debug("Pressed %d items." % item_index)
-	item_pressed.emit(item_index)
-	
-	if timer and timer.time_left > 0:
-		_duble_click(item_index)
-		return
-	
-	timer = get_tree().create_timer(0.3)
-
-
-func _duble_click(item_index: int):
-	logger.debug("Duble pressed on %d" % item_index)
-	duble_pressed.emit(item_index)
+func display_items(items: Array[ItemEntity]):
+	var i = 0
+	for item: ItemEntity in items:
+		var container = get_child(i) as ItemContainer
+		container.update(items[i])
+		i += 1

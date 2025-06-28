@@ -4,12 +4,26 @@ var _state: CraftState
 @onready var game_time: GameTimeState = Locator.get_service(GameTimeState)
 
 var ordered_views: Array[Node] = []
-@onready var _node_plase = $_MarginContainer/HBoxContainer/MainContainer/VBoxContainer/ScrollContainer/VBoxContainer
 
-@onready var _serch_node = $_MarginContainer/HBoxContainer/SubContainer/Control/VBoxContainer/MarginContainer/LineEdit
+@export var _node_plase: VBoxContainer
+@export var _serch_node: LineEdit
+
 var known_recipes_views = []
 
 var category_for_view = {}
+
+
+func open():
+	if self.visible:
+		close()
+		return
+	
+	self.show()
+
+
+func close():
+	self.hide()
+
 
 func _enter_tree() -> void:
 	_state = Locator.initialize_service(CraftState)

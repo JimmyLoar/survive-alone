@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=36 format=3 uid="uid://cfhrwmys6lnl6"]
+[gd_resource type="Theme" load_steps=37 format=3 uid="uid://cfhrwmys6lnl6"]
 
 [ext_resource type="FontFile" uid="uid://bku2yjwtgos51" path="res://assets/themes/fonts/yaginya/Yaginya.otf" id="1_fm4aj"]
 [ext_resource type="Texture2D" uid="uid://cnq8cy4y8fsvh" path="res://assets/kenney_ui-pack/Vector/Blue/button_rectangle_gradient.svg" id="1_xsxva"]
@@ -216,10 +216,21 @@ texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
-modulate_color = Color(0.769432, 0.769432, 0.769432, 1)
+modulate_color = Color(0.251, 0.251, 0.251, 0.7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fjh1m"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+texture = ExtResource("1_xsxva")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
 
 [resource]
-default_font_size = 24
+default_font_size = 16
 Button/colors/font_color = Color(0.893633, 0.959598, 0.998841, 1)
 Button/colors/font_disabled_color = Color(0.14902, 0.678431, 0.909804, 1)
 Button/colors/font_focus_color = Color(0.843137, 0.941176, 1, 1)
@@ -237,7 +248,7 @@ Button/constants/align_to_largest_stylebox = 0
 Button/constants/h_separation = 6
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 2
-Button/font_sizes/font_size = 30
+Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("1_fm4aj")
 Button/styles/disabled = SubResource("StyleBoxTexture_ckhtf")
 Button/styles/focus = SubResource("StyleBoxEmpty_2ejhf")
@@ -297,4 +308,4 @@ CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_snemq")
 CheckButton/styles/normal = SubResource("StyleBoxEmpty_snemq")
 CheckButton/styles/pressed = SubResource("StyleBoxEmpty_snemq")
 Panel/styles/panel = SubResource("StyleBoxTexture_8jk21")
-PanelContainer/styles/panel = SubResource("StyleBoxTexture_8jk21")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_fjh1m")

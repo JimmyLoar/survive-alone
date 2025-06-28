@@ -1,11 +1,5 @@
-class_name ItemInfoPanel
+class_name ItemInformation
 extends MarginContainer
-
-
-#signal remove_items(item_list: Array)
-#signal add_items(item_list: Array)
-#signal transfered_items(item: ItemEntity, count: int)
-
 
 
 @onready var name_label: Label = %NameLabel
@@ -16,8 +10,10 @@ extends MarginContainer
 
 var _last_item: ItemEntity
 
+
 func _ready() -> void:
 	update()
+
 
 func set_bottom_actions(actions: Array):
 	for old_action in bottom_actions.get_children():
@@ -29,6 +25,7 @@ func set_bottom_actions(actions: Array):
 		button.connect("pressed", Callable(func(): action.on_pressed.callv([_last_item])))
 		button.can_view = action.can_view
 		bottom_actions.add_child(button)
+
 
 func update(item: ItemEntity = null):
 	if not item or _last_item == item:
@@ -50,7 +47,6 @@ func update(item: ItemEntity = null):
 
 
 func _update_in_null():
-	get_parent().current_tab = 0
 	_last_item = null
 	name_label.hide()
 	interactive_container.hide()
@@ -62,17 +58,16 @@ func _on_changed_value(value, storage: StorageComponent):
 		_update_in_null()
 
 
-func _update_display(item: ItemEntity):
-	var data: ItemResource = item.get_resource()
-	name_label.text = "%s" % data.visible_name
+func _update_display(entity: ItemEntity):
+	var data: ItemResource = entity.get_resource()
+	name_label.text = "%s" % [data.visible_name]
 	text_label.clear()
-	text_label.append_text("%s" % data.discription)
-	get_parent().current_tab = get_index()
+	text_label.append_text("%s: %d" % ["Количество", entity.get_storage().get_amount()])
 	name_label.show()
 	bottom_actions.show()
 
 	for action_button: ActionButton in bottom_actions.get_children():
-		if action_button.can_view.call(item):
+		if action_button.can_view.call(entity):
 			action_button.show()
 		else:
 			action_button.hide()

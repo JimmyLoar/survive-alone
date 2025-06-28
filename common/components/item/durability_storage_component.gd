@@ -35,6 +35,7 @@ func append(value: Variant):
 	
 	_need_sorted = true
 	value.map(func(elm): 
+		elm = abs(elm)
 		_total_durability += elm
 		durabilities.append(clamp(elm, 1, max_durability))
 		return 0
@@ -49,6 +50,7 @@ func has(value: int):
 
 
 func remove(quantity: int) -> Array[int]:
+	quantity = abs(quantity)
 	var removed := durabilities.slice(0, quantity) as Array[int]
 	durabilities = durabilities.slice(quantity)
 	last_changed_quantity = -quantity
@@ -59,7 +61,7 @@ func remove(quantity: int) -> Array[int]:
 
 
 func append_durability(value: int, base: float = 0.5, offset: float = 0.25) -> Array[int]:
-	var appended = _generate_array(value, base, offset, max_durability) as Array[int]
+	var appended = _generate_array(abs(value), base, offset, max_durability) as Array[int]
 	durabilities.append_array(appended)
 	durabilities.sort()
 	last_changed_quantity = appended.size()

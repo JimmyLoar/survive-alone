@@ -51,6 +51,11 @@ func get_resource_uid() -> String: return _resource_uid
 func is_empty() -> bool:
 	return get_storage().get_amount() <= 0
 
+func deep_clone():
+	return ItemEntity.new(
+		_resource_uid,
+		get_storage().get_amount()
+	)
 
 func serialize() -> PackedByteArray:
 	var dict = {}

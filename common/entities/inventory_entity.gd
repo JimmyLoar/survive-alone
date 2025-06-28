@@ -12,6 +12,13 @@ func _init(
 	id = _id
 	belongs_at = _belongs_at
 	items = _items
+	
+func deep_clone():
+	return InventoryEntity.new(
+		id,
+		belongs_at.deep_clone(),
+		Array(items.map(func(item): return item.deep_clone()), TYPE_OBJECT, "RefCounted", ItemEntity)
+	)
 
 
 class BelongsAtObject:
@@ -29,3 +36,9 @@ class BelongsAtObject:
 
 	func is_equal(other: BelongsAtObject):
 		return id == other.id and type == other.type
+		
+	func deep_clone():
+		return BelongsAtObject.new(
+			id, 
+			type
+		)

@@ -140,6 +140,6 @@ metadata/_custom_type_script = "uid://bk3rwk2fcwbwa"
 
 [connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer/TimeSubtractButton" to="." method="_on_time_subtract_button_pressed"]
 [connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/VBoxContainer/TimeAddButton" to="." method="_on_time_add_button_pressed"]
-[connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer/ButtonCancelRest" to="." method="_on_button_cancel_rest_pressed"]
 [connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer/ButtonCancelRest" to="." method="_on_button_accept_cancel_pressed"]
+[connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer/ButtonCancelRest" to="." method="_on_button_cancel_rest_pressed"]
 [connection signal="pressed" from="MarginContainer/WindowPanelBG/VBoxContainer/HBoxContainer/ButtonAcceptRest" to="." method="_on_button_accept_rest_pressed"]

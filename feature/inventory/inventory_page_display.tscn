@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://27va2jwjyxqm"]
+
+[ext_resource type="Script" uid="uid://dlef7gju0tg1x" path="res://feature/inventory/inventory_page_display.gd" id="1_nu0uk"]
+[ext_resource type="Script" uid="uid://b265e1k6i6nek" path="res://game/ui-elements/buttons/h_side_buttons.gd" id="2_esmba"]
+[ext_resource type="Script" uid="uid://bt6x5481dd855" path="res://feature/items_grid/items_grid.gd" id="2_nu0uk"]
+[ext_resource type="PackedScene" uid="uid://cka4psk0x8fb2" path="res://common/ui/element/page_controller.tscn" id="3_esmba"]
+
+[node name="InventoryPageDisplay" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+script = ExtResource("1_nu0uk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpButtons" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+script = ExtResource("2_esmba")
+button_size = Vector2i(90, 20)
+text_size = 20
+metadata/_custom_type_script = "uid://b265e1k6i6nek"
+
+[node name="ItemsGrid" type="GridContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+script = ExtResource("2_nu0uk")
+
+[node name="PageController" parent="VBoxContainer" instance=ExtResource("3_esmba")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2

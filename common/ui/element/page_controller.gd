@@ -3,48 +3,51 @@ extends HBoxContainer
 
 signal changed_page(new_page: int)
 
-@export_range(1, pow(2, 16)) var page_size: int = 1 : set = set_page_size
-@export var currect_page: int = 0: set = set_page
-		
-@export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_READ_ONLY + PROPERTY_USAGE_EDITOR
-	) var max_page: int = 0
-@export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_READ_ONLY + PROPERTY_USAGE_EDITOR
-	) var inventory_size: int = 1: set = set_inventory_size
+var _entity: InventoryEntity
+var _max_page: int = 1
 
-@onready var currect_page_label: Label = $CurrectPageLabel
-
-func _ready() -> void:
-	set_page(max_page)
+@onready var _page_label: Label = $PageLabel
 
 
-func set_page_size(value: int):
-	page_size = max(value, 1)
+var page_size = 1:
+	set(value):
+		page_size = max(value, 1)
+		update_max_page()
+
+var page: int = 1:
+	set(value):
+		page = value
+		_page_display()
+		changed_page.emit(page)
+
+
+func set_entity(_new: InventoryEntity):
+	_entity = _new
 	update_max_page()
-
-
-func set_inventory_size(value):
-	inventory_size = max(value, 1)
-	update_max_page()
+	page_reset()
 
 
 func update_max_page():
-	max_page = ceili(float(inventory_size) / float(page_size))
+	if not _entity:
+		_max_page = page_size + 1
+		return
+	
+	_max_page = ceili(_entity.items.size() / float(page_size))
 
 
-func set_page(new_page: int):
-	currect_page = clampi(new_page, 0, max_page)
-	changed_page.emit(currect_page)
-	if currect_page_label:
-		currect_page_label.set_text("%d" % [currect_page + 1])
+func page_up():
+	page = min(page + 1, _max_page)
 
 
-func _on_back_page_button_pressed() -> void:
-	var new_page = currect_page - 1
-	$BackPageButton.disabled = new_page <= 0
-	set_page(new_page)
+func page_down():
+	page = max(page - 1, 1) 
 
 
-func _on_next_page_button_pressed() -> void:
-	var new_page = currect_page + 1
-	$NextPageButton.disabled = currect_page >= max_page
-	set_page(new_page)
+func page_reset():
+	page = 1 
+
+
+func _page_display():
+	visible = _max_page > 1
+	_page_label.text = "%s" % page
+	
