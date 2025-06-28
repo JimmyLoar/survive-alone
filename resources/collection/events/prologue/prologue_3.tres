@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EventResource" load_steps=40 format=3 uid="uid://ce3i74dxbybxq"]
 
 [ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_ul05m"]
-[ext_resource type="Script" uid="uid://dxqrq5defl3yp" path="res://!tools/event_editer/source/main_texture.gd" id="2_063qv"]
+[ext_resource type="Script" path="res://!tools/event_editer/source/main_texture.gd" id="2_063qv"]
 [ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="2_tokn6"]
 [ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end.gd" id="4_adrsj"]
-[ext_resource type="Script" uid="uid://cscoxuk8tcm8u" path="res://!tools/event_editer/source/text.gd" id="4_l6r8d"]
+[ext_resource type="Script" path="res://!tools/event_editer/source/text.gd" id="4_l6r8d"]
 [ext_resource type="Resource" uid="uid://lo5lkul44sou" path="res://resources/collection/dialoge_character/narrator.tres" id="5_clw6i"]
 [ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="6_kebq5"]
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="7_gh2h1"]
@@ -18,7 +18,7 @@ name_key = "prologue"
 id = "7n6c8WqCRA"
 optional = false
 graph_editor_position = Vector2(-1100, -120)
-graph_editor_size = Vector2(240, 280)
+graph_editor_size = Vector2(240, 283)
 
 [sub_resource type="Resource" id="Resource_jnq20"]
 script = ExtResource("2_063qv")
@@ -26,7 +26,7 @@ texture = "res://assets/sprite/illustrations/end_of_supply.png"
 id = "t1jS6aZVml"
 optional = false
 graph_editor_position = Vector2(-820, -120)
-graph_editor_size = Vector2(241, 323)
+graph_editor_size = Vector2(257, 347)
 
 [sub_resource type="Resource" id="Resource_hu837"]
 script = ExtResource("1_ul05m")
@@ -40,7 +40,7 @@ text = [ExtResource("5_clw6i"), "4"]
 id = "9uqZo6fVOX"
 optional = false
 graph_editor_position = Vector2(-540, -120)
-graph_editor_size = Vector2(240, 282)
+graph_editor_size = Vector2(240, 293)
 
 [sub_resource type="Resource" id="Resource_03t4f"]
 script = ExtResource("1_ul05m")
@@ -54,7 +54,7 @@ text = [ExtResource("5_clw6i"), "5"]
 id = "X83Z-PJjIT"
 optional = false
 graph_editor_position = Vector2(-260, -120)
-graph_editor_size = Vector2(240, 282)
+graph_editor_size = Vector2(240, 293)
 
 [sub_resource type="Resource" id="Resource_cex04"]
 script = ExtResource("1_ul05m")
@@ -68,7 +68,7 @@ text = [ExtResource("5_clw6i"), "6"]
 id = "-_c2OWIaa2"
 optional = false
 graph_editor_position = Vector2(60, -120)
-graph_editor_size = Vector2(240, 282)
+graph_editor_size = Vector2(240, 293)
 
 [sub_resource type="Resource" id="Resource_dhxef"]
 script = ExtResource("1_ul05m")
@@ -98,7 +98,7 @@ action = SubResource("Resource_u56gc")
 id = "h2z4LpCxKK"
 optional = false
 graph_editor_position = Vector2(-260, 200)
-graph_editor_size = Vector2(240, 308)
+graph_editor_size = Vector2(240, 340)
 
 [sub_resource type="Resource" id="Resource_fayvo"]
 script = ExtResource("1_ul05m")
@@ -121,7 +121,7 @@ action = SubResource("Resource_0h2l8")
 id = "NsahlUWG4i"
 optional = false
 graph_editor_position = Vector2(1000, 260)
-graph_editor_size = Vector2(240, 308)
+graph_editor_size = Vector2(240, 340)
 
 [sub_resource type="Resource" id="Resource_ny5en"]
 script = ExtResource("4_adrsj")
@@ -130,7 +130,7 @@ next_name = ""
 id = "qOQpQzdNfM"
 optional = false
 graph_editor_position = Vector2(1300, -120)
-graph_editor_size = Vector2(200, 129)
+graph_editor_size = Vector2(200, 165)
 
 [sub_resource type="Resource" id="Resource_nnwck"]
 script = ExtResource("1_ul05m")
@@ -144,7 +144,7 @@ text = [ExtResource("5_clw6i"), "8"]
 id = "RcKqJy-VIs"
 optional = false
 graph_editor_position = Vector2(1000, -120)
-graph_editor_size = Vector2(240, 282)
+graph_editor_size = Vector2(240, 293)
 
 [sub_resource type="Resource" id="Resource_erwar"]
 script = ExtResource("1_ul05m")
@@ -158,7 +158,7 @@ texture = "res://assets/sprite/illustrations/end_of_supply (filter).png"
 id = "bwmAI86dyZ"
 optional = false
 graph_editor_position = Vector2(340, -120)
-graph_editor_size = Vector2(292, 374)
+graph_editor_size = Vector2(308, 398)
 
 [sub_resource type="Resource" id="Resource_2hex1"]
 script = ExtResource("1_ul05m")
@@ -172,7 +172,7 @@ text = [ExtResource("5_clw6i"), "7"]
 id = "9CyVI1AI8Q"
 optional = false
 graph_editor_position = Vector2(680, -120)
-graph_editor_size = Vector2(240, 282)
+graph_editor_size = Vector2(240, 293)
 
 [sub_resource type="Resource" id="Resource_0a8op"]
 script = ExtResource("1_ul05m")
@@ -191,7 +191,7 @@ script = ExtResource("7_gh2h1")
 _method_name = "inventory_add_new_items"
 "arg_0: item_name" = &"food_fresh_meat"
 "arg_1: amount" = 4
-"arg_2: _inventory" = &"InventoryCharacterState"
+"arg_2: _inventory" = &"InventoryCharacter"
 metadata/_custom_type_script = "uid://xbfp6rfvxe47"
 
 [sub_resource type="Resource" id="Resource_bl6l7"]
@@ -209,7 +209,7 @@ action = SubResource("Resource_bl6l7")
 id = "ejBJt_UiCi"
 optional = false
 graph_editor_position = Vector2(700, 260)
-graph_editor_size = Vector2(240, 308)
+graph_editor_size = Vector2(240, 340)
 
 [sub_resource type="Resource" id="Resource_53prb"]
 script = ExtResource("1_ul05m")

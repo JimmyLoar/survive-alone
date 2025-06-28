@@ -63,7 +63,7 @@ func _disconnect_all_items(entity: InventoryEntity):
 
 
 func get_entity() -> InventoryEntity:
-	var new_entity := _entity.duplicate() as InventoryEntity
+	var new_entity := _entity.deep_clone() as InventoryEntity
 	new_entity.items.make_read_only()
 	new_entity.belongs_at = _entity.belongs_at
 	return new_entity
@@ -162,7 +162,7 @@ func get_inventory_size() -> int:
 func get_items() -> Array[ItemEntity]: 
 	if not _entity: 
 		return []
-	return _entity.items.duplicate()
+	return _entity.items.map(func(item): return item.deep_clone()) as Array[ItemEntity]
 
 
 func clear_empty(entity: InventoryEntity = _entity):

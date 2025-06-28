@@ -82,23 +82,31 @@ func on_drop_item(item: ItemEntity):
 
 func _on_confirmed_drop_item(item: ItemEntity, count: int):
 	var removed_items = item.get_storage().remove(count)
-	inventory_location.add_item(item.get_resource_uid(), removed_items)
+
 	
 	# create camp location
 	var current_location = character_location_state.current_location
 	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
 		var world_object = WorldObjectEntity.new()
-		world_object.resource = load("res://resources/collection/world_object/location/camp.tres") as Resource
-		var boundary_rect = world_object.resource.collision_shape.get_rect()
+		world_object.packed_scene = load("res://common/world_objects/instances/camp_location.tscn")
+		var boundary_rect = world_object.get_collision_shape_in_global_coords().get_rect()
 		boundary_rect.position += character_state.position
 		world_object.boundary_rect = boundary_rect
 		
 		var world_object_id = world_object_repository.create(world_object, false)
 		
-		inventory_location.inventory_entity.belongs_at = InventoryEntity.BelongsAtObject.new(
-			world_object_id,
-			InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION
+		var camp_location_entity = InventoryEntity.new(
+			-1,
+			InventoryEntity.BelongsAtObject.new(
+				world_object_id, 
+				InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION
+			),
+			[ItemEntity.new(item.get_resource_uid(), removed_items)]
 		)
+
+		inventory_location.change_entity(camp_location_entity)
+	else:
+		inventory_location.add_item(item.get_resource_uid(), removed_items)
 	
 	# save inventories
 	_inventory_repository.insert(_entity)
@@ -106,7 +114,7 @@ func _on_confirmed_drop_item(item: ItemEntity, count: int):
 	
 	if is_instance_of(current_location, CharacterLocationState.BiomesLocation):
 		world_objects_layer_state.request_rerender()
-		character_location_state.current_location = world_object_repository.get_by_id(inventory_location.inventory_entity.belongs_at.id)
+		character_location_state.current_location = world_object_repository.get_by_id(inventory_location.get_entity().belongs_at.id)
 	else:
 		# request rerender location inventory
 		inventory_location.inventory_display.update()

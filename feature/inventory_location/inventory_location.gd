@@ -72,20 +72,28 @@ func on_pick_up_item(item: ItemEntity):
 	)
 
 func _on_confirmed_pick_up_item(entity: ItemEntity, count: int):
-	var removed_items = entity.get_storage().remove(count)
-	Locator.get_service(InventoryCharacter).add_item(entity.get_resource_uid(), removed_items)
+	var inventory_character = Locator.get_service(InventoryCharacter)
+	var available_count = find_and_get_amount(entity.get_resource().code_name)
+	var count_to_remove = count if available_count >= count else available_count;
+
+	remove_item(entity.get_resource().code_name, count_to_remove)
+
+	inventory_character.add_item(entity.get_resource_uid(), count_to_remove)
+	_inventory_repository.insert(inventory_character.get_entity())
 
 	var belong_at = _entity.belongs_at
 	if is_empty() and belong_at.type == InventoryEntity.BelongsAtObject.Type.WORLD_LOCATION:
 		var world_object = world_object_repository.get_by_id(belong_at.id)
 
-		if world_object and world_object.resource.resource_path == 'res://resources/collection/world_object/location/camp.tres':
+		if world_object and world_object.packed_scene.resource_path == 'res://common/world_objects/instances/camp_location.tscn':
 			world_object_repository.delete(belong_at.id)
 			inventory_repository.delete(_entity.id)
 
 			world_objects_layer_state.request_rerender()
 			change_entity(InventoryEntity.new())
 			character_location_state.request_reload()
+	else:
+		inventory_repository.insert(_entity)
 
 
 func _on_location_changed(location: Variant):
