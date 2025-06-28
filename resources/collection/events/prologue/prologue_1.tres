@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventResource" load_steps=22 format=3 uid="uid://3e3vcbgoiwi"]
+[gd_resource type="Resource" script_class="EventResource" load_steps=20 format=3 uid="uid://3e3vcbgoiwi"]
 
 [ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_b3a27"]
 [ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="2_1f5q7"]
@@ -6,7 +6,6 @@
 [ext_resource type="Resource" uid="uid://k0vu08dr0tmb" path="res://resources/collection/dialoge_character/player.tres" id="3_fnr1b"]
 [ext_resource type="Script" uid="uid://b1ks3ffqt462y" path="res://feature/game_event/source/event_resource.gd" id="3_hhevl"]
 [ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="3_rmusu"]
-[ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end.gd" id="4_fnr1b"]
 [ext_resource type="Script" path="res://!tools/event_editer/source/main_texture.gd" id="6_16uau"]
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="7_w0qly"]
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="8_icki6"]
@@ -20,19 +19,9 @@ optional = false
 graph_editor_position = Vector2(540, -180)
 graph_editor_size = Vector2(240, 282)
 
-[sub_resource type="Resource" id="Resource_85ubh"]
-script = ExtResource("4_fnr1b")
-next_type = 1
-next_name = "prologue_0"
-id = "o76ORauTm7"
-optional = false
-graph_editor_position = Vector2(840, -180)
-graph_editor_size = Vector2(231, 161)
-
 [sub_resource type="Resource" id="Resource_mx52a"]
 script = ExtResource("1_b3a27")
 from = SubResource("Resource_tvmbm")
-to = SubResource("Resource_85ubh")
 edge_type = 0
 
 [sub_resource type="Resource" id="Resource_erwon"]
@@ -83,11 +72,10 @@ graph_editor_size = Vector2(290, 308)
 [sub_resource type="Resource" id="Resource_umv73"]
 script = ExtResource("1_b3a27")
 from = SubResource("Resource_tasog")
-to = SubResource("Resource_85ubh")
 edge_type = 1
 
 [resource]
 script = ExtResource("3_hhevl")
-nodes = Array[ExtResource("2_1f5q7")]([SubResource("Resource_erwon"), SubResource("Resource_c7k4v"), SubResource("Resource_tvmbm"), SubResource("Resource_tasog"), SubResource("Resource_85ubh")])
+nodes = Array[ExtResource("2_1f5q7")]([])
 edges = Array[ExtResource("1_b3a27")]([SubResource("Resource_mx52a"), SubResource("Resource_7yd4e"), SubResource("Resource_ygdan"), SubResource("Resource_umv73")])
 groups = Array[int]([])
