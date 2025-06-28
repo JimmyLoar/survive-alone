@@ -41,3 +41,16 @@ func open_battle_screen(enemies: String, weapons: Array):
 	screen.set_enemies(enemies)
 	screen.set_weapons(weapons)
 	current_screen = screen
+
+
+func open_gameover():
+	var screen: GameOver
+	if not _cache.has("gameover"):
+		var packed: PackedScene = load("uid://dghiue0txwl6d")
+		screen = packed.instantiate()
+		_cache["gameover"] = screen
+	
+	else:
+		screen = _cache["gameover"]
+	
+	current_screen = screen
