@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://dghiue0txwl6d"]
+
+[ext_resource type="Texture2D" uid="uid://4lcwxgvtbmon" path="res://assets/sprite/placeholders/Item17.png" id="1_2ias0"]
+[ext_resource type="Theme" uid="uid://cfhrwmys6lnl6" path="res://assets/themes/main.tres" id="1_htuve"]
+[ext_resource type="Script" uid="uid://b4pqithpv57w2" path="res://game/screens/gameover/gameover.gd" id="2_htuve"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kclf8"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_2gb7y"]
+font_size = 30
+
+[node name="Gameover" type="MarginContainer" node_paths=PackedStringArray("_title_label", "_reasen_label", "_context_label", "_hints_label", "_continue_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_htuve")
+script = ExtResource("2_htuve")
+_title_label = NodePath("TitleContainer/LabelTitle")
+_reasen_label = NodePath("TitleContainer/LableReasonDeath")
+_context_label = NodePath("ContextContainer/ContextLabel")
+_hints_label = NodePath("ContextContainer/LabelHints")
+_continue_button = NodePath("ContextContainer/ButtonContinue")
+
+[node name="PanelBG" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelBG"]
+show_behind_parent = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2ias0")
+
+[node name="TitleContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="TitleContainer"]
+layout_mode = 2
+
+[node name="LabelTitle" type="Label" parent="TitleContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Поражение"
+label_settings = SubResource("LabelSettings_kclf8")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LableReasonDeath" type="Label" parent="TitleContainer"]
+layout_mode = 2
+text = "Умер от кринжа"
+label_settings = SubResource("LabelSettings_2gb7y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContextContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(460, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 2
+
+[node name="ContextLabel" type="RichTextLabel" parent="ContextContainer"]
+layout_mode = 2
+text = "Я умер, но воскрес"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="ContextContainer"]
+layout_mode = 2
+
+[node name="ButtonContinue" type="Button" parent="ContextContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "CONTINUE"
+
+[node name="LabelHints" type="RichTextLabel" parent="ContextContainer"]
+custom_minimum_size = Vector2(0, 69)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][color=yellow]Попробуй не быть нубом!"
+fit_content = true
+
+[node name="ButtonMenu" type="Button" parent="ContextContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "EXIT_MAIN_MENU"
+
+[node name="Control" type="Control" parent="ContextContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
