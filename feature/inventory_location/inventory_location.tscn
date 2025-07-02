@@ -31,12 +31,11 @@ _page_size = Vector2i(5, 3)
 [node name="TabContainer" type="TabContainer" parent="SpliteContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 1
+current_tab = 0
 tabs_visible = false
 
 [node name="LocationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("3_h642t")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="ItemInformationPanel" parent="SpliteContainer/TabContainer" instance=ExtResource("3_sakew")]
