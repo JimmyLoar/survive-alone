@@ -26,7 +26,7 @@ func _ready() -> void:
 	%HintContainer.hide()
 	var game = Locator.get_service(GameState)
 	if game.is_new_game: ## TODO Change on condition "new_game"
-		_state.start_event(preload("res://resources/collection/events/prologue/prologue_1.tres").instantiate())
+		_state.start_event(load("res://resources/collection/events/prologue/prologue_1.tres").instantiate())
 		game.is_new_game = false
 	
 	else:
