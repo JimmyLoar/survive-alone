@@ -13,10 +13,6 @@ var search_button: Button = $VBoxContainer/ScrollContainer/VBoxContainer/HBoxCon
 
 func _ready() -> void:
 	_inventory_location.search_drop_changed.connect(_on_search_drop_changed)
-	
-	# Делаем заголовок кликабельным для переключения на вкладку с предметами
-	name_label.mouse_filter = Control.MOUSE_FILTER_STOP
-	name_label.gui_input.connect(_on_name_label_gui_input)
 
 	Callable(func(): 
 		_visual_randerer()
@@ -47,12 +43,6 @@ func _rerender():
 	else:
 		search_button.show()
 	search_display.update(_inventory_location.search_drop)
-
-
-func _on_name_label_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		# Переключаемся на вкладку с предметами
-		_inventory_location.tab_container.current_tab = 1
 
 
 func _on_search_pressed() -> void:
