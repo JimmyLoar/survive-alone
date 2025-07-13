@@ -41,7 +41,7 @@ func _get_item_properties(index: int):
 	properties.append(
 		PropertyGenerater.convert_to_enum(
 			PropertyGenerater.take_string("item_%02d/data" % [index + 1]),
-			",".join(ResourceCollector.items.keys())
+			",".join(ResourceCollector.keys(ResourceCollector.Items))
 		)
 	)
 

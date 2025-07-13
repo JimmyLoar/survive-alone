@@ -113,7 +113,7 @@ func generate_output_file_content(collections: Dictionary) -> String:
 	output.append("")
 	output.append("enum Collection {")
 	for collection_name in collections:
-		output.append("    %s," % collection_name.to_upper())
+		output.append("	%s," % collection_name.to_upper())
 	output.append("}")
 	output.append("")
 	for collection_name in collections:
@@ -124,9 +124,9 @@ func generate_output_file_content(collections: Dictionary) -> String:
 	output.append_array(generate_warning_block("КОЛЛЕКЦИИ РЕСУРСОВ"))
 	output.append("")
 	for collection_name in collections:
-		output.append("const %s = {" % collection_name)
+		output.append("const _%s = {" % collection_name)
 		for item_name in collections[collection_name]:
-			output.append('    "%s": %s,' % [item_name, collections[collection_name][item_name]])
+			output.append('	"%s": %s,' % [item_name, collections[collection_name][item_name]])
 		output.append("}")
 		output.append("")
 	
@@ -151,57 +151,57 @@ func generate_warning_block(title := "АВТОМАТИЧЕСКИ СГЕНЕРИ�
 func generate_uid_method(collections: Dictionary) -> PackedStringArray:
 	var method := PackedStringArray()
 	method.append("static func uid(collection: Collection, key: String) -> String:")
-	method.append('    """Возвращает UID ресурса или пустую строку если не найден"""')
-	method.append("    match collection:")
+	method.append('	"""Возвращает UID ресурса или пустую строку если не найден"""')
+	method.append("	match collection:")
 	for collection_name in collections:
-		method.append("        Collection.%s:" % collection_name.to_upper())
-		method.append("            return %s.get(key, \"\")" % collection_name)
-	method.append("        _: return \"\"")
+		method.append("		Collection.%s:" % collection_name.to_upper())
+		method.append("			return _%s.get(key, \"\")" % collection_name)
+	method.append("		_: return \"\"")
 	return method
 
 
 func generate_find_method() -> PackedStringArray:
 	var method := PackedStringArray()
 	method.append("static func find(collection: Collection, key: String) -> Resource:")
-	method.append('    """Загружает и возвращает один ресурс"""')
-	method.append("    var resource_uid := uid(collection, key)")
-	method.append("    return ResourceLoader.load(resource_uid) if resource_uid else null")
+	method.append('	"""Загружает и возвращает один ресурс"""')
+	method.append("	var resource_uid := uid(collection, key)")
+	method.append("	return ResourceLoader.load(resource_uid) if resource_uid else null")
 	return method
 
 
 func generate_find_multiple_method() -> PackedStringArray:
 	var method := PackedStringArray()
 	method.append("static func find_multiple(collection: Collection, keys: Array) -> Array:")
-	method.append('    """Загружает и возвращает массив ресурсов по массиву ключей"""')
-	method.append("    var result: Array[Resource] = []")
-	method.append("    for key in keys:")
-	method.append("        var res := find(collection, key)")
-	method.append("        if res:")
-	method.append("            result.append(res)")
-	method.append("    return result")
+	method.append('	"""Загружает и возвращает массив ресурсов по массиву ключей"""')
+	method.append("	var result: Array[Resource] = []")
+	method.append("	for key in keys:")
+	method.append("		var res := find(collection, key)")
+	method.append("		if res:")
+	method.append("			result.append(res)")
+	method.append("	return result")
 	return method
 
 
 func generate_find_all_method() -> PackedStringArray:
 	var method := PackedStringArray()
 	method.append("static func find_all(collection: Collection) -> Array:")
-	method.append('    """Возвращает все ресурсы указанной коллекции"""')
-	method.append("    var result: Array[Resource] = []")
-	method.append("    for key in keys(collection):")
-	method.append("        var res := find(collection, key)")
-	method.append("        if res:")
-	method.append("            result.append(res)")
-	method.append("    return result")
+	method.append('	"""Возвращает все ресурсы указанной коллекции"""')
+	method.append("	var result: Array[Resource] = []")
+	method.append("	for key in keys(collection):")
+	method.append("		var res := find(collection, key)")
+	method.append("		if res:")
+	method.append("			result.append(res)")
+	method.append("	return result")
 	return method
 
 
 func generate_keys_method(collections: Dictionary) -> PackedStringArray:
 	var method := PackedStringArray()
 	method.append("static func keys(collection: Collection) -> Array:")
-	method.append('    """Возвращает все ключи указанной коллекции"""')
-	method.append("    match collection:")
+	method.append('	"""Возвращает все ключи указанной коллекции"""')
+	method.append("	match collection:")
 	for collection_name in collections:
-		method.append("        Collection.%s:" % collection_name.to_upper())
-		method.append("            return %s.keys()" % collection_name)
-	method.append("        _: return []")
+		method.append("		Collection.%s:" % collection_name.to_upper())
+		method.append("			return _%s.keys()" % collection_name)
+	method.append("		_: return []")
 	return method
