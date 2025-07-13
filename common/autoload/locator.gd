@@ -7,7 +7,6 @@ var _logger: Log = Log.get_global_logger().with("Locator")
 func _init() -> void:
 	initialize_service(GameDb)
 	initialize_service(SaveDb)
-	initialize_service(GameState)
 
 
 func add_initialized_service(service: Object) -> void:

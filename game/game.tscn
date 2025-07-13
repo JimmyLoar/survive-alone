@@ -1,6 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqrp4lho5j85r"]
+[gd_scene load_steps=4 format=3 uid="uid://cqrp4lho5j85r"]
 
 [ext_resource type="Script" uid="uid://bujyvj68ul3xt" path="res://game/game.gd" id="1_gd4u6"]
+[ext_resource type="Texture2D" uid="uid://duji4pef1j03r" path="res://icon.svg" id="2_vasa2"]
+
+[sub_resource type="GDScript" id="GDScript_vasa2"]
+script/source = "extends CanvasLayer
+
+
+func _init() -> void:
+	visible = false
+"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gd4u6")
+
+[node name="LoadingLayer" type="CanvasLayer" parent="."]
+layer = 3
+script = SubResource("GDScript_vasa2")
+
+[node name="PanelContainer" type="PanelContainer" parent="LoadingLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="LoadingLayer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_vasa2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LoadingLayer/PanelContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[right][wave amp=50.0 freq=5.0 connected=1]loading...[/wave]"
+fit_content = true
