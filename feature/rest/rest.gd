@@ -121,10 +121,14 @@ func start_rest():
 	for i in Props.values():
 		_apply_property(i)
 	
+	#вЫКЛЮЧАЕМ ИЗМЕНЕНИЯ СТАТОВ СО ВРЕМЕНЕМ
+	Locator.get_service(ExhaustionLooker).active = false
+	
 	#Изменение времени
 	game_time.finished_skip.connect(_reset_delta_properties, CONNECT_ONE_SHOT)
 	game_time.timeskip(selected_hours * MINUT_IN_HOUR, 3)
-
+	
+	Locator.get_service(ExhaustionLooker).active = true
 	#По идее тут нужна анимация сна или-что-то такое
 	close()
 

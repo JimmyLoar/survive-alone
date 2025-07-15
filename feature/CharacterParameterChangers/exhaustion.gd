@@ -1,6 +1,10 @@
 extends CharacterParametrLooker
+class_name ExhaustionLooker
+
 
 var _exh_lvl_flags = [0, 0, 0, 0, 0]
+
+var active: bool = true
 
 var _exh_lvl:
 	get:
@@ -17,12 +21,14 @@ var _exh_lvl_delta_dict = {
 }
 @onready var _game_time: GameTimeState = Locator.get_service(GameTimeState)
 
+func _enter_tree() -> void:
+	Locator.add_initialized_service(self)
+
 func _ready() -> void:
 	super._ready()
 	_game_time.finished_step.connect(_update_props_by_time_spend)
 
 func _on_property_changed(prop_data: CharacterPropertyEntity):
-	print(prop_data.data_name)
 	if prop_data.data_name  == 'exhaustion':
 		if prop_data.value >= prop_data.get_max_value():
 			state.die()
@@ -41,6 +47,8 @@ func _on_property_changed(prop_data: CharacterPropertyEntity):
 			
 			
 func _update_props_by_time_spend(_delta):
+	if !active:
+		return
 	if (_exh_lvl) == 0:
 		return
 	var exh = state.get_property('exhaustion')

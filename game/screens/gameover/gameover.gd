@@ -68,14 +68,27 @@ func _on_pressed_continue():
 	var game := Locator.get_service(GameState) as GameState
 	# TODO Добавить штрафы
 	
-	Locator.get_service(GameTimeState).do_step(7*1440, 0.1)
 	
+	Locator.get_service(ExhaustionLooker).active = false
+	Locator.get_service(GameTimeState).do_step(7*1440)
+	Locator.get_service(ExhaustionLooker).active = true
+	restore_props_on_continue()
 	game.open_world_screen(
 		ProjectSettings.get_setting("databases/game_database_path"), 
 		ProjectSettings.get_setting("databases/save_database_path"),
 	)
 
-
+func restore_props_on_continue():
+	var cs: CharacterState = Locator.get_service(CharacterState)
+	var hunger = cs.get_property('hunger')
+	hunger.value = 70
+	cs.set_property(hunger)
+	var exhaustion = cs.get_property('exhaustion')
+	exhaustion.value = 10
+	cs.set_property(exhaustion)
+	var thirst = cs.get_property('thirst')
+	thirst.value = 70
+	cs.set_property(thirst)
 
 func _on_pressed_menu():
 	var game := Locator.get_service(GameState) as GameState

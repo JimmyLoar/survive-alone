@@ -9,6 +9,5 @@ func _ready() -> void:
 	state.property_changed.connect(_on_property_changed)
 
 
-func _on_property_changed(prop_data: CharacterPropertyEntity):
-	
+func _on_property_changed(_prop_data: CharacterPropertyEntity):
 	pass

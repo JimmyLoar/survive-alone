@@ -11,8 +11,8 @@ font_size = 80
 font_size = 30
 
 [node name="Gameover" type="MarginContainer" node_paths=PackedStringArray("_title_label", "_reasen_label", "_context_label", "_hints_label", "_continue_button", "_menu_button")]
-offset_right = 467.0
-offset_bottom = 300.0
+offset_right = 1283.0
+offset_bottom = 718.0
 theme = ExtResource("1_htuve")
 script = ExtResource("2_htuve")
 _title_label = NodePath("TitleContainer/LabelTitle")
