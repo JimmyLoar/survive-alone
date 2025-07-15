@@ -10,12 +10,9 @@ font_size = 80
 [sub_resource type="LabelSettings" id="LabelSettings_2gb7y"]
 font_size = 30
 
-[node name="Gameover" type="MarginContainer" node_paths=PackedStringArray("_title_label", "_reasen_label", "_context_label", "_hints_label", "_continue_button")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Gameover" type="MarginContainer" node_paths=PackedStringArray("_title_label", "_reasen_label", "_context_label", "_hints_label", "_continue_button", "_menu_button")]
+offset_right = 467.0
+offset_bottom = 300.0
 theme = ExtResource("1_htuve")
 script = ExtResource("2_htuve")
 _title_label = NodePath("TitleContainer/LabelTitle")
@@ -23,6 +20,7 @@ _reasen_label = NodePath("TitleContainer/LableReasonDeath")
 _context_label = NodePath("ContextContainer/ContextLabel")
 _hints_label = NodePath("ContextContainer/LabelHints")
 _continue_button = NodePath("ContextContainer/ButtonContinue")
+_menu_button = NodePath("ContextContainer/ButtonMenu")
 
 [node name="PanelBG" type="Panel" parent="."]
 layout_mode = 2

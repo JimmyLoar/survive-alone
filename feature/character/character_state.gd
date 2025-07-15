@@ -76,3 +76,9 @@ func get_property(name: String) -> CharacterPropertyEntity:
 
 func get_property_data(name: StringName) -> CharacterPropertyResource:
 	return ResourceCollector.find(ResourceCollector.Collection.CHARACTER_PROPERTY, name)
+
+func die():
+	var go: GameState = Locator.get_service(GameState)
+	go.open_gameover()
+	#go.open(go.Reason.EXHAUSTION_FULL)
+	push_error('СМЭЭЭЭРТЬ')

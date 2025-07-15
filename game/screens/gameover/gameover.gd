@@ -68,7 +68,7 @@ func _on_pressed_continue():
 	var game := Locator.get_service(GameState) as GameState
 	# TODO Добавить штрафы
 	
-	Locator.get_service(GameTimeState).do_step(7*1440, 0.01)
+	Locator.get_service(GameTimeState).do_step(7*1440, 0.1)
 	
 	game.open_world_screen(
 		ProjectSettings.get_setting("databases/game_database_path"), 
