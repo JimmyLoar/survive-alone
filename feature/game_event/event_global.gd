@@ -35,6 +35,7 @@ func _start_next(type: EventEnd.Next, name: String):
 			Questify.update_quests.call_deferred()
 		
 		EventEnd.Next.EVENT: 
-			resource = ResourceCollector.find(ResourceCollector.Collection.EVENTS, name).instantiate() as EventResource
+			var event_load_service = Locator.get_service(EventLoadService)
+			resource = event_load_service.load_event_instance(ResourceCollector.find(ResourceCollector.Collection.EVENTS, name).resource_path)
 			GodotLogger.debug("start new event: ", resource.name_key)
 			self.start_event(resource)

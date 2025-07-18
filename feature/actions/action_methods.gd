@@ -76,14 +76,18 @@ func time_use(game_time: int, for_real_time: float = 1.0, with_progress_screen :
 
 #region Events
 func event_start(event_name: String):
-	var event: EventResource = ResourceCollector.find(ResourceCollector.Collection.EVENTS, event_name)
-	Locator.get_service(EventState).start_event(event.instantiate())
+	var event_load_service = Locator.get_service(EventLoadService)
+	var event_resource = ResourceCollector.find(ResourceCollector.Collection.EVENTS, event_name)
+	var event: EventResource = event_load_service.load_event_instance(event_resource.resource_path)
+	Locator.get_service(EventState).start_event(event)
 
 
 func event_start_from_list(eventpack_name: String):
+	var event_load_service = Locator.get_service(EventLoadService)
 	var list: EventList = ResourceCollector.find(ResourceCollector.Collection.EVENTS_LIST, eventpack_name)
-	var event: EventResource = list.get_event()
-	Locator.get_service(EventState).start_event(event.instantiate())
+	var event_resource: EventResource = list.get_event()
+	var event: EventResource = event_load_service.load_event_instance(event_resource.resource_path)
+	Locator.get_service(EventState).start_event(event)
 
 
 #endregion

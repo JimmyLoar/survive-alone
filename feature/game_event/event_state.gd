@@ -65,8 +65,9 @@ func serialize() -> Array:
 
 func deserialize(data: Array) -> void:
 	clear()
+	var event_load_service = Locator.get_service(EventLoadService)
 	for serialized_event in data:
-		var event := load(serialized_event.path) as EventResource
+		var event := event_load_service.load_event(serialized_event.path)
 		var instance := event.instantiate()
 		instance.deserialize(serialized_event.data)
 		_events.append(instance)
