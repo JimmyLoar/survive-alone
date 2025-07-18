@@ -36,7 +36,7 @@ func _ready() -> void:
 	super()
 	_character_location.current_location_changed.connect(_on_location_changed)
 	_on_location_changed.call_deferred(_character_location.current_location)
-	inventory_display.item_pressed.connect(item_information.update)
+	inventory_display.item_pressed.connect(_on_item_pressed)
 	inventory_display.set_entity(_entity)
 	item_information.set_bottom_actions([
 		{
@@ -98,6 +98,10 @@ func _on_confirmed_pick_up_item(entity: ItemEntity, count: int):
 
 func _on_location_changed(location: Variant):
 	location_panel._visual_randerer()
+	# Сбрасываем информацию о предмете при смене локации
+	item_information.update(null)
+	tab_container.current_tab = 0
+	
 	if is_instance_of(location, WorldObjectEntity):
 		var existed_inventory = _inventory_repository.get_by_belong_at_object(
 			InventoryEntity.BelongsAtObject.new(
@@ -126,6 +130,21 @@ func _on_location_changed(location: Variant):
 		return
 
 	search_drop = null
+
+
+func _on_item_pressed(item: ItemEntity) -> void:
+	if item == null:
+		# Клик по пустому слоту - возвращаемся к информации о локации
+		tab_container.current_tab = 0
+		item_information.update(null)
+	else:
+		# Клик по предмету - показываем информацию о предмете
+		item_information.update(item)
+		tab_container.current_tab = 1
+
+
+func show_location_info() -> void:
+	tab_container.current_tab = 0
 
 
 func _on_close_pressed() -> void:

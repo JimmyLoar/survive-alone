@@ -19,6 +19,7 @@ func set_entity(new_entity: InventoryEntity):
 	if _entity != new_entity:
 		_entity = new_entity
 		_page_controller.set_entity(new_entity)
+		_items_grid.set_entity(new_entity)
 	update()
 
 
@@ -44,5 +45,12 @@ func _on_change_page(page: int):
 
 
 func _on_item_pressed(index: int):
-	index = index + _page_controller.page_size * (_page_controller.page - 1)
-	item_pressed.emit(_entity.items[index])
+	if index == -1:
+		# Клик по пустому слоту
+		item_pressed.emit(null)
+	else:
+		index = index + _page_controller.page_size * (_page_controller.page - 1)
+		if index >= 0 and index < _entity.items.size():
+			item_pressed.emit(_entity.items[index])
+		else:
+			item_pressed.emit(null)

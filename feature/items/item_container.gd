@@ -50,7 +50,7 @@ func _display(item: ItemEntity):
 
 
 func _display_empty():
-	disabled = true
+	disabled = false
 	display.hide()
 	current_item = null
 
