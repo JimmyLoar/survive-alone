@@ -53,3 +53,43 @@ static func dictionary_erase_keys_without_list(dict: Dictionary, keys_list: Arra
 			new_dict[key] = dict[key]
 	#print_debug("old dict: %s\n keylist: %s\nnew dict: %s" % [dict, keys_list, new_dict])
 	return new_dict 
+
+
+static func path_to_id(path: String) -> int:
+	"""
+	Преобразует путь ресурса в числовой ID для использования в базе данных.
+	Использует ResourceUID для получения уникального идентификатора ресурса.
+	
+	Args:
+		path: Путь к ресурсу (например, "res://path/to/resource.tres")
+		
+	Returns:
+		int: Числовой ID ресурса
+	"""
+	return ResourceUID.text_to_id(ResourceUID.id_to_text(ResourceLoader.get_resource_uid(path)))
+
+
+static func resource_to_uid_text(resource: Resource) -> String:
+	"""
+	Преобразует ресурс в текстовый UID для сохранения в базе данных.
+	
+	Args:
+		resource: Ресурс для преобразования
+		
+	Returns:
+		String: Текстовый UID ресурса
+	"""
+	return ResourceUID.id_to_text(ResourceLoader.get_resource_uid(resource.resource_path))
+
+
+static func load_resource_by_uid_text(uid_text: String) -> Resource:
+	"""
+	Загружает ресурс по текстовому UID из базы данных.
+	
+	Args:
+		uid_text: Текстовый UID ресурса
+		
+	Returns:
+		Resource: Загруженный ресурс
+	"""
+	return load(ResourceUID.get_id_path(ResourceUID.text_to_id(uid_text))) 

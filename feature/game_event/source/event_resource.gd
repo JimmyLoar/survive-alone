@@ -165,25 +165,29 @@ func get_next() -> Array:
 	return [end.next_type, end.next_name]
 
 
-func serialize() -> Dictionary:
-	return {
+func serialize() -> PackedByteArray:
+	var data = {
 		completed = completed,
 		nodes = nodes.map(func(node: EventNode): return node.serialize())
 	}
+	return var_to_bytes(data)
 
 
-func deserialize(data: Dictionary) -> void:
-	if not is_instance:
-		printerr("Quest must be instantiated to be deserialized. Use instantiate().")
-		return
+static func deserialize(data: PackedByteArray) -> EventResource:
+	var resource = EventResource.new()
+	var dict = bytes_to_var(data)
+	resource.completed = dict.completed
+	resource.is_instance = true
+	resource._initialize()
 	
-	completed = data.completed
 	var node_map := {}
-	for node in nodes:
+	for node in resource.nodes:
 		node_map[node.id] = node
-	for node in data.nodes:
+	for node in dict.nodes:
 		if node_map.has(node.id):
 			node_map[node.id].deserialize(node)
+	
+	return resource
 
 
 func _initialize() -> void:

@@ -68,6 +68,11 @@ CREATE TABLE IF NOT EXISTS "world_object" (
 	"uid"	TEXT NOT NULL,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
+CREATE TABLE IF NOT EXISTS "event" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"data"	BLOB NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
 """
 	if not connection.query(query):
 		return false

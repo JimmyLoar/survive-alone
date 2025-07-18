@@ -63,7 +63,7 @@ func _row_to_entity(row: Dictionary) -> BiomeEntity:
 
 	entity.id = row["id"]
 	entity.name = row["name"]
-	entity.resource = load(ResourceUID.get_id_path(ResourceUID.text_to_id(row["resource"])))
+	entity.resource = Utils.load_resource_by_uid_text(row["resource"])
 
 	return entity
 
@@ -73,6 +73,6 @@ func _entity_to_row(entity: BiomeEntity, without_id: bool = false) -> Dictionary
 	if not without_id:
 		row["id"] = entity.id
 	row["name"] = entity.name
-	row["resource"] = ResourceUID.id_to_text(ResourceLoader.get_resource_uid(entity.resource.resource_path))
+	row["resource"] = Utils.resource_to_uid_text(entity.resource)
 
 	return row
