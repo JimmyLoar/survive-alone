@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="CharacterPropertyResource" load_steps=2 format=3 uid="uid://bk6piro7truso"]
+[gd_resource type="Resource" script_class="CharacterPropertyResource" load_steps=3 format=3 uid="uid://bk6piro7truso"]
 
 [ext_resource type="Script" uid="uid://circ63nhvigul" path="res://resources/schema/character_property.gd" id="2_t3d70"]
+[ext_resource type="Texture2D" uid="uid://d1aal26tuj55x" path="res://assets/sprite/placeholders/Item13.png" id="2_uhmwc"]
 
 [resource]
 script = ExtResource("2_t3d70")
+texture = ExtResource("2_uhmwc")
 default_value = 47.69
 default_max_value = 100.0
 default_min_value = 0.0
