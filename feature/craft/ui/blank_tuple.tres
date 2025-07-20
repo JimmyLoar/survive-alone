@@ -9,10 +9,11 @@
 script = ExtResource("2_qriu5")
 texture = ExtResource("3_ku62j")
 rare = 1
-durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_7lab0")]([])
 categories = Array[int]([])
+storage_component = -1
+components = Array[int]([])
 code_name = &"code_name"
 visible_name = "ITEM_CODE_NAME_NAME"
 discription = "ITEM_CODE_NAME_DISCRIPTION"

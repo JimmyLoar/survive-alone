@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://wq8eaeo5eftd"]
 
 [ext_resource type="Script" uid="uid://b7tm05hlct2yn" path="res://feature/ui_content_menu/content_containers/content_container_root.gd" id="1_mk0du"]
-[ext_resource type="Texture2D" uid="uid://ci4slq0smcgv2" path="res://assets/kenney_ui-pack/Vector/Blue/check_square_color_cross.svg" id="2_f64x5"]
+
+[sub_resource type="Resource" id="Resource_wkffu"]
+metadata/__load_path__ = "res://assets/kenney_ui-pack/Vector/Blue/check_square_color_cross.svg"
 
 [node name="ContentContainer" type="PanelContainer"]
 anchors_preset = 15
@@ -44,7 +46,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-texture_normal = ExtResource("2_f64x5")
+texture_normal = SubResource("Resource_wkffu")
 ignore_texture_size = true
 stretch_mode = 5
 

@@ -1,19 +1,3 @@
-[gd_resource type="Resource" script_class="EventActionResource" load_steps=3 format=3 uid="uid://c66ptthr6m3wo"]
-
-[ext_resource type="Script" uid="uid://cfjb5dbiuiquw" path="res://feature/game_event/source/event_action.gd" id="3_4rmag"]
-
-[sub_resource type="Resource" id="Resource_lii0l"]
+[gd_resource type="Resource" format=3 uid="uid://c66ptthr6m3wo"]
 
 [resource]
-script = ExtResource("3_4rmag")
-is_said = false
-next_stage = -1
-showing_result = false
-conditions = []
-effects = [SubResource("Resource_lii0l")]
-context_show_properties_bar = false
-context_use_slider = false
-context_use_item_grid = true
-code_name = &"dots"
-visible_name = "EVENT_ACTION_DOTS_NAME"
-discription = "EVENT_ACTION_DOTS_DISCRIPTION"

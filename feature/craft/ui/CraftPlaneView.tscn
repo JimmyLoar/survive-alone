@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://tjbpyxj4etes"]
 
 [ext_resource type="Script" uid="uid://cqgnif4xhth8" path="res://feature/craft/ui/craft_plane_view.gd" id="1_prgi4"]
-[ext_resource type="Texture2D" uid="uid://d1d0xrnl5vxpl" path="res://assets/sprite/for vfx/lins.png" id="2_prgi4"]
+[ext_resource type="Texture2D" uid="uid://c0d7u4pyqwx6s" path="res://assets/sprite/for vfx/lins.png" id="2_prgi4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5og6x"]
 font_size = 34

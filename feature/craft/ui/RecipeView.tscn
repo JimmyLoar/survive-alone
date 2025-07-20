@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://boss7rekp2t0v"]
 
 [ext_resource type="Script" uid="uid://bsj1yque5qdk" path="res://feature/craft/ui/recipe_view.gd" id="1_6oi1l"]
-[ext_resource type="Texture2D" uid="uid://dwmqgmoqqan3a" path="res://assets/sprite/for vfx/arrow.png" id="2_ex854"]
+[ext_resource type="Texture2D" uid="uid://d3ylq6ma6gdj0" path="res://assets/sprite/for vfx/arrow.png" id="2_ex854"]
 
 [node name="RecipeView" type="Control"]
 custom_minimum_size = Vector2(0, 80)

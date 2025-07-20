@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bkupeq4p7q753" path="res://feature/quest_viewer/quest_viewer.gd" id="2_nf1in"]
 [ext_resource type="PackedScene" uid="uid://lbc1s8ewa7uf" path="res://feature/quest_viewer/internal/quest_list.tscn" id="3_7bl67"]
-[ext_resource type="Texture2D" uid="uid://ci4slq0smcgv2" path="res://assets/kenney_ui-pack/Vector/Blue/check_square_color_cross.svg" id="4_7bl67"]
 [ext_resource type="PackedScene" uid="uid://jf50aro5ep0h" path="res://feature/quest_viewer/internal/quest_view.tscn" id="5_uk38r"]
+
+[sub_resource type="Resource" id="Resource_nat34"]
+metadata/__load_path__ = "res://assets/kenney_ui-pack/Vector/Blue/check_square_color_cross.svg"
 
 [node name="Quests" type="PanelContainer"]
 anchors_preset = 15
@@ -38,7 +40,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-texture_normal = ExtResource("4_7bl67")
+texture_normal = SubResource("Resource_nat34")
 ignore_texture_size = true
 stretch_mode = 5
 

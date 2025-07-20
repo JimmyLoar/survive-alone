@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bsym8hlejwoaw" path="res://feature/actions/action_aggregate.gd" id="1_3em0h"]
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="2_eenr8"]
 [ext_resource type="Script" uid="uid://ckdrih1rxjnnb" path="res://resources/schema/item.gd" id="3_eenr8"]
-[ext_resource type="Texture2D" uid="uid://c8fhrq2g1ci2g" path="res://assets/sprite/items/food-fry_meat.png" id="4_j42tv"]
+[ext_resource type="Texture2D" uid="uid://iy3us4yd7mu6" path="res://assets/sprite/items/food-fry_meat.png" id="4_j42tv"]
 
 [sub_resource type="Resource" id="Resource_eenr8"]
 script = ExtResource("1_3em0h")
@@ -19,10 +19,11 @@ metadata/_custom_type_script = "uid://chu0ji5mcq1wt"
 script = ExtResource("3_eenr8")
 texture = ExtResource("4_j42tv")
 rare = 1
-durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_3em0h")]([SubResource("Resource_eenr8")])
 categories = Array[int]([2])
+storage_component = -1
+components = Array[int]([])
 code_name = &"food_fry_meat"
 visible_name = "ITEM_FOOD_FRY_MEAT_NAME"
 discription = "ITEM_FOOD_FRY_MEAT_DISCRIPTION"

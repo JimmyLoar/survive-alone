@@ -8,10 +8,11 @@
 script = ExtResource("1_wc4sl")
 texture = ExtResource("2_sve4q")
 rare = 1
-durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_03uaq")]([])
 categories = Array[int]([0])
+storage_component = -1
+components = Array[int]([])
 code_name = &"resource_flint"
 visible_name = "ITEM_RESOURCE_FLINT_NAME"
 discription = "ITEM_RESOURCE_FLINT_DISCRIPTION"

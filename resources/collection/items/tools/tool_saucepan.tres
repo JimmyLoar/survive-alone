@@ -8,10 +8,11 @@
 script = ExtResource("2_7gdl3")
 texture = ExtResource("3_y5voi")
 rare = 1
-durability = -1
 is_pickable = true
 actions = Array[ExtResource("1_s77ay")]([])
 categories = Array[int]([1])
+storage_component = -1
+components = Array[int]([])
 code_name = &"tool_saucepan"
 visible_name = "ITEM_TOOL_SAUCEPAN_NAME"
 discription = "ITEM_TOOL_SAUCEPAN_DISCRIPTION"

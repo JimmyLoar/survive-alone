@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EventResource" load_steps=40 format=3 uid="uid://ce3i74dxbybxq"]
 
 [ext_resource type="Script" uid="uid://cu4nqmvmkbkbc" path="res://!tools/event_editer/graphs/_!event_edge.gd" id="1_ul05m"]
-[ext_resource type="Script" path="res://!tools/event_editer/source/main_texture.gd" id="2_063qv"]
+[ext_resource type="Script" uid="uid://dxqrq5defl3yp" path="res://!tools/event_editer/source/main_texture.gd" id="2_063qv"]
 [ext_resource type="Script" uid="uid://tgfi26r0b353" path="res://!tools/event_editer/source/start.gd" id="2_tokn6"]
 [ext_resource type="Script" uid="uid://dvj3ai0m62eyl" path="res://!tools/event_editer/source/end.gd" id="4_adrsj"]
-[ext_resource type="Script" path="res://!tools/event_editer/source/text.gd" id="4_l6r8d"]
+[ext_resource type="Script" uid="uid://cscoxuk8tcm8u" path="res://!tools/event_editer/source/text.gd" id="4_l6r8d"]
 [ext_resource type="Resource" uid="uid://lo5lkul44sou" path="res://resources/collection/dialoge_character/narrator.tres" id="5_clw6i"]
 [ext_resource type="Script" uid="uid://nr1rxuajfpjk" path="res://!tools/event_editer/source/!event_node.gd" id="6_kebq5"]
 [ext_resource type="Script" uid="uid://xbfp6rfvxe47" path="res://feature/actions/action_resource.gd" id="7_gh2h1"]

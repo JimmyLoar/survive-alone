@@ -8,10 +8,11 @@
 script = ExtResource("2_kl51i")
 texture = ExtResource("3_iis82")
 rare = 1
-durability = -1
 is_pickable = false
 actions = Array[ExtResource("1_hxmvr")]([])
 categories = Array[int]([4])
+storage_component = -1
+components = Array[int]([])
 code_name = &"building_bonfire"
 visible_name = "ITEM_BUILDING_BONFIRE_NAME"
 discription = "ITEM_BUILDING_BONFIRE_DISCRIPTION"

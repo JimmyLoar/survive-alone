@@ -10,9 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_4fs8p"]
 script = ExtResource("2_4fs8p")
-name = "test 2"
-description = "Дерево?
-"
+name_key = ""
 id = "OEtwG4pM1w"
 optional = false
 graph_editor_position = Vector2(-40, 60)
@@ -34,6 +32,8 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_abex0"]
 script = ExtResource("4_noj68")
+next_type = 2
+next_name = ""
 id = "VuXAtRURY2"
 optional = false
 graph_editor_position = Vector2(920, 60)
@@ -47,7 +47,7 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_3x2ce"]
 script = ExtResource("5_4fs8p")
-type = "item"
+type = 0
 key = "resource_wood"
 id = "xcekkorrD8"
 optional = false

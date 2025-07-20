@@ -1,8 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddfsnjx44w5ik"]
 
 [ext_resource type="Script" uid="uid://c3c4bh1b6qckd" path="res://feature/game_time/time_progress_display.gd" id="1_bgep0"]
-[ext_resource type="Texture2D" uid="uid://b2f8igvgcke2u" path="res://assets/kenney_ui-pack/Vector/Blue/button_rectangle_border.svg" id="2_h1x6d"]
-[ext_resource type="Texture2D" uid="uid://c3c8o8xmseg4m" path="res://assets/kenney_ui-pack/Vector/Blue/button_rectangle_depth_flat.svg" id="3_r42ui"]
+
+[sub_resource type="Resource" id="Resource_kaifj"]
+metadata/__load_path__ = "res://assets/kenney_ui-pack/Vector/Blue/button_rectangle_border.svg"
+
+[sub_resource type="Resource" id="Resource_6yhdl"]
+metadata/__load_path__ = "res://assets/kenney_ui-pack/Vector/Blue/button_rectangle_depth_flat.svg"
 
 [node name="TimeProgress" type="PanelContainer"]
 offset_right = 769.0
@@ -26,8 +30,8 @@ stretch_margin_left = 4
 stretch_margin_top = 4
 stretch_margin_right = 4
 stretch_margin_bottom = 4
-texture_under = ExtResource("2_h1x6d")
-texture_progress = ExtResource("3_r42ui")
+texture_under = SubResource("Resource_kaifj")
+texture_progress = SubResource("Resource_6yhdl")
 tint_under = Color(0.0784314, 0.0784314, 0.0784314, 1)
 tint_progress = Color(0, 1, 0.568627, 1)
 

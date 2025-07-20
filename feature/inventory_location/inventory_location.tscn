@@ -4,7 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://27va2jwjyxqm" path="res://feature/inventory/inventory_page_display.tscn" id="2_o8nlk"]
 [ext_resource type="PackedScene" uid="uid://djj8lftj7w8hq" path="res://feature/inventory_location/internal/location_panel.tscn" id="3_h642t"]
 [ext_resource type="PackedScene" uid="uid://b44rlr8ay6jxr" path="res://feature/items/item_information.tscn" id="3_sakew"]
-[ext_resource type="Texture2D" uid="uid://ci4slq0smcgv2" path="res://assets/kenney_ui-pack/Vector/Blue/check_square_color_cross.svg" id="5_u4v75"]
+
+[sub_resource type="Resource" id="Resource_h642t"]
+metadata/__load_path__ = "res://assets/kenney_ui-pack/Vector/Blue/check_square_color_cross.svg"
 
 [node name="Location" type="PanelContainer" node_paths=PackedStringArray("inventory_display", "item_information")]
 anchors_preset = 15
@@ -47,7 +49,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-texture_normal = ExtResource("5_u4v75")
+texture_normal = SubResource("Resource_h642t")
 ignore_texture_size = true
 stretch_mode = 5
 

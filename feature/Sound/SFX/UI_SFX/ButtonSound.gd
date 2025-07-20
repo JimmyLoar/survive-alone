@@ -1,8 +1,8 @@
 extends Button
 class_name ButtonSound
 
-@export var press_sound_stream:AudioStream = preload("res://assets/sound/click1.ogg")
-@export var hover_sound_stream:AudioStream = preload("res://assets/sound/338229__fachii__button-hover.wav")
+@export var press_sound_stream:AudioStream = preload("res://assets/sounds/ui/buttons/LV-HTIS Buttons 26.wav")
+@export var hover_sound_stream:AudioStream = preload("res://assets/sounds/ui/buttons/LV-HTIS Buttons 59.wav")
 
 @onready var sfx_player_state: SfxPlayerState = Locator.get_service(SfxPlayerState)
 

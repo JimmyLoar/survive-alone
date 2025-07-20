@@ -10,8 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_edvcw"]
 script = ExtResource("2_edvcw")
-name = "test 3"
-description = "раз? "
+name_key = ""
 id = "OEtwG4pM1w"
 optional = false
 graph_editor_position = Vector2(-40, 60)
@@ -33,6 +32,8 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_uqgyk"]
 script = ExtResource("4_lshbb")
+next_type = 2
+next_name = ""
 id = "VuXAtRURY2"
 optional = false
 graph_editor_position = Vector2(920, 60)
@@ -46,7 +47,7 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_6udn0"]
 script = ExtResource("5_edvcw")
-type = "property/>="
+type = 0
 key = "exhaustion"
 id = "diqFZx7s4i"
 optional = false

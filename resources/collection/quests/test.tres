@@ -11,7 +11,7 @@
 
 [sub_resource type="Resource" id="Resource_wo1o8"]
 script = ExtResource("5_8c3fl")
-type = "item"
+type = 0
 key = "food_fry_meat"
 id = "K6-hduwvwL"
 optional = false
@@ -38,8 +38,7 @@ edge_type = 1
 
 [sub_resource type="Resource" id="Resource_r47bh"]
 script = ExtResource("2_1vvxr")
-name = "test"
-description = " Я встрелил странного человека. Он просит меня накормить его. "
+name_key = ""
 id = "OEtwG4pM1w"
 optional = false
 graph_editor_position = Vector2(-120, 60)
@@ -70,8 +69,8 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_67y6s"]
 script = ExtResource("5_8c3fl")
-type = "event"
-key = ""
+type = 0
+key = &""
 id = "CETugbvYUG"
 optional = false
 graph_editor_position = Vector2(-120, 1040)
@@ -125,6 +124,8 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_ch6q7"]
 script = ExtResource("4_r47bh")
+next_type = 2
+next_name = ""
 id = "9HwHNdYELx"
 optional = false
 graph_editor_position = Vector2(1740, 60)
@@ -138,8 +139,8 @@ edge_type = 0
 
 [sub_resource type="Resource" id="Resource_ubx5b"]
 script = ExtResource("5_8c3fl")
-type = ""
-key = ""
+type = 0
+key = &""
 id = "G800h45S8l"
 optional = false
 graph_editor_position = Vector2(800, -300)

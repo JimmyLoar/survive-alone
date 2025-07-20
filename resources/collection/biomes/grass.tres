@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BiomeResource" load_steps=3 format=3 uid="uid://cmt1u58b84x8p"]
 
 [ext_resource type="Script" uid="uid://31rserfj5m2o" path="res://resources/schema/biome.gd" id="1_vllp3"]
-[ext_resource type="Resource" uid="uid://56f1qivn2r5c" path="res://resources/collection/search_drop/none.tres" id="2_atapd"]
+[ext_resource type="Resource" uid="uid://56f1qivn2r5c" path="res://resources/collection/drops/none.tres" id="2_atapd"]
 
 [resource]
 script = ExtResource("1_vllp3")
