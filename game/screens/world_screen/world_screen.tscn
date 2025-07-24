@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bsq170wia7k5p"]
+[gd_scene load_steps=34 format=3 uid="uid://bsq170wia7k5p"]
 
 [ext_resource type="Script" uid="uid://1kxjdkdsvwgw" path="res://game/screens/world_screen/world_screen.gd" id="1_nlrl3"]
 [ext_resource type="PackedScene" uid="uid://dsoaaf0si14hr" path="res://feature/biomes_layer/biomes_layer.tscn" id="2_pbygt"]
@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
 [ext_resource type="Script" uid="uid://d3a11ua1rfseg" path="res://feature/CharacterParameterChangers/CharacterParametrLookcer.gd" id="26_6gqlo"]
 [ext_resource type="Script" uid="uid://clnwsbrmcxfj3" path="res://feature/CharacterParameterChangers/exhaustion.gd" id="27_udhtu"]
+[ext_resource type="PackedScene" uid="uid://ce1ge6cnqrvl6" path="res://feature/Sound/ambient/audio_system.tscn" id="28_xvlxf"]
+[ext_resource type="Script" uid="uid://c86fec7q2s786" path="res://feature/Sound/ambient/audio_system.gd" id="29_ulvyc"]
 
 [sub_resource type="GDScript" id="GDScript_irxn0"]
 script/source = "extends VButtonsContainer
@@ -259,3 +261,6 @@ layout_mode = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 
 [node name="QuantitySelecter" parent="." instance=ExtResource("22_scc3c")]
+
+[node name="AudioSystem" parent="." instance=ExtResource("28_xvlxf")]
+script = ExtResource("29_ulvyc")

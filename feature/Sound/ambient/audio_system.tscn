@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://ce1ge6cnqrvl6"]
+
+[ext_resource type="Script" uid="uid://cm6s4u2t3745u" path="res://feature/Sound/ambient/condition_manager.gd" id="1_542el"]
+[ext_resource type="Script" uid="uid://cvw1eulx0tywg" path="res://feature/Sound/ambient/audio_database.gd" id="2_mc5n7"]
+[ext_resource type="Script" uid="uid://mt3d3ew3jpbn" path="res://feature/Sound/ambient/sound_pool_generator.gd" id="3_ykiyu"]
+[ext_resource type="Script" uid="uid://cg7tlxsb61rv3" path="res://feature/Sound/ambient/ambience_player.gd" id="4_oor15"]
+[ext_resource type="Script" uid="uid://3kppd1qtbv64" path="res://feature/Sound/ambient/music_manager.gd" id="5_mc5n7"]
+
+[node name="AudioSystem" type="Node2D"]
+
+[node name="ConditionManager" type="Node" parent="."]
+script = ExtResource("1_542el")
+metadata/_custom_type_script = "uid://cm6s4u2t3745u"
+
+[node name="SoundDatabase" type="Node" parent="."]
+script = ExtResource("2_mc5n7")
+metadata/_custom_type_script = "uid://cvw1eulx0tywg"
+
+[node name="SoundPoolGenerator" type="Node" parent="." node_paths=PackedStringArray("condition_manager", "sound_database")]
+script = ExtResource("3_ykiyu")
+condition_manager = NodePath("../ConditionManager")
+sound_database = NodePath("../SoundDatabase")
+metadata/_custom_type_script = "uid://mt3d3ew3jpbn"
+
+[node name="AmbiencePlayer" type="Node" parent="." node_paths=PackedStringArray("pool_generator")]
+script = ExtResource("4_oor15")
+pool_generator = NodePath("../SoundPoolGenerator")
+metadata/_custom_type_script = "uid://cg7tlxsb61rv3"
+
+[node name="MusicManager" type="Node" parent="." node_paths=PackedStringArray("condition_manager", "sound_database")]
+script = ExtResource("5_mc5n7")
+condition_manager = NodePath("../ConditionManager")
+sound_database = NodePath("../SoundDatabase")
+metadata/_custom_type_script = "uid://3kppd1qtbv64"
