@@ -21,6 +21,13 @@ func _enter_tree() -> void:
 	Locator.get_service(GameDb).db_connect(game_db_path)
 
 
+func _ready() -> void:
+	Locator.get_service(MusicManager).play()
+	var conditions = Locator.get_service(ConditionManager)
+	conditions.add_tag("bg_bird", 1.2)
+	
+
+
 func _on_condition_query_requested(type: QuestCondition.TypeVariants, key: String, value: Variant, requester: QuestCondition):
 	pass
 

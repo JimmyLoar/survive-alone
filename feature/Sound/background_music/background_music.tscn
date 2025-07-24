@@ -1,15 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://6nyuag0tgcow"]
+[gd_scene load_steps=4 format=3 uid="uid://6nyuag0tgcow"]
 
 [ext_resource type="Script" uid="uid://d3wmhk5unljdn" path="res://feature/Sound/background_music/background_music.gd" id="1_3m4ee"]
-[ext_resource type="AudioStream" uid="uid://dvf336f5xpuqq" path="res://feature/Sound/background_music/music/1.mp3" id="2_bnxok"]
-[ext_resource type="AudioStream" uid="uid://c4cihl3g6n4jc" path="res://feature/Sound/background_music/music/2.mp3" id="3_65oih"]
+[ext_resource type="AudioStream" uid="uid://bfjpjy3v5fb2b" path="res://assets/music/1-1.mp3" id="2_xfgpd"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_nkt2m"]
 shuffle = true
 fade_time = 0.45
-stream_count = 2
-stream_0 = ExtResource("2_bnxok")
-stream_1 = ExtResource("3_65oih")
+stream_count = 1
+stream_0 = ExtResource("2_xfgpd")
 
 [node name="BackgroundMusic" type="Node2D"]
 script = ExtResource("1_3m4ee")
@@ -17,4 +15,5 @@ script = ExtResource("1_3m4ee")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_nkt2m")
 volume_db = -6.13
+autoplay = true
 bus = &"BackgroundMusic"
