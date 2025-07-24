@@ -7,25 +7,27 @@ var sounds: Dictionary = {
 		"stream": null,#preload("res://resources/sounds/day_forest.wav"),
 		"tags": ["день", "лес"],
 		"cooldown": 10.0,
-		"volume_db": -10.0
+		"volume_db": -10.0,
 	},
 	"rain": {
 		"stream": null,#preload("res://resources/sounds/rain.wav"),
 		"tags": ["дождь", "пасмурно"],
 		"cooldown": 5.0,
-		"volume_db": -5.0
+		"volume_db": -5.0,
 	},
 	"bird_01": {
 		"stream": load("res://assets/sounds/in_game/birds/Ambience Birds by MoniqueKruger Id-326833.wav"),
 		"tags": ["bg_bird", "nature"],
 		"cooldown": 5.0,
-		"volume_db": -5.0
+		"volume_db": -5.0,
+		"is_persistent": true,
 	},
 	"heart_beat_01": {
 		"stream": load("res://assets/sounds/in_game/negative/Human, Heartbeat, Cinematic, 54 BPM SND13592.wav"),
 		"tags": ["heartbeat", "low_hp", "death"],
 		"cooldown": 5.0,
-		"volume_db": 10.0
+		"volume_db": 10.0,
+		"is_persistent": true,
 	},
 }
 
