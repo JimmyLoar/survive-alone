@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://6nyuag0tgcow"]
 
-[ext_resource type="Script" uid="uid://d3wmhk5unljdn" path="res://feature/Sound/background_music/background_music.gd" id="1_3m4ee"]
+[ext_resource type="Script" uid="uid://d3wmhk5unljdn" path="res://feature/audio/background_music/background_music.gd" id="1_3m4ee"]
 [ext_resource type="AudioStream" uid="uid://bfjpjy3v5fb2b" path="res://assets/music/1-1.mp3" id="2_xfgpd"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_nkt2m"]

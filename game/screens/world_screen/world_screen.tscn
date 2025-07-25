@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bpkdoaq7tk0b8" path="res://feature/character/character.tscn" id="5_g3jl3"]
 [ext_resource type="PackedScene" uid="uid://di5n7reysaxjj" path="res://feature/virtual_chunks_grid/virtual_chunks_grid.tscn" id="5_m4yp1"]
 [ext_resource type="PackedScene" uid="uid://bmx1kvsxqsfod" path="res://feature/screen_mouse_events/screen_mouse_events.tscn" id="5_myumh"]
-[ext_resource type="PackedScene" uid="uid://6nyuag0tgcow" path="res://feature/Sound/background_music/background_music.tscn" id="6_i1yfc"]
+[ext_resource type="PackedScene" uid="uid://6nyuag0tgcow" path="res://feature/audio/background_music/background_music.tscn" id="6_i1yfc"]
 [ext_resource type="PackedScene" uid="uid://c08a22asf3v80" path="res://feature/fps_display/fps_display.tscn" id="7_hexpw"]
-[ext_resource type="PackedScene" uid="uid://dhqgvsdigmgb2" path="res://feature/Sound/SFX/SFX_player.tscn" id="7_irxn0"]
+[ext_resource type="PackedScene" uid="uid://dhqgvsdigmgb2" path="res://feature/audio/SFX/SFX_player.tscn" id="7_irxn0"]
 [ext_resource type="PackedScene" uid="uid://bn7r5o20xaisj" path="res://feature/character_properties_bar/charater_properties_bar.tscn" id="7_ksbsw"]
 [ext_resource type="Script" uid="uid://xtum3t0baoax" path="res://feature/game_time/game_time_display.gd" id="11_fvjg5"]
 [ext_resource type="PackedScene" uid="uid://bpr2e0l6fxmwj" path="res://feature/character_pointer_button/pointer_space.tscn" id="13_pqelk"]
@@ -27,8 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://c6aol5assiiq7" path="res://feature/quantity_selector/quantity_selector.tscn" id="22_scc3c"]
 [ext_resource type="Script" uid="uid://d3a11ua1rfseg" path="res://feature/CharacterParameterChangers/CharacterParametrLookcer.gd" id="26_6gqlo"]
 [ext_resource type="Script" uid="uid://clnwsbrmcxfj3" path="res://feature/CharacterParameterChangers/exhaustion.gd" id="27_udhtu"]
-[ext_resource type="PackedScene" uid="uid://ce1ge6cnqrvl6" path="res://feature/Sound/ambient/audio_system.tscn" id="28_xvlxf"]
-[ext_resource type="Script" uid="uid://c86fec7q2s786" path="res://feature/Sound/ambient/audio_system.gd" id="29_ulvyc"]
+[ext_resource type="PackedScene" uid="uid://ce1ge6cnqrvl6" path="res://feature/audio/audio_system.tscn" id="28_xvlxf"]
+[ext_resource type="Script" uid="uid://c86fec7q2s786" path="res://feature/audio/audio_system.gd" id="29_ulvyc"]
 
 [sub_resource type="GDScript" id="GDScript_irxn0"]
 script/source = "extends VButtonsContainer
