@@ -1,61 +1,63 @@
-class_name MusicManager
 extends Node
+class_name MusicManager
 
 @export var condition_manager: ConditionManager
-@export var sound_database: AudioDatabase
+@export var database: AudioDatabase
 
-var current_track: String = ""
-var active_player: AudioStreamPlayer
-var next_player: AudioStreamPlayer
+var current_track: AudioStreamPlayer
+var next_track: AudioStreamPlayer
 
-# Запускает музыку по тегам
+func _ready() -> void:
+	#condition_manager.conditions_updated.connect(_update_music)
+	_update_music()
+
+
 func play():
-	var best_track = _select_best_music_track()
-	if best_track != current_track:
+	_update_music()
+
+
+func _update_music() -> void:
+	var best_track = _find_best_track()
+	if best_track:
 		_play_track(best_track)
 
-# Выбирает наиболее подходящий трек
-func _select_best_music_track() -> String:
+func _find_best_track() -> Dictionary:
 	var best_score = 0.0
-	var best_track = ""
+	var best_track = {}
 	
-	for track_id in sound_database.music_tracks:
-		var track_data = sound_database.music_tracks[track_id]
-		var score = _calculate_music_score(track_data["tags"])
+	for track in database.music_tracks.values():
+		var score = _calculate_score(track.tags)
 		if score > best_score:
 			best_score = score
-			best_track = track_id
+			best_track = track
+	
 	return best_track
 
-# Аналогично SoundPoolGenerator, но для музыки
-func _calculate_music_score(tags: Array) -> float:
+func _calculate_score(tags: Array) -> float:
 	var score = 0.0
 	for tag in tags:
-		if condition_manager.active_tags.has(tag):
-			score += condition_manager.active_tags[tag]
+		score += condition_manager.active_tags.get(tag, 0.0)
 	return score
 
-# Плавное переключение треков
-func _play_track(track_id: String):
-	var track_data = sound_database.music_tracks.get(track_id)
-	if not track_data: return
+func _play_track(track: Dictionary) -> void:
+	if current_track and current_track.stream == track.stream:
+		return
 	
-	# Создаём новый плеер для плавного перехода
 	var new_player = AudioStreamPlayer.new()
 	add_child(new_player)
-	new_player.stream = track_data["stream"]
-	new_player.volume_db = -80.0  # Начинаем с тишины
+	new_player.stream = track.stream
+	new_player.volume_db = -80  # Start muted
 	new_player.play()
+	new_player.bus = "Music"
 	
-	# Плавное увеличение громкости
+	# Fade in new track
 	var fade_in = create_tween()
-	fade_in.tween_property(new_player, "volume_db", track_data["volume_db"], track_data["fade_duration"])
+	fade_in.tween_property(new_player, "volume_db", track.volume_db, track.fade_duration)
 	
-	# Если был предыдущий трек — плавно его выключаем
-	if active_player:
+	# Fade out current track
+	if current_track:
 		var fade_out = create_tween()
-		fade_out.tween_property(active_player, "volume_db", -80.0, track_data["fade_duration"])
-		fade_out.tween_callback(active_player.queue_free)
+		fade_out.tween_property(current_track, "volume_db", -80, track.fade_duration)
+		fade_out.tween_callback(current_track.queue_free)
 	
-	active_player = new_player
-	current_track = track_id
+	current_track = new_player

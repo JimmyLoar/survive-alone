@@ -25,7 +25,7 @@ func load_from_json(path: String) -> void:
 	for sound_id in data.get("sounds", {}):
 		var sound = data["sounds"][sound_id]
 		sounds[sound_id] = {
-			"stream": load("res://sound_system/resources/" + sound.path),
+			"stream": load("res://assets/sounds/" + sound.path),
 			"tags": sound.tags,
 			"cooldown": sound.get("cooldown", 0.0),
 			"volume_db": sound.get("volume_db", 0.0),
@@ -37,7 +37,7 @@ func load_from_json(path: String) -> void:
 	for track_id in data.get("music", {}):
 		var track = data["music"][track_id]
 		music_tracks[track_id] = {
-			"stream": load("res://sound_system/resources/" + track.path),
+			"stream": load("res://assets/music/" + track.path),
 			"tags": track.tags,
 			"fade_duration": track.get("fade_duration", 1.0),
 			"volume_db": track.get("volume_db", 0.0)

@@ -1,14 +1,14 @@
 {
 "sounds": {
 	"bird_01": {
-		"path": "sounds/in_game/birds/Ambience Birds by MoniqueKruger Id-326833.wav",
+		"path": "in_game/birds/Ambience, Grassland, Meadow, Day, Birds, Insects, Yellowstone National Park, Wyoming SND40668.wav",
 		"tags": ["bg_bird", "nature"],
 		"cooldown": 5.0,
 		"volume_db": -5.0,
 		"is_persistent": true,
 	},
 	"heart_beat_01": {
-		"path": "sounds/in_game/negative/Human, Heartbeat, Cinematic, 54 BPM SND13592.wav",
+		"path": "in_game/negative/Human, Heartbeat, Cinematic, 54 BPM SND13592.wav",
 		"tags": ["heartbeat", "low_hp", "death"],
 		"cooldown": 5.0,
 		"volume_db": 10.0,

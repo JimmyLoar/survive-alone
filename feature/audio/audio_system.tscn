@@ -16,20 +16,19 @@ metadata/_custom_type_script = "uid://cm6s4u2t3745u"
 script = ExtResource("2_mc5n7")
 metadata/_custom_type_script = "uid://cvw1eulx0tywg"
 
-[node name="SoundPoolGenerator" type="Node" parent="." node_paths=PackedStringArray("condition_manager", "audio_database")]
+[node name="SoundPoolGenerator" type="Node" parent="." node_paths=PackedStringArray("condition_manager", "database")]
 script = ExtResource("3_ykiyu")
 condition_manager = NodePath("../ConditionManager")
-audio_database = NodePath("../AudioDatabase")
+database = NodePath("../AudioDatabase")
 metadata/_custom_type_script = "uid://mt3d3ew3jpbn"
 
-[node name="AmbiencePlayer" type="Node" parent="." node_paths=PackedStringArray("pool_generator", "sound_database")]
+[node name="AmbiencePlayer" type="Node" parent="." node_paths=PackedStringArray("pool_generator")]
 script = ExtResource("4_oor15")
 pool_generator = NodePath("../SoundPoolGenerator")
-sound_database = NodePath("../AudioDatabase")
 metadata/_custom_type_script = "uid://cg7tlxsb61rv3"
 
-[node name="MusicManager" type="Node" parent="." node_paths=PackedStringArray("condition_manager", "sound_database")]
+[node name="MusicManager" type="Node" parent="." node_paths=PackedStringArray("condition_manager", "database")]
 script = ExtResource("5_mc5n7")
 condition_manager = NodePath("../ConditionManager")
-sound_database = NodePath("../AudioDatabase")
+database = NodePath("../AudioDatabase")
 metadata/_custom_type_script = "uid://3kppd1qtbv64"
