@@ -8,7 +8,7 @@ var current_track: AudioStreamPlayer
 var next_track: AudioStreamPlayer
 
 func _ready() -> void:
-	#condition_manager.conditions_updated.connect(_update_music)
+	condition_manager.conditions_updated.connect(_update_music)
 	_update_music()
 
 

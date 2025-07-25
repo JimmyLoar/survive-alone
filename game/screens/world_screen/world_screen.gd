@@ -25,6 +25,7 @@ func _ready() -> void:
 	Locator.get_service(MusicManager).play()
 	var conditions = Locator.get_service(ConditionManager)
 	conditions.add_tag("bg_bird", 1.2)
+	conditions.add_tag("main")
 	
 
 

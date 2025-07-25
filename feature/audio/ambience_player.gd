@@ -43,9 +43,6 @@ func _play_ambience_loop() -> void:
 			var player = _create_player(sound)
 			active_players.append(player)
 		
-		if not get_tree():
-			continue
-		
 		await get_tree().create_timer(1.0).timeout
 
 func _create_player(sound: Dictionary) -> AudioStreamPlayer:

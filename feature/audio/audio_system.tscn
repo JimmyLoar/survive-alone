@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce1ge6cnqrvl6"]
+[gd_scene load_steps=7 format=3 uid="uid://ce1ge6cnqrvl6"]
 
 [ext_resource type="Script" uid="uid://cm6s4u2t3745u" path="res://feature/audio/condition_manager.gd" id="1_542el"]
+[ext_resource type="Script" uid="uid://c86fec7q2s786" path="res://feature/audio/audio_system.gd" id="1_giqku"]
 [ext_resource type="Script" uid="uid://cvw1eulx0tywg" path="res://feature/audio/audio_database.gd" id="2_mc5n7"]
 [ext_resource type="Script" uid="uid://mt3d3ew3jpbn" path="res://feature/audio/sound_pool_generator.gd" id="3_ykiyu"]
 [ext_resource type="Script" uid="uid://cg7tlxsb61rv3" path="res://feature/audio/ambience_player.gd" id="4_oor15"]
 [ext_resource type="Script" uid="uid://3kppd1qtbv64" path="res://feature/audio/music_manager.gd" id="5_mc5n7"]
 
 [node name="AudioSystem" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_giqku")
 
 [node name="ConditionManager" type="Node" parent="."]
 script = ExtResource("1_542el")

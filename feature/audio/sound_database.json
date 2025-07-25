@@ -16,6 +16,12 @@
 	},
 },
 "music": {
-	
+	"main_01": {
+		"path": "/1-1.mp3",
+		"tags": ["main", "normal", "chill"],
+		"cooldown": 5.0,
+		"volume_db": -10.0,
+		"is_persistent": true,
+	},
 }
 }
