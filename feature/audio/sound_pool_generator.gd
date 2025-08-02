@@ -20,6 +20,9 @@ func generate_persistent_pool(tag: String) -> Array:
 	var pool = []
 	for sound in database.get_sounds_by_tag(tag):
 		if sound.is_persistent:
+			if _is_has_conflict(sound.get("conflicts", [])):
+				continue
+			
 			var entry = sound.duplicate()
 			entry["score"] = condition_manager.active_tags.get(tag, 1.0)
 			pool.append(entry)
@@ -31,3 +34,10 @@ func _calculate_score(tags: Array) -> float:
 	for tag in tags:
 		score += condition_manager.active_tags.get(tag, 0.0)
 	return score
+
+
+func _is_has_conflict(conflicts_array: Array):
+	for conflict in conflicts_array:
+		if condition_manager.active_tags.has(conflict):
+			true
+	return false

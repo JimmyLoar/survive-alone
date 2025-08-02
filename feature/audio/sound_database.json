@@ -1,8 +1,16 @@
 {
 "sounds": {
+	"template": {
+		"path": "",
+		"tags": [],
+		"cooldown": 0.0,
+		"volume_db": 0.0,
+		"is_persistent": false,
+		"conflicts": [],
+	},
 	"bird_01": {
 		"path": "in_game/birds/Ambience, Grassland, Meadow, Day, Birds, Insects, Yellowstone National Park, Wyoming SND40668.wav",
-		"tags": ["bg_bird", "nature"],
+		"tags": ["nature", "grassland", "day", "birds", "insects"],
 		"cooldown": 5.0,
 		"volume_db": -5.0,
 		"is_persistent": true,
@@ -15,13 +23,19 @@
 		"is_persistent": true,
 	},
 },
+
 "music": {
+	"template": {
+		"path": "",
+		"tags": [],
+		"fade_duration": 0.0,
+		"volume_db": 0.0,
+	},
 	"main_01": {
 		"path": "/1-1.mp3",
 		"tags": ["main", "normal", "chill"],
-		"cooldown": 5.0,
+		"fade_duration": 5.0,
 		"volume_db": -10.0,
-		"is_persistent": true,
 	},
 }
 }

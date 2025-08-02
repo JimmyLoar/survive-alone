@@ -29,7 +29,8 @@ func load_from_json(path: String) -> void:
 			"tags": sound.tags,
 			"cooldown": sound.get("cooldown", 0.0),
 			"volume_db": sound.get("volume_db", 0.0),
-			"is_persistent": sound.get("is_persistent", false)
+			"is_persistent": sound.get("is_persistent", false),
+			"conflicts": sound.get("", []),
 		}
 	
 	# Load music
@@ -40,12 +41,12 @@ func load_from_json(path: String) -> void:
 			"stream": load("res://assets/music/" + track.path),
 			"tags": track.tags,
 			"fade_duration": track.get("fade_duration", 1.0),
-			"volume_db": track.get("volume_db", 0.0)
+			"volume_db": track.get("volume_db", 0.0),
 		}
 
 
-func get_sounds_by_tag(tag: String) -> Array:
-	var result = []
+func get_sounds_by_tag(tag: String) -> Array[Dictionary]:
+	var result = [] as Array[Dictionary]
 	for sound in sounds.values():
 		if tag in sound.tags:
 			result.append(sound)
