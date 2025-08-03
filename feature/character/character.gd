@@ -21,6 +21,9 @@ func _enter_tree() -> void:
 	_character_properties_repository = Locator.initialize_service(CharacterPropertyRepository)
 
 
+func _exit_tree() -> void:
+	_state.stop_moving()
+
 
 func _ready() -> void:
 	
