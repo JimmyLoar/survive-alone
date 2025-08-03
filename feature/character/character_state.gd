@@ -33,10 +33,6 @@ var target_position: Vector2:
 		return _target_postion
 	set(value):
 		_target_postion = value
-		if is_moving:
-			Locator.get_service(ConditionManager).add_tag("footsteps")
-		else:
-			Locator.get_service(ConditionManager).add_tag("footsteps")
 		target_position_changed.emit(value)
 
 var is_moving: bool:

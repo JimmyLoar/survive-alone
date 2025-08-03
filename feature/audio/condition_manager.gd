@@ -1,7 +1,6 @@
 class_name ConditionManager
 extends Node
 
-
 signal conditions_updated()
 signal tag_added(tag: String)
 signal tag_removed(tag: String)

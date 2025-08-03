@@ -68,9 +68,10 @@ shape = SubResource("CircleShape2D_l4ehk")
 unique_name_in_owner = true
 script = ExtResource("6_yyxt3")
 
-[node name="Idle" type="Node" parent="CharacterStateMachina"]
+[node name="Idle" type="Node" parent="CharacterStateMachina" node_paths=PackedStringArray("character")]
 unique_name_in_owner = true
 script = ExtResource("7_x8p0b")
+character = NodePath("../..")
 
 [node name="Move" type="Node" parent="CharacterStateMachina"]
 unique_name_in_owner = true

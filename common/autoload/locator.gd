@@ -36,6 +36,10 @@ func initialize_service(script: GDScript, values: Array = []):
 	return service
 
 
+func has_service(script: GDScript):
+	return _storage.has(script.get_global_name())
+
+
 func get_service(script: Script, emit_callable: Callable = _empty_callable) -> Object:
 	if _storage.has(script.get_global_name()):
 		var service = _storage[script.get_global_name()]

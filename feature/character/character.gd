@@ -32,6 +32,8 @@ func _ready() -> void:
 	
 	_camera_state.mode = _camera_state.TargetMode.new(self)
 	
+	_state.target_position_changed.connect(_on_target_changed, CONNECT_DEFERRED)
+	
 	Callable(func():
 		position = _character_repositoty.get_world_position()
 		_state._target_postion = _character_repositoty.get_world_position()
@@ -57,6 +59,14 @@ func _on_screen_left_button(value):
 				
 		_state.target_position = get_global_mouse_position()
 		%CharacterStateMachina.change_state(%Move)
+
+
+func _on_target_changed(_value: Vector2):
+	if _state.is_moving:
+		Locator.get_service(ConditionManager).add_tag("footsteps")
+	else:
+		Locator.get_service(ConditionManager).remove_tag("footsteps")
+
 
 
 func _update_props_by_time_spend(_delta: int):

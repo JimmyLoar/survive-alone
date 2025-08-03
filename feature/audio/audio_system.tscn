@@ -26,6 +26,7 @@ database = NodePath("../AudioDatabase")
 metadata/_custom_type_script = "uid://mt3d3ew3jpbn"
 
 [node name="AmbiencePlayer" type="Node" parent="." node_paths=PackedStringArray("pool_generator")]
+process_mode = 1
 script = ExtResource("4_oor15")
 pool_generator = NodePath("../SoundPoolGenerator")
 metadata/_custom_type_script = "uid://cg7tlxsb61rv3"

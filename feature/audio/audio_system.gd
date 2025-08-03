@@ -11,6 +11,22 @@ extends Node2D
 
 
 func _enter_tree() -> void:
-	Locator.add_initialized_service($ConditionManager)
-	Locator.add_initialized_service($AmbiencePlayer)
-	Locator.add_initialized_service($MusicManager)
+	if not Locator.has_service(ConditionManager):
+		Locator.add_initialized_service($ConditionManager)
+		Locator.add_initialized_service($AmbiencePlayer)
+		Locator.add_initialized_service($MusicManager)
+	resume_sounds.call_deferred()
+
+
+func _exit_tree() -> void:
+	pause_sounds()
+
+
+func pause_sounds():
+	for player: AudioStreamPlayer in ambience_player.get_children():
+		player.stream_paused = true
+
+
+func resume_sounds():
+	for player: AudioStreamPlayer in ambience_player.get_children():
+		player.stream_paused = false
