@@ -22,7 +22,7 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
-	_state.stop_moving()
+	%CharacterStateMachina.change_state(%Delete)
 
 
 func _ready() -> void:
@@ -34,8 +34,6 @@ func _ready() -> void:
 	_character_properties_repository.init(_save_db)
 	
 	_camera_state.mode = _camera_state.TargetMode.new(self)
-	
-	_state.target_position_changed.connect(_on_target_changed, CONNECT_DEFERRED)
 	
 	Callable(func():
 		position = _character_repositoty.get_world_position()
@@ -64,11 +62,6 @@ func _on_screen_left_button(value):
 		%CharacterStateMachina.change_state(%Move)
 
 
-func _on_target_changed(_value: Vector2):
-	if _state.is_moving:
-		Locator.get_service(ConditionManager).add_tag("footsteps")
-	else:
-		Locator.get_service(ConditionManager).remove_tag("footsteps")
 
 
 
