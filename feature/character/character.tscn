@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpkdoaq7tk0b8"]
+[gd_scene load_steps=13 format=3 uid="uid://bpkdoaq7tk0b8"]
 
 [ext_resource type="Script" uid="uid://cpyers3ikip6v" path="res://addons/shape_texture_2d/shape_texture_2d.gd" id="1_7q31a"]
 [ext_resource type="Script" uid="uid://dd7wpi5fc85n4" path="res://feature/character/character.gd" id="1_p76ae"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://begejqexkj7yf" path="res://common/StateMachina/StateMachina.gd" id="6_yyxt3"]
 [ext_resource type="Script" uid="uid://om0dhmib7xpd" path="res://feature/character/SMStates/idle.gd" id="7_x8p0b"]
 [ext_resource type="Script" uid="uid://hqgdp8vjvdca" path="res://feature/character/SMStates/move.gd" id="8_g5h2o"]
+[ext_resource type="Script" uid="uid://blgfl672d4g8b" path="res://feature/character/SMStates/delete.gd" id="9_x8p0b"]
 
 [sub_resource type="Resource" id="Resource_hqprc"]
 script = ExtResource("2_qnd3l")
@@ -68,13 +69,19 @@ shape = SubResource("CircleShape2D_l4ehk")
 unique_name_in_owner = true
 script = ExtResource("6_yyxt3")
 
-[node name="Idle" type="Node" parent="CharacterStateMachina"]
+[node name="Idle" type="Node" parent="CharacterStateMachina" node_paths=PackedStringArray("character")]
 unique_name_in_owner = true
 script = ExtResource("7_x8p0b")
+character = NodePath("../..")
 
 [node name="Move" type="Node" parent="CharacterStateMachina"]
 unique_name_in_owner = true
 script = ExtResource("8_g5h2o")
+
+[node name="Delete" type="Node" parent="CharacterStateMachina"]
+unique_name_in_owner = true
+script = ExtResource("9_x8p0b")
+metadata/_custom_type_script = "uid://be1dqa8jvcwlb"
 
 [node name="Marker2D" type="RayCast2D" parent="."]
 

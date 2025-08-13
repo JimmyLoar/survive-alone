@@ -6,7 +6,8 @@ extends SMachinaState
 
 func enter(_previous_state: SMachinaState):
 	_moving_line.show()
-
+	Locator.get_service(ConditionManager).add_tag("footsteps")
+	
 var passability = {'water': 0, 'grass': 0.5}
 
 func update(delta: float):
