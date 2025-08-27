@@ -21,6 +21,9 @@ func _enter_tree() -> void:
 	_character_properties_repository = Locator.initialize_service(CharacterPropertyRepository)
 
 
+func _exit_tree() -> void:
+	%CharacterStateMachina.change_state(%Delete)
+
 
 func _ready() -> void:
 	
@@ -57,6 +60,9 @@ func _on_screen_left_button(value):
 				
 		_state.target_position = get_global_mouse_position()
 		%CharacterStateMachina.change_state(%Move)
+
+
+
 
 
 func _update_props_by_time_spend(_delta: int):

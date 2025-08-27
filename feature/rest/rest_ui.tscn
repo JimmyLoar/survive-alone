@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvg7piw0dj3m3" path="res://feature/rest/rest.gd" id="1_3hays"]
 [ext_resource type="PackedScene" uid="uid://b4ga5glrmq6if" path="res://feature/rest/ui_elements/delta_display.tscn" id="2_f3qwg"]
-[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/Sound/SFX/UI_SFX/ButtonSound.gd" id="3_s4cqd"]
+[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/audio/SFX/UI_SFX/ButtonSound.gd" id="3_s4cqd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s4cqd"]
 font_size = 160

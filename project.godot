@@ -39,6 +39,7 @@ Questify="*res://addons/questify/quest_manager.gd"
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 GodotLogger="*res://addons/logger/logger.gd"
 PycoLog="*res://addons/pycolytics-godot/pyco_log.gd"
+AudioSystem="*res://feature/audio/audio_system.tscn"
 
 [databases]
 

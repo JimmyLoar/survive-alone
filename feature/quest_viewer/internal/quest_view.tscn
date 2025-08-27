@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://jf50aro5ep0h"]
 
 [ext_resource type="Script" uid="uid://cufsw151un4rt" path="res://feature/quest_viewer/internal/quest_view.gd" id="1_6o0wx"]
-[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/Sound/SFX/UI_SFX/ButtonSound.gd" id="2_m88l4"]
+[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/audio/SFX/UI_SFX/ButtonSound.gd" id="2_m88l4"]
 
 [node name="QuestView" type="MarginContainer"]
 offset_right = 186.0

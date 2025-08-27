@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl1d3c28xju2i"]
 
 [ext_resource type="Script" uid="uid://d3o3ruk73p5vg" path="res://feature/craft/cc_craft.gd" id="2_1uoms"]
-[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/Sound/SFX/UI_SFX/ButtonSound.gd" id="3_e65og"]
+[ext_resource type="Script" uid="uid://bk3rwk2fcwbwa" path="res://feature/audio/SFX/UI_SFX/ButtonSound.gd" id="3_e65og"]
 
 [node name="Craft" type="PanelContainer" node_paths=PackedStringArray("_node_plase", "_serch_node")]
 anchors_preset = 15

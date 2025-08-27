@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce1ge6cnqrvl6"]
+
+[ext_resource type="Script" uid="uid://cm6s4u2t3745u" path="res://feature/audio/condition_manager.gd" id="1_542el"]
+[ext_resource type="Script" uid="uid://c86fec7q2s786" path="res://feature/audio/audio_system.gd" id="1_giqku"]
+[ext_resource type="Script" uid="uid://cvw1eulx0tywg" path="res://feature/audio/audio_database.gd" id="2_mc5n7"]
+[ext_resource type="Script" uid="uid://mt3d3ew3jpbn" path="res://feature/audio/sound_pool_generator.gd" id="3_ykiyu"]
+[ext_resource type="Script" uid="uid://cg7tlxsb61rv3" path="res://feature/audio/ambience_player.gd" id="4_oor15"]
+[ext_resource type="Script" uid="uid://3kppd1qtbv64" path="res://feature/audio/music_manager.gd" id="5_mc5n7"]
+
+[node name="AudioSystem" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_giqku")
+
+[node name="ConditionManager" type="Node" parent="."]
+script = ExtResource("1_542el")
+metadata/_custom_type_script = "uid://cm6s4u2t3745u"
+
+[node name="AudioDatabase" type="Node" parent="."]
+script = ExtResource("2_mc5n7")
+metadata/_custom_type_script = "uid://cvw1eulx0tywg"
+
+[node name="SoundPoolGenerator" type="Node" parent="." node_paths=PackedStringArray("condition_manager", "database")]
+script = ExtResource("3_ykiyu")
+condition_manager = NodePath("../ConditionManager")
+database = NodePath("../AudioDatabase")
+metadata/_custom_type_script = "uid://mt3d3ew3jpbn"
+
+[node name="AmbiencePlayer" type="Node" parent="." node_paths=PackedStringArray("pool_generator")]
+process_mode = 1
+script = ExtResource("4_oor15")
+pool_generator = NodePath("../SoundPoolGenerator")
+metadata/_custom_type_script = "uid://cg7tlxsb61rv3"
+
+[node name="MusicManager" type="Node" parent="." node_paths=PackedStringArray("condition_manager", "database")]
+script = ExtResource("5_mc5n7")
+condition_manager = NodePath("../ConditionManager")
+database = NodePath("../AudioDatabase")
+metadata/_custom_type_script = "uid://3kppd1qtbv64"
